@@ -200,4 +200,9 @@ class Task extends Model
     {
         return $this->belongsTo(Task::class, 'main_task_id');
     }
+
+    public function employees()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

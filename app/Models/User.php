@@ -150,4 +150,9 @@ class User extends Authenticatable
             $q->orWhereSearch('phone', $search);
         });
     }
+
+    public function tasks()
+    {
+        return $this->belongsToMany(Task::class);
+    }
 }
