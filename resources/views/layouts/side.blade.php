@@ -23,3 +23,11 @@
         </a>
     </li>
 @endpermission
+
+@permission('index-task')
+    <li>
+        <a class='slide-item' href='{{ route('task.index') }}'>
+            <span>{{ __('global.tasks') }}</span>
+        </a>
+    </li>
+@endpermission

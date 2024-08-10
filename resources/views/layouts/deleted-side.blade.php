@@ -23,3 +23,11 @@
         </a>
     </li>
 @endpermission
+
+@permission('restore-task')
+    <li>
+        <a class='slide-item' href='{{ route('task.index.trash') }}'>
+            <span>{{ __('global.tasks') }}</span>
+        </a>
+    </li>
+@endpermission

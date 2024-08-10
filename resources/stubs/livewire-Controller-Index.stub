@@ -35,13 +35,14 @@ class {{Model}}Index extends Component
 
     {{filter_public}}
 
-    public $url;
-    public $admin_view_status = '';
+
+    public $admin_view_status = '', $by, $url;
     public function mount($admin_view_status = '')
     {
         $this->url = Route::current()->getName();
         $this->admin_view_status = $admin_view_status;
         $this->user = Auth::user();
+        $this->by = session()->get('admin_user', $this->user);
 
         $this->{{model}} = new {{Model}}();
 
@@ -95,7 +96,7 @@ class {{Model}}Index extends Component
         $validatedData = $this->validate();
 
         {{Model}}::create([
-            'add_by' => auth()->user()->id,
+            'add_by' => $this->by->id,
             'slug' => $this->slug,
             {{livewireCreate}}
         ]);
@@ -110,7 +111,7 @@ class {{Model}}Index extends Component
     public function edit($id)
     {
         $this->updateMode = true;
-        ${{model}} = {{Model}}::where('id', $id)->first();
+        ${{model}} = {{Model}}::find($id);
         $this->{{model}} = ${{model}};
         $this->{{model}}_id = $id;
         $this->slug = ${{model}}->slug;

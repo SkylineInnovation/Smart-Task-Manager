@@ -301,7 +301,7 @@ class CrudGenerator extends Command
                     '$fillable" . "_id',";
 
                     $inMigration = $inMigration . "
-                    \$table->foreignIdFor(App\Models\\$Fillable::class)->nullable();\n";
+                    \$table->foreignIdFor(App\Models\\$Fillable::class)->nullable()->default(0);\n";
 
                     $AllResource = $AllResource . "
                     '$fillable' => new $Fillable" . "Resource(\$this->whenLoaded('$fillable')),";
@@ -560,7 +560,7 @@ class CrudGenerator extends Command
                     ";
 
                     $livewireSearch = $livewireSearch . "
-                            \$q->orWhere('$fillable" . "_id', 'like', \"%\$search%\");";
+                            \$q->orWhere('$fillable" . "_id', \$search);";
 
                     $livewireShowColumn = $livewireShowColumn . "
                     '$fillable" . "_id' => true,";

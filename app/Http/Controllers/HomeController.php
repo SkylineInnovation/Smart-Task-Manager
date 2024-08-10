@@ -20,6 +20,28 @@ class HomeController extends Controller
         return Redirect::back();
     }
 
+    public function logInAsUser($id)
+    {
+        if ($id == 0) {
+            Auth::logout();
+
+            $user = session()->get('admin_user');
+            Auth::login($user);
+            session()->forget('admin_user');
+        } else {
+            if (!session()->has('admin_user'))
+                session()->put('admin_user', Auth::user());
+
+            $user = User::find($id);
+            Auth::logout();
+
+            Auth::login($user);
+        }
+
+        return back();
+    }
+
+
     public function sidenavToggled()
     {
         if (session('sidenav-toggled') == 'big') {

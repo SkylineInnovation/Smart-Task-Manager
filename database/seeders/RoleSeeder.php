@@ -20,7 +20,6 @@ class RoleSeeder extends Seeder
         // Permission::truncate();
 
         $ownerRole = Role::where('name', 'owner')->first();
-
         if (!$ownerRole)
             $ownerRole = Role::create([
                 'name' => 'owner',
@@ -29,7 +28,6 @@ class RoleSeeder extends Seeder
             ]);
 
         $devRole = Role::where('name', 'dev')->first();
-
         if (!$devRole)
             $devRole = Role::create([
                 'name' => 'dev',
@@ -37,14 +35,13 @@ class RoleSeeder extends Seeder
                 'description' => 'User is the dev of this given project', // optional
             ]);
 
-        $fullRole = Role::where('name', 'full')->first();
-
-        if (!$fullRole)
-            $fullRole = Role::create([
-                'name' => 'full',
-                'display_name' => 'Full', // optional
-                'description' => 'User is the full of this given project', // optional
-            ]);
+        // $fullRole = Role::where('name', 'full')->first();
+        // if (!$fullRole)
+        //     $fullRole = Role::create([
+        //         'name' => 'full',
+        //         'display_name' => 'Full', // optional
+        //         'description' => 'User is the full of this given project', // optional
+        //     ]);
 
         $lists = [
             'user',
@@ -125,5 +122,27 @@ class RoleSeeder extends Seeder
             } catch (\Throwable $th) {
             }
         }
+
+        $customPermissions = [
+            // 'index-customer-male',
+        ];
+
+        foreach ($customPermissions as $customPermission) {
+            $permission = Permission::where('name', $customPermission)->latest()->first();
+
+            if (!$permission)
+                Permission::create([
+                    'name' => $customPermission,
+                    'display_name' => str_replace(['_', '-'], [' ', ' '], $customPermission),
+                ]);
+        }
+
+        $employeeRole = Role::where('name', 'employee')->first();
+
+        if (!$employeeRole)
+            $employeeRole = Role::create([
+                'name' => 'employee',
+                'display_name' => 'Employee', // optional
+            ]);
     }
 }

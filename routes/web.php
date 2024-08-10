@@ -65,6 +65,8 @@ Route::prefix('admin')->middleware('auth', 'role:owner|dev|full')->group(functio
 
     Route::get('lang/{lang}', [HomeController::class, 'switchLang'])->name('lang.switch');
 
+    Route::get('set-session/{id}', [HomeController::class, 'logInAsUser'])->name('set-session');
+
     Route::post('sidenav-toggled', [HomeController::class, 'sidenavToggled'])->name('sidenav.toggled');
 
     Route::get('edit-profile', [HomeController::class, 'editProfile'])->name('edit.profile');
@@ -103,4 +105,11 @@ Route::prefix('admin')->middleware('auth', 'role:owner|dev|full')->group(functio
     Route::middleware('permission:restore-devicetokenlist')->get('trash/devicetokenlists', [App\Http\Controllers\DeviceTokenListController::class, 'livewireDeletedIndex'])->name('devicetokenlist.index.trash');
     Route::get('export/devicetokenlists', [App\Http\Controllers\DeviceTokenListController::class, 'exportFullData'])->name('devicetokenlist.export');
     Route::post('import/devicetokenlists', [App\Http\Controllers\DeviceTokenListController::class, 'importData'])->name('devicetokenlist.import');
+
+
+    // the full routes for tasks
+    Route::middleware('permission:index-task')->get('tasks', [App\Http\Controllers\TaskController::class, 'livewireIndex'])->name('task.index');
+    Route::middleware('permission:restore-task')->get('trash/tasks', [App\Http\Controllers\TaskController::class, 'livewireDeletedIndex'])->name('task.index.trash');
+    Route::get('export/tasks', [App\Http\Controllers\TaskController::class, 'exportFullData'])->name('task.export');
+    Route::post('import/tasks', [App\Http\Controllers\TaskController::class, 'importData'])->name('task.import');
 });
