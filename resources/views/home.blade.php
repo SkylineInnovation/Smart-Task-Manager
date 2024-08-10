@@ -2,7 +2,6 @@
 
 
 @section('content')
-
     <div class="card">
         <div class="card-header">
             <h2 class="card-title">hi al in dashboard page</h2>
@@ -18,7 +17,12 @@
             </div>
         </div>
     </div>
-    
+
+
+
+    <div class="container">
+        <livewire:web.task.task-create-modal />
+    </div>
 @endsection
 
 

@@ -42,5 +42,11 @@
 <!-- COLOR SKIN CSS -->
 <link id="theme" rel="stylesheet" type="text/css" media="all" href="{{ asset('assets/colors/color1.css') }}" />
 
-<link href="{{ asset('assets/plugins/datatable/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
-<link href="{{ asset('assets/plugins/select2/select2.min.css')}}" rel="stylesheet">
+<link href="{{ asset('assets/plugins/datatable/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet">
+
+{{-- add by laith --}}
+<link href="{{ asset('assets/plugins/multipleselect/multiple-select.css') }}" rel="stylesheet" />
+<link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
+
+<link href="{{ URL::asset('assets/plugins/summernote/summernote-bs4.css') }}" rel="stylesheet">

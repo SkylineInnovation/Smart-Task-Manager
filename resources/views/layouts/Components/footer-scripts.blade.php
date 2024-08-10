@@ -47,20 +47,28 @@
 <script src="{{ asset('assets/plugins/datatable/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('assets/my-js/the-data-table.js') }}"></script>
 
+{{-- add by laith --}}
+
+<script src="{{ asset('assets/plugins/multipleselect/multiple-select.js') }}"></script>
+<script src="{{ asset('assets/plugins/multipleselect/multi-select.js') }}"></script>
+<script src="{{ asset('assets/plugins/select2/select2.full.min.js') }}"></script>
+
+<script src="{{ asset('assets/plugins/summernote/summernote-bs4.js') }}"></script>
+<script src="{{ asset('assets/js/summernote.js') }}"></script>
 
 <script>
     // 
     function sidenavToggledApi() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                }
-            });
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            }
+        });
 
-            $.ajax({
-                url: '/sidenav-toggled/',
-                type: 'POST',
-                success: function(result) {}
-            });
-        }
+        $.ajax({
+            url: '/sidenav-toggled/',
+            type: 'POST',
+            success: function(result) {}
+        });
+    }
 </script>
