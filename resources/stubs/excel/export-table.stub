@@ -1,0 +1,32 @@
+<table>
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>id</td>
+            <td>slug</td>
+
+            {{td_header}}
+
+            <td>created at</td>
+            <td>updated at</td>
+            <td>deleted at</td>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (${{model}}s as ${{model}})
+            <tr>
+                <td>{{ ++$number }}</td>
+                <td>{{ ${{model}}->id }}</td>
+                <td>{{ ${{model}}->slug }}</td>
+
+                {{td_data}}
+
+                <td>{{ ${{model}}->created_at ? date('d/m/Y', strtotime(${{model}}->created_at)) : '' }}</td>
+                <td>{{ ${{model}}->updated_at ? date('d/m/Y', strtotime(${{model}}->updated_at)) : '' }}</td>
+                <td>{{ ${{model}}->deleted_at ? date('d/m/Y', strtotime(${{model}}->deleted_at)) : '' }}</td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>

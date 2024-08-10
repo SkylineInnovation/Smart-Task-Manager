@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Imports\{{Model}};
+
+use App\Models\{{Model}};
+use Maatwebsite\Excel\Concerns\ToCollection;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+
+class Full{{Model}}sImport implements ToCollection, WithHeadingRow
+{
+    /**
+     * @param Collection $collection
+     */
+    public function collection(Collection $rows)
+    {
+        foreach ($rows as $row) {
+
+            $id = trim($row['id']);
+            $slug = trim($row['slug']);
+            
+            {{import_trim_fillables}}
+
+            ${{model}} = {{Model}}::find($id);
+
+            if (!${{model}}) {
+                ${{model}} = {{Model}}::create([
+                    'add_by' => auth()->user()->id,
+                    'slug' => $slug,
+
+                    {{import_fillables}}
+                ]);
+            } else {
+                ${{model}}->update([
+                    'slug' => $slug,
+
+                    {{import_fillables}}
+                ]);
+            }
+        }
+    }
+}
