@@ -135,6 +135,9 @@ return [
     'tasks' => 'task',
     'create-task' => 'create new task',
 
+    'attachments' => 'attachment',
+    'create-attachment' => 'create new attachment',
+
     // some role valideate message in sub
     // 'please_select_customer' => 'Please Select Customer',
 

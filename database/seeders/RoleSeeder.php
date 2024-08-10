@@ -52,6 +52,7 @@ class RoleSeeder extends Seeder
             'devicetokenlist',
 
             'task',
+            'attachment',
         ];
 
         foreach ($lists as $item) {

@@ -112,4 +112,11 @@ Route::prefix('admin')->middleware('auth', 'role:owner|dev|full')->group(functio
     Route::middleware('permission:restore-task')->get('trash/tasks', [App\Http\Controllers\TaskController::class, 'livewireDeletedIndex'])->name('task.index.trash');
     Route::get('export/tasks', [App\Http\Controllers\TaskController::class, 'exportFullData'])->name('task.export');
     Route::post('import/tasks', [App\Http\Controllers\TaskController::class, 'importData'])->name('task.import');
+
+
+    // the full routes for attachments
+    Route::middleware('permission:index-attachment')->get('attachments', [App\Http\Controllers\AttachmentController::class, 'livewireIndex'])->name('attachment.index');
+    Route::middleware('permission:restore-attachment')->get('trash/attachments', [App\Http\Controllers\AttachmentController::class, 'livewireDeletedIndex'])->name('attachment.index.trash');
+    Route::get('export/attachments', [App\Http\Controllers\AttachmentController::class, 'exportFullData'])->name('attachment.export');
+    Route::post('import/attachments', [App\Http\Controllers\AttachmentController::class, 'importData'])->name('attachment.import');
 });

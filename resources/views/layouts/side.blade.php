@@ -31,3 +31,11 @@
         </a>
     </li>
 @endpermission
+
+@permission('index-attachment')
+    <li>
+        <a class='slide-item' href='{{ route('attachment.index') }}'>
+            <span>{{ __('global.attachments') }}</span>
+        </a>
+    </li>
+@endpermission
