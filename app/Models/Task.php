@@ -6,7 +6,7 @@ use App\Traits\TranslateTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\App;
+
 // use Laratrust\Traits\LaratrustUserTrait;
 
 class Task extends Model
@@ -74,7 +74,7 @@ class Task extends Model
         parent::boot();
 
         static::created(function ($model) {
-            // 
+            // Mail::to([])->send(new SendNewTaskToEmployee($model));
         });
 
         static::updating(function ($model) {

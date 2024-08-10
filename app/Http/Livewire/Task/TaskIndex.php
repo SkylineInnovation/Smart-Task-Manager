@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire\Task;
 
+use App\Mail\Task\SendNewTaskToEmployee;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -157,6 +159,10 @@ class TaskIndex extends Component
         ]);
 
         $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
+
+        Mail::to(
+            $task->employees->pluck('email')->toArray()
+        )->send(new SendNewTaskToEmployee($task));
 
         session()->flash('message', 'Task Created Successfully.');
 
