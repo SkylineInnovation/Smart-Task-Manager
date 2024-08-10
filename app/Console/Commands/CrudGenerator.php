@@ -560,7 +560,7 @@ class CrudGenerator extends Command
                     ";
 
                     $livewireSearch = $livewireSearch . "
-                            // \$q->orWhere('$fillable" . "_id', 'like', \"%\$search%\");";
+                            \$q->orWhere('$fillable" . "_id', 'like', \"%\$search%\");";
 
                     $livewireShowColumn = $livewireShowColumn . "
                     '$fillable" . "_id' => true,";

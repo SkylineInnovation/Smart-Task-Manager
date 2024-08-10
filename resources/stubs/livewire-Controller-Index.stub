@@ -110,9 +110,8 @@ class {{Model}}Index extends Component
     public function edit($id)
     {
         $this->updateMode = true;
-        ${{model}} = {{Model}}::find($id);
+        ${{model}} = {{Model}}::where('id', $id)->first();
         $this->{{model}} = ${{model}};
-
         $this->{{model}}_id = $id;
         $this->slug = ${{model}}->slug;
 
@@ -144,7 +143,9 @@ class {{Model}}Index extends Component
     public function delete($id) {
         if ($id) {
             ${{model}} = {{Model}}::find($id);
+
             ${{model}}->delete();
+
             session()->flash('message', '{{Model}} Deleted Successfully.');
         }
     }
@@ -153,7 +154,9 @@ class {{Model}}Index extends Component
     {
         if ($id) {
             ${{model}} = {{Model}}::withTrashed()->find($id);
+
             ${{model}}->restore();
+
             session()->flash('message', '{{Model}} Recovered Successfully.');
         }
     }

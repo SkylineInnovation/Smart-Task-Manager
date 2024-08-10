@@ -91,16 +91,12 @@ class {{Model}} extends Model
 
     // public function name($lang = null)
     // {
-    //      return $this->translateCol($this->the_name, $lang);
+    //     return $this->translateCol($this->the_name, $lang);
     // }
 
     public static function livewireSearch($search)
     {
         $qqq = static::query();
-
-        // if (!auth()->user()->hasRole(['owner',]))
-        //     $qqq = $qqq->where('add_by', auth()->user()->id);
-
         if (empty($search)) return $qqq;
 
         return $qqq->where(function($q) use ($search){
