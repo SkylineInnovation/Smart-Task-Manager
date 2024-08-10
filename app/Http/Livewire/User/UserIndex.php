@@ -69,6 +69,8 @@ class UserIndex extends Component
         $this->birth_day = '';
         $this->status = '';
         $this->active_until = '';
+
+        $this->selectedRoles = [];
     }
 
     public function rules()

@@ -36,8 +36,8 @@ class TaskIndex extends Component
 
     public $main_tasks = [];
 
-    public $selectedEmployees = [];
     public $employees = [];
+    public $selectedEmployees = [];
 
 
     public $filter_managers_id = [];
@@ -104,6 +104,8 @@ class TaskIndex extends Component
         // $this->priority_level = 'low';
         // $this->status = 'pending';
         $this->main_task_id = null;
+
+        $this->selectedEmployees = [];
     }
 
 
@@ -118,8 +120,14 @@ class TaskIndex extends Component
             'priority_level' => 'required',
             'status' => 'required',
             // 'main_task_id' => 'required',
+
+            'selectedEmployees' => 'required',
         ];
     }
+
+    protected $messages = [
+        'selectedEmployees.required' => 'Please Select Employee',
+    ];
 
     public function updated($propertyName)
     {
@@ -131,7 +139,7 @@ class TaskIndex extends Component
         $validatedData = $this->validate();
 
 
-        Task::create([
+        $task = Task::create([
             'add_by' => $this->by->id,
             'slug' => $this->slug,
 
@@ -144,6 +152,8 @@ class TaskIndex extends Component
             'status' => $this->status,
             'main_task_id' => $this->main_task_id,
         ]);
+
+        $task->employees()->sync($this->selectedEmployees);
 
         session()->flash('message', 'Task Created Successfully.');
 
@@ -169,6 +179,8 @@ class TaskIndex extends Component
         $this->priority_level = $task->priority_level;
         $this->status = $task->status;
         $this->main_task_id = $task->main_task_id;
+
+        $this->selectedEmployees = $task->employees->pluck('id');
     }
 
     public function cancel()
@@ -194,6 +206,8 @@ class TaskIndex extends Component
                 'status' => $this->status,
                 'main_task_id' => $this->main_task_id,
             ]);
+
+            $task->employees()->sync($this->selectedEmployees);
 
             $this->updateMode = false;
             session()->flash('message', 'Task Updated Successfully.');

@@ -116,6 +116,27 @@
 
                             </div>
 
+                            @role('owner')
+                                <div>
+                                    <p>{{ __('global.employees') }}</p>
+                                    <div class="row">
+                                        @foreach ($employees as $employee)
+                                            <div class="col-4">
+                                                <div class="form-check form-check-inline">
+                                                    <input wire:model='selectedEmployees' class="form-check-input"
+                                                        type="checkbox" value="{{ $employee->id }}"
+                                                        id="selected-employee-{{ $employee->id }}">
+                                                    <label class="form-check-label"
+                                                        for="selected-employee-{{ $employee->id }}">
+                                                        {{ $employee->name() }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endrole
+
                         </div>
 
                         <div class="form-group">
