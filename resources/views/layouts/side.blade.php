@@ -39,3 +39,11 @@
         </a>
     </li>
 @endpermission
+
+@permission('index-comment')
+    <li>
+        <a class='slide-item' href='{{ route('comment.index') }}'>
+            <span>{{ __('global.comments') }}</span>
+        </a>
+    </li>
+@endpermission

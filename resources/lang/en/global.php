@@ -138,6 +138,9 @@ return [
     'attachments' => 'attachment',
     'create-attachment' => 'create new attachment',
 
+    'comments' => 'comment',
+    'create-comment' => 'create new comment',
+
     // some role valideate message in sub
     // 'please_select_customer' => 'Please Select Customer',
 

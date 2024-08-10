@@ -119,4 +119,11 @@ Route::prefix('admin')->middleware('auth', 'role:owner|dev|full')->group(functio
     Route::middleware('permission:restore-attachment')->get('trash/attachments', [App\Http\Controllers\AttachmentController::class, 'livewireDeletedIndex'])->name('attachment.index.trash');
     Route::get('export/attachments', [App\Http\Controllers\AttachmentController::class, 'exportFullData'])->name('attachment.export');
     Route::post('import/attachments', [App\Http\Controllers\AttachmentController::class, 'importData'])->name('attachment.import');
+
+
+    // the full routes for comments
+    Route::middleware('permission:index-comment')->get('comments', [App\Http\Controllers\CommentController::class, 'livewireIndex'])->name('comment.index');
+    Route::middleware('permission:restore-comment')->get('trash/comments', [App\Http\Controllers\CommentController::class, 'livewireDeletedIndex'])->name('comment.index.trash');
+    Route::get('export/comments', [App\Http\Controllers\CommentController::class, 'exportFullData'])->name('comment.export');
+    Route::post('import/comments', [App\Http\Controllers\CommentController::class, 'importData'])->name('comment.import');
 });
