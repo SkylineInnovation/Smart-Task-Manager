@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::create('task_user', function (Blueprint $table) {
             $table->foreignIdFor(Task::class);
             $table->foreignIdFor(User::class);
-            $table->double('disount')->nullable()->default(0.0);
+            $table->double('discount')->nullable()->default(0.0);
         });
     }
 

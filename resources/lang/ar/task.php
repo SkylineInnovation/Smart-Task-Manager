@@ -25,6 +25,7 @@ return [
 
     'main_task' => 'main task',
 
+    'discount' => 'discount',
 
     'low' => 'low',
     'medium' => 'medium',

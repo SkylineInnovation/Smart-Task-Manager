@@ -90,6 +90,7 @@ class TaskIndex extends Component
 
     public $slug;
     public $task_id, $manager_id, $title, $desc, $start_time, $end_time, $priority_level = 'low', $status = 'pending', $main_task_id;
+    public $discount = 0;
     public $updateMode = false;
 
     private function resetInputFields()
@@ -99,11 +100,12 @@ class TaskIndex extends Component
         $this->manager_id = null;
         $this->title = '';
         $this->desc = '';
-        $this->start_time = date('Y-m-d');
+        $this->start_time = date('Y-m-d H:m A');
         $this->end_time = date('Y-m-d', strtotime('+60 minutes'));
         // $this->priority_level = 'low';
         // $this->status = 'pending';
         $this->main_task_id = null;
+        $this->discount = 0;
 
         $this->selectedEmployees = [];
     }
@@ -119,6 +121,7 @@ class TaskIndex extends Component
             'end_time' => 'required',
             'priority_level' => 'required',
             'status' => 'required',
+            'discount' => 'required',
             // 'main_task_id' => 'required',
 
             'selectedEmployees' => 'required',
@@ -153,7 +156,7 @@ class TaskIndex extends Component
             'main_task_id' => $this->main_task_id,
         ]);
 
-        $task->employees()->sync($this->selectedEmployees);
+        $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
 
         session()->flash('message', 'Task Created Successfully.');
 
@@ -181,6 +184,8 @@ class TaskIndex extends Component
         $this->main_task_id = $task->main_task_id;
 
         $this->selectedEmployees = $task->employees->pluck('id');
+
+        $this->discount = $task->discount();
     }
 
     public function cancel()
@@ -207,7 +212,7 @@ class TaskIndex extends Component
                 'main_task_id' => $this->main_task_id,
             ]);
 
-            $task->employees()->sync($this->selectedEmployees);
+            $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
 
             $this->updateMode = false;
             session()->flash('message', 'Task Updated Successfully.');

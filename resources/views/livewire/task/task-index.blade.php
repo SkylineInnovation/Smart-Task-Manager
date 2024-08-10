@@ -123,11 +123,11 @@
                         @endif
 
                         @if ($showColumn['start_time'])
-                            <td> {{ $task->start_time }} </td>
+                            <td> {{ $task->format_date($task->start_time) }} </td>
                         @endif
 
                         @if ($showColumn['end_time'])
-                            <td> {{ $task->end_time }} </td>
+                            <td> {{ $task->format_date($task->end_time) }} </td>
                         @endif
 
                         @if ($showColumn['priority_level'])

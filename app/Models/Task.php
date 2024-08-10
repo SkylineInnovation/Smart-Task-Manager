@@ -203,6 +203,16 @@ class Task extends Model
 
     public function employees()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->withPivot('discount');
+    }
+
+    public function discount()
+    {
+        return $this->employees->first()->pivot->discount;
+    }
+
+    public function format_date($data)
+    {
+        return date('Y-m-d h:i A', strtotime($data));
     }
 }
