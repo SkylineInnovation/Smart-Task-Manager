@@ -63,7 +63,7 @@ class TaskIndex extends Component
         $this->start_time = date('Y-m-d');
         $this->end_time = date('Y-m-d', strtotime('+60 minutes'));
 
-        $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('name')->get();
+        $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
 
         $this->main_tasks = \App\Models\Task::where('main_task_id', 0)->where('show', 1)->orderBy('sort')->get();
 
