@@ -1,20 +1,10 @@
 @extends('layouts.livewire-app')
 
-
-@section('content')
+@section('css')
     <style>
-        div {
-            /* border: solid black 1px */
-        }
-
         .fileupload {
-
-
             position: relative;
             overflow: hidden;
-
-
-
             /* and other things to make it pretty */
         }
 
@@ -22,19 +12,19 @@
             position: absolute;
             top: 0;
             right: 0;
-            /* not left, because only the right part of the input seems to
-                             be clickable in some browser I can't remember */
+            /* not left, because only the right part of the input seems to be clickable in some browser I can't remember */
             cursor: pointer;
             opacity: 0.0;
             filter: alpha(opacity=0);
-            /* and all the other old opacity stuff you
-                                             want to support */
+            /* and all the other old opacity stuff you want to support */
             font-size: 300px;
-            /* wtf, but apparently the most reliable way to make
-                                     a large part of the input clickable in most browsers */
+            /* wtf, but apparently the most reliable way to make a large part of the input clickable in most browsers */
             height: 200px;
         }
     </style>
+@endsection
+
+@section('content')
     <div class="container bg-white-lightest ">
         <div class="d-flex card flex-row" style="overflow-x: scroll;">
             <div class="col-md-4 col-10  py-4 ">
@@ -227,7 +217,8 @@
                                                                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                                                         </div>
                                                                         <div class="col-md-12 d-flex justify-content-end">
-                                                                            <button type="submit" class="btn btn-success">post</button>
+                                                                            <button type="submit"
+                                                                                class="btn btn-success">post</button>
                                                                         </div>
                                                                     </div>
 
@@ -342,72 +333,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('js')
-    {{-- <script type="text/javascript">
-        $(function() {
-            var chartdata = [{
-                name: "{!! __('global.users') !!}",
-                type: 'line',
-                smooth: true,
-                data: {!! json_encode($userList) !!},
-            }, ];
-            // ['line', 'bar'];
-            var chart = document.getElementById('home-echart');
-            var barChart = echarts.init(chart);
-            var option = {
-                grid: {
-                    top: '20',
-                    right: '20',
-                    bottom: '20',
-                    left: '20',
-                },
-                xAxis: {
-                    data: {!! json_encode($listOfDates) !!},
-                    axisLine: {
-                        lineStyle: {
-                            color: 'rgba(119, 119, 142, 0.2)'
-                        }
-                    },
-                    axisLabel: {
-                        fontSize: 10,
-                        color: '#77778e'
-                    }
-                },
-                tooltip: {
-                    show: true,
-                    showContent: true,
-                    alwaysShowContent: true,
-                    triggerOn: 'mousemove',
-                    trigger: 'axis',
-                    axisPointer: {
-                        label: {
-                            show: false
-                        }
-                    }
-                },
-                yAxis: {
-                    splitLine: {
-                        lineStyle: {
-                            color: 'rgba(119, 119, 142, 0.2)'
-                        }
-                    },
-                    axisLine: {
-                        lineStyle: {
-                            color: 'rgba(119, 119, 142, 0.2)'
-                        }
-                    },
-                    axisLabel: {
-                        fontSize: 10,
-                        color: '#77778e'
-                    }
-                },
-                series: chartdata,
-                color: ['#0774f8', '#09ad95', '#d43f8d', ]
-            };
-            barChart.setOption(option);
-
-        });
-    </script> --}}
 @endsection
