@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -175,6 +176,8 @@ class HomeController extends Controller
 
     public function taskBoard()
     {
+
+        
         return view('Web.task-board');
     }
 }

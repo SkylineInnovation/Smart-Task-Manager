@@ -243,4 +243,13 @@ class Task extends Model
     {
         return date('Y-m-d h:i A', strtotime($data));
     }
+
+    public function attatchments()
+    {
+        return $this->hasMany(Attachment::class);
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->where('main_comment_id', 0);
+    }
 }

@@ -177,4 +177,9 @@ class Comment extends Model
     {
         return $this->belongsTo(Comment::class, 'main_comment_id');
     }
+
+    public function subs()
+    {
+        return $this->hasMany(Comment::class, 'main_comment_id')->orderBy('id');
+    }
 }
