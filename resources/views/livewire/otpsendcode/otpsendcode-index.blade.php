@@ -19,7 +19,7 @@
                     <td>#</td>
 
                     {{-- 
-                        @if ($status != 'deleted')
+                        @if ($admin_view_status != 'deleted')
                             <td style="width: 75px"> {{ __('global.select') }} </td>
                         @endif
                     --}}
@@ -79,7 +79,7 @@
                         <td>{{ ++$number }}</td>
 
                         {{-- 
-                            @if ($status != 'deleted')
+                            @if ($admin_view_status != 'deleted')
                                 <td>
                                     <div class="form-check">
                                         <input wire:model.defer="selectedOtpsendcodes.{{ $otpsendcode->id }}" class="form-check-input"
@@ -136,7 +136,7 @@
 
                         @permission('edit-otpsendcode|delete-otpsendcode|restore-otpsendcode')
                             <td>
-                                @if ($status != 'deleted')
+                                @if ($admin_view_status != 'deleted')
                                     @permission('edit-otpsendcode')
                                         <button data-toggle="modal" data-target="#update-otpsendcode-modal"
                                             wire:click="edit({{ $otpsendcode->id }})" class="btn btn-primary">
@@ -185,7 +185,7 @@
                                     @endpermission
                                 @endif
 
-                                @if ($status == 'deleted')
+                                @if ($admin_view_status == 'deleted')
                                     @permission('restore-otpsendcode')
                                         <button class="btn btn-danger" type="button" data-toggle="modal"
                                             data-target="#restore-otpsendcode-{{ $otpsendcode->id }}">
