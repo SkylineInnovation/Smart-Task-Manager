@@ -26,8 +26,8 @@
 
 @section('content')
     <div class="card">
-        <div class="d-flex justify-content-between p-2">
-            <div id="search-sort-section" class="form-inline ">
+        <div class="d-flex p-2">
+            <div id="search-sort-section" class="form-inline me-auto">
                 <div>
                     <div class="form-group">
                         <input wire:model="search" class="form-control" placeholder="{{ __('global.search') }}">
@@ -70,9 +70,6 @@
             </div>
 
             <livewire:web.web-create-new-task />
-
-            {{-- <div class="form-inline">
-            </div> --}}
         </div>
     </div>
 
@@ -360,9 +357,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
             <div class="col-md-4 text-center py-4 ">
