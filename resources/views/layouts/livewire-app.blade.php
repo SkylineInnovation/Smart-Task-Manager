@@ -22,16 +22,22 @@
         <img src="{{ asset('assets/images/loader.svg') }}" class="loader-img" alt="Loader">
     </div>
 
+    @php
+        $show_side = $show_side ?? auth()->user()->hasRole('owner');
+    @endphp
+
     <div class="page">
         <div class="page-main">
 
-            @include('layouts.Components.app-sidebar')
+            @if ($show_side)
+                @include('layouts.Components.app-sidebar')
+            @endif
 
             @include('layouts.Components.mobile-header')
 
 
-            <div class="app-content">
-                <div class="side-app">
+            <div class="@if ($show_side) app-content @endif">
+                <div class="@if ($show_side) side-app @else container-fluid @endif">
 
                     <div class="page-header">
 
@@ -57,8 +63,8 @@
 
                     {{-- <div class="card">
                         <div class="card-body"> --}}
-                            @yield('content')
-                        {{-- </div>
+                    @yield('content')
+                    {{-- </div>
                     </div> --}}
 
 

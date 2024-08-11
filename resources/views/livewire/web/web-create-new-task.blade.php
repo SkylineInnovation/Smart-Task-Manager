@@ -88,7 +88,6 @@
 
                         <div wire:ignore.self class="col-md-12">
                             {{-- <div wire:ignore.self id="summer_desc"></div> --}}
-
                             <textarea name='desc' id='desc' rows="4" class='form-control'
                                 placeholder='{{ __('global.enter') }} {{ __('task.desc') }}' wire:model="desc"></textarea>
                         </div>

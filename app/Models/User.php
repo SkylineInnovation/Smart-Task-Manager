@@ -120,6 +120,11 @@ class User extends Authenticatable
         return $this->first_name . ' ' . $this->last_name;
     }
 
+    public function getImageAttribute()
+    {
+        return $this->image ?? 'assets/images/users/12.jpg';
+    }
+
     // public function image(){
     //     return asset($this->image);
     // }

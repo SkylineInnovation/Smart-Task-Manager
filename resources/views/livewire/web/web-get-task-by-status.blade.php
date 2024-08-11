@@ -1,0 +1,281 @@
+<div>
+    @foreach ($tasks as $task)
+        <div class="card p-0">
+            <div class="card-body p-0">
+                <div class="row w-100 m-0">
+                    <div class="col-md-8 col-7 p-0 ">
+                        <div class="col-md-12 pt-4">
+                            <h4 class="px-4 text-bold">
+                                {{ $task->title }}
+                                <span id="timer-outputpattern" class="h3 text-info"></span>
+                            </h4>
+                        </div>
+                        <div class="col-md-12">
+                            <h6 class="text-gray px-4">
+                                {{ $task->manager->name() }}
+                            </h6>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-5 d-flex align-items-center p-0">
+                        <div class="row w-100 m-0 justify-content-md-around">
+                            <div class="col-md-3 col-4 d-flex justify-content-center fs-4 dropdown show">
+                                <a class="fa fa-cog text-secondarye" href="#" role="button" id="dropdownMenuLink"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fa fa-pencil-square-o text-secondarye" aria-hidden="true"></i>
+                                        &nbsp; Update
+                                    </a>
+                                    <a class="dropdown-item" href="#"><i class="fa fa-trash-o text-danger"
+                                            aria-hidden="true"></i>
+                                        &nbsp; Delete
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-4 d-flex justify-content-center fs-4">
+                                <button type="button" class="fa fa-exclamation-circle text-azure" data-toggle="modal"
+                                    data-target="#show-task-modal-{{ $task->id }}"
+                                    wire:click="setTask({{ $task->id }})">
+                                </button>
+                            </div>
+
+                            <div class="col-md-3 col-4 d-flex justify-content-center fs-4">
+                                <i class="fa fa-commenting-o text-danger"></i>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12 pt-2">
+                        <h4 class="px-4 text-gray-400">
+                            Employees
+                        </h4>
+
+                        <div class="row w-100 m-0 py-3">
+                            @foreach ($task->employees as $employee)
+                                <div class="col-2" data-container="body" data-toggle="tooltip"
+                                    data-popover-color="default" data-placement="top" title="{{ $employee->name() }}">
+                                    <img src="{{ asset($employee->image) }}"
+                                        style="width: 40px !important; border-radius: 100px;"
+                                        alt="{{ $employee->name() }}">
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="row w-100 m-0 ">
+                            <div class="col-md-12 px-4 fs-6 text-gray-400">
+                                start at: {{ $task->format_date($task->start_time) }}
+                            </div>
+                            <div class="col-md-12 px-4 fs-6 text-gray-400">
+                                end at: {{ $task->format_date($task->end_time) }}
+                            </div>
+                            <small class="col-md-12 px-4 text-muted py-3">assigend:
+                                {{ date('Y/m/d H:i A', strtotime($task->created_at)) }}
+                                ({{ $task->created_ago($task->created_at) }})</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{--  --}}{{--  --}}{{--  --}}{{--  --}}
+        <div wire:ignore.self class="modal fade" id="show-task-modal-{{ $task->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="show-task-modal-{{ $task->id }}Label" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="show-task-modal-{{ $task->id }}Label">
+                            Task Details
+                        </h5>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div>
+                                    <strong>Discription:</strong>
+                                </div>
+                                <div>
+                                    <small class="fs-6 text-gray">{!! $task->desc !!}</small>
+                                    {{-- {!! $task->desc !!} --}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 pt-5">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item px-3 ">
+                                    <a class="nav-link py-3 rounded-pill {{ $tab == 1 ? 'active' : '' }}"
+                                        id="user-tab" data-toggle="tab" wire:click="changeTab(1)" href="#user"
+                                        role="tab" aria-controls="user"
+                                        aria-selected="{{ $tab == 1 }}">Users</a>
+                                </li>
+                                <li class="nav-item px-3 ">
+                                    <a class="nav-link py-3 rounded-pill {{ $tab == 2 ? 'active' : '' }}"
+                                        id="attatchment-tab" data-toggle="tab" wire:click="changeTab(2)"
+                                        href="#attatchment" role="tab" aria-controls="attatchment"
+                                        aria-selected="{{ $tab == 2 }}">Attatchments</a>
+                                </li>
+                                <li class="nav-item px-3 ">
+                                    <a class="nav-link py-3 rounded-pill {{ $tab == 3 ? 'active' : '' }}"
+                                        id="comment-tab" data-toggle="tab" wire:click="changeTab(3)" href="#comment"
+                                        role="tab" aria-controls="comment"
+                                        aria-selected="{{ $tab == 3 }}">Comments</a>
+                                </li>
+
+                                <li class="nav-item px-3 ">
+                                    <a class="nav-link py-3 rounded-pill {{ $tab == 4 ? 'active' : '' }}"
+                                        id="subTask-tab" data-toggle="tab" wire:click="changeTab(4)" href="#subTask"
+                                        role="tab" aria-controls="subTask"
+                                        aria-selected="{{ $tab == 4 }}">Sub Tasks</a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content pt-2" id="myTabContent">
+                                <div class="tab-pane fade {{ $tab == 1 ? 'show active' : '' }}" id="user"
+                                    role="tabpanel" aria-labelledby="user-tab">
+
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col-8">Users</th>
+                                                    <th scope="col">Role</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="fs-6">
+                                                @foreach ($task->employees as $employee)
+                                                    <tr>
+                                                        <td>
+                                                            <div class="row w-100 m-0 ">
+                                                                <div class="col-3">
+                                                                    <img src="{{ asset($employee->image) }}"
+                                                                        style="border-radius: 40%; width: 50px;">
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="col-12">
+                                                                        {{ $employee->name() }}
+
+                                                                        <div>
+                                                                            <small>{{ $employee->email }}</small>
+                                                                        </div>
+                                                                        <div>
+                                                                            <small>{{ $employee->phone }}</small>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-content-center">
+                                                            {{ $employee->rolesSideBySide() }}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade {{ $tab == 2 ? 'show active' : '' }}" id="attatchment"
+                                    role="tabpanel" aria-labelledby="attatchment-tab">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="input-group mb-1">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text btn-secondary text-white"
+                                                        id="inputGroup-sizing-default">{{ __('attachment.title') }}</span>
+                                                </div>
+                                                <input wire:model.defer="attatchment_title" type="text"
+                                                    class="form-control" aria-label="Default"
+                                                    aria-describedby="inputGroup-sizing-default">
+                                            </div>
+                                        </div>
+
+                                        <div class="col">
+                                            <div class="input-group mb-1">
+                                                {{-- <div class="input-group-prepend">
+                                                        <span class="input-group-text btn-secondary text-white"
+                                                            id="inputGroup-sizing-default">{{ __('attachment.file') }}</span>
+                                                    </div> --}}
+                                                <input wire:model.defer="attatchment_file" type="file"
+                                                    class="form-control" aria-label="Default"
+                                                    aria-describedby="inputGroup-sizing-default">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div wire:ignore.self class="mb-1">
+                                        {{-- <div wire:ignore.self id="summer_desc"></div> --}}
+                                        <textarea name='desc' id='desc' rows="3" class='form-control'
+                                            placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="attatchment_desc"></textarea>
+                                    </div>
+
+                                    <button wire:click="addAttatchment()" type="button" class="btn btn-success">
+                                        Upload
+                                    </button>
+
+                                    {{-- <input wire:ignore.self wire:model="attatchment_file" type="file"
+                                            class="dropify" data-height="150" /> --}}
+                                </div>
+
+                                <div class="tab-pane fade {{ $tab == 3 ? 'show active' : '' }}" id="comment"
+                                    role="tabpanel" aria-labelledby="comment-tab">
+
+                                    <div class="input-group mb-1">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text btn-secondary text-white"
+                                                id="inputGroup-sizing-default">{{ __('attachment.title') }}</span>
+                                        </div>
+                                        <input wire:model.defer="comment_title" type="text" class="form-control"
+                                            aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                    </div>
+
+                                    <div wire:ignore.self class="mb-1">
+                                        {{-- <div wire:ignore.self id="summer_desc"></div> --}}
+                                        <textarea name='desc' id='desc' rows="3" class='form-control'
+                                            placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="comment_desc"></textarea>
+                                    </div>
+
+                                    <button wire:click="addComment()" type="button" class="btn btn-success">
+                                        Commet
+                                    </button>
+                                </div>
+
+                                <div class="tab-pane fade {{ $tab == 4 ? 'show active' : '' }}" id="subTask"
+                                    role="tabpanel" aria-labelledby="subTask-tab">...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        {{-- <button type="button" class="btn btn-primary">
+                            Save Changes
+                        </button> --}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{--  --}}{{--  --}}{{--  --}}{{--  --}}
+
+        {{-- <script>
+            $(function() {
+                // changed output patterns
+                $('#timer-outputpattern').countdown({
+                    outputPattern: '$day Days $hour Hours $minute Minutes $second Seconds',
+                    from: 60 * 60 * 24 * 3
+                });
+            });
+        </script> --}}
+    @endforeach
+</div>
