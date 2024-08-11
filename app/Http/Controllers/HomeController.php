@@ -167,4 +167,9 @@ class HomeController extends Controller
     {
         return view('taskView.task');
     }
+
+    public function taskBoard()
+    {
+        return view('Web.task-board');
+    }
 }

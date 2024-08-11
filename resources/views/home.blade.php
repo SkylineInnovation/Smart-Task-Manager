@@ -17,12 +17,6 @@
             </div>
         </div>
     </div>
-
-
-
-    <div class="container">
-        <livewire:web.task.task-create-modal />
-    </div>
 @endsection
 
 

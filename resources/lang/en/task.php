@@ -27,6 +27,8 @@ return [
 
     'discount' => 'discount',
 
+    'employees' => 'employees',
+
     'low' => 'low',
     'medium' => 'medium',
     'high' => 'high',
