@@ -77,7 +77,7 @@
 
         <div class="d-flex flex-row" style="overflow-x: scroll;">
             <div class="col-md-4 col-10  py-4 ">
-                <h4 class="p-0 d-flex align-items-center  text-gray-400 fw-bold  justify-content-center">Pending</h4>
+                <h4 class="p-0 d-flex align-items-center text-gray-400 fw-bold justify-content-center">Pending</h4>
                 <hr style="margin-top:0px !important ">
 
                 <div class="col-md-12 col-12 p-0" style="">
