@@ -76,8 +76,13 @@ class HomeController extends Controller
         return;
     }
 
-    public function home()
+    public function home(Request $request)
     {
+        $user = $request->user();
+        if (!$user->hasRole('owner|manager')) {
+            return redirect()->route('task-board');
+        }
+
         $listOfDates = [
             date('Y-m-d', strtotime("-7 days")),
             date('Y-m-d', strtotime("-6 days")),

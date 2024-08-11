@@ -185,6 +185,17 @@ class Task extends Model
 
         return '';
     }
+    public function the_priority_color()
+    {
+        if ($this->priority_level == 'low')
+            return '#00FF00';
+        elseif ($this->priority_level == 'medium')
+            return '#0000FF';
+        elseif ($this->priority_level == 'high')
+            return '#FF0000';
+
+        return '';
+    }
 
     public function the_status()
     {

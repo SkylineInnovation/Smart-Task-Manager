@@ -107,7 +107,8 @@ class WebCreateNewTask extends Component
 
         $this->resetInputFields();
 
-        $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('render-index'); // Close model to using to jquery
+
     }
 
     public function cancel()
@@ -121,7 +122,6 @@ class WebCreateNewTask extends Component
     {
         $this->selectedEmployees[] = $val;
     }
-
 
     public function render()
     {

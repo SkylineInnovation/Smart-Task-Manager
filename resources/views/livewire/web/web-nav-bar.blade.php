@@ -3,7 +3,7 @@
 
     @if ((auth()->user()->hasRole('owner') && count($users) > 0) || session()->has('admin_user'))
         <div class="dropdown profile-1">
-            <a href="#" data-toggle="dropdown" class="nav-link leading-none d-flex py-4">
+            <a href=javascript:; data-toggle="dropdown" class="nav-link leading-none d-flex py-4">
                 <h5 class="text-dark mb-0"> {{ __('global.users') }} </h5>
             </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" aria-labelledby="navbarDropdownMenuLink">

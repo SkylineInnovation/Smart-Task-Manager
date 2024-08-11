@@ -9,7 +9,7 @@
     </div> --}}
 
     <div class="dropdown profile-1">
-        <a href="#" data-toggle="dropdown" class="nav-link leading-none d-flex py-4">
+        <a href=javascript:; data-toggle="dropdown" class="nav-link leading-none d-flex py-4">
             <span class="flag-icon flag-icon-{{ Config::get('languages')[App::getLocale()]['flag-icon'] }}"></span>
             <h5 class="text-dark mb-0"> {{ Config::get('languages')[App::getLocale()]['display'] }} </h5>
         </a>
@@ -26,7 +26,7 @@
     </div>
 
     <div class="dropdown profile-1">
-        <a href="#" data-toggle="dropdown" class="nav-link leading-none d-flex py-4">
+        <a href=javascript:; data-toggle="dropdown" class="nav-link leading-none d-flex py-4">
             <span>
                 <h5 class="text-dark mb-0">{{ auth()->user()->name() }}</h5>
             </span>

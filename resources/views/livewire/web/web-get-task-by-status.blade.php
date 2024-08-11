@@ -1,6 +1,6 @@
 <div>
     @foreach ($tasks as $task)
-        <div class="card p-0">
+        <div class="card p-0 text-start" wire:key='{{ $task->id }}'>
             <div class="card-body p-0">
                 <div class="row w-100 m-0">
                     <div class="col-md-8 col-7 p-0 ">
@@ -20,18 +20,60 @@
                     <div class="col-md-4 col-5 d-flex align-items-center p-0">
                         <div class="row w-100 m-0 justify-content-md-around">
                             <div class="col-md-3 col-4 d-flex justify-content-center fs-4 dropdown show">
-                                <a class="fa fa-cog text-secondarye" href="#" role="button" id="dropdownMenuLink"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="fa fa-cog text-secondarye" href="javascript:;" role="button"
+                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fa fa-pencil-square-o text-secondarye" aria-hidden="true"></i>
-                                        &nbsp; Update
+                                    @if ($task->status == 'pending')
+                                        <a class="dropdown-item" href="javascript:;"
+                                            wire:click="startWithTask({{ $task->id }})">
+                                            <i class="fa fa-hourglass-end text-info" aria-hidden="true"></i>
+                                            &nbsp; Start
+                                        </a>
+                                    @endif
+
+                                    @if ($task->status == 'active')
+                                        <a class="dropdown-item" href="javascript:;"
+                                            wire:click="finishWithTask({{ $task->id }})">
+                                            <i class="fa fa-check-square text-success" aria-hidden="true"></i>
+                                            &nbsp; Finsh
+                                        </a>
+                                    @endif
+
+                                    @role('owner|manager')
+                                        @if (in_array($task->status, ['auto-finished', 'manual-finished']))
+                                            <a class="dropdown-item" href="javascript:;"
+                                                wire:click="draftTask({{ $task->id }})">
+                                                <i class="fa fa-check-square text-success" aria-hidden="true"></i>
+                                                &nbsp; Draft
+                                            </a>
+                                        @endif
+
+                                        <a class="dropdown-item" href="javascript:;" data-toggle="modal"
+                                            data-target="#update">
+                                            <i class="fa fa-pencil-square-o text-secondarye" aria-hidden="true"></i>
+                                            &nbsp; Edit
+                                        </a>
+
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <i class="fa fa-trash-o text-danger" aria-hidden="true"></i>
+                                            &nbsp; Delete
+                                        </a>
+                                    @endrole
+
+
+                                    <a class="dropdown-item" href="javascript:;" data-toggle="modal"
+                                        data-target="#leave">
+                                        <i class="fa fa-sign-out text-info" aria-hidden="true"></i>
+                                        &nbsp; Request Leave
                                     </a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-trash-o text-danger"
-                                            aria-hidden="true"></i>
-                                        &nbsp; Delete
+
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#extraTime"
+                                        href=javascript:;>
+                                        <i class="fa fa-clock-o text-warning" aria-hidden="true"></i>
+                                        &nbsp; Extra Time
                                     </a>
                                 </div>
                             </div>
@@ -45,6 +87,13 @@
 
                             <div class="col-md-3 col-4 d-flex justify-content-center fs-4">
                                 <i class="fa fa-commenting-o text-danger"></i>
+                            </div>
+
+                            <div class="col-12 py-3">
+                                <div class="rounded-pill text-white text-center py-1"
+                                    style="background-color: {{ $task->the_priority_color() }}">
+                                    {{ $task->the_priority_level() }}
+                                </div>
                             </div>
                         </div>
                     </div>

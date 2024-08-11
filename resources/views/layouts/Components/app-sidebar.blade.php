@@ -9,7 +9,7 @@
         </a>
 
         <a onclick="sidenavToggledApi()" aria-label="Hide Sidebar" class="app-sidebar__toggle ml-auto" data-toggle="sidebar"
-            href="#"></a>
+            href="javascript:;"></a>
         {{-- sidebar-toggle --}}
     </div>
     <div class="app-sidebar__user">
@@ -53,7 +53,7 @@
             <h3>{{ __('global.main') }}</h3>
         </li>
         <li class="slide">
-            <a class="side-menu__item" data-toggle="slide" href="#">
+            <a class="side-menu__item" data-toggle="slide" href="javascript:;">
                 <i class="side-menu__icon ti-home"></i>
                 <span class="side-menu__label">{{ __('global.dashboard') }}</span>
                 <i class="angle fa fa-angle-right"></i>
@@ -88,7 +88,7 @@
 
 
         <li class="slide">
-            <a class="side-menu__item" data-toggle="slide" href="#">
+            <a class="side-menu__item" data-toggle="slide" href=javascript:;>
                 <i class="side-menu__icon ti-home"></i>
                 <span class="side-menu__label">{{ __('global.tasks') }}</span>
                 <i class="angle fa fa-angle-right"></i>
@@ -112,30 +112,30 @@
 
 
         {{-- <li class="slide ">
-            <a class="side-menu__item" data-toggle="slide" href="#"><i
+            <a class="side-menu__item" data-toggle="slide" href=javascript:;><i
                     class="side-menu__icon ti-layout-grid2"></i><span class="side-menu__label">Submenus</span><i
                     class="angle fa fa-angle-right"></i></a>
             <ul class="slide-menu">
                 <li class="sub-slide">
-                    <a class="sub-side-menu__item" data-toggle="sub-slide" href="#"><span
+                    <a class="sub-side-menu__item" data-toggle="sub-slide" href=javascript:;><span
                             class="sub-side-menu__label">Level 1</span><i class="sub-angle fa fa-angle-right"></i></a>
                     <ul class="sub-slide-menu">
-                        <li><a class="sub-slide-item" href="#">Level 1.0</a></li>
-                        <li><a class="sub-slide-item" href="#">Level 1.1</a></li>
+                        <li><a class="sub-slide-item" href=javascript:;>Level 1.0</a></li>
+                        <li><a class="sub-slide-item" href=javascript:;>Level 1.1</a></li>
                         <li class="sub-slide2">
-                            <a class="sub-side-menu__item" href="#" data-toggle="sub-slide2"><span
+                            <a class="sub-side-menu__item" href=javascript:; data-toggle="sub-slide2"><span
                                     class="sub-side-menu__label2">Level 1.2</span><i
                                     class="sub-angle2 fa fa-angle-right"></i></a>
                             <ul class="sub-slide-menu2">
-                                <li><a href="#" class="sub-slide-item2">Level 1.2.1</a></li>
-                                <li><a href="#" class="sub-slide-item2">Level 1.2.2</a></li>
-                                <li><a href="#" class="sub-slide-item2">Level 1.2.3</a></li>
+                                <li><a href=javascript:; class="sub-slide-item2">Level 1.2.1</a></li>
+                                <li><a href=javascript:; class="sub-slide-item2">Level 1.2.2</a></li>
+                                <li><a href=javascript:; class="sub-slide-item2">Level 1.2.3</a></li>
                             </ul>
                         </li>
                     </ul>
                 </li>
-                <li><a class="slide-item" href="#">Level 2</a></li>
-                <li><a class="slide-item" href="#">Level 3</a></li>
+                <li><a class="slide-item" href=javascript:;>Level 2</a></li>
+                <li><a class="slide-item" href=javascript:;>Level 3</a></li>
             </ul>
         </li> --}}
 
@@ -143,8 +143,10 @@
 
         @role('dev')
             <li class="slide">
-                <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon ti-home"></i><span
-                        class="side-menu__label">{{ __('global.crud') }}</span><i class="angle fa fa-angle-right"></i></a>
+                <a class="side-menu__item" data-toggle="slide" href=javascript:;>
+                    <i class="side-menu__icon ti-home"></i>
+                    <span class="side-menu__label">{{ __('global.crud') }}</span>
+                    <i class="angle fa fa-angle-right"></i></a>
                 <ul class="slide-menu">
                     @include('layouts.side')
                 </ul>
@@ -153,8 +155,10 @@
 
         @role('dev')
             <li class="slide">
-                <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon ti-trash"></i><span
-                        class="side-menu__label">{{ __('global.trash') }}</span><i class="angle fa fa-angle-right"></i></a>
+                <a class="side-menu__item" data-toggle="slide" href=javascript:;>
+                    <i class="side-menu__icon ti-trash"></i>
+                    <span class="side-menu__label">{{ __('global.trash') }}</span>
+                    <i class="angle fa fa-angle-right"></i></a>
                 <ul class="slide-menu">
                     @include('layouts.deleted-side')
                 </ul>

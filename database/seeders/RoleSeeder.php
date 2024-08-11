@@ -19,6 +19,11 @@ class RoleSeeder extends Seeder
         // Role::truncate();
         // Permission::truncate();
 
+        // owner
+        // dev
+        // manager
+        // employee
+
         $ownerRole = Role::where('name', 'owner')->first();
         if (!$ownerRole)
             $ownerRole = Role::create([
@@ -143,6 +148,14 @@ class RoleSeeder extends Seeder
                     'display_name' => str_replace(['_', '-'], [' ', ' '], $customPermission),
                 ]);
         }
+
+        $managerRole = Role::where('name', 'manager')->first();
+
+        if (!$managerRole)
+            $managerRole = Role::create([
+                'name' => 'manager',
+                'display_name' => 'Manager', // optional
+            ]);
 
         $employeeRole = Role::where('name', 'employee')->first();
 

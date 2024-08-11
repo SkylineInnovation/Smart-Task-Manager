@@ -25,53 +25,18 @@
 @endsection
 
 @section('content')
-    <div class="card">
-        <div class="d-flex p-2">
-            <div id="search-sort-section" class="form-inline me-auto">
-                <div>
-                    <div class="form-group">
-                        <input wire:model="search" class="form-control" placeholder="{{ __('global.search') }}">
-                    </div>
+    @role('owner|manager')
+        <div class="card">
+            <div class="d-flex p-2">
+                <div id="search-sort-section" class="form-inline me-auto">
+
                 </div>
 
-                <div>
-                    <select wire:model='orderBy' class="form-control form-group">
-                        <option value="id">{{ __('global.id') }}</option>
+                <livewire:web.web-create-new-task />
 
-                        <option value='task_id'>{{ __('discount.task') }}</option>
-
-                        <option value='user_id'>{{ __('discount.user') }}</option>
-
-                        <option value='amount'>{{ __('discount.amount') }}</option>
-
-                        <option value='reason'>{{ __('discount.reason') }}</option>
-
-
-                        <option value="created_at">{{ __('global.created_at') }}</option>
-                    </select>
-                </div>
-
-                <div>
-                    <select wire:model="orderWay" class="form-control form-group">
-                        <option value="asc">{{ __('global.Asc') }}</option>
-                        <option value="desc">{{ __('global.Desc') }}</option>
-                    </select>
-                </div>
-
-                <div>
-                    <select wire:model='perPage' class="form-control form-group">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
-                </div>
             </div>
-
-            <livewire:web.web-create-new-task />
         </div>
-    </div>
+    @endrole
 
     <div class="container-fluid card">
 
@@ -113,6 +78,20 @@
             $("#summer_desc").summernote({
                 tabsize: 3,
                 height: 200,
+            });
+        });
+
+        $(document).ready(function() {
+            window.livewire.on('render-index', () => {
+                window.livewire.emit('refreshRender');
+            });
+
+            window.livewire.on('render-active', () => {
+                window.livewire.emit('refreshRender');
+            });
+
+            window.livewire.on('render-manual-finished', () => {
+                window.livewire.emit('refreshRender');
             });
         });
     </script>

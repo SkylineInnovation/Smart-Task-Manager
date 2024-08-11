@@ -74,14 +74,28 @@ class WebGetTaskByStatus extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function startWithTask()
+    public function startWithTask($id)
     {
-        $this->task->update(['status' => 'active']);
+        $task = Task::find($id);
+        $task->update(['status' => 'active']);
+
+        $this->emit('render-active'); // Close model to using to jquery
     }
 
-    public function finishWithTask()
+    public function finishWithTask($id)
     {
-        $this->task->update(['status' => 'manual-finished']);
+        $task = Task::find($id);
+        $task->update(['status' => 'manual-finished']);
+
+        $this->emit('render-manual-finished'); // Close model to using to jquery
+    }
+
+    public function draftTask($id)
+    {
+        $task = Task::find($id);
+        $task->update(['status' => 'draft']);
+
+        $this->emit('render-manual-finished'); // Close model to using to jquery
     }
 
     public $attatchment_file, $attatchment_title, $attatchment_desc;
@@ -181,10 +195,20 @@ class WebGetTaskByStatus extends Component
         $this->tab = $index;
     }
 
+    protected $listeners = [
+        'refreshRender' => 'render'
+    ];
+
     public function render()
     {
         $tasks = Task::whereNullOrEmptyOrZero('main_task_id')
             ->where('status', $this->status);
+
+        if ($this->user->hasRole('employee')) {
+            $tasks = $tasks->whereHas('employees', function ($q) {
+                $q->where('user_id', $this->user->id);
+            });
+        }
 
         $tasks = $tasks->orderBy('id', 'desc')
             ->get();

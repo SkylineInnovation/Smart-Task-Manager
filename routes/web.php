@@ -56,7 +56,7 @@ Route::get('migrate', function (Request $request) {
 });
 
 
-Route::prefix('admin')->middleware('auth', 'role:owner|dev|full')->group(function () {
+Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group(function () {
     Route::get('dashboard', [HomeController::class, 'home'])->name('dashboard');
 
     Route::get('task-board', [HomeController::class, 'taskBoard'])->name('task-board');

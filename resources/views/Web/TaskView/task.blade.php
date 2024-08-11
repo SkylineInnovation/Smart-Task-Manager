@@ -59,35 +59,36 @@
                                     <div class="row w-100 m-0 justify-content-md-around">
                                         <div class="col-md-3 col-4 d-flex justify-content-center fs-4 dropdown show">
 
-                                            <a class="fa fa-cog text-secondarye" href="#" role="button"
+                                            <a class="fa fa-cog text-secondarye" href=javascript:; role="button"
                                                 id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">
 
                                             </a>
 
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="#"><i
+                                                <a class="dropdown-item" href=javascript:;><i
                                                         class="fa fa-check-square text-success" aria-hidden="true"></i>
                                                     &nbsp; complet</a>
 
-                                                <a class="dropdown-item" href="#" data-toggle="modal"
+                                                <a class="dropdown-item" href=javascript:; data-toggle="modal"
                                                     data-target="#update"><i class="fa fa-pencil-square-o text-secondarye"
                                                         aria-hidden="true"></i> &nbsp; Update</a>
 
-                                                <a class="dropdown-item" href="#"><i class="fa fa-trash-o text-danger"
-                                                        aria-hidden="true"></i> &nbsp; Delete</a>
+                                                <a class="dropdown-item" href=javascript:;><i
+                                                        class="fa fa-trash-o text-danger" aria-hidden="true"></i> &nbsp;
+                                                    Delete</a>
 
 
-                                                <a class="dropdown-item" href="#"><i class="fa fa-hourglass-end"
+                                                <a class="dropdown-item" href=javascript:;><i class="fa fa-hourglass-end"
                                                         aria-hidden="true"></i> &nbsp; finsh</a>
 
-                                                <a class="dropdown-item" href="#" data-toggle="modal"
+                                                <a class="dropdown-item" href=javascript:; data-toggle="modal"
                                                     data-target="#leave"><i class="fa fa-sign-out text-info"
                                                         aria-hidden="true"></i>
                                                     &nbsp; leave</a>
 
                                                 <a class="dropdown-item" data-toggle="modal" data-target="#extraTime"
-                                                    href="#"><i class="fa fa-clock-o text-warning"
+                                                    href=javascript:;><i class="fa fa-clock-o text-warning"
                                                         aria-hidden="true"></i>
                                                     &nbsp; extra time</a>
 
@@ -153,7 +154,7 @@
                                                                             aria-controls="attatchment"
                                                                             aria-selected="false">attatchment</a>
                                                                     </li>
-                                                                   
+
 
                                                                     <li class="nav-item px-3 ">
                                                                         <a class="nav-link py-3 rounded-pill"
@@ -228,7 +229,7 @@
 
 
 
-                                                                    
+
 
                                                                     <div class="tab-pane fade" id="subTask"
                                                                         role="tabpanel" aria-labelledby="subTask-tab">...
@@ -464,7 +465,7 @@
                                                         comments</label>
                                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
@@ -491,7 +492,7 @@
                                 </div>
 
                                 <div class="col-md-12 pt-2">
-                                    
+
 
                                     <div class="row w-100 m-0 py-3">
 
