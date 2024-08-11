@@ -126,4 +126,18 @@ Route::prefix('admin')->middleware('auth', 'role:owner|dev|full')->group(functio
     Route::middleware('permission:restore-comment')->get('trash/comments', [App\Http\Controllers\CommentController::class, 'livewireDeletedIndex'])->name('comment.index.trash');
     Route::get('export/comments', [App\Http\Controllers\CommentController::class, 'exportFullData'])->name('comment.export');
     Route::post('import/comments', [App\Http\Controllers\CommentController::class, 'importData'])->name('comment.import');
+
+
+    // the full routes for extratimes
+    Route::middleware('permission:index-extratime')->get('extratimes', [App\Http\Controllers\ExtraTimeController::class, 'livewireIndex'])->name('extratime.index');
+    Route::middleware('permission:restore-extratime')->get('trash/extratimes', [App\Http\Controllers\ExtraTimeController::class, 'livewireDeletedIndex'])->name('extratime.index.trash');
+    Route::get('export/extratimes', [App\Http\Controllers\ExtraTimeController::class, 'exportFullData'])->name('extratime.export');
+    Route::post('import/extratimes', [App\Http\Controllers\ExtraTimeController::class, 'importData'])->name('extratime.import');
+
+
+    // the full routes for leaves
+    Route::middleware('permission:index-leave')->get('leaves', [App\Http\Controllers\LeaveController::class, 'livewireIndex'])->name('leave.index');
+    Route::middleware('permission:restore-leave')->get('trash/leaves', [App\Http\Controllers\LeaveController::class, 'livewireDeletedIndex'])->name('leave.index.trash');
+    Route::get('export/leaves', [App\Http\Controllers\LeaveController::class, 'exportFullData'])->name('leave.export');
+    Route::post('import/leaves', [App\Http\Controllers\LeaveController::class, 'importData'])->name('leave.import');
 });

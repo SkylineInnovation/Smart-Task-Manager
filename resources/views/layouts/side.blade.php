@@ -47,3 +47,19 @@
         </a>
     </li>
 @endpermission
+
+@permission('index-extratime')
+    <li>
+        <a class='slide-item' href='{{ route('extratime.index') }}'>
+            <span>{{ __('global.extratimes') }}</span>
+        </a>
+    </li>
+@endpermission
+
+@permission('index-leave')
+    <li>
+        <a class='slide-item' href='{{ route('leave.index') }}'>
+            <span>{{ __('global.leaves') }}</span>
+        </a>
+    </li>
+@endpermission

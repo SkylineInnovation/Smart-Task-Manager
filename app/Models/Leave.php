@@ -6,10 +6,10 @@ use App\Traits\TranslateTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Illuminate\Support\Facades\App;
 // use Laratrust\Traits\LaratrustUserTrait;
 
-class Task extends Model
+class Leave extends Model
 {
     // use LaratrustUserTrait;
     use HasFactory;
@@ -56,14 +56,16 @@ class Task extends Model
         'slug',
 
 
-        'manager_id',
-        'title',
-        'desc',
-        'start_time',
-        'end_time',
-        'priority_level',
+        'task_id',
+        'user_id',
+        'type',
+        'time_out',
+        'time_in',
+        'reason',
+        'result',
         'status',
-        'main_task_id',
+        'accepted_by_user_id',
+        'accepted_time',
 
         'show',
         'sort',
@@ -74,7 +76,7 @@ class Task extends Model
         parent::boot();
 
         static::created(function ($model) {
-            // Mail::to([])->send(new SendNewTaskToEmployee($model));
+            // 
         });
 
         static::updating(function ($model) {
@@ -118,7 +120,7 @@ class Task extends Model
 
     public function crud_name()
     {
-        return $this->title;
+        return $this->id;
     }
 
     // public function name($lang = null)
@@ -140,14 +142,16 @@ class Task extends Model
             $q->whereIn('id', array_map('intval', explode(',', $search)));
 
 
-            // $q->orWhere('manager_id', $search);
-            $q->orWhereSearch('title', $search);
-            $q->orWhereSearch('desc', $search);
-            $q->orWhereSearch('start_time', $search);
-            $q->orWhereSearch('end_time', $search);
-            $q->orWhereSearch('priority_level', $search);
+            $q->orWhere('task_id', $search);
+            $q->orWhere('user_id', $search);
+            $q->orWhereSearch('type', $search);
+            $q->orWhereSearch('time_out', $search);
+            $q->orWhereSearch('time_in', $search);
+            $q->orWhereSearch('reason', $search);
+            $q->orWhereSearch('result', $search);
             $q->orWhereSearch('status', $search);
-            // $q->orWhere('main_task_id', $search);
+            $q->orWhere('accepted_by_user_id', $search);
+            $q->orWhereSearch('accepted_time', $search);
 
             // })->orWhereHas('add_by_user', function ($q) use ($search) {
             //     $q->orWhereSearch('first_name', $search);
@@ -158,32 +162,6 @@ class Task extends Model
         });
     }
 
-    public function the_priority_level()
-    {
-        if ($this->priority_level == 'low')
-            return __('task.low');
-        elseif ($this->priority_level == 'medium')
-            return __('task.medium');
-        elseif ($this->priority_level == 'high')
-            return __('task.high');
-
-        return '';
-    }
-
-    public function the_status()
-    {
-        if ($this->status == 'pending')
-            return __('task.pending');
-        elseif ($this->status == 'active')
-            return __('task.active');
-        elseif ($this->status == 'auto-finished')
-            return __('task.auto-finished');
-        elseif ($this->status == 'manual-finished')
-            return __('task.manual-finished');
-
-        return '';
-    }
-
     public function add_by_user()
     {
         return $this->belongsTo(User::class, 'add_by');
@@ -191,29 +169,40 @@ class Task extends Model
 
 
 
-    public function manager()
+    public function task()
     {
-        return $this->belongsTo(User::class, 'manager_id');
+        return $this->belongsTo(Task::class);
     }
 
 
-    public function main_task()
+    public function user()
     {
-        return $this->belongsTo(Task::class, 'main_task_id');
+        return $this->belongsTo(User::class);
     }
 
-    public function employees()
+
+    public function accepted_by_user()
     {
-        return $this->belongsToMany(User::class)->withPivot('discount');
+        return $this->belongsTo(User::class, 'accepted_by_user_id');
     }
 
-    public function discount()
+    public function the_type()
     {
-        return $this->employees->first()->pivot->discount;
+        if ($this->type == 'leave') {
+            return __('leave.leave');
+        } elseif ($this->type == 'part_of_task') {
+            return __('leave.part_of_task');
+        }
     }
 
-    public function format_date($data)
+    public function the_status()
     {
-        return date('Y-m-d h:i A', strtotime($data));
+        if ($this->status == 'pending') {
+            return __('leave.pending');
+        } elseif ($this->status == 'accepted') {
+            return __('leave.accepted');
+        } elseif ($this->status == 'rejected') {
+            return __('leave.rejected');
+        }
     }
 }
