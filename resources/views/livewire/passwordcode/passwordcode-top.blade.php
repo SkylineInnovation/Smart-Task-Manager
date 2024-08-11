@@ -61,7 +61,7 @@
             </div>
         @endrole
 
-        @if ($status != 'deleted')
+        @if ($admin_view_status != 'deleted')
             @permission('import-excel-passwordcode')
                 <div>
                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#import-data">
@@ -81,7 +81,7 @@
         @endif
 
 
-        @if ($status != 'deleted')
+        @if ($admin_view_status != 'deleted')
             @permission('create-passwordcode')
                 <div>
                     <button type="button" class="btn btn-success" data-toggle="modal"
@@ -136,7 +136,7 @@
         </div>
     </div>
 
-    @if ($status != 'deleted')
+    @if ($admin_view_status != 'deleted')
         @include('livewire.passwordcode.passwordcode-create-modal')
     @endif
 
@@ -233,7 +233,7 @@
                                     <option value="created_at">{{ __('global.created date time') }}</option>
                                     <option value="updated_at">{{ __('global.updated date time') }}</option>
 
-                                    @if ($status == 'deleted')
+                                    @if ($admin_view_status == 'deleted')
                                         <option value="deleted_at">{{ __('global.deleted date time') }}</option>
                                     @endif
                                 </select>

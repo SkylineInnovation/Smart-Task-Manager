@@ -1,6 +1,6 @@
 <div>
 
-    @include('livewire.otpsendcode.otpsendcode-top')
+    @include('livewire.extratime.extratime-top')
 
     @if (session()->has('message'))
         <div class="alert alert-success" style="margin-top:30px;">
@@ -9,7 +9,7 @@
     @endif
 
     @php
-        $number = ($otpsendcodes->currentPage() - 1) * $perPage;
+        $number = ($extratimes->currentPage() - 1) * $perPage;
     @endphp
 
     <div class="table-responsive">
@@ -33,28 +33,40 @@
                     @endif
 
 
+                    @if ($showColumn['task_id'])
+                        <td>{{ __('extratime.task') }}</td>
+                    @endif
+
                     @if ($showColumn['user_id'])
-                        <td>{{ __('otpsendcode.user') }}</td>
+                        <td>{{ __('extratime.user') }}</td>
                     @endif
 
-                    @if ($showColumn['otp_code'])
-                        <td>{{ __('otpsendcode.otp_code') }}</td>
+                    @if ($showColumn['accepted_by_user_id'])
+                        <td>{{ __('extratime.accepted_by_user') }}</td>
                     @endif
 
-                    @if ($showColumn['phone_number'])
-                        <td>{{ __('otpsendcode.phone_number') }}</td>
+                    @if ($showColumn['reason'])
+                        <td>{{ __('extratime.reason') }}</td>
                     @endif
 
-                    @if ($showColumn['applecation'])
-                        <td>{{ __('otpsendcode.applecation') }}</td>
+                    @if ($showColumn['result'])
+                        <td>{{ __('extratime.result') }}</td>
                     @endif
 
-                    @if ($showColumn['code_status'])
-                        <td>{{ __('otpsendcode.code_status') }}</td>
+                    @if ($showColumn['request_time'])
+                        <td>{{ __('extratime.request_time') }}</td>
                     @endif
 
-                    @if ($showColumn['back_response'])
-                        <td>{{ __('otpsendcode.back_response') }}</td>
+                    @if ($showColumn['response_time'])
+                        <td>{{ __('extratime.response_time') }}</td>
+                    @endif
+
+                    @if ($showColumn['status'])
+                        <td>{{ __('extratime.status') }}</td>
+                    @endif
+
+                    @if ($showColumn['duration'])
+                        <td>{{ __('extratime.duration') }}</td>
                     @endif
 
 
@@ -65,7 +77,7 @@
                         <td>{{ __('global.time') }}</td>
                     @endif
 
-                    @permission('edit-otpsendcode|delete-otpsendcode|restore-otpsendcode')
+                    @permission('edit-extratime|delete-extratime|restore-extratime')
                         <td style="width: 150px">
                             {{ __('global.action') }}
                         </td>
@@ -74,7 +86,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($otpsendcodes as $otpsendcode)
+                @foreach ($extratimes as $extratime)
                     <tr>
                         <td>{{ ++$number }}</td>
 
@@ -82,83 +94,103 @@
                             @if ($admin_view_status != 'deleted')
                                 <td>
                                     <div class="form-check">
-                                        <input wire:model.defer="selectedOtpsendcodes.{{ $otpsendcode->id }}" class="form-check-input"
-                                            type="checkbox" value="{{ $otpsendcode->id }}" id="otpsendcode-{{ $otpsendcode->id }}">
+                                        <input wire:model.defer="selectedExtratimes.{{ $extratime->id }}" class="form-check-input"
+                                            type="checkbox" value="{{ $extratime->id }}" id="extratime-{{ $extratime->id }}">
                                     </div>
                                 </td>
                             @endif
                         --}}
 
                         @if ($showColumn['id'])
-                            <td> {{ $otpsendcode->id }} </td>
+                            <td> {{ $extratime->id }} </td>
                         @endif
 
                         @if ($showColumn['slug'])
-                            <td> {{ $otpsendcode->slug }} </td>
+                            <td> {{ $extratime->slug }} </td>
                         @endif
 
 
-                        @if ($showColumn['user_id'])
+                        @if ($showColumn['task_id'])
                             <td>
-                                @if ($otpsendcode->user)
-                                    {{ $otpsendcode->user->crud_name() }}
+                                @if ($extratime->task)
+                                    {{ $extratime->task->crud_name() }}
                                 @endif
                             </td>
                         @endif
 
-                        @if ($showColumn['otp_code'])
-                            <td> {{ $otpsendcode->otp_code }} </td>
+                        @if ($showColumn['user_id'])
+                            <td>
+                                @if ($extratime->user)
+                                    {{ $extratime->user->crud_name() }}
+                                @endif
+                            </td>
                         @endif
 
-                        @if ($showColumn['phone_number'])
-                            <td> {{ $otpsendcode->phone_number }} </td>
+                        @if ($showColumn['accepted_by_user_id'])
+                            <td>
+                                @if ($extratime->accepted_by_user)
+                                    {{ $extratime->accepted_by_user->crud_name() }}
+                                @endif
+                            </td>
                         @endif
 
-                        @if ($showColumn['applecation'])
-                            <td> {{ $otpsendcode->applecation }} </td>
+                        @if ($showColumn['reason'])
+                            <td> {{ $extratime->reason }} </td>
                         @endif
 
-                        @if ($showColumn['code_status'])
-                            <td> {{ $otpsendcode->code_status }} </td>
+                        @if ($showColumn['result'])
+                            <td> {{ $extratime->result }} </td>
                         @endif
 
-                        @if ($showColumn['back_response'])
-                            <td> {{ $otpsendcode->back_response }} </td>
+                        @if ($showColumn['request_time'])
+                            <td> {{ $extratime->format_date($extratime->request_time) }} </td>
+                        @endif
+
+                        @if ($showColumn['response_time'])
+                            <td> {{ $extratime->format_date($extratime->response_time) }} </td>
+                        @endif
+
+                        @if ($showColumn['status'])
+                            <td> {{ $extratime->the_status() }} </td>
+                        @endif
+
+                        @if ($showColumn['duration'])
+                            <td> {{ $extratime->duration }} </td>
                         @endif
 
 
                         @if ($showColumn['date'])
-                            <td> {{ date('d/m/Y', strtotime($otpsendcode->created_at)) }} </td>
+                            <td> {{ date('d/m/Y', strtotime($extratime->created_at)) }} </td>
                         @endif
                         @if ($showColumn['time'])
-                            <td> {{ date('h:i A', strtotime($otpsendcode->created_at)) }} </td>
+                            <td> {{ date('h:i A', strtotime($extratime->created_at)) }} </td>
                         @endif
 
-                        @permission('edit-otpsendcode|delete-otpsendcode|restore-otpsendcode')
+                        @permission('edit-extratime|delete-extratime|restore-extratime')
                             <td>
                                 @if ($admin_view_status != 'deleted')
-                                    @permission('edit-otpsendcode')
-                                        <button data-toggle="modal" data-target="#update-otpsendcode-modal"
-                                            wire:click="edit({{ $otpsendcode->id }})" class="btn btn-primary">
+                                    @permission('edit-extratime')
+                                        <button data-toggle="modal" data-target="#update-extratime-modal"
+                                            wire:click="edit({{ $extratime->id }})" class="btn btn-primary">
                                             <i class="ti-pencil text-white"></i>
                                         </button>
                                     @endpermission
 
-                                    @permission('delete-otpsendcode')
+                                    @permission('delete-extratime')
                                         <button class="btn btn-danger" type="button" data-toggle="modal"
-                                            data-target="#delete-otpsendcode-{{ $otpsendcode->id }}">
+                                            data-target="#delete-extratime-{{ $extratime->id }}">
                                             <i class="ti-trash text-white"></i>
                                         </button>
 
-                                        <div id="delete-otpsendcode-{{ $otpsendcode->id }}" class="modal fade" tabindex="-1"
-                                            role="dialog" aria-labelledby="delete-otpsendcode-{{ $otpsendcode->id }}-title"
+                                        <div id="delete-extratime-{{ $extratime->id }}" class="modal fade" tabindex="-1"
+                                            role="dialog" aria-labelledby="delete-extratime-{{ $extratime->id }}-title"
                                             aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title"
-                                                            id="delete-otpsendcode-{{ $otpsendcode->id }}-title">
-                                                            {{ $otpsendcode->crud_name() }}
+                                                            id="delete-extratime-{{ $extratime->id }}-title">
+                                                            {{ $extratime->crud_name() }}
                                                         </h5>
                                                         <button class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -174,7 +206,7 @@
                                                             {{ __('global.close') }}
                                                         </button>
 
-                                                        <button wire:click="delete({{ $otpsendcode->id }})"
+                                                        <button wire:click="delete({{ $extratime->id }})"
                                                             class="btn btn-danger" data-dismiss="modal">
                                                             {{ __('global.delete') }}
                                                         </button>
@@ -186,21 +218,21 @@
                                 @endif
 
                                 @if ($admin_view_status == 'deleted')
-                                    @permission('restore-otpsendcode')
+                                    @permission('restore-extratime')
                                         <button class="btn btn-danger" type="button" data-toggle="modal"
-                                            data-target="#restore-otpsendcode-{{ $otpsendcode->id }}">
+                                            data-target="#restore-extratime-{{ $extratime->id }}">
                                             <i class="ti-reload text-white"></i>
                                         </button>
 
-                                        <div wire:ignore.self id="restore-otpsendcode-{{ $otpsendcode->id }}"
-                                            aria-labelledby="restore-otpsendcode-{{ $otpsendcode->id }}-title"
-                                            class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div wire:ignore.self id="restore-extratime-{{ $extratime->id }}"
+                                            aria-labelledby="restore-extratime-{{ $extratime->id }}-title" class="modal fade"
+                                            tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title"
-                                                            id="restore-otpsendcode-{{ $otpsendcode->id }}-title">
-                                                            {{ $otpsendcode->crud_name() }}
+                                                            id="restore-extratime-{{ $extratime->id }}-title">
+                                                            {{ $extratime->crud_name() }}
                                                         </h5>
                                                         <button class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -216,7 +248,7 @@
                                                             {{ __('global.close') }}
                                                         </button>
 
-                                                        <button wire:click="restore({{ $otpsendcode->id }})"
+                                                        <button wire:click="restore({{ $extratime->id }})"
                                                             class="btn btn-danger" data-dismiss="modal">
                                                             {{ __('global.restore') }}
                                                         </button>
@@ -236,5 +268,5 @@
         </table>
     </div>
 
-    {{ $otpsendcodes->links() }}
+    {{ $extratimes->links() }}
 </div>

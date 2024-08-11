@@ -10,17 +10,25 @@
             <select wire:model='orderBy' class="form-control form-group">
                 <option value="id">{{ __('global.id') }}</option>
 
-                <option value='user_id'>{{ __('otpsendcode.user') }}</option>
+                <option value='task_id'>{{ __('leave.task') }}</option>
 
-                <option value='otp_code'>{{ __('otpsendcode.otp_code') }}</option>
+                <option value='user_id'>{{ __('leave.user') }}</option>
 
-                <option value='phone_number'>{{ __('otpsendcode.phone_number') }}</option>
+                <option value='type'>{{ __('leave.type') }}</option>
 
-                <option value='applecation'>{{ __('otpsendcode.applecation') }}</option>
+                <option value='time_out'>{{ __('leave.time_out') }}</option>
 
-                <option value='code_status'>{{ __('otpsendcode.code_status') }}</option>
+                <option value='time_in'>{{ __('leave.time_in') }}</option>
 
-                <option value='back_response'>{{ __('otpsendcode.back_response') }}</option>
+                <option value='reason'>{{ __('leave.reason') }}</option>
+
+                <option value='result'>{{ __('leave.result') }}</option>
+
+                <option value='status'>{{ __('leave.status') }}</option>
+
+                <option value='accepted_by_user_id'>{{ __('leave.accepted_by_user') }}</option>
+
+                <option value='accepted_time'>{{ __('leave.accepted_time') }}</option>
 
 
                 <option value="created_at">{{ __('global.created_at') }}</option>
@@ -48,23 +56,21 @@
     <div class="form-inline">
         @role('owner|operations')
             <div>
-                <button type="button" class="mr-1 btn btn-warning" data-toggle="modal"
-                    data-target="#filter-otpsendcode-modal">
+                <button type="button" class="mr-1 btn btn-warning" data-toggle="modal" data-target="#filter-leave-modal">
                     <i class="ti-filter text-white"></i>
                 </button>
             </div>
         @endrole
         @role('owner|operations')
             <div>
-                <button type="button" class="btn btn-info" data-toggle="modal"
-                    data-target="#show-hide-otpsendcode-columnModal">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#show-hide-leave-columnModal">
                     <i class="ti-layout-column4 text-white"></i>
                 </button>
             </div>
         @endrole
 
         @if ($admin_view_status != 'deleted')
-            @permission('import-excel-otpsendcode')
+            @permission('import-excel-leave')
                 <div>
                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#import-data">
                         <i class="ti-import text-white"></i>
@@ -72,10 +78,10 @@
                 </div>
             @endpermission
 
-            @permission('export-excel-otpsendcode')
+            @permission('export-excel-leave')
                 <div>
                     <a class="mr-1 btn btn-warning" target="_blank"
-                        href="{{ route('otpsendcode.export', ['by_date' => $byDate, 'from_date' => $fromDate, 'to_date' => $toDate]) }}">
+                        href="{{ route('leave.export', ['by_date' => $byDate, 'from_date' => $fromDate, 'to_date' => $toDate]) }}">
                         <i class="ti-export text-white"></i>
                     </a>
                 </div>
@@ -84,10 +90,10 @@
 
 
         @if ($admin_view_status != 'deleted')
-            @permission('create-otpsendcode')
+            @permission('create-leave')
                 <div>
                     <button type="button" class="btn btn-success" data-toggle="modal"
-                        data-target="#create-new-otpsendcode-modal">
+                        data-target="#create-new-leave-modal">
                         <i class="ti-plus text-white"></i>
                     </button>
                 </div>
@@ -95,12 +101,12 @@
         @endif
     </div>
 
-    <div wire:ignore.self class="modal fade" id="show-hide-otpsendcode-columnModal" tabindex="-1"
-        aria-labelledby="show-hide-otpsendcode-columnModalLabel" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="show-hide-leave-columnModal" tabindex="-1"
+        aria-labelledby="show-hide-leave-columnModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="show-hide-otpsendcode-columnModalLabel">
+                    <h5 class="modal-title" id="show-hide-leave-columnModalLabel">
                         {{ __('global.show-and-hide-table-columns') }}
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -116,12 +122,12 @@
                                 $show_kye = str_replace('_id', '', $kye);
                             @endphp
 
-                            @if (strlen(__('otpsendcode.' . $show_kye)) > 2)
+                            @if (strlen(__('leave.' . $show_kye)) > 2)
                                 <div class="form-check">
                                     <input wire:model="showColumn.{{ $kye }}" class="form-check-input"
-                                        type="checkbox" value="true" id="filter-otpsendcode-{{ $kye }}">
-                                    <label class="form-check-label" for="filter-otpsendcode-{{ $kye }}">
-                                        {{ __('otpsendcode.' . $show_kye) }}
+                                        type="checkbox" value="true" id="filter-leave-{{ $kye }}">
+                                    <label class="form-check-label" for="filter-leave-{{ $kye }}">
+                                        {{ __('leave.' . $show_kye) }}
                                     </label>
                                 </div>
                             @endif
@@ -139,11 +145,11 @@
     </div>
 
     @if ($admin_view_status != 'deleted')
-        @include('livewire.otpsendcode.otpsendcode-create-modal')
+        @include('livewire.leave.leave-create-modal')
     @endif
 
 
-    @permission('import-excel-otpsendcode')
+    @permission('import-excel-leave')
         <div wire:ignore.self class="modal fade" id="import-data" tabindex="-1" aria-labelledby="import-dataLabel"
             aria-hidden="true">
             <div class="modal-dialog">
@@ -157,7 +163,7 @@
                         </button>
                     </div>
 
-                    <form action="{{ route('otpsendcode.import') }}" enctype="multipart/form-data" method="post"
+                    <form action="{{ route('leave.import') }}" enctype="multipart/form-data" method="post"
                         accept-charset="utf-8" class="form-horizontal m-t-30">
                         <div class="modal-body">
                             @csrf
@@ -208,12 +214,12 @@
     @endpermission
 
 
-    <div wire:ignore.self class="modal fade" id="filter-otpsendcode-modal" tabindex="-1"
-        aria-labelledby="filter-otpsendcode-modalLabel" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="filter-leave-modal" tabindex="-1"
+        aria-labelledby="filter-leave-modalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="filter-otpsendcode-modalLabel">
+                    <h5 class="modal-title" id="filter-leave-modalLabel">
                         {{ __('global.filter') }}
                     </h5>
 
@@ -269,6 +275,28 @@
 
 
                     <div class='form-group'>
+                        <label for='task-select'>{{ __('global.by_tasks') }}</label>
+                        <select id='task-select' class='form-control' wire:model='select_task'>
+                            <option>Select tasks</option>
+                            @foreach ($tasks as $task)
+                                <option value='{{ $task->id }}'>{{ $task->crud_name() }}</option>
+                            @endforeach
+                        </select>
+
+                        @foreach ($tasks as $task)
+                            @if (in_array($task->id, $filter_tasks_id))
+                                <div class='form-check form-check-inline'>
+                                    <input wire:model='filter_tasks_id' class='form-check-input' type='checkbox'
+                                        value='{{ $task->id }}' id='filter-tasks-id-{{ $task->id }}'>
+                                    <label class='form-check-label' for='filter-tasks-id-{{ $task->id }}'>
+                                        {{ $task->crud_name() }}
+                                    </label>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+
+                    <div class='form-group'>
                         <label for='user-select'>{{ __('global.by_users') }}</label>
                         <select id='user-select' class='form-control' wire:model='select_user'>
                             <option>Select users</option>
@@ -284,6 +312,32 @@
                                         value='{{ $user->id }}' id='filter-users-id-{{ $user->id }}'>
                                     <label class='form-check-label' for='filter-users-id-{{ $user->id }}'>
                                         {{ $user->crud_name() }}
+                                    </label>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+
+                    <div class='form-group'>
+                        <label for='accepted_by_user-select'>{{ __('global.by_accepted_by_users') }}</label>
+                        <select id='accepted_by_user-select' class='form-control'
+                            wire:model='select_accepted_by_user'>
+                            <option>Select accepted_by_users</option>
+                            @foreach ($accepted_by_users as $accepted_by_user)
+                                <option value='{{ $accepted_by_user->id }}'>{{ $accepted_by_user->crud_name() }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                        @foreach ($accepted_by_users as $accepted_by_user)
+                            @if (in_array($accepted_by_user->id, $filter_accepted_by_users_id))
+                                <div class='form-check form-check-inline'>
+                                    <input wire:model='filter_accepted_by_users_id' class='form-check-input'
+                                        type='checkbox' value='{{ $accepted_by_user->id }}'
+                                        id='filter-accepted_by_users-id-{{ $accepted_by_user->id }}'>
+                                    <label class='form-check-label'
+                                        for='filter-accepted_by_users-id-{{ $accepted_by_user->id }}'>
+                                        {{ $accepted_by_user->crud_name() }}
                                     </label>
                                 </div>
                             @endif

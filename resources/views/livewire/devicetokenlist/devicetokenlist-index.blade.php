@@ -19,7 +19,7 @@
                     <td>#</td>
 
                     {{-- 
-                        @if ($status != 'deleted')
+                        @if ($admin_view_status != 'deleted')
                             <td style="width: 75px"> {{ __('global.select') }} </td>
                         @endif
                     --}}
@@ -75,7 +75,7 @@
                         <td>{{ ++$number }}</td>
 
                         {{-- 
-                            @if ($status != 'deleted')
+                            @if ($admin_view_status != 'deleted')
                                 <td>
                                     <div class="form-check">
                                         <input wire:model.defer="selectedDevicetokenlists.{{ $devicetokenlist->id }}" class="form-check-input"
@@ -128,7 +128,7 @@
 
                         @permission('edit-devicetokenlist|delete-devicetokenlist|restore-devicetokenlist')
                             <td>
-                                @if ($status != 'deleted')
+                                @if ($admin_view_status != 'deleted')
                                     @permission('edit-devicetokenlist')
                                         <button data-toggle="modal" data-target="#update-devicetokenlist-modal"
                                             wire:click="edit({{ $devicetokenlist->id }})" class="btn btn-primary">
@@ -178,7 +178,7 @@
                                     @endpermission
                                 @endif
 
-                                @if ($status == 'deleted')
+                                @if ($admin_view_status == 'deleted')
                                     @permission('restore-devicetokenlist')
                                         <button class="btn btn-danger" type="button" data-toggle="modal"
                                             data-target="#restore-devicetokenlist-{{ $devicetokenlist->id }}">

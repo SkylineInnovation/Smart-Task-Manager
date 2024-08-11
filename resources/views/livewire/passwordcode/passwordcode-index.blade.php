@@ -19,7 +19,7 @@
                     <td>#</td>
 
                     {{-- 
-                        @if ($status != 'deleted')
+                        @if ($admin_view_status != 'deleted')
                             <td style="width: 75px"> {{ __('global.select') }} </td>
                         @endif
                     --}}
@@ -75,7 +75,7 @@
                         <td>{{ ++$number }}</td>
 
                         {{-- 
-                            @if ($status != 'deleted')
+                            @if ($admin_view_status != 'deleted')
                                 <td>
                                     <div class="form-check">
                                         <input wire:model.defer="selectedPasswordcodes.{{ $passwordcode->id }}" class="form-check-input"
@@ -128,7 +128,7 @@
 
                         @permission('edit-passwordcode|delete-passwordcode|restore-passwordcode')
                             <td>
-                                @if ($status != 'deleted')
+                                @if ($admin_view_status != 'deleted')
                                     @permission('edit-passwordcode')
                                         <button data-toggle="modal" data-target="#update-passwordcode-modal"
                                             wire:click="edit({{ $passwordcode->id }})" class="btn btn-primary">
@@ -177,7 +177,7 @@
                                     @endpermission
                                 @endif
 
-                                @if ($status == 'deleted')
+                                @if ($admin_view_status == 'deleted')
                                     @permission('restore-passwordcode')
                                         <button class="btn btn-danger" type="button" data-toggle="modal"
                                             data-target="#restore-passwordcode-{{ $passwordcode->id }}">

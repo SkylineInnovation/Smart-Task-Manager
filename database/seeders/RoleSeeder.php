@@ -54,6 +54,9 @@ class RoleSeeder extends Seeder
             'task',
             'attachment',
             'comment',
+            'extratime',
+            'leave',
+            'discount',
         ];
 
         foreach ($lists as $item) {

@@ -1,6 +1,6 @@
 <div>
 
-    @include('livewire.otpsendcode.otpsendcode-top')
+    @include('livewire.leave.leave-top')
 
     @if (session()->has('message'))
         <div class="alert alert-success" style="margin-top:30px;">
@@ -9,7 +9,7 @@
     @endif
 
     @php
-        $number = ($otpsendcodes->currentPage() - 1) * $perPage;
+        $number = ($leaves->currentPage() - 1) * $perPage;
     @endphp
 
     <div class="table-responsive">
@@ -33,28 +33,44 @@
                     @endif
 
 
+                    @if ($showColumn['task_id'])
+                        <td>{{ __('leave.task') }}</td>
+                    @endif
+
                     @if ($showColumn['user_id'])
-                        <td>{{ __('otpsendcode.user') }}</td>
+                        <td>{{ __('leave.user') }}</td>
                     @endif
 
-                    @if ($showColumn['otp_code'])
-                        <td>{{ __('otpsendcode.otp_code') }}</td>
+                    @if ($showColumn['type'])
+                        <td>{{ __('leave.type') }}</td>
                     @endif
 
-                    @if ($showColumn['phone_number'])
-                        <td>{{ __('otpsendcode.phone_number') }}</td>
+                    @if ($showColumn['time_out'])
+                        <td>{{ __('leave.time_out') }}</td>
                     @endif
 
-                    @if ($showColumn['applecation'])
-                        <td>{{ __('otpsendcode.applecation') }}</td>
+                    @if ($showColumn['time_in'])
+                        <td>{{ __('leave.time_in') }}</td>
                     @endif
 
-                    @if ($showColumn['code_status'])
-                        <td>{{ __('otpsendcode.code_status') }}</td>
+                    @if ($showColumn['reason'])
+                        <td>{{ __('leave.reason') }}</td>
                     @endif
 
-                    @if ($showColumn['back_response'])
-                        <td>{{ __('otpsendcode.back_response') }}</td>
+                    @if ($showColumn['result'])
+                        <td>{{ __('leave.result') }}</td>
+                    @endif
+
+                    @if ($showColumn['status'])
+                        <td>{{ __('leave.status') }}</td>
+                    @endif
+
+                    @if ($showColumn['accepted_by_user_id'])
+                        <td>{{ __('leave.accepted_by_user') }}</td>
+                    @endif
+
+                    @if ($showColumn['accepted_time'])
+                        <td>{{ __('leave.accepted_time') }}</td>
                     @endif
 
 
@@ -65,7 +81,7 @@
                         <td>{{ __('global.time') }}</td>
                     @endif
 
-                    @permission('edit-otpsendcode|delete-otpsendcode|restore-otpsendcode')
+                    @permission('edit-leave|delete-leave|restore-leave')
                         <td style="width: 150px">
                             {{ __('global.action') }}
                         </td>
@@ -74,7 +90,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($otpsendcodes as $otpsendcode)
+                @foreach ($leaves as $leave)
                     <tr>
                         <td>{{ ++$number }}</td>
 
@@ -82,83 +98,106 @@
                             @if ($admin_view_status != 'deleted')
                                 <td>
                                     <div class="form-check">
-                                        <input wire:model.defer="selectedOtpsendcodes.{{ $otpsendcode->id }}" class="form-check-input"
-                                            type="checkbox" value="{{ $otpsendcode->id }}" id="otpsendcode-{{ $otpsendcode->id }}">
+                                        <input wire:model.defer="selectedLeaves.{{ $leave->id }}" class="form-check-input"
+                                            type="checkbox" value="{{ $leave->id }}" id="leave-{{ $leave->id }}">
                                     </div>
                                 </td>
                             @endif
                         --}}
 
                         @if ($showColumn['id'])
-                            <td> {{ $otpsendcode->id }} </td>
+                            <td> {{ $leave->id }} </td>
                         @endif
 
                         @if ($showColumn['slug'])
-                            <td> {{ $otpsendcode->slug }} </td>
+                            <td> {{ $leave->slug }} </td>
                         @endif
 
 
-                        @if ($showColumn['user_id'])
+                        @if ($showColumn['task_id'])
                             <td>
-                                @if ($otpsendcode->user)
-                                    {{ $otpsendcode->user->crud_name() }}
+                                @if ($leave->task)
+                                    {{ $leave->task->crud_name() }}
                                 @endif
                             </td>
                         @endif
 
-                        @if ($showColumn['otp_code'])
-                            <td> {{ $otpsendcode->otp_code }} </td>
+                        @if ($showColumn['user_id'])
+                            <td>
+                                @if ($leave->user)
+                                    {{ $leave->user->crud_name() }}
+                                @endif
+                            </td>
                         @endif
 
-                        @if ($showColumn['phone_number'])
-                            <td> {{ $otpsendcode->phone_number }} </td>
+                        @if ($showColumn['type'])
+                            <td> {{ $leave->the_type() }} </td>
                         @endif
 
-                        @if ($showColumn['applecation'])
-                            <td> {{ $otpsendcode->applecation }} </td>
+                        @if ($showColumn['time_out'])
+                            <td> {{ $leave->time_out }} </td>
                         @endif
 
-                        @if ($showColumn['code_status'])
-                            <td> {{ $otpsendcode->code_status }} </td>
+                        @if ($showColumn['time_in'])
+                            <td> {{ $leave->time_in }} </td>
                         @endif
 
-                        @if ($showColumn['back_response'])
-                            <td> {{ $otpsendcode->back_response }} </td>
+                        @if ($showColumn['reason'])
+                            <td> {{ $leave->reason }} </td>
+                        @endif
+
+                        @if ($showColumn['result'])
+                            <td> {{ $leave->result }} </td>
+                        @endif
+
+                        @if ($showColumn['status'])
+                            <td> {{ $leave->the_status() }} </td>
+                        @endif
+
+                        @if ($showColumn['accepted_by_user_id'])
+                            <td>
+                                @if ($leave->accepted_by_user)
+                                    {{ $leave->accepted_by_user->crud_name() }}
+                                @endif
+                            </td>
+                        @endif
+
+                        @if ($showColumn['accepted_time'])
+                            <td> {{ $leave->accepted_time }} </td>
                         @endif
 
 
                         @if ($showColumn['date'])
-                            <td> {{ date('d/m/Y', strtotime($otpsendcode->created_at)) }} </td>
+                            <td> {{ date('d/m/Y', strtotime($leave->created_at)) }} </td>
                         @endif
                         @if ($showColumn['time'])
-                            <td> {{ date('h:i A', strtotime($otpsendcode->created_at)) }} </td>
+                            <td> {{ date('h:i A', strtotime($leave->created_at)) }} </td>
                         @endif
 
-                        @permission('edit-otpsendcode|delete-otpsendcode|restore-otpsendcode')
+                        @permission('edit-leave|delete-leave|restore-leave')
                             <td>
                                 @if ($admin_view_status != 'deleted')
-                                    @permission('edit-otpsendcode')
-                                        <button data-toggle="modal" data-target="#update-otpsendcode-modal"
-                                            wire:click="edit({{ $otpsendcode->id }})" class="btn btn-primary">
+                                    @permission('edit-leave')
+                                        <button data-toggle="modal" data-target="#update-leave-modal"
+                                            wire:click="edit({{ $leave->id }})" class="btn btn-primary">
                                             <i class="ti-pencil text-white"></i>
                                         </button>
                                     @endpermission
 
-                                    @permission('delete-otpsendcode')
+                                    @permission('delete-leave')
                                         <button class="btn btn-danger" type="button" data-toggle="modal"
-                                            data-target="#delete-otpsendcode-{{ $otpsendcode->id }}">
+                                            data-target="#delete-leave-{{ $leave->id }}">
                                             <i class="ti-trash text-white"></i>
                                         </button>
 
-                                        <div id="delete-otpsendcode-{{ $otpsendcode->id }}" class="modal fade" tabindex="-1"
-                                            role="dialog" aria-labelledby="delete-otpsendcode-{{ $otpsendcode->id }}-title"
+                                        <div id="delete-leave-{{ $leave->id }}" class="modal fade" tabindex="-1"
+                                            role="dialog" aria-labelledby="delete-leave-{{ $leave->id }}-title"
                                             aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title"
-                                                            id="delete-otpsendcode-{{ $otpsendcode->id }}-title">
-                                                            {{ $otpsendcode->crud_name() }}
+                                                        <h5 class="modal-title" id="delete-leave-{{ $leave->id }}-title">
+                                                            {{ $leave->crud_name() }}
                                                         </h5>
                                                         <button class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -174,8 +213,8 @@
                                                             {{ __('global.close') }}
                                                         </button>
 
-                                                        <button wire:click="delete({{ $otpsendcode->id }})"
-                                                            class="btn btn-danger" data-dismiss="modal">
+                                                        <button wire:click="delete({{ $leave->id }})" class="btn btn-danger"
+                                                            data-dismiss="modal">
                                                             {{ __('global.delete') }}
                                                         </button>
                                                     </div>
@@ -186,21 +225,20 @@
                                 @endif
 
                                 @if ($admin_view_status == 'deleted')
-                                    @permission('restore-otpsendcode')
+                                    @permission('restore-leave')
                                         <button class="btn btn-danger" type="button" data-toggle="modal"
-                                            data-target="#restore-otpsendcode-{{ $otpsendcode->id }}">
+                                            data-target="#restore-leave-{{ $leave->id }}">
                                             <i class="ti-reload text-white"></i>
                                         </button>
 
-                                        <div wire:ignore.self id="restore-otpsendcode-{{ $otpsendcode->id }}"
-                                            aria-labelledby="restore-otpsendcode-{{ $otpsendcode->id }}-title"
-                                            class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div wire:ignore.self id="restore-leave-{{ $leave->id }}"
+                                            aria-labelledby="restore-leave-{{ $leave->id }}-title" class="modal fade"
+                                            tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title"
-                                                            id="restore-otpsendcode-{{ $otpsendcode->id }}-title">
-                                                            {{ $otpsendcode->crud_name() }}
+                                                        <h5 class="modal-title" id="restore-leave-{{ $leave->id }}-title">
+                                                            {{ $leave->crud_name() }}
                                                         </h5>
                                                         <button class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -216,7 +254,7 @@
                                                             {{ __('global.close') }}
                                                         </button>
 
-                                                        <button wire:click="restore({{ $otpsendcode->id }})"
+                                                        <button wire:click="restore({{ $leave->id }})"
                                                             class="btn btn-danger" data-dismiss="modal">
                                                             {{ __('global.restore') }}
                                                         </button>
@@ -236,5 +274,5 @@
         </table>
     </div>
 
-    {{ $otpsendcodes->links() }}
+    {{ $leaves->links() }}
 </div>

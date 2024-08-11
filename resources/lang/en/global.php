@@ -141,6 +141,15 @@ return [
     'comments' => 'comment',
     'create-comment' => 'create new comment',
 
+    'extratimes' => 'extra time',
+    'create-extratime' => 'create new extra time',
+
+    'leaves' => 'leave',
+    'create-leave' => 'create new leave',
+
+    'discounts' => 'discount',
+    'create-discount' => 'create new discount',
+
     // some role valideate message in sub
     // 'please_select_customer' => 'Please Select Customer',
 

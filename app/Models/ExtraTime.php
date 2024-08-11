@@ -2,16 +2,14 @@
 
 namespace App\Models;
 
-use App\Mail\Task\SendStatusChangeOnTask;
 use App\Traits\TranslateTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Support\Facades\App;
 // use Laratrust\Traits\LaratrustUserTrait;
 
-class Task extends Model
+class ExtraTime extends Model
 {
     // use LaratrustUserTrait;
     use HasFactory;
@@ -58,14 +56,15 @@ class Task extends Model
         'slug',
 
 
-        'manager_id',
-        'title',
-        'desc',
-        'start_time',
-        'end_time',
-        'priority_level',
+        'task_id',
+        'user_id',
+        'accepted_by_user_id',
+        'reason',
+        'result',
+        'request_time',
+        'response_time',
         'status',
-        'main_task_id',
+        'duration',
 
         'show',
         'sort',
@@ -76,7 +75,7 @@ class Task extends Model
         parent::boot();
 
         static::created(function ($model) {
-            // Mail::to([])->send(new SendNewTaskToEmployee($model));
+            // 
         });
 
         static::updating(function ($model) {
@@ -89,22 +88,8 @@ class Task extends Model
                 $oldValues[$attribute] = $model->getOriginal($attribute);
 
             // 'subscription_id' => $model->id,
-            // 'from_status' => $model->getOriginal()['status'],
-            // 'to_status' => $model->getAttributes()['status'],
-
-            if ($model->getOriginal()['status'] != $model->getAttributes()['status']) {
-                $template = '';
-                if ($model->status == 'complete') {
-                    $template = 'complete';
-                } elseif ($model->status == 'auto-finish') {
-                    $template = 'auto-finish';
-                }
-
-                if ($template != '')
-                    Mail::to(
-                        $model->employees->pluck('email')->toArray()
-                    )->send(new SendStatusChangeOnTask($template, $model));
-            }
+            // 'from_type_id' => $model->getOriginal()['subscription_type_id'],
+            // 'to_type_id' => $model->getAttributes()['subscription_type_id'],
         });
     }
 
@@ -134,7 +119,7 @@ class Task extends Model
 
     public function crud_name()
     {
-        return $this->title;
+        return $this->id;
     }
 
     // public function name($lang = null)
@@ -156,14 +141,15 @@ class Task extends Model
             $q->whereIn('id', array_map('intval', explode(',', $search)));
 
 
-            // $q->orWhere('manager_id', $search);
-            $q->orWhereSearch('title', $search);
-            $q->orWhereSearch('desc', $search);
-            $q->orWhereSearch('start_time', $search);
-            $q->orWhereSearch('end_time', $search);
-            $q->orWhereSearch('priority_level', $search);
+            $q->orWhere('task_id', $search);
+            $q->orWhere('user_id', $search);
+            $q->orWhere('accepted_by_user_id', $search);
+            $q->orWhereSearch('reason', $search);
+            $q->orWhereSearch('result', $search);
+            $q->orWhereSearch('request_time', $search);
+            $q->orWhereSearch('response_time', $search);
             $q->orWhereSearch('status', $search);
-            // $q->orWhere('main_task_id', $search);
+            $q->orWhereSearch('duration', $search);
 
             // })->orWhereHas('add_by_user', function ($q) use ($search) {
             //     $q->orWhereSearch('first_name', $search);
@@ -174,32 +160,6 @@ class Task extends Model
         });
     }
 
-    public function the_priority_level()
-    {
-        if ($this->priority_level == 'low')
-            return __('task.low');
-        elseif ($this->priority_level == 'medium')
-            return __('task.medium');
-        elseif ($this->priority_level == 'high')
-            return __('task.high');
-
-        return '';
-    }
-
-    public function the_status()
-    {
-        if ($this->status == 'pending')
-            return __('task.pending');
-        elseif ($this->status == 'active')
-            return __('task.active');
-        elseif ($this->status == 'auto-finished')
-            return __('task.auto-finished');
-        elseif ($this->status == 'manual-finished')
-            return __('task.manual-finished');
-
-        return '';
-    }
-
     public function add_by_user()
     {
         return $this->belongsTo(User::class, 'add_by');
@@ -207,29 +167,37 @@ class Task extends Model
 
 
 
-    public function manager()
+    public function task()
     {
-        return $this->belongsTo(User::class, 'manager_id');
+        return $this->belongsTo(Task::class);
     }
 
 
-    public function main_task()
+    public function user()
     {
-        return $this->belongsTo(Task::class, 'main_task_id');
+        return $this->belongsTo(User::class);
     }
 
-    public function employees()
-    {
-        return $this->belongsToMany(User::class)->withPivot('discount');
-    }
 
-    public function discount()
+    public function accepted_by_user()
     {
-        return $this->employees->first()->pivot->discount;
+        return $this->belongsTo(User::class, 'accepted_by_user_id');
     }
 
     public function format_date($data)
     {
         return date('Y-m-d h:i A', strtotime($data));
+    }
+
+    public function the_status()
+    {
+        if ($this->status == 'pending')
+            return __('task.pending');
+        elseif ($this->status == 'accepted')
+            return __('task.accepted');
+        elseif ($this->status == 'rejected')
+            return __('task.rejected');
+
+        return '';
     }
 }
