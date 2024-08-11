@@ -56,6 +56,7 @@
                             <input wire:model.defer="title" type="text" multiple class="form-control"
                                 aria-label="Default" aria-describedby="inputGroup-sizing-default">
                         </div>
+
                         <div class="input-group mb-3 col-md-4">
                             <div class="input-group-prepend ">
                                 <span class="input-group-text btn-secondary text-white"
@@ -64,8 +65,6 @@
                             <input wire:model.defer="discount" type="number" class="form-control" aria-label="Default"
                                 aria-describedby="inputGroup-sizing-default">
                         </div>
-
-
 
                         <div class="input-group mb-3  col-md-6">
                             <div class="input-group-prepend ">
@@ -85,13 +84,11 @@
                                 aria-label="Default" aria-describedby="inputGroup-sizing-default">
                         </div>
 
-
                         <div wire:ignore.self class="col-md-12">
                             {{-- <div wire:ignore.self id="summer_desc"></div> --}}
                             <textarea name='desc' id='desc' rows="4" class='form-control'
-                                placeholder='{{ __('global.enter') }} {{ __('task.desc') }}' wire:model="desc"></textarea>
+                                placeholder='{{ __('global.enter') }} {{ __('task.desc') }}' wire:model.defer="desc"></textarea>
                         </div>
-
                     </div>
 
                     {{--  --}}

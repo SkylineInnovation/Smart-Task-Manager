@@ -335,11 +335,92 @@
                                 </div>
 
                                 <div class="tab-pane fade {{ $tab == 4 ? 'show active' : '' }}" id="subTask"
-                                    role="tabpanel" aria-labelledby="subTask-tab">...
+                                    role="tabpanel" aria-labelledby="subTask-tab">
+                                    {{--  --}}{{--  --}}{{--  --}}{{--  --}}
+                                    <div class="row">
+
+                                        <div class="input-group mb-3 col-8">
+                                            <div class="input-group-prepend ">
+                                                <span class="input-group-text btn-secondary text-white"
+                                                    id="inputGroup-sizing-default">{{ __('task.title') }}</span>
+                                            </div>
+
+                                            <input wire:model.defer="sub_task_title" type="text"
+                                                class="form-control" aria-label="Default"
+                                                aria-describedby="inputGroup-sizing-default">
+                                        </div>
+
+                                        <div class="form-group mb-3 col-4">
+                                            <select wire:model.defer="sub_task_priority_level" class="form-control">
+                                                <option value="low">low</option>
+                                                <option value="medum">medum</option>
+                                                <option value="high">high</option>
+                                            </select>
+                                        </div>
+
+                                        {{-- <div class="input-group mb-3 col-md-8">
+                                            <div class="input-group-prepend ">
+                                                <span class="input-group-text btn-secondary text-white"
+                                                    id="inputGroup-sizing-default">{{ __('task.title') }}</span>
+                                            </div>
+                                            <input wire:model.defer="sub_task_title" type="text" multiple
+                                                class="form-control" aria-label="Default"
+                                                aria-describedby="inputGroup-sizing-default">
+                                        </div> --}}
+
+                                        {{-- <div class="input-group mb-3 col-md-4">
+                                            <div class="input-group-prepend ">
+                                                <span class="input-group-text btn-secondary text-white"
+                                                    id="inputGroup-sizing-default">{{ __('task.discount') }}</span>
+                                            </div>
+                                            <input wire:model.defer="sub_task_discount" type="number"
+                                                class="form-control" aria-label="Default"
+                                                aria-describedby="inputGroup-sizing-default">
+                                        </div> --}}
+
+                                        <div class="input-group mb-3  col-md-6">
+                                            <div class="input-group-prepend ">
+                                                <span class="input-group-text btn-secondary text-white"
+                                                    id="inputGroup-sizing-default">{{ __('task.start_time') }}</span>
+                                            </div>
+                                            <input wire:model.defer="sub_task_start_time" type="datetime-local"
+                                                class="form-control" aria-label="Default"
+                                                aria-describedby="inputGroup-sizing-default">
+                                        </div>
+
+                                        <div class="input-group mb-3  col-md-6">
+                                            <div class="input-group-prepend ">
+                                                <span class="input-group-text btn-secondary text-white"
+                                                    id="inputGroup-sizing-default">{{ __('task.end_time') }}</span>
+                                            </div>
+                                            <input wire:model.defer="sub_task_end_time" type="datetime-local"
+                                                class="form-control" aria-label="Default"
+                                                aria-describedby="inputGroup-sizing-default">
+                                        </div>
+
+                                        <div wire:ignore.self class="col-md-12">
+                                            {{-- <div wire:ignore.self id="summer_desc"></div> --}}
+                                            <textarea name='desc' id='desc' rows="4" class='form-control'
+                                                placeholder='{{ __('global.enter') }} {{ __('task.desc') }}' wire:model.defer="sub_task_desc"></textarea>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        @foreach ($errors->all() as $error)
+                                            <span class='alert alert-danger btn'>{{ $error }}</span>
+                                        @endforeach
+                                    </div>
+
+                                    <button wire:click="addSubTask()" type="button" class="btn btn-success">
+                                        Add Sub Task
+                                    </button>
+                                    {{--  --}}{{--  --}}{{--  --}}{{--  --}}
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         {{-- <button type="button" class="btn btn-primary">
