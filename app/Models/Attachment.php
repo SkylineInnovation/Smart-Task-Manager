@@ -177,4 +177,14 @@ class Attachment extends Model
     {
         return $this->belongsTo(Attachment::class, 'main_attachment_id');
     }
+
+    public function is_image()
+    {
+        $ext = ['png', 'jpg', 'webg', 'jpg'];
+
+        if (in_array($this->file, $ext))
+            return true;
+
+        return false;
+    }
 }

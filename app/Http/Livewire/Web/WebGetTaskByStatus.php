@@ -97,6 +97,18 @@ class WebGetTaskByStatus extends Component
         $this->tab = $index;
     }
 
+    public function deleteAttatchment($id)
+    {
+        $attche = Attachment::find($id);
+        $attche->delete();
+    }
+
+    public function deletecomment($id)
+    {
+        $comment = Comment::find($id);
+        $comment->delete();
+    }
+
     public function render()
     {
         $tasks = Task::where('status', $this->status);

@@ -220,9 +220,53 @@
                                             placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="attatchment_desc"></textarea>
                                     </div>
 
+
+
+
                                     <button wire:click="addAttatchment()" type="button" class="btn btn-success">
                                         Upload
                                     </button>
+
+
+                                    <div class="container py-3">
+                                        @foreach ($task->attatchments as $attatch)
+                                            <div class="row w-100 m-0 border">
+                                                <div class="col-md-3">
+                                                    {{-- @if ($attatch->is_image())
+                                                        <img src="{{ asset($attatch->file) }}" alt=""
+                                                            style="width: 100px ; height: 100px;" srcset="">
+                                                    @else
+                                                        <a href="{{ asset($attatch->file) }}" download>
+                                                            {{ $attatch->file }}
+                                                            {{ $attatch->is_image() ? 'Y' : 'N' }}
+                                                        </a>
+                                                    @endif --}}
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h4>{{ $attatch->title }}</h4>
+
+
+                                                    <p>
+                                                        {{ $attatch->desc }}
+                                                    </p>
+
+
+                                                </div>
+                                                <div class="col-md-3 d-flex justify-content-center align-items-center">
+
+                                                    <a class="btn btn-success" href="{{ asset($attatch->file) }}"
+                                                        download>
+                                                        <i class="fa fa-download text-white"></i>
+                                                    </a>
+                                                    <a class="btn btn-danger"
+                                                        wire:click='deleteAttatchment({{ $attatch->id }})'>
+                                                        <i class="fa fa-trash text-white"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
 
                                     {{-- <input wire:ignore.self wire:model="attatchment_file" type="file"
                                             class="dropify" data-height="150" /> --}}
@@ -249,6 +293,45 @@
                                     <button wire:click="addComment()" type="button" class="btn btn-success">
                                         Commet
                                     </button>
+
+                                    <div class="container py-3">
+                                        @foreach ($task->comments as $comment)
+                                            <div class="row w-100 m-0 border">
+                                                <div class="col-md-3">
+                                                    {{-- @if ($attatch->is_image())
+                                                        <img src="{{ asset($attatch->file) }}" alt=""
+                                                            style="width: 100px ; height: 100px;" srcset="">
+                                                    @else
+                                                        <a href="{{ asset($attatch->file) }}" download>
+                                                            {{ $attatch->file }}
+                                                            {{ $attatch->is_image() ? 'Y' : 'N' }}
+                                                        </a>
+                                                    @endif --}}
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h4>{{ $comment->title }}</h4>
+
+
+                                                    <p>
+                                                        {{ $comment->desc }}
+                                                    </p>
+
+
+                                                </div>
+                                                <div class="col-md-3 d-flex justify-content-center align-items-center">
+
+                                                   
+                                                    <a class="btn btn-danger"
+                                                        wire:click='deletecomment({{ $comment->id }})'>
+                                                        <i class="fa fa-trash text-white"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+
+
                                 </div>
 
                                 <div class="tab-pane fade {{ $tab == 4 ? 'show active' : '' }}" id="subTask"
