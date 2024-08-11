@@ -21,6 +21,10 @@
             /* wtf, but apparently the most reliable way to make a large part of the input clickable in most browsers */
             height: 200px;
         }
+
+        div {
+            /* border: solid 1px black */
+        }
     </style>
 @endsection
 
@@ -63,12 +67,34 @@
 
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                 <a class="dropdown-item" href="#"><i
-                                                        class="fa fa-pencil-square-o text-secondarye"
+                                                        class="fa fa-check-square text-success" aria-hidden="true"></i>
+                                                    &nbsp; complet</a>
+
+                                                <a class="dropdown-item" href="#" data-toggle="modal"
+                                                    data-target="#update"><i class="fa fa-pencil-square-o text-secondarye"
                                                         aria-hidden="true"></i> &nbsp; Update</a>
+
                                                 <a class="dropdown-item" href="#"><i class="fa fa-trash-o text-danger"
                                                         aria-hidden="true"></i> &nbsp; Delete</a>
 
 
+                                                <a class="dropdown-item" href="#"><i class="fa fa-hourglass-end"
+                                                        aria-hidden="true"></i> &nbsp; finsh</a>
+
+                                                <a class="dropdown-item" href="#" data-toggle="modal"
+                                                    data-target="#leave"><i class="fa fa-sign-out text-info"
+                                                        aria-hidden="true"></i>
+                                                    &nbsp; leave</a>
+
+                                                <a class="dropdown-item" data-toggle="modal" data-target="#extraTime"
+                                                    href="#"><i class="fa fa-clock-o text-warning"
+                                                        aria-hidden="true"></i>
+                                                    &nbsp; extra time</a>
+
+
+
+
+                                                <!-- Button trigger modal -->
 
 
                                             </div>
@@ -103,10 +129,9 @@
                                                                     <strong>Discription :</strong>
                                                                     <br>
 
-                                                                    <small class="fs-6 text-gray">Postim Beka travel</small>
+                                                                    <small class="fs-6 text-gray">Postim Beka
+                                                                        travel</small>
                                                                 </div>
-
-
 
 
 
@@ -128,13 +153,7 @@
                                                                             aria-controls="attatchment"
                                                                             aria-selected="false">attatchment</a>
                                                                     </li>
-                                                                    <li class="nav-item px-3 ">
-                                                                        <a class="nav-link py-3 rounded-pill"
-                                                                            id="comment-tab" data-toggle="tab"
-                                                                            href="#comment" role="tab"
-                                                                            aria-controls="comment"
-                                                                            aria-selected="false">comment</a>
-                                                                    </li>
+                                                                   
 
                                                                     <li class="nav-item px-3 ">
                                                                         <a class="nav-link py-3 rounded-pill"
@@ -209,18 +228,7 @@
 
 
 
-                                                                    <div class="tab-pane fade" id="comment"
-                                                                        role="tabpanel" aria-labelledby="comment-tab">
-                                                                        <div class="form-group">
-                                                                            <label for="exampleFormControlTextarea1">create
-                                                                                comments</label>
-                                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                                                        </div>
-                                                                        <div class="col-md-12 d-flex justify-content-end">
-                                                                            <button type="submit"
-                                                                                class="btn btn-success">post</button>
-                                                                        </div>
-                                                                    </div>
+                                                                    
 
                                                                     <div class="tab-pane fade" id="subTask"
                                                                         role="tabpanel" aria-labelledby="subTask-tab">...
@@ -240,12 +248,233 @@
 
 
                                         </div>
+
                                         <div class="col-md-3 col-4 d-flex justify-content-center fs-4">
-                                            <i class="fa fa-commenting-o text-danger"></i>
+
+                                            <button type="button" class="fa fa-commenting-o text-danger"
+                                                data-toggle="modal" data-target="#comments">
+
+                                            </button>
+
+                                        </div>
+
+                                        <div class="col-12 py-3">
+                                            <div class="bg-danger rounded-pill text-white text-center p-0">
+                                                Priority
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal -->
+
+                                {{-- update modal --}}
+                                <div wire:ignore.self class="modal fade" id="update" tabindex="-1" role="dialog"
+                                    aria-labelledby="create-new-task-label" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">
+                                                    {{ __('global.update task') }}</h5>
+                                                <button wire:click="cancel()" type="button" class="close"
+                                                    data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row w-100 m-0">
+                                                    <div class='form-group col-6'>
+                                                        <label for='employee-select'>{{ __('task.employees') }}</label>
+                                                        <select id='employee-select' class='form-control'
+                                                            wire:model='select_emp'>
+                                                            <option>Select employees</option>
+                                                            {{-- @foreach ($employees as $employee)
+                                                                <option value='{{ $employee->id }}'>
+                                                                    {{ $employee->crud_name() }}</option>
+                                                            @endforeach --}}
+                                                        </select>
+
+                                                        {{-- @foreach ($employees as $employee)
+                                                            @if (in_array($employee->id, $selectedEmployees))
+                                                                <div class='form-check form-check-inline'>
+                                                                    <input wire:model='selectedEmployees'
+                                                                        class='form-check-input' type='checkbox'
+                                                                        value='{{ $employee->id }}'
+                                                                        id='filter-employees-id-{{ $employee->id }}'>
+                                                                    <label class='form-check-label'
+                                                                        for='filter-employees-id-{{ $employee->id }}'>
+                                                                        {{ $employee->crud_name() }}
+                                                                    </label>
+                                                                </div>
+                                                            @endif
+                                                        @endforeach --}}
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="exampleFormControlSelect1">proearty</label>
+                                                        <select wire:model.defer="priority_level" class="form-control">
+                                                            <option value="low">low</option>
+                                                            <option value="medum">medum</option>
+                                                            <option value="high">high</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="input-group mb-3 col-md-8">
+                                                        <div class="input-group-prepend ">
+                                                            <span class="input-group-text btn-secondary text-white"
+                                                                id="inputGroup-sizing-default">{{ __('task.title') }}</span>
+                                                        </div>
+                                                        <input wire:model.defer="title" type="text" multiple
+                                                            class="form-control" aria-label="Default"
+                                                            aria-describedby="inputGroup-sizing-default">
+                                                    </div>
+                                                    <div class="input-group mb-3 col-md-4">
+                                                        <div class="input-group-prepend ">
+                                                            <span class="input-group-text btn-secondary text-white"
+                                                                id="inputGroup-sizing-default">{{ __('task.discount') }}</span>
+                                                        </div>
+                                                        <input wire:model.defer="discount" type="number"
+                                                            class="form-control" aria-label="Default"
+                                                            aria-describedby="inputGroup-sizing-default">
+                                                    </div>
+
+
+
+                                                    <div class="input-group mb-3  col-md-6">
+                                                        <div class="input-group-prepend ">
+                                                            <span class="input-group-text btn-secondary text-white"
+                                                                id="inputGroup-sizing-default">{{ __('task.start_time') }}</span>
+                                                        </div>
+                                                        <input wire:model.defer="start_time" type="datetime-local"
+                                                            class="form-control" aria-label="Default"
+                                                            aria-describedby="inputGroup-sizing-default">
+                                                    </div>
+
+                                                    <div class="input-group mb-3  col-md-6">
+                                                        <div class="input-group-prepend ">
+                                                            <span class="input-group-text btn-secondary text-white"
+                                                                id="inputGroup-sizing-default">{{ __('task.end_time') }}</span>
+                                                        </div>
+                                                        <input wire:model.defer="end_time" type="datetime-local"
+                                                            class="form-control" aria-label="Default"
+                                                            aria-describedby="inputGroup-sizing-default">
+                                                    </div>
+
+
+                                                    <div wire:ignore.self class="col-md-12">
+                                                        {{-- <div wire:ignore.self id="summer_desc"></div> --}}
+
+                                                        <textarea name='desc' id='desc' rows="4" class='form-control'
+                                                            placeholder='{{ __('global.enter') }} {{ __('task.desc') }}' wire:model="desc"></textarea>
+                                                    </div>
+
+                                                </div>
+
+                                                {{--  --}}
+
+                                                <div class="form-group">
+                                                    @foreach ($errors->all() as $error)
+                                                        <span class='alert alert-danger btn'>{{ $error }}</span>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button wire:click="cancel()" type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">
+                                                    Close
+                                                </button>
+
+                                                <button wire:click="store()" type="submit" class="btn btn-primary">
+                                                    Save Changes
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
+                                {{-- leave modal --}}
+
+                                <div class="modal fade" id="leave" tabindex="1" role="dialog"
+                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">leave
+                                                    title</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ...
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save
+                                                    changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- extra modal --}}
+
+                                <div class="modal fade" id="extraTime" tabindex="1" role="dialog"
+                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">extra
+                                                    title</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ...
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save
+                                                    changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- comments --}}
+                                <div class="modal fade" id="comments" tabindex="1" role="dialog"
+                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">
+                                                    commints</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="exampleFormControlTextarea1">create
+                                                        comments</label>
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save
+                                                    changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="col-md-12 pt-2">
                                     <h4 class="px-4 text-gray-400">
@@ -262,12 +491,16 @@
                                 </div>
 
                                 <div class="col-md-12 pt-2">
-                                    <h4 class="px-4 text-gray-400">
-                                        Status
-                                    </h4>
+                                    
 
                                     <div class="row w-100 m-0 py-3">
-                                        <div class="col-md-12 d-flex justify-content-center">
+
+                                        <div class="col-md-4 align-content-center">
+                                            <h4 class=" text-gray-400">
+                                                Status
+                                            </h4>
+                                        </div>
+                                        <div class="col-md-8 d-flex justify-content-center">
                                             <select class="form-select bg-red-lighter"
                                                 aria-label="Default select example">
                                                 <option selected>Open this select menu</option>
@@ -279,23 +512,9 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 pt-2">
-                                    <h4 class="px-4 text-gray-400">
-                                        Priority
-                                    </h4>
 
-                                    <div class="row w-100 m-0 py-3">
-                                        <div class="col-md-12 d-flex justify-content-center">
-                                            <select class="form-select bg-gray-lighter"
-                                                aria-label="Default select example">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+
+
 
                                 <div class="col-md-12">
                                     <div class="row w-100 m-0 ">
@@ -320,14 +539,16 @@
                 <hr style="margin-top:0px !important ">
 
             </div>
-            <div class="col-md-4 text-center py-4 ">
-                <h4 class="p-0 d-flex align-items-center  text-gray-400 fw-bold  justify-content-center">Auto finished</h4>
-                <hr style="margin-top:0px !important ">
 
-            </div>
             <div class="col-md-4 text-center py-4 ">
                 <h4 class="p-0 d-flex align-items-center  text-gray-400 fw-bold  justify-content-center">Manual finished
                 </h4>
+                <hr style="margin-top:0px !important ">
+
+            </div>
+
+            <div class="col-md-4 text-center py-4 ">
+                <h4 class="p-0 d-flex align-items-center  text-gray-400 fw-bold  justify-content-center">Auto finished</h4>
                 <hr style="margin-top:0px !important ">
 
             </div>
