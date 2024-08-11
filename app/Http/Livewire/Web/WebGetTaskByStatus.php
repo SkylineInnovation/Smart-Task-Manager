@@ -121,6 +121,29 @@ class WebGetTaskByStatus extends Component
         $this->comment_desc = '';
     }
 
+    public $comment_id, $replay_comment_title, $replay_comment_desc;
+
+    public function setCommentId($id)
+    {
+        $this->comment_id = $id;
+    }
+    public function replayComment()
+    {
+        Comment::create([
+            'add_by' => $this->by->id,
+
+            'task_id' => $this->task_id,
+            'user_id' => $this->by->id,
+            'title' => $this->replay_comment_title,
+            'desc' => $this->replay_comment_desc,
+            // 'replay_time' => $this->replay_time,
+            'main_comment_id' => $this->comment_id,
+        ]);
+
+        $this->replay_comment_title = '';
+        $this->replay_comment_desc = '';
+    }
+
     public $employees;
     public $selectedEmployees;
 
@@ -179,6 +202,19 @@ class WebGetTaskByStatus extends Component
     public function changeTab($index)
     {
         $this->tab = $index;
+    }
+
+    public function deleteTask($id)
+
+    {
+        $task = Task::find($id);
+        $task->delete();
+    }
+
+    public function deleteComents($id)
+    {
+        $comments = Comment::find($id);
+        $comments->delete();
     }
 
     public function deleteAttatchment($id)

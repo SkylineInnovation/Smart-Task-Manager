@@ -21,7 +21,8 @@
     </div>
 
     @php
-        $show_side = $show_side ?? auth()->user()->hasRole('owner');
+        // $show_side = $show_side ?? auth()->user()->hasRole('owner');
+        $show_side = true;
     @endphp
 
     <div class="page">

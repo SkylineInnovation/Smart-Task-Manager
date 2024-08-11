@@ -29,8 +29,8 @@
                                         <i class="fa fa-pencil-square-o text-secondarye" aria-hidden="true"></i>
                                         &nbsp; Update
                                     </a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-trash-o text-danger"
-                                            aria-hidden="true"></i>
+                                    <a class="dropdown-item" wire:click='deleteTask({{ $task->id }})'><i
+                                            class="fa fa-trash-o text-danger" aria-hidden="true"></i>
                                         &nbsp; Delete
                                     </a>
                                 </div>
@@ -296,36 +296,91 @@
 
                                     <div class="container py-3">
                                         @foreach ($task->comments as $comment)
-                                            <div class="row w-100 m-0 border">
-                                                <div class="col-md-3">
-                                                    {{-- @if ($attatch->is_image())
-                                                        <img src="{{ asset($attatch->file) }}" alt=""
-                                                            style="width: 100px ; height: 100px;" srcset="">
-                                                    @else
-                                                        <a href="{{ asset($attatch->file) }}" download>
-                                                            {{ $attatch->file }}
-                                                            {{ $attatch->is_image() ? 'Y' : 'N' }}
+                                            <div class="media">
+                                                <img class="mr-3" src="{{ asset('assets/images/users/10.jpg') }}"
+                                                    alt="Generic placeholder image">
+                                                <div class="media-body">
+                                                    <h5 class="mt-0">{{ $comment->user->name() }}</h5>
+                                                    {{ $comment->desc }}
+
+
+                                                    <div class="col-12 d-flex justify-content-end">
+
+                                                        <a class="btn btn-primary-gradient" data-toggle="modal"
+                                                            wire:click="setCommentId({{ $comment->id }})"
+                                                            data-target="#replay">
+                                                            <i class="fa fa-comment text-white"></i>
                                                         </a>
-                                                    @endif --}}
+                                                        &nbsp;
+                                                        <a class="btn btn-danger"
+                                                            wire:click='deleteComents({{ $comment->id }})'>
+                                                            <i class="fa fa-trash text-white"></i>
+                                                        </a>
+                                                    </div>
 
+
+
+
+                                                    @foreach ($comment->subs as $subCom)
+                                                        <div class="media mt-3">
+                                                            <a class="pr-3" href="#">
+                                                                <img src="{{ asset('assets/images/users/10.jpg') }}"
+                                                                    alt="Generic placeholder image">
+                                                            </a>
+                                                            <div class="media-body">
+                                                                <h5 class="mt-0">{{ $subCom->user->name() }}</h5>
+                                                                {{ $subCom->desc }}
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <h4>{{ $comment->title }}</h4>
+                                            </div>
 
 
-                                                    <p>
-                                                        {{ $comment->desc }}
-                                                    </p>
 
 
-                                                </div>
-                                                <div class="col-md-3 d-flex justify-content-center align-items-center">
+                                            <div class="modal fade" id="replay" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Modal
+                                                                replay
+                                                            </h5>
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="input-group mb-1">
+                                                                <div class="input-group-prepend">
+                                                                    <span
+                                                                        class="input-group-text btn-secondary text-white"
+                                                                        id="inputGroup-sizing-default">{{ __('attachment.title') }}</span>
+                                                                </div>
+                                                                <input wire:model.defer="replay_comment_title"
+                                                                    type="text" class="form-control"
+                                                                    aria-label="Default"
+                                                                    aria-describedby="inputGroup-sizing-default">
+                                                            </div>
 
-                                                   
-                                                    <a class="btn btn-danger"
-                                                        wire:click='deletecomment({{ $comment->id }})'>
-                                                        <i class="fa fa-trash text-white"></i>
-                                                    </a>
+                                                            <div wire:ignore.self class="mb-1">
+                                                                {{-- <div wire:ignore.self id="summer_desc"></div> --}}
+                                                                <textarea name='desc' id='desc' rows="3" class='form-control'
+                                                                    placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="replay_comment_desc"></textarea>
+                                                            </div>
+
+                                                            <button wire:click="replayComment()" type="button"
+                                                                class="btn btn-success">
+                                                                Commet
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         @endforeach
