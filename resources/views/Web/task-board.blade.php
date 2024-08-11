@@ -2,13 +2,60 @@
 
 
 @section('content')
-    <style>
-        div {
-            /* border: solid black 1px */
-        }
-    </style>
-    <div class="container bg-white-lightest ">
-        <div class="d-flex card flex-row" style="overflow-x: scroll;">
+    <div class="card">
+        <div class="d-flex justify-content-between p-2">
+            <div id="search-sort-section" class="form-inline ">
+                <div>
+                    <div class="form-group">
+                        <input wire:model="search" class="form-control" placeholder="{{ __('global.search') }}">
+                    </div>
+                </div>
+
+                <div>
+                    <select wire:model='orderBy' class="form-control form-group">
+                        <option value="id">{{ __('global.id') }}</option>
+
+                        <option value='task_id'>{{ __('discount.task') }}</option>
+
+                        <option value='user_id'>{{ __('discount.user') }}</option>
+
+                        <option value='amount'>{{ __('discount.amount') }}</option>
+
+                        <option value='reason'>{{ __('discount.reason') }}</option>
+
+
+                        <option value="created_at">{{ __('global.created_at') }}</option>
+                    </select>
+                </div>
+
+                <div>
+                    <select wire:model="orderWay" class="form-control form-group">
+                        <option value="asc">{{ __('global.Asc') }}</option>
+                        <option value="desc">{{ __('global.Desc') }}</option>
+                    </select>
+                </div>
+
+                <div>
+                    <select wire:model='perPage' class="form-control form-group">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+            </div>
+
+            <livewire:web.web-create-new-task />
+
+            {{-- <div class="form-inline">
+            </div> --}}
+        </div>
+    </div>
+
+    <div class="container card">
+
+        <div class="d-flex flex-row" style="overflow-x: scroll;">
             <div class="col-md-4 col-10  py-4 ">
                 <h4 class="p-0 d-flex align-items-center  text-gray-400 fw-bold  justify-content-center">Pending</h4>
                 <hr style="margin-top:0px !important ">
@@ -48,7 +95,8 @@
                                                         class="fa fa-pencil-square-o text-secondarye"
                                                         aria-hidden="true"></i> &nbsp; Update</a>
                                                 <a class="dropdown-item" href="#"><i class="fa fa-trash-o text-danger"
-                                                        aria-hidden="true"></i> &nbsp; Delete</a>
+                                                        aria-hidden="true"></i> &nbsp;
+                                                    Delete</a>
 
 
 
@@ -62,18 +110,19 @@
 
                                             <!-- Button trigger modal -->
                                             <button type="button" class="fa fa-exclamation-circle text-azure"
-                                            ata-toggle="modal" data-target=".bd-example-modal-lg">
+                                                ata-toggle="modal" data-target=".bd-example-modal-lg">
 
                                             </button>
 
                                             <!-- Modal -->
-                                            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                                                aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg">
-                                                  <div class="modal-content">
-                                                    ...
-                                                  </div>
+                                                    <div class="modal-content">
+                                                        ...
+                                                    </div>
                                                 </div>
-                                              </div>
+                                            </div>
 
 
                                         </div>
@@ -156,7 +205,8 @@
 
             </div>
             <div class="col-md-4 text-center py-4 ">
-                <h4 class="p-0 d-flex align-items-center  text-gray-400 fw-bold  justify-content-center">Auto finished</h4>
+                <h4 class="p-0 d-flex align-items-center  text-gray-400 fw-bold  justify-content-center">Auto finished
+                </h4>
                 <hr style="margin-top:0px !important ">
 
             </div>
@@ -171,69 +221,12 @@
 @endsection
 
 @section('js')
-    {{-- <script type="text/javascript">
-        $(function() {
-            var chartdata = [{
-                name: "{!! __('global.users') !!}",
-                type: 'line',
-                smooth: true,
-                data: {!! json_encode($userList) !!},
-            }, ];
-            // ['line', 'bar'];
-            var chart = document.getElementById('home-echart');
-            var barChart = echarts.init(chart);
-            var option = {
-                grid: {
-                    top: '20',
-                    right: '20',
-                    bottom: '20',
-                    left: '20',
-                },
-                xAxis: {
-                    data: {!! json_encode($listOfDates) !!},
-                    axisLine: {
-                        lineStyle: {
-                            color: 'rgba(119, 119, 142, 0.2)'
-                        }
-                    },
-                    axisLabel: {
-                        fontSize: 10,
-                        color: '#77778e'
-                    }
-                },
-                tooltip: {
-                    show: true,
-                    showContent: true,
-                    alwaysShowContent: true,
-                    triggerOn: 'mousemove',
-                    trigger: 'axis',
-                    axisPointer: {
-                        label: {
-                            show: false
-                        }
-                    }
-                },
-                yAxis: {
-                    splitLine: {
-                        lineStyle: {
-                            color: 'rgba(119, 119, 142, 0.2)'
-                        }
-                    },
-                    axisLine: {
-                        lineStyle: {
-                            color: 'rgba(119, 119, 142, 0.2)'
-                        }
-                    },
-                    axisLabel: {
-                        fontSize: 10,
-                        color: '#77778e'
-                    }
-                },
-                series: chartdata,
-                color: ['#0774f8', '#09ad95', '#d43f8d', ]
-            };
-            barChart.setOption(option);
-
+    <script>
+        $(function(e) {
+            $("#summer_desc").summernote({
+                tabsize: 3,
+                height: 200,
+            });
         });
-    </script> --}}
+    </script>
 @endsection

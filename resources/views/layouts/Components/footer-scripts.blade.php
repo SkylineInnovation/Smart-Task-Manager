@@ -54,7 +54,7 @@
 <script src="{{ asset('assets/plugins/select2/select2.full.min.js') }}"></script>
 
 <script src="{{ asset('assets/plugins/summernote/summernote-bs4.js') }}"></script>
-<script src="{{ asset('assets/js/summernote.js') }}"></script>
+{{-- <script src="{{ asset('assets/js/summernote.js') }}"></script> --}}
 
 <script>
     // 

@@ -95,13 +95,16 @@
             </a>
             <ul class="slide-menu">
                 <li>
+                    <a class="slide-item" href="{{ route('task-board') }}">
+                        <span>{{ __('global.task-board') }}</span>
+                    </a>
+                </li>
+
+                <li>
                     <a class="slide-item" href="{{ route('task-view') }}">
                         <span>{{ __('global.task view') }}</span>
                     </a>
                 </li>
-
-               
-
 
                 {{-- <li><a class="slide-item" href="{{ route('banner.index') }}"><span>{{ __('global.Banner') }}</span></a></li> --}}
             </ul>

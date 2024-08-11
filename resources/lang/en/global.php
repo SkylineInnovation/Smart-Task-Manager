@@ -154,4 +154,5 @@ return [
     // 'please_select_customer' => 'Please Select Customer',
 
     'employees' => 'employees',
+    'task-board' => 'task board',
 ];
