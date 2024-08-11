@@ -165,7 +165,7 @@ class HomeController extends Controller
 
     public function taskView()
     {
-        return view('taskView.task');
+        return view('Web.TaskView.task');
     }
 
     public function taskBoard()
