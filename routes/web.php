@@ -140,4 +140,11 @@ Route::prefix('admin')->middleware('auth', 'role:owner|dev|full')->group(functio
     Route::middleware('permission:restore-leave')->get('trash/leaves', [App\Http\Controllers\LeaveController::class, 'livewireDeletedIndex'])->name('leave.index.trash');
     Route::get('export/leaves', [App\Http\Controllers\LeaveController::class, 'exportFullData'])->name('leave.export');
     Route::post('import/leaves', [App\Http\Controllers\LeaveController::class, 'importData'])->name('leave.import');
+
+
+    // the full routes for discounts
+    Route::middleware('permission:index-discount')->get('discounts', [App\Http\Controllers\DiscountController::class, 'livewireIndex'])->name('discount.index');
+    Route::middleware('permission:restore-discount')->get('trash/discounts', [App\Http\Controllers\DiscountController::class, 'livewireDeletedIndex'])->name('discount.index.trash');
+    Route::get('export/discounts', [App\Http\Controllers\DiscountController::class, 'exportFullData'])->name('discount.export');
+    Route::post('import/discounts', [App\Http\Controllers\DiscountController::class, 'importData'])->name('discount.import');
 });

@@ -63,3 +63,11 @@
         </a>
     </li>
 @endpermission
+
+@permission('index-discount')
+    <li>
+        <a class='slide-item' href='{{ route('discount.index') }}'>
+            <span>{{ __('global.discounts') }}</span>
+        </a>
+    </li>
+@endpermission

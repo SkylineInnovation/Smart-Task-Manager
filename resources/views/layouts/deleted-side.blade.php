@@ -63,3 +63,11 @@
         </a>
     </li>
 @endpermission
+
+@permission('restore-discount')
+    <li>
+        <a class='slide-item' href='{{ route('discount.index.trash') }}'>
+            <span>{{ __('global.discounts') }}</span>
+        </a>
+    </li>
+@endpermission
