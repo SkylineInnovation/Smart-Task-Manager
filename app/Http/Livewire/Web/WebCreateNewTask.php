@@ -13,8 +13,6 @@ class WebCreateNewTask extends Component
 {
     public Task $task;
 
-    public $main_tasks = [];
-
     public $employees = [];
     public $selectedEmployees = [];
 
@@ -32,16 +30,13 @@ class WebCreateNewTask extends Component
         // $this->end_time = date('Y-m-d', strtotime('+60 minutes'));
 
         $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
-
-        $this->main_tasks = \App\Models\Task::where('manager_id', $this->user->id)
-            ->whereNullOrEmptyOrZero('main_task_id')->where('show', 1)->orderBy('sort')->get();
     }
 
     public $slug;
     public $discount = 0;
     public $task_id, $manager_id, $title, $desc,
         $start_time, $end_time,
-        $priority_level = 'low', $status = 'pending', $main_task_id;
+        $priority_level = 'low', $status = 'pending';
 
     private function resetInputFields()
     {
@@ -54,7 +49,6 @@ class WebCreateNewTask extends Component
         $this->end_time = null;
         // $this->priority_level = 'low';
         // $this->status = 'pending';
-        $this->main_task_id = null;
         $this->discount = 0;
 
         $this->selectedEmployees = [];
@@ -71,7 +65,6 @@ class WebCreateNewTask extends Component
             'priority_level' => 'required',
             'status' => 'required',
             'discount' => 'required',
-            // 'main_task_id' => 'required',
 
             'selectedEmployees' => 'required',
         ];
@@ -101,7 +94,7 @@ class WebCreateNewTask extends Component
             'end_time' => $this->end_time,
             'priority_level' => $this->priority_level,
             'status' => $this->status,
-            'main_task_id' => $this->main_task_id,
+            // 'main_task_id' => $this->main_task_id,
         ]);
 
         $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
