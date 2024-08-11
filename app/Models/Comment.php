@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
 // use Laratrust\Traits\LaratrustUserTrait;
 
-class Task extends Model
+class Comment extends Model
 {
     // use LaratrustUserTrait;
     use HasFactory;
@@ -56,14 +56,12 @@ class Task extends Model
         'slug',
 
 
-        'manager_id',
+        'task_id',
+        'user_id',
         'title',
         'desc',
-        'start_time',
-        'end_time',
-        'priority_level',
-        'status',
-        'main_task_id',
+        'replay_time',
+        'main_comment_id',
 
         'show',
         'sort',
@@ -118,7 +116,7 @@ class Task extends Model
 
     public function crud_name()
     {
-        return $this->title;
+        return $this->id;
     }
 
     // public function name($lang = null)
@@ -140,14 +138,12 @@ class Task extends Model
             $q->whereIn('id', array_map('intval', explode(',', $search)));
 
 
-            // $q->orWhere('manager_id', $search);
+            $q->orWhere('task_id', $search);
+            $q->orWhere('user_id', $search);
             $q->orWhereSearch('title', $search);
             $q->orWhereSearch('desc', $search);
-            $q->orWhereSearch('start_time', $search);
-            $q->orWhereSearch('end_time', $search);
-            $q->orWhereSearch('priority_level', $search);
-            $q->orWhereSearch('status', $search);
-            // $q->orWhere('main_task_id', $search);
+            $q->orWhereSearch('replay_time', $search);
+            $q->orWhere('main_comment_id', $search);
 
             // })->orWhereHas('add_by_user', function ($q) use ($search) {
             //     $q->orWhereSearch('first_name', $search);
@@ -158,31 +154,6 @@ class Task extends Model
         });
     }
 
-    public function the_priority_level()
-    {
-        if ($this->priority_level == 'low')
-            return __('task.low');
-        elseif ($this->priority_level == 'medium')
-            return __('task.medium');
-        elseif ($this->priority_level == 'high')
-            return __('task.high');
-
-        return '';
-    }
-    public function the_status()
-    {
-        if ($this->status == 'pending')
-            return __('task.pending');
-        elseif ($this->status == 'active')
-            return __('task.active');
-        elseif ($this->status == 'auto-finished')
-            return __('task.auto-finished');
-        elseif ($this->status == 'manual-finished')
-            return __('task.manual-finished');
-
-        return '';
-    }
-
     public function add_by_user()
     {
         return $this->belongsTo(User::class, 'add_by');
@@ -190,29 +161,20 @@ class Task extends Model
 
 
 
-    public function manager()
+    public function task()
     {
-        return $this->belongsTo(User::class, 'manager_id');
+        return $this->belongsTo(Task::class);
     }
 
 
-    public function main_task()
+    public function user()
     {
-        return $this->belongsTo(Task::class, 'main_task_id');
+        return $this->belongsTo(User::class);
     }
 
-    public function employees()
-    {
-        return $this->belongsToMany(User::class)->withPivot('discount');
-    }
 
-    public function discount()
+    public function main_comment()
     {
-        return $this->employees->first()->pivot->discount;
-    }
-
-    public function format_date($data)
-    {
-        return date('Y-m-d h:i A', strtotime($data));
+        return $this->belongsTo(Comment::class, 'main_comment_id');
     }
 }

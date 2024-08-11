@@ -111,7 +111,7 @@ return [
     'created date time' => 'created time',
     'updated date time' => 'updated time',
     'deleted date time' => 'deleted time',
-    
+
     'by_date' => 'By date',
     'by_users' => 'by users',
 
@@ -120,18 +120,29 @@ return [
 
     'add' => 'add',
 
-    'applangs' => 'Applangs',
-    'create-applang' => 'Create Applang',
+    'applangs' => 'applangs',
+    'create-applang' => 'create applang',
 
     'otpsendcodes' => 'otp send codes',
-    'create-otpsendcode' => 'Create otp code',
+    'create-otpsendcode' => 'create otp code',
 
     'passwordcodes' => 'password codes',
-    'create-passwordcode' => 'Create password codes',
+    'create-passwordcode' => 'create password codes',
 
     'devicetokenlists' => 'token lists',
-    'create-devicetokenlist' => 'Create token lists',
+    'create-devicetokenlist' => 'create token lists',
+
+    'tasks' => 'task',
+    'create-task' => 'create new task',
+
+    'attachments' => 'attachment',
+    'create-attachment' => 'create new attachment',
+
+    'comments' => 'comment',
+    'create-comment' => 'create new comment',
 
     // some role valideate message in sub
     // 'please_select_customer' => 'Please Select Customer',
+
+    'employees' => 'employees',
 ];

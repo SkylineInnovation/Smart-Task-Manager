@@ -59,6 +59,9 @@ Route::get('migrate', function (Request $request) {
 Route::prefix('admin')->middleware('auth', 'role:owner|dev|full')->group(function () {
     Route::get('dashboard', [HomeController::class, 'home'])->name('dashboard');
 
+
+    Route::get('taskView', [HomeController::class, 'taskView'])->name('task-view');
+
     // Route::post('change/user/password/{user}', [UserController::class, "updateUserPassword"])->name('update.user.password');
 
     // Route::get('home', [HomeController::class, 'home'])->name('home');
@@ -112,4 +115,18 @@ Route::prefix('admin')->middleware('auth', 'role:owner|dev|full')->group(functio
     Route::middleware('permission:restore-task')->get('trash/tasks', [App\Http\Controllers\TaskController::class, 'livewireDeletedIndex'])->name('task.index.trash');
     Route::get('export/tasks', [App\Http\Controllers\TaskController::class, 'exportFullData'])->name('task.export');
     Route::post('import/tasks', [App\Http\Controllers\TaskController::class, 'importData'])->name('task.import');
+
+
+    // the full routes for attachments
+    Route::middleware('permission:index-attachment')->get('attachments', [App\Http\Controllers\AttachmentController::class, 'livewireIndex'])->name('attachment.index');
+    Route::middleware('permission:restore-attachment')->get('trash/attachments', [App\Http\Controllers\AttachmentController::class, 'livewireDeletedIndex'])->name('attachment.index.trash');
+    Route::get('export/attachments', [App\Http\Controllers\AttachmentController::class, 'exportFullData'])->name('attachment.export');
+    Route::post('import/attachments', [App\Http\Controllers\AttachmentController::class, 'importData'])->name('attachment.import');
+
+
+    // the full routes for comments
+    Route::middleware('permission:index-comment')->get('comments', [App\Http\Controllers\CommentController::class, 'livewireIndex'])->name('comment.index');
+    Route::middleware('permission:restore-comment')->get('trash/comments', [App\Http\Controllers\CommentController::class, 'livewireDeletedIndex'])->name('comment.index.trash');
+    Route::get('export/comments', [App\Http\Controllers\CommentController::class, 'exportFullData'])->name('comment.export');
+    Route::post('import/comments', [App\Http\Controllers\CommentController::class, 'importData'])->name('comment.import');
 });

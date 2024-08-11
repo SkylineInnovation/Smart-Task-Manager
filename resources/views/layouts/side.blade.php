@@ -31,3 +31,19 @@
         </a>
     </li>
 @endpermission
+
+@permission('index-attachment')
+    <li>
+        <a class='slide-item' href='{{ route('attachment.index') }}'>
+            <span>{{ __('global.attachments') }}</span>
+        </a>
+    </li>
+@endpermission
+
+@permission('index-comment')
+    <li>
+        <a class='slide-item' href='{{ route('comment.index') }}'>
+            <span>{{ __('global.comments') }}</span>
+        </a>
+    </li>
+@endpermission

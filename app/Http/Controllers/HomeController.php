@@ -9,9 +9,32 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
+    public static function saveImageWeb($image, $folderName)
+    {
+        $theImageUrl_image = null;
+
+        if (is_string($image)) return $image;
+
+        if ($image) {
+            $theImageName_image = $folderName . '_' . Str::random(10) . '.' . $image->extension();
+            $image->storeAs($folderName, $theImageName_image);
+            $theImageUrl_image = $folderName . '/' . $theImageName_image;
+
+            // try {
+            //     Image::load($theImageUrl_image)->quality(25)
+            //         // ->width(300)->height(300)
+            //         ->save(storage_path('app/' . $theImageUrl_image));
+            // } catch (\Throwable $th) {
+            // }
+        }
+
+        return $theImageUrl_image;
+    }
+
     public function switchLang($lang)
     {
         if (array_key_exists($lang, Config::get('languages'))) {
@@ -137,5 +160,11 @@ class HomeController extends Controller
 
 
         return back()->with('success', __('global.Profile Updated'));
+    }
+
+
+    public function taskView()
+    {
+        return view('taskView.task');
     }
 }

@@ -36,8 +36,8 @@ class TaskIndex extends Component
 
     public $main_tasks = [];
 
-    public $selectedEmployees = [];
     public $employees = [];
+    public $selectedEmployees = [];
 
 
     public $filter_managers_id = [];
@@ -63,9 +63,9 @@ class TaskIndex extends Component
         $this->start_time = date('Y-m-d');
         $this->end_time = date('Y-m-d', strtotime('+60 minutes'));
 
-        $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('name')->get();
+        $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
 
-        $this->main_tasks = \App\Models\Task::where('main_task_id', 0)->where('show', 1)->orderBy('sort')->get();
+        $this->main_tasks = \App\Models\Task::whereNullOrEmptyOrZero('main_task_id')->where('show', 1)->orderBy('sort')->get();
 
 
         $this->showColumn = collect([
@@ -90,6 +90,7 @@ class TaskIndex extends Component
 
     public $slug;
     public $task_id, $manager_id, $title, $desc, $start_time, $end_time, $priority_level = 'low', $status = 'pending', $main_task_id;
+    public $discount = 0;
     public $updateMode = false;
 
     private function resetInputFields()
@@ -99,11 +100,14 @@ class TaskIndex extends Component
         $this->manager_id = null;
         $this->title = '';
         $this->desc = '';
-        $this->start_time = date('Y-m-d');
+        $this->start_time = date('Y-m-d H:m A');
         $this->end_time = date('Y-m-d', strtotime('+60 minutes'));
         // $this->priority_level = 'low';
         // $this->status = 'pending';
         $this->main_task_id = null;
+        $this->discount = 0;
+
+        $this->selectedEmployees = [];
     }
 
 
@@ -117,9 +121,16 @@ class TaskIndex extends Component
             'end_time' => 'required',
             'priority_level' => 'required',
             'status' => 'required',
+            'discount' => 'required',
             // 'main_task_id' => 'required',
+
+            'selectedEmployees' => 'required',
         ];
     }
+
+    protected $messages = [
+        'selectedEmployees.required' => 'Please Select Employee',
+    ];
 
     public function updated($propertyName)
     {
@@ -131,7 +142,7 @@ class TaskIndex extends Component
         $validatedData = $this->validate();
 
 
-        Task::create([
+        $task = Task::create([
             'add_by' => $this->by->id,
             'slug' => $this->slug,
 
@@ -144,6 +155,8 @@ class TaskIndex extends Component
             'status' => $this->status,
             'main_task_id' => $this->main_task_id,
         ]);
+
+        $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
 
         session()->flash('message', 'Task Created Successfully.');
 
@@ -169,6 +182,10 @@ class TaskIndex extends Component
         $this->priority_level = $task->priority_level;
         $this->status = $task->status;
         $this->main_task_id = $task->main_task_id;
+
+        $this->selectedEmployees = $task->employees->pluck('id');
+
+        $this->discount = $task->discount();
     }
 
     public function cancel()
@@ -194,6 +211,8 @@ class TaskIndex extends Component
                 'status' => $this->status,
                 'main_task_id' => $this->main_task_id,
             ]);
+
+            $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
 
             $this->updateMode = false;
             session()->flash('message', 'Task Updated Successfully.');

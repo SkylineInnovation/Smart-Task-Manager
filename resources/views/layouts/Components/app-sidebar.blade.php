@@ -87,6 +87,27 @@
         </li>
 
 
+        <li class="slide">
+            <a class="side-menu__item" data-toggle="slide" href="#">
+                <i class="side-menu__icon ti-home"></i>
+                <span class="side-menu__label">{{ __('global.tasks') }}</span>
+                <i class="angle fa fa-angle-right"></i>
+            </a>
+            <ul class="slide-menu">
+                <li>
+                    <a class="slide-item" href="{{ route('task-view') }}">
+                        <span>{{ __('global.task view') }}</span>
+                    </a>
+                </li>
+
+               
+
+
+                {{-- <li><a class="slide-item" href="{{ route('banner.index') }}"><span>{{ __('global.Banner') }}</span></a></li> --}}
+            </ul>
+        </li>
+
+
         {{-- <li class="slide ">
             <a class="side-menu__item" data-toggle="slide" href="#"><i
                     class="side-menu__icon ti-layout-grid2"></i><span class="side-menu__label">Submenus</span><i

@@ -1,6 +1,6 @@
 <div>
 
-    @include('livewire.task.task-top')
+    @include('livewire.comment.comment-top')
 
     @if (session()->has('message'))
         <div class="alert alert-success" style="margin-top:30px;">
@@ -9,7 +9,7 @@
     @endif
 
     @php
-        $number = ($tasks->currentPage() - 1) * $perPage;
+        $number = ($comments->currentPage() - 1) * $perPage;
     @endphp
 
     <div class="table-responsive">
@@ -33,36 +33,28 @@
                     @endif
 
 
-                    @if ($showColumn['manager_id'])
-                        <td>{{ __('task.manager') }}</td>
+                    @if ($showColumn['task_id'])
+                        <td>{{ __('comment.task') }}</td>
+                    @endif
+
+                    @if ($showColumn['user_id'])
+                        <td>{{ __('comment.user') }}</td>
                     @endif
 
                     @if ($showColumn['title'])
-                        <td>{{ __('task.title') }}</td>
+                        <td>{{ __('comment.title') }}</td>
                     @endif
 
                     @if ($showColumn['desc'])
-                        <td>{{ __('task.desc') }}</td>
+                        <td>{{ __('comment.desc') }}</td>
                     @endif
 
-                    @if ($showColumn['start_time'])
-                        <td>{{ __('task.start_time') }}</td>
+                    @if ($showColumn['replay_time'])
+                        <td>{{ __('comment.replay_time') }}</td>
                     @endif
 
-                    @if ($showColumn['end_time'])
-                        <td>{{ __('task.end_time') }}</td>
-                    @endif
-
-                    @if ($showColumn['priority_level'])
-                        <td>{{ __('task.priority_level') }}</td>
-                    @endif
-
-                    @if ($showColumn['status'])
-                        <td>{{ __('task.status') }}</td>
-                    @endif
-
-                    @if ($showColumn['main_task_id'])
-                        <td>{{ __('task.main_task') }}</td>
+                    @if ($showColumn['main_comment_id'])
+                        <td>{{ __('comment.main_comment') }}</td>
                     @endif
 
 
@@ -73,7 +65,7 @@
                         <td>{{ __('global.time') }}</td>
                     @endif
 
-                    @permission('edit-task|delete-task|restore-task')
+                    @permission('edit-comment|delete-comment|restore-comment')
                         <td style="width: 150px">
                             {{ __('global.action') }}
                         </td>
@@ -82,7 +74,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($tasks as $task)
+                @foreach ($comments as $comment)
                     <tr>
                         <td>{{ ++$number }}</td>
 
@@ -90,94 +82,90 @@
                             @if ($admin_view_status != 'deleted')
                                 <td>
                                     <div class="form-check">
-                                        <input wire:model.defer="selectedTasks.{{ $task->id }}" class="form-check-input"
-                                            type="checkbox" value="{{ $task->id }}" id="task-{{ $task->id }}">
+                                        <input wire:model.defer="selectedComments.{{ $comment->id }}" class="form-check-input"
+                                            type="checkbox" value="{{ $comment->id }}" id="comment-{{ $comment->id }}">
                                     </div>
                                 </td>
                             @endif
                         --}}
 
                         @if ($showColumn['id'])
-                            <td> {{ $task->id }} </td>
+                            <td> {{ $comment->id }} </td>
                         @endif
 
                         @if ($showColumn['slug'])
-                            <td> {{ $task->slug }} </td>
+                            <td> {{ $comment->slug }} </td>
                         @endif
 
 
-                        @if ($showColumn['manager_id'])
+                        @if ($showColumn['task_id'])
                             <td>
-                                @if ($task->manager)
-                                    {{ $task->manager->crud_name() }}
+                                @if ($comment->task)
+                                    {{ $comment->task->crud_name() }}
+                                @endif
+                            </td>
+                        @endif
+
+                        @if ($showColumn['user_id'])
+                            <td>
+                                @if ($comment->user)
+                                    {{ $comment->user->crud_name() }}
                                 @endif
                             </td>
                         @endif
 
                         @if ($showColumn['title'])
-                            <td> {{ $task->title }} </td>
+                            <td> {{ $comment->title }} </td>
                         @endif
 
                         @if ($showColumn['desc'])
-                            <td> {{ $task->desc }} </td>
+                            <td> {{ $comment->desc }} </td>
                         @endif
 
-                        @if ($showColumn['start_time'])
-                            <td> {{ $task->format_date($task->start_time) }} </td>
+                        @if ($showColumn['replay_time'])
+                            <td> {{ $comment->replay_time }} </td>
                         @endif
 
-                        @if ($showColumn['end_time'])
-                            <td> {{ $task->format_date($task->end_time) }} </td>
-                        @endif
-
-                        @if ($showColumn['priority_level'])
-                            <td> {{ $task->the_priority_level() }} </td>
-                        @endif
-
-                        @if ($showColumn['status'])
-                            <td> {{ $task->the_status() }} </td>
-                        @endif
-
-                        @if ($showColumn['main_task_id'])
+                        @if ($showColumn['main_comment_id'])
                             <td>
-                                @if ($task->main_task)
-                                    {{ $task->main_task->crud_name() }}
+                                @if ($comment->main_comment)
+                                    {{ $comment->main_comment->crud_name() }}
                                 @endif
                             </td>
                         @endif
 
 
                         @if ($showColumn['date'])
-                            <td> {{ date('d/m/Y', strtotime($task->created_at)) }} </td>
+                            <td> {{ date('d/m/Y', strtotime($comment->created_at)) }} </td>
                         @endif
                         @if ($showColumn['time'])
-                            <td> {{ date('h:i A', strtotime($task->created_at)) }} </td>
+                            <td> {{ date('h:i A', strtotime($comment->created_at)) }} </td>
                         @endif
 
-                        @permission('edit-task|delete-task|restore-task')
+                        @permission('edit-comment|delete-comment|restore-comment')
                             <td>
                                 @if ($admin_view_status != 'deleted')
-                                    @permission('edit-task')
-                                        <button data-toggle="modal" data-target="#update-task-modal"
-                                            wire:click="edit({{ $task->id }})" class="btn btn-primary">
+                                    @permission('edit-comment')
+                                        <button data-toggle="modal" data-target="#update-comment-modal"
+                                            wire:click="edit({{ $comment->id }})" class="btn btn-primary">
                                             <i class="ti-pencil text-white"></i>
                                         </button>
                                     @endpermission
 
-                                    @permission('delete-task')
+                                    @permission('delete-comment')
                                         <button class="btn btn-danger" type="button" data-toggle="modal"
-                                            data-target="#delete-task-{{ $task->id }}">
+                                            data-target="#delete-comment-{{ $comment->id }}">
                                             <i class="ti-trash text-white"></i>
                                         </button>
 
-                                        <div id="delete-task-{{ $task->id }}" class="modal fade" tabindex="-1"
-                                            role="dialog" aria-labelledby="delete-task-{{ $task->id }}-title"
+                                        <div id="delete-comment-{{ $comment->id }}" class="modal fade" tabindex="-1"
+                                            role="dialog" aria-labelledby="delete-comment-{{ $comment->id }}-title"
                                             aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="delete-task-{{ $task->id }}-title">
-                                                            {{ $task->crud_name() }}
+                                                        <h5 class="modal-title" id="delete-comment-{{ $comment->id }}-title">
+                                                            {{ $comment->crud_name() }}
                                                         </h5>
                                                         <button class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -193,7 +181,7 @@
                                                             {{ __('global.close') }}
                                                         </button>
 
-                                                        <button wire:click="delete({{ $task->id }})" class="btn btn-danger"
+                                                        <button wire:click="delete({{ $comment->id }})" class="btn btn-danger"
                                                             data-dismiss="modal">
                                                             {{ __('global.delete') }}
                                                         </button>
@@ -205,20 +193,20 @@
                                 @endif
 
                                 @if ($admin_view_status == 'deleted')
-                                    @permission('restore-task')
+                                    @permission('restore-comment')
                                         <button class="btn btn-danger" type="button" data-toggle="modal"
-                                            data-target="#restore-task-{{ $task->id }}">
+                                            data-target="#restore-comment-{{ $comment->id }}">
                                             <i class="ti-reload text-white"></i>
                                         </button>
 
-                                        <div wire:ignore.self id="restore-task-{{ $task->id }}"
-                                            aria-labelledby="restore-task-{{ $task->id }}-title" class="modal fade"
+                                        <div wire:ignore.self id="restore-comment-{{ $comment->id }}"
+                                            aria-labelledby="restore-comment-{{ $comment->id }}-title" class="modal fade"
                                             tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="restore-task-{{ $task->id }}-title">
-                                                            {{ $task->crud_name() }}
+                                                        <h5 class="modal-title" id="restore-comment-{{ $comment->id }}-title">
+                                                            {{ $comment->crud_name() }}
                                                         </h5>
                                                         <button class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -234,7 +222,7 @@
                                                             {{ __('global.close') }}
                                                         </button>
 
-                                                        <button wire:click="restore({{ $task->id }})"
+                                                        <button wire:click="restore({{ $comment->id }})"
                                                             class="btn btn-danger" data-dismiss="modal">
                                                             {{ __('global.restore') }}
                                                         </button>
@@ -254,5 +242,5 @@
         </table>
     </div>
 
-    {{ $tasks->links() }}
+    {{ $comments->links() }}
 </div>

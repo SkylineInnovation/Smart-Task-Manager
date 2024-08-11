@@ -47,10 +47,23 @@
                                     'livewire' => 'title',
                                     'type' => 'text', // 'step' => 1,
                                     // 'required' => 'required',
-                                    'lg' => 12,
-                                    'md' => 12,
-                                    'sm' => 12,
+                                    'lg' => 9,
+                                    'md' => 9,
+                                    'sm' => 9,
                                 ])
+
+                                @include('inputs.create.input', [
+                                    'label' => 'task.discount',
+                                    'name' => 'task.discount',
+                                    'livewire' => 'discount',
+                                    'type' => 'number',
+                                    'step' => 0.1,
+                                    // 'required' => 'required',
+                                    'lg' => 3,
+                                    'md' => 3,
+                                    'sm' => 3,
+                                ])
+
                                 @include('inputs.create.input', [
                                     'label' => 'task.desc',
                                     'name' => 'task.desc',
@@ -66,15 +79,16 @@
                                     'label' => 'task.start_time',
                                     'name' => 'task.start_time',
                                     'livewire' => 'start_time',
-                                    'type' => 'date', // 'step' => 1,
+                                    'type' => 'datetime-local', // 'step' => 1,
                                     // 'required' => 'required',
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
+
                                 @include('inputs.create.input', [
                                     'label' => 'task.end_time',
                                     'name' => 'task.end_time',
                                     'livewire' => 'end_time',
-                                    'type' => 'date', // 'step' => 1,
+                                    'type' => 'datetime-local', // 'step' => 1,
                                     // 'required' => 'required',
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
@@ -115,6 +129,27 @@
                                 ])
 
                             </div>
+
+                            @role('owner')
+                                <div>
+                                    <p>{{ __('global.employees') }}</p>
+                                    <div class="row">
+                                        @foreach ($employees as $employee)
+                                            <div class="col-4">
+                                                <div class="form-check form-check-inline">
+                                                    <input wire:model='selectedEmployees' class="form-check-input"
+                                                        type="checkbox" value="{{ $employee->id }}"
+                                                        id="selected-employee-{{ $employee->id }}">
+                                                    <label class="form-check-label"
+                                                        for="selected-employee-{{ $employee->id }}">
+                                                        {{ $employee->name() }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endrole
 
                         </div>
 
@@ -193,9 +228,21 @@
                                     'livewire' => 'title',
                                     'type' => 'text', // 'step' => 1,
                                     // 'required' => 'required',
-                                    'lg' => 12,
-                                    'md' => 12,
-                                    'sm' => 12,
+                                    'lg' => 9,
+                                    'md' => 9,
+                                    'sm' => 9,
+                                ])
+                                @include('inputs.edit.input', [
+                                    'label' => 'task.discount',
+                                    'name' => 'task.discount',
+                                    'val' => $task->discount(),
+                                    'livewire' => 'discount',
+                                    'type' => 'number',
+                                    'step' => 1,
+                                    // 'required' => 'required',
+                                    'lg' => 3,
+                                    'md' => 3,
+                                    'sm' => 3,
                                 ])
                                 @include('inputs.edit.input', [
                                     'label' => 'task.desc',
@@ -214,7 +261,7 @@
                                     'name' => 'task.start_time',
                                     'val' => $task->start_time,
                                     'livewire' => 'start_time',
-                                    'type' => 'date', // 'step' => 1,
+                                    'type' => 'datetime-local', // 'step' => 1,
                                     // 'required' => 'required',
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
@@ -223,7 +270,7 @@
                                     'name' => 'task.end_time',
                                     'val' => $task->end_time,
                                     'livewire' => 'end_time',
-                                    'type' => 'date', // 'step' => 1,
+                                    'type' => 'datetime-local', // 'step' => 1,
                                     // 'required' => 'required',
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
@@ -259,10 +306,33 @@
                                     'livewire' => 'main_task_id',
                                     'val' => $task->main_task_id,
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                    'lg' => 12,
+                                    'md' => 12,
+                                    'sm' => 12,
                                 ])
 
                             </div>
+
+                            @role('owner')
+                                <div>
+                                    <p>{{ __('global.employees') }}</p>
+                                    <div class="row">
+                                        @foreach ($employees as $employee)
+                                            <div class="col-4">
+                                                <div class="form-check form-check-inline">
+                                                    <input wire:model='selectedEmployees' class="form-check-input"
+                                                        type="checkbox" value="{{ $employee->id }}"
+                                                        id="selected-employee-{{ $employee->id }}">
+                                                    <label class="form-check-label"
+                                                        for="selected-employee-{{ $employee->id }}">
+                                                        {{ $employee->name() }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endrole
 
                         </div>
 
@@ -287,4 +357,6 @@
             </div>
         </div>
     </div>
+
+
 @endpermission

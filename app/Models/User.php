@@ -117,7 +117,7 @@ class User extends Authenticatable
 
     public function name()
     {
-        return $this->first_name . ' ' . $this->last_name . ' (' . $this->id . ')';
+        return $this->first_name . ' ' . $this->last_name;
     }
 
     // public function image(){
@@ -149,5 +149,10 @@ class User extends Authenticatable
             $q->orWhereSearch('email', $search);
             $q->orWhereSearch('phone', $search);
         });
+    }
+
+    public function tasks()
+    {
+        return $this->belongsToMany(Task::class);
     }
 }

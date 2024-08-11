@@ -50,6 +50,10 @@ class RoleSeeder extends Seeder
             'otpsendcode',
             'passwordcode',
             'devicetokenlist',
+
+            'task',
+            'attachment',
+            'comment',
         ];
 
         foreach ($lists as $item) {

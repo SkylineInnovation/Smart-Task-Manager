@@ -31,3 +31,19 @@
         </a>
     </li>
 @endpermission
+
+@permission('restore-attachment')
+    <li>
+        <a class='slide-item' href='{{ route('attachment.index.trash') }}'>
+            <span>{{ __('global.attachments') }}</span>
+        </a>
+    </li>
+@endpermission
+
+@permission('restore-comment')
+    <li>
+        <a class='slide-item' href='{{ route('comment.index.trash') }}'>
+            <span>{{ __('global.comments') }}</span>
+        </a>
+    </li>
+@endpermission

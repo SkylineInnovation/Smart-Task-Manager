@@ -1,6 +1,6 @@
 <div>
 
-    @include('livewire.task.task-top')
+    @include('livewire.attachment.attachment-top')
 
     @if (session()->has('message'))
         <div class="alert alert-success" style="margin-top:30px;">
@@ -9,7 +9,7 @@
     @endif
 
     @php
-        $number = ($tasks->currentPage() - 1) * $perPage;
+        $number = ($attachments->currentPage() - 1) * $perPage;
     @endphp
 
     <div class="table-responsive">
@@ -33,36 +33,28 @@
                     @endif
 
 
-                    @if ($showColumn['manager_id'])
-                        <td>{{ __('task.manager') }}</td>
+                    @if ($showColumn['user_id'])
+                        <td>{{ __('attachment.user') }}</td>
+                    @endif
+
+                    @if ($showColumn['task_id'])
+                        <td>{{ __('attachment.task') }}</td>
                     @endif
 
                     @if ($showColumn['title'])
-                        <td>{{ __('task.title') }}</td>
+                        <td>{{ __('attachment.title') }}</td>
                     @endif
 
                     @if ($showColumn['desc'])
-                        <td>{{ __('task.desc') }}</td>
+                        <td>{{ __('attachment.desc') }}</td>
                     @endif
 
-                    @if ($showColumn['start_time'])
-                        <td>{{ __('task.start_time') }}</td>
+                    @if ($showColumn['file'])
+                        <td>{{ __('attachment.file') }}</td>
                     @endif
 
-                    @if ($showColumn['end_time'])
-                        <td>{{ __('task.end_time') }}</td>
-                    @endif
-
-                    @if ($showColumn['priority_level'])
-                        <td>{{ __('task.priority_level') }}</td>
-                    @endif
-
-                    @if ($showColumn['status'])
-                        <td>{{ __('task.status') }}</td>
-                    @endif
-
-                    @if ($showColumn['main_task_id'])
-                        <td>{{ __('task.main_task') }}</td>
+                    @if ($showColumn['main_attachment_id'])
+                        <td>{{ __('attachment.main_attachment') }}</td>
                     @endif
 
 
@@ -73,7 +65,7 @@
                         <td>{{ __('global.time') }}</td>
                     @endif
 
-                    @permission('edit-task|delete-task|restore-task')
+                    @permission('edit-attachment|delete-attachment|restore-attachment')
                         <td style="width: 150px">
                             {{ __('global.action') }}
                         </td>
@@ -82,7 +74,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($tasks as $task)
+                @foreach ($attachments as $attachment)
                     <tr>
                         <td>{{ ++$number }}</td>
 
@@ -90,94 +82,97 @@
                             @if ($admin_view_status != 'deleted')
                                 <td>
                                     <div class="form-check">
-                                        <input wire:model.defer="selectedTasks.{{ $task->id }}" class="form-check-input"
-                                            type="checkbox" value="{{ $task->id }}" id="task-{{ $task->id }}">
+                                        <input wire:model.defer="selectedAttachments.{{ $attachment->id }}" class="form-check-input"
+                                            type="checkbox" value="{{ $attachment->id }}" id="attachment-{{ $attachment->id }}">
                                     </div>
                                 </td>
                             @endif
                         --}}
 
                         @if ($showColumn['id'])
-                            <td> {{ $task->id }} </td>
+                            <td> {{ $attachment->id }} </td>
                         @endif
 
                         @if ($showColumn['slug'])
-                            <td> {{ $task->slug }} </td>
+                            <td> {{ $attachment->slug }} </td>
                         @endif
 
 
-                        @if ($showColumn['manager_id'])
+                        @if ($showColumn['user_id'])
                             <td>
-                                @if ($task->manager)
-                                    {{ $task->manager->crud_name() }}
+                                @if ($attachment->user)
+                                    {{ $attachment->user->crud_name() }}
+                                @endif
+                            </td>
+                        @endif
+
+                        @if ($showColumn['task_id'])
+                            <td>
+                                @if ($attachment->task)
+                                    {{ $attachment->task->crud_name() }}
                                 @endif
                             </td>
                         @endif
 
                         @if ($showColumn['title'])
-                            <td> {{ $task->title }} </td>
+                            <td> {{ $attachment->title }} </td>
                         @endif
 
                         @if ($showColumn['desc'])
-                            <td> {{ $task->desc }} </td>
+                            <td> {{ $attachment->desc }} </td>
                         @endif
 
-                        @if ($showColumn['start_time'])
-                            <td> {{ $task->format_date($task->start_time) }} </td>
-                        @endif
-
-                        @if ($showColumn['end_time'])
-                            <td> {{ $task->format_date($task->end_time) }} </td>
-                        @endif
-
-                        @if ($showColumn['priority_level'])
-                            <td> {{ $task->the_priority_level() }} </td>
-                        @endif
-
-                        @if ($showColumn['status'])
-                            <td> {{ $task->the_status() }} </td>
-                        @endif
-
-                        @if ($showColumn['main_task_id'])
+                        @if ($showColumn['file'])
                             <td>
-                                @if ($task->main_task)
-                                    {{ $task->main_task->crud_name() }}
+                                @if ($attachment->file)
+                                    <a href="{{ asset($attachment->file) }}" download>download</a>
+                                @else
+                                    <p>{{ __('attachment.file') }}</p>
+                                @endif
+                            </td>
+                        @endif
+
+                        @if ($showColumn['main_attachment_id'])
+                            <td>
+                                @if ($attachment->main_attachment)
+                                    {{ $attachment->main_attachment->crud_name() }}
                                 @endif
                             </td>
                         @endif
 
 
                         @if ($showColumn['date'])
-                            <td> {{ date('d/m/Y', strtotime($task->created_at)) }} </td>
+                            <td> {{ date('d/m/Y', strtotime($attachment->created_at)) }} </td>
                         @endif
                         @if ($showColumn['time'])
-                            <td> {{ date('h:i A', strtotime($task->created_at)) }} </td>
+                            <td> {{ date('h:i A', strtotime($attachment->created_at)) }} </td>
                         @endif
 
-                        @permission('edit-task|delete-task|restore-task')
+                        @permission('edit-attachment|delete-attachment|restore-attachment')
                             <td>
                                 @if ($admin_view_status != 'deleted')
-                                    @permission('edit-task')
-                                        <button data-toggle="modal" data-target="#update-task-modal"
-                                            wire:click="edit({{ $task->id }})" class="btn btn-primary">
+                                    @permission('edit-attachment')
+                                        <button data-toggle="modal" data-target="#update-attachment-modal"
+                                            wire:click="edit({{ $attachment->id }})" class="btn btn-primary">
                                             <i class="ti-pencil text-white"></i>
                                         </button>
                                     @endpermission
 
-                                    @permission('delete-task')
+                                    @permission('delete-attachment')
                                         <button class="btn btn-danger" type="button" data-toggle="modal"
-                                            data-target="#delete-task-{{ $task->id }}">
+                                            data-target="#delete-attachment-{{ $attachment->id }}">
                                             <i class="ti-trash text-white"></i>
                                         </button>
 
-                                        <div id="delete-task-{{ $task->id }}" class="modal fade" tabindex="-1"
-                                            role="dialog" aria-labelledby="delete-task-{{ $task->id }}-title"
+                                        <div id="delete-attachment-{{ $attachment->id }}" class="modal fade" tabindex="-1"
+                                            role="dialog" aria-labelledby="delete-attachment-{{ $attachment->id }}-title"
                                             aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="delete-task-{{ $task->id }}-title">
-                                                            {{ $task->crud_name() }}
+                                                        <h5 class="modal-title"
+                                                            id="delete-attachment-{{ $attachment->id }}-title">
+                                                            {{ $attachment->crud_name() }}
                                                         </h5>
                                                         <button class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -193,8 +188,8 @@
                                                             {{ __('global.close') }}
                                                         </button>
 
-                                                        <button wire:click="delete({{ $task->id }})" class="btn btn-danger"
-                                                            data-dismiss="modal">
+                                                        <button wire:click="delete({{ $attachment->id }})"
+                                                            class="btn btn-danger" data-dismiss="modal">
                                                             {{ __('global.delete') }}
                                                         </button>
                                                     </div>
@@ -205,20 +200,21 @@
                                 @endif
 
                                 @if ($admin_view_status == 'deleted')
-                                    @permission('restore-task')
+                                    @permission('restore-attachment')
                                         <button class="btn btn-danger" type="button" data-toggle="modal"
-                                            data-target="#restore-task-{{ $task->id }}">
+                                            data-target="#restore-attachment-{{ $attachment->id }}">
                                             <i class="ti-reload text-white"></i>
                                         </button>
 
-                                        <div wire:ignore.self id="restore-task-{{ $task->id }}"
-                                            aria-labelledby="restore-task-{{ $task->id }}-title" class="modal fade"
+                                        <div wire:ignore.self id="restore-attachment-{{ $attachment->id }}"
+                                            aria-labelledby="restore-attachment-{{ $attachment->id }}-title" class="modal fade"
                                             tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="restore-task-{{ $task->id }}-title">
-                                                            {{ $task->crud_name() }}
+                                                        <h5 class="modal-title"
+                                                            id="restore-attachment-{{ $attachment->id }}-title">
+                                                            {{ $attachment->crud_name() }}
                                                         </h5>
                                                         <button class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -234,7 +230,7 @@
                                                             {{ __('global.close') }}
                                                         </button>
 
-                                                        <button wire:click="restore({{ $task->id }})"
+                                                        <button wire:click="restore({{ $attachment->id }})"
                                                             class="btn btn-danger" data-dismiss="modal">
                                                             {{ __('global.restore') }}
                                                         </button>
@@ -254,5 +250,5 @@
         </table>
     </div>
 
-    {{ $tasks->links() }}
+    {{ $attachments->links() }}
 </div>
