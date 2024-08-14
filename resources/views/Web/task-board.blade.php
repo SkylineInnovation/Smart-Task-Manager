@@ -95,8 +95,6 @@
             });
 
             window.livewire.on('close-leave-request-model', id => {
-                console.log('LLLLL -> ' + id);
-
                 $('#request-leave-modal-' + id).modal('hide');
             })
         });
