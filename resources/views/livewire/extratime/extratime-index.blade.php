@@ -151,7 +151,7 @@
                         @endif
 
                         @if ($showColumn['request_time'])
-                            <td> {{ $extratime->format_date($extratime->request_time) }} </td>
+                            <td> {{ $extratime->request_time }} </td>
                         @endif
 
                         @if ($showColumn['from_time'])

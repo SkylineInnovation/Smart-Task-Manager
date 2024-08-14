@@ -312,7 +312,7 @@ class WebGetTaskByStatus extends Component
 
             // 'accepted_by_user_id' => $this->accepted_by_user_id,
 
-            'request_time' => date('Y-m-d H:i:s A'),
+            'request_time' => date('Y-m-d H:i A'),
 
             // 'response_time' => $this->response_time,
             'duration' => $dur->format("%d day %h:%i%s"),
