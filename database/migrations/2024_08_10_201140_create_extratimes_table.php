@@ -33,11 +33,14 @@ class CreateExtraTimesTable extends Migration
 
             $table->string('request_time')->nullable()->default(date('Y-m-d H:i A'));
 
+            $table->string('from_time')->nullable();
+            $table->string('to_time')->nullable();
+
             $table->string('response_time')->nullable();
 
             $table->string('status')->nullable()->default('pending');
 
-            $table->integer('duration')->nullable();
+            $table->string('duration')->nullable();
 
 
             $table->boolean('show')->default(true);

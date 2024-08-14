@@ -57,6 +57,14 @@
                         <td>{{ __('extratime.request_time') }}</td>
                     @endif
 
+                    @if ($showColumn['from_time'])
+                        <td>{{ __('extratime.from_time') }}</td>
+                    @endif
+
+                    @if ($showColumn['to_time'])
+                        <td>{{ __('extratime.to_time') }}</td>
+                    @endif
+
                     @if ($showColumn['response_time'])
                         <td>{{ __('extratime.response_time') }}</td>
                     @endif
@@ -144,6 +152,13 @@
 
                         @if ($showColumn['request_time'])
                             <td> {{ $extratime->format_date($extratime->request_time) }} </td>
+                        @endif
+
+                        @if ($showColumn['from_time'])
+                            <td> {{ $extratime->format_date($extratime->from_time) }} </td>
+                        @endif
+                        @if ($showColumn['to_time'])
+                            <td> {{ $extratime->format_date($extratime->to_time) }} </td>
                         @endif
 
                         @if ($showColumn['response_time'])

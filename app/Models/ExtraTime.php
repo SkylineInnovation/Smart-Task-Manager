@@ -61,7 +61,11 @@ class ExtraTime extends Model
         'accepted_by_user_id',
         'reason',
         'result',
+        'from_time',
+        'to_time',
         'request_time',
+        'from_time',
+        'to_time',
         'response_time',
         'status',
         'duration',
@@ -147,6 +151,8 @@ class ExtraTime extends Model
             $q->orWhereSearch('reason', $search);
             $q->orWhereSearch('result', $search);
             $q->orWhereSearch('request_time', $search);
+            $q->orWhereSearch('from_time', $search);
+            $q->orWhereSearch('to_time', $search);
             $q->orWhereSearch('response_time', $search);
             $q->orWhereSearch('status', $search);
             $q->orWhereSearch('duration', $search);

@@ -15,6 +15,9 @@
 
             <td>request_time</td>
 
+            <td>from_time</td>
+            <td>to_time</td>
+
             <td>response_time</td>
 
             <td>status</td>
@@ -48,6 +51,9 @@
                 <td>{{ $extratime->result }}</td>
 
                 <td>{{ $extratime->request_time }}</td>
+
+                <td>{{ $extratime->from_time }}</td>
+                <td>{{ $extratime->to_time }}</td>
 
                 <td>{{ $extratime->response_time }}</td>
 

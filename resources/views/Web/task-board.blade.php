@@ -97,6 +97,10 @@
             window.livewire.on('close-leave-request-model', id => {
                 $('#request-leave-modal-' + id).modal('hide');
             })
+
+            window.livewire.on('close-extra-time-model', id => {
+                $('#extra-time-modal-' + id).modal('hide');
+            })
         });
     </script>
 @endsection

@@ -26,6 +26,9 @@ class FullExtraTimesImport implements ToCollection, WithHeadingRow
 
             $request_time = trim($row['request_time']);
 
+            $from_time = trim($row['from_time']);
+            $to_time = trim($row['to_time']);
+
             $response_time = trim($row['response_time']);
 
             $status = trim($row['status']);
@@ -44,6 +47,8 @@ class FullExtraTimesImport implements ToCollection, WithHeadingRow
                     'reason' => $reason,
                     'result' => $result,
                     'request_time' => $request_time,
+                    'from_time' => $from_time,
+                    'to_time' => $to_time,
                     'response_time' => $response_time,
                     'status' => $status,
                     'duration' => $duration,
@@ -56,6 +61,8 @@ class FullExtraTimesImport implements ToCollection, WithHeadingRow
                     'reason' => $reason,
                     'result' => $result,
                     'request_time' => $request_time,
+                    'from_time' => $from_time,
+                    'to_time' => $to_time,
                     'response_time' => $response_time,
                     'status' => $status,
                     'duration' => $duration,

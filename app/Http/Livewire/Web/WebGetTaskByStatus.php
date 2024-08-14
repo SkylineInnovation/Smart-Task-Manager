@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Mail\Task\SendNewTaskToEmployee;
 use App\Models\Attachment;
 use App\Models\Comment;
+use App\Models\ExtraTime;
 use App\Models\Leave;
 use App\Models\Task;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Carbon;
 
 class WebGetTaskByStatus extends Component
 {
@@ -35,6 +37,9 @@ class WebGetTaskByStatus extends Component
 
         $this->leave_time_out = date('Y-m-d\TH:i');
         $this->leave_time_in = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+
+        $this->extratime_from_time = date('Y-m-d\TH:i');
+        $this->extratime_to_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
     }
 
     public $task;
@@ -55,6 +60,9 @@ class WebGetTaskByStatus extends Component
 
         $this->leave_time_out = date('Y-m-d\TH:i');
         $this->leave_time_in = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+
+        $this->extratime_from_time = date('Y-m-d\TH:i');
+        $this->extratime_to_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
     }
 
     public function rules()
@@ -281,8 +289,43 @@ class WebGetTaskByStatus extends Component
         ]);
 
         $this->emit('close-leave-request-model', $this->task_id); // Close model to using to jquery
+    }
+
+    public $extratime_from_time, $extratime_to_time, $extratime_reason;
+    public function addExtraTime()
+    {
+
+        $from_date = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->extratime_from_time)));
+        $to_date = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->extratime_to_time)));
+
+        $dur = $from_date->diff($to_date);
+
+        ExtraTime::create([
+            'add_by' => $this->by->id,
+
+            'task_id' => $this->task_id,
+            'user_id' => $this->by->id,
+            'from_time' => $this->extratime_from_time,
+            'to_time' => $this->extratime_to_time,
+            'reason' => $this->extratime_reason,
+            'status' => 'pending',
+
+            // 'accepted_by_user_id' => $this->accepted_by_user_id,
+
+            'request_time' => date('Y-m-d H:i:s A'),
+
+            // 'response_time' => $this->response_time,
+            'duration' => $dur->format("%d day %h:%i%s"),
+        ]);
+
+        $this->extratime_from_time = '';
+        $this->extratime_to_time = '';
+        $this->extratime_reason = '';
+
+        $this->emit('close-extra-time-model', $this->task_id); // Close model to using to jquery
 
     }
+
 
     public function render()
     {

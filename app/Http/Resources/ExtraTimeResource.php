@@ -26,6 +26,8 @@ class ExtraTimeResource extends JsonResource
             'reason' => $this->reason,
             'result' => $this->result,
             'request_time' => $this->request_time,
+            'from_time' => $this->from_time,
+            'to_time' => $this->to_time,
             'response_time' => $this->response_time,
             'status' => $this->status,
             'duration' => $this->duration,

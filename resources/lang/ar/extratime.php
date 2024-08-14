@@ -21,6 +21,9 @@ return [
 
     'request_time' => 'request time',
 
+    'from_time' => 'from time',
+    'to_time' => 'to time',
+
     'response_time' => 'response time',
 
     'status' => 'status',

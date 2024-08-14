@@ -63,7 +63,9 @@ class ExtratimeIndex extends Component
         $this->toDate = date('Y-m-d');
 
         $this->request_time = date('Y-m-d\TH:i');
-        $this->response_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        $this->from_time = date('Y-m-d\TH:i');
+        $this->to_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        // $this->response_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
 
         $this->tasks = \App\Models\Task::whereNullOrEmptyOrZero('main_task_id')->where('show', 1)->orderBy('sort')->get();
 
@@ -83,9 +85,11 @@ class ExtratimeIndex extends Component
             'reason' => true,
             'result' => false,
             'request_time' => false,
+            'from_time' => false,
+            'to_time' => false,
             'response_time' => false,
             'status' => false,
-            'duration' => false,
+            'duration' => true,
 
             // 'status' => false,
             'date' => false,
@@ -94,7 +98,7 @@ class ExtratimeIndex extends Component
     }
 
     public $slug;
-    public $extratime_id, $task_id, $user_id, $accepted_by_user_id, $reason, $result, $request_time, $response_time, $status = 'pending', $duration;
+    public $extratime_id, $task_id, $user_id, $accepted_by_user_id, $reason, $result, $request_time, $from_time, $to_time, $response_time, $status = 'pending', $duration;
     public $updateMode = false;
 
     private function resetInputFields()
@@ -107,7 +111,9 @@ class ExtratimeIndex extends Component
         $this->reason = '';
         $this->result = '';
         $this->request_time = date('Y-m-d\TH:i');
-        $this->response_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        $this->from_time = date('Y-m-d\TH:i');
+        $this->to_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        $this->response_time = null;
         $this->status = 'pending';
         $this->duration = '';
     }
@@ -126,6 +132,8 @@ class ExtratimeIndex extends Component
             // 'reason' => 'required',
             // 'result' => 'required',
             // 'request_time' => 'required',
+            // 'from_time' => 'required',
+            // 'to_time' => 'required',
             // 'response_time' => 'required',
             // 'status' => 'required',
             'duration' => 'required',
@@ -151,6 +159,8 @@ class ExtratimeIndex extends Component
             'reason' => $this->reason,
             'result' => $this->result,
             'request_time' => $this->request_time,
+            'from_time' => $this->from_time,
+            'to_time' => $this->to_time,
             'response_time' => $this->response_time,
             'status' => $this->status,
             'duration' => $this->duration,
@@ -178,6 +188,8 @@ class ExtratimeIndex extends Component
         $this->reason = $extratime->reason;
         $this->result = $extratime->result;
         $this->request_time = $extratime->request_time;
+        $this->from_time = $extratime->from_time;
+        $this->to_time = $extratime->to_time;
         $this->response_time = $extratime->response_time;
         $this->status = $extratime->status;
         $this->duration = $extratime->duration;
@@ -203,6 +215,8 @@ class ExtratimeIndex extends Component
                 'reason' => $this->reason,
                 'result' => $this->result,
                 'request_time' => $this->request_time,
+                'from_time' => $this->from_time,
+                'to_time' => $this->to_time,
                 'response_time' => $this->response_time,
                 'status' => $this->status,
                 'duration' => $this->duration,

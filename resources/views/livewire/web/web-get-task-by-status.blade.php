@@ -26,21 +26,24 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    @if ($task->status == 'pending')
-                                        <a class="dropdown-item" href="javascript:;"
-                                            wire:click="startWithTask({{ $task->id }})">
-                                            <i class="fa fa-hourglass-end text-info" aria-hidden="true"></i>
-                                            &nbsp; Start
-                                        </a>
-                                    @endif
+                                    @role('employee')
+                                        @if ($task->status == 'pending')
+                                            <a class="dropdown-item" href="javascript:;"
+                                                wire:click="startWithTask({{ $task->id }})">
+                                                <i class="fa fa-hourglass-end text-info" aria-hidden="true"></i>
+                                                &nbsp; Start
+                                            </a>
+                                        @endif
 
-                                    @if ($task->status == 'active')
-                                        <a class="dropdown-item" href="javascript:;"
-                                            wire:click="finishWithTask({{ $task->id }})">
-                                            <i class="fa fa-check-square text-success" aria-hidden="true"></i>
-                                            &nbsp; Finsh
-                                        </a>
-                                    @endif
+                                        @if ($task->status == 'active')
+                                            <a class="dropdown-item" href="javascript:;"
+                                                wire:click="finishWithTask({{ $task->id }})">
+                                                <i class="fa fa-check-square text-success" aria-hidden="true"></i>
+                                                &nbsp; Finsh
+                                            </a>
+                                        @endif
+                                    @endrole
+
 
                                     @role('owner|manager')
                                         @if (in_array($task->status, ['auto-finished', 'manual-finished']))
@@ -72,8 +75,9 @@
                                             &nbsp; Request Leave
                                         </a>
 
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#extra-time-modal"
-                                            href=javascript:; wire:click="setTask({{ $task->id }})">
+                                        <a class="dropdown-item" data-toggle="modal"
+                                            data-target="#extra-time-modal-{{ $task->id }}" href=javascript:;
+                                            wire:click="setTask({{ $task->id }})">
                                             <i class="fa fa-clock-o text-warning" aria-hidden="true"></i>
                                             &nbsp; Extra Time
                                         </a>
@@ -552,24 +556,6 @@
                     <div class="modal-body">
                         {{--  --}}
                         <div class="row">
-                            {{-- @include('inputs.create.select', [
-                                'label' => 'leave.task',
-                                'name' => 'leave.task_id',
-                                'arr' => $tasks,
-                                'livewire' => 'task_id',
-                                // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
-                                // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                            ]) --}}
-
-                            {{-- @include('inputs.create.select', [
-                                'label' => 'leave.user',
-                                'name' => 'leave.user_id',
-                                'arr' => $users,
-                                'livewire' => 'user_id',
-                                // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
-                                // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                            ]) --}}
-
                             <div class="col-lg-4 col-md-4 col-sm-12">
                                 <div class="form-group">
                                     <label for="type">{{ __('leave.type') }}</label>
@@ -603,31 +589,11 @@
                                 'sm' => 6,
                             ])
 
-                            {{-- @include('inputs.create.input', [
-                                'label' => 'leave.reason',
-                                'name' => 'leave.reason',
-                                'livewire' => 'reason',
-                                'type' => 'text', // 'step' => 1,
-                                // 'required' => 'required',
-                                'lg' => 12,
-                                'md' => 12,
-                                'sm' => 12,
-                            ]) --}}
-
                             <div class="col-12">
                                 <textarea name='reason' id='reason' rows="3" class='form-control'
                                     placeholder='{{ __('global.enter') }} {{ __('leave.reason') }}' {{--  --}}
                                     wire:model.defer="leave_reason"></textarea>
                             </div>
-
-                            {{-- @include('inputs.create.input', [
-                                'label' => 'leave.result',
-                                'name' => 'leave.result',
-                                'livewire' => 'result',
-                                'type' => 'text', // 'step' => 1,
-                                // 'required' => 'required',
-                                // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                            ]) --}}
                         </div>
                         {{--  --}}
                     </div>
@@ -636,6 +602,62 @@
                             data-dismiss="modal">{{ __('global.close') }}</button>
                         <button type="button" wire:click.prevent="addLeaveRequest()" class="btn btn-success">
                             request
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div wire:ignore.self id="extra-time-modal-{{ $task->id }}" class="modal fade" tabindex="-1"
+            role="dialog" aria-labelledby="extra-time-modal-{{ $task->id }}-title" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="extra-time-modal-{{ $task->id }}-title">Request Leave</h5>
+                        <button class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{--  --}}
+                        {{--  --}}{{--  --}}{{--  --}}
+
+
+                        <div class="row">
+                            @include('inputs.create.input', [
+                                'label' => 'extratime.from_time',
+                                'name' => 'extratime.from_time',
+                                'livewire' => 'extratime_from_time',
+                                'type' => 'datetime-local', // 'step' => 1,
+                                // 'required' => 'required',
+                                // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                            ])
+
+                            @include('inputs.create.input', [
+                                'label' => 'extratime.to_time',
+                                'name' => 'extratime.to_time',
+                                'livewire' => 'extratime_to_time',
+                                'type' => 'datetime-local', // 'step' => 1,
+                                // 'required' => 'required',
+                                // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                            ])
+
+                            <div class="col-12">
+                                <textarea name='reason' id='reason' rows="3" class='form-control'
+                                    placeholder='{{ __('global.enter') }} {{ __('extratime.reason') }}' {{--  --}}
+                                    wire:model.defer="extratime_reason"></textarea>
+                            </div>
+
+                        </div>
+                        {{--  --}}{{--  --}}{{--  --}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary close-btn"
+                            data-dismiss="modal">{{ __('global.close') }}</button>
+                        <button type="button" wire:click.prevent="addExtraTime()" class="btn btn-success">
+                            Request
                         </button>
                     </div>
                 </div>

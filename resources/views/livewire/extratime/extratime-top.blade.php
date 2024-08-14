@@ -22,6 +22,9 @@
 
                 <option value='request_time'>{{ __('extratime.request_time') }}</option>
 
+                <option value='from_time'>{{ __('extratime.from_time') }}</option>
+                <option value='to_time'>{{ __('extratime.to_time') }}</option>
+
                 <option value='response_time'>{{ __('extratime.response_time') }}</option>
 
                 <option value='status'>{{ __('extratime.status') }}</option>
