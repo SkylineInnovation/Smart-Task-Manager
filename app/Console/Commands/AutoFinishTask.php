@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Discount;
 use App\Models\Task;
 use Illuminate\Console\Command;
 
@@ -37,6 +38,15 @@ class AutoFinishTask extends Command
             $task->update([
                 'status' => 'auto-finished',
             ]);
+
+            foreach ($task->employees as $employee) {
+                Discount::create([
+                    'task_id' => $task->id,
+                    'user_id' => $employee->id,
+                    'amount' => $task->discount(),
+                    'reason' => 'auto-finish-task',
+                ]);
+            }
         }
 
         return Command::SUCCESS;

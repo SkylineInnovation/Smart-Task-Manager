@@ -66,13 +66,14 @@
 
 
                                     <a class="dropdown-item" href="javascript:;" data-toggle="modal"
-                                        data-target="#leave">
+                                        data-target="#request-leave-modal-{{ $task->id }}"
+                                        wire:click="setTask({{ $task->id }})">
                                         <i class="fa fa-sign-out text-info" aria-hidden="true"></i>
                                         &nbsp; Request Leave
                                     </a>
 
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#extraTime"
-                                        href=javascript:;>
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#extra-time-modal"
+                                        href=javascript:; wire:click="setTask({{ $task->id }})">
                                         <i class="fa fa-clock-o text-warning" aria-hidden="true"></i>
                                         &nbsp; Extra Time
                                     </a>
@@ -260,6 +261,9 @@
                                                 <input wire:model.defer="attatchment_file" type="file"
                                                     class="form-control" aria-label="Default"
                                                     aria-describedby="inputGroup-sizing-default">
+
+                                                <div wire:loading wire:target="file">Uploading...</div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -273,7 +277,8 @@
 
 
 
-                                    <button wire:click="addAttatchment()" type="button" class="btn btn-success">
+                                    <button wire:click="addAttatchment()" type="button"
+                                        class="w-100 btn btn-success">
                                         Upload
                                     </button>
 
@@ -340,7 +345,7 @@
                                             placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="comment_desc"></textarea>
                                     </div>
 
-                                    <button wire:click="addComment()" type="button" class="btn btn-success">
+                                    <button wire:click="addComment()" type="button" class="w-100 btn btn-success">
                                         Commet
                                     </button>
 
@@ -422,7 +427,7 @@
                                                             </div>
 
                                                             <button wire:click="replayComment()" type="button"
-                                                                class="btn btn-success">
+                                                                class="w-100 btn btn-success">
                                                                 Commet
                                                             </button>
                                                         </div>
@@ -517,7 +522,7 @@
                                         @endforeach
                                     </div>
 
-                                    <button wire:click="addSubTask()" type="button" class="btn btn-success">
+                                    <button wire:click="addSubTask()" type="button" class="w-100 btn btn-success">
                                         Add Sub Task
                                     </button>
                                     {{--  --}}{{--  --}}{{--  --}}{{--  --}}
@@ -528,14 +533,114 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        {{-- <button type="button" class="btn btn-primary">
-                            Save Changes
-                        </button> --}}
                     </div>
                 </div>
             </div>
         </div>
         {{--  --}}{{--  --}}{{--  --}}{{--  --}}
+
+        <div wire:ignore.self id="request-leave-modal-{{ $task->id }}" class="modal fade" tabindex="-1"
+            role="dialog" aria-labelledby="request-leave-modal-{{ $task->id }}-title" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="request-leave-modal-{{ $task->id }}-title">Request Leave</h5>
+                        <button class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{--  --}}
+                        <div class="row">
+                            {{-- @include('inputs.create.select', [
+                                'label' => 'leave.task',
+                                'name' => 'leave.task_id',
+                                'arr' => $tasks,
+                                'livewire' => 'task_id',
+                                // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                            ]) --}}
+
+                            {{-- @include('inputs.create.select', [
+                                'label' => 'leave.user',
+                                'name' => 'leave.user_id',
+                                'arr' => $users,
+                                'livewire' => 'user_id',
+                                // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                            ]) --}}
+
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <div class="form-group">
+                                    <label for="type">{{ __('leave.type') }}</label>
+                                    <select wire:model="leave_type" name="type" id="type"
+                                        class="form-control">
+                                        <option value="leave">{{ __('leave.leave') }}</option>
+                                        <option value="part_of_task">{{ __('leave.part_of_task') }}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            @include('inputs.create.input', [
+                                'label' => 'leave.time_out',
+                                'name' => 'leave.time_out',
+                                'livewire' => 'leave_time_out',
+                                'type' => 'time', // 'step' => 1,
+                                // 'required' => 'required',
+                                'lg' => 4,
+                                'md' => 4,
+                                'sm' => 6,
+                            ])
+
+                            @include('inputs.create.input', [
+                                'label' => 'leave.time_in',
+                                'name' => 'leave.time_in',
+                                'livewire' => 'leave_time_in',
+                                'type' => 'time', // 'step' => 1,
+                                // 'required' => 'required',
+                                'lg' => 4,
+                                'md' => 4,
+                                'sm' => 6,
+                            ])
+
+                            {{-- @include('inputs.create.input', [
+                                'label' => 'leave.reason',
+                                'name' => 'leave.reason',
+                                'livewire' => 'reason',
+                                'type' => 'text', // 'step' => 1,
+                                // 'required' => 'required',
+                                'lg' => 12,
+                                'md' => 12,
+                                'sm' => 12,
+                            ]) --}}
+
+                            <div class="col-12">
+                                <textarea name='reason' id='reason' rows="3" class='form-control'
+                                    placeholder='{{ __('global.enter') }} {{ __('leave.reason') }}' {{--  --}}
+                                    wire:model.defer="leave_reason"></textarea>
+                            </div>
+
+                            {{-- @include('inputs.create.input', [
+                                'label' => 'leave.result',
+                                'name' => 'leave.result',
+                                'livewire' => 'result',
+                                'type' => 'text', // 'step' => 1,
+                                // 'required' => 'required',
+                                // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                            ]) --}}
+                        </div>
+                        {{--  --}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary close-btn"
+                            data-dismiss="modal">{{ __('global.close') }}</button>
+                        <button type="button" wire:click.prevent="addLeaveRequest()" class="btn btn-success">
+                            request
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         {{-- <script>
             $(function() {

@@ -93,6 +93,12 @@
             window.livewire.on('render-manual-finished', () => {
                 window.livewire.emit('refreshRender');
             });
+
+            window.livewire.on('close-leave-request-model', id => {
+                console.log('LLLLL -> ' + id);
+
+                $('#request-leave-modal-' + id).modal('hide');
+            })
         });
     </script>
 @endsection

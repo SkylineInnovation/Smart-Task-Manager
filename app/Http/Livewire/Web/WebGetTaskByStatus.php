@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Mail\Task\SendNewTaskToEmployee;
 use App\Models\Attachment;
 use App\Models\Comment;
+use App\Models\Leave;
 use App\Models\Task;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,9 @@ class WebGetTaskByStatus extends Component
         $this->by = session()->get('admin_user', $this->user);
 
         $this->status = $status;
+
+        $this->leave_time_out = date('H:i');
+        $this->leave_time_in = date('H:i', strtotime('+1 Hours'));
     }
 
     public $task;
@@ -45,6 +49,9 @@ class WebGetTaskByStatus extends Component
 
         $this->sub_task_start_time  = null;
         $this->sub_task_end_time  = null;
+
+        $this->leave_time_out = date('H:i');
+        $this->leave_time_in = date('H:i', strtotime('+1 Hours'));
     }
 
     public function rules()
@@ -250,6 +257,29 @@ class WebGetTaskByStatus extends Component
         'refreshRender' => 'render'
     ];
 
+    // 
+    public $leave_type = 'leave', $leave_time_out, $leave_time_in, $leave_reason, $leave_result;
+    public function addLeaveRequest()
+    {
+        Leave::create([
+            'add_by' => $this->by->id,
+
+            'task_id' => $this->task_id,
+            'user_id' => $this->by->id,
+            'type' => $this->leave_type,
+            'time_out' => $this->leave_time_out,
+            'time_in' => $this->leave_time_in,
+            'reason' => $this->leave_reason,
+            'result' => $this->leave_result,
+            'status' => 'pending',
+            // 'accepted_by_user_id' => $this->accepted_by_user_id,
+            // 'accepted_time' => $this->accepted_time,
+        ]);
+
+        $this->emit('close-leave-request-model', $this->task_id); // Close model to using to jquery
+
+    }
+
     public function render()
     {
         $tasks = Task::whereNullOrEmptyOrZero('main_task_id')
@@ -261,8 +291,7 @@ class WebGetTaskByStatus extends Component
             });
         }
 
-        $tasks = $tasks->orderBy('id', 'desc')
-            ->get();
+        $tasks = $tasks->orderBy('id', 'desc')->get();
 
         return view('livewire.web.web-get-task-by-status', compact('tasks'));
     }

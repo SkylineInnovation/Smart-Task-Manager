@@ -50,6 +50,7 @@
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
+
                                 {{-- @include('inputs.create.input', [
                                     'label' => 'leave.type',
                                     'name' => 'leave.type',
@@ -97,6 +98,7 @@
                                     // 'required' => 'required',
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
+
                                 @include('inputs.create.input', [
                                     'label' => 'leave.reason',
                                     'name' => 'leave.reason',
@@ -105,6 +107,7 @@
                                     // 'required' => 'required',
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
+
                                 @include('inputs.create.input', [
                                     'label' => 'leave.result',
                                     'name' => 'leave.result',
