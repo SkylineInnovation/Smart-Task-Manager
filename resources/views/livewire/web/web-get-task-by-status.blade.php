@@ -261,10 +261,8 @@
                                                 <input wire:model.defer="attatchment_file" type="file"
                                                     class="form-control" aria-label="Default"
                                                     aria-describedby="inputGroup-sizing-default">
-
-                                                <div wire:loading wire:target="file">Uploading...</div>
-
                                             </div>
+                                            <div wire:loading wire:target="attatchment_file">Uploading...</div>
                                         </div>
                                     </div>
 
