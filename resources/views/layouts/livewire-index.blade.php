@@ -7,7 +7,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="My-Dashbord">
-    <meta name="author" content="Mhamad Awwad">
+    <meta name="author" content="Codexal">
     <meta name="keywords" content="Admin, Web">
 
     @include('layouts.Components.head')
