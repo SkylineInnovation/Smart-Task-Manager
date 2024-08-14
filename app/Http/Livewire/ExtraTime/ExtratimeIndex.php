@@ -338,7 +338,7 @@ class ExtratimeIndex extends Component
             'from_time' => $this->from_time,
             'to_time' => $this->to_time,
             'response_time' => date('Y-m-d H:i A'),
-            'duration' => $dur->format("%d day %h:%i%s"),
+            'duration' => $dur->format("%d day %h:%i:%s"),
             'status' => 'accepted',
         ]);
 

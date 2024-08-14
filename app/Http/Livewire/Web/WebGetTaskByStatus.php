@@ -317,7 +317,7 @@ class WebGetTaskByStatus extends Component
             'request_time' => date('Y-m-d H:i A'),
 
             // 'response_time' => $this->response_time,
-            'duration' => $dur->format("%d day %h:%i%s"),
+            'duration' => $dur->format("%d day %h:%i:%s"),
         ]);
 
         $this->extratime_from_time = '';
