@@ -134,11 +134,9 @@
                         </div>
 
                         <div class="form-group">
-
                             @foreach ($errors->all() as $error)
                                 <span class='alert alert-danger btn'>{{ $error }}</span>
                             @endforeach
-
                         </div>
 
                         <div class="modal-footer">
@@ -315,3 +313,115 @@
         </div>
     </div>
 @endpermission
+
+
+{{-- reject-extratime-modal --}}
+
+
+<div wire:ignore.self class="modal fade" id="accept-extratime-modal" data-backdrop="static" data-keyboard="false"
+    tabindex="-1" role="dialog" aria-labelledby="accept-extratime-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="accept-extratime-modal-label">
+                    {{ __('global.accept-extratime') }}
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            @if ($show)
+                <form enctype="multipart/form-data" method="post" accept-charset="utf-8" class="form-horizontal">
+                    <div class="modal-body">
+                        @csrf
+
+                        <div class="row">
+
+                            @include('inputs.show.input', [
+                                'label' => 'extratime.task',
+                                'val' => $extratime->task->crud_name(),
+                            ])
+
+                            @include('inputs.show.input', [
+                                'label' => 'extratime.user',
+                                'val' => $extratime->user->name(),
+                            ])
+
+                            @include('inputs.show.input', [
+                                'label' => 'extratime.reason',
+                                'val' => $reason,
+                                'lg' => 8,
+                                'md' => 8,
+                                'sm' => 8,
+                            ])
+
+                            {{-- @include('inputs.create.input', [
+                                'label' => 'extratime.result',
+                                'name' => 'extratime.result',
+                                'livewire' => 'result',
+                                'type' => 'text', // 'step' => 1,
+                                // 'required' => 'required',
+                                // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                            ]) --}}
+
+                            @include('inputs.show.input', [
+                                'label' => 'extratime.request_time',
+                                'val' => $request_time,
+                                // 'type' => 'datetime-local', // 'step' => 1,
+                                // 'required' => 'required',
+                                'lg' => 4,
+                                'md' => 4,
+                                'sm' => 4,
+                            ])
+
+                            @include('inputs.create.input', [
+                                'label' => 'extratime.from_time',
+                                'name' => 'extratime.from_time',
+                                'livewire' => 'from_time',
+                                'type' => 'datetime-local', // 'step' => 1,
+                                // 'required' => 'required',
+                                // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                            ])
+
+                            @include('inputs.create.input', [
+                                'label' => 'extratime.to_time',
+                                'name' => 'extratime.to_time',
+                                'livewire' => 'to_time',
+                                'type' => 'datetime-local', // 'step' => 1,
+                                // 'required' => 'required',
+                                // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                            ])
+
+                            @include('inputs.show.input', [
+                                'label' => 'extratime.duration',
+                                'val' => $duration,
+                                'lg' => 12,
+                                'md' => 12,
+                                'sm' => 12,
+                            ])
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        @foreach ($errors->all() as $error)
+                            <span class='alert alert-danger btn'>{{ $error }}</span>
+                        @endforeach
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">
+                            {{ __('global.close') }}
+                        </button>
+                        <button type="submit" wire:click.prevent="acceptExtraTime()" class="btn btn-success">
+                            {{ __('global.save-changes') }}
+                        </button>
+                    </div>
+                </form>
+            @endif
+
+        </div>
+    </div>
+</div>

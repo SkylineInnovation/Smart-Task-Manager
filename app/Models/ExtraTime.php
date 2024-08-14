@@ -198,11 +198,11 @@ class ExtraTime extends Model
     public function the_status()
     {
         if ($this->status == 'pending')
-            return __('task.pending');
+            return __('extratime.pending');
         elseif ($this->status == 'accepted')
-            return __('task.accepted');
+            return __('extratime.accepted');
         elseif ($this->status == 'rejected')
-            return __('task.rejected');
+            return __('extratime.rejected');
 
         return '';
     }

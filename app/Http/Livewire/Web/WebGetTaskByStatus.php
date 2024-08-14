@@ -47,8 +47,10 @@ class WebGetTaskByStatus extends Component
     public function setTask($id)
     {
         $this->tab = 1;
+        $task = Task::find($id);
+
         $this->task_id = $id;
-        $this->task = Task::find($id);
+        $this->task = $task;
 
         $this->employees = $this->task->employees;
         $this->selectedEmployees = $this->employees->pluck('id')->toArray();
@@ -61,8 +63,8 @@ class WebGetTaskByStatus extends Component
         $this->leave_time_out = date('Y-m-d\TH:i');
         $this->leave_time_in = date('Y-m-d\TH:i', strtotime('+1 Hours'));
 
-        $this->extratime_from_time = date('Y-m-d\TH:i');
-        $this->extratime_to_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        $this->extratime_from_time = date('Y-m-d\TH:i', strtotime($task->end_time));
+        $this->extratime_to_time = date('Y-m-d\TH:i', strtotime($task->end_time . ' +1 Hours'));
     }
 
     public function rules()

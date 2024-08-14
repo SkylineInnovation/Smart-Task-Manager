@@ -30,5 +30,8 @@ return [
 
     'duration' => 'duration',
 
+    'pending' => 'pending',
+    'accepted' => 'accepted',
+    'rejected' => 'rejected',
 
 ];

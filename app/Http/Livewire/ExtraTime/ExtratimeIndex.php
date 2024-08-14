@@ -3,10 +3,12 @@
 namespace App\Http\Livewire\Extratime;
 
 use App\Models\ExtraTime;
+use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Carbon;
 
 class ExtratimeIndex extends Component
 {
@@ -175,6 +177,7 @@ class ExtratimeIndex extends Component
 
     public function edit($id)
     {
+        $this->show = true;
         $this->updateMode = true;
         $extratime = ExtraTime::find($id);
         $this->extratime = $extratime;
@@ -318,6 +321,42 @@ class ExtratimeIndex extends Component
     {
         $this->setPage(max($this->page - 1, 1));
         $this->emit('gotoTop');
+    }
+
+    public $show = false;
+    public function acceptExtraTime()
+    {
+        $from_date = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->from_time)));
+        $to_date = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->to_time)));
+
+        $dur = $from_date->diff($to_date);
+
+        $extratime = ExtraTime::find($this->extratime_id);
+
+        $extratime->update([
+            'accepted_by_user_id' => auth()->user()->id,
+            'from_time' => $this->from_time,
+            'to_time' => $this->to_time,
+            'response_time' => date('Y-m-d H:i A'),
+            'duration' => $dur->format("%d day %h:%i%s"),
+            'status' => 'accepted',
+        ]);
+
+        $task = Task::find($extratime->task_id);
+
+        $task->update([
+            'end_time' => $this->to_time,
+        ]);
+    }
+
+    public function rejectExtraTime()
+    {
+        $extratime = ExtraTime::find($this->extratime_id);
+
+        $extratime->update([
+            'response_time' => date('Y-m-d H:i A'),
+            'status' => 'rejected',
+        ]);
     }
 
     public function render()

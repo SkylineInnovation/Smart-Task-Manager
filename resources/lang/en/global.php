@@ -155,4 +155,6 @@ return [
 
     'employees' => 'employees',
     'task-board' => 'task board',
+
+    'accept-extratime' => 'accept extratime',
 ];
