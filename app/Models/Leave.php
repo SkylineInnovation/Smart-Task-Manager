@@ -195,6 +195,20 @@ class Leave extends Model
         }
     }
 
+    public function the_extra_color()
+    {
+        if ($this->status == 'pending')
+            return 'bg-warning';
+        elseif ($this->status == 'accepted')
+            return 'bg-success';
+        elseif ($this->status == 'rejected')
+            return 'bg-danger';
+
+        return '';
+    }
+
+   
+
     public function the_status()
     {
         if ($this->status == 'pending') {

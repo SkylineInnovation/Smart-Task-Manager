@@ -29,7 +29,7 @@ return [
 
     'accepted_time' => 'accepted time',
 
-    'leave' => 'leave',
+    'leave' => 'مغادرة',
     'part_of_task' => 'part of task',
 
     'pending' => 'pending',

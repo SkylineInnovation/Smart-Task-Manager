@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Leave;
 
 use App\Models\Leave;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Livewire\Component;
@@ -169,6 +170,7 @@ class LeaveIndex extends Component
 
     public function edit($id)
     {
+        $this->show = true;
         $this->updateMode = true;
         $leave = Leave::find($id);
         $this->leave = $leave;
@@ -310,6 +312,36 @@ class LeaveIndex extends Component
     {
         $this->setPage(max($this->page - 1, 1));
         $this->emit('gotoTop');
+    }
+
+
+    public $show = false;
+    public function acceptLeave()
+    {
+        $leaveTime = Leave::find($this->leave_id);
+
+        $leaveTime->update([
+            'type' => $this->type,
+            'time_out' => $this->time_out,
+            'time_in' => $this->time_in,
+            'reason' => $this->reason,
+            'status' => 'accepted',
+            'accepted_by_user_id' => auth()->user()->id,
+            'accepted_time' => date('Y-m-d H:i A'),
+        ]);
+
+        $this->emit('close-model'); // Close model to using to jquery
+
+    }
+
+    public function rejectLeave($id)
+    {
+        $leaveTime = Leave::find($id);
+    
+        $leaveTime->update([
+            'response_time' => date('Y-m-d H:i A'),
+            'status' => 'rejected',
+        ]);
     }
 
     public function render()

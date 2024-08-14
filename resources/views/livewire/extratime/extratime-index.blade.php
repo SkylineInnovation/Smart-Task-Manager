@@ -193,7 +193,7 @@
                                 </button>
 
                                 <button data-toggle="modal" data-target="#reject-extratime-modal"
-                                    wire:click="edit({{ $extratime->id }})" class="btn btn-danger">
+                                    wire:click="rejectExtraTime({{ $extratime->id }})" class="btn btn-danger">
                                     <i class="ti-close text-white"></i>
                                 </button>
                             @endif

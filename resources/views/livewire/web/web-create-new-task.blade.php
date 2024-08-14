@@ -43,7 +43,7 @@
                             <label for="exampleFormControlSelect1">proearty</label>
                             <select wire:model.defer="priority_level" class="form-control">
                                 <option value="low">low</option>
-                                <option value="medum">medum</option>
+                                <option value="medium">medium</option>
                                 <option value="high">high</option>
                             </select>
                         </div>

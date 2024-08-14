@@ -141,7 +141,7 @@
             </div>
         </div>
 
-        {{--  --}}{{--  --}}{{--  --}}{{--  --}}
+        {{-- --}}{{-- --}}{{-- --}}{{-- --}}
         <div wire:ignore.self class="modal fade" id="show-task-modal-{{ $task->id }}" tabindex="-1" role="dialog"
             aria-labelledby="show-task-modal-{{ $task->id }}Label" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
@@ -171,30 +171,44 @@
 
                         <div class="col-md-12 pt-5">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item px-3 ">
+                                <li class="nav-item px-1 ">
                                     <a class="nav-link py-3 rounded-pill {{ $tab == 1 ? 'active' : '' }}"
                                         id="user-tab" data-toggle="tab" wire:click="changeTab(1)" href="#user"
                                         role="tab" aria-controls="user"
                                         aria-selected="{{ $tab == 1 }}">Users</a>
                                 </li>
-                                <li class="nav-item px-3 ">
+                                <li class="nav-item px-1 ">
                                     <a class="nav-link py-3 rounded-pill {{ $tab == 2 ? 'active' : '' }}"
                                         id="attatchment-tab" data-toggle="tab" wire:click="changeTab(2)"
                                         href="#attatchment" role="tab" aria-controls="attatchment"
                                         aria-selected="{{ $tab == 2 }}">Attatchments</a>
                                 </li>
-                                <li class="nav-item px-3 ">
+                                <li class="nav-item px-1 ">
                                     <a class="nav-link py-3 rounded-pill {{ $tab == 3 ? 'active' : '' }}"
                                         id="comment-tab" data-toggle="tab" wire:click="changeTab(3)" href="#comment"
                                         role="tab" aria-controls="comment"
                                         aria-selected="{{ $tab == 3 }}">Comments</a>
                                 </li>
 
-                                <li class="nav-item px-3 ">
+                                <li class="nav-item px-1 ">
                                     <a class="nav-link py-3 rounded-pill {{ $tab == 4 ? 'active' : '' }}"
                                         id="subTask-tab" data-toggle="tab" wire:click="changeTab(4)" href="#subTask"
                                         role="tab" aria-controls="subTask"
                                         aria-selected="{{ $tab == 4 }}">Sub Tasks</a>
+                                </li>
+
+                                <li class="nav-item px-1 ">
+                                    <a class="nav-link py-3 rounded-pill {{ $tab == 5 ? 'active' : '' }}"
+                                        id="extra-tab" data-toggle="tab" wire:click="changeTab(5)" href="#extra"
+                                        role="tab" aria-controls="extra"
+                                        aria-selected="{{ $tab == 5 }}">Extra Time</a>
+                                </li>
+
+                                <li class="nav-item px-1 ">
+                                    <a class="nav-link py-3 rounded-pill {{ $tab == 6 ? 'active' : '' }}"
+                                        id="leave-tab" data-toggle="tab" wire:click="changeTab(6)" href="#leave"
+                                        role="tab" aria-controls="leave"
+                                        aria-selected="{{ $tab == 6 }}">leave</a>
                                 </li>
                             </ul>
 
@@ -261,9 +275,9 @@
                                         <div class="col">
                                             <div class="input-group mb-1">
                                                 {{-- <div class="input-group-prepend">
-                                                        <span class="input-group-text btn-secondary text-white"
-                                                            id="inputGroup-sizing-default">{{ __('attachment.file') }}</span>
-                                                    </div> --}}
+                                                <span class="input-group-text btn-secondary text-white"
+                                                    id="inputGroup-sizing-default">{{ __('attachment.file') }}</span>
+                                            </div> --}}
                                                 <input wire:model.defer="attatchment_file" type="file"
                                                     class="form-control" aria-label="Default"
                                                     aria-describedby="inputGroup-sizing-default">
@@ -275,7 +289,7 @@
                                     <div wire:ignore.self class="mb-1">
                                         {{-- <div wire:ignore.self id="summer_desc"></div> --}}
                                         <textarea name='desc' id='desc' rows="3" class='form-control'
-                                            placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="attatchment_desc"></textarea>
+                                            placeholder='{{ __(' global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="attatchment_desc"></textarea>
                                     </div>
 
 
@@ -292,14 +306,14 @@
                                             <div class="row w-100 m-0 border">
                                                 <div class="col-md-3">
                                                     {{-- @if ($attatch->is_image())
-                                                        <img src="{{ asset($attatch->file) }}" alt=""
-                                                            style="width: 100px ; height: 100px;" srcset="">
-                                                    @else
-                                                        <a href="{{ asset($attatch->file) }}" download>
-                                                            {{ $attatch->file }}
-                                                            {{ $attatch->is_image() ? 'Y' : 'N' }}
-                                                        </a>
-                                                    @endif --}}
+                                            <img src="{{ asset($attatch->file) }}" alt=""
+                                                style="width: 100px ; height: 100px;" srcset="">
+                                            @else
+                                            <a href="{{ asset($attatch->file) }}" download>
+                                                {{ $attatch->file }}
+                                                {{ $attatch->is_image() ? 'Y' : 'N' }}
+                                            </a>
+                                            @endif --}}
 
                                                 </div>
                                                 <div class="col-md-6">
@@ -327,8 +341,8 @@
                                         @endforeach
                                     </div>
 
-                                    {{-- <input wire:ignore.self wire:model="attatchment_file" type="file"
-                                            class="dropify" data-height="150" /> --}}
+                                    {{-- <input wire:ignore.self wire:model="attatchment_file" type="file" class="dropify"
+                                    data-height="150" /> --}}
                                 </div>
 
                                 <div class="tab-pane fade {{ $tab == 3 ? 'show active' : '' }}" id="comment"
@@ -427,7 +441,7 @@
                                                             <div wire:ignore.self class="mb-1">
                                                                 {{-- <div wire:ignore.self id="summer_desc"></div> --}}
                                                                 <textarea name='desc' id='desc' rows="3" class='form-control'
-                                                                    placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="replay_comment_desc"></textarea>
+                                                                    placeholder='{{ __(' global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="replay_comment_desc"></textarea>
                                                             </div>
 
                                                             <button wire:click="replayComment()" type="button"
@@ -450,7 +464,7 @@
 
                                 <div class="tab-pane fade {{ $tab == 4 ? 'show active' : '' }}" id="subTask"
                                     role="tabpanel" aria-labelledby="subTask-tab">
-                                    {{--  --}}{{--  --}}{{--  --}}{{--  --}}
+                                    {{-- --}}{{-- --}}{{-- --}}{{-- --}}
                                     <div class="row">
 
                                         <div class="input-group mb-1 col-8">
@@ -467,30 +481,29 @@
                                         <div class="form-group mb-1 col-4">
                                             <select wire:model.defer="sub_task_priority_level" class="form-control">
                                                 <option value="low">low</option>
-                                                <option value="medum">medum</option>
+                                                <option value="medium">medium</option>
                                                 <option value="high">high</option>
                                             </select>
                                         </div>
 
                                         {{-- <div class="input-group mb-1 col-md-8">
-                                            <div class="input-group-prepend ">
-                                                <span class="input-group-text btn-secondary text-white"
-                                                    id="inputGroup-sizing-default">{{ __('task.title') }}</span>
-                                            </div>
-                                            <input wire:model.defer="sub_task_title" type="text" multiple
-                                                class="form-control" aria-label="Default"
-                                                aria-describedby="inputGroup-sizing-default">
-                                        </div> --}}
+                                        <div class="input-group-prepend ">
+                                            <span class="input-group-text btn-secondary text-white"
+                                                id="inputGroup-sizing-default">{{ __('task.title') }}</span>
+                                        </div>
+                                        <input wire:model.defer="sub_task_title" type="text" multiple
+                                            class="form-control" aria-label="Default"
+                                            aria-describedby="inputGroup-sizing-default">
+                                    </div> --}}
 
                                         {{-- <div class="input-group mb-1 col-md-4">
-                                            <div class="input-group-prepend ">
-                                                <span class="input-group-text btn-secondary text-white"
-                                                    id="inputGroup-sizing-default">{{ __('task.discount') }}</span>
-                                            </div>
-                                            <input wire:model.defer="sub_task_discount" type="number"
-                                                class="form-control" aria-label="Default"
-                                                aria-describedby="inputGroup-sizing-default">
-                                        </div> --}}
+                                        <div class="input-group-prepend ">
+                                            <span class="input-group-text btn-secondary text-white"
+                                                id="inputGroup-sizing-default">{{ __('task.discount') }}</span>
+                                        </div>
+                                        <input wire:model.defer="sub_task_discount" type="number" class="form-control"
+                                            aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                    </div> --}}
 
                                         <div class="input-group mb-1  col-md-6">
                                             <div class="input-group-prepend ">
@@ -515,7 +528,7 @@
                                         <div wire:ignore.self class="col-md-12">
                                             {{-- <div wire:ignore.self id="summer_desc"></div> --}}
                                             <textarea name='desc' id='desc' rows="4" class='form-control'
-                                                placeholder='{{ __('global.enter') }} {{ __('task.desc') }}' wire:model.defer="sub_task_desc"></textarea>
+                                                placeholder='{{ __(' global.enter') }} {{ __('task.desc') }}' wire:model.defer="sub_task_desc"></textarea>
                                         </div>
 
                                     </div>
@@ -529,8 +542,217 @@
                                     <button wire:click="addSubTask()" type="button" class="w-100 btn btn-success">
                                         Add Sub Task
                                     </button>
-                                    {{--  --}}{{--  --}}{{--  --}}{{--  --}}
+                                    {{-- --}}{{-- --}}{{-- --}}{{-- --}}
+
+                                    <div class="py-4">
+                                        @foreach ($task->sub_tasks as $sub)
+                                            <div class="row w-100 m-0 border shadow ">
+
+                                                <div class="col-md-6 ">
+                                                    <div class="col-md-12 d-flex justify-content-around">
+                                                        <div class="col-md-6">
+                                                            Title:
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            {{ $sub->title }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 d-flex justify-content-around">
+                                                        <div class="col-md-6">
+                                                            Description:
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            {{ $sub->desc }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 d-flex justify-content-around">
+                                                        <div class="col-md-6">
+                                                            Employee:
+                                                        </div>
+                                                        @foreach ($sub->employees as $subEm)
+                                                            <div class="col-md-6">
+                                                                {{ $subEm->name() }}
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="col-md-12 d-flex justify-content-around">
+                                                        <div class="col-md-6">
+                                                            Priority:
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            {{ $sub->the_priority_level() }}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12 d-flex justify-content-around">
+                                                        <div class="col-md-6">
+                                                            Trom:
+                                                            <br>
+                                                            {{ $sub->start_time }}
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            To:
+                                                            <br>
+                                                            {{ $sub->end_time }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        @endforeach
+                                    </div>
+
                                 </div>
+
+                                <div class="tab-pane fade {{ $tab == 5 ? 'show active' : '' }}" id="extra"
+                                    role="tabpanel" aria-labelledby="extra-tab">
+
+                                    <div class="py-4">
+                                        @foreach ($task->extra_times as $extra_sub)
+                                            <div class="row w-100 m-0 border shadow ">
+
+                                                <div class="col-md-6 ">
+                                                    <div class="col-md-12 d-flex justify-content-around">
+                                                        <div class="col-md-6">
+                                                            Title:
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            {{ $extra_sub->reason }}
+                                                        </div>
+                                                    </div>
+                                                    {{-- <div class="col-md-12 d-flex justify-content-around">
+                                                        <div class="col-md-6">
+                                                            Description:
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            {{ $sub->desc }}
+                                                        </div>
+                                                    </div> --}}
+                                                    <div class="col-md-12 d-flex justify-content-around">
+                                                        <div class="col-md-6">
+                                                            Employee:
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            {{ $extra_sub->user->name() }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="col-md-12 d-flex justify-content-around">
+                                                        <div class="col-md-6">
+                                                            status:
+                                                        </div>
+
+                                                        <div class="col-md-6 text-white text-center">
+                                                            <div class="{{ $extra_sub->the_extra_color() }}">
+                                                                {{ $extra_sub->the_status() }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12 d-flex justify-content-around">
+                                                        <div class="col-md-6">
+                                                            Trom:
+                                                            <br>
+                                                            {{ $extra_sub->from_time }}
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            To:
+                                                            <br>
+                                                            {{ $extra_sub->to_time }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        @endforeach
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane fade {{ $tab == 6 ? 'show active' : '' }}" id="leave"
+                                    role="tabpanel" aria-labelledby="leave-tab">
+
+                                    <div class="py-4">
+                                        @foreach ($task->leaves_times as $leave)
+                                            <div class="row w-100 m-0 border shadow ">
+
+                                                <div class="col-md-6 ">
+                                                    <div class="col-md-12 d-flex justify-content-around">
+                                                        <div class="col-md-6">
+                                                            Title:
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            {{ $leave->reason }}
+                                                        </div>
+                                                    </div>
+                                                    {{-- <div class="col-md-12 d-flex justify-content-around">
+                                                        <div class="col-md-6">
+                                                            Description:
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            {{ $sub->desc }}
+                                                        </div>
+                                                    </div> --}}
+                                                    <div class="col-md-12 d-flex justify-content-around">
+                                                        <div class="col-md-6">
+                                                            Employee:
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            {{ $leave->user->name() }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="col-md-12 d-flex justify-content-around">
+                                                        <div class="col-md-6">
+                                                            status:
+                                                        </div>
+
+                                                        <div class="col-md-6 text-white text-center">
+                                                            <div class="{{ $leave->the_extra_color() }}">
+                                                                {{ $leave->the_status() }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12 d-flex justify-content-around">
+                                                        <div class="col-md-6">
+                                                            Trom:
+                                                            <br>
+                                                            {{ $leave->time_out }}
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            To:
+                                                            <br>
+                                                            {{ $leave->time_in }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        @endforeach
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -541,7 +763,7 @@
                 </div>
             </div>
         </div>
-        {{--  --}}{{--  --}}{{--  --}}{{--  --}}
+        {{-- --}}{{-- --}}{{-- --}}{{-- --}}
 
         <div wire:ignore.self id="request-leave-modal-{{ $task->id }}" class="modal fade" tabindex="-1"
             role="dialog" aria-labelledby="request-leave-modal-{{ $task->id }}-title" aria-hidden="true">
@@ -554,7 +776,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        {{--  --}}
+                        {{-- --}}
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-12">
                                 <div class="form-group">
@@ -591,11 +813,12 @@
 
                             <div class="col-12">
                                 <textarea name='reason' id='reason' rows="3" class='form-control'
-                                    placeholder='{{ __('global.enter') }} {{ __('leave.reason') }}' {{--  --}}
-                                    wire:model.defer="leave_reason"></textarea>
+                                    placeholder='{{ __('
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            global.enter') }} {{ __('leave.reason') }}'
+                                    {{-- --}} wire:model.defer="leave_reason"></textarea>
                             </div>
                         </div>
-                        {{--  --}}
+                        {{-- --}}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary close-btn"
@@ -621,8 +844,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        {{--  --}}
-                        {{--  --}}{{--  --}}{{--  --}}
+                        {{-- --}}
+                        {{-- --}}{{-- --}}{{-- --}}
 
 
                         <div class="row">
@@ -646,12 +869,13 @@
 
                             <div class="col-12">
                                 <textarea name='reason' id='reason' rows="3" class='form-control'
-                                    placeholder='{{ __('global.enter') }} {{ __('extratime.reason') }}' {{--  --}}
-                                    wire:model.defer="extratime_reason"></textarea>
+                                    placeholder='{{ __('
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            global.enter') }} {{ __('extratime.reason') }}'
+                                    {{-- --}} wire:model.defer="extratime_reason"></textarea>
                             </div>
 
                         </div>
-                        {{--  --}}{{--  --}}{{--  --}}
+                        {{-- --}}{{-- --}}{{-- --}}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary close-btn"
@@ -665,13 +889,13 @@
         </div>
 
         {{-- <script>
-            $(function() {
+        $(function() {
                 // changed output patterns
                 $('#timer-outputpattern').countdown({
                     outputPattern: '$day Days $hour Hours $minute Minutes $second Seconds',
                     from: 60 * 60 * 24 * 3
                 });
             });
-        </script> --}}
+    </script> --}}
     @endforeach
 </div>

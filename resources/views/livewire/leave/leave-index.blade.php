@@ -81,6 +81,10 @@
                         <td>{{ __('global.time') }}</td>
                     @endif
 
+                    <td>
+                        {{ __('global.action') }}
+                    </td>
+
                     @permission('edit-leave|delete-leave|restore-leave')
                         <td style="width: 150px">
                             {{ __('global.action') }}
@@ -173,6 +177,19 @@
                         @if ($showColumn['time'])
                             <td> {{ date('h:i A', strtotime($leave->created_at)) }} </td>
                         @endif
+
+                        <td>
+                            @if ($leave->status == 'pending')
+                                <button data-toggle="modal" data-target="#accept-leave-modal"
+                                    wire:click="edit({{ $leave->id }})" class="btn btn-success">
+                                    <i class="ti-check text-white"></i>
+                                </button>
+                                <button data-toggle="modal" data-target="#reject-leave-modal"
+                                    wire:click="rejectLeave({{ $leave->id }})" class="btn btn-danger">
+                                    <i class="ti-close text-white"></i>
+                                </button>
+                            @endif
+                        </td>
 
                         @permission('edit-leave|delete-leave|restore-leave')
                             <td>

@@ -157,4 +157,5 @@ return [
     'task-board' => 'task board',
 
     'accept-extratime' => 'accept extratime',
+    'accept-leave' => 'accept leave',
 ];

@@ -185,7 +185,7 @@ class Task extends Model
         elseif ($this->priority_level == 'high')
             return __('task.high');
 
-        return '';
+        return 'ERROR';
     }
     public function the_priority_color()
     {
@@ -253,5 +253,19 @@ class Task extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class)->where('main_comment_id', 0);
+    }
+
+    public function sub_tasks()
+    {
+        return $this->hasMany(Task::class, 'main_task_id');
+    }
+    public function extra_times()
+    {
+        return $this->hasMany(ExtraTime::class);
+    }
+
+    public function leaves_times()
+    {
+        return $this->hasMany(Leave::class);
     }
 }

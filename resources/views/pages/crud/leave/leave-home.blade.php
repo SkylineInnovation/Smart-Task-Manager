@@ -20,6 +20,8 @@
             window.livewire.on('close-model', () => {
                 $('#create-new-leave-modal').modal('hide');
                 $('#update-leave-modal').modal('hide');
+
+                $('#accept-leave-modal').modal('hide');
             });
         });
     </script>

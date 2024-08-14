@@ -342,6 +342,8 @@ class WebGetTaskByStatus extends Component
 
         $tasks = $tasks->orderBy('id', 'desc')->get();
 
+      
+
         return view('livewire.web.web-get-task-by-status', compact('tasks'));
     }
 }

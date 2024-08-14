@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Extratime;
 
 use App\Models\ExtraTime;
+
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -351,15 +352,21 @@ class ExtratimeIndex extends Component
         $this->emit('close-model'); // Close model to using to jquery
     }
 
-    public function rejectExtraTime()
+    public function rejectExtraTime($id)
     {
-        $extratime = ExtraTime::find($this->extratime_id);
+        $extratime = ExtraTime::find($id);
 
         $extratime->update([
             'response_time' => date('Y-m-d H:i A'),
             'status' => 'rejected',
         ]);
     }
+
+
+   
+
+
+
 
     public function render()
     {
