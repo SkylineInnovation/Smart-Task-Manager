@@ -99,9 +99,10 @@ class WebCreateNewTask extends Component
 
         $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
 
-        Mail::to(
-            $task->employees->pluck('email')->toArray()
-        )->send(new SendNewTaskToEmployee($task));
+        if (env('SEND_MAIL', false))
+            Mail::to(
+                $task->employees->pluck('email')->toArray()
+            )->send(new SendNewTaskToEmployee($task));
 
         session()->flash('message', 'Task Created Successfully.');
 

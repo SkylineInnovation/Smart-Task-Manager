@@ -26,7 +26,9 @@ class AuthApiController extends Controller
 
         if (!$user)
             return response()->json([
-                "message" => "user not found", "show_message" => false, "have_more" => false,
+                "message" => "user not found",
+                "show_message" => false,
+                "have_more" => false,
                 "data" => [
                     'user' => "user not found",
                     'can_sign_up' => true,
@@ -36,7 +38,9 @@ class AuthApiController extends Controller
 
         if (!$user->hasRole('customer'))
             return response()->json([
-                "message" => "sorry only customers can use the app", "show_message" => true, "have_more" => false,
+                "message" => "sorry only customers can use the app",
+                "show_message" => true,
+                "have_more" => false,
                 "data" => [
                     'user' => "sorry only customers can use the app",
                     'can_sign_up' => false,
@@ -45,7 +49,9 @@ class AuthApiController extends Controller
             ], 450);
 
         return response()->json([
-            "message" => "user already exiset", "show_message" => true, "have_more" => false,
+            "message" => "user already exiset",
+            "show_message" => true,
+            "have_more" => false,
             "data" => [
                 'user' => "phone already exiset",
                 'can_sign_up' => false,
@@ -173,7 +179,9 @@ class AuthApiController extends Controller
 
         if (!$user)
             return response()->json([
-                "message" => "user not found", "show_message" => false, "have_more" => false,
+                "message" => "user not found",
+                "show_message" => false,
+                "have_more" => false,
                 "data" => [
                     'user' => "user not found",
                     'can_sign_up' => true,
@@ -278,7 +286,9 @@ class AuthApiController extends Controller
 
         if (!$user)
             return response()->json([
-                "message" => "user not found", "show_message" => false, "have_more" => false,
+                "message" => "user not found",
+                "show_message" => false,
+                "have_more" => false,
                 "data" => [
                     'user' => "user not found",
                     'can_sign_up' => true,
@@ -288,7 +298,9 @@ class AuthApiController extends Controller
 
         if (!$user->hasRole('customer'))
             return response()->json([
-                "message" => "sorry only customers can use the app", "show_message" => true, "have_more" => false,
+                "message" => "sorry only customers can use the app",
+                "show_message" => true,
+                "have_more" => false,
                 "data" => [
                     'user' => "sorry only customers can use the app",
                     'can_sign_up' => false,
@@ -305,7 +317,8 @@ class AuthApiController extends Controller
                 $user = User::find($user->id);
 
                 if (!Hash::check($request->password, $user->password)) return response()->json([
-                    "message" => "password not correct", "show_message" => true,
+                    "message" => "password not correct",
+                    "show_message" => true,
                     "data" => ['user' => "password not correct", 'can_sign_up' => true, 'can_login' => false,],
                 ], 450);
             }
@@ -322,7 +335,8 @@ class AuthApiController extends Controller
             } else {
                 if ($user->password == null) $user->update(['password' => Hash::make($request->password)]);
                 if (!Hash::check($request->password, $user->password)) return response()->json([
-                    "message" => "password not correct", "show_message" => true,
+                    "message" => "password not correct",
+                    "show_message" => true,
                     "data" => ['user' => "password not correct", 'can_sign_up' => true, 'can_login' => false,],
                 ], 450);
             }
@@ -359,7 +373,9 @@ class AuthApiController extends Controller
         $tokenResult = $user->createToken('customer access client');
 
         return response()->json([
-            "message" => "successfully log in", "show_message" => false, "have_more" => false,
+            "message" => "successfully log in",
+            "show_message" => false,
+            "have_more" => false,
             "data" => [
                 'access_token' => $tokenResult->accessToken,
                 'user' => new UserResource($user),
@@ -401,7 +417,9 @@ class AuthApiController extends Controller
         }
 
         return response()->json([
-            "message" => "successfully get user", "show_message" => false, "have_more" => false,
+            "message" => "successfully get user",
+            "show_message" => false,
+            "have_more" => false,
             "data" => [
                 'user' => new UserResource($user),
             ],
@@ -416,7 +434,9 @@ class AuthApiController extends Controller
         $user->update(['device_token' => null]);
 
         return response()->json([
-            "message" => "successfully logged out", "show_message" => false, "have_more" => false,
+            "message" => "successfully logged out",
+            "show_message" => false,
+            "have_more" => false,
             "data" => ['user' => "successfully logged out",],
         ], 213);
     }
@@ -430,7 +450,8 @@ class AuthApiController extends Controller
 
         if ($already_email)
             return response()->json([
-                "message" => "sorry email already used", "show_message" => true,
+                "message" => "sorry email already used",
+                "show_message" => true,
                 "data" => [
                     'user' => new UserResource($user),
                     'update' => false,
@@ -443,7 +464,8 @@ class AuthApiController extends Controller
 
         if ($already_phone)
             return response()->json([
-                "message" => "sorry phone already used", "show_message" => true,
+                "message" => "sorry phone already used",
+                "show_message" => true,
                 "data" => [
                     'user' => new UserResource($user),
                     'update' => false,
@@ -484,7 +506,8 @@ class AuthApiController extends Controller
 
 
         return response()->json([
-            "message" => "successfully updated", "show_message" => true,
+            "message" => "successfully updated",
+            "show_message" => true,
             "data" => [
                 'user' => new UserResource($user),
                 'update' => true,
@@ -536,7 +559,9 @@ class AuthApiController extends Controller
 
         if (!$user)
             return response()->json([
-                "message" => "user not found", "show_message" => true, "have_more" => false,
+                "message" => "user not found",
+                "show_message" => true,
+                "have_more" => false,
                 "data" => [
                     'error' => 'user not found',
                     'code_send' => false,
@@ -546,10 +571,14 @@ class AuthApiController extends Controller
         $ip = $request->ip();
         // $location = Location::get($ip);
         // $user = $request->user();
+
+        // if (env('SEND_MAIL', false))
         Mail::to($user->email)->send(new SendForgetPasswordCode($user, $ip));
 
         return response()->json([
-            "message" => "code send", "show_message" => false, "have_more" => false,
+            "message" => "code send",
+            "show_message" => false,
+            "have_more" => false,
             "data" => ['code_send' => true,],
         ], 210);
     }
@@ -564,7 +593,9 @@ class AuthApiController extends Controller
 
         if (!$passCode)
             return response()->json([
-                "message" => "code not found", "show_message" => false, "have_more" => false,
+                "message" => "code not found",
+                "show_message" => false,
+                "have_more" => false,
                 "data" => [
                     'error' => 'code not found',
                     'continue' => false,
@@ -574,7 +605,9 @@ class AuthApiController extends Controller
         $passCode->update(['is_used' => true]);
 
         return response()->json([
-            "message" => "code found", "show_message" => false, "have_more" => false,
+            "message" => "code found",
+            "show_message" => false,
+            "have_more" => false,
             "data" => ['good_code' => true, 'continue' => true,],
         ], 210);
     }
@@ -602,7 +635,9 @@ class AuthApiController extends Controller
         $user->update(['password' => Hash::make($new_password)]);
 
         return response()->json([
-            "message" => "password changed", "show_message" => false, "have_more" => false,
+            "message" => "password changed",
+            "show_message" => false,
+            "have_more" => false,
             "data" => ['change_password' => true, 'continue' => true,],
         ], 210);
     }

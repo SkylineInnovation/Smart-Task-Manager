@@ -92,18 +92,20 @@ class Task extends Model
             // 'from_status' => $model->getOriginal()['status'],
             // 'to_status' => $model->getAttributes()['status'],
 
-            if ($model->getOriginal()['status'] != $model->getAttributes()['status']) {
-                $template = '';
-                if ($model->status == 'complete') {
-                    $template = 'complete';
-                } elseif ($model->status == 'auto-finish') {
-                    $template = 'auto-finish';
-                }
+            if (env('SEND_MAIL', false)) {
+                if ($model->getOriginal()['status'] != $model->getAttributes()['status']) {
+                    $template = '';
+                    if ($model->status == 'complete') {
+                        $template = 'complete';
+                    } elseif ($model->status == 'auto-finish') {
+                        $template = 'auto-finish';
+                    }
 
-                if ($template != '')
-                    Mail::to(
-                        $model->employees->pluck('email')->toArray()
-                    )->send(new SendStatusChangeOnTask($template, $model));
+                    if ($template != '')
+                        Mail::to(
+                            $model->employees->pluck('email')->toArray()
+                        )->send(new SendStatusChangeOnTask($template, $model));
+                }
             }
         });
     }

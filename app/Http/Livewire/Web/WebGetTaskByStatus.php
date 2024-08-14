@@ -3,11 +3,13 @@
 namespace App\Http\Livewire\Web;
 
 use App\Http\Controllers\HomeController;
+use App\Mail\Task\SendNewTaskToEmployee;
 use App\Models\Attachment;
 use App\Models\Comment;
 use App\Models\Task;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -184,9 +186,10 @@ class WebGetTaskByStatus extends Component
 
         $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->sub_task_discount]);
 
-        // Mail::to(
-        //     $task->employees->pluck('email')->toArray()
-        // )->send(new SendNewTaskToEmployee($task));
+        // if (env('SEND_MAIL', false))
+        //     Mail::to(
+        //         $task->employees->pluck('email')->toArray()
+        //     )->send(new SendNewTaskToEmployee($task));
 
         $this->sub_task_title = null;
         $this->sub_task_desc = null;

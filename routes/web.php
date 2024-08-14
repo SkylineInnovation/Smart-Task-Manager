@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Models\Task;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -151,4 +152,14 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     Route::middleware('permission:restore-discount')->get('trash/discounts', [App\Http\Controllers\DiscountController::class, 'livewireDeletedIndex'])->name('discount.index.trash');
     Route::get('export/discounts', [App\Http\Controllers\DiscountController::class, 'exportFullData'])->name('discount.export');
     Route::post('import/discounts', [App\Http\Controllers\DiscountController::class, 'importData'])->name('discount.import');
+});
+
+
+Route::get('tr', function () {
+    $date = date('Y-m-d\TH:i:s');
+
+    $tasks = Task::whereIn('status', ['pending', 'active',])
+        ->where('end_time', '<=', $date)->get();
+
+    return $tasks;
 });
