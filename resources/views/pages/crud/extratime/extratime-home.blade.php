@@ -20,6 +20,8 @@
             window.livewire.on('close-model', () => {
                 $('#create-new-extratime-modal').modal('hide');
                 $('#update-extratime-modal').modal('hide');
+
+                $('#accept-extratime-modal').modal('hide');
             });
         });
     </script>

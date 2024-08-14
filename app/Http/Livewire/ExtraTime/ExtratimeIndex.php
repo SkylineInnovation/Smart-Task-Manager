@@ -347,6 +347,8 @@ class ExtratimeIndex extends Component
         $task->update([
             'end_time' => $this->to_time,
         ]);
+
+        $this->emit('close-model'); // Close model to using to jquery
     }
 
     public function rejectExtraTime()
