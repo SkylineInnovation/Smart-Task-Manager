@@ -64,19 +64,21 @@
                                         </a>
                                     @endrole
 
+                                    @role('employee')
+                                        <a class="dropdown-item" href="javascript:;" data-toggle="modal"
+                                            data-target="#request-leave-modal-{{ $task->id }}"
+                                            wire:click="setTask({{ $task->id }})">
+                                            <i class="fa fa-sign-out text-info" aria-hidden="true"></i>
+                                            &nbsp; Request Leave
+                                        </a>
 
-                                    <a class="dropdown-item" href="javascript:;" data-toggle="modal"
-                                        data-target="#request-leave-modal-{{ $task->id }}"
-                                        wire:click="setTask({{ $task->id }})">
-                                        <i class="fa fa-sign-out text-info" aria-hidden="true"></i>
-                                        &nbsp; Request Leave
-                                    </a>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#extra-time-modal"
+                                            href=javascript:; wire:click="setTask({{ $task->id }})">
+                                            <i class="fa fa-clock-o text-warning" aria-hidden="true"></i>
+                                            &nbsp; Extra Time
+                                        </a>
+                                    @endrole
 
-                                    <a class="dropdown-item" data-toggle="modal" data-target="#extra-time-modal"
-                                        href=javascript:; wire:click="setTask({{ $task->id }})">
-                                        <i class="fa fa-clock-o text-warning" aria-hidden="true"></i>
-                                        &nbsp; Extra Time
-                                    </a>
                                 </div>
                             </div>
 
@@ -397,8 +399,8 @@
                                                 <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Modal
-                                                                replay
+                                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                                Modal replay
                                                             </h5>
                                                             <button type="button" class="close"
                                                                 data-dismiss="modal" aria-label="Close">
@@ -447,7 +449,7 @@
                                     {{--  --}}{{--  --}}{{--  --}}{{--  --}}
                                     <div class="row">
 
-                                        <div class="input-group mb-3 col-8">
+                                        <div class="input-group mb-1 col-8">
                                             <div class="input-group-prepend ">
                                                 <span class="input-group-text btn-secondary text-white"
                                                     id="inputGroup-sizing-default">{{ __('task.title') }}</span>
@@ -458,7 +460,7 @@
                                                 aria-describedby="inputGroup-sizing-default">
                                         </div>
 
-                                        <div class="form-group mb-3 col-4">
+                                        <div class="form-group mb-1 col-4">
                                             <select wire:model.defer="sub_task_priority_level" class="form-control">
                                                 <option value="low">low</option>
                                                 <option value="medum">medum</option>
@@ -466,7 +468,7 @@
                                             </select>
                                         </div>
 
-                                        {{-- <div class="input-group mb-3 col-md-8">
+                                        {{-- <div class="input-group mb-1 col-md-8">
                                             <div class="input-group-prepend ">
                                                 <span class="input-group-text btn-secondary text-white"
                                                     id="inputGroup-sizing-default">{{ __('task.title') }}</span>
@@ -476,7 +478,7 @@
                                                 aria-describedby="inputGroup-sizing-default">
                                         </div> --}}
 
-                                        {{-- <div class="input-group mb-3 col-md-4">
+                                        {{-- <div class="input-group mb-1 col-md-4">
                                             <div class="input-group-prepend ">
                                                 <span class="input-group-text btn-secondary text-white"
                                                     id="inputGroup-sizing-default">{{ __('task.discount') }}</span>
@@ -486,7 +488,7 @@
                                                 aria-describedby="inputGroup-sizing-default">
                                         </div> --}}
 
-                                        <div class="input-group mb-3  col-md-6">
+                                        <div class="input-group mb-1  col-md-6">
                                             <div class="input-group-prepend ">
                                                 <span class="input-group-text btn-secondary text-white"
                                                     id="inputGroup-sizing-default">{{ __('task.start_time') }}</span>
@@ -496,7 +498,7 @@
                                                 aria-describedby="inputGroup-sizing-default">
                                         </div>
 
-                                        <div class="input-group mb-3  col-md-6">
+                                        <div class="input-group mb-1  col-md-6">
                                             <div class="input-group-prepend ">
                                                 <span class="input-group-text btn-secondary text-white"
                                                     id="inputGroup-sizing-default">{{ __('task.end_time') }}</span>
@@ -583,7 +585,7 @@
                                 'label' => 'leave.time_out',
                                 'name' => 'leave.time_out',
                                 'livewire' => 'leave_time_out',
-                                'type' => 'time', // 'step' => 1,
+                                'type' => 'datetime-local', // 'step' => 1,
                                 // 'required' => 'required',
                                 'lg' => 4,
                                 'md' => 4,
@@ -594,7 +596,7 @@
                                 'label' => 'leave.time_in',
                                 'name' => 'leave.time_in',
                                 'livewire' => 'leave_time_in',
-                                'type' => 'time', // 'step' => 1,
+                                'type' => 'datetime-local', // 'step' => 1,
                                 // 'required' => 'required',
                                 'lg' => 4,
                                 'md' => 4,

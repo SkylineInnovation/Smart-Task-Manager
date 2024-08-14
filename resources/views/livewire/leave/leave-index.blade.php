@@ -135,10 +135,12 @@
                         @endif
 
                         @if ($showColumn['time_out'])
+                            {{-- <td> {{ date('Y-m-d h:i A', strtotime($leave->time_out)) }} </td> --}}
                             <td> {{ $leave->time_out }} </td>
                         @endif
 
                         @if ($showColumn['time_in'])
+                            {{-- <td> {{ date('Y-m-d h:i A', strtotime($leave->time_in)) }} </td> --}}
                             <td> {{ $leave->time_in }} </td>
                         @endif
 

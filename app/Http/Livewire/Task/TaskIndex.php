@@ -62,8 +62,8 @@ class TaskIndex extends Component
         // $this->fromDate = date('Y-m-d', strtotime("-5 days"));
         $this->toDate = date('Y-m-d');
 
-        $this->start_time = date('Y-m-d');
-        $this->end_time = date('Y-m-d', strtotime('+60 minutes'));
+        $this->start_time = date('Y-m-d\TH:i');
+        $this->end_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
 
         $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
 
@@ -102,8 +102,8 @@ class TaskIndex extends Component
         $this->manager_id = null;
         $this->title = '';
         $this->desc = '';
-        $this->start_time = date('Y-m-d H:m A');
-        $this->end_time = date('Y-m-d', strtotime('+60 minutes'));
+        $this->start_time = date('Y-m-d\TH:i');
+        $this->end_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
         // $this->priority_level = 'low';
         // $this->status = 'pending';
         $this->main_task_id = null;

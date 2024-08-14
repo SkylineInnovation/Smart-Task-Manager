@@ -30,8 +30,11 @@ class WebGetTaskByStatus extends Component
 
         $this->status = $status;
 
-        $this->leave_time_out = date('H:i');
-        $this->leave_time_in = date('H:i', strtotime('+1 Hours'));
+        $this->sub_task_start_time  = date('Y-m-d\TH:i');
+        $this->sub_task_end_time  = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+
+        $this->leave_time_out = date('Y-m-d\TH:i');
+        $this->leave_time_in = date('Y-m-d\TH:i', strtotime('+1 Hours'));
     }
 
     public $task;
@@ -47,11 +50,11 @@ class WebGetTaskByStatus extends Component
 
         $this->sub_task_discount = $this->task->discount();
 
-        $this->sub_task_start_time  = null;
-        $this->sub_task_end_time  = null;
+        $this->sub_task_start_time  = date('Y-m-d\TH:i');
+        $this->sub_task_end_time  = date('Y-m-d\TH:i', strtotime('+1 Hours'));
 
-        $this->leave_time_out = date('H:i');
-        $this->leave_time_in = date('H:i', strtotime('+1 Hours'));
+        $this->leave_time_out = date('Y-m-d\TH:i');
+        $this->leave_time_in = date('Y-m-d\TH:i', strtotime('+1 Hours'));
     }
 
     public function rules()
@@ -174,6 +177,7 @@ class WebGetTaskByStatus extends Component
     public $sub_task_title, $sub_task_desc,
         $sub_task_start_time, $sub_task_end_time,
         $sub_task_priority_level = 'low', $sub_task_status = 'pending';
+
     public function addSubTask()
     {
         $validatedData = $this->validate();
@@ -201,8 +205,8 @@ class WebGetTaskByStatus extends Component
         $this->sub_task_title = null;
         $this->sub_task_desc = null;
 
-        $this->sub_task_start_time  = null;
-        $this->sub_task_end_time  = null;
+        $this->sub_task_start_time  = date('Y-m-d\TH:i');
+        $this->sub_task_end_time  = date('Y-m-d\TH:i', strtotime('+1 Hours'));
 
         $this->sub_task_priority_level = 'low';
 

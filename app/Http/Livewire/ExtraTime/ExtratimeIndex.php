@@ -62,8 +62,8 @@ class ExtratimeIndex extends Component
         // $this->fromDate = date('Y-m-d', strtotime("-5 days"));
         $this->toDate = date('Y-m-d');
 
-        $this->request_time = date('Y-m-d');
-        $this->response_time = date('Y-m-d');
+        $this->request_time = date('Y-m-d\TH:i');
+        $this->response_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
 
         $this->tasks = \App\Models\Task::whereNullOrEmptyOrZero('main_task_id')->where('show', 1)->orderBy('sort')->get();
 
@@ -106,8 +106,8 @@ class ExtratimeIndex extends Component
         $this->accepted_by_user_id = null;
         $this->reason = '';
         $this->result = '';
-        $this->request_time = date('Y-m-d');
-        $this->response_time = date('Y-m-d');
+        $this->request_time = date('Y-m-d\TH:i');
+        $this->response_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
         $this->status = 'pending';
         $this->duration = '';
     }
