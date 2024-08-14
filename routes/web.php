@@ -161,5 +161,7 @@ Route::get('tr', function () {
     $tasks = Task::whereIn('status', ['pending', 'active',])
         ->where('end_time', '<=', $date)->get();
 
+    // php /home/forge/task-manager.codexal.co/artisan task:auto-finish
+
     return $tasks;
 });

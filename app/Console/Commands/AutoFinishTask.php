@@ -12,7 +12,7 @@ class AutoFinishTask extends Command
      *
      * @var string
      */
-    protected $signature = 'finish:task';
+    protected $signature = 'task:auto-finish';
 
     /**
      * The console command description.
