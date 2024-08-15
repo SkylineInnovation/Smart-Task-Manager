@@ -87,7 +87,9 @@
                                     'livewire' => 'time_out',
                                     'type' => 'datetime-local', // 'step' => 1,
                                     // 'required' => 'required',
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                    'lg' => 5,
+                                    'md' => 5,
+                                    'sm' => 12,
                                 ])
 
                                 @include('inputs.create.input', [
@@ -96,8 +98,22 @@
                                     'livewire' => 'time_in',
                                     'type' => 'datetime-local', // 'step' => 1,
                                     // 'required' => 'required',
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                    'lg' => 5,
+                                    'md' => 5,
+                                    'sm' => 12,
                                 ])
+
+
+                                <div class="col-lg-2 col-md-2 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="effect_on_time">{{ __('leave.effect_on_time') }}</label>
+                                        <select wire:model="effect_on_time" name="effect_on_time" id="effect_on_time"
+                                            class="form-control">
+                                            <option value="1">{{ __('global.yes') }}</option>
+                                            <option value="0">{{ __('global.no') }}</option>
+                                        </select>
+                                    </div>
+                                </div>
 
                                 @include('inputs.create.input', [
                                     'label' => 'leave.reason',
@@ -246,7 +262,9 @@
                                     'livewire' => 'time_out',
                                     'type' => 'datetime-local', // 'step' => 1,
                                     // 'required' => 'required',
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                    'lg' => 5,
+                                    'md' => 5,
+                                    'sm' => 6,
                                 ])
                                 @include('inputs.edit.input', [
                                     'label' => 'leave.time_in',
@@ -255,8 +273,22 @@
                                     'livewire' => 'time_in',
                                     'type' => 'datetime-local', // 'step' => 1,
                                     // 'required' => 'required',
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                    'lg' => 5,
+                                    'md' => 5,
+                                    'sm' => 6,
                                 ])
+
+                                <div class="col-lg-2 col-md-2 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="effect_on_time">{{ __('leave.effect_on_time') }}</label>
+                                        <select wire:model="effect_on_time" name="effect_on_time" id="effect_on_time"
+                                            class="form-control">
+                                            <option value="1">{{ __('global.yes') }}</option>
+                                            <option value="0">{{ __('global.no') }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
                                 @include('inputs.edit.input', [
                                     'label' => 'leave.reason',
                                     'name' => 'leave.reason',
@@ -376,7 +408,9 @@
                                 'livewire' => 'time_out',
                                 'type' => 'datetime-local', // 'step' => 1,
                                 // 'required' => 'required',
-                                // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                'lg' => 5,
+                                'md' => 5,
+                                'sm' => 12,
                             ])
 
                             @include('inputs.edit.input', [
@@ -386,8 +420,21 @@
                                 'livewire' => 'time_in',
                                 'type' => 'datetime-local', // 'step' => 1,
                                 // 'required' => 'required',
-                                // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                'lg' => 5,
+                                'md' => 5,
+                                'sm' => 12,
                             ])
+
+                            <div class="col-lg-2 col-md-2 col-sm-12">
+                                <div class="form-group">
+                                    <label for="effect_on_time">{{ __('leave.effect_on_time') }}</label>
+                                    <select wire:model="effect_on_time" name="effect_on_time" id="effect_on_time"
+                                        class="form-control">
+                                        <option value="1">{{ __('global.yes') }}</option>
+                                        <option value="0">{{ __('global.no') }}</option>
+                                    </select>
+                                </div>
+                            </div>
 
                             @include('inputs.edit.input', [
                                 'label' => 'leave.reason',

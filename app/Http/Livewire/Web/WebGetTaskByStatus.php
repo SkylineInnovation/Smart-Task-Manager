@@ -38,6 +38,7 @@ class WebGetTaskByStatus extends Component
 
         $this->leave_time_out = date('Y-m-d\Th:i');
         $this->leave_time_in = date('Y-m-d\Th:i', strtotime('+1 Hours'));
+        $this->leave_effect_on_time = false;
 
         $this->extratime_from_time = date('Y-m-d\Th:i');
         $this->extratime_to_time = date('Y-m-d\Th:i', strtotime('+1 Hours'));
@@ -65,6 +66,7 @@ class WebGetTaskByStatus extends Component
 
         $this->leave_time_out = date('Y-m-d\Th:i');
         $this->leave_time_in = date('Y-m-d\Th:i', strtotime('+1 Hours'));
+        $this->leave_effect_on_time = false;
 
         $this->extratime_from_time = date('Y-m-d\Th:i', strtotime($task->end_time));
         $this->extratime_to_time = date('Y-m-d\Th:i', strtotime($task->end_time . ' +1 Hours'));
@@ -334,7 +336,7 @@ class WebGetTaskByStatus extends Component
     ];
 
     // 
-    public $leave_type = 'leave', $leave_time_out, $leave_time_in, $leave_reason, $leave_result;
+    public $leave_type = 'leave', $leave_time_out, $leave_time_in, $leave_effect_on_time, $leave_reason, $leave_result;
     public function addLeaveRequest()
     {
         Leave::create([
@@ -345,6 +347,7 @@ class WebGetTaskByStatus extends Component
             'type' => $this->leave_type,
             'time_out' => $this->leave_time_out,
             'time_in' => $this->leave_time_in,
+            'effect_on_time' => $this->leave_effect_on_time,
             'reason' => $this->leave_reason,
             'result' => $this->leave_result,
             'status' => 'pending',
@@ -458,6 +461,7 @@ class WebGetTaskByStatus extends Component
         $this->leave_type = $leave->type;
         $this->leave_time_out = $leave->time_out;
         $this->leave_time_in = $leave->time_in;
+        $this->leave_effect_on_time = $leave->effect_on_time;
         $this->leave_reason = $leave->reason;
         $this->leave_result = $leave->result;
 
@@ -474,10 +478,19 @@ class WebGetTaskByStatus extends Component
             'type' => $this->leave_type,
             'time_out' => $this->leave_time_out,
             'time_in' => $this->leave_time_in,
+            'effect_on_time' => $this->leave_effect_on_time,
             'status' => 'accepted',
             'accepted_by_user_id' => auth()->user()->id,
             'accepted_time' => date('Y-m-d h:i A'),
         ]);
+
+        if ($this->leave_effect_on_time) {
+            $task = Task::find($leaveTime->task_id);
+
+            $task->update([
+                'end_time' => $this->leave_time_in,
+            ]);
+        }
 
         $this->emit('close-accept-leave-model', $this->task_id); // Close model to using to jquery
 

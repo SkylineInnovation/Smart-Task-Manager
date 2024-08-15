@@ -52,6 +52,9 @@
                     @if ($showColumn['time_in'])
                         <td>{{ __('leave.time_in') }}</td>
                     @endif
+                    @if ($showColumn['effect_on_time'])
+                        <td>{{ __('leave.effect_on_time') }}</td>
+                    @endif
 
                     @if ($showColumn['reason'])
                         <td>{{ __('leave.reason') }}</td>
@@ -144,6 +147,10 @@
 
                         @if ($showColumn['time_in'])
                             <td> {{ date('Y-m-d h:i A', strtotime($leave->time_in)) }} </td>
+                        @endif
+
+                        @if ($showColumn['effect_on_time'])
+                            <td> {{ $leave->effect_on_time }} </td>
                         @endif
 
                         @if ($showColumn['reason'])

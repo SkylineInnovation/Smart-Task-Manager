@@ -25,6 +25,7 @@ class FullLeavesImport implements ToCollection, WithHeadingRow
             $time_out = trim($row['time_out']);
 
             $time_in = trim($row['time_in']);
+            $effect_on_time = trim($row['effect_on_time']);
 
             $reason = trim($row['reason']);
 
@@ -46,6 +47,7 @@ class FullLeavesImport implements ToCollection, WithHeadingRow
                     'type' => $type,
                     'time_out' => $time_out,
                     'time_in' => $time_in,
+                    'effect_on_time' => $effect_on_time,
                     'reason' => $reason,
                     'result' => $result,
                     'status' => $status,
@@ -59,6 +61,7 @@ class FullLeavesImport implements ToCollection, WithHeadingRow
                     'type' => $type,
                     'time_out' => $time_out,
                     'time_in' => $time_in,
+                    'effect_on_time' => $effect_on_time,
                     'reason' => $reason,
                     'result' => $result,
                     'status' => $status,

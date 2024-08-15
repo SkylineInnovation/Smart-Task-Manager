@@ -29,8 +29,8 @@
     </div>
 
     @php
-        $show_side = $show_side ?? auth()->user()->hasRole('owner');
-        // $show_side = true;
+        $show_side = $show_side ?? auth()->user()->hasRole('owner') && auth()->user()->hasRole('dev');
+        // $show_side = false;
     @endphp
 
     <div class="page">
@@ -45,6 +45,10 @@
 
             <div class="@if ($show_side) app-content @endif">
                 <div class="@if ($show_side) side-app @else container-fluid @endif">
+
+                    {{--  --}}{{--  --}}{{--  --}}{{--  --}}
+                    @include('layouts.Components.top-navbar')
+                    {{--  --}}{{--  --}}{{--  --}}{{--  --}}
 
                     <div class="page-header">
 
@@ -61,7 +65,6 @@
                         @include('layouts.Components.notification')
 
                     </div>
-
 
                     {{-- <div class="card">
                         <div class="card-body">

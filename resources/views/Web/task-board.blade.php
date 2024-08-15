@@ -41,28 +41,28 @@
     <div class="container-fluid card">
 
         <div class="d-flex flex-row" style="overflow-x: scroll;">
-            <div class="col-md-4 py-4">
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 py-4">
                 <h4 class="p-0 text-gray-400 fw-bold text-center">Pending</h4>
                 <hr style="margin-top:0px !important;">
 
                 <livewire:web.web-get-task-by-status status='pending' />
             </div>
 
-            <div class="col-md-4 text-center py-4">
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 py-4">
                 <h4 class="p-0 text-gray-400 fw-bold text-center">Active</h4>
                 <hr style="margin-top:0px !important;">
 
                 <livewire:web.web-get-task-by-status status='active' />
             </div>
 
-            <div class="col-md-4 text-center py-4">
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 py-4">
                 <h4 class="p-0 text-gray-400 fw-bold text-center">Finished</h4>
                 <hr style="margin-top:0px !important;">
 
                 <livewire:web.web-get-task-by-status status='manual-finished' />
             </div>
 
-            <div class="col-md-4 text-center py-4">
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 py-4">
                 <h4 class="p-0 text-gray-400 fw-bold text-center">System Finished</h4>
                 <hr style="margin-top:0px !important;">
 

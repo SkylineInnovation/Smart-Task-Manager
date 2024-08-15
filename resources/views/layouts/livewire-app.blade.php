@@ -23,7 +23,7 @@
     </div>
 
     @php
-        $show_side = $show_side ?? auth()->user()->hasRole('owner');
+        $show_side = $show_side ?? auth()->user()->hasRole('owner') && auth()->user()->hasRole('dev');
         // $show_side = true;
     @endphp
 
@@ -39,6 +39,10 @@
 
             <div class="@if ($show_side) app-content @endif">
                 <div class="@if ($show_side) side-app @else container-fluid @endif">
+
+                    {{--  --}}{{--  --}}{{--  --}}{{--  --}}
+                    @include('layouts.Components.top-navbar')
+                    {{--  --}}{{--  --}}{{--  --}}{{--  --}}
 
                     <div class="page-header">
 

@@ -144,15 +144,16 @@ class Leave extends Model
             $q->whereIn('id', array_map('intval', explode(',', $search)));
 
 
-            $q->orWhere('task_id', $search);
-            $q->orWhere('user_id', $search);
+            // $q->orWhere('task_id', $search);
+            // $q->orWhere('user_id', $search);
             $q->orWhereSearch('type', $search);
             $q->orWhereSearch('time_out', $search);
             $q->orWhereSearch('time_in', $search);
+            // $q->orWhereSearch('effect_on_time', $search);
             $q->orWhereSearch('reason', $search);
             $q->orWhereSearch('result', $search);
             $q->orWhereSearch('status', $search);
-            $q->orWhere('accepted_by_user_id', $search);
+            // $q->orWhere('accepted_by_user_id', $search);
             $q->orWhereSearch('accepted_time', $search);
 
             // })->orWhereHas('add_by_user', function ($q) use ($search) {

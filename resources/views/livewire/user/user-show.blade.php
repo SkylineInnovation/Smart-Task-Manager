@@ -2,7 +2,7 @@
     {{-- A good traveler has no fixed plans and is not intent upon arriving. --}}
 
     <div class="row">
-        <div class="col-lg-3 col-md-12 col-sm-12">
+        <div class="col-lg-3 col-md-12 col-sm-12 d-flex align-items-stretch">
             <div class="card">
                 <div class="card-body">
                     <div class="text-center">
@@ -27,7 +27,7 @@
 
         {{--  --}}
 
-        <div class="col-lg-9 col-md-12 col-sm-12">
+        <div class="col-lg-9 col-md-12 col-sm-12 d-flex align-items-stretch">
             <div class="card">
                 <div class="form-horizontal">
                     <div class="card-body">
@@ -95,36 +95,63 @@
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <h5 class="card-title">Total Work Hours in Selected Duration:</h5>
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card">
+                <div class="card-body text-center statistics-info">
+                    <div class="counter-icon bg-primary mb-0 box-primary-shadow">
+                        <i class="fe fe-trending-up text-white"></i>
+                    </div>
+                    <h6 class="mt-4 mb-1">Total Tasks Time</h6>
+                    <h2 class="mb-2 number-font">{{ $totalTaskWork }}</h2>
+                    <p class="text-muted">Total Work Hours in Selected Duration:</p>
                 </div>
-                <div class="col-lg-8 col-md-6 col-sm-12">
-                    <h5>{{ $totalTaskWork }}</h5>
+            </div>
+        </div>
+
+        {{--  --}}
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card">
+                <div class="card-body text-center statistics-info">
+                    <div class="counter-icon bg-primary mb-0 box-primary-shadow">
+                        <i class="fe fe-trending-up text-white"></i>
+                    </div>
+                    <h6 class="mt-4 mb-1">Total Task Count</h6>
+                    <h2 class="mb-2 number-font">{{ $totalTaskSum }}</h2>
+                    <p class="text-muted">Total Task Count in Selected Duration:</p>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <h5 class="card-title">Total Task Count:</h5>
+            </div>
+        </div>
+
+        {{--  --}}
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card">
+                <div class="card-body text-center statistics-info">
+                    <div class="counter-icon bg-primary mb-0 box-primary-shadow">
+                        <i class="fe fe-trending-up text-white"></i>
+                    </div>
+                    <h6 class="mt-4 mb-1">Total Finished Tasks</h6>
+                    <h2 class="mb-2 number-font">{{ $autoFinishedTaskSum }}</h2>
+                    <p class="text-muted">Total Task Count Finished By System</p>
                 </div>
-                <div class="col-lg-8 col-md-6 col-sm-12">
-                    <h5>{{ $totalTaskSum }}</h5>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <h5 class="card-title">Total Task Count Finished By System:</h5>
-                </div>
-                <div class="col-lg-8 col-md-6 col-sm-12">
-                    <h5>{{ $autoFinishedTaskSum }}</h5>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <h5 class="card-title">Total Completed Task Count:</h5>
-                </div>
-                <div class="col-lg-8 col-md-6 col-sm-12">
-                    <h5>{{ $completedTaskSum }}</h5>
+            </div>
+        </div>
+
+        {{--  --}}
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card">
+                <div class="card-body text-center statistics-info">
+                    <div class="counter-icon bg-primary mb-0 box-primary-shadow">
+                        <i class="fe fe-trending-up text-white"></i>
+                    </div>
+                    <h6 class="mt-4 mb-1">Total Completed Tasks</h6>
+                    <h2 class="mb-2 number-font">{{ $completedTaskSum }}</h2>
+                    <p class="text-muted">Total Completed Task Count in Selected Duration:</p>
                 </div>
             </div>
         </div>
     </div>
+
 
     <div class="row">
         <div class="col-lg-9 col-md-12 col-sm-12">
