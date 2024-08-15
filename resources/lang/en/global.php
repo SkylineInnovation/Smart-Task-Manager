@@ -176,5 +176,6 @@ return [
 
     'all_users_in_the_app' => 'all users in the app',
 
-    'task_view'=>'task view',
+    'task_view' => 'task view',
+    'reports' => 'reports',
 ];

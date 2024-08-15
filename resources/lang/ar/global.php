@@ -152,12 +152,12 @@ return [
     'create-discount' => 'إنشاء خصم',
 
 
-     'task-board' => 'لوحة المهام',
-     'task view'=>'عرض المهام',
-     'accept-extratime'=>'قبول الوقت الإضافي',
-     'all_users_in_the_app'=>'جميع المستخدمين في التطبيق',
-     'task_view'=>'عرض المهمة',
-     
+    'task-board' => 'لوحة المهام',
+    'task view' => 'عرض المهام',
+    'accept-extratime' => 'قبول الوقت الإضافي',
+    'all_users_in_the_app' => 'جميع المستخدمين في التطبيق',
+    'task_view' => 'عرض المهمة',
+
 
     // some role valideate message in sub
     // 'please_select_customer' => 'Please Select Customer',
@@ -179,9 +179,5 @@ return [
     // 'accept-leave' => 'قبول المغادرة',
 
 
-
+    'reports' => 'تقارير',
 ];
-
-
-
-
