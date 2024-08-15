@@ -70,6 +70,13 @@ class WebGetTaskByStatus extends Component
         $this->extratime_to_time = date('Y-m-d\Th:i', strtotime($task->end_time . ' +1 Hours'));
     }
 
+    public function openCommentTask($id)
+    {
+        $this->setTask($id);
+        $this->changeTab(3);
+    }
+
+
     public function rules()
     {
         return [
@@ -248,10 +255,60 @@ class WebGetTaskByStatus extends Component
     }
 
     public function deleteTask($id)
-
     {
         $task = Task::find($id);
         $task->delete();
+    }
+
+    public $updateMode = false;
+    public $edit_task_title, $edit_task_desc,
+        $edit_task_start_time, $edit_task_end_time,
+        $edit_task_priority_level, $edit_task_status;
+
+    public $edit_task_selectedEmployees, $edit_task_discount;
+
+    public function editTask($id)
+    {
+        $this->updateMode = true;
+        $task = Task::find($id);
+        // $this->task = $task;
+        $this->task_id = $id;
+
+        $this->edit_task_title = $task->title;
+        $this->edit_task_desc = $task->desc;
+        $this->edit_task_start_time = $task->start_time;
+        $this->edit_task_end_time = $task->end_time;
+        $this->edit_task_priority_level = $task->priority_level;
+        $this->edit_task_status = $task->status;
+
+        $this->employees = $task->employees;
+        $this->edit_task_selectedEmployees = $task->employees->pluck('id');
+
+        $this->edit_task_discount = $task->discount();
+    }
+
+    public function updateTask()
+    {
+        $this->updateMode = true;
+        $task = Task::find($this->task_id);
+
+        $task->update([
+            'title' => $this->edit_task_title,
+            'desc' => $this->edit_task_desc,
+            'start_time' => $this->edit_task_start_time,
+            'end_time' => $this->edit_task_end_time,
+            'priority_level' => $this->edit_task_priority_level,
+            'status' => $this->edit_task_status,
+        ]);
+
+        $task->employees()->syncWithPivotValues($this->edit_task_selectedEmployees, ['discount' => $this->edit_task_discount]);
+
+        // 
+    }
+
+    public function cancelTask()
+    {
+        $this->updateMode = false;
     }
 
     public function deleteComents($id)
