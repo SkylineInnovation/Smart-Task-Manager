@@ -73,14 +73,14 @@
                                             data-target="#request-leave-modal-{{ $task->id }}"
                                             wire:click="setTask({{ $task->id }})">
                                             <i class="fa fa-sign-out text-info" aria-hidden="true"></i>
-                                            &nbsp; {{__('Request_Leave')}}
+                                            &nbsp; {{__('task.Request_Leave')}}
                                         </a>
 
                                         <a class="dropdown-item" data-toggle="modal"
                                             data-target="#extra-time-modal-{{ $task->id }}" href=javascript:;
                                             wire:click="setTask({{ $task->id }})">
                                             <i class="fa fa-clock-o text-warning" aria-hidden="true"></i>
-                                            &nbsp; {{__('Extra_Time')}}
+                                            &nbsp; {{__('task.Extra_Time')}}
                                         </a>
                                     @endrole
 
