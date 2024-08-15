@@ -96,6 +96,14 @@ return [
     "Total_Leave_Hours_in_Selected_Duration"            => "Total Leave Hours in Selected Duration",
     "Total_Discount_in_Selected_Duration"               => "Total Discount in Selected Duration",
 
+    "Total_Extra_Time"                                  => "Total Extra Time",
+    "Total_Leave_Hour"                                  => "Total Leave Hour",
+    "Total_Discount"                                    => "Total Discount",
+    "Leaves_&_Extra_Times"                              => "Leaves & Extra Times",
+    "Discounts"                                         => "Discounts",
+
+
+
 
 
 

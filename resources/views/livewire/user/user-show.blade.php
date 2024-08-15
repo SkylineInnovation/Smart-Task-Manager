@@ -102,9 +102,9 @@
                     <div class="counter-icon bg-primary mb-0 box-primary-shadow">
                         <i class="fe fe-trending-up text-white"></i>
                     </div>
-                    <h6 class="mt-4 mb-1">Total Tasks Time</h6>
+                    <h6 class="mt-4 mb-1">{{ __('task.Total_Tasks_Time') }}</h6>
                     <h2 class="mb-2 number-font">{{ $totalTaskWork }}</h2>
-                    <p class="text-muted">Total Work Hours in Selected Duration</p>
+                    <p class="text-muted">{{ __('task.Total_Work_Hours_in_Selected_Duration') }}</p>
                 </div>
             </div>
         </div>
@@ -116,9 +116,9 @@
                     <div class="counter-icon bg-primary mb-0 box-primary-shadow">
                         <i class="fe fe-trending-up text-white"></i>
                     </div>
-                    <h6 class="mt-4 mb-1">Total Task Count</h6>
+                    <h6 class="mt-4 mb-1">{{ __('task.Total_Task_Count') }}</h6>
                     <h2 class="mb-2 number-font">{{ $totalTaskSum }}</h2>
-                    <p class="text-muted">Total Task Count in Selected Duration</p>
+                    <p class="text-muted">{{ __('task.Total_Task_Count_in_Selected_Duration') }}</p>
                 </div>
             </div>
         </div>
@@ -130,9 +130,9 @@
                     <div class="counter-icon bg-primary mb-0 box-primary-shadow">
                         <i class="fe fe-trending-up text-white"></i>
                     </div>
-                    <h6 class="mt-4 mb-1">Total Finished Tasks</h6>
+                    <h6 class="mt-4 mb-1">{{ __('task.Total_Finished_Tasks') }}</h6>
                     <h2 class="mb-2 number-font">{{ $autoFinishedTaskSum }}</h2>
-                    <p class="text-muted">Total Task Count Finished By System</p>
+                    <p class="text-muted">{{ __('task.Total_Task_Count_Finished_By_System') }}</p>
                 </div>
             </div>
         </div>
@@ -144,9 +144,9 @@
                     <div class="counter-icon bg-primary mb-0 box-primary-shadow">
                         <i class="fe fe-trending-up text-white"></i>
                     </div>
-                    <h6 class="mt-4 mb-1">Total Completed Tasks</h6>
+                    <h6 class="mt-4 mb-1">{{ __('task.Total_Completed_Task') }}</h6>
                     <h2 class="mb-2 number-font">{{ $completedTaskSum }}</h2>
-                    <p class="text-muted">Total Completed Task Count in Selected Duration</p>
+                    <p class="text-muted">{{ __('task.Total_Completed_Task_Count_in_Selected_Duration') }}</p>
                 </div>
             </div>
         </div>
@@ -194,9 +194,9 @@
                     <div class="counter-icon bg-primary mb-0 box-primary-shadow">
                         <i class="fe fe-trending-up text-white"></i>
                     </div>
-                    <h6 class="mt-4 mb-1">Total Extra Time</h6>
+                    <h6 class="mt-4 mb-1">{{ __('task.Total_Extra_Time') }}</h6>
                     <h2 class="mb-2 number-font">{{ $totalExtraTimeWork }}</h2>
-                    <p class="text-muted">Total Extra Time Hours in Selected Duration</p>
+                    <p class="text-muted">{{ __('task.Total_Extra_Time_Hours_in_Selected_Duration') }}</p>
                 </div>
             </div>
         </div>
@@ -208,9 +208,9 @@
                     <div class="counter-icon bg-primary mb-0 box-primary-shadow">
                         <i class="fe fe-trending-up text-white"></i>
                     </div>
-                    <h6 class="mt-4 mb-1">Total Leave Hours</h6>
+                    <h6 class="mt-4 mb-1">{{ __('task.Total_Leave_Hour') }}</h6>
                     <h2 class="mb-2 number-font">{{ $totalLeaveWork }}</h2>
-                    <p class="text-muted">Total Leave Hours in Selected Duration</p>
+                    <p class="text-muted">{{ __('task.Total_Leave_Hours_in_Selected_Duration') }}</p>
                 </div>
             </div>
         </div>
@@ -222,9 +222,9 @@
                     <div class="counter-icon bg-primary mb-0 box-primary-shadow">
                         <i class="fe fe-trending-up text-white"></i>
                     </div>
-                    <h6 class="mt-4 mb-1">Total Discount</h6>
+                    <h6 class="mt-4 mb-1">{{ __('task.Total_Discount') }}</h6>
                     <h2 class="mb-2 number-font">{{ $totalDiscountAmount }}</h2>
-                    <p class="text-muted">Total Discount in Selected Duration</p>
+                    <p class="text-muted">{{ __('task.Total_Discount_in_Selected_Duration') }}</p>
                 </div>
             </div>
         </div>
@@ -232,7 +232,7 @@
 
     <div class="card">
         <div class="card-header">
-            Leaves & Extra Times
+            {{ __('task.Leaves_&_Extra_Time') }}
         </div>
         <div class="card-body">
             <div id="leave-extratime-echart" class="chart-donut chart-dropshadow"></div>
@@ -251,7 +251,7 @@
 
     <div class="card">
         <div class="card-header">
-            Discounts
+            {{ __('task.Discounts') }}
         </div>
         <div class="card-body">
             <div id="discount-echart" class="chart-donut chart-dropshadow"></div>
