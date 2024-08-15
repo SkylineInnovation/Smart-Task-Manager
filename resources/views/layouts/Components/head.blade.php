@@ -24,14 +24,14 @@
 
 <!--C3 CHARTS CSS -->
 <link href="{{ asset('assets/plugins/charts-c3/c3-chart.css') }}" rel="stylesheet" />
+<link href="{{ asset('assets/plugins/morris/morris.css') }}" rel="stylesheet" />
 
 <!-- P-scroll bar css-->
 <link href="{{ asset('assets/plugins/p-scroll/perfect-scrollbar.css') }}" rel="stylesheet" />
 
+
 <!--- FONT-ICONS CSS -->
 <link href="{{ asset('assets/plugins/icons/icons.css') }}" rel="stylesheet" />
-
-@yield('css')
 
 <!-- SIDE-MENU CSS -->
 <link href="{{ asset('assets/css/sidemenu.css') }}" rel="stylesheet" />

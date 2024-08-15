@@ -49,10 +49,11 @@ class AttachmentIndex extends Component
 
     public $filter_main_attachments_id = [];
 
-
+    public $the_user_id;
+    public $the_task_id;
 
     public $admin_view_status = '', $by, $url;
-    public function mount($admin_view_status = '')
+    public function mount($admin_view_status = '', $user_id = null, $task_id = null)
     {
         $this->url = Route::current()->getName();
         $this->admin_view_status = $admin_view_status;
@@ -64,6 +65,16 @@ class AttachmentIndex extends Component
         $this->all = true;
         // $this->fromDate = date('Y-m-d', strtotime("-5 days"));
         $this->toDate = date('Y-m-d');
+
+        if ($user_id) {
+            $this->user_id = $user_id;
+            $this->the_user_id = $user_id;
+        }
+
+        if ($task_id) {
+            $this->task_id = $task_id;
+            $this->the_task_id = $task_id;
+        }
 
 
 
@@ -100,8 +111,8 @@ class AttachmentIndex extends Component
     {
         $this->slug = '';
 
-        $this->user_id = null;
-        $this->task_id = null;
+        // $this->user_id = null;
+        // $this->task_id = null;
         $this->title = '';
         $this->desc = '';
         $this->file = '';
@@ -308,6 +319,12 @@ class AttachmentIndex extends Component
         if ($this->filter_main_attachments_id)
             $attachments = $attachments->whereIn('main_attachment_id', $this->filter_main_attachments_id);
 
+
+        if ($this->the_user_id)
+            $attachments = $attachments->where('user_id', $this->the_user_id);
+
+        if ($this->the_task_id)
+            $attachments = $attachments->where('task_id', $this->the_task_id);
 
         if ($this->admin_view_status == 'deleted')
             $attachments = $attachments->onlyTrashed();

@@ -115,7 +115,8 @@
                         @endif
 
                         @if ($showColumn['title'])
-                            <td> {{ $task->title }} </td>
+                            <td> {{ $task->title }} / {{ $task->duration }} / {{ $task->duration_in_sec }}
+                            </td>
                         @endif
 
                         @if ($showColumn['desc'])

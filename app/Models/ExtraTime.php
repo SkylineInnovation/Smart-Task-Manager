@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\TranslateTrait;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -218,5 +219,39 @@ class ExtraTime extends Model
             return __('extratime.rejected');
 
         return '';
+    }
+
+    public function getDurationAttribute()
+    {
+        return $this->the_duration();
+    }
+
+    public function getDurationInSecAttribute()
+    {
+        return $this->the_duration_in_sec();
+    }
+
+    public function the_duration()
+    {
+        $totalSeconds = $this->the_duration_in_sec();
+        // Convert seconds to hours and minutes
+        $hours = intval($totalSeconds / 3600);
+        $minutes = intval(($totalSeconds % 3600) / 60);
+        // 
+        $hours_string = $hours > 9 ? $hours : '0' . $hours;
+        $minutes_string = $minutes > 9 ? $minutes : '0' . $minutes;
+        // Format the output
+        $result = $hours_string . ':' . $minutes_string . ':00';
+        return $result;
+    }
+
+    public function the_duration_in_sec()
+    {
+        $startDate = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->from_time)));
+        $endDate = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->to_time)));
+
+        $totalSeconds = $endDate->diffInSeconds($startDate);
+
+        return $totalSeconds;
     }
 }

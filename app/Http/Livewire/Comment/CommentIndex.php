@@ -46,10 +46,11 @@ class CommentIndex extends Component
 
     public $filter_main_comments_id = [];
 
-
+    public $the_user_id;
+    public $the_task_id;
 
     public $admin_view_status = '', $by, $url;
-    public function mount($admin_view_status = '')
+    public function mount($admin_view_status = '', $user_id = null, $task_id = null)
     {
         $this->url = Route::current()->getName();
         $this->admin_view_status = $admin_view_status;
@@ -63,6 +64,15 @@ class CommentIndex extends Component
         $this->toDate = date('Y-m-d');
 
 
+        if ($user_id) {
+            $this->user_id = $user_id;
+            $this->the_user_id = $user_id;
+        }
+
+        if ($task_id) {
+            $this->task_id = $task_id;
+            $this->the_task_id = $task_id;
+        }
 
         $this->tasks = \App\Models\Task::whereNullOrEmptyOrZero('main_task_id')->where('show', 1)->orderBy('sort')->get();
 
@@ -98,8 +108,8 @@ class CommentIndex extends Component
     {
         $this->slug = '';
 
-        $this->task_id = null;
-        $this->user_id = null;
+        // $this->task_id = null;
+        // $this->user_id = null;
         $this->title = '';
         $this->desc = '';
         $this->replay_time = '';
@@ -305,6 +315,11 @@ class CommentIndex extends Component
 
         if ($this->filter_main_comments_id)
             $comments = $comments->whereIn('main_comment_id', $this->filter_main_comments_id);
+
+        if ($this->the_user_id)
+            $comments = $comments->where('user_id', $this->the_user_id);
+        if ($this->the_task_id)
+            $comments = $comments->where('task_id', $this->the_task_id);
 
 
         if ($this->admin_view_status == 'deleted')

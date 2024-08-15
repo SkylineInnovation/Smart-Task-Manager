@@ -49,10 +49,11 @@ class ExtratimeIndex extends Component
 
     public $filter_accepted_by_users_id = [];
 
-
+    public $the_user_id;
+    public $the_task_id;
 
     public $admin_view_status = '', $by, $url;
-    public function mount($admin_view_status = '')
+    public function mount($admin_view_status = '', $user_id = null, $task_id = null)
     {
         $this->url = Route::current()->getName();
         $this->admin_view_status = $admin_view_status;
@@ -64,6 +65,16 @@ class ExtratimeIndex extends Component
         $this->all = true;
         // $this->fromDate = date('Y-m-d', strtotime("-5 days"));
         $this->toDate = date('Y-m-d');
+
+        if ($user_id) {
+            $this->user_id = $user_id;
+            $this->the_user_id = $user_id;
+        }
+
+        if ($task_id) {
+            $this->task_id = $task_id;
+            $this->the_task_id = $task_id;
+        }
 
         $this->request_time = date('Y-m-d\TH:i');
         $this->from_time = date('Y-m-d\TH:i');
@@ -108,8 +119,8 @@ class ExtratimeIndex extends Component
     {
         $this->slug = '';
 
-        $this->task_id = null;
-        $this->user_id = null;
+        // $this->task_id = null;
+        // $this->user_id = null;
         $this->accepted_by_user_id = null;
         $this->reason = '';
         $this->result = '';
@@ -339,7 +350,7 @@ class ExtratimeIndex extends Component
             'from_time' => $this->from_time,
             'to_time' => $this->to_time,
             'response_time' => date('Y-m-d H:i A'),
-            'duration' => $dur->format("%d day %h:%i:%s"),
+            // 'duration' => $dur->format("%d day %h:%i:%s"),
             'status' => 'accepted',
         ]);
 
@@ -362,12 +373,6 @@ class ExtratimeIndex extends Component
         ]);
     }
 
-
-   
-
-
-
-
     public function render()
     {
         $extratimes = ExtraTime::livewireSearch($this->search);
@@ -385,6 +390,11 @@ class ExtratimeIndex extends Component
 
         if ($this->filter_accepted_by_users_id)
             $extratimes = $extratimes->whereIn('accepted_by_user_id', $this->filter_accepted_by_users_id);
+
+        if ($this->the_user_id)
+            $extratimes = $extratimes->whereIn('user_id', $this->the_user_id);
+        if ($this->the_task_id)
+            $extratimes = $extratimes->whereIn('task_id', $this->the_task_id);
 
 
         if ($this->admin_view_status == 'deleted')

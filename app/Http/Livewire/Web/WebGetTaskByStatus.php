@@ -178,6 +178,8 @@ class WebGetTaskByStatus extends Component
 
         $this->replay_comment_title = '';
         $this->replay_comment_desc = '';
+
+        $this->emit('close-replay-comment-model', $this->task_id);
     }
 
     public $employees;
@@ -317,7 +319,7 @@ class WebGetTaskByStatus extends Component
             'request_time' => date('Y-m-d H:i A'),
 
             // 'response_time' => $this->response_time,
-            'duration' => $dur->format("%d day %h:%i:%s"),
+            // 'duration' => $dur->format("%d day %h:%i:%s"),
         ]);
 
         $this->extratime_from_time = '';
@@ -328,6 +330,107 @@ class WebGetTaskByStatus extends Component
 
     }
 
+    public $extratime, $extratime_id;
+    public function setExtraTime($id)
+    {
+        $this->extratime_id = $id;
+
+        $extratime = ExtraTime::find($id);
+        $this->extratime = $extratime;
+
+        $this->extratime_from_time = $extratime->from_time;
+        $this->extratime_to_time = $extratime->to_time;
+        $this->extratime_reason = $extratime->reason;
+
+        $this->show_extratime = true;
+    }
+
+    public $show_extratime = false;
+    public function acceptExtraTime()
+    {
+        $from_date = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->extratime_from_time)));
+        $to_date = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->extratime_to_time)));
+
+        $dur = $from_date->diff($to_date);
+
+        $extratime = ExtraTime::find($this->extratime_id);
+
+        $extratime->update([
+            'accepted_by_user_id' => auth()->user()->id,
+            'from_time' => $this->extratime_from_time,
+            'to_time' => $this->extratime_to_time,
+            'response_time' => date('Y-m-d H:i A'),
+            // 'duration' => $dur->format("%d day %h:%i:%s"),
+            'status' => 'accepted',
+        ]);
+
+        $task = Task::find($extratime->task_id);
+
+        $task->update([
+            'end_time' => $this->extratime_to_time,
+        ]);
+
+        $this->emit('close-accept-extra-time-model', $task->id); // Close model to using to jquery
+
+        $this->show_extratime = false;
+    }
+
+    public function rejectExtraTime($id)
+    {
+        $extratime = ExtraTime::find($id);
+
+        $extratime->update([
+            'response_time' => date('Y-m-d H:i A'),
+            'status' => 'rejected',
+        ]);
+    }
+
+    // // // // 
+    public $leave, $leave_id;
+    public function setLeave($id)
+    {
+        $this->leave_id = $id;
+
+        $leave = Leave::find($id);
+        $this->leave = $leave;
+
+        $this->leave_type = $leave->type;
+        $this->leave_time_out = $leave->time_out;
+        $this->leave_time_in = $leave->time_in;
+        $this->leave_reason = $leave->reason;
+        $this->leave_result = $leave->result;
+
+        $this->show_leave = true;
+    }
+
+
+    public $show_leave = false;
+    public function acceptLeave()
+    {
+        $leaveTime = Leave::find($this->leave_id);
+
+        $leaveTime->update([
+            'type' => $this->leave_type,
+            'time_out' => $this->leave_time_out,
+            'time_in' => $this->leave_time_in,
+            'status' => 'accepted',
+            'accepted_by_user_id' => auth()->user()->id,
+            'accepted_time' => date('Y-m-d H:i A'),
+        ]);
+
+        $this->emit('close-accept-leave-model', $this->task_id); // Close model to using to jquery
+
+    }
+
+    public function rejectLeave($id)
+    {
+        $leaveTime = Leave::find($id);
+
+        $leaveTime->update([
+            'response_time' => date('Y-m-d H:i A'),
+            'status' => 'rejected',
+        ]);
+    }
 
     public function render()
     {
@@ -342,7 +445,7 @@ class WebGetTaskByStatus extends Component
 
         $tasks = $tasks->orderBy('id', 'desc')->get();
 
-      
+
 
         return view('livewire.web.web-get-task-by-status', compact('tasks'));
     }

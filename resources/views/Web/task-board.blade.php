@@ -101,6 +101,17 @@
             window.livewire.on('close-extra-time-model', id => {
                 $('#extra-time-modal-' + id).modal('hide');
             })
+
+            window.livewire.on('close-replay-comment-model', id => {
+                $('#replay-modal-' + id).modal('hide');
+            })
+
+            window.livewire.on('close-accept-extra-time-model', id => {
+                $('#accept-extratime-modal-' + id).modal('hide');
+            })
+            window.livewire.on('close-accept-leave-model', id => {
+                $('#accept-leave-modal-' + id).modal('hide');
+            })
         });
     </script>
 @endsection

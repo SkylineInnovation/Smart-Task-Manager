@@ -46,9 +46,11 @@ class TaskIndex extends Component
 
     public $filter_main_tasks_id = [];
 
+    public $the_manager_id;
+    public $the_employee_id;
 
     public $admin_view_status = '', $by, $url;
-    public function mount($admin_view_status = '')
+    public function mount($admin_view_status = '', $the_manager_id = null, $the_employee_id = null)
     {
         $this->url = Route::current()->getName();
         $this->admin_view_status = $admin_view_status;
@@ -61,6 +63,11 @@ class TaskIndex extends Component
         $this->all = true;
         // $this->fromDate = date('Y-m-d', strtotime("-5 days"));
         $this->toDate = date('Y-m-d');
+
+        if ($the_manager_id)
+            $this->the_manager_id = $the_manager_id;
+        if ($the_employee_id)
+            $this->the_employee_id = $the_employee_id;
 
         $this->start_time = date('Y-m-d\TH:i');
         $this->end_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
@@ -99,7 +106,7 @@ class TaskIndex extends Component
     {
         $this->slug = '';
 
-        $this->manager_id = null;
+        // $this->manager_id = null;
         $this->title = '';
         $this->desc = '';
         $this->start_time = date('Y-m-d\TH:i');
@@ -324,6 +331,14 @@ class TaskIndex extends Component
 
         if ($this->filter_main_tasks_id)
             $tasks = $tasks->whereIn('main_task_id', $this->filter_main_tasks_id);
+
+        if ($this->the_manager_id)
+            $tasks = $tasks->where('the_manager_id', $this->the_manager_id);
+
+        if ($this->the_employee_id)
+            $tasks = $tasks->whereHas('employees', function ($q) {
+                $q->where('user_id', $this->the_employee_id);
+            });
 
 
         if ($this->admin_view_status == 'deleted')

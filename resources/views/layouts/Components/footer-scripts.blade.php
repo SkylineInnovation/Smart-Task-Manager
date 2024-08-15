@@ -14,6 +14,9 @@
 <!-- CHART-CIRCLE JS -->
 <script src="{{ asset('assets/plugins/circle-progress/circle-progress.min.js') }}"></script>
 
+<script src="{{ asset('assets/plugins/morris/raphael-min.js') }}"></script>
+<script src="{{ asset('assets/plugins/morris/morris.js') }}"></script>
+
 <!-- C3.JS CHART JS -->
 <script src="{{ asset('assets/plugins/charts-c3/d3.v5.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/charts-c3/c3-chart.js') }}"></script>

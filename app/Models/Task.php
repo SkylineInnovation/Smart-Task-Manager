@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Mail\Task\SendStatusChangeOnTask;
 use App\Traits\TranslateTrait;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -250,6 +251,7 @@ class Task extends Model
     {
         return $this->hasMany(Attachment::class);
     }
+
     public function comments()
     {
         return $this->hasMany(Comment::class)->where('main_comment_id', 0);
@@ -259,6 +261,7 @@ class Task extends Model
     {
         return $this->hasMany(Task::class, 'main_task_id');
     }
+
     public function extra_times()
     {
         return $this->hasMany(ExtraTime::class);
@@ -267,5 +270,39 @@ class Task extends Model
     public function leaves_times()
     {
         return $this->hasMany(Leave::class);
+    }
+
+    public function getDurationAttribute()
+    {
+        return $this->the_duration();
+    }
+
+    public function getDurationInSecAttribute()
+    {
+        return $this->the_duration_in_sec();
+    }
+
+    public function the_duration()
+    {
+        $totalSeconds = $this->the_duration_in_sec();
+        // Convert seconds to hours and minutes
+        $hours = intval($totalSeconds / 3600);
+        $minutes = intval(($totalSeconds % 3600) / 60);
+        // 
+        $hours_string = $hours > 9 ? $hours : '0' . $hours;
+        $minutes_string = $minutes > 9 ? $minutes : '0' . $minutes;
+        // Format the output
+        $result = $hours_string . ':' . $minutes_string . ':00';
+        return $result;
+    }
+
+    public function the_duration_in_sec()
+    {
+        $startDate = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->start_time)));
+        $endDate = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->end_time)));
+
+        $totalSeconds = $endDate->diffInSeconds($startDate);
+
+        return $totalSeconds;
     }
 }

@@ -14,6 +14,12 @@
 
     @livewireStyles
 
+    @stack('styles')
+
+    @yield('css')
+
+
+
 </head>
 
 <body class="app sidebar-mini @if (session('sidenav-toggled') == 'small') sidenav-toggled @endif">
@@ -92,6 +98,8 @@
     </div>
 
     @livewireScripts
+
+    @stack('scripts')
 
     @yield('livewire-js')
 

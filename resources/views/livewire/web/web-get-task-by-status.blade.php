@@ -147,9 +147,15 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="show-task-modal-{{ $task->id }}Label">
-                            Task Details
-                        </h5>
+                        {{-- <div> --}}
+                        {{-- <h5 class="modal-title" id="show-task-modal-{{ $task->id }}Label">
+                                <span class="me-5">Task Details</span>
+                            </h5> --}}
+                        {{-- </div> --}}
+                        <div class="rounded-pill text-white text-center px-4 py-1"
+                            style="background-color: {{ $task->the_priority_color() }}">
+                            {{ $task->the_priority_level() }}
+                        </div>
 
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -158,13 +164,30 @@
 
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-8 text-start">
                                 <div>
-                                    <strong>Discription:</strong>
+                                    <h4>Title: {{ $task->title }}</h4>
                                 </div>
+
                                 <div>
-                                    <small class="fs-6 text-gray">{!! $task->desc !!}</small>
-                                    {{-- {!! $task->desc !!} --}}
+                                    <h5>Discription:</h5>
+                                    <small class="fs-5 text-gray">{!! $task->desc !!}</small>
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="row text-start">
+                                    <div class="col-12">
+                                        From:
+                                        <br>
+                                        {{ date('Y-m-d H:i A', strtotime($task->start_time)) }}
+                                    </div>
+
+                                    <div class="col-12">
+                                        To:
+                                        <br>
+                                        {{ date('Y-m-d H:i A', strtotime($task->end_time)) }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -332,10 +355,12 @@
                                                         download>
                                                         <i class="fa fa-download text-white"></i>
                                                     </a>
-                                                    <a class="btn btn-danger"
-                                                        wire:click='deleteAttatchment({{ $attatch->id }})'>
-                                                        <i class="fa fa-trash text-white"></i>
-                                                    </a>
+                                                    @role('owner|manager')
+                                                        <a class="btn btn-danger"
+                                                            wire:click='deleteAttatchment({{ $attatch->id }})'>
+                                                            <i class="fa fa-trash text-white"></i>
+                                                        </a>
+                                                    @endrole
                                                 </div>
                                             </div>
                                         @endforeach
@@ -373,26 +398,25 @@
                                                 <img class="mr-3" src="{{ asset('assets/images/users/10.jpg') }}"
                                                     alt="Generic placeholder image">
                                                 <div class="media-body">
-                                                    <h5 class="mt-0">{{ $comment->user->name() }}</h5>
-                                                    {{ $comment->desc }}
-
-
+                                                    <h5 class="mt-0">{{ $comment->user->name() }},
+                                                        {{ $comment->title }}</h5>
+                                                    <p>{{ $comment->desc }}</p>
                                                     <div class="col-12 d-flex justify-content-end">
 
                                                         <a class="btn btn-primary-gradient" data-toggle="modal"
                                                             wire:click="setCommentId({{ $comment->id }})"
-                                                            data-target="#replay">
+                                                            data-target="#replay-modal-{{ $task->id }}">
                                                             <i class="fa fa-comment text-white"></i>
                                                         </a>
                                                         &nbsp;
-                                                        <a class="btn btn-danger"
-                                                            wire:click='deleteComents({{ $comment->id }})'>
-                                                            <i class="fa fa-trash text-white"></i>
-                                                        </a>
+
+                                                        @role('owner|manager')
+                                                            <a class="btn btn-danger"
+                                                                wire:click='deleteComents({{ $comment->id }})'>
+                                                                <i class="fa fa-trash text-white"></i>
+                                                            </a>
+                                                        @endrole
                                                     </div>
-
-
-
 
                                                     @foreach ($comment->subs as $subCom)
                                                         <div class="media mt-3">
@@ -401,8 +425,9 @@
                                                                     alt="Generic placeholder image">
                                                             </a>
                                                             <div class="media-body">
-                                                                <h5 class="mt-0">{{ $subCom->user->name() }}</h5>
-                                                                {{ $subCom->desc }}
+                                                                <h5 class="mt-0">{{ $subCom->user->name() }},
+                                                                    {{ $subCom->title }}</h5>
+                                                                <p>{{ $subCom->desc }}</p>
                                                             </div>
                                                         </div>
                                                     @endforeach
@@ -412,13 +437,16 @@
 
 
 
-                                            <div class="modal fade" id="replay" tabindex="-1" role="dialog"
-                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div wire:ignore.self class="modal fade"
+                                                id="replay-modal-{{ $task->id }}" tabindex="-1" role="dialog"
+                                                aria-labelledby="replay-modal-{{ $task->id }}-Label"
+                                                aria-hidden="true">
                                                 <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">
-                                                                Modal replay
+                                                            <h5 class="modal-title"
+                                                                id="replay-modal-{{ $task->id }}-Label">
+                                                                Replay
                                                             </h5>
                                                             <button type="button" class="close"
                                                                 data-dismiss="modal" aria-label="Close">
@@ -444,14 +472,16 @@
                                                                     placeholder='{{ __(' global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="replay_comment_desc"></textarea>
                                                             </div>
 
-                                                            <button wire:click="replayComment()" type="button"
-                                                                class="w-100 btn btn-success">
-                                                                Commet
-                                                            </button>
+
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-dismiss="modal">Close</button>
+
+                                                            <button wire:click="replayComment()" type="button"
+                                                                class="btn btn-success">
+                                                                Commet
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -465,83 +495,70 @@
                                 <div class="tab-pane fade {{ $tab == 4 ? 'show active' : '' }}" id="subTask"
                                     role="tabpanel" aria-labelledby="subTask-tab">
                                     {{-- --}}{{-- --}}{{-- --}}{{-- --}}
-                                    <div class="row">
+                                    @role('owner|manager')
+                                        <div>
+                                            <div class="row">
 
-                                        <div class="input-group mb-1 col-8">
-                                            <div class="input-group-prepend ">
-                                                <span class="input-group-text btn-secondary text-white"
-                                                    id="inputGroup-sizing-default">{{ __('task.title') }}</span>
+                                                <div class="input-group mb-1 col-8">
+                                                    <div class="input-group-prepend ">
+                                                        <span class="input-group-text btn-secondary text-white"
+                                                            id="inputGroup-sizing-default">{{ __('task.title') }}</span>
+                                                    </div>
+
+                                                    <input wire:model.defer="sub_task_title" type="text"
+                                                        class="form-control" aria-label="Default"
+                                                        aria-describedby="inputGroup-sizing-default">
+                                                </div>
+
+                                                <div class="form-group mb-1 col-4">
+                                                    <select wire:model.defer="sub_task_priority_level"
+                                                        class="form-control">
+                                                        <option value="low">low</option>
+                                                        <option value="medium">medium</option>
+                                                        <option value="high">high</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="input-group mb-1  col-md-6">
+                                                    <div class="input-group-prepend ">
+                                                        <span class="input-group-text btn-secondary text-white"
+                                                            id="inputGroup-sizing-default">{{ __('task.start_time') }}</span>
+                                                    </div>
+                                                    <input wire:model.defer="sub_task_start_time" type="datetime-local"
+                                                        class="form-control" aria-label="Default"
+                                                        aria-describedby="inputGroup-sizing-default">
+                                                </div>
+
+                                                <div class="input-group mb-1  col-md-6">
+                                                    <div class="input-group-prepend ">
+                                                        <span class="input-group-text btn-secondary text-white"
+                                                            id="inputGroup-sizing-default">{{ __('task.end_time') }}</span>
+                                                    </div>
+                                                    <input wire:model.defer="sub_task_end_time" type="datetime-local"
+                                                        class="form-control" aria-label="Default"
+                                                        aria-describedby="inputGroup-sizing-default">
+                                                </div>
+
+                                                <div wire:ignore.self class="col-md-12">
+                                                    {{-- <div wire:ignore.self id="summer_desc"></div> --}}
+                                                    <textarea name='desc' id='desc' rows="4" class='form-control'
+                                                        placeholder='{{ __(' global.enter') }} {{ __('task.desc') }}' wire:model.defer="sub_task_desc"></textarea>
+                                                </div>
+
                                             </div>
 
-                                            <input wire:model.defer="sub_task_title" type="text"
-                                                class="form-control" aria-label="Default"
-                                                aria-describedby="inputGroup-sizing-default">
-                                        </div>
-
-                                        <div class="form-group mb-1 col-4">
-                                            <select wire:model.defer="sub_task_priority_level" class="form-control">
-                                                <option value="low">low</option>
-                                                <option value="medium">medium</option>
-                                                <option value="high">high</option>
-                                            </select>
-                                        </div>
-
-                                        {{-- <div class="input-group mb-1 col-md-8">
-                                        <div class="input-group-prepend ">
-                                            <span class="input-group-text btn-secondary text-white"
-                                                id="inputGroup-sizing-default">{{ __('task.title') }}</span>
-                                        </div>
-                                        <input wire:model.defer="sub_task_title" type="text" multiple
-                                            class="form-control" aria-label="Default"
-                                            aria-describedby="inputGroup-sizing-default">
-                                    </div> --}}
-
-                                        {{-- <div class="input-group mb-1 col-md-4">
-                                        <div class="input-group-prepend ">
-                                            <span class="input-group-text btn-secondary text-white"
-                                                id="inputGroup-sizing-default">{{ __('task.discount') }}</span>
-                                        </div>
-                                        <input wire:model.defer="sub_task_discount" type="number" class="form-control"
-                                            aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                                    </div> --}}
-
-                                        <div class="input-group mb-1  col-md-6">
-                                            <div class="input-group-prepend ">
-                                                <span class="input-group-text btn-secondary text-white"
-                                                    id="inputGroup-sizing-default">{{ __('task.start_time') }}</span>
+                                            <div class="form-group">
+                                                @foreach ($errors->all() as $error)
+                                                    <span class='alert alert-danger btn'>{{ $error }}</span>
+                                                @endforeach
                                             </div>
-                                            <input wire:model.defer="sub_task_start_time" type="datetime-local"
-                                                class="form-control" aria-label="Default"
-                                                aria-describedby="inputGroup-sizing-default">
+
+                                            <button wire:click="addSubTask()" type="button"
+                                                class="w-100 btn btn-success">
+                                                Add Sub Task
+                                            </button>
                                         </div>
-
-                                        <div class="input-group mb-1  col-md-6">
-                                            <div class="input-group-prepend ">
-                                                <span class="input-group-text btn-secondary text-white"
-                                                    id="inputGroup-sizing-default">{{ __('task.end_time') }}</span>
-                                            </div>
-                                            <input wire:model.defer="sub_task_end_time" type="datetime-local"
-                                                class="form-control" aria-label="Default"
-                                                aria-describedby="inputGroup-sizing-default">
-                                        </div>
-
-                                        <div wire:ignore.self class="col-md-12">
-                                            {{-- <div wire:ignore.self id="summer_desc"></div> --}}
-                                            <textarea name='desc' id='desc' rows="4" class='form-control'
-                                                placeholder='{{ __(' global.enter') }} {{ __('task.desc') }}' wire:model.defer="sub_task_desc"></textarea>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group">
-                                        @foreach ($errors->all() as $error)
-                                            <span class='alert alert-danger btn'>{{ $error }}</span>
-                                        @endforeach
-                                    </div>
-
-                                    <button wire:click="addSubTask()" type="button" class="w-100 btn btn-success">
-                                        Add Sub Task
-                                    </button>
+                                    @endrole
                                     {{-- --}}{{-- --}}{{-- --}}{{-- --}}
 
                                     <div class="py-4">
@@ -549,62 +566,73 @@
                                             <div class="row w-100 m-0 border shadow ">
 
                                                 <div class="col-md-6 ">
-                                                    <div class="col-md-12 d-flex justify-content-around">
-                                                        <div class="col-md-6">
-                                                            Title:
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            {{ $sub->title }}
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12 d-flex justify-content-around">
-                                                        <div class="col-md-6">
-                                                            Description:
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            {{ $sub->desc }}
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12 d-flex justify-content-around">
-                                                        <div class="col-md-6">
-                                                            Employee:
-                                                        </div>
-                                                        @foreach ($sub->employees as $subEm)
+                                                    <div class="col-md-12">
+                                                        <div class="row">
                                                             <div class="col-md-6">
-                                                                {{ $subEm->name() }}
+                                                                Title:
                                                             </div>
-                                                        @endforeach
+
+                                                            <div class="col-md-6">
+                                                                {{ $sub->title }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                Description:
+                                                            </div>
+
+                                                            <div class="col-md-6">
+                                                                {{ $sub->desc }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                Employee:
+                                                            </div>
+                                                            @foreach ($sub->employees as $subEm)
+                                                                <div class="col-md-6">
+                                                                    {{ $subEm->name() }}
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
-                                                    <div class="col-md-12 d-flex justify-content-around">
-                                                        <div class="col-md-6">
-                                                            Priority:
-                                                        </div>
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                Priority:
+                                                            </div>
 
-                                                        <div class="col-md-6">
-                                                            {{ $sub->the_priority_level() }}
+                                                            <div class="col-md-6">
+                                                                {{ $sub->the_priority_level() }}
+                                                            </div>
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-12 d-flex justify-content-around">
-                                                        <div class="col-md-6">
-                                                            Trom:
-                                                            <br>
-                                                            {{ $sub->start_time }}
-                                                        </div>
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                From:
+                                                                <br>
+                                                                {{ date('Y-m-d H:i A', strtotime($sub->start_time)) }}
+                                                            </div>
 
-                                                        <div class="col-md-6">
-                                                            To:
-                                                            <br>
-                                                            {{ $sub->end_time }}
+                                                            <div class="col-md-6">
+                                                                To:
+                                                                <br>
+                                                                {{ date('Y-m-d H:i A', strtotime($sub->end_time)) }}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         @endforeach
                                     </div>
@@ -615,78 +643,93 @@
                                     role="tabpanel" aria-labelledby="extra-tab">
 
                                     <div class="py-4">
-                                        @foreach ($task->extra_times as $extra_sub)
+                                        @foreach ($task->extra_times as $extra_time)
                                             <div class="row w-100 m-0 border shadow ">
 
                                                 <div class="col-md-6 ">
-                                                    <div class="col-md-12 d-flex justify-content-around">
-                                                        <div class="col-md-6">
-                                                            Title:
-                                                        </div>
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                Title:
+                                                            </div>
 
-                                                        <div class="col-md-6">
-                                                            {{ $extra_sub->reason }}
+                                                            <div class="col-md-6">
+                                                                {{ $extra_time->reason }}
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    {{-- <div class="col-md-12 d-flex justify-content-around">
-                                                        <div class="col-md-6">
-                                                            Description:
-                                                        </div>
 
-                                                        <div class="col-md-6">
-                                                            {{ $sub->desc }}
-                                                        </div>
-                                                    </div> --}}
-                                                    <div class="col-md-12 d-flex justify-content-around">
-                                                        <div class="col-md-6">
-                                                            Employee:
-                                                        </div>
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                Employee:
+                                                            </div>
 
-                                                        <div class="col-md-6">
-                                                            {{ $extra_sub->user->name() }}
+                                                            <div class="col-md-6">
+                                                                {{ $extra_time->user->name() }}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
-                                                    <div class="col-md-12 d-flex justify-content-around">
-                                                        <div class="col-md-6">
-                                                            status:
-                                                        </div>
-                                                        {{ $extra_sub->the_status() }}
-                                                        
-                                                        @if ($extra_sub->status == 'pending')
-                                                            <div class="col-md">
-                                                                <div class="dropdown">
-                                                                    <button class="btn {{$extra_sub->the_extra_color()}} dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                        {{ $extra_sub->the_status() }}
-                                                                    </button>
-                                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                                        <button class="dropdown-item" data-toggle="modal" data-target="#accept-extraTime-modal" wire:click="edit({{ $extra_sub->id }})">
-                                                                            <i class="ti-check text-success"></i> Accept
-                                                                        </button>
-                                                                        <button class="dropdown-item" data-toggle="modal" data-target="#reject-extraTime-modal" wire:click="rejectExtraTime({{ $extra_sub->id }})">
-                                                                            <i class="ti-close text-danger"></i> Reject
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
+                                                    <div class="col-md-12 mb-3">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                status:
                                                             </div>
-                                                        @endif
-                                                        
-                                                        
+
+                                                            <div class="col-md-6">
+                                                                @if ($extra_time->status == 'pending')
+                                                                    <div class="dropdown">
+                                                                        <button
+                                                                            class="btn {{ $extra_time->the_extra_color() }} dropdown-toggle p-1"
+                                                                            type="button" id="dropdownMenuButton"
+                                                                            data-toggle="dropdown"
+                                                                            aria-haspopup="true"
+                                                                            aria-expanded="false">
+                                                                            {{ $extra_time->the_status() }}
+                                                                        </button>
+                                                                        @role('owner|manager')
+                                                                            <div class="dropdown-menu"
+                                                                                aria-labelledby="dropdownMenuButton">
+                                                                                <button class="dropdown-item"
+                                                                                    data-toggle="modal"
+                                                                                    data-target="#accept-extratime-modal-{{ $task->id }}"
+                                                                                    wire:click="setExtraTime({{ $extra_time->id }})">
+                                                                                    <i class="ti-check text-success"></i>
+                                                                                    Accept
+                                                                                </button>
+                                                                                <button class="dropdown-item"
+                                                                                    data-toggle="modal"
+                                                                                    data-target="#reject-extratime-modal-{{ $task->id }}"
+                                                                                    wire:click="rejectExtraTime({{ $extra_time->id }})">
+                                                                                    <i class="ti-close text-danger"></i>
+                                                                                    Reject
+                                                                                </button>
+                                                                            </div>
+                                                                        @endrole
+                                                                    </div>
+                                                                @else
+                                                                    {{ $extra_time->the_status() }}
+                                                                @endif
+                                                            </div>
+                                                        </div>
                                                     </div>
 
-                                                    <div class="col-md-12 d-flex justify-content-around">
-                                                        <div class="col-md-6">
-                                                            Trom:
-                                                            <br>
-                                                            {{ $extra_sub->from_time }}
-                                                        </div>
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                From:
+                                                                <br>
+                                                                {{ date('Y-m-d H:i A', strtotime($extra_time->from_time)) }}
+                                                            </div>
 
-                                                        <div class="col-md-6">
-                                                            To:
-                                                            <br>
-                                                            {{ $extra_sub->to_time }}
+                                                            <div class="col-md-6">
+                                                                To:
+                                                                <br>
+                                                                {{ date('Y-m-d H:i A', strtotime($extra_time->to_time)) }}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -705,72 +748,89 @@
                                             <div class="row w-100 m-0 border shadow ">
 
                                                 <div class="col-md-6 ">
-                                                    <div class="col-md-12 d-flex justify-content-around">
-                                                        <div class="col-md-6">
-                                                            Title:
-                                                        </div>
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                Title:
+                                                            </div>
 
-                                                        <div class="col-md-6">
-                                                            {{ $leave->reason }}
+                                                            <div class="col-md-6">
+                                                                {{ $leave->reason }}
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    {{-- <div class="col-md-12 d-flex justify-content-around">
-                                                        <div class="col-md-6">
-                                                            Description:
-                                                        </div>
 
-                                                        <div class="col-md-6">
-                                                            {{ $sub->desc }}
-                                                        </div>
-                                                    </div> --}}
-                                                    <div class="col-md-12 d-flex justify-content-around">
-                                                        <div class="col-md-6">
-                                                            Employee:
-                                                        </div>
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                Employee:
+                                                            </div>
 
-                                                        <div class="col-md-6">
-                                                            {{ $leave->user->name() }}
+                                                            <div class="col-md-6">
+                                                                {{ $leave->user->name() }}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
-                                                    <div class="col-md-12 d-flex justify-content-around">
-                                                        <div class="col-md-6">
-                                                            status:
-                                                        </div>
-                                                        {{ $leave->the_status() }}
-                                                        @if ($leave->status == 'pending')
-                                                        <div class="col-md">
-                                                            <div class="dropdown">
-                                                                <button class="btn {{$leave->the_leave_color()}} dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <div class="col-md-12 mb-3">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                status:
+                                                            </div>
+
+                                                            <div class="col-md-6">
+                                                                @if ($leave->status == 'pending')
+                                                                    <div class="dropdown">
+                                                                        <button
+                                                                            class="btn {{ $leave->the_leave_color() }} dropdown-toggle p-1"
+                                                                            type="button" id="dropdownMenuButton"
+                                                                            data-toggle="dropdown"
+                                                                            aria-haspopup="true"
+                                                                            aria-expanded="false">
+                                                                            {{ $leave->the_status() }}
+                                                                        </button>
+                                                                        @role('owner|manager')
+                                                                            <div class="dropdown-menu"
+                                                                                aria-labelledby="dropdownMenuButton">
+                                                                                <button class="dropdown-item"
+                                                                                    data-toggle="modal"
+                                                                                    data-target="#accept-leave-modal-{{ $task->id }}"
+                                                                                    wire:click="setLeave({{ $leave->id }})">
+                                                                                    <i class="ti-check text-success"></i>
+                                                                                    Accept
+                                                                                </button>
+                                                                                <button class="dropdown-item"
+                                                                                    data-toggle="modal"
+                                                                                    data-target="#reject-leave-modal"
+                                                                                    wire:click="rejectLeave({{ $leave->id }})">
+                                                                                    <i class="ti-close text-danger"></i>
+                                                                                    Reject
+                                                                                </button>
+                                                                            </div>
+                                                                        @endrole
+                                                                    </div>
+                                                                @else
                                                                     {{ $leave->the_status() }}
-                                                                </button>
-                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                                    <button class="dropdown-item" data-toggle="modal" data-target="#accept-leave-modal" wire:click="edit({{ $leave->id }})">
-                                                                        <i class="ti-check text-success"></i> Accept
-                                                                    </button>
-                                                                    <button class="dropdown-item" data-toggle="modal" data-target="#reject-leave-modal" wire:click="rejectLeave({{ $leave->id }})">
-                                                                        <i class="ti-close text-danger"></i> Reject
-                                                                    </button>
-                                                                </div>
+                                                                @endif
                                                             </div>
                                                         </div>
-                                                    @endif
-                                                        
                                                     </div>
 
-                                                    <div class="col-md-12 d-flex justify-content-around">
-                                                        <div class="col-md-6">
-                                                            Trom:
-                                                            <br>
-                                                            {{ $extra_sub->from_time }}
-                                                        </div>
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                From:
+                                                                <br>
+                                                                {{ date('Y-m-d H:i A', strtotime($leave->time_out)) }}
+                                                            </div>
 
-                                                        <div class="col-md-6">
-                                                            To:
-                                                            <br>
-                                                            {{ $extra_sub->to_time }}
+                                                            <div class="col-md-6">
+                                                                To:
+                                                                <br>
+                                                                {{ date('Y-m-d H:i A', strtotime($leave->time_in)) }}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -798,7 +858,8 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="request-leave-modal-{{ $task->id }}-title">Request Leave</h5>
+                        <h5 class="modal-title" id="request-leave-modal-{{ $task->id }}-title">Request Leave
+                        </h5>
                         <button class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -842,7 +903,7 @@
                             <div class="col-12">
                                 <textarea name='reason' id='reason' rows="3" class='form-control'
                                     placeholder='{{ __('
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                global.enter') }} {{ __('leave.reason') }}'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            global.enter') }} {{ __('leave.reason') }}'
                                     {{-- --}} wire:model.defer="leave_reason"></textarea>
                             </div>
                         </div>
@@ -898,7 +959,7 @@
                             <div class="col-12">
                                 <textarea name='reason' id='reason' rows="3" class='form-control'
                                     placeholder='{{ __('
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                global.enter') }} {{ __('extratime.reason') }}'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            global.enter') }} {{ __('extratime.reason') }}'
                                     {{-- --}} wire:model.defer="extratime_reason"></textarea>
                             </div>
 
@@ -915,6 +976,210 @@
                 </div>
             </div>
         </div>
+
+        @role('owner|manager')
+            <div wire:ignore.self class="modal fade" id="accept-extratime-modal-{{ $task->id }}"
+                data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+                aria-labelledby="accept-extratime-modal-{{ $task->id }}-label" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="accept-extratime-modal-{{ $task->id }}-label">
+                                {{ __('global.accept-extratime') }}
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        @if ($show_extratime)
+                            <form enctype="multipart/form-data" method="post" accept-charset="utf-8"
+                                class="form-horizontal">
+                                <div class="modal-body">
+                                    @csrf
+
+                                    <div class="row">
+
+                                        @include('inputs.show.input', [
+                                            'label' => 'extratime.task',
+                                            'val' => $extratime->task->crud_name(),
+                                        ])
+
+                                        @include('inputs.show.input', [
+                                            'label' => 'extratime.user',
+                                            'val' => $extratime->user->name(),
+                                        ])
+
+                                        @include('inputs.show.input', [
+                                            'label' => 'extratime.reason',
+                                            'val' => $extratime_reason,
+                                            'lg' => 8,
+                                            'md' => 8,
+                                            'sm' => 8,
+                                        ])
+
+                                        @include('inputs.show.input', [
+                                            'label' => 'extratime.request_time',
+                                            'val' => $extratime->request_time,
+                                            // 'type' => 'datetime-local', // 'step' => 1,
+                                            // 'required' => 'required',
+                                            'lg' => 4,
+                                            'md' => 4,
+                                            'sm' => 4,
+                                        ])
+
+                                        @include('inputs.create.input', [
+                                            'label' => 'extratime.from_time',
+                                            'name' => 'extratime.from_time',
+                                            'livewire' => 'extratime_from_time',
+                                            'type' => 'datetime-local', // 'step' => 1,
+                                            // 'required' => 'required',
+                                            // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                        ])
+
+                                        @include('inputs.create.input', [
+                                            'label' => 'extratime.to_time',
+                                            'name' => 'extratime.to_time',
+                                            'livewire' => 'extratime_to_time',
+                                            'type' => 'datetime-local', // 'step' => 1,
+                                            // 'required' => 'required',
+                                            // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                        ])
+
+                                        @include('inputs.show.input', [
+                                            'label' => 'extratime.duration',
+                                            'val' => $extratime->duration,
+                                            'lg' => 12,
+                                            'md' => 12,
+                                            'sm' => 12,
+                                        ])
+
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    @foreach ($errors->all() as $error)
+                                        <span class='alert alert-danger btn'>{{ $error }}</span>
+                                    @endforeach
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">
+                                        {{ __('global.close') }}
+                                    </button>
+                                    <button type="submit" wire:click.prevent="acceptExtraTime()"
+                                        class="btn btn-success">
+                                        {{ __('global.save-changes') }}
+                                    </button>
+                                </div>
+                            </form>
+                        @endif
+
+                    </div>
+                </div>
+            </div>
+            {{--  --}}
+            <div wire:ignore.self class="modal fade" id="accept-leave-modal-{{ $task->id }}" data-backdrop="static"
+                data-keyboard="false" tabindex="-1" role="dialog"
+                aria-labelledby="accept-leave-modal-{{ $task->id }}-label" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="accept-leave-modal-{{ $task->id }}-label">
+                                {{ __('global.accept-leave') }}
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        @if ($show_leave)
+                            <form enctype="multipart/form-data" method="post" accept-charset="utf-8"
+                                class="form-horizontal">
+                                <div class="modal-body">
+                                    @csrf
+
+                                    <div class="row">
+                                        @include('inputs.show.input', [
+                                            'label' => 'leave.task',
+                                            'val' => $leave->task->crud_name(),
+                                            'lg' => 4,
+                                            'md' => 4,
+                                            'sm' => 12,
+                                        ])
+
+                                        @include('inputs.show.input', [
+                                            'label' => 'leave.user',
+                                            'val' => $leave->user->name(),
+                                            'lg' => 4,
+                                            'md' => 4,
+                                            'sm' => 12,
+                                        ])
+
+                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="type">{{ __('leave.type') }}</label>
+                                                <select wire:model="leave_type" name="type" id="type"
+                                                    class="form-control">
+                                                    <option value="leave">{{ __('leave.leave') }}</option>
+                                                    <option value="part_of_task">{{ __('leave.part_of_task') }}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        @include('inputs.edit.input', [
+                                            'label' => 'leave.time_out',
+                                            'name' => 'leave.time_out',
+                                            'val' => $leave->time_out,
+                                            'livewire' => 'leave_time_out',
+                                            'type' => 'datetime-local', // 'step' => 1,
+                                            // 'required' => 'required',
+                                            // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                        ])
+
+                                        @include('inputs.edit.input', [
+                                            'label' => 'leave.time_in',
+                                            'name' => 'leave.time_in',
+                                            'val' => $leave->time_in,
+                                            'livewire' => 'leave_time_in',
+                                            'type' => 'datetime-local', // 'step' => 1,
+                                            // 'required' => 'required',
+                                            // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                        ])
+
+                                        @include('inputs.show.input', [
+                                            'label' => 'leave.reason',
+                                            'val' => $leave->reason,
+                                            'lg' => 12,
+                                            'md' => 12,
+                                            'sm' => 12,
+                                        ])
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @foreach ($errors->all() as $error)
+                                        <span class='alert alert-danger btn'>{{ $error }}</span>
+                                    @endforeach
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">
+                                        {{ __('global.close') }}
+                                    </button>
+
+                                    <button type="submit" wire:click.prevent="acceptLeave()" class="btn btn-success">
+                                        {{ __('global.save-changes') }}
+                                    </button>
+                                </div>
+                            </form>
+                        @endif
+
+                    </div>
+                </div>
+            </div>
+        @endrole
 
         {{-- <script>
         $(function() {

@@ -155,7 +155,22 @@ return [
 
     'employees' => 'employees',
     'task-board' => 'task board',
+    // 
+    'from_date' => 'from date',
+    'to_date' => 'to date',
+    'search' => 'search',
+    'restart_filter' => 'restart filter',
+    'clear' => 'clear',
+
+    'total' => 'Total',
+    'auto' => 'Auto',
+    'completed' => 'Completed',
 
     'accept-extratime' => 'accept extratime',
     'accept-leave' => 'accept leave',
+
+    'extratime' => 'Extra Time',
+    'leave' => 'Leave',
+
+    'discount' => 'discount',
 ];

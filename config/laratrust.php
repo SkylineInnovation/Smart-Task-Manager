@@ -194,7 +194,7 @@ return [
              * If the message content is empty it won't be added to the redirection.
              */
             'redirect' => [
-                'url' => '/dashboard',
+                'url' => '/admin/dashboard',
                 'message' => [
                     'key' => 'error',
                     'content' => ''
