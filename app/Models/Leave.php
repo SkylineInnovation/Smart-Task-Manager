@@ -207,8 +207,6 @@ class Leave extends Model
         return '';
     }
 
-   
-
     public function the_status()
     {
         if ($this->status == 'pending') {
