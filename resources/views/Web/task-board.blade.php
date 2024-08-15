@@ -41,29 +41,29 @@
     <div class="container-fluid card">
 
         <div class="d-flex flex-row" style="overflow-x: scroll;">
-            <div class="col-md-4 py-4">
-                <h4 class="p-0 text-gray-400 fw-bold text-center">{{__('task.Pending')}}</h4>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 py-4">
+                <h4 class="p-0 text-gray-400 fw-bold text-center">{{ __('task.Pending') }}</h4>
                 <hr style="margin-top:0px !important;">
 
                 <livewire:web.web-get-task-by-status status='pending' />
             </div>
 
-            <div class="col-md-4 text-center py-4">
-                <h4 class="p-0 text-gray-400 fw-bold text-center">{{__('task.Active')}}</h4>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 py-4">
+                <h4 class="p-0 text-gray-400 fw-bold text-center">{{ __('task.Active') }}</h4>
                 <hr style="margin-top:0px !important;">
 
                 <livewire:web.web-get-task-by-status status='active' />
             </div>
 
-            <div class="col-md-4 text-center py-4">
-                <h4 class="p-0 text-gray-400 fw-bold text-center">{{__('task.Finished')}}</h4>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 py-4">
+                <h4 class="p-0 text-gray-400 fw-bold text-center">{{ __('task.Finished') }}</h4>
                 <hr style="margin-top:0px !important;">
 
                 <livewire:web.web-get-task-by-status status='manual-finished' />
             </div>
 
-            <div class="col-md-4 text-center py-4">
-                <h4 class="p-0 text-gray-400 fw-bold text-center">{{__('task.System_Finished')}}</h4>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 py-4">
+                <h4 class="p-0 text-gray-400 fw-bold text-center">{{ __('task.System_Finished') }}</h4>
                 <hr style="margin-top:0px !important;">
 
                 <livewire:web.web-get-task-by-status status='auto-finished' />

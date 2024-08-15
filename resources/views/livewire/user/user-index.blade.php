@@ -120,7 +120,7 @@
 
                         <td>
                             @role('owner')
-                                <a href="{{ route('user.show', $user) }}" target="_blank" class="btn btn-info btn-sm">
+                                <a href="{{ route('user.show', $user) }}" target="_blank" class="btn btn-info">
                                     <i class="ti-eye text-white"></i>
                                 </a>
                             @endrole

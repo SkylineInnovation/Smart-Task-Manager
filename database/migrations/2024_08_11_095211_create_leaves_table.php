@@ -31,6 +31,8 @@ class CreateLeavesTable extends Migration
 
             $table->string('time_in')->nullable();
 
+            $table->boolean('effect_on_time')->nullable()->default(false);
+
             $table->string('reason')->nullable();
 
             $table->string('result')->nullable();

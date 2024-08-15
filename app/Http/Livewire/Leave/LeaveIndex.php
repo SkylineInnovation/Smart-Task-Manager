@@ -97,6 +97,7 @@ class LeaveIndex extends Component
             'type' => false,
             'time_out' => true,
             'time_in' => true,
+            'effect_on_time' => true,
             'reason' => false,
             'result' => false,
             'status' => true,
@@ -110,7 +111,7 @@ class LeaveIndex extends Component
     }
 
     public $slug;
-    public $leave_id, $task_id, $user_id, $type = 'leave', $time_out, $time_in, $reason, $result, $status = 'pending', $accepted_by_user_id, $accepted_time;
+    public $leave_id, $task_id, $user_id, $type = 'leave', $time_out, $time_in, $effect_on_time = false, $reason, $result, $status = 'pending', $accepted_by_user_id, $accepted_time;
     public $updateMode = false;
 
     private function resetInputFields()
@@ -122,6 +123,7 @@ class LeaveIndex extends Component
         $this->type = 'leave';
         $this->time_out = date('Y-m-d\Th:i');
         $this->time_in = date('Y-m-d\Th:i', strtotime('+1 Hours'));
+        $this->effect_on_time = false;
         $this->reason = '';
         $this->result = '';
         $this->status = 'pending';
@@ -142,6 +144,7 @@ class LeaveIndex extends Component
             // 'type' => 'required',
             // 'time_out' => 'required',
             // 'time_in' => 'required',
+            // 'effect_on_time' => 'required',
             'reason' => 'required',
             // 'result' => 'required',
             // 'status' => 'required',
@@ -168,6 +171,7 @@ class LeaveIndex extends Component
             'type' => $this->type,
             'time_out' => $this->time_out,
             'time_in' => $this->time_in,
+            'effect_on_time' => $this->effect_on_time,
             'reason' => $this->reason,
             'result' => $this->result,
             'status' => $this->status,
@@ -197,6 +201,7 @@ class LeaveIndex extends Component
         $this->type = $leave->type;
         $this->time_out = $leave->time_out;
         $this->time_in = $leave->time_in;
+        $this->effect_on_time = $leave->effect_on_time;
         $this->reason = $leave->reason;
         $this->result = $leave->result;
         $this->status = $leave->status;
@@ -223,6 +228,7 @@ class LeaveIndex extends Component
                 'type' => $this->type,
                 'time_out' => $this->time_out,
                 'time_in' => $this->time_in,
+                'effect_on_time' => $this->effect_on_time,
                 'reason' => $this->reason,
                 'result' => $this->result,
                 'status' => $this->status,
@@ -338,6 +344,7 @@ class LeaveIndex extends Component
             'type' => $this->type,
             'time_out' => $this->time_out,
             'time_in' => $this->time_in,
+            'effect_on_time' => $this->effect_on_time,
             'reason' => $this->reason,
             'status' => 'accepted',
             'accepted_by_user_id' => auth()->user()->id,

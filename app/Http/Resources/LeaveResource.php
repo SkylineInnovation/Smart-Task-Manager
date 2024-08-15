@@ -25,6 +25,7 @@ class LeaveResource extends JsonResource
             'type' => $this->type,
             'time_out' => $this->time_out,
             'time_in' => $this->time_in,
+            'effect_on_time' => $this->effect_on_time,
             'reason' => $this->reason,
             'result' => $this->result,
             'status' => $this->status,

@@ -14,6 +14,8 @@
 
             <td>time_in</td>
 
+            <td>effect_on_time</td>
+
             <td>reason</td>
 
             <td>result</td>
@@ -48,6 +50,8 @@
                 <td>{{ $leave->time_out }}</td>
 
                 <td>{{ $leave->time_in }}</td>
+
+                <td>{{ $leave->effect_on_time }}</td>
 
                 <td>{{ $leave->reason }}</td>
 

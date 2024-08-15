@@ -19,6 +19,8 @@ return [
 
     'time_in' => 'time in',
 
+    'effect_on_time' => 'effect on time',
+
     'reason' => 'reason',
 
     'result' => 'result',

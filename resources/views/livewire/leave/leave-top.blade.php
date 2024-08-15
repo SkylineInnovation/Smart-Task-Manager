@@ -20,6 +20,8 @@
 
                 <option value='time_in'>{{ __('leave.time_in') }}</option>
 
+                <option value='effect_on_time'>{{ __('leave.effect_on_time') }}</option>
+
                 <option value='reason'>{{ __('leave.reason') }}</option>
 
                 <option value='result'>{{ __('leave.result') }}</option>
