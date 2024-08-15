@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class WebGetTaskByStatus extends Component
 {
@@ -32,14 +33,14 @@ class WebGetTaskByStatus extends Component
 
         $this->status = $status;
 
-        $this->sub_task_start_time  = date('Y-m-d\TH:i');
-        $this->sub_task_end_time  = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        $this->sub_task_start_time  = date('Y-m-d\Th:i');
+        $this->sub_task_end_time  = date('Y-m-d\Th:i', strtotime('+1 Hours'));
 
-        $this->leave_time_out = date('Y-m-d\TH:i');
-        $this->leave_time_in = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        $this->leave_time_out = date('Y-m-d\Th:i');
+        $this->leave_time_in = date('Y-m-d\Th:i', strtotime('+1 Hours'));
 
-        $this->extratime_from_time = date('Y-m-d\TH:i');
-        $this->extratime_to_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        $this->extratime_from_time = date('Y-m-d\Th:i');
+        $this->extratime_to_time = date('Y-m-d\Th:i', strtotime('+1 Hours'));
     }
 
     public $task;
@@ -57,14 +58,16 @@ class WebGetTaskByStatus extends Component
 
         $this->sub_task_discount = $this->task->discount();
 
-        $this->sub_task_start_time  = date('Y-m-d\TH:i');
-        $this->sub_task_end_time  = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        // $this->sub_task_start_time  = date('Y-m-d\Th:i');
+        // $this->sub_task_end_time  = date('Y-m-d\Th:i', strtotime('+1 Hours'));
+        $this->sub_task_start_time  = $task->start_time;
+        $this->sub_task_end_time  = $task->end_time;
 
-        $this->leave_time_out = date('Y-m-d\TH:i');
-        $this->leave_time_in = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        $this->leave_time_out = date('Y-m-d\Th:i');
+        $this->leave_time_in = date('Y-m-d\Th:i', strtotime('+1 Hours'));
 
-        $this->extratime_from_time = date('Y-m-d\TH:i', strtotime($task->end_time));
-        $this->extratime_to_time = date('Y-m-d\TH:i', strtotime($task->end_time . ' +1 Hours'));
+        $this->extratime_from_time = date('Y-m-d\Th:i', strtotime($task->end_time));
+        $this->extratime_to_time = date('Y-m-d\Th:i', strtotime($task->end_time . ' +1 Hours'));
     }
 
     public function rules()
@@ -217,8 +220,8 @@ class WebGetTaskByStatus extends Component
         $this->sub_task_title = null;
         $this->sub_task_desc = null;
 
-        $this->sub_task_start_time  = date('Y-m-d\TH:i');
-        $this->sub_task_end_time  = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        $this->sub_task_start_time  = date('Y-m-d\Th:i');
+        $this->sub_task_end_time  = date('Y-m-d\Th:i', strtotime('+1 Hours'));
 
         $this->sub_task_priority_level = 'low';
 
@@ -295,12 +298,11 @@ class WebGetTaskByStatus extends Component
         $this->emit('close-leave-request-model', $this->task_id); // Close model to using to jquery
     }
 
-    public $extratime_from_time, $extratime_to_time, $extratime_reason;
+    public $extratime_from_time, $extratime_to_time, $extratime_reason, $extratime_duration;
     public function addExtraTime()
     {
-
-        $from_date = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->extratime_from_time)));
-        $to_date = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->extratime_to_time)));
+        $from_date = Carbon::parse(date('Y-m-d h:i A', strtotime($this->extratime_from_time)));
+        $to_date = Carbon::parse(date('Y-m-d h:i A', strtotime($this->extratime_to_time)));
 
         $dur = $from_date->diff($to_date);
 
@@ -316,7 +318,7 @@ class WebGetTaskByStatus extends Component
 
             // 'accepted_by_user_id' => $this->accepted_by_user_id,
 
-            'request_time' => date('Y-m-d H:i A'),
+            'request_time' => date('Y-m-d h:i A'),
 
             // 'response_time' => $this->response_time,
             // 'duration' => $dur->format("%d day %h:%i:%s"),
@@ -342,14 +344,16 @@ class WebGetTaskByStatus extends Component
         $this->extratime_to_time = $extratime->to_time;
         $this->extratime_reason = $extratime->reason;
 
+        $this->cal_extratime_duration();
+
         $this->show_extratime = true;
     }
 
     public $show_extratime = false;
     public function acceptExtraTime()
     {
-        $from_date = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->extratime_from_time)));
-        $to_date = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->extratime_to_time)));
+        $from_date = Carbon::parse(date('Y-m-d h:i', strtotime($this->extratime_from_time)));
+        $to_date = Carbon::parse(date('Y-m-d h:i', strtotime($this->extratime_to_time)));
 
         $dur = $from_date->diff($to_date);
 
@@ -359,7 +363,7 @@ class WebGetTaskByStatus extends Component
             'accepted_by_user_id' => auth()->user()->id,
             'from_time' => $this->extratime_from_time,
             'to_time' => $this->extratime_to_time,
-            'response_time' => date('Y-m-d H:i A'),
+            'response_time' => date('Y-m-d h:i A'),
             // 'duration' => $dur->format("%d day %h:%i:%s"),
             'status' => 'accepted',
         ]);
@@ -380,7 +384,7 @@ class WebGetTaskByStatus extends Component
         $extratime = ExtraTime::find($id);
 
         $extratime->update([
-            'response_time' => date('Y-m-d H:i A'),
+            'response_time' => date('Y-m-d h:i A'),
             'status' => 'rejected',
         ]);
     }
@@ -415,7 +419,7 @@ class WebGetTaskByStatus extends Component
             'time_in' => $this->leave_time_in,
             'status' => 'accepted',
             'accepted_by_user_id' => auth()->user()->id,
-            'accepted_time' => date('Y-m-d H:i A'),
+            'accepted_time' => date('Y-m-d h:i A'),
         ]);
 
         $this->emit('close-accept-leave-model', $this->task_id); // Close model to using to jquery
@@ -427,9 +431,38 @@ class WebGetTaskByStatus extends Component
         $leaveTime = Leave::find($id);
 
         $leaveTime->update([
-            'response_time' => date('Y-m-d H:i A'),
+            'response_time' => date('Y-m-d h:i A'),
             'status' => 'rejected',
         ]);
+    }
+
+    public function updatedExtratimeFromTime()
+    {
+        $this->cal_extratime_duration();
+    }
+
+    public function updatedExtratimeToTime()
+    {
+        $this->cal_extratime_duration();
+    }
+
+    public function cal_extratime_duration()
+    {
+        $startDate = Carbon::parse(date('Y-m-d h:i', strtotime($this->extratime_from_time)));
+        $endDate = Carbon::parse(date('Y-m-d h:i', strtotime($this->extratime_to_time)));
+
+        $totalSeconds = $endDate->diffInSeconds($startDate);
+
+        // Convert seconds to hours and minutes
+        $hours = intval($totalSeconds / 3600);
+        $minutes = intval(($totalSeconds % 3600) / 60);
+        // 
+        $hours_string = $hours > 9 ? $hours : '0' . $hours;
+        $minutes_string = $minutes > 9 ? $minutes : '0' . $minutes;
+        // Format the output
+        $result = $hours_string . ':' . $minutes_string . ':00';
+
+        $this->extratime_duration = $result;
     }
 
     public function render()
@@ -443,6 +476,10 @@ class WebGetTaskByStatus extends Component
             });
         }
 
+        $date = date('Y-m-d\Th:i', strtotime('-1 days'));
+
+        $tasks = $tasks->where('end_time', '>', $date);
+        // ->where('end_time', '<=', $date)->get();
         $tasks = $tasks->orderBy('id', 'desc')->get();
 
 

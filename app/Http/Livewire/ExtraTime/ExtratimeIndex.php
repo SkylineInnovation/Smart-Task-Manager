@@ -76,10 +76,10 @@ class ExtratimeIndex extends Component
             $this->the_task_id = $task_id;
         }
 
-        $this->request_time = date('Y-m-d\TH:i');
-        $this->from_time = date('Y-m-d\TH:i');
-        $this->to_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
-        // $this->response_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        $this->request_time = date('Y-m-d\Th:i');
+        $this->from_time = date('Y-m-d\Th:i');
+        $this->to_time = date('Y-m-d\Th:i', strtotime('+1 Hours'));
+        // $this->response_time = date('Y-m-d\Th:i', strtotime('+1 Hours'));
 
         $this->tasks = \App\Models\Task::whereNullOrEmptyOrZero('main_task_id')->where('show', 1)->orderBy('sort')->get();
 
@@ -124,9 +124,9 @@ class ExtratimeIndex extends Component
         $this->accepted_by_user_id = null;
         $this->reason = '';
         $this->result = '';
-        $this->request_time = date('Y-m-d\TH:i');
-        $this->from_time = date('Y-m-d\TH:i');
-        $this->to_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        $this->request_time = date('Y-m-d\Th:i');
+        $this->from_time = date('Y-m-d\Th:i');
+        $this->to_time = date('Y-m-d\Th:i', strtotime('+1 Hours'));
         $this->response_time = null;
         $this->status = 'pending';
         $this->duration = '';
@@ -338,8 +338,8 @@ class ExtratimeIndex extends Component
     public $show = false;
     public function acceptExtraTime()
     {
-        $from_date = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->from_time)));
-        $to_date = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->to_time)));
+        $from_date = Carbon::parse(date('Y-m-d h:i A', strtotime($this->from_time)));
+        $to_date = Carbon::parse(date('Y-m-d h:i A', strtotime($this->to_time)));
 
         $dur = $from_date->diff($to_date);
 
@@ -349,7 +349,7 @@ class ExtratimeIndex extends Component
             'accepted_by_user_id' => auth()->user()->id,
             'from_time' => $this->from_time,
             'to_time' => $this->to_time,
-            'response_time' => date('Y-m-d H:i A'),
+            'response_time' => date('Y-m-d h:i A'),
             // 'duration' => $dur->format("%d day %h:%i:%s"),
             'status' => 'accepted',
         ]);
@@ -368,7 +368,7 @@ class ExtratimeIndex extends Component
         $extratime = ExtraTime::find($id);
 
         $extratime->update([
-            'response_time' => date('Y-m-d H:i A'),
+            'response_time' => date('Y-m-d h:i A'),
             'status' => 'rejected',
         ]);
     }

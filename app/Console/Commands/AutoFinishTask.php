@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Comment;
 use App\Models\Discount;
 use App\Models\Task;
 use Illuminate\Console\Command;
@@ -29,7 +30,7 @@ class AutoFinishTask extends Command
      */
     public function handle()
     {
-        $date = date('Y-m-d\TH:i:s');
+        $date = date('Y-m-d\Th:i');
 
         $tasks = Task::whereIn('status', ['pending', 'active',])
             ->where('end_time', '<=', $date)->get();
@@ -40,12 +41,18 @@ class AutoFinishTask extends Command
             ]);
 
             foreach ($task->employees as $employee) {
-                Discount::create([
-                    'task_id' => $task->id,
-                    'user_id' => $employee->id,
-                    'amount' => $task->discount(),
-                    'reason' => 'auto-finish-task',
-                ]);
+
+                $comments = Comment::where('task_id', $task->id)
+                    ->where('user_id', $employee->id)->get();
+
+                if (count($comments) == 0) {
+                    Discount::create([
+                        'task_id' => $task->id,
+                        'user_id' => $employee->id,
+                        'amount' => $task->discount(),
+                        'reason' => 'auto-finish-task',
+                    ]);
+                }
             }
         }
 

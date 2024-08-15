@@ -247,8 +247,8 @@ class ExtraTime extends Model
 
     public function the_duration_in_sec()
     {
-        $startDate = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->from_time)));
-        $endDate = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->to_time)));
+        $startDate = Carbon::parse(date('Y-m-d h:i:s', strtotime($this->from_time)));
+        $endDate = Carbon::parse(date('Y-m-d h:i:s', strtotime($this->to_time)));
 
         $totalSeconds = $endDate->diffInSeconds($startDate);
 

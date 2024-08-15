@@ -298,8 +298,8 @@ class Task extends Model
 
     public function the_duration_in_sec()
     {
-        $startDate = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->start_time)));
-        $endDate = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->end_time)));
+        $startDate = Carbon::parse(date('Y-m-d h:i:s', strtotime($this->start_time)));
+        $endDate = Carbon::parse(date('Y-m-d h:i:s', strtotime($this->end_time)));
 
         $totalSeconds = $endDate->diffInSeconds($startDate);
 

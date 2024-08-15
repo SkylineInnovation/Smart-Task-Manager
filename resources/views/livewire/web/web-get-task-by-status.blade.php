@@ -133,7 +133,7 @@
                                 end at: {{ $task->format_date($task->end_time) }}
                             </div>
                             <small class="col-md-12 px-4 text-muted py-3">assigend:
-                                {{ date('Y/m/d H:i A', strtotime($task->created_at)) }}
+                                {{ date('Y/m/d h:i A', strtotime($task->created_at)) }}
                                 ({{ $task->created_ago($task->created_at) }})</small>
                         </div>
                     </div>
@@ -180,13 +180,13 @@
                                     <div class="col-12">
                                         From:
                                         <br>
-                                        {{ date('Y-m-d H:i A', strtotime($task->start_time)) }}
+                                        {{ date('Y-m-d h:i A', strtotime($task->start_time)) }}
                                     </div>
 
                                     <div class="col-12">
                                         To:
                                         <br>
-                                        {{ date('Y-m-d H:i A', strtotime($task->end_time)) }}
+                                        {{ date('Y-m-d h:i A', strtotime($task->end_time)) }}
                                     </div>
                                 </div>
                             </div>
@@ -239,7 +239,7 @@
                                 <div class="tab-pane fade {{ $tab == 1 ? 'show active' : '' }}" id="user"
                                     role="tabpanel" aria-labelledby="user-tab">
 
-                                    <div class="table-responsive">
+                                    <div class="table-responsive text-start">
                                         <table class="table">
                                             <thead>
                                                 <tr>
@@ -282,90 +282,93 @@
 
                                 <div class="tab-pane fade {{ $tab == 2 ? 'show active' : '' }}" id="attatchment"
                                     role="tabpanel" aria-labelledby="attatchment-tab">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="input-group mb-1">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text btn-secondary text-white"
-                                                        id="inputGroup-sizing-default">{{ __('attachment.title') }}</span>
+
+                                    <div class="text-start">
+                                        <div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="input-group mb-1">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text btn-secondary text-white"
+                                                                id="inputGroup-sizing-default">{{ __('attachment.title') }}</span>
+                                                        </div>
+                                                        <input wire:model.defer="attatchment_title" type="text"
+                                                            class="form-control" aria-label="Default"
+                                                            aria-describedby="inputGroup-sizing-default">
+                                                    </div>
                                                 </div>
-                                                <input wire:model.defer="attatchment_title" type="text"
-                                                    class="form-control" aria-label="Default"
-                                                    aria-describedby="inputGroup-sizing-default">
+
+                                                <div class="col">
+                                                    <div class="input-group mb-1">
+                                                        {{-- <div class="input-group-prepend">
+                                                        <span class="input-group-text btn-secondary text-white"
+                                                            id="inputGroup-sizing-default">{{ __('attachment.file') }}</span>
+                                                    </div> --}}
+                                                        <input wire:model.defer="attatchment_file" type="file"
+                                                            class="form-control" aria-label="Default"
+                                                            aria-describedby="inputGroup-sizing-default">
+                                                    </div>
+                                                    <div wire:loading wire:target="attatchment_file">Uploading...</div>
+                                                </div>
                                             </div>
+
+                                            <div wire:ignore.self class="mb-1">
+                                                {{-- <div wire:ignore.self id="summer_desc"></div> --}}
+                                                <textarea name='desc' id='desc' rows="3" class='form-control'
+                                                    placeholder='{{ __(' global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="attatchment_desc"></textarea>
+                                            </div>
+
+                                            <button wire:click="addAttatchment()" type="button"
+                                                class="w-100 btn btn-success">
+                                                Upload
+                                            </button>
+
                                         </div>
 
-                                        <div class="col">
-                                            <div class="input-group mb-1">
-                                                {{-- <div class="input-group-prepend">
-                                                <span class="input-group-text btn-secondary text-white"
-                                                    id="inputGroup-sizing-default">{{ __('attachment.file') }}</span>
-                                            </div> --}}
-                                                <input wire:model.defer="attatchment_file" type="file"
-                                                    class="form-control" aria-label="Default"
-                                                    aria-describedby="inputGroup-sizing-default">
-                                            </div>
-                                            <div wire:loading wire:target="attatchment_file">Uploading...</div>
-                                        </div>
-                                    </div>
+                                        <div class="container py-3">
+                                            @foreach ($task->attatchments as $attatch)
+                                                <div class="row w-100 m-0 border">
+                                                    <div class="col-md-3">
+                                                        {{-- @if ($attatch->is_image())
+                                                <img src="{{ asset($attatch->file) }}" alt=""
+                                                    style="width: 100px ; height: 100px;" srcset="">
+                                                @else
+                                                <a href="{{ asset($attatch->file) }}" download>
+                                                    {{ $attatch->file }}
+                                                    {{ $attatch->is_image() ? 'Y' : 'N' }}
+                                                </a>
+                                                @endif --}}
 
-                                    <div wire:ignore.self class="mb-1">
-                                        {{-- <div wire:ignore.self id="summer_desc"></div> --}}
-                                        <textarea name='desc' id='desc' rows="3" class='form-control'
-                                            placeholder='{{ __(' global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="attatchment_desc"></textarea>
-                                    </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <h4>{{ $attatch->title }}</h4>
 
 
+                                                        <p>
+                                                            {{ $attatch->desc }}
+                                                        </p>
 
 
-                                    <button wire:click="addAttatchment()" type="button"
-                                        class="w-100 btn btn-success">
-                                        Upload
-                                    </button>
+                                                    </div>
+                                                    <div
+                                                        class="col-md-3 d-flex justify-content-center align-items-center">
 
-
-                                    <div class="container py-3">
-                                        @foreach ($task->attatchments as $attatch)
-                                            <div class="row w-100 m-0 border">
-                                                <div class="col-md-3">
-                                                    {{-- @if ($attatch->is_image())
-                                            <img src="{{ asset($attatch->file) }}" alt=""
-                                                style="width: 100px ; height: 100px;" srcset="">
-                                            @else
-                                            <a href="{{ asset($attatch->file) }}" download>
-                                                {{ $attatch->file }}
-                                                {{ $attatch->is_image() ? 'Y' : 'N' }}
-                                            </a>
-                                            @endif --}}
-
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <h4>{{ $attatch->title }}</h4>
-
-
-                                                    <p>
-                                                        {{ $attatch->desc }}
-                                                    </p>
-
-
-                                                </div>
-                                                <div class="col-md-3 d-flex justify-content-center align-items-center">
-
-                                                    <a class="btn btn-success" href="{{ asset($attatch->file) }}"
-                                                        download>
-                                                        <i class="fa fa-download text-white"></i>
-                                                    </a>
-                                                    @role('owner|manager')
-                                                        <a class="btn btn-danger"
-                                                            wire:click='deleteAttatchment({{ $attatch->id }})'>
-                                                            <i class="fa fa-trash text-white"></i>
+                                                        <a class="btn btn-success" href="{{ asset($attatch->file) }}"
+                                                            download>
+                                                            <i class="fa fa-download text-white"></i>
                                                         </a>
-                                                    @endrole
+                                                        @role('owner|manager')
+                                                            <a class="btn btn-danger"
+                                                                wire:click='deleteAttatchment({{ $attatch->id }})'>
+                                                                <i class="fa fa-trash text-white"></i>
+                                                            </a>
+                                                        @endrole
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
+                                            @endforeach
+                                        </div>
 
+                                    </div>
                                     {{-- <input wire:ignore.self wire:model="attatchment_file" type="file" class="dropify"
                                     data-height="150" /> --}}
                                 </div>
@@ -373,276 +376,279 @@
                                 <div class="tab-pane fade {{ $tab == 3 ? 'show active' : '' }}" id="comment"
                                     role="tabpanel" aria-labelledby="comment-tab">
 
-                                    <div class="input-group mb-1">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text btn-secondary text-white"
-                                                id="inputGroup-sizing-default">{{ __('attachment.title') }}</span>
+                                    <div class="text-start">
+                                        <div>
+                                            <div class="input-group mb-1">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text btn-secondary text-white"
+                                                        id="inputGroup-sizing-default">{{ __('attachment.title') }}</span>
+                                                </div>
+                                                <input wire:model.defer="comment_title" type="text"
+                                                    class="form-control" aria-label="Default"
+                                                    aria-describedby="inputGroup-sizing-default">
+                                            </div>
+
+                                            <div wire:ignore.self class="mb-1">
+                                                {{-- <div wire:ignore.self id="summer_desc"></div> --}}
+                                                <textarea name='desc' id='desc' rows="3" class='form-control'
+                                                    placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="comment_desc"></textarea>
+                                            </div>
+
+                                            <button wire:click="addComment()" type="button"
+                                                class="w-100 btn btn-success">
+                                                Commet
+                                            </button>
                                         </div>
-                                        <input wire:model.defer="comment_title" type="text" class="form-control"
-                                            aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                                    </div>
 
-                                    <div wire:ignore.self class="mb-1">
-                                        {{-- <div wire:ignore.self id="summer_desc"></div> --}}
-                                        <textarea name='desc' id='desc' rows="3" class='form-control'
-                                            placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="comment_desc"></textarea>
-                                    </div>
+                                        <div class="container py-3">
+                                            @foreach ($task->comments as $comment)
+                                                <div class="media">
+                                                    <img class="mr-3"
+                                                        src="{{ asset('assets/images/users/10.jpg') }}"
+                                                        alt="Generic placeholder image">
+                                                    <div class="media-body">
+                                                        <h5 class="mt-0">{{ $comment->user->name() }},
+                                                            {{ $comment->title }}</h5>
+                                                        <p>{{ $comment->desc }}</p>
+                                                        <div class="col-12 d-flex justify-content-end">
 
-                                    <button wire:click="addComment()" type="button" class="w-100 btn btn-success">
-                                        Commet
-                                    </button>
-
-                                    <div class="container py-3">
-                                        @foreach ($task->comments as $comment)
-                                            <div class="media">
-                                                <img class="mr-3" src="{{ asset('assets/images/users/10.jpg') }}"
-                                                    alt="Generic placeholder image">
-                                                <div class="media-body">
-                                                    <h5 class="mt-0">{{ $comment->user->name() }},
-                                                        {{ $comment->title }}</h5>
-                                                    <p>{{ $comment->desc }}</p>
-                                                    <div class="col-12 d-flex justify-content-end">
-
-                                                        <a class="btn btn-primary-gradient" data-toggle="modal"
-                                                            wire:click="setCommentId({{ $comment->id }})"
-                                                            data-target="#replay-modal-{{ $task->id }}">
-                                                            <i class="fa fa-comment text-white"></i>
-                                                        </a>
-                                                        &nbsp;
-
-                                                        @role('owner|manager')
-                                                            <a class="btn btn-danger"
-                                                                wire:click='deleteComents({{ $comment->id }})'>
-                                                                <i class="fa fa-trash text-white"></i>
+                                                            <a class="btn btn-primary-gradient" data-toggle="modal"
+                                                                wire:click="setCommentId({{ $comment->id }})"
+                                                                data-target="#replay-modal-{{ $task->id }}">
+                                                                <i class="fa fa-comment text-white"></i>
                                                             </a>
-                                                        @endrole
-                                                    </div>
+                                                            &nbsp;
 
-                                                    @foreach ($comment->subs as $subCom)
-                                                        <div class="media mt-3">
-                                                            <a class="pr-3" href="#">
-                                                                <img src="{{ asset('assets/images/users/10.jpg') }}"
-                                                                    alt="Generic placeholder image">
-                                                            </a>
-                                                            <div class="media-body">
-                                                                <h5 class="mt-0">{{ $subCom->user->name() }},
-                                                                    {{ $subCom->title }}</h5>
-                                                                <p>{{ $subCom->desc }}</p>
-                                                            </div>
+                                                            @role('owner|manager')
+                                                                <a class="btn btn-danger"
+                                                                    wire:click='deleteComents({{ $comment->id }})'>
+                                                                    <i class="fa fa-trash text-white"></i>
+                                                                </a>
+                                                            @endrole
                                                         </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
 
-
-
-
-                                            <div wire:ignore.self class="modal fade"
-                                                id="replay-modal-{{ $task->id }}" tabindex="-1" role="dialog"
-                                                aria-labelledby="replay-modal-{{ $task->id }}-Label"
-                                                aria-hidden="true">
-                                                <div class="modal-dialog modal-lg" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title"
-                                                                id="replay-modal-{{ $task->id }}-Label">
-                                                                Replay
-                                                            </h5>
-                                                            <button type="button" class="close"
-                                                                data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="input-group mb-1">
-                                                                <div class="input-group-prepend">
-                                                                    <span
-                                                                        class="input-group-text btn-secondary text-white"
-                                                                        id="inputGroup-sizing-default">{{ __('attachment.title') }}</span>
+                                                        @foreach ($comment->subs as $subCom)
+                                                            <div class="media mt-3">
+                                                                <a class="pr-3" href="#">
+                                                                    <img src="{{ asset('assets/images/users/10.jpg') }}"
+                                                                        alt="Generic placeholder image">
+                                                                </a>
+                                                                <div class="media-body">
+                                                                    <h5 class="mt-0">{{ $subCom->user->name() }},
+                                                                        {{ $subCom->title }}</h5>
+                                                                    <p>{{ $subCom->desc }}</p>
                                                                 </div>
-                                                                <input wire:model.defer="replay_comment_title"
-                                                                    type="text" class="form-control"
-                                                                    aria-label="Default"
-                                                                    aria-describedby="inputGroup-sizing-default">
                                                             </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
 
-                                                            <div wire:ignore.self class="mb-1">
-                                                                {{-- <div wire:ignore.self id="summer_desc"></div> --}}
-                                                                <textarea name='desc' id='desc' rows="3" class='form-control'
-                                                                    placeholder='{{ __(' global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="replay_comment_desc"></textarea>
+                                                <div wire:ignore.self class="modal fade"
+                                                    id="replay-modal-{{ $task->id }}" tabindex="-1"
+                                                    role="dialog"
+                                                    aria-labelledby="replay-modal-{{ $task->id }}-Label"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title"
+                                                                    id="replay-modal-{{ $task->id }}-Label">
+                                                                    Replay
+                                                                </h5>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
                                                             </div>
+                                                            <div class="modal-body">
+                                                                <div class="input-group mb-1">
+                                                                    <div class="input-group-prepend">
+                                                                        <span
+                                                                            class="input-group-text btn-secondary text-white"
+                                                                            id="inputGroup-sizing-default">{{ __('attachment.title') }}</span>
+                                                                    </div>
+                                                                    <input wire:model.defer="replay_comment_title"
+                                                                        type="text" class="form-control"
+                                                                        aria-label="Default"
+                                                                        aria-describedby="inputGroup-sizing-default">
+                                                                </div>
+
+                                                                <div wire:ignore.self class="mb-1">
+                                                                    {{-- <div wire:ignore.self id="summer_desc"></div> --}}
+                                                                    <textarea name='desc' id='desc' rows="3" class='form-control'
+                                                                        placeholder='{{ __(' global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="replay_comment_desc"></textarea>
+                                                                </div>
 
 
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">Close</button>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
 
-                                                            <button wire:click="replayComment()" type="button"
-                                                                class="btn btn-success">
-                                                                Commet
-                                                            </button>
+                                                                <button wire:click="replayComment()" type="button"
+                                                                    class="btn btn-success">
+                                                                    Commet
+                                                                </button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        @endforeach
+                                            @endforeach
+                                        </div>
                                     </div>
-
 
                                 </div>
 
                                 <div class="tab-pane fade {{ $tab == 4 ? 'show active' : '' }}" id="subTask"
                                     role="tabpanel" aria-labelledby="subTask-tab">
-                                    {{-- --}}{{-- --}}{{-- --}}{{-- --}}
-                                    @role('owner|manager')
-                                        <div>
-                                            <div class="row">
+                                    <div class="text-start">
+                                        @role('owner|manager')
+                                            <div>
+                                                <div class="row">
 
-                                                <div class="input-group mb-1 col-8">
-                                                    <div class="input-group-prepend ">
-                                                        <span class="input-group-text btn-secondary text-white"
-                                                            id="inputGroup-sizing-default">{{ __('task.title') }}</span>
-                                                    </div>
-
-                                                    <input wire:model.defer="sub_task_title" type="text"
-                                                        class="form-control" aria-label="Default"
-                                                        aria-describedby="inputGroup-sizing-default">
-                                                </div>
-
-                                                <div class="form-group mb-1 col-4">
-                                                    <select wire:model.defer="sub_task_priority_level"
-                                                        class="form-control">
-                                                        <option value="low">low</option>
-                                                        <option value="medium">medium</option>
-                                                        <option value="high">high</option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="input-group mb-1  col-md-6">
-                                                    <div class="input-group-prepend ">
-                                                        <span class="input-group-text btn-secondary text-white"
-                                                            id="inputGroup-sizing-default">{{ __('task.start_time') }}</span>
-                                                    </div>
-                                                    <input wire:model.defer="sub_task_start_time" type="datetime-local"
-                                                        class="form-control" aria-label="Default"
-                                                        aria-describedby="inputGroup-sizing-default">
-                                                </div>
-
-                                                <div class="input-group mb-1  col-md-6">
-                                                    <div class="input-group-prepend ">
-                                                        <span class="input-group-text btn-secondary text-white"
-                                                            id="inputGroup-sizing-default">{{ __('task.end_time') }}</span>
-                                                    </div>
-                                                    <input wire:model.defer="sub_task_end_time" type="datetime-local"
-                                                        class="form-control" aria-label="Default"
-                                                        aria-describedby="inputGroup-sizing-default">
-                                                </div>
-
-                                                <div wire:ignore.self class="col-md-12">
-                                                    {{-- <div wire:ignore.self id="summer_desc"></div> --}}
-                                                    <textarea name='desc' id='desc' rows="4" class='form-control'
-                                                        placeholder='{{ __(' global.enter') }} {{ __('task.desc') }}' wire:model.defer="sub_task_desc"></textarea>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="form-group">
-                                                @foreach ($errors->all() as $error)
-                                                    <span class='alert alert-danger btn'>{{ $error }}</span>
-                                                @endforeach
-                                            </div>
-
-                                            <button wire:click="addSubTask()" type="button"
-                                                class="w-100 btn btn-success">
-                                                Add Sub Task
-                                            </button>
-                                        </div>
-                                    @endrole
-                                    {{-- --}}{{-- --}}{{-- --}}{{-- --}}
-
-                                    <div class="py-4">
-                                        @foreach ($task->sub_tasks as $sub)
-                                            <div class="row w-100 m-0 border shadow ">
-
-                                                <div class="col-md-6 ">
-                                                    <div class="col-md-12">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                Title:
-                                                            </div>
-
-                                                            <div class="col-md-6">
-                                                                {{ $sub->title }}
-                                                            </div>
+                                                    <div class="input-group mb-1 col-8">
+                                                        <div class="input-group-prepend ">
+                                                            <span class="input-group-text btn-secondary text-white"
+                                                                id="inputGroup-sizing-default">{{ __('task.title') }}</span>
                                                         </div>
+
+                                                        <input wire:model.defer="sub_task_title" type="text"
+                                                            class="form-control" aria-label="Default"
+                                                            aria-describedby="inputGroup-sizing-default">
                                                     </div>
 
-                                                    <div class="col-md-12">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                Description:
-                                                            </div>
+                                                    <div class="form-group mb-1 col-4">
+                                                        <select wire:model.defer="sub_task_priority_level"
+                                                            class="form-control">
+                                                            <option value="low">low</option>
+                                                            <option value="medium">medium</option>
+                                                            <option value="high">high</option>
+                                                        </select>
+                                                    </div>
 
-                                                            <div class="col-md-6">
-                                                                {{ $sub->desc }}
-                                                            </div>
+                                                    <div class="input-group mb-1  col-md-6">
+                                                        <div class="input-group-prepend ">
+                                                            <span class="input-group-text btn-secondary text-white"
+                                                                id="inputGroup-sizing-default">{{ __('task.start_time') }}</span>
                                                         </div>
+                                                        <input wire:model.defer="sub_task_start_time"
+                                                            type="datetime-local" class="form-control"
+                                                            aria-label="Default"
+                                                            aria-describedby="inputGroup-sizing-default">
                                                     </div>
 
-                                                    <div class="col-md-12">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                Employee:
-                                                            </div>
-                                                            @foreach ($sub->employees as $subEm)
+                                                    <div class="input-group mb-1  col-md-6">
+                                                        <div class="input-group-prepend ">
+                                                            <span class="input-group-text btn-secondary text-white"
+                                                                id="inputGroup-sizing-default">{{ __('task.end_time') }}</span>
+                                                        </div>
+                                                        <input wire:model.defer="sub_task_end_time" type="datetime-local"
+                                                            class="form-control" aria-label="Default"
+                                                            aria-describedby="inputGroup-sizing-default">
+                                                    </div>
+
+                                                    <div wire:ignore.self class="col-md-12">
+                                                        {{-- <div wire:ignore.self id="summer_desc"></div> --}}
+                                                        <textarea name='desc' id='desc' rows="4" class='form-control'
+                                                            placeholder='{{ __(' global.enter') }} {{ __('task.desc') }}' wire:model.defer="sub_task_desc"></textarea>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    @foreach ($errors->all() as $error)
+                                                        <span class='alert alert-danger btn'>{{ $error }}</span>
+                                                    @endforeach
+                                                </div>
+
+                                                <button wire:click="addSubTask()" type="button"
+                                                    class="w-100 btn btn-success">
+                                                    Add Sub Task
+                                                </button>
+                                            </div>
+                                        @endrole
+
+                                        <div class="py-4">
+                                            @foreach ($task->sub_tasks as $sub)
+                                                <div class="row w-100 m-0 border shadow text-start">
+
+                                                    <div class="col-md-6 ">
+                                                        <div class="col-md-12">
+                                                            <div class="row">
                                                                 <div class="col-md-6">
-                                                                    {{ $subEm->name() }}
+                                                                    Title:
                                                                 </div>
-                                                            @endforeach
+
+                                                                <div class="col-md-6">
+                                                                    {{ $sub->title }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    Description:
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    {{ $sub->desc }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    Employee:
+                                                                </div>
+                                                                @foreach ($sub->employees as $subEm)
+                                                                    <div class="col-md-6">
+                                                                        {{ $subEm->name() }}
+                                                                    </div>
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    Priority:
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    {{ $sub->the_priority_level() }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    From:
+                                                                    <br>
+                                                                    {{ date('Y-m-d h:i A', strtotime($sub->start_time)) }}
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    To:
+                                                                    <br>
+                                                                    {{ date('Y-m-d h:i A', strtotime($sub->end_time)) }}
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="col-md-12">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                Priority:
-                                                            </div>
-
-                                                            <div class="col-md-6">
-                                                                {{ $sub->the_priority_level() }}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-12">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                From:
-                                                                <br>
-                                                                {{ date('Y-m-d H:i A', strtotime($sub->start_time)) }}
-                                                            </div>
-
-                                                            <div class="col-md-6">
-                                                                To:
-                                                                <br>
-                                                                {{ date('Y-m-d H:i A', strtotime($sub->end_time)) }}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
+                                            @endforeach
+                                        </div>
                                     </div>
-
                                 </div>
 
                                 <div class="tab-pane fade {{ $tab == 5 ? 'show active' : '' }}" id="extra"
                                     role="tabpanel" aria-labelledby="extra-tab">
-
-                                    <div class="py-4">
+                                    <div class="text-start py-4">
                                         @foreach ($task->extra_times as $extra_time)
                                             <div class="row w-100 m-0 border shadow ">
 
@@ -722,13 +728,13 @@
                                                             <div class="col-md-6">
                                                                 From:
                                                                 <br>
-                                                                {{ date('Y-m-d H:i A', strtotime($extra_time->from_time)) }}
+                                                                {{ date('Y-m-d h:i A', strtotime($extra_time->from_time)) }}
                                                             </div>
 
                                                             <div class="col-md-6">
                                                                 To:
                                                                 <br>
-                                                                {{ date('Y-m-d H:i A', strtotime($extra_time->to_time)) }}
+                                                                {{ date('Y-m-d h:i A', strtotime($extra_time->to_time)) }}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -737,13 +743,11 @@
                                             </div>
                                         @endforeach
                                     </div>
-
                                 </div>
 
                                 <div class="tab-pane fade {{ $tab == 6 ? 'show active' : '' }}" id="leave"
                                     role="tabpanel" aria-labelledby="leave-tab">
-
-                                    <div class="py-4">
+                                    <div class="text-start py-4">
                                         @foreach ($task->leaves_times as $leave)
                                             <div class="row w-100 m-0 border shadow ">
 
@@ -823,13 +827,13 @@
                                                             <div class="col-md-6">
                                                                 From:
                                                                 <br>
-                                                                {{ date('Y-m-d H:i A', strtotime($leave->time_out)) }}
+                                                                {{ date('Y-m-d h:i A', strtotime($leave->time_out)) }}
                                                             </div>
 
                                                             <div class="col-md-6">
                                                                 To:
                                                                 <br>
-                                                                {{ date('Y-m-d H:i A', strtotime($leave->time_in)) }}
+                                                                {{ date('Y-m-d h:i A', strtotime($leave->time_in)) }}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -838,7 +842,6 @@
                                             </div>
                                         @endforeach
                                     </div>
-
                                 </div>
 
                             </div>
@@ -903,7 +906,7 @@
                             <div class="col-12">
                                 <textarea name='reason' id='reason' rows="3" class='form-control'
                                     placeholder='{{ __('
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            global.enter') }} {{ __('leave.reason') }}'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    global.enter') }} {{ __('leave.reason') }}'
                                     {{-- --}} wire:model.defer="leave_reason"></textarea>
                             </div>
                         </div>
@@ -959,7 +962,7 @@
                             <div class="col-12">
                                 <textarea name='reason' id='reason' rows="3" class='form-control'
                                     placeholder='{{ __('
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            global.enter') }} {{ __('extratime.reason') }}'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    global.enter') }} {{ __('extratime.reason') }}'
                                     {{-- --}} wire:model.defer="extratime_reason"></textarea>
                             </div>
 
@@ -1048,7 +1051,7 @@
 
                                         @include('inputs.show.input', [
                                             'label' => 'extratime.duration',
-                                            'val' => $extratime->duration,
+                                            'val' => $extratime_duration,
                                             'lg' => 12,
                                             'md' => 12,
                                             'sm' => 12,

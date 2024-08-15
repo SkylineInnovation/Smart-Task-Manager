@@ -26,8 +26,8 @@ class WebCreateNewTask extends Component
 
         $this->task = new Task();
 
-        $this->start_time = date('Y-m-d\TH:i');
-        $this->end_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        $this->start_time = date('Y-m-d\Th:i');
+        $this->end_time = date('Y-m-d\Th:i', strtotime('+1 Hours'));
 
         $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
     }
@@ -45,8 +45,8 @@ class WebCreateNewTask extends Component
         $this->manager_id = null;
         $this->title = '';
         $this->desc = '';
-        $this->start_time = date('Y-m-d\TH:i');
-        $this->end_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        $this->start_time = date('Y-m-d\Th:i');
+        $this->end_time = date('Y-m-d\Th:i', strtotime('+1 Hours'));
         // $this->priority_level = 'low';
         // $this->status = 'pending';
         $this->discount = 0;

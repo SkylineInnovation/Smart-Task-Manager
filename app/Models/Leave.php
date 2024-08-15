@@ -245,8 +245,8 @@ class Leave extends Model
 
     public function the_duration_in_sec()
     {
-        $startDate = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->time_out)));
-        $endDate = Carbon::parse(date('Y-m-d H:i:s', strtotime($this->time_in)));
+        $startDate = Carbon::parse(date('Y-m-d h:i:s', strtotime($this->time_out)));
+        $endDate = Carbon::parse(date('Y-m-d h:i:s', strtotime($this->time_in)));
 
         $totalSeconds = $endDate->diffInSeconds($startDate);
 

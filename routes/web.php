@@ -156,7 +156,7 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
 
 
 Route::get('tr', function () {
-    $date = date('Y-m-d\TH:i:s');
+    $date = date('Y-m-d\Th:i');
 
     $tasks = Task::whereIn('status', ['pending', 'active',])
         ->where('end_time', '<=', $date)->get();
