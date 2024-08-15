@@ -84,9 +84,9 @@
                         <td>{{ __('global.time') }}</td>
                     @endif
 
-                    <td>
+                    {{-- <td>
                         {{ __('global.action') }}
-                    </td>
+                    </td> --}}
 
                     @permission('edit-leave|delete-leave|restore-leave')
                         <td style="width: 150px">
@@ -185,21 +185,19 @@
                             <td> {{ date('h:i A', strtotime($leave->created_at)) }} </td>
                         @endif
 
-                        <td>
-                            @if ($leave->status == 'pending')
-                                <button data-toggle="modal" data-target="#accept-leave-modal"
-                                    wire:click="edit({{ $leave->id }})" class="btn btn-success">
-                                    <i class="ti-check text-white"></i>
-                                </button>
-                                <button data-toggle="modal" data-target="#reject-leave-modal"
-                                    wire:click="rejectLeave({{ $leave->id }})" class="btn btn-danger">
-                                    <i class="ti-close text-white"></i>
-                                </button>
-                            @endif
-                        </td>
-
                         @permission('edit-leave|delete-leave|restore-leave')
                             <td>
+                                @if ($leave->status == 'pending')
+                                    <button data-toggle="modal" data-target="#accept-leave-modal"
+                                        wire:click="edit({{ $leave->id }})" class="btn btn-success">
+                                        <i class="ti-check text-white"></i>
+                                    </button>
+                                    <button data-toggle="modal" data-target="#reject-leave-modal"
+                                        wire:click="rejectLeave({{ $leave->id }})" class="btn btn-danger">
+                                        <i class="ti-close text-white"></i>
+                                    </button>
+                                @endif
+
                                 @if ($admin_view_status != 'deleted')
                                     @permission('edit-leave')
                                         <button data-toggle="modal" data-target="#update-leave-modal"

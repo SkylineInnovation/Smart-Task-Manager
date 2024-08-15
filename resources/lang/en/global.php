@@ -178,4 +178,11 @@ return [
 
     'task_view' => 'task view',
     'reports' => 'reports',
+
+    'by_tasks' => 'by tasks',
+    'by_main_attachments' => 'by main attachments',
+    'by_main_comments' => 'by main comments',
+    'by_accepted_by_users' => 'by accepted by users',
+    'by_managers' => 'by managers',
+    'by_main_tasks' => 'by main tasks',
 ];

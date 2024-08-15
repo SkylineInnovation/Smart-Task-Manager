@@ -85,10 +85,6 @@
                         <td>{{ __('global.time') }}</td>
                     @endif
 
-                    <td>
-                        Action
-                    </td>
-
                     @permission('edit-extratime|delete-extratime|restore-extratime')
                         <td style="width: 150px">
                             {{ __('global.action') }}
@@ -185,22 +181,20 @@
                             <td> {{ date('h:i A', strtotime($extratime->created_at)) }} </td>
                         @endif
 
-                        <td>
-                            @if ($extratime->status == 'pending')
-                                <button data-toggle="modal" data-target="#accept-extratime-modal"
-                                    wire:click="edit({{ $extratime->id }})" class="btn btn-success">
-                                    <i class="ti-check text-white"></i>
-                                </button>
-
-                                <button data-toggle="modal" data-target="#reject-extratime-modal"
-                                    wire:click="rejectExtraTime({{ $extratime->id }})" class="btn btn-danger">
-                                    <i class="ti-close text-white"></i>
-                                </button>
-                            @endif
-                        </td>
-
                         @permission('edit-extratime|delete-extratime|restore-extratime')
                             <td>
+                                @if ($extratime->status == 'pending')
+                                    <button data-toggle="modal" data-target="#accept-extratime-modal"
+                                        wire:click="edit({{ $extratime->id }})" class="btn btn-success">
+                                        <i class="ti-check text-white"></i>
+                                    </button>
+
+                                    <button data-toggle="modal" data-target="#reject-extratime-modal"
+                                        wire:click="rejectExtraTime({{ $extratime->id }})" class="btn btn-danger">
+                                        <i class="ti-close text-white"></i>
+                                    </button>
+                                @endif
+
                                 @if ($admin_view_status != 'deleted')
                                     @permission('edit-extratime')
                                         <button data-toggle="modal" data-target="#update-extratime-modal"

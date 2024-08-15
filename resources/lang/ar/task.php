@@ -9,31 +9,32 @@ return [
     'time' => 'time',
 
 
-    'manager' => 'manager',
+    'manager' => 'المدير',
 
-    'title' => 'title',
+    'title' => 'العنوان',
 
-    'desc' => 'desc',
+    'desc' => 'الوصف',
 
-    'start_time' => 'start time',
+    'start_time' => 'وقت البدء',
 
-    'end_time' => 'end time',
+    'end_time' => 'وقت الانتهاء',
 
-    'priority_level' => 'priority level',
+    'priority_level' => 'الأولوية',
 
     'status' => 'الحالة',
 
-    'main_task' => 'main task',
+    'main_task' => 'التاسك الرئيسي',
 
-    'discount' => 'discount',
+    'discount' => 'الخصم',
 
-    'low' => 'low',
-    'medium' => 'medium',
-    'high' => 'high',
-    'pending' => 'pending',
-    'active' => 'active',
-    'auto-finished' => 'auto finished',
-    'manual-finished' => 'manual finished',
+    'low' => 'منخفض',
+    'medium' => 'متوسط',
+    'high' => 'مهم جدا',
+
+    'pending' => 'قيد الانتظار',
+    'active' => 'نشط',
+    'auto-finished' => 'انتهاء الوقت',
+    'manual-finished' => 'مكتمل',
 
     //
 
@@ -47,81 +48,35 @@ return [
     'Active' => 'نشط',
     'Finished' => 'تم الانتهاء',
     'System_Finished' => 'إنتهاء تلقائي',
-    'assigend'=>'تم تعيينه',
+    'assigend' => 'تم تعيينه',
 
 
     'Edit' => 'تحرير',
     'Delete' => 'حذف',
 
-    'Title'=>'عنوان',
+    'Title' => 'عنوان',
 
-    'Discription'       =>'الوصف',
-    'From'              =>'من',
-    'To'                =>'إلى',
-    'Users'             =>'الموظفون',
-    'Attatchments'      =>'المرفقات',
-    'Comments'          =>'التعليقات',
-    'Sub_Tasks'         =>'المهام الفرعية',
-    'Extra_Time'        =>'وقت إضافي',
-    'leave'             =>'مغادرات',
-    'Uploading...'      =>'تحميل...',
-    'Upload'            =>'تحميل',
-    'Commet'            =>'كوميت',
-    'Replay'            =>'إعادة التشغيل',
-    'Close'             =>'إغلاق',
-    'Add_Sub_Task'      =>'إضافة مهمة فرعية',
-    'Description'       =>'الوصف',
-    'Employee'          =>'موظف',
-    'Priority'          =>'الأولوية',
-    'Accept'            =>'قبول',
-    'Reject'            =>'رفض',
-    'Request_Leave'     =>'طلب إجازة',
-    'Role'              =>'قواعد',
-   
-
-
-   
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    'Discription'       => 'الوصف',
+    'From'              => 'من',
+    'To'                => 'إلى',
+    'Users'             => 'الموظفون',
+    'Attatchments'      => 'المرفقات',
+    'Comments'          => 'التعليقات',
+    'Sub_Tasks'         => 'المهام الفرعية',
+    'Extra_Time'        => 'وقت إضافي',
+    'leave'             => 'مغادرات',
+    'Uploading...'      => 'تحميل...',
+    'Upload'            => 'تحميل',
+    'Commet'            => 'كوميت',
+    'Replay'            => 'إعادة التشغيل',
+    'Close'             => 'إغلاق',
+    'Add_Sub_Task'      => 'إضافة مهمة فرعية',
+    'Description'       => 'الوصف',
+    'Employee'          => 'موظف',
+    'Priority'          => 'الأولوية',
+    'Accept'            => 'قبول',
+    'Reject'            => 'رفض',
+    'Request_Leave'     => 'طلب إجازة',
+    'Role'              => 'قواعد',
 
 ];
