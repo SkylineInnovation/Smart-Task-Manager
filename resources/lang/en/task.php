@@ -50,33 +50,30 @@ return [
 
     'Edit' => 'Edit',
     'Delete' => 'Delete',
-    'Title'=>'Title',
+    'Title' => 'Title',
 
 
 
-    'Discription'       =>'Discription',
-    'From'              =>'From',
-    'To'                =>'To',
-    'Users'             =>'Users',
-    'Attatchments'      =>'Attatchments',
-    'Comments'          =>'Comments',
-    'Sub_Tasks'         =>'Sub Tasks',
-    'Extra_Time'        =>'Extra Time',
-    'leave'             =>'leave',
-    'Uploading...'      =>'Uploading...',
-    'Upload'            =>'Upload',
-    'Commet'            =>'Commet',
-    'Replay'            =>'Replay',
-    'Close'             =>'Close',
-    'Add_Sub_Task'      =>'Add Sub Task',
-    'Description'       =>'Description',
-    'Employee'          =>'Employee',
-    'Priority'          =>'Priority',
-    'Accept'            =>'Accept',
-    'Reject'            =>'Reject',
-    'Request_Leave'     =>'Request Leave',
-    'Role'              =>'Role'
-
-
-    
+    'Discription' => 'Discription',
+    'From' => 'From',
+    'To' => 'To',
+    'Users' => 'Users',
+    'Attatchments' => 'Attatchments',
+    'Comments' => 'Comments',
+    'Sub_Tasks' => 'Sub Tasks',
+    'Extra_Time' => 'Extra Time',
+    'leave' => 'leave',
+    'Uploading...' => 'Uploading...',
+    'Upload' => 'Upload',
+    'Commet' => 'Commet',
+    'Replay' => 'Replay',
+    'Close' => 'Close',
+    'Add_Sub_Task' => 'Add Sub Task',
+    'Description' => 'Description',
+    'Employee' => 'Employee',
+    'Priority' => 'Priority',
+    'Accept' => 'Accept',
+    'Reject' => 'Reject',
+    'Request_Leave' => 'Request Leave',
+    'Role' => 'Role'
 ];
