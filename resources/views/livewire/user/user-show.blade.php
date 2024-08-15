@@ -7,18 +7,18 @@
                 <div class="card-body">
                     <div class="text-center">
                         <div class="userprofile">
-                            {{-- <div class="userpic brround">
-                                <img src="{{ asset($user->image) }}" alt="">
-                            </div> --}}
+                            <div class="userpic brround">
+                                <img src="{{ asset($user->image) }}" class="userpic brround" alt="{{ $user->name() }}">
+                            </div>
                             <h3 class="username text-dark mb-2">{{ $user->name() }}</h3>
                             <p class="mb-1 text-muted">{{ $user->rolesSideBySide() }}</p>
-                            <div class="text-center mb-4">
+                            {{-- <div class="text-center mb-4">
                                 <span><i class="fa fa-star text-warning"></i></span>
                                 <span><i class="fa fa-star-half-o text-warning"></i></span>
                                 <span><i class="fa fa-star-o text-warning"></i></span>
                                 <span><i class="fa fa-star-o text-warning"></i></span>
                                 <span><i class="fa fa-star-o text-warning"></i></span>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-stretch">
             <div class="card">
                 <div class="card-body text-center statistics-info">
                     <div class="counter-icon bg-primary mb-0 box-primary-shadow">
@@ -104,13 +104,13 @@
                     </div>
                     <h6 class="mt-4 mb-1">Total Tasks Time</h6>
                     <h2 class="mb-2 number-font">{{ $totalTaskWork }}</h2>
-                    <p class="text-muted">Total Work Hours in Selected Duration:</p>
+                    <p class="text-muted">Total Work Hours in Selected Duration</p>
                 </div>
             </div>
         </div>
 
         {{--  --}}
-        <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-stretch">
             <div class="card">
                 <div class="card-body text-center statistics-info">
                     <div class="counter-icon bg-primary mb-0 box-primary-shadow">
@@ -118,13 +118,13 @@
                     </div>
                     <h6 class="mt-4 mb-1">Total Task Count</h6>
                     <h2 class="mb-2 number-font">{{ $totalTaskSum }}</h2>
-                    <p class="text-muted">Total Task Count in Selected Duration:</p>
+                    <p class="text-muted">Total Task Count in Selected Duration</p>
                 </div>
             </div>
         </div>
 
         {{--  --}}
-        <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-stretch">
             <div class="card">
                 <div class="card-body text-center statistics-info">
                     <div class="counter-icon bg-primary mb-0 box-primary-shadow">
@@ -138,7 +138,7 @@
         </div>
 
         {{--  --}}
-        <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="col-lg-3 col-md-6 col-sm-12 d-flex align-items-stretch">
             <div class="card">
                 <div class="card-body text-center statistics-info">
                     <div class="counter-icon bg-primary mb-0 box-primary-shadow">
@@ -146,7 +146,7 @@
                     </div>
                     <h6 class="mt-4 mb-1">Total Completed Tasks</h6>
                     <h2 class="mb-2 number-font">{{ $completedTaskSum }}</h2>
-                    <p class="text-muted">Total Completed Task Count in Selected Duration:</p>
+                    <p class="text-muted">Total Completed Task Count in Selected Duration</p>
                 </div>
             </div>
         </div>
@@ -174,7 +174,7 @@
             </div>
         </div>
 
-        <div class="col-3">
+        <div class="col-lg-3 col-md-12 col-sm-12 d-flex align-items-stretch">
             <div class="card">
                 <div class="card-body text-center">
                     <div id="task-morrisBar8-don" class="donutShadow" style="height: 200px">
@@ -187,21 +187,53 @@
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Total Extra Time Hours in Selected Duration:
-                <span class="ms-5">{{ $totalExtraTimeWork }}</span>
-            </h5>
-            <h5 class="card-title">Total Leave Hours in Selected Duration:
-                <span class="ms-5">{{ $totalLeaveWork }}</span>
-            </h5>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch">
+            <div class="card">
+                <div class="card-body text-center statistics-info">
+                    <div class="counter-icon bg-primary mb-0 box-primary-shadow">
+                        <i class="fe fe-trending-up text-white"></i>
+                    </div>
+                    <h6 class="mt-4 mb-1">Total Extra Time</h6>
+                    <h2 class="mb-2 number-font">{{ $totalExtraTimeWork }}</h2>
+                    <p class="text-muted">Total Extra Time Hours in Selected Duration</p>
+                </div>
+            </div>
+        </div>
+
+        {{--  --}}
+        <div class="col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch">
+            <div class="card">
+                <div class="card-body text-center statistics-info">
+                    <div class="counter-icon bg-primary mb-0 box-primary-shadow">
+                        <i class="fe fe-trending-up text-white"></i>
+                    </div>
+                    <h6 class="mt-4 mb-1">Total Leave Hours</h6>
+                    <h2 class="mb-2 number-font">{{ $totalLeaveWork }}</h2>
+                    <p class="text-muted">Total Leave Hours in Selected Duration</p>
+                </div>
+            </div>
+        </div>
+
+        {{--  --}}
+        <div class="col-lg-4 col-md-12 col-sm-12 d-flex align-items-stretch">
+            <div class="card">
+                <div class="card-body text-center statistics-info">
+                    <div class="counter-icon bg-primary mb-0 box-primary-shadow">
+                        <i class="fe fe-trending-up text-white"></i>
+                    </div>
+                    <h6 class="mt-4 mb-1">Total Discount</h6>
+                    <h2 class="mb-2 number-font">{{ $totalDiscountAmount }}</h2>
+                    <p class="text-muted">Total Discount in Selected Duration</p>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="card">
-        {{-- <div class="card-header">
-            Leave & Extra Time
-        </div> --}}
+        <div class="card-header">
+            Leaves & Extra Times
+        </div>
         <div class="card-body">
             <div id="leave-extratime-echart" class="chart-donut chart-dropshadow"></div>
         </div>
@@ -217,19 +249,10 @@
         </div>
     </div>
 
-    {{--  --}}
     <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Total Discount in Selected Duration:
-                <span class="ms-5">{{ $totalDiscountAmount }}</span>
-            </h5>
+        <div class="card-header">
+            Discounts
         </div>
-    </div>
-
-    <div class="card">
-        {{-- <div class="card-header">
-            Discount
-        </div> --}}
         <div class="card-body">
             <div id="discount-echart" class="chart-donut chart-dropshadow"></div>
         </div>
