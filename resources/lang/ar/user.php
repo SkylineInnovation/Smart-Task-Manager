@@ -13,25 +13,24 @@ return [
     |
     */
 
-    'name' => 'Name',
-    'first_name' => 'First Name',
-    'last_name' => 'Last Name',
-    'user_name' => 'User Name',
-    'password' => 'Password',
-    'confirm_password' => 'Confirm Password',
-    'image' => 'Image',
-    'email' => 'Email',
-    'phone' => 'Phone',
-    'gender' => 'Gender',
-    'birth_day' => 'Birth Day',
-    'status' => 'Status',
-
-    'role' => 'Role',
-
-    'edit-password' => 'edit password',
-
-    'current_password' => 'current password',
-    'new_password' => 'new password',
-    'edit-profile' => 'edit profile',
+    'name' => 'الاسم',
+    'first_name' => 'الاسم الأول',
+    'last_name' => 'اسم العائلة',
+    'user_name' => 'اسم المستخدم',
+    'password' => 'كلمة المرور',
+    'confirm_password' => 'تأكيد كلمة المرور',
+    'image' => 'الصورة',
+    'email' => 'البريد الإلكتروني',
+    'phone' => 'رقم الهاتف',
+    'gender' => 'الجنس',
+    'birth_day' => 'يوم الميلاد',
+    'status' => 'الحالة الاجتماعية',
+    'role' => 'الدور',
+    'edit-password' => 'تعديل كلمة المرور',
+    'current_password' => 'كلمة المرور الحالية',
+    'new_password' => 'كلمة المرور الجديدة',
+    'edit-profile' => 'تعديل الملف الشخصي',
+    'created_at'=>'تم الإنشاء في',
+    'id'=>'المعرف'
 
 ];

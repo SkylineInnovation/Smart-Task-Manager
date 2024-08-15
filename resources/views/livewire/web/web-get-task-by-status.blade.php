@@ -31,7 +31,7 @@
                                             <a class="dropdown-item" href="javascript:;"
                                                 wire:click="startWithTask({{ $task->id }})">
                                                 <i class="fa fa-hourglass-end text-info" aria-hidden="true"></i>
-                                                &nbsp; Start
+                                                &nbsp; {{ __('task.Start') }}
                                             </a>
                                         @endif
 
@@ -39,7 +39,7 @@
                                             <a class="dropdown-item" href="javascript:;"
                                                 wire:click="finishWithTask({{ $task->id }})">
                                                 <i class="fa fa-check-square text-success" aria-hidden="true"></i>
-                                                &nbsp; Finsh
+                                                &nbsp; {{ __('task.Finsh') }}
                                             </a>
                                         @endif
                                     @endrole
@@ -58,13 +58,13 @@
                                             wire:click="editTask({{ $task->id }})"
                                             data-target="#update-task-{{ $task->id }}">
                                             <i class="fa fa-pencil-square-o text-secondarye" aria-hidden="true"></i>
-                                            &nbsp; Edit
+                                            &nbsp; {{ __('task.Edit') }}
                                         </a>
 
                                         <a class="dropdown-item" href="javascript:;"
                                             wire:click='deleteTask({{ $task->id }})'>
                                             <i class="fa fa-trash-o text-danger" aria-hidden="true"></i>
-                                            &nbsp; Delete
+                                            &nbsp; {{ __('task.Delete') }}
                                         </a>
                                     @endrole
 
@@ -73,14 +73,14 @@
                                             data-target="#request-leave-modal-{{ $task->id }}"
                                             wire:click="setTask({{ $task->id }})">
                                             <i class="fa fa-sign-out text-info" aria-hidden="true"></i>
-                                            &nbsp; Request Leave
+                                            &nbsp; {{ __('Request_Leave') }}
                                         </a>
 
                                         <a class="dropdown-item" data-toggle="modal"
                                             data-target="#extra-time-modal-{{ $task->id }}" href=javascript:;
                                             wire:click="setTask({{ $task->id }})">
                                             <i class="fa fa-clock-o text-warning" aria-hidden="true"></i>
-                                            &nbsp; Extra Time
+                                            &nbsp; {{ __('Extra_Time') }}
                                         </a>
                                     @endrole
 
@@ -113,7 +113,7 @@
 
                     <div class="col-md-12 pt-2">
                         <h4 class="px-4 text-gray-400">
-                            Employees
+                            {{ __('task.employees') }}
                         </h4>
 
                         <div class="row w-100 m-0 py-3">
@@ -131,12 +131,12 @@
                     <div class="col-md-12">
                         <div class="row w-100 m-0 ">
                             <div class="col-md-12 px-4 fs-6 text-gray-400">
-                                start at: {{ $task->format_date($task->start_time) }}
+                                {{ __('task.start_at') }} : <br> {{ $task->format_date($task->start_time) }}
                             </div>
                             <div class="col-md-12 px-4 fs-6 text-gray-400">
-                                end at: {{ $task->format_date($task->end_time) }}
+                                {{ __('task.end_at') }} : <br> {{ $task->format_date($task->end_time) }}
                             </div>
-                            <small class="col-md-12 px-4 text-muted py-3">assigend:
+                            <small class="col-md-12 px-4 text-muted py-3">{{ __('task.assigend') }}:
                                 {{ date('Y/m/d h:i A', strtotime($task->created_at)) }}
                                 ({{ $task->created_ago($task->created_at) }})</small>
                         </div>
@@ -170,11 +170,11 @@
                         <div class="row">
                             <div class="col-8 text-start">
                                 <div>
-                                    <h4>Title: {{ $task->title }}</h4>
+                                    <h4>{{ __('task.Title') }}: {{ $task->title }}</h4>
                                 </div>
 
                                 <div>
-                                    <h5>Discription:</h5>
+                                    <h5>{{ __('task.Discription') }}:</h5>
                                     <small class="fs-5 text-gray">{!! $task->desc !!}</small>
                                 </div>
                             </div>
@@ -182,13 +182,13 @@
                             <div class="col-4">
                                 <div class="row text-start">
                                     <div class="col-12">
-                                        From:
+                                        {{ __('task.From') }}:
                                         <br>
                                         {{ date('Y-m-d h:i A', strtotime($task->start_time)) }}
                                     </div>
 
                                     <div class="col-12">
-                                        To:
+                                        {{ __('task.To') }}:
                                         <br>
                                         {{ date('Y-m-d h:i A', strtotime($task->end_time)) }}
                                     </div>
@@ -202,40 +202,40 @@
                                     <a class="nav-link py-3 rounded-pill {{ $tab == 1 ? 'active' : '' }}"
                                         id="user-tab" data-toggle="tab" wire:click="changeTab(1)" href="#user"
                                         role="tab" aria-controls="user"
-                                        aria-selected="{{ $tab == 1 }}">Users</a>
+                                        aria-selected="{{ $tab == 1 }}">{{ __('task.Users') }}</a>
                                 </li>
                                 <li class="nav-item px-1 ">
                                     <a class="nav-link py-3 rounded-pill {{ $tab == 2 ? 'active' : '' }}"
                                         id="attatchment-tab" data-toggle="tab" wire:click="changeTab(2)"
                                         href="#attatchment" role="tab" aria-controls="attatchment"
-                                        aria-selected="{{ $tab == 2 }}">Attatchments</a>
+                                        aria-selected="{{ $tab == 2 }}">{{ __('task.Attatchments') }}</a>
                                 </li>
                                 <li class="nav-item px-1 ">
                                     <a class="nav-link py-3 rounded-pill {{ $tab == 3 ? 'active' : '' }}"
                                         id="comment-tab" data-toggle="tab" wire:click="changeTab(3)" href="#comment"
                                         role="tab" aria-controls="comment"
-                                        aria-selected="{{ $tab == 3 }}">Comments</a>
+                                        aria-selected="{{ $tab == 3 }}">{{ __('task.Comments') }}</a>
                                 </li>
 
                                 <li class="nav-item px-1 ">
                                     <a class="nav-link py-3 rounded-pill {{ $tab == 4 ? 'active' : '' }}"
                                         id="subTask-tab" data-toggle="tab" wire:click="changeTab(4)" href="#subTask"
                                         role="tab" aria-controls="subTask"
-                                        aria-selected="{{ $tab == 4 }}">Sub Tasks</a>
+                                        aria-selected="{{ $tab == 4 }}">{{ __('task.Sub_Tasks') }}</a>
                                 </li>
 
                                 <li class="nav-item px-1 ">
                                     <a class="nav-link py-3 rounded-pill {{ $tab == 5 ? 'active' : '' }}"
                                         id="extra-tab" data-toggle="tab" wire:click="changeTab(5)" href="#extra"
                                         role="tab" aria-controls="extra"
-                                        aria-selected="{{ $tab == 5 }}">Extra Time</a>
+                                        aria-selected="{{ $tab == 5 }}">{{ __('task.Extra_Time') }}</a>
                                 </li>
 
                                 <li class="nav-item px-1 ">
                                     <a class="nav-link py-3 rounded-pill {{ $tab == 6 ? 'active' : '' }}"
                                         id="leave-tab" data-toggle="tab" wire:click="changeTab(6)" href="#leave"
                                         role="tab" aria-controls="leave"
-                                        aria-selected="{{ $tab == 6 }}">leave</a>
+                                        aria-selected="{{ $tab == 6 }}">{{ __('task.leave') }}</a>
                                 </li>
                             </ul>
 
@@ -247,8 +247,8 @@
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col-8">Users</th>
-                                                    <th scope="col">Role</th>
+                                                    <th scope="col-8">{{ __('task.Users') }}</th>
+                                                    <th scope="col">{{ __('task.Role') }}</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="fs-6">
@@ -312,7 +312,8 @@
                                                             class="form-control" aria-label="Default"
                                                             aria-describedby="inputGroup-sizing-default">
                                                     </div>
-                                                    <div wire:loading wire:target="attatchment_file">Uploading...</div>
+                                                    <div wire:loading wire:target="attatchment_file">
+                                                        {{ __('task.Uploading...') }}</div>
                                                 </div>
                                             </div>
 
@@ -324,7 +325,7 @@
 
                                             <button wire:click="addAttatchment()" type="button"
                                                 class="w-100 btn btn-success">
-                                                Upload
+                                                {{ __('task.Upload') }}
                                             </button>
 
                                         </div>
@@ -400,7 +401,7 @@
 
                                             <button wire:click="addComment()" type="button"
                                                 class="w-100 btn btn-success">
-                                                Commet
+                                                {{ __('task.Commet') }}
                                             </button>
                                         </div>
 
@@ -457,7 +458,7 @@
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title"
                                                                     id="replay-modal-{{ $task->id }}-Label">
-                                                                    Replay
+                                                                    {{ __('task.Replay') }}
                                                                 </h5>
                                                                 <button type="button" class="close"
                                                                     data-dismiss="modal" aria-label="Close">
@@ -487,11 +488,11 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Close</button>
+                                                                    data-dismiss="modal">{{ __('task.Close') }}</button>
 
                                                                 <button wire:click="replayComment()" type="button"
                                                                     class="btn btn-success">
-                                                                    Commet
+                                                                    {{ __('task.Commet') }}
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -513,7 +514,7 @@
                                                     <div class="input-group mb-1 col-8">
                                                         <div class="input-group-prepend ">
                                                             <span class="input-group-text btn-secondary text-white"
-                                                                id="inputGroup-sizing-default">{{ __('task.title') }}</span>
+                                                                id="inputGroup-sizing-default">{{ __('task.Title') }}</span>
                                                         </div>
 
                                                         <input wire:model.defer="sub_task_title" type="text"
@@ -524,9 +525,9 @@
                                                     <div class="form-group mb-1 col-4">
                                                         <select wire:model.defer="sub_task_priority_level"
                                                             class="form-control">
-                                                            <option value="low">low</option>
-                                                            <option value="medium">medium</option>
-                                                            <option value="high">high</option>
+                                                            <option value="low">{{ __('task.low') }}</option>
+                                                            <option value="medium">{{ __('task.medium') }}</option>
+                                                            <option value="high">{{ __('task.high') }}</option>
                                                         </select>
                                                     </div>
 
@@ -567,7 +568,7 @@
 
                                                 <button wire:click="addSubTask()" type="button"
                                                     class="w-100 btn btn-success">
-                                                    Add Sub Task
+                                                    {{ __('task.Add_Sub_Task') }}
                                                 </button>
                                             </div>
                                         @endrole
@@ -580,7 +581,7 @@
                                                         <div class="col-md-12">
                                                             <div class="row">
                                                                 <div class="col-md-6">
-                                                                    Title:
+                                                                    {{ __('task.Title') }}:
                                                                 </div>
 
                                                                 <div class="col-md-6">
@@ -592,7 +593,7 @@
                                                         <div class="col-md-12">
                                                             <div class="row">
                                                                 <div class="col-md-6">
-                                                                    Description:
+                                                                    {{ __('task.Description') }}:
                                                                 </div>
 
                                                                 <div class="col-md-6">
@@ -604,7 +605,7 @@
                                                         <div class="col-md-12">
                                                             <div class="row">
                                                                 <div class="col-md-6">
-                                                                    Employee:
+                                                                    {{ __('task.Employee') }}:
                                                                 </div>
                                                                 @foreach ($sub->employees as $subEm)
                                                                     <div class="col-md-6">
@@ -619,7 +620,7 @@
                                                         <div class="col-md-12">
                                                             <div class="row">
                                                                 <div class="col-md-6">
-                                                                    Priority:
+                                                                    {{ __('task.Priority') }}:
                                                                 </div>
 
                                                                 <div class="col-md-6">
@@ -631,13 +632,13 @@
                                                         <div class="col-md-12">
                                                             <div class="row">
                                                                 <div class="col-md-6">
-                                                                    From:
+                                                                    {{ __('task.From') }}:
                                                                     <br>
                                                                     {{ date('Y-m-d h:i A', strtotime($sub->start_time)) }}
                                                                 </div>
 
                                                                 <div class="col-md-6">
-                                                                    To:
+                                                                    {{ __('task.To') }}:
                                                                     <br>
                                                                     {{ date('Y-m-d h:i A', strtotime($sub->end_time)) }}
                                                                 </div>
@@ -660,7 +661,7 @@
                                                     <div class="col-md-12">
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                Title:
+                                                                {{ __('task.Title') }}:
                                                             </div>
 
                                                             <div class="col-md-6">
@@ -672,7 +673,7 @@
                                                     <div class="col-md-12">
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                Employee:
+                                                                {{ __('task.Employee') }}:
                                                             </div>
 
                                                             <div class="col-md-6">
@@ -686,7 +687,7 @@
                                                     <div class="col-md-12 mb-3">
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                status:
+                                                                {{ __('task.status') }}:
                                                             </div>
 
                                                             <div class="col-md-6">
@@ -708,14 +709,14 @@
                                                                                     data-target="#accept-extratime-modal-{{ $task->id }}"
                                                                                     wire:click="setExtraTime({{ $extra_time->id }})">
                                                                                     <i class="ti-check text-success"></i>
-                                                                                    Accept
+                                                                                    {{ __('task.Accept') }}
                                                                                 </button>
                                                                                 <button class="dropdown-item"
                                                                                     data-toggle="modal"
                                                                                     data-target="#reject-extratime-modal-{{ $task->id }}"
                                                                                     wire:click="rejectExtraTime({{ $extra_time->id }})">
                                                                                     <i class="ti-close text-danger"></i>
-                                                                                    Reject
+                                                                                    {{ __('task.Reject') }}
                                                                                 </button>
                                                                             </div>
                                                                         @endrole
@@ -730,13 +731,13 @@
                                                     <div class="col-md-12">
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                From:
+                                                                {{ __('task.From') }}:
                                                                 <br>
                                                                 {{ date('Y-m-d h:i A', strtotime($extra_time->from_time)) }}
                                                             </div>
 
                                                             <div class="col-md-6">
-                                                                To:
+                                                                {{ __('task.To') }}:
                                                                 <br>
                                                                 {{ date('Y-m-d h:i A', strtotime($extra_time->to_time)) }}
                                                             </div>
@@ -759,7 +760,7 @@
                                                     <div class="col-md-12">
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                Title:
+                                                                {{ __('task.Title') }}:
                                                             </div>
 
                                                             <div class="col-md-6">
@@ -771,7 +772,7 @@
                                                     <div class="col-md-12">
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                Employee:
+                                                                {{ __('task.Employee') }}:
                                                             </div>
 
                                                             <div class="col-md-6">
@@ -785,7 +786,7 @@
                                                     <div class="col-md-12 mb-3">
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                status:
+                                                                {{ __('task.status') }}:
                                                             </div>
 
                                                             <div class="col-md-6">
@@ -807,14 +808,14 @@
                                                                                     data-target="#accept-leave-modal-{{ $task->id }}"
                                                                                     wire:click="setLeave({{ $leave->id }})">
                                                                                     <i class="ti-check text-success"></i>
-                                                                                    Accept
+                                                                                    {{ __('task.Accept') }}
                                                                                 </button>
                                                                                 <button class="dropdown-item"
                                                                                     data-toggle="modal"
                                                                                     data-target="#reject-leave-modal"
                                                                                     wire:click="rejectLeave({{ $leave->id }})">
                                                                                     <i class="ti-close text-danger"></i>
-                                                                                    Reject
+                                                                                    {{ __('task.Reject') }}
                                                                                 </button>
                                                                             </div>
                                                                         @endrole
@@ -829,13 +830,13 @@
                                                     <div class="col-md-12">
                                                         <div class="row">
                                                             <div class="col-md-6">
-                                                                From:
+                                                                {{ __('task.From') }}:
                                                                 <br>
                                                                 {{ date('Y-m-d h:i A', strtotime($leave->time_out)) }}
                                                             </div>
 
                                                             <div class="col-md-6">
-                                                                To:
+                                                                {{ __('task.To') }}:
                                                                 <br>
                                                                 {{ date('Y-m-d h:i A', strtotime($leave->time_in)) }}
                                                             </div>
@@ -853,7 +854,8 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">{{ __('task.Close') }}</button>
                     </div>
                 </div>
             </div>
@@ -866,7 +868,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="request-leave-modal-{{ $task->id }}-title">
-                            Request Leave
+                            {{ __('task.Request_Leave') }}
                         </h5>
                         <button class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -919,7 +921,7 @@
                         <button type="button" class="btn btn-secondary close-btn"
                             data-dismiss="modal">{{ __('global.close') }}</button>
                         <button type="button" wire:click.prevent="addLeaveRequest()" class="btn btn-success">
-                            request
+                            {{ __('task.request') }}
                         </button>
                     </div>
                 </div>
@@ -934,8 +936,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="extra-time-modal-{{ $task->id }}-title">
-                            Request Extra Time
-                        </h5>
+                            {{ __('task.Request_Leave') }}</h5>
                         <button class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -976,7 +977,7 @@
                         <button type="button" class="btn btn-secondary close-btn"
                             data-dismiss="modal">{{ __('global.close') }}</button>
                         <button type="button" wire:click.prevent="addExtraTime()" class="btn btn-success">
-                            Request
+                            {{ __('task.Request') }}
                         </button>
                     </div>
                 </div>

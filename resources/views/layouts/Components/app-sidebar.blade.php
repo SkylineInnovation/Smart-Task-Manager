@@ -102,7 +102,7 @@
 
                 <li>
                     <a class="slide-item" href="{{ route('task-view') }}">
-                        <span>{{ __('global.task view') }}</span>
+                        <span>{{ __('global.task_view') }}</span>
                     </a>
                 </li>
 

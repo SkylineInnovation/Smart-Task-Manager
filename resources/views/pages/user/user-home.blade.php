@@ -3,7 +3,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h4>all users in the app</h4>
+            <h4>{{__('global.all_users_in_the_app')}}</h4>
         </div>
         <div class="card-body">
             <livewire:user.user-index />
