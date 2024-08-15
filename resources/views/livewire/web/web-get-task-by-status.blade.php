@@ -55,7 +55,8 @@
                                         @endif --}}
 
                                         <a class="dropdown-item" href="javascript:;" data-toggle="modal"
-                                            data-target="#update">
+                                            wire:click="editTask({{ $task->id }})"
+                                            data-target="#update-task-{{ $task->id }}">
                                             <i class="fa fa-pencil-square-o text-secondarye" aria-hidden="true"></i>
                                             &nbsp; Edit
                                         </a>
@@ -94,7 +95,10 @@
                             </div>
 
                             <div class="col-md-3 col-4 d-flex justify-content-center fs-4">
-                                <i class="fa fa-commenting-o text-danger"></i>
+                                <button type="button" class="fa fa-commenting-o text-info" data-toggle="modal"
+                                    data-target="#show-task-modal-{{ $task->id }}"
+                                    wire:click="openCommentTask({{ $task->id }})">
+                                </button>
                             </div>
 
                             <div class="col-12 py-3">
@@ -906,7 +910,7 @@
                             <div class="col-12">
                                 <textarea name='reason' id='reason' rows="3" class='form-control'
                                     placeholder='{{ __('
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        global.enter') }} {{ __('leave.reason') }}'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                global.enter') }} {{ __('leave.reason') }}'
                                     {{-- --}} wire:model.defer="leave_reason"></textarea>
                             </div>
                         </div>
@@ -962,7 +966,7 @@
                             <div class="col-12">
                                 <textarea name='reason' id='reason' rows="3" class='form-control'
                                     placeholder='{{ __('
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        global.enter') }} {{ __('extratime.reason') }}'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                global.enter') }} {{ __('extratime.reason') }}'
                                     {{-- --}} wire:model.defer="extratime_reason"></textarea>
                             </div>
 
@@ -981,6 +985,163 @@
         </div>
 
         @role('owner|manager')
+            {{--  --}}{{--  --}}{{--  --}}
+
+            <div wire:ignore.self data-backdrop="static" data-keyboard="true" class="modal fade"
+                id="update-task-{{ $task->id }}" tabindex="-1" role="dialog"
+                aria-labelledby="update-task-{{ $task->id }}-label" aria-hidden="true">
+                <div class="modal-dialog modal-lg text-start" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="update-task-{{ $task->id }}-label">
+                                {{ $task->crud_name() }}</h5>
+                            <button wire:click.prevent="cancelTask()" type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        @if ($updateMode)
+                            <form enctype="multipart/form-data" method="post" accept-charset="utf-8"
+                                class="form-horizontal">
+                                <div class="modal-body">
+                                    <input type="hidden" wire:model="task_id">
+                                    @csrf
+
+                                    <div class="row">
+                                        @include('inputs.edit.input', [
+                                            'label' => 'task.title',
+                                            'name' => 'task.title',
+                                            'val' => $task->title,
+                                            'livewire' => 'edit_task_title',
+                                            'type' => 'text', // 'step' => 1,
+                                            // 'required' => 'required',
+                                            'lg' => 9,
+                                            'md' => 9,
+                                            'sm' => 9,
+                                        ])
+
+                                        @include('inputs.edit.input', [
+                                            'label' => 'task.discount',
+                                            'name' => 'task.discount',
+                                            'val' => $task->discount(),
+                                            'livewire' => 'edit_task_discount',
+                                            'type' => 'number',
+                                            'step' => 1,
+                                            // 'required' => 'required',
+                                            'lg' => 3,
+                                            'md' => 3,
+                                            'sm' => 3,
+                                        ])
+
+                                        @include('inputs.edit.input', [
+                                            'label' => 'task.desc',
+                                            'name' => 'task.desc',
+                                            'val' => $task->desc,
+                                            'livewire' => 'edit_task_desc',
+                                            'type' => 'text', // 'step' => 1,
+                                            // 'required' => 'required',
+                                            'lg' => 12,
+                                            'md' => 12,
+                                            'sm' => 12,
+                                        ])
+
+                                        @include('inputs.edit.input', [
+                                            'label' => 'task.start_time',
+                                            'name' => 'task.start_time',
+                                            'val' => $task->start_time,
+                                            'livewire' => 'edit_task_start_time',
+                                            'type' => 'datetime-local', // 'step' => 1,
+                                            // 'required' => 'required',
+                                            // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                        ])
+
+                                        @include('inputs.edit.input', [
+                                            'label' => 'task.end_time',
+                                            'name' => 'task.end_time',
+                                            'val' => $task->end_time,
+                                            'livewire' => 'edit_task_end_time',
+                                            'type' => 'datetime-local', // 'step' => 1,
+                                            // 'required' => 'required',
+                                            // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                        ])
+
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="priority_level">{{ __('task.priority_level') }}</label>
+                                                <select wire:model="edit_task_priority_level" name="priority_level"
+                                                    id="priority_level" class="form-control">
+                                                    <option value="low">{{ __('task.low') }}</option>
+                                                    <option value="medium">{{ __('task.medium') }}</option>
+                                                    <option value="high">{{ __('task.high') }}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="status">{{ __('task.status') }}</label>
+                                                <select wire:model="edit_task_status" name="status" id="status"
+                                                    class="form-control">
+                                                    <option value="pending">{{ __('task.pending') }}</option>
+                                                    <option value="active">{{ __('task.active') }}</option>
+                                                    <option value="auto-finished">{{ __('task.auto-finished') }}</option>
+                                                    <option value="manual-finished">{{ __('task.manual-finished') }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @role('owner')
+                                        <div>
+                                            <p>{{ __('global.employees') }}</p>
+                                            <div class="row">
+                                                @foreach ($employees as $employee)
+                                                    <div class="col-4">
+                                                        <div class="form-check form-check-inline">
+                                                            <input wire:model='edit_task_selectedEmployees'
+                                                                class="form-check-input" type="checkbox"
+                                                                value="{{ $employee->id }}"
+                                                                id="selected-employee-{{ $employee->id }}">
+                                                            <label class="form-check-label"
+                                                                for="selected-employee-{{ $employee->id }}">
+                                                                {{ $employee->name() }}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @endrole
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    @foreach ($errors->all() as $error)
+                                        <span class='alert alert-danger btn'>{{ $error }}</span>
+                                    @endforeach
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" wire:click.prevent="cancelTask()"
+                                        class="btn btn-secondary close-btn"
+                                        data-dismiss="modal">{{ __('global.close') }}</button>
+                                    <button type="button" wire:click.prevent="updateTask()" class="btn btn-success">
+                                        {{ __('global.save-changes') }}
+                                    </button>
+                                </div>
+                            </form>
+                        @endif
+
+                    </div>
+                </div>
+            </div>
+
+            {{--  --}}{{--  --}}{{--  --}}
+
             <div wire:ignore.self class="modal fade" id="accept-extratime-modal-{{ $task->id }}"
                 data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
                 aria-labelledby="accept-extratime-modal-{{ $task->id }}-label" aria-hidden="true">

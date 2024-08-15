@@ -62,6 +62,7 @@ class Leave extends Model
         'type',
         'time_out',
         'time_in',
+        'effect_on_time',
         'reason',
         'result',
         'status',
