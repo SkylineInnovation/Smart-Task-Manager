@@ -3,9 +3,9 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header">
+        {{-- <div class="card-header">
             <h2 class="card-title">hi al in dashboard page</h2>
-        </div>
+        </div> --}}
         <div class="card-body">
             <div id="home-echart" class="chart-donut chart-dropshadow"></div>
         </div>

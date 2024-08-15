@@ -90,7 +90,7 @@ return [
     'blocked' => 'blocked',
     'activate' => 'Activate',
 
-    'filter' => 'Filter',
+    // 'filter' => 'Filter',
     'create' => 'Create',
 
     'select_all' => 'Select All',
@@ -158,9 +158,9 @@ return [
     // 
     'from_date' => 'from date',
     'to_date' => 'to date',
-    'search' => 'search',
+    // 'search' => 'search',
     'restart_filter' => 'restart filter',
-    'clear' => 'clear',
+    // 'clear' => 'clear',
 
     'total' => 'Total',
     'auto' => 'Auto',
@@ -173,4 +173,8 @@ return [
     'leave' => 'Leave',
 
     'discount' => 'discount',
+
+    'all_users_in_the_app' => 'all users in the app',
+
+    'task_view'=>'task view',
 ];

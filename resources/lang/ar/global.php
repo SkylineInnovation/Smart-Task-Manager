@@ -90,7 +90,7 @@ return [
     'blocked' => 'محظور',
     'activate' => 'تفعيل',
 
-    'filter' => 'فلتر',
+    // 'filter' => 'فلتر',
     'create' => 'انشاء',
 
     'select_all' => 'تحديد الكل',
@@ -104,14 +104,14 @@ return [
 
     'Asc' => 'تصاعدي',
     'Desc' => 'تنازلي',
-    
+
     'yes' => 'نعم',
     'no' => 'لا',
-    
+
     'created date time' => 'وقت الاضافة',
     'updated date time' => 'وقت التحديث',
     'deleted date time' => 'وقت الحذف',
-    
+
     'by_date' => 'حسب التاريخ',
     'by_users' => 'من قبل المستخدمين',
 
@@ -132,6 +132,56 @@ return [
     'devicetokenlists' => 'قوائم الرمز المميز',
     'create-devicetokenlist' => 'إنشاء قوائم الرموز المميزة',
 
-    // // some role valideate message in sub
-    // 'please_select_customer' => 'الرجاء تحديد الزبون',
+    // 
+    'tasks' => 'المهام',
+    'create-task' => 'إنشاء مهمة',
+
+    'attachments' => 'المرفقات',
+    'create-attachment' => 'إنشاء مرفق',
+
+    'comments' => 'التعليقات',
+    'create-comment' => 'إنشاء تعليق',
+
+    'extratimes' => 'أوقات إضافية',
+    'create-extratime' => 'إنشاء وقت إضافي',
+
+    'leaves' => 'إجازات',
+    'create-leave' => 'إنشاء إجازات',
+
+    'discounts' => 'خصومات',
+    'create-discount' => 'إنشاء خصم',
+
+
+     'task-board' => 'لوحة المهام',
+     'task view'=>'عرض المهام',
+     'accept-extratime'=>'قبول الوقت الإضافي',
+     'all_users_in_the_app'=>'جميع المستخدمين في التطبيق',
+     'task_view'=>'عرض المهمة',
+     
+
+    // some role valideate message in sub
+    // 'please_select_customer' => 'Please Select Customer',
+
+    // 'employees' => 'employees',
+    // 'task-board' => 'task board',
+    // // 
+    // 'from_date' => 'من تاريخ',
+    // 'to_date' => 'حتى تاريخ',
+    // // 'search' => 'search',
+    // 'restart_filter' => 'إعادة تشغيل الفلتر',
+    // // 'clear' => 'clear',
+
+    // 'total' => 'المجموع',
+    // 'auto' => 'تلقائي',
+    // 'completed' => 'مكتمل',
+
+    // 'accept-extratime' => 'قبول وقت إضافي',
+    // 'accept-leave' => 'قبول المغادرة',
+
+
+
 ];
+
+
+
+
