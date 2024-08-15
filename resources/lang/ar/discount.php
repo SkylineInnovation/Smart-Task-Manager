@@ -9,13 +9,13 @@ return [
     'time' => 'time',
 
 
-    'task' => 'task',
+    'task' => 'تاسك',
 
-    'user' => 'user',
+    'user' => 'المستخدم',
 
-    'amount' => 'amount',
+    'amount' => 'المبلغ',
 
-    'reason' => 'reason',
+    'reason' => 'السبب',
 
 
 ];

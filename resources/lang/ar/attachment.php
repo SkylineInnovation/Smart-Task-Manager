@@ -9,17 +9,17 @@ return [
     'time' => 'time',
 
 
-    'user' => 'user',
+    'user' => 'المستخدم',
 
-    'task' => 'task',
+    'task' => 'تاسك',
 
-    'title' => 'title',
+    'title' => 'عنوان',
 
-    'desc' => 'desc',
+    'desc' => 'وصف',
 
-    'file' => 'file',
+    'file' => 'الملف',
 
-    'main_attachment' => 'main attachment',
+    'main_attachment' => 'الملف الرئيسي',
 
 
 ];

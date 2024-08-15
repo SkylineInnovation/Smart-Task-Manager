@@ -9,32 +9,32 @@ return [
     'time' => 'time',
 
 
-    'task' => 'task',
+    'task' => 'تاسك',
 
-    'user' => 'user',
+    'user' => 'المستخدم',
 
-    'type' => 'type',
+    'type' => 'النوع',
 
-    'time_out' => 'time out',
+    'time_out' => 'وقت المغادرة',
 
-    'time_in' => 'time in',
+    'time_in' => 'وقت الدخول',
 
-    'effect_on_time' => 'effect on time',
+    'effect_on_time' => 'تاثير على الوقت',
 
-    'reason' => 'reason',
+    'reason' => 'السبب',
 
-    'result' => 'result',
+    'result' => 'النتيجة',
 
-    'status' => 'status',
+    'status' => 'الحالة',
 
-    'accepted_by_user' => 'accepted by user',
+    'accepted_by_user' => 'تم القبول بواسطة',
 
-    'accepted_time' => 'accepted time',
+    'accepted_time' => 'وقت الموافقة',
 
     'leave' => 'مغادرة',
-    'part_of_task' => 'part of task',
+    'part_of_task' => 'جزء من تاسك',
 
-    'pending' => 'pending',
-    'accepted' => 'accepted',
-    'rejected' => 'rejected',
+    'pending' => 'قيد الانتظار',
+    'accepted' => 'تم الموافقة',
+    'rejected' => 'مرفوض',
 ];

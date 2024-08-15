@@ -9,17 +9,17 @@ return [
     'time' => 'time',
 
 
-    'task' => 'task',
+    'task' => 'تاسك',
 
-    'user' => 'user',
+    'user' => 'المستخدم',
 
-    'title' => 'title',
+    'title' => 'عنوان',
 
-    'desc' => 'desc',
+    'desc' => 'وصف',
 
-    'replay_time' => 'replay time',
+    'replay_time' => 'وقت الرد',
 
-    'main_comment' => 'main comment',
+    'main_comment' => 'الكومنت الرئيسي',
 
 
 ];

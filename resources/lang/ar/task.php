@@ -9,31 +9,32 @@ return [
     'time' => 'time',
 
 
-    'manager' => 'manager',
+    'manager' => 'المدير',
 
-    'title' => 'title',
+    'title' => 'العنوان',
 
-    'desc' => 'desc',
+    'desc' => 'الوصف',
 
-    'start_time' => 'start time',
+    'start_time' => 'وقت البدء',
 
-    'end_time' => 'end time',
+    'end_time' => 'وقت الانتهاء',
 
-    'priority_level' => 'priority level',
+    'priority_level' => 'الأولوية',
 
     'status' => 'الحالة',
 
-    'main_task' => 'main task',
+    'main_task' => 'التاسك الرئيسي',
 
-    'discount' => 'discount',
+    'discount' => 'الخصم',
 
-    'low' => 'low',
-    'medium' => 'medium',
-    'high' => 'high',
-    'pending' => 'pending',
-    'active' => 'active',
-    'auto-finished' => 'auto finished',
-    'manual-finished' => 'manual finished',
+    'low' => 'منخفض',
+    'medium' => 'متوسط',
+    'high' => 'مهم جدا',
+
+    'pending' => 'قيد الانتظار',
+    'active' => 'نشط',
+    'auto-finished' => 'انتهاء الوقت',
+    'manual-finished' => 'مكتمل',
 
     //
 
@@ -95,41 +96,4 @@ return [
     "Total_Discount"                                    => "إجمالي الخصم",
     "Leaves_&_Extra_Times"                              => "الإجازات والأوقات الإضافية المختارة",
     "Discounts"                                         => 'الخصم',
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ];
