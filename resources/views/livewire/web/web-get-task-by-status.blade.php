@@ -653,12 +653,27 @@
                                                         <div class="col-md-6">
                                                             status:
                                                         </div>
-
-                                                        <div class="col-md-6 text-white text-center">
-                                                            <div class="{{ $extra_sub->the_extra_color() }}">
-                                                                {{ $extra_sub->the_status() }}
+                                                        {{ $extra_sub->the_status() }}
+                                                        
+                                                        @if ($extra_sub->status == 'pending')
+                                                            <div class="col-md">
+                                                                <div class="dropdown">
+                                                                    <button class="btn {{$extra_sub->the_extra_color()}} dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        {{ $extra_sub->the_status() }}
+                                                                    </button>
+                                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                        <button class="dropdown-item" data-toggle="modal" data-target="#accept-extraTime-modal" wire:click="edit({{ $extra_sub->id }})">
+                                                                            <i class="ti-check text-success"></i> Accept
+                                                                        </button>
+                                                                        <button class="dropdown-item" data-toggle="modal" data-target="#reject-extraTime-modal" wire:click="rejectExtraTime({{ $extra_sub->id }})">
+                                                                            <i class="ti-close text-danger"></i> Reject
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        @endif
+                                                        
+                                                        
                                                     </div>
 
                                                     <div class="col-md-12 d-flex justify-content-around">
@@ -724,25 +739,38 @@
                                                         <div class="col-md-6">
                                                             status:
                                                         </div>
-
-                                                        <div class="col-md-6 text-white text-center">
-                                                            <div class="{{ $leave->the_extra_color() }}">
-                                                                {{ $leave->the_status() }}
+                                                        {{ $leave->the_status() }}
+                                                        @if ($leave->status == 'pending')
+                                                        <div class="col-md">
+                                                            <div class="dropdown">
+                                                                <button class="btn {{$leave->the_leave_color()}} dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    {{ $leave->the_status() }}
+                                                                </button>
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                    <button class="dropdown-item" data-toggle="modal" data-target="#accept-leave-modal" wire:click="edit({{ $leave->id }})">
+                                                                        <i class="ti-check text-success"></i> Accept
+                                                                    </button>
+                                                                    <button class="dropdown-item" data-toggle="modal" data-target="#reject-leave-modal" wire:click="rejectLeave({{ $leave->id }})">
+                                                                        <i class="ti-close text-danger"></i> Reject
+                                                                    </button>
+                                                                </div>
                                                             </div>
                                                         </div>
+                                                    @endif
+                                                        
                                                     </div>
 
                                                     <div class="col-md-12 d-flex justify-content-around">
                                                         <div class="col-md-6">
                                                             Trom:
                                                             <br>
-                                                            {{ $leave->time_out }}
+                                                            {{ $extra_sub->from_time }}
                                                         </div>
 
                                                         <div class="col-md-6">
                                                             To:
                                                             <br>
-                                                            {{ $leave->time_in }}
+                                                            {{ $extra_sub->to_time }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -814,7 +842,7 @@
                             <div class="col-12">
                                 <textarea name='reason' id='reason' rows="3" class='form-control'
                                     placeholder='{{ __('
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            global.enter') }} {{ __('leave.reason') }}'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                global.enter') }} {{ __('leave.reason') }}'
                                     {{-- --}} wire:model.defer="leave_reason"></textarea>
                             </div>
                         </div>
@@ -870,7 +898,7 @@
                             <div class="col-12">
                                 <textarea name='reason' id='reason' rows="3" class='form-control'
                                     placeholder='{{ __('
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            global.enter') }} {{ __('extratime.reason') }}'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                global.enter') }} {{ __('extratime.reason') }}'
                                     {{-- --}} wire:model.defer="extratime_reason"></textarea>
                             </div>
 

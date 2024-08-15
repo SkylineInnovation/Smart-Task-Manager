@@ -195,14 +195,14 @@ class Leave extends Model
         }
     }
 
-    public function the_extra_color()
+    public function the_leave_color()
     {
         if ($this->status == 'pending')
-            return 'bg-warning';
+            return 'btn-outline-warning';
         elseif ($this->status == 'accepted')
-            return 'bg-success';
+            return 'btn-outline-success';
         elseif ($this->status == 'rejected')
-            return 'bg-danger';
+            return 'btn-outline-danger';
 
         return '';
     }
