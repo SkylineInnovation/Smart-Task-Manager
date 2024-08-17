@@ -46,7 +46,7 @@ return [
 
     'Pending' => 'معلق',
     'Active' => 'نشط',
-    'Finished' => 'تم الانتهاء',
+    'Finished' => 'مكتمل',
     'System_Finished' => 'إنتهاء تلقائي',
     'assigend' => 'تم تعيينه',
 
