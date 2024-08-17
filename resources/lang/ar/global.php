@@ -155,7 +155,7 @@ return [
     'task-board' => 'لوحة المهام',
     'task view' => 'عرض المهام',
     'accept-extratime' => 'قبول الوقت الإضافي',
-    'all_users_in_the_app' => 'جميع المستخدمين في التطبيق',
+    'all_users_in_the_app' => 'جميع المستخدمين في النظام',
     'task_view' => 'عرض المهمة',
 
 

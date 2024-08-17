@@ -174,7 +174,7 @@ return [
 
     'discount' => 'discount',
 
-    'all_users_in_the_app' => 'all users in the app',
+    'all_users_in_the_app' => 'all users in the system',
 
     'task_view' => 'task view',
     'reports' => 'reports',
