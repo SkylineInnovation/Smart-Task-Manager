@@ -2,8 +2,8 @@
     <thead>
         <tr>
             <td>#</td>
-            <td>id</td>
-            <td>slug</td>
+            {{-- <td>id</td>
+            <td>slug</td> --}}
 
 
             <td>task</td>
@@ -17,8 +17,8 @@
             <td>main_comment</td>
 
             <td>created at</td>
-            <td>updated at</td>
-            <td>deleted at</td>
+            {{-- <td>updated at</td>
+            <td>deleted at</td> --}}
 
         </tr>
     </thead>
@@ -27,13 +27,13 @@
         @foreach ($comments as $comment)
             <tr>
                 <td>{{ ++$number }}</td>
-                <td>{{ $comment->id }}</td>
-                <td>{{ $comment->slug }}</td>
+                {{-- <td>{{ $comment->id }}</td>
+                <td>{{ $comment->slug }}</td> --}}
 
 
-                <td>{{ $comment->task->crud_name() }}</td>
+                <td>{{ $comment->task ? $comment->task->crud_name() : '-- --' }}</td>
 
-                <td>{{ $comment->user->crud_name() }}</td>
+                <td>{{ $comment->user ? $comment->user->crud_name() : '-- --' }}</td>
 
                 <td>{{ $comment->title }}</td>
 
@@ -41,12 +41,12 @@
 
                 <td>{{ $comment->replay_time }}</td>
 
-                <td>{{ $comment->main_comment->crud_name() }}</td>
+                <td>{{ $comment->main_comment ? $comment->main_comment->crud_name() : '-- --' }}</td>
 
 
                 <td>{{ $comment->created_at ? date('d/m/Y', strtotime($comment->created_at)) : '' }}</td>
-                <td>{{ $comment->updated_at ? date('d/m/Y', strtotime($comment->updated_at)) : '' }}</td>
-                <td>{{ $comment->deleted_at ? date('d/m/Y', strtotime($comment->deleted_at)) : '' }}</td>
+                {{-- <td>{{ $comment->updated_at ? date('d/m/Y', strtotime($comment->updated_at)) : '' }}</td>
+                <td>{{ $comment->deleted_at ? date('d/m/Y', strtotime($comment->deleted_at)) : '' }}</td> --}}
             </tr>
         @endforeach
     </tbody>

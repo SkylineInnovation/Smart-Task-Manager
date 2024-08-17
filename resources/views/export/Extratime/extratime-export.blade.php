@@ -2,8 +2,8 @@
     <thead>
         <tr>
             <td>#</td>
-            <td>id</td>
-            <td>slug</td>
+            {{-- <td>id</td>
+            <td>slug</td> --}}
 
 
             <td>task</td>
@@ -26,8 +26,8 @@
 
 
             <td>created at</td>
-            <td>updated at</td>
-            <td>deleted at</td>
+            {{-- <td>updated at</td>
+            <td>deleted at</td> --}}
 
         </tr>
     </thead>
@@ -36,15 +36,15 @@
         @foreach ($extratimes as $extratime)
             <tr>
                 <td>{{ ++$number }}</td>
-                <td>{{ $extratime->id }}</td>
-                <td>{{ $extratime->slug }}</td>
+                {{-- <td>{{ $extratime->id }}</td>
+                <td>{{ $extratime->slug }}</td> --}}
 
 
-                <td>{{ $extratime->task->crud_name() }}</td>
+                <td>{{ $extratime->task ? $extratime->task->crud_name() : '-- --' }}</td>
 
-                <td>{{ $extratime->user->crud_name() }}</td>
+                <td>{{ $extratime->user ? $extratime->user->crud_name() : '-- --' }}</td>
 
-                <td>{{ $extratime->accepted_by_user->crud_name() }}</td>
+                <td>{{ $extratime->accepted_by_user ? $extratime->accepted_by_user->crud_name() : '-- --' }}</td>
 
                 <td>{{ $extratime->reason }}</td>
 
@@ -63,8 +63,8 @@
 
 
                 <td>{{ $extratime->created_at ? date('d/m/Y', strtotime($extratime->created_at)) : '' }}</td>
-                <td>{{ $extratime->updated_at ? date('d/m/Y', strtotime($extratime->updated_at)) : '' }}</td>
-                <td>{{ $extratime->deleted_at ? date('d/m/Y', strtotime($extratime->deleted_at)) : '' }}</td>
+                {{-- <td>{{ $extratime->updated_at ? date('d/m/Y', strtotime($extratime->updated_at)) : '' }}</td>
+                <td>{{ $extratime->deleted_at ? date('d/m/Y', strtotime($extratime->deleted_at)) : '' }}</td> --}}
             </tr>
         @endforeach
     </tbody>
