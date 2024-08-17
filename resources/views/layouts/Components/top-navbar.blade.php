@@ -1,7 +1,7 @@
 <nav class="horizontalMenu clearfix bg-white p-1">
     <ul class="horizontalMenu-list">
 
-        @role('owner|manager')
+        @role('owner|manager|employee')
             <li aria-haspopup="true">
                 <a href="{{ route('task-board') }}" class="sub-icon"><i class="ti-home"></i>
                     {{ __('global.task-board') }}
@@ -10,7 +10,7 @@
             </li>
         @endrole
 
-        @role('owner|manager|employee')
+        @role('owner|manager')
             <li aria-haspopup="true">
                 <a href="#" class="sub-icon">
                     <i class="ti-home"></i>
