@@ -73,14 +73,14 @@
                                             data-target="#request-leave-modal-{{ $task->id }}"
                                             wire:click="setTask({{ $task->id }})">
                                             <i class="fa fa-sign-out text-info" aria-hidden="true"></i>
-                                            &nbsp; {{__('task.Request_Leave')}}
+                                            &nbsp; {{ __('task.Request_Leave') }}
                                         </a>
 
                                         <a class="dropdown-item" data-toggle="modal"
                                             data-target="#extra-time-modal-{{ $task->id }}" href=javascript:;
                                             wire:click="setTask({{ $task->id }})">
                                             <i class="fa fa-clock-o text-warning" aria-hidden="true"></i>
-                                            &nbsp; {{__('task.Extra_Time')}}
+                                            &nbsp; {{ __('task.Extra_Time') }}
                                         </a>
                                     @endrole
 
@@ -147,7 +147,8 @@
 
         {{-- --}}{{-- --}}{{-- --}}{{-- --}}
         <div wire:ignore.self class="modal fade" id="show-task-modal-{{ $task->id }}" tabindex="-1" role="dialog"
-            aria-labelledby="show-task-modal-{{ $task->id }}Label" aria-hidden="true">
+            aria-labelledby="show-task-modal-{{ $task->id }}Label" aria-hidden="true" data-backdrop="static"
+            data-keyboard="false">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -452,7 +453,7 @@
                                                     id="replay-modal-{{ $task->id }}" tabindex="-1"
                                                     role="dialog"
                                                     aria-labelledby="replay-modal-{{ $task->id }}-Label"
-                                                    aria-hidden="true">
+                                                    aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                                     <div class="modal-dialog modal-lg" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -863,7 +864,8 @@
         {{-- --}}{{-- --}}{{-- --}}{{-- --}}
 
         <div wire:ignore.self id="request-leave-modal-{{ $task->id }}" class="modal fade" tabindex="-1"
-            role="dialog" aria-labelledby="request-leave-modal-{{ $task->id }}-title" aria-hidden="true">
+            role="dialog" aria-labelledby="request-leave-modal-{{ $task->id }}-title" aria-hidden="true"
+            data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -931,7 +933,8 @@
 
 
         <div wire:ignore.self id="extra-time-modal-{{ $task->id }}" class="modal fade" tabindex="-1"
-            role="dialog" aria-labelledby="extra-time-modal-{{ $task->id }}-title" aria-hidden="true">
+            role="dialog" aria-labelledby="extra-time-modal-{{ $task->id }}-title" aria-hidden="true"
+            data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -989,7 +992,8 @@
 
             <div wire:ignore.self data-backdrop="static" data-keyboard="true" class="modal fade"
                 id="update-task-{{ $task->id }}" tabindex="-1" role="dialog"
-                aria-labelledby="update-task-{{ $task->id }}-label" aria-hidden="true">
+                aria-labelledby="update-task-{{ $task->id }}-label" aria-hidden="true" data-backdrop="static"
+                data-keyboard="false">
                 <div class="modal-dialog modal-lg text-start" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -1144,7 +1148,8 @@
 
             <div wire:ignore.self class="modal fade" id="accept-extratime-modal-{{ $task->id }}"
                 data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
-                aria-labelledby="accept-extratime-modal-{{ $task->id }}-label" aria-hidden="true">
+                aria-labelledby="accept-extratime-modal-{{ $task->id }}-label" aria-hidden="true"
+                data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -1246,7 +1251,8 @@
             {{--  --}}
             <div wire:ignore.self class="modal fade" id="accept-leave-modal-{{ $task->id }}" data-backdrop="static"
                 data-keyboard="false" tabindex="-1" role="dialog"
-                aria-labelledby="accept-leave-modal-{{ $task->id }}-label" aria-hidden="true">
+                aria-labelledby="accept-leave-modal-{{ $task->id }}-label" aria-hidden="true"
+                data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
