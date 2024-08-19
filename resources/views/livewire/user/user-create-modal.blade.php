@@ -112,9 +112,9 @@
                                     <div class="col-4">
                                         <div class="form-check form-check-inline">
                                             <input wire:model='selectedEmployees' class="form-check-input" type="checkbox"
-                                                value="{{ $employees->id }}" id="selected-employees-{{ $employees->id }}">
-                                            <label class="form-check-label" for="selected-employees-{{ $employees->id }}">
-                                                {{ $employees->name() }}
+                                                value="{{ $employee->id }}" id="selected-employee-{{ $employee->id }}">
+                                            <label class="form-check-label" for="selected-employee-{{ $employee->id }}">
+                                                {{ $employee->name() }}
                                             </label>
                                         </div>
                                     </div>
