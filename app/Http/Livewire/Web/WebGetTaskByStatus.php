@@ -22,6 +22,7 @@ class WebGetTaskByStatus extends Component
     use WithFileUploads;
 
     public $status;
+    public $user;
 
     public $admin_view_status = '', $by, $url;
     public function mount($status, $admin_view_status = '',)
