@@ -160,4 +160,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Task::class);
     }
+
+    public function employees()
+    {
+        return $this->belongsToMany(User::class, 'employee_manager', 'employee_id', 'manager_id');
+    }
+
+    public function managers()
+    {
+        return $this->belongsToMany(User::class, 'employee_manager', 'manager_id', 'employee_id');
+    }
 }

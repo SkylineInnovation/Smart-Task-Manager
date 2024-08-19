@@ -26,6 +26,9 @@ class UserIndex extends Component
     public $roles = [];
     public $selectedRoles = [];
 
+    public $employees = [];
+    public $selectedEmployees = [];
+
     public User $user;
     private $users;
 
@@ -34,6 +37,7 @@ class UserIndex extends Component
 
         $this->user = new User();
 
+        $this->employees = User::whereRoleIs('employee')->get();
 
         // $this->roles = Role::whereIn('name', ['owner',])->get();
         $this->roles = Role::get();
@@ -71,6 +75,7 @@ class UserIndex extends Component
         $this->active_until = '';
 
         $this->selectedRoles = [];
+        $this->selectedEmployees = [];
     }
 
     public function rules()
@@ -118,6 +123,9 @@ class UserIndex extends Component
 
         $user->syncRoles($this->selectedRoles);
 
+
+        $user->employees()->sync($this->selectedEmployees);
+
         Artisan::call('cache:clear');
 
         session()->flash('message', 'Users Created Successfully.');
@@ -142,6 +150,7 @@ class UserIndex extends Component
         $this->birth_day = $user->birth_day;
 
         $this->selectedRoles = $user->roles->pluck('id');
+        $this->selectedEmployees = $user->employees->pluck('id');
     }
 
     public function cancel()
@@ -173,6 +182,9 @@ class UserIndex extends Component
                 $user->update(['password' => Hash::make($this->password)]);
 
             $user->syncRoles($this->selectedRoles);
+
+            $user->employees()->sync($this->selectedEmployees);
+
             Artisan::call('cache:clear');
 
             $this->updateMode = false;
