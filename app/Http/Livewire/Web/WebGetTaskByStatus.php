@@ -127,7 +127,7 @@ class WebGetTaskByStatus extends Component
     public function draftTask($id)
     {
         $task = Task::find($id);
-        $task->update(['status' => 'draft']);
+        $task->update(['slug' => 'draft']);
 
         $this->emit('render-manual-finished'); // Close model to using to jquery
     }
@@ -537,7 +537,8 @@ class WebGetTaskByStatus extends Component
 
     public function render()
     {
-        $tasks = Task::whereNullOrEmptyOrZero('main_task_id')
+        $tasks = Task::whereNullOrEmptyOrZero('slug')
+            ->whereNullOrEmptyOrZero('main_task_id')
             ->where('status', $this->status);
 
         if ($this->user->hasRole('employee')) {
