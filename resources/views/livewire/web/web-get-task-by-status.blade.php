@@ -46,13 +46,13 @@
 
 
                                     @role('owner|manager')
-                                        {{-- @if (in_array($task->status, ['auto-finished', 'manual-finished']))
+                                        @if (in_array($task->status, ['auto-finished', 'manual-finished']))
                                             <a class="dropdown-item" href="javascript:;"
                                                 wire:click="draftTask({{ $task->id }})">
                                                 <i class="fa fa-check-square text-success" aria-hidden="true"></i>
                                                 &nbsp; Draft
                                             </a>
-                                        @endif --}}
+                                        @endif
 
                                         <a class="dropdown-item" href="javascript:;" data-toggle="modal"
                                             wire:click="editTask({{ $task->id }})"
