@@ -155,11 +155,9 @@
                         </div>
 
                         <div class="form-group">
-
                             @foreach ($errors->all() as $error)
                                 <span class='alert alert-danger btn'>{{ $error }}</span>
                             @endforeach
-
                         </div>
 
                         <div class="modal-footer">

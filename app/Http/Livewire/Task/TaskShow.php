@@ -13,6 +13,9 @@ class TaskShow extends Component
     public $title, $discount, $desc, $start_time, $end_time;
     public $priority_level, $status;
 
+    public $employees = [];
+    public $selectedEmployees = [];
+
     public $url;
     public function mount($task)
     {
@@ -27,10 +30,42 @@ class TaskShow extends Component
 
         $this->priority_level = $task->priority_level;
         $this->status = $task->status;
+
+        $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
+        $this->selectedEmployees = $task->employees->pluck('id');
+
+    }
+
+    public function rules()
+    {
+        return [
+            // 'manager_id' => 'required',
+            'title' => 'required',
+            'desc' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
+            'priority_level' => 'required',
+            'status' => 'required',
+            'discount' => 'required',
+            // 'main_task_id' => 'required',
+
+            'selectedEmployees' => 'required',
+        ];
+    }
+
+    protected $messages = [
+        'selectedEmployees.required' => 'Please Select Employee',
+    ];
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
     }
 
     public function updateTask()
     {
+        $validatedData = $this->validate();
+
         $this->task->update([
             // 'manager_id' => $this->manager_id,
             'title' => $this->title,
@@ -50,6 +85,12 @@ class TaskShow extends Component
         } else {
             $this->task->update(['slug' => $this->status]);
         }
+
+        $this->task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
+
+        session()->flash('message', 'Task Created Successfully.');
+
+
     }
 
     public function render()
