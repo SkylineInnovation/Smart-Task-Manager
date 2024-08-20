@@ -37,6 +37,7 @@ return [
     'active' => 'active',
     'auto-finished' => 'auto finished',
     'manual-finished' => 'manual finished',
+    'draft' => 'Draft',
 
 
 

@@ -35,6 +35,7 @@ return [
     'active' => 'نشط',
     'auto-finished' => 'انتهاء الوقت',
     'manual-finished' => 'مكتمل',
+    'draft' => 'مسودة',
 
     //
 
