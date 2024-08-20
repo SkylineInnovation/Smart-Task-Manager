@@ -118,8 +118,6 @@
                     <span class='alert alert-danger btn'>{{ $error }}</span>
                 @endforeach
             </div>
-
-            
         </div>
 
         <div class="card-footer">
