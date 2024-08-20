@@ -38,6 +38,7 @@ return [
     'auto-finished' => 'auto finished',
     'manual-finished' => 'manual finished',
     'draft' => 'Draft',
+    'in_draft' => 'In Draft',
 
 
 

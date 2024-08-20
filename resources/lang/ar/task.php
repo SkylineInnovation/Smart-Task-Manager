@@ -37,6 +37,8 @@ return [
     'manual-finished' => 'مكتمل',
     'draft' => 'ارشفة',
 
+    'in_draft'=> 'في الارشيف',
+
     //
 
     'employees' => 'موظفين',

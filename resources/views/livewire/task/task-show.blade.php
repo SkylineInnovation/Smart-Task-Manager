@@ -80,7 +80,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="col-lg-4 col-md-4 col-sm-10">
                     <div class="form-group">
                         <label for="status">{{ __('task.status') }}</label>
                         <select wire:model="status" name="status" id="status" class="form-control">
@@ -92,6 +92,15 @@
                         </select>
                     </div>
                 </div>
+
+                @include('inputs.show.input', [
+                    'label' => 'task.in_draft',
+                    'val' => $task->slug == 'draft' ? __('global.yes') : __('global.no'),
+                    'lg' => 2,
+                    'md' => 2,
+                    'sm' => 2,
+                ])
+
             </div>
 
             @role('owner')
