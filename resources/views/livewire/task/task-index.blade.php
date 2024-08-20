@@ -105,7 +105,6 @@
                             <td> {{ $task->slug }} </td>
                         @endif
 
-
                         @if ($showColumn['manager_id'])
                             <td>
                                 @if ($task->manager)
