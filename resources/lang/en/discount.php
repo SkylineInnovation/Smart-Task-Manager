@@ -17,5 +17,5 @@ return [
 
     'reason' => 'reason',
 
-
+    'auto-finish-task' => 'Auto Finish Task',
 ];

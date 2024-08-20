@@ -9,17 +9,18 @@
 </head>
 
 <body>
-    <h2>the task finished automatically</h2>
+    <h2>there is new task assigned</h2>
 
     <p>{{ $task->title }}</p>
-
+    <p>{{ $task->desc }}</p>
     <hr>
     <p>{{ $task->format_date($task->start_time) }}</p>
     <p>{{ $task->format_date($task->end_time) }}</p>
     <hr>
-    <p>{{ $task->the_status() }}</p>
+    <p>{{ $task->priority_level }}</p>
+    <p>{{ $task->status }}</p>
 
-    {{-- <a class="btn btn-info" href="{{ route('dashboard', $task) }}">Open</a> --}}
+    <a class="btn btn-info" href="{{ route('task.show', $task) }}">Open Task</a>
 
     <br>
     <p>Thank You</p>

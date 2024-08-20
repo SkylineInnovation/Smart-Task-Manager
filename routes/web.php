@@ -81,7 +81,7 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     Route::post('update-profile', [HomeController::class, 'updateProfile'])->name('update.profile');
 
     Route::middleware('permission:index-user')->get('users', [UserController::class, 'index'])->name('user.index');
-    Route::middleware('permission:index-user')->get('user/{user}', [UserController::class, 'show'])->name('user.show');
+    Route::middleware('permission:show-user')->get('user/{user}', [UserController::class, 'show'])->name('user.show');
 
     // 
     // the full routes for otpsendcodes
@@ -114,9 +114,9 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
 
     // the full routes for tasks
     Route::middleware('permission:index-task')->get('tasks', [App\Http\Controllers\TaskController::class, 'livewireIndex'])->name('task.index');
-    
-    Route::middleware('permission:index-task')->get('task/{task}', [App\Http\Controllers\TaskController::class, 'livewireShow'])->name('task.show');
-    
+
+    Route::middleware('permission:show-task')->get('task/{task}', [App\Http\Controllers\TaskController::class, 'livewireShow'])->name('task.show');
+
     Route::middleware('permission:restore-task')->get('trash/tasks', [App\Http\Controllers\TaskController::class, 'livewireDeletedIndex'])->name('task.index.trash');
     Route::get('export/tasks', [App\Http\Controllers\TaskController::class, 'exportFullData'])->name('task.export');
     Route::post('import/tasks', [App\Http\Controllers\TaskController::class, 'importData'])->name('task.import');

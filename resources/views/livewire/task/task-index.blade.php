@@ -157,9 +157,11 @@
                         @permission('edit-task|delete-task|restore-task')
                             <td>
                                 @if ($admin_view_status != 'deleted')
-                                    <a href="{{ route('task.show', $task) }}" target="_blank" class="btn btn-info">
-                                        <i class="ti-eye text-white"></i>
-                                    </a>
+                                    @permission('show-task')
+                                        <a href="{{ route('task.show', $task) }}" target="_blank" class="btn btn-info">
+                                            <i class="ti-eye text-white"></i>
+                                        </a>
+                                    @endpermission
 
                                     @permission('edit-task')
                                         <button data-toggle="modal" data-target="#update-task-modal"

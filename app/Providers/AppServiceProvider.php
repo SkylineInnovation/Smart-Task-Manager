@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Event;
@@ -33,6 +34,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         ///...
+
+        // $the_expense_types = ExpenseType::where('slug', 'lifting-weights')->get();
+        // View::share('the_expense_types', $the_expense_types);
+
+
         // 3
         Builder::macro('whereNullOrEmpty', function ($field) {
             return $this->where(function ($query) use ($field) {

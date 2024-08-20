@@ -96,16 +96,24 @@ class Task extends Model
             if (env('SEND_MAIL', false)) {
                 if ($model->getOriginal()['status'] != $model->getAttributes()['status']) {
                     $template = '';
-                    if ($model->status == 'complete') {
-                        $template = 'complete';
-                    } elseif ($model->status == 'auto-finish') {
-                        $template = 'auto-finish';
+                    if ($model->status == 'active') {
+                        $template = 'active';
+                    } elseif ($model->status == 'auto-finished') {
+                        $template = 'auto-finished';
+                    } elseif ($model->status == 'manual-finished') {
+                        $template = 'manual-finished';
+                    }
+
+                    $mail_list = [
+                        $model->manager->email,
+                    ];
+
+                    foreach ($model->employees as $emp) {
+                        $mail_list[] = $emp->email;
                     }
 
                     if ($template != '')
-                        Mail::to(
-                            $model->employees->pluck('email')->toArray()
-                        )->send(new SendStatusChangeOnTask($template, $model));
+                        Mail::to($mail_list)->send(new SendStatusChangeOnTask($template, $model));
                 }
             }
         });
@@ -149,7 +157,7 @@ class Task extends Model
     {
         $qqq = static::query();
 
-        if (!auth()->user()->hasRole(['owner',])) {
+        if (!auth()->user()->hasRole(['owner', 'manager'])) {
             $qqq = $qqq->where('add_by', auth()->user()->id);
         }
 
@@ -320,5 +328,10 @@ class Task extends Model
 
         $totalSeconds = $endDate->diffInSeconds($startDate);
         return $totalSeconds;
+    }
+
+    public function discounts()
+    {
+        return $this->hasMany(Discount::class);
     }
 }

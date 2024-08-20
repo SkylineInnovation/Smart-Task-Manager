@@ -140,7 +140,7 @@ class User extends Authenticatable
     {
         $qqq = static::query();
 
-        // if (!auth()->user()->hasRole(['owner',]))
+        // if (!auth()->user()->hasRole(['owner', 'manager'])) {
         //     $qqq = $qqq->where('add_by', auth()->user()->id);
 
         if (empty($search)) return $qqq;
@@ -163,11 +163,11 @@ class User extends Authenticatable
 
     public function employees()
     {
-        return $this->belongsToMany(User::class, 'employee_manager', 'employee_id', 'manager_id');
+        return $this->belongsToMany(User::class, 'employee_manager', 'manager_id', 'employee_id');
     }
 
     public function managers()
     {
-        return $this->belongsToMany(User::class, 'employee_manager', 'manager_id', 'employee_id');
+        return $this->belongsToMany(User::class, 'employee_manager', 'employee_id', 'manager_id');
     }
 }

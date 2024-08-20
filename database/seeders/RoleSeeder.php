@@ -136,7 +136,8 @@ class RoleSeeder extends Seeder
         }
 
         $customPermissions = [
-            // 'index-customer-male',
+            'show-user',
+            'show-task',
         ];
 
         foreach ($customPermissions as $customPermission) {

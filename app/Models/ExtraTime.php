@@ -136,7 +136,7 @@ class ExtraTime extends Model
     {
         $qqq = static::query();
 
-        if (!auth()->user()->hasRole(['owner',])) {
+        if (!auth()->user()->hasRole(['owner', 'manager'])) {
             $qqq = $qqq->where('add_by', auth()->user()->id);
         }
 

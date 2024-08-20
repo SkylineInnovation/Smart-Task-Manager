@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 
 class UserIndex extends Component
 {
@@ -32,8 +35,17 @@ class UserIndex extends Component
     public User $user;
     private $users;
 
-    public function mount()
+    public $ids = [];
+
+    public $auth;
+    public $admin_view_status = '', $by, $url;
+    public function mount($admin_view_status = '', $the_manager_id = null, $the_employee_id = null)
     {
+        $this->url = Route::current()->getName();
+        $this->admin_view_status = $admin_view_status;
+        $this->auth = Auth::user();
+        $this->by = session()->get('admin_user', $this->auth);
+
 
         $this->user = new User();
 
@@ -42,6 +54,8 @@ class UserIndex extends Component
         // $this->roles = Role::whereIn('name', ['owner',])->get();
         $this->roles = Role::get();
 
+
+        $this->ids = $this->by->employees->pluck('id');
 
         $this->showColumn = collect([
             'id' => false,
@@ -232,6 +246,10 @@ class UserIndex extends Component
     public function render()
     {
         $users = User::livewireSearch($this->search);
+
+        if ($this->by->hasRole('manager')) {
+            $users = $users->whereIn('id', $this->ids);
+        }
 
         $users = $users->orderBy($this->orderBy, $this->order)
             ->paginate($this->perPage);

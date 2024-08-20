@@ -89,16 +89,14 @@ return [
     'Role'              => 'Role',
 
 
-
-
     "Total_Tasks_Time"                                  => "Total Tasks Time",
     "Total_Work_Hours_in_Selected_Duration"             => "Total Work Hours in Selected Duration",
     "Total_Task_Count"                                  => "Total Task Count",
     "Total_Task_Count_in_Selected_Duration"             => "Total Task Count in Selected Duration",
     "Total_Finished_Tasks"                              => "Total Finished Tasks",
-    "Total_Task_Count_Finished_By_System"               => "Total Task Count Finished By System<",
+    "Total_Task_Count_Finished_By_System"               => "Total Task Count Finished By System",
     "Total_Completed_Task"                              => "Total Completed Task",
-    "Total_Completed_Task_Count_in_Selected_Duration"   => "Total Completed Task Count in Selected Duration:",
+    "Total_Completed_Task_Count_in_Selected_Duration"   => "Total Completed Task Count in Selected Duration",
     "Total_Extra_Time_Hours_in_Selected_Duration"       => "Total Extra Time Hours in Selected Duration",
     "Total_Leave_Hours_in_Selected_Duration"            => "Total Leave Hours in Selected Duration",
     "Total_Discount_in_Selected_Duration"               => "Total Discount in Selected Duration",
@@ -108,11 +106,4 @@ return [
     "Total_Discount"                                    => "Total Discount",
     "Leaves_&_Extra_Times"                              => "Leaves & Extra Times",
     "Discounts"                                         => "Discounts",
-
-
-
-
-
-
-
 ];

@@ -18,7 +18,7 @@
 
                     <div class="col-md-4 col-5 d-flex align-items-center p-0">
                         <div class="row w-100 m-0 justify-content-md-around">
-                            <div class="col-md-3 col-4 d-flex justify-content-center fs-4 dropdown show">
+                            <div class="col-3 d-flex justify-content-center fs-4 dropdown show">
                                 <a class="fa fa-cog text-secondarye" href="javascript:;" role="button"
                                     id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false">
@@ -45,13 +45,13 @@
 
 
                                     @role('owner|manager')
-                                        @if (in_array($task->status, ['auto-finished', 'manual-finished']))
-                                            <a class="dropdown-item" href="javascript:;"
-                                                wire:click="draftTask({{ $task->id }})">
-                                                <i class="fa fa-check-square text-success" aria-hidden="true"></i>
-                                                &nbsp; Draft
-                                            </a>
-                                        @endif
+                                        {{-- @if (in_array($task->status, ['auto-finished', 'manual-finished'])) --}}
+                                        <a class="dropdown-item" href="javascript:;"
+                                            wire:click="draftTask({{ $task->id }})">
+                                            <i class="fa fa-warning text-danger" aria-hidden="true"></i>
+                                            &nbsp; {{ __('task.draft') }}
+                                        </a>
+                                        {{-- @endif --}}
 
                                         <a class="dropdown-item" href="javascript:;" data-toggle="modal"
                                             wire:click="editTask({{ $task->id }})"
@@ -86,18 +86,24 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-3 col-4 d-flex justify-content-center fs-4">
+                            <div class="col-3 d-flex justify-content-center fs-4">
                                 <button type="button" class="fa fa-exclamation-circle text-azure" data-toggle="modal"
                                     data-target="#show-task-modal-{{ $task->id }}"
                                     wire:click="setTask({{ $task->id }})">
                                 </button>
                             </div>
 
-                            <div class="col-md-3 col-4 d-flex justify-content-center fs-4">
+                            <div class="col-3 d-flex justify-content-center fs-4">
                                 <button type="button" class="fa fa-commenting-o text-info" data-toggle="modal"
                                     data-target="#show-task-modal-{{ $task->id }}"
                                     wire:click="openCommentTask({{ $task->id }})">
                                 </button>
+                            </div>
+
+                            <div class="col-3 d-flex justify-content-center fs-4">
+                                <a type="button" class="ti-eye text-success" href="{{ route('task.show', $task) }}"
+                                    target="_blank">
+                                </a>
                             </div>
 
                             <div class="col-12 py-3">
@@ -151,9 +157,9 @@
         </div>
 
         {{-- --}}{{-- --}}{{-- --}}{{-- --}}
-        <div wire:ignore.self class="modal fade" id="show-task-modal-{{ $task->id }}" tabindex="-1" role="dialog"
-            aria-labelledby="show-task-modal-{{ $task->id }}Label" aria-hidden="true" data-backdrop="static"
-            data-keyboard="false">
+        <div wire:ignore.self class="modal fade" id="show-task-modal-{{ $task->id }}" tabindex="-1"
+            role="dialog" aria-labelledby="show-task-modal-{{ $task->id }}Label" aria-hidden="true"
+            data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -209,48 +215,63 @@
 
                         <div class="col-md-12 pt-5">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item px-1 ">
+                                {{-- 1 TAB START --}}
+                                <li class="nav-item px-1">
                                     <a class="nav-link py-3 rounded-pill {{ $tab == 1 ? 'active' : '' }}"
                                         id="user-tab" data-toggle="tab" wire:click="changeTab(1)" href="#user"
                                         role="tab" aria-controls="user"
-                                        aria-selected="{{ $tab == 1 }}">{{ __('task.Users') }}</a>
+                                        aria-selected="{{ $tab == 1 }}">{{ __('task.employees') }}</a>
                                 </li>
-                                <li class="nav-item px-1 ">
+                                {{-- 1 TAB END --}}
+
+                                {{-- 2 TAB START --}}
+                                <li class="nav-item px-1">
                                     <a class="nav-link py-3 rounded-pill {{ $tab == 2 ? 'active' : '' }}"
                                         id="attatchment-tab" data-toggle="tab" wire:click="changeTab(2)"
                                         href="#attatchment" role="tab" aria-controls="attatchment"
                                         aria-selected="{{ $tab == 2 }}">{{ __('task.Attatchments') }}</a>
                                 </li>
-                                <li class="nav-item px-1 ">
+                                {{-- 2 TAB END --}}
+
+                                {{-- 3 TAB START --}}
+                                <li class="nav-item px-1">
                                     <a class="nav-link py-3 rounded-pill {{ $tab == 3 ? 'active' : '' }}"
                                         id="comment-tab" data-toggle="tab" wire:click="changeTab(3)" href="#comment"
                                         role="tab" aria-controls="comment"
                                         aria-selected="{{ $tab == 3 }}">{{ __('task.Comments') }}</a>
                                 </li>
+                                {{-- 3 TAB END --}}
 
-                                <li class="nav-item px-1 ">
+                                {{-- 4 TAB START --}}
+                                <li class="nav-item px-1">
                                     <a class="nav-link py-3 rounded-pill {{ $tab == 4 ? 'active' : '' }}"
                                         id="subTask-tab" data-toggle="tab" wire:click="changeTab(4)" href="#subTask"
                                         role="tab" aria-controls="subTask"
                                         aria-selected="{{ $tab == 4 }}">{{ __('task.Sub_Tasks') }}</a>
                                 </li>
+                                {{-- 4 TAB END --}}
 
-                                <li class="nav-item px-1 ">
+                                {{-- 5 TAB START --}}
+                                <li class="nav-item px-1">
                                     <a class="nav-link py-3 rounded-pill {{ $tab == 5 ? 'active' : '' }}"
                                         id="extra-tab" data-toggle="tab" wire:click="changeTab(5)" href="#extra"
                                         role="tab" aria-controls="extra"
                                         aria-selected="{{ $tab == 5 }}">{{ __('task.Extra_Time') }}</a>
                                 </li>
+                                {{-- 5 TAB END --}}
 
-                                <li class="nav-item px-1 ">
+                                {{-- 6 TAB START --}}
+                                <li class="nav-item px-1">
                                     <a class="nav-link py-3 rounded-pill {{ $tab == 6 ? 'active' : '' }}"
                                         id="leave-tab" data-toggle="tab" wire:click="changeTab(6)" href="#leave"
                                         role="tab" aria-controls="leave"
                                         aria-selected="{{ $tab == 6 }}">{{ __('task.leave') }}</a>
                                 </li>
+                                {{-- 6 TAB END --}}
                             </ul>
 
                             <div class="tab-content pt-2" id="myTabContent">
+                                {{-- 1 TAB START --}}
                                 <div class="tab-pane fade {{ $tab == 1 ? 'show active' : '' }}" id="user"
                                     role="tabpanel" aria-labelledby="user-tab">
 
@@ -294,7 +315,9 @@
                                         </table>
                                     </div>
                                 </div>
+                                {{-- 1 TAB END --}}
 
+                                {{-- 2 TAB START --}}
                                 <div class="tab-pane fade {{ $tab == 2 ? 'show active' : '' }}" id="attatchment"
                                     role="tabpanel" aria-labelledby="attatchment-tab">
 
@@ -388,7 +411,9 @@
                                     {{-- <input wire:ignore.self wire:model="attatchment_file" type="file" class="dropify"
                                     data-height="150" /> --}}
                                 </div>
+                                {{-- 2 TAB END --}}
 
+                                {{-- 3 TAB START --}}
                                 <div class="tab-pane fade {{ $tab == 3 ? 'show active' : '' }}" id="comment"
                                     role="tabpanel" aria-labelledby="comment-tab">
 
@@ -514,7 +539,9 @@
                                     </div>
 
                                 </div>
+                                {{-- 3 TAB END --}}
 
+                                {{-- 4 TAB START --}}
                                 <div class="tab-pane fade {{ $tab == 4 ? 'show active' : '' }}" id="subTask"
                                     role="tabpanel" aria-labelledby="subTask-tab">
                                     <div class="text-start">
@@ -661,7 +688,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                {{-- 4 TAB END --}}
 
+                                {{-- 5 TAB START --}}
                                 <div class="tab-pane fade {{ $tab == 5 ? 'show active' : '' }}" id="extra"
                                     role="tabpanel" aria-labelledby="extra-tab">
                                     <div class="text-start py-4">
@@ -760,7 +789,9 @@
                                         @endforeach
                                     </div>
                                 </div>
+                                {{-- 5 TAB END --}}
 
+                                {{-- 6 TAB START --}}
                                 <div class="tab-pane fade {{ $tab == 6 ? 'show active' : '' }}" id="leave"
                                     role="tabpanel" aria-labelledby="leave-tab">
                                     <div class="text-start py-4">
@@ -859,7 +890,7 @@
                                         @endforeach
                                     </div>
                                 </div>
-
+                                {{-- 6 TAB END --}}
                             </div>
                         </div>
                     </div>
@@ -1380,7 +1411,7 @@
             <script>
                 $(document).ready(function() {
                     $('.timer-outputpattern-{{ $task->id }}').countdown({
-                        outputPattern: '$day Day $hour Hour $minute Minutes $second',
+                        outputPattern: '$day Day $hour Hour $minute Minutes $second Seconds',
                         from: {{ $task->remaining_time }},
                         timerEnd: undefined,
                     });

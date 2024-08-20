@@ -92,6 +92,38 @@ class TaskShow extends Component
         }
     }
 
+    public $tab = 1;
+    public function changeTab($index)
+    {
+        $this->tab = $index;
+    }
+
+    public function setTask($id)
+    {
+        $this->tab = 1;
+        $task = Task::find($id);
+
+        $this->task_id = $id;
+        $this->task = $task;
+
+        $this->employees = $this->task->employees;
+        $this->selectedEmployees = $this->employees->pluck('id')->toArray();
+
+        $this->sub_task_discount = $this->task->discount();
+
+        // $this->sub_task_start_time  = date('Y-m-d\Th:i');
+        // $this->sub_task_end_time  = date('Y-m-d\Th:i', strtotime('+1 Hours'));
+        $this->sub_task_start_time  = $task->start_time;
+        $this->sub_task_end_time  = $task->end_time;
+
+        $this->leave_time_out = date('Y-m-d\Th:i');
+        $this->leave_time_in = date('Y-m-d\Th:i', strtotime('+1 Hours'));
+        $this->leave_effect_on_time = false;
+
+        $this->extratime_from_time = date('Y-m-d\Th:i', strtotime($task->end_time));
+        $this->extratime_to_time = date('Y-m-d\Th:i', strtotime($task->end_time . ' +1 Hours'));
+    }
+
     public function render()
     {
         return view('livewire.task.task-show');

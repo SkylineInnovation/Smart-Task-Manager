@@ -17,5 +17,6 @@ return [
 
     'reason' => 'السبب',
 
+    'auto-finish-task' => 'انتهاء الوقت',
 
 ];

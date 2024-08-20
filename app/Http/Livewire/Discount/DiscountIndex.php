@@ -288,6 +288,7 @@ class DiscountIndex extends Component
 
         if ($this->the_user_id)
             $discounts = $discounts->where('user_id', $this->the_user_id);
+
         if ($this->the_task_id)
             $discounts = $discounts->where('task_id', $this->the_task_id);
 

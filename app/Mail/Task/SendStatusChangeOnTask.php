@@ -37,10 +37,12 @@ class SendStatusChangeOnTask extends Mailable
     {
         $subject = '';
 
-        if ($this->template == 'auto-finish')
-            $subject = 'Task Finished By System';
-        elseif ($this->template == 'complete')
+        if ($this->template == 'active')
+            $subject = 'Task Started';
+        elseif ($this->template == 'manual-finished')
             $subject = 'Task Finished By Employee';
+        elseif ($this->template == 'auto-finish')
+            $subject = 'Task Finished By System';
 
 
         return new Envelope(
@@ -57,10 +59,12 @@ class SendStatusChangeOnTask extends Mailable
     {
         $view = '';
 
-        if ($this->template == 'auto-finish')
-            $view = 'auto-finish';
-        elseif ($this->template == 'complete')
-            $view = 'employee-finish-task';
+        if ($this->template == 'active')
+            $view = 'employee-start-task';
+        elseif ($this->template == 'manual-finished')
+            $view = 'employee-manual-finished';
+        elseif ($this->template == 'auto-finish')
+            $view = 'employee-auto-finish';
 
         return new Content(
             view: 'stander.email.task.' . $view,

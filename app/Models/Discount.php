@@ -126,7 +126,7 @@ class Discount extends Model
     {
         $qqq = static::query();
 
-        if (!auth()->user()->hasRole(['owner',])) {
+        if (!auth()->user()->hasRole(['owner', 'manager'])) {
             $qqq = $qqq->where('add_by', auth()->user()->id);
         }
 
@@ -166,5 +166,14 @@ class Discount extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function the_reason()
+    {
+        if ($this->reason == 'auto-finish-task') {
+            return __('discount.auto-finish-task');
+        }
+
+        return '';
     }
 }

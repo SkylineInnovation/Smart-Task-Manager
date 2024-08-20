@@ -119,11 +119,11 @@
                         @endif
 
                         <td>
-                            @role('owner')
+                            @permission('show-user')
                                 <a href="{{ route('user.show', $user) }}" target="_blank" class="btn btn-info">
                                     <i class="ti-eye text-white"></i>
                                 </a>
-                            @endrole
+                            @endpermission
 
                             <button data-toggle="modal" data-target="#update-user-modal"
                                 wire:click="edit({{ $user->id }})" class="btn btn-primary">

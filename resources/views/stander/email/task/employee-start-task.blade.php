@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h2>there is new task assigned</h2>
+    <h2>the task {{ $task->title }} started by employee</h2>
 
     <p>{{ $task->title }}</p>
     <p>{{ $task->desc }}</p>
