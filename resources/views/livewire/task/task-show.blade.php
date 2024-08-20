@@ -82,7 +82,11 @@
 
                 <div class="col-lg-2 col-md-2 col-sm-2">
                     <button wire:click="moveDraft()" class="btn btn-danger">
-                        Archived
+                        @if ($task->slug == 'draft')
+                            Archived
+                        @else
+                            Active
+                        @endif
                     </button>
                 </div>
 

@@ -85,11 +85,12 @@ class TaskShow extends Component
     {
         if ($this->task->slug = 'draft') {
             $this->task->update(['slug' => null]);
+            session()->flash('message', 'Task Un Archived Successfully.');
         } else {
             $this->task->update(['slug' => 'draft']);
+            session()->flash('message', 'Task Archived Successfully.');
         }
 
-        session()->flash('message', 'Task Archived Successfully.');
 
     }
 
