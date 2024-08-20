@@ -120,6 +120,12 @@
             </div>
         </div>
 
+        @if (session()->has('message'))
+            <div class="alert alert-success" style="margin-top:30px;">
+                {{ session('message') }}
+            </div>
+        @endif
+
         <div class="card-footer">
             <button type="button" wire:click.prevent="updateTask()" class="btn btn-success">
                 {{ __('global.save-changes') }}
