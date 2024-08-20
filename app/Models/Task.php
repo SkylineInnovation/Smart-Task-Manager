@@ -316,6 +316,8 @@ class Task extends Model
         $startDate = Carbon::parse(date('Y-m-d h:i:s'));
         $endDate = Carbon::parse(date('Y-m-d h:i:s', strtotime($this->end_time)));
 
+        if ($startDate > $endDate) return 1;
+
         $totalSeconds = $endDate->diffInSeconds($startDate);
         return $totalSeconds;
     }

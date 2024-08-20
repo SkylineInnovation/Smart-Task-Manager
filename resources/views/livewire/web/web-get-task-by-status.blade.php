@@ -1380,8 +1380,9 @@
             <script>
                 $(document).ready(function() {
                     $('.timer-outputpattern-{{ $task->id }}').countdown({
-                        outputPattern: '$day Day $hour Hour $minute Minutes',
+                        outputPattern: '$day Day $hour Hour $minute Minutes $second',
                         from: {{ $task->remaining_time }},
+                        timerEnd: undefined,
                     });
                 });
             </script>
