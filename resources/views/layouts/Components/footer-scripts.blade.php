@@ -14,6 +14,9 @@
 <!-- CHART-CIRCLE JS -->
 <script src="{{ asset('assets/plugins/circle-progress/circle-progress.min.js') }}"></script>
 
+{{-- timer --}}
+<script src="{{ asset('assets/plugins/counters/jquery.missofis-countdown.js') }}"></script>
+
 <script src="{{ asset('assets/plugins/morris/raphael-min.js') }}"></script>
 <script src="{{ asset('assets/plugins/morris/morris.js') }}"></script>
 
@@ -35,8 +38,6 @@
 <script src="{{ asset('assets/plugins/p-scroll/pscroll.js') }}"></script>
 
 <script src="{{ asset('assets/plugins/echarts/echarts.js') }}"></script>
-
-@yield('js')
 
 <!--CUSTOM JS -->
 <script src="{{ asset('assets/js/custom.js') }}"></script>
@@ -72,7 +73,7 @@
         });
 
         $.ajax({
-            url: '/sidenav-toggled/',
+            url: "{{ route('sidenav.toggled') }}",
             type: 'POST',
             success: function(result) {}
         });

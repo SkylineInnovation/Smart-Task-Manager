@@ -51,7 +51,8 @@ return [
     'start_at' => 'start at',
     'end_at' => 'end at',
 
-    'assigend' => 'assigend',
+    'assigend' => 'Assigend',
+    'remain' => 'Remain',
 
 
     'Edit' => 'Edit',

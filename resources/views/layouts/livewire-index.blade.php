@@ -18,8 +18,6 @@
 
     @yield('css')
 
-
-
 </head>
 
 <body class="app sidebar-mini @if (session('sidenav-toggled') == 'small') sidenav-toggled @endif">
@@ -105,6 +103,8 @@
     @stack('scripts')
 
     @yield('livewire-js')
+
+    @yield('js')
 
 </body>
 

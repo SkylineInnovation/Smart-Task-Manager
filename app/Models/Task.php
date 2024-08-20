@@ -305,4 +305,18 @@ class Task extends Model
 
         return $totalSeconds;
     }
+
+    public function getRemainingTimeAttribute()
+    {
+        return $this->calculateRemainingTime();
+    }
+
+    public function calculateRemainingTime()
+    {
+        $startDate = Carbon::parse(date('Y-m-d h:i:s'));
+        $endDate = Carbon::parse(date('Y-m-d h:i:s', strtotime($this->end_time)));
+
+        $totalSeconds = $endDate->diffInSeconds($startDate);
+        return $totalSeconds;
+    }
 }

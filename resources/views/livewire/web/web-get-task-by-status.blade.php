@@ -7,7 +7,6 @@
                         <div class="col-md-12 pt-4">
                             <h4 class="px-4 text-bold">
                                 {{ $task->title }}
-                                <span id="timer-outputpattern" class="h3 text-info"></span>
                             </h4>
                         </div>
                         <div class="col-md-12">
@@ -136,7 +135,13 @@
                             <div class="col-md-12 px-4 fs-6 text-gray-400">
                                 {{ __('task.end_at') }} : <br> {{ $task->format_date($task->end_time) }}
                             </div>
-                            <small class="col-md-12 px-4 text-muted py-3">{{ __('task.assigend') }}:
+
+
+                            <small class="col-md-12 px-4 text-muted pt-3">{{ __('task.remain') }}:
+                                <span class="timer-outputpattern-{{ $task->id }}"></span>
+                            </small>
+
+                            <small class="col-md-12 px-4 text-muted pb-3">{{ __('task.assigend') }}:
                                 {{ date('Y/m/d h:i A', strtotime($task->created_at)) }}
                                 ({{ $task->created_ago($task->created_at) }})</small>
                         </div>
@@ -192,6 +197,11 @@
                                         {{ __('task.To') }}:
                                         <br>
                                         {{ date('Y-m-d h:i A', strtotime($task->end_time)) }}
+                                    </div>
+                                    <div class="col-12">
+                                        {{ __('task.remain') }}:
+                                        <br>
+                                        <span class="timer-outputpattern-{{ $task->id }}"></span>
                                     </div>
                                 </div>
                             </div>
@@ -1366,14 +1376,17 @@
             </div>
         @endrole
 
-        {{-- <script>
-        $(function() {
-                // changed output patterns
-                $('#timer-outputpattern').countdown({
-                    outputPattern: '$day Days $hour Hours $minute Minutes $second Seconds',
-                    from: 60 * 60 * 24 * 3
+        @push('scripts')
+            <script>
+                $(document).ready(function() {
+                    $('.timer-outputpattern-{{ $task->id }}').countdown({
+                        outputPattern: '$day Day $hour Hour $minute Minutes',
+                        from: {{ $task->remaining_time }},
+                    });
                 });
-            });
-    </script> --}}
+            </script>
+        @endpush
+
+        {{--  --}}
     @endforeach
 </div>

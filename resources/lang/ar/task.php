@@ -55,6 +55,7 @@ return [
     'Finished' => 'مكتمل',
     'System_Finished' => 'إنتهاء تلقائي',
     'assigend' => 'تم تعيينه',
+    'remain' => 'متبقي',
 
 
     'Edit' => 'تحرير',
