@@ -83,15 +83,13 @@ class TaskShow extends Component
 
     public function moveDraft()
     {
-        if ($this->task->slug = 'draft') {
+        if ($this->task->slug == 'draft') {
             $this->task->update(['slug' => null]);
             session()->flash('message', 'Task Un Archived Successfully.');
         } else {
             $this->task->update(['slug' => 'draft']);
             session()->flash('message', 'Task Archived Successfully.');
         }
-
-
     }
 
     public function render()

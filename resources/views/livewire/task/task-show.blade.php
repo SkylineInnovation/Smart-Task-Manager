@@ -81,11 +81,14 @@
                 </div>
 
                 <div class="col-lg-2 col-md-2 col-sm-2">
-                    <button wire:click="moveDraft()" class="btn btn-danger">
+                    <label for="draft">{{ __('task.move_draft') }}?</label>
+
+                    <button wire:click="moveDraft()"
+                        class="btn {{ $task->slug == 'draft' ? 'btn-info' : 'btn-danger' }} w-100">
                         @if ($task->slug == 'draft')
-                            Archived
+                            {{ __('task.Return') }}
                         @else
-                            Active
+                            {{ __('task.Move') }}
                         @endif
                     </button>
                 </div>

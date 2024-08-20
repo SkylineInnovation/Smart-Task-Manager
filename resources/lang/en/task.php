@@ -39,6 +39,10 @@ return [
     'manual-finished' => 'manual finished',
     'draft' => 'Draft',
     'in_draft' => 'In Draft',
+    'move_draft' => 'Move TO Draft',
+
+    'Return' => 'Return',
+    'Move' => 'Move',
 
 
 
