@@ -113,6 +113,7 @@
                                             <option value="active">{{ __('task.active') }}</option>
                                             <option value="auto-finished">{{ __('task.auto-finished') }}</option>
                                             <option value="manual-finished">{{ __('task.manual-finished') }}</option>
+                                            {{-- <option value="draft">{{ __('task.draft') }}</option> --}}
                                         </select>
                                     </div>
                                 </div>
@@ -295,6 +296,7 @@
                                             <option value="active">{{ __('task.active') }}</option>
                                             <option value="auto-finished">{{ __('task.auto-finished') }}</option>
                                             <option value="manual-finished">{{ __('task.manual-finished') }}</option>
+                                            {{-- <option value="draft">{{ __('task.draft') }}</option> --}}
                                         </select>
                                     </div>
                                 </div>

@@ -79,7 +79,7 @@ class UserShow extends Component
         $this->totalExtratime = [];
         $this->totalLeave = [];
 
-        $this->totalWorkSecs = 0;
+        // $this->totalWorkSecs = 0;
         $this->totalExtraTimeWorkSecs = 0;
         $this->totalLeaveWorkSecs = 0;
         // 

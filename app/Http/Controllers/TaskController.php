@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\Task\FullTasksExport;
 use App\Imports\Task\FullTasksImport;
-
+use App\Models\Task;
 
 class TaskController extends Controller
 {
@@ -18,6 +18,11 @@ class TaskController extends Controller
     {
         $admin_view_status = 'all';
         return view('pages.crud.task.task-home', compact('admin_view_status'));
+    }
+
+    public function livewireShow(Task $task)
+    {
+        return view('pages.crud.task.task-show', compact('task'));
     }
 
     public function livewireDeletedIndex()
