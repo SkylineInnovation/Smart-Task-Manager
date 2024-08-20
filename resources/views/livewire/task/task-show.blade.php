@@ -85,6 +85,7 @@
 
                     <button wire:click="moveDraft()"
                         class="btn {{ $task->slug == 'draft' ? 'btn-info' : 'btn-danger' }} w-100">
+                        {{-- {{ $task->slug == 'draft' ? __('task.Return') : __('task.Move') }} --}}
                         @if ($task->slug == 'draft')
                             {{ __('task.Return') }}
                         @else
