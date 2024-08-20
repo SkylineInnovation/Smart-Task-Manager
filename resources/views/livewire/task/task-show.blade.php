@@ -69,7 +69,7 @@
                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                 ])
 
-                <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="col-lg-4 col-md-4 col-sm-10">
                     <div class="form-group">
                         <label for="priority_level">{{ __('task.priority_level') }}</label>
                         <select wire:model="priority_level" name="priority_level" id="priority_level" class="form-control">
@@ -80,6 +80,12 @@
                     </div>
                 </div>
 
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <button wire:click="moveDraft()" class="btn btn-danger">
+                        Archived
+                    </button>
+                </div>
+
                 <div class="col-lg-4 col-md-4 col-sm-10">
                     <div class="form-group">
                         <label for="status">{{ __('task.status') }}</label>
@@ -88,7 +94,7 @@
                             <option value="active">{{ __('task.active') }}</option>
                             <option value="auto-finished">{{ __('task.auto-finished') }}</option>
                             <option value="manual-finished">{{ __('task.manual-finished') }}</option>
-                            <option value="draft">{{ __('task.draft') }}</option>
+                            {{-- <option value="draft">{{ __('task.draft') }}</option> --}}
                         </select>
                     </div>
                 </div>

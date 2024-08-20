@@ -33,7 +33,6 @@ class TaskShow extends Component
 
         $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
         $this->selectedEmployees = $task->employees->pluck('id');
-
     }
 
     public function rules()
@@ -73,23 +72,24 @@ class TaskShow extends Component
             'start_time' => $this->start_time,
             'end_time' => $this->end_time,
             'priority_level' => $this->priority_level,
-            // 'status' => $this->status,
+            'status' => $this->status,
             // 'main_task_id' => $this->main_task_id,
         ]);
 
-        if ($this->status != 'draft') {
-            $this->task->update([
-                'slug' => null,
-                'status' => $this->status,
-            ]);
-        } else {
-            $this->task->update(['slug' => $this->status]);
-        }
-
         $this->task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
 
-        session()->flash('message', 'Task Created Successfully.');
+        session()->flash('message', 'Task Updated Successfully.');
+    }
 
+    public function moveDraft()
+    {
+        if ($this->task->slug = 'draft') {
+            $this->task->update(['slug' => null]);
+        } else {
+            $this->task->update(['slug' => 'draft']);
+        }
+
+        session()->flash('message', 'Task Archived Successfully.');
 
     }
 
