@@ -207,6 +207,7 @@
                                         {{ __('task.To') }}:
                                         {{ date('Y-m-d h:i A', strtotime($task->end_time)) }}
                                     </div>
+
                                     <div class="col-12">
                                         {{ __('task.remain') }}:
                                         <span class="timer-outputpattern-{{ $task->id }}"></span>
