@@ -128,7 +128,7 @@
 
                         <div class="row w-100 m-0 py-3">
                             @foreach ($task->employees as $employee)
-                                <div class="col-2" data-container="body" data-toggle="tooltip"
+                                <div class="col-4" data-container="body" data-toggle="tooltip"
                                     data-popover-color="default" data-placement="top" title="{{ $employee->name() }}">
                                     {{-- <img src="{{ asset($employee->image) }}"
                                         style="width: 40px !important; border-radius: 100px;"
