@@ -200,18 +200,15 @@
                                 <div class="row text-start">
                                     <div class="col-12">
                                         {{ __('task.From') }}:
-                                        <br>
                                         {{ date('Y-m-d h:i A', strtotime($task->start_time)) }}
                                     </div>
 
                                     <div class="col-12">
                                         {{ __('task.To') }}:
-                                        <br>
                                         {{ date('Y-m-d h:i A', strtotime($task->end_time)) }}
                                     </div>
                                     <div class="col-12">
                                         {{ __('task.remain') }}:
-                                        <br>
                                         <span class="timer-outputpattern-{{ $task->id }}"></span>
                                     </div>
                                 </div>
