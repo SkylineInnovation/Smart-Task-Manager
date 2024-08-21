@@ -14,6 +14,11 @@
                                 {{ $task->manager->name() }}
                             </h6>
                         </div>
+                        <div class="col-md-12">
+                            <h6 class="text-gray px-4">
+                                {{ __('task.Sub-Task') }} : {{ $task->sub_tasks->count() }}
+                            </h6>
+                        </div>
                     </div>
 
                     <div class="col-md-4 col-5 d-flex align-items-center p-0">

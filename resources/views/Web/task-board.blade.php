@@ -74,12 +74,12 @@
 
 @section('js')
     <script>
-        $(function(e) {
-            $("#summer_desc").summernote({
-                tabsize: 3,
-                height: 200,
-            });
-        });
+        // $(function(e) {
+        //     $("#summer_desc").summernote({
+        //         tabsize: 3,
+        //         height: 200,
+        //     });
+        // });
 
         $(document).ready(function() {
             window.livewire.on('render-index', () => {

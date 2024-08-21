@@ -106,4 +106,6 @@ return [
     "Total_Discount"                                    => "Total Discount",
     "Leaves_&_Extra_Times"                              => "Leaves & Extra Times",
     "Discounts"                                         => "Discounts",
+
+    'Sub-Task' => 'Sub Task',
 ];

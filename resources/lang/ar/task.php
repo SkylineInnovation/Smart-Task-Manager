@@ -103,4 +103,6 @@ return [
     "Total_Discount"                                    => "إجمالي الخصم",
     "Leaves_&_Extra_Times"                              => "الإجازات والأوقات الإضافية المختارة",
     "Discounts"                                         => 'الخصم',
+
+    'Sub-Task' => 'المهام الفرعية',
 ];
