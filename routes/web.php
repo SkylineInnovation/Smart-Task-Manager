@@ -173,6 +173,8 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
 Route::get('trt', function () {
     $date = date('Y-m-d\Th:i');
 
+    return $date;
+
     $tasks = Task::whereNullOrEmptyOrZero('main_task_id')
         ->whereIn('status', ['pending', 'active',])
         ->where('end_time', '>=', $date)->get();
