@@ -126,7 +126,7 @@
                             {{ __('task.employees') }}
                         </h4>
 
-                        <div class="row w-100 m-0 py-3">
+                        <div class="row w-100 m-0 px-4">
                             @foreach ($task->employees as $employee)
                                 <div class="col-4" data-container="body" data-toggle="tooltip"
                                     data-popover-color="default" data-placement="top" title="{{ $employee->name() }}">
