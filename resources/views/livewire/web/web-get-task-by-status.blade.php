@@ -130,9 +130,10 @@
                             @foreach ($task->employees as $employee)
                                 <div class="col-2" data-container="body" data-toggle="tooltip"
                                     data-popover-color="default" data-placement="top" title="{{ $employee->name() }}">
-                                    <img src="{{ asset($employee->image) }}"
+                                    {{-- <img src="{{ asset($employee->image) }}"
                                         style="width: 40px !important; border-radius: 100px;"
-                                        alt="{{ $employee->name() }}">
+                                        alt="{{ $employee->name() }}"> --}}
+                                    {{ $employee->name() }}
                                 </div>
                             @endforeach
                         </div>
@@ -372,14 +373,14 @@
                                                 <div class="row w-100 m-0 border">
                                                     <div class="col-md-3">
                                                         {{-- @if ($attatch->is_image())
-                                                <img src="{{ asset($attatch->file) }}" alt=""
-                                                    style="width: 100px ; height: 100px;" srcset="">
-                                                @else
-                                                <a href="{{ asset($attatch->file) }}" download>
-                                                    {{ $attatch->file }}
-                                                    {{ $attatch->is_image() ? 'Y' : 'N' }}
-                                                </a>
-                                                @endif --}}
+                                                            <img src="{{ asset($attatch->file) }}" alt=""
+                                                                style="width: 100px ; height: 100px;" srcset="">
+                                                        @else
+                                                            <a href="{{ asset($attatch->file) }}" download>
+                                                                {{ $attatch->file }}
+                                                                {{ $attatch->is_image() ? 'Y' : 'N' }}
+                                                            </a>
+                                                        @endif --}}
 
                                                     </div>
                                                     <div class="col-md-6">
