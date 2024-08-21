@@ -30,7 +30,7 @@ class AutoFinishTask extends Command
      */
     public function handle()
     {
-        $date = date('Y-m-d\Th:i');
+        $date = date('Y-m-d\TH:i');
 
         $tasks = Task::whereNullOrEmptyOrZero('main_task_id')
             ->whereIn('status', ['pending', 'active',])
