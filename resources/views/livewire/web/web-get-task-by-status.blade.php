@@ -16,7 +16,7 @@
                         </div>
                         <div class="col-md-12">
                             <h6 class="text-gray px-4">
-                                {{ __('task.Sub-Task') }} : {{ $task->sub_tasks->count() }}
+                                {{ __('task.Sub-Task') }}: {{ $task->sub_tasks->count() }}
                             </h6>
                         </div>
                     </div>
@@ -141,10 +141,10 @@
                     <div class="col-md-12">
                         <div class="row w-100 m-0 ">
                             <div class="col-md-12 px-4 fs-6 text-gray-400">
-                                {{ __('task.start_at') }} : <br> {{ $task->format_date($task->start_time) }}
+                                {{ __('task.start_at') }}: {{ $task->format_date($task->start_time) }}
                             </div>
                             <div class="col-md-12 px-4 fs-6 text-gray-400">
-                                {{ __('task.end_at') }} : <br> {{ $task->format_date($task->end_time) }}
+                                {{ __('task.end_at') }}: {{ $task->format_date($task->end_time) }}
                             </div>
 
 
