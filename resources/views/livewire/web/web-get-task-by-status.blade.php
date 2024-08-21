@@ -688,14 +688,25 @@
                                                             </div>
                                                         </div>
 
-                                                        @if (in_array($task->status, ['pending', 'active']))
-                                                            <div class="col-md-12">
-                                                                <button class="btn btn-success"
-                                                                    wire:click="completeSubTask({{ $sub->id }})">
-                                                                    complete
-                                                                </button>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                {{ __('task.status') }}:
                                                             </div>
-                                                        @endif
+
+                                                            <div class="col-md-6">
+                                                                {{ $sub->the_status() }}
+                                                            </div>
+
+                                                            @if (in_array($task->status, ['pending', 'active']))
+                                                                <div class="col-md-12">
+                                                                    <button class="btn btn-success"
+                                                                        wire:click="completeSubTask({{ $sub->id }})">
+                                                                        complete
+                                                                    </button>
+                                                                </div>
+                                                            @endif
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                             @endforeach
