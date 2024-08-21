@@ -230,8 +230,8 @@ class WebGetTaskByStatus extends Component
         $this->sub_task_title = null;
         $this->sub_task_desc = null;
 
-        $this->sub_task_start_time  = date('Y-m-d\Th:i');
-        $this->sub_task_end_time  = date('Y-m-d\Th:i', strtotime('+1 Hours'));
+        $this->sub_task_start_time  = date('Y-m-d\Th:i', strtotime($this->sub_task_end_time));
+        $this->sub_task_end_time  = date('Y-m-d\Th:i', strtotime($this->sub_task_start_time . ' +1 Hours'));
 
         $this->sub_task_priority_level = 'low';
 
