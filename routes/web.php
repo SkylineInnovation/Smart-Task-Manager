@@ -177,7 +177,7 @@ Route::get('trt', function () {
 
     $tasks = Task::whereNullOrEmptyOrZero('main_task_id')
         ->whereIn('status', ['pending', 'active',])
-        ->where('end_time', '>=', $date)->get();
+        ->where('end_time', '<=', $date)->get();
 
     return [
         $date,
