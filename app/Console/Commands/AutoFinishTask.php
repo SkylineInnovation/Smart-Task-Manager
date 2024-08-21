@@ -30,32 +30,32 @@ class AutoFinishTask extends Command
      */
     public function handle()
     {
-        $date = date('Y-m-d\TH:i');
+        // $date = date('Y-m-d\TH:i');
 
-        $tasks = Task::whereNullOrEmptyOrZero('main_task_id')
-            ->whereIn('status', ['pending', 'active',])
-            ->where('end_time', '<=', $date)->get();
+        // $tasks = Task::whereNullOrEmptyOrZero('main_task_id')
+        //     ->whereIn('status', ['pending', 'active',])
+        //     ->where('end_time', '<=', $date)->get();
 
-        foreach ($tasks as $task) {
-            $task->update([
-                'status' => 'auto-finished',
-            ]);
+        // foreach ($tasks as $task) {
+        //     $task->update([
+        //         'status' => 'auto-finished',
+        //     ]);
 
-            foreach ($task->employees as $employee) {
+        //     foreach ($task->employees as $employee) {
 
-                $comments = Comment::where('task_id', $task->id)
-                    ->where('user_id', $employee->id)->get();
+        //         $comments = Comment::where('task_id', $task->id)
+        //             ->where('user_id', $employee->id)->get();
 
-                if (count($comments) == 0) {
-                    Discount::create([
-                        'task_id' => $task->id,
-                        'user_id' => $employee->id,
-                        'amount' => $task->discount(),
-                        'reason' => 'auto-finish-task',
-                    ]);
-                }
-            }
-        }
+        //         if (count($comments) == 0) {
+        //             Discount::create([
+        //                 'task_id' => $task->id,
+        //                 'user_id' => $employee->id,
+        //                 'amount' => $task->discount(),
+        //                 'reason' => 'auto-finish-task',
+        //             ]);
+        //         }
+        //     }
+        // }
 
         return Command::SUCCESS;
     }
