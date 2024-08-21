@@ -148,9 +148,9 @@
                             </div>
 
 
-                            <small class="col-md-12 px-4 text-muted pt-3">{{ __('task.remain') }}:
+                            {{-- <small class="col-md-12 px-4 text-muted pt-3">{{ __('task.remain') }}:
                                 <span class="timer-outputpattern-{{ $task->id }}"></span>
-                            </small>
+                            </small> --}}
 
                             <small class="col-md-12 px-4 text-muted pb-3">{{ __('task.assigend') }}:
                                 {{ date('Y/m/d h:i A', strtotime($task->created_at)) }}
@@ -208,10 +208,10 @@
                                         {{ date('Y-m-d h:i A', strtotime($task->end_time)) }}
                                     </div>
 
-                                    <div class="col-12">
+                                    {{-- <div class="col-12">
                                         {{ __('task.remain') }}:
                                         <span class="timer-outputpattern-{{ $task->id }}"></span>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -1437,7 +1437,7 @@
             </div>
         @endrole
 
-        @push('scripts')
+        {{-- @push('scripts')
             <script>
                 $(document).ready(function() {
                     $('.timer-outputpattern-{{ $task->id }}').countdown({
@@ -1447,7 +1447,7 @@
                     });
                 });
             </script>
-        @endpush
+        @endpush --}}
 
         {{--  --}}
     @endforeach
