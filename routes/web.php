@@ -158,13 +158,24 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
 });
 
 
-Route::get('tr', function () {
+// Route::get('tr', function () {
+//     $date = date('Y-m-d\Th:i');
+
+//     $tasks = Task::whereIn('status', ['pending', 'active',])
+//         ->where('end_time', '<=', $date)->get();
+
+//     // php /home/forge/task-manager.codexal.co/artisan task:auto-finish
+
+//     return $tasks;
+// });
+
+
+Route::get('trt', function () {
     $date = date('Y-m-d\Th:i');
 
-    $tasks = Task::whereIn('status', ['pending', 'active',])
+    $tasks = Task::whereNullOrEmptyOrZero('main_task_id')
+        ->whereIn('status', ['pending', 'active',])
         ->where('end_time', '<=', $date)->get();
-
-    // php /home/forge/task-manager.codexal.co/artisan task:auto-finish
 
     return $tasks;
 });
