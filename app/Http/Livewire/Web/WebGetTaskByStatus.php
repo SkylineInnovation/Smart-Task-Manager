@@ -536,6 +536,15 @@ class WebGetTaskByStatus extends Component
         $this->extratime_duration = $result;
     }
 
+    public function completeSubTask($id)
+    {
+        $task = Task::find($id);
+
+        $task->update([
+            'status' => 'manual-finished',
+        ]);
+    }
+
     public function render()
     {
         $tasks = Task::whereNullOrEmptyOrZero('slug')

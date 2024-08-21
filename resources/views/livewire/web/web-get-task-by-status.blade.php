@@ -687,6 +687,15 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+
+                                                        @if (in_array($task->status, ['pending', 'active']))
+                                                            <div class="col-md-12">
+                                                                <button class="btn btn-success"
+                                                                    wire:click="completeSubTask({{ $sub->id }})">
+                                                                    complete
+                                                                </button>
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             @endforeach
