@@ -170,15 +170,15 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
 // });
 
 
-Route::get('trt', function () {
-    $date = date('Y-m-d\TH:i');
+// Route::get('trt', function () {
+//     $date = date('Y-m-d\TH:i');
 
-    $tasks = Task::whereNullOrEmptyOrZero('main_task_id')
-        ->whereIn('status', ['pending', 'active',])
-        ->where('end_time', '<=', $date)->get();
+//     $tasks = Task::whereNullOrEmptyOrZero('main_task_id')
+//         ->whereIn('status', ['pending', 'active',])
+//         ->where('end_time', '<=', $date)->get();
 
-    return [
-        $date,
-        $tasks
-    ];
-});
+//     return [
+//         $date,
+//         $tasks
+//     ];
+// });
