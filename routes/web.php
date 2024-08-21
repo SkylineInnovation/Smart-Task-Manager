@@ -179,5 +179,8 @@ Route::get('trt', function () {
         ->whereIn('status', ['pending', 'active',])
         ->where('end_time', '>=', $date)->get();
 
-    return $tasks;
+    return [
+        $date,
+        $tasks
+    ];
 });
