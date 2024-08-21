@@ -695,14 +695,14 @@
                                                                 {{ $sub->the_status() }}
                                                             </div>
 
-                                                            @if ($task->status == 'pending')
+                                                            @if ($sub->status == 'pending')
                                                                 <div class="col-md-12">
                                                                     <button class="btn btn-info"
                                                                         wire:click="startSubTask({{ $sub->id }})">
                                                                         start
                                                                     </button>
                                                                 </div>
-                                                            @elseif($task->status == 'active')
+                                                            @elseif($sub->status == 'active')
                                                                 <div class="col-md-12">
                                                                     <button class="btn btn-success"
                                                                         wire:click="completeSubTask({{ $sub->id }})">
