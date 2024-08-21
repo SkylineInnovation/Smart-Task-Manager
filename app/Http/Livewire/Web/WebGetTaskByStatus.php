@@ -34,15 +34,15 @@ class WebGetTaskByStatus extends Component
 
         $this->status = $status;
 
-        $this->sub_task_start_time  = date('Y-m-d\Th:i');
-        $this->sub_task_end_time  = date('Y-m-d\Th:i', strtotime('+1 Hours'));
+        $this->sub_task_start_time  = date('Y-m-d\TH:i');
+        $this->sub_task_end_time  = date('Y-m-d\TH:i', strtotime('+1 Hours'));
 
-        $this->leave_time_out = date('Y-m-d\Th:i');
-        $this->leave_time_in = date('Y-m-d\Th:i', strtotime('+1 Hours'));
+        $this->leave_time_out = date('Y-m-d\TH:i');
+        $this->leave_time_in = date('Y-m-d\TH:i', strtotime('+1 Hours'));
         $this->leave_effect_on_time = false;
 
-        $this->extratime_from_time = date('Y-m-d\Th:i');
-        $this->extratime_to_time = date('Y-m-d\Th:i', strtotime('+1 Hours'));
+        $this->extratime_from_time = date('Y-m-d\TH:i');
+        $this->extratime_to_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
     }
 
     public $task;
@@ -60,17 +60,17 @@ class WebGetTaskByStatus extends Component
 
         $this->sub_task_discount = $this->task->discount();
 
-        // $this->sub_task_start_time  = date('Y-m-d\Th:i');
-        // $this->sub_task_end_time  = date('Y-m-d\Th:i', strtotime('+1 Hours'));
+        // $this->sub_task_start_time  = date('Y-m-d\TH:i');
+        // $this->sub_task_end_time  = date('Y-m-d\TH:i', strtotime('+1 Hours'));
         $this->sub_task_start_time  = $task->start_time;
         $this->sub_task_end_time  = $task->end_time;
 
-        $this->leave_time_out = date('Y-m-d\Th:i');
-        $this->leave_time_in = date('Y-m-d\Th:i', strtotime('+1 Hours'));
+        $this->leave_time_out = date('Y-m-d\TH:i');
+        $this->leave_time_in = date('Y-m-d\TH:i', strtotime('+1 Hours'));
         $this->leave_effect_on_time = false;
 
-        $this->extratime_from_time = date('Y-m-d\Th:i', strtotime($task->end_time));
-        $this->extratime_to_time = date('Y-m-d\Th:i', strtotime($task->end_time . ' +1 Hours'));
+        $this->extratime_from_time = date('Y-m-d\TH:i', strtotime($task->end_time));
+        $this->extratime_to_time = date('Y-m-d\TH:i', strtotime($task->end_time . ' +1 Hours'));
     }
 
     public function openCommentTask($id)
@@ -230,8 +230,8 @@ class WebGetTaskByStatus extends Component
         $this->sub_task_title = null;
         $this->sub_task_desc = null;
 
-        $this->sub_task_start_time  = date('Y-m-d\Th:i', strtotime($this->sub_task_end_time));
-        $this->sub_task_end_time  = date('Y-m-d\Th:i', strtotime($this->sub_task_start_time . ' +1 Hours'));
+        $this->sub_task_start_time  = date('Y-m-d\TH:i', strtotime($this->sub_task_end_time));
+        $this->sub_task_end_time  = date('Y-m-d\TH:i', strtotime($this->sub_task_start_time . ' +1 Hours'));
 
         $this->sub_task_priority_level = 'low';
 
@@ -560,7 +560,7 @@ class WebGetTaskByStatus extends Component
             });
         }
 
-        $date = date('Y-m-d\Th:i', strtotime('-1 days'));
+        $date = date('Y-m-d\TH:i', strtotime('-1 days'));
 
         $tasks = $tasks->where('end_time', '>', $date);
         // ->where('end_time', '<=', $date)->get();

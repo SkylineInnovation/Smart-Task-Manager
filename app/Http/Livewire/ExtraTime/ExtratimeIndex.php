@@ -76,10 +76,10 @@ class ExtratimeIndex extends Component
             $this->the_task_id = $task_id;
         }
 
-        $this->request_time = date('Y-m-d\Th:i');
-        $this->from_time = date('Y-m-d\Th:i');
-        $this->to_time = date('Y-m-d\Th:i', strtotime('+1 Hours'));
-        // $this->response_time = date('Y-m-d\Th:i', strtotime('+1 Hours'));
+        $this->request_time = date('Y-m-d\TH:i');
+        $this->from_time = date('Y-m-d\TH:i');
+        $this->to_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        // $this->response_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
 
         $this->tasks = \App\Models\Task::whereNullOrEmptyOrZero('main_task_id')->where('show', 1)->orderBy('sort')->get();
 
@@ -124,9 +124,9 @@ class ExtratimeIndex extends Component
         $this->accepted_by_user_id = null;
         $this->reason = '';
         $this->result = '';
-        $this->request_time = date('Y-m-d\Th:i');
-        $this->from_time = date('Y-m-d\Th:i');
-        $this->to_time = date('Y-m-d\Th:i', strtotime('+1 Hours'));
+        $this->request_time = date('Y-m-d\TH:i');
+        $this->from_time = date('Y-m-d\TH:i');
+        $this->to_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
         $this->response_time = null;
         $this->status = 'pending';
         $this->duration = '';

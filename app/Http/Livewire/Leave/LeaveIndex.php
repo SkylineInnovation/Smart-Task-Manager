@@ -77,8 +77,8 @@ class LeaveIndex extends Component
             $this->the_task_id = $task_id;
         }
 
-        $this->time_out = date('Y-m-d\Th:i');
-        $this->time_in = date('Y-m-d\Th:i', strtotime('+1 Hours'));
+        $this->time_out = date('Y-m-d\TH:i');
+        $this->time_in = date('Y-m-d\TH:i', strtotime('+1 Hours'));
 
         $this->tasks = \App\Models\Task::whereNullOrEmptyOrZero('main_task_id')->where('show', 1)->orderBy('sort')->get();
 
@@ -121,8 +121,8 @@ class LeaveIndex extends Component
         // $this->task_id = null;
         // $this->user_id = null;
         $this->type = 'leave';
-        $this->time_out = date('Y-m-d\Th:i');
-        $this->time_in = date('Y-m-d\Th:i', strtotime('+1 Hours'));
+        $this->time_out = date('Y-m-d\TH:i');
+        $this->time_in = date('Y-m-d\TH:i', strtotime('+1 Hours'));
         $this->effect_on_time = false;
         $this->reason = '';
         $this->result = '';
