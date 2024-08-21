@@ -235,7 +235,7 @@ class WebGetTaskByStatus extends Component
 
         $this->sub_task_priority_level = 'low';
 
-        $this->selectedEmployees = [];
+        // $this->selectedEmployees = [];
 
         $this->task = Task::find($this->task->id);
 
