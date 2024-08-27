@@ -71,3 +71,12 @@
         </a>
     </li>
 @endpermission
+
+@permission('index-dailytask')
+    <li>
+        <a class='slide-item' href='{{ route('dailytask.index') }}'>
+            <span>{{ __('global.dailytasks') }}</span>
+        </a>
+    </li>
+@endpermission
+

@@ -182,3 +182,10 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
 //         $tasks
 //     ];
 // });
+
+// the full routes for dailytasks
+Route::middleware('permission:index-dailytask')->get('dailytasks', [App\Http\Controllers\DailyTaskController::class, 'livewireIndex'])->name('dailytask.index');
+Route::middleware('permission:restore-dailytask')->get('trash/dailytasks', [App\Http\Controllers\DailyTaskController::class, 'livewireDeletedIndex'])->name('dailytask.index.trash');
+Route::get('export/dailytasks', [App\Http\Controllers\DailyTaskController::class, 'exportFullData'])->name('dailytask.export');
+Route::post('import/dailytasks', [App\Http\Controllers\DailyTaskController::class, 'importData'])->name('dailytask.import');
+

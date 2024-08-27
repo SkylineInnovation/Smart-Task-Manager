@@ -71,3 +71,12 @@
         </a>
     </li>
 @endpermission
+
+@permission('restore-dailytask')
+    <li>
+        <a class='slide-item' href='{{ route('dailytask.index.trash') }}'>
+            <span>{{ __('global.dailytasks') }}</span>
+        </a>
+    </li>
+@endpermission
+
