@@ -14,7 +14,7 @@ class CreateDailyTasksTable extends Migration
      */
     public function up()
     {
-        Schema::create('dailytasks', function (Blueprint $table) {
+        Schema::create('daily_tasks', function (Blueprint $table) {
             $table->bigIncrements('id');
 
             $table->foreignIdFor(User::class, 'add_by')->default(0);
@@ -54,6 +54,6 @@ class CreateDailyTasksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dailytasks');
+        Schema::dropIfExists('daily_tasks');
     }
 }

@@ -56,7 +56,7 @@ class DailytaskIndex extends Component
 
 
 
-        $this->managers = \App\Models\User::orderBy('name')->get();
+        $this->managers = \App\Models\User::orderBy('user_name')->get();
 
 
         $this->showColumn = collect([

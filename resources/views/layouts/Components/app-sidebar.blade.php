@@ -105,6 +105,7 @@
                         <span>{{ __('global.task_view') }}</span>
                     </a>
                 </li>
+                
 
                 {{-- <li><a class="slide-item" href="{{ route('banner.index') }}"><span>{{ __('global.Banner') }}</span></a></li> --}}
             </ul>

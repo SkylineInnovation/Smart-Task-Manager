@@ -8,24 +8,24 @@ return [
     'date' => 'date',
     'time' => 'time',
 
-    
-                    'manager' => 'manager',
 
-                    'title' => 'title',
+    'manager' => 'manager',
 
-                    'description' => 'description',
+    'title' => 'title',
 
-                    'start_time' => 'start_time',
+    'description' => 'description',
 
-                    'end_time' => 'end_time',
+    'start_time' => 'start_time',
 
-                    'proearty' => 'proearty',
+    'end_time' => 'end_time',
 
-                    'status' => 'status',
+    'proearty' => 'proearty',
 
-                    'repeat_time' => 'repeat_time',
+    'status' => 'status',
 
-                    'repeat_evrey' => 'repeat_evrey',
+    'repeat_time' => 'repeat_time',
+
+    'repeat_evrey' => 'repeat_evrey',
 
 
 ];
