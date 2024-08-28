@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DailyTaskController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Models\Task;
@@ -155,6 +156,15 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     Route::middleware('permission:restore-discount')->get('trash/discounts', [App\Http\Controllers\DiscountController::class, 'livewireDeletedIndex'])->name('discount.index.trash');
     Route::get('export/discounts', [App\Http\Controllers\DiscountController::class, 'exportFullData'])->name('discount.export');
     Route::post('import/discounts', [App\Http\Controllers\DiscountController::class, 'importData'])->name('discount.import');
+
+
+    // the full routes for dailytasks
+    Route::middleware('permission:index-dailytask')->get('dailytasks', [App\Http\Controllers\DailyTaskController::class, 'livewireIndex'])->name('dailytask.index');
+    Route::middleware('permission:restore-dailytask')->get('trash/dailytasks', [App\Http\Controllers\DailyTaskController::class, 'livewireDeletedIndex'])->name('dailytask.index.trash');
+    Route::get('export/dailytasks', [App\Http\Controllers\DailyTaskController::class, 'exportFullData'])->name('dailytask.export');
+    Route::post('import/dailytasks', [App\Http\Controllers\DailyTaskController::class, 'importData'])->name('dailytask.import');
+
+    Route::get('daily-task-view/{dailytask}',[DailyTaskController::class,'livewireShow'])->name('dailyTaskView');
 });
 
 
@@ -182,9 +192,3 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
 //         $tasks
 //     ];
 // });
-
-// the full routes for dailytasks
-Route::middleware('permission:index-dailytask')->get('dailytasks', [App\Http\Controllers\DailyTaskController::class, 'livewireIndex'])->name('dailytask.index');
-Route::middleware('permission:restore-dailytask')->get('trash/dailytasks', [App\Http\Controllers\DailyTaskController::class, 'livewireDeletedIndex'])->name('dailytask.index.trash');
-Route::get('export/dailytasks', [App\Http\Controllers\DailyTaskController::class, 'exportFullData'])->name('dailytask.export');
-Route::post('import/dailytasks', [App\Http\Controllers\DailyTaskController::class, 'importData'])->name('dailytask.import');

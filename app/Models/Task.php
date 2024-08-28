@@ -67,6 +67,7 @@ class Task extends Model
         'priority_level',
         'status',
         'main_task_id',
+        'daily_task_id',
 
         'show',
         'sort',
@@ -333,5 +334,9 @@ class Task extends Model
     public function discounts()
     {
         return $this->hasMany(Discount::class);
+    }
+    public function daily_task()
+    {
+        return $this->belongsTo(DailyTask::class);
     }
 }

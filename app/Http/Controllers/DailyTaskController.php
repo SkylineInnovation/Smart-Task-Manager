@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\DailyTask\FullDailyTasksExport;
 use App\Imports\DailyTask\FullDailyTasksImport;
-
+use App\Models\DailyTask;
 
 class DailyTaskController extends Controller
 {
@@ -55,5 +55,10 @@ class DailyTaskController extends Controller
         }
 
         return Redirect::back()->with('success', 'Data Imported Successfully');
+    }
+
+    public function livewireShow(DailyTask $dailytask)
+    {
+        return view('pages.crud.dailytask.dailytask-show',compact('dailytask'));
     }
 }

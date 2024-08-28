@@ -160,6 +160,9 @@
 
                         @permission('edit-dailytask|delete-dailytask|restore-dailytask')
                             <td>
+                                <a href="{{route('dailyTaskView', $dailytask->id)}}" class="btn btn-warning">
+                                    <i class="ti-eye text-white"></i>
+                                </a>
                                 @if ($admin_view_status != 'deleted')
                                     @permission('edit-dailytask')
                                         <button data-toggle="modal" data-target="#update-dailytask-modal"

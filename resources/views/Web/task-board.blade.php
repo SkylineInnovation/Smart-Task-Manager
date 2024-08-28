@@ -37,24 +37,7 @@
             </div>
         </div>
     @endrole
-    <div class="container card">
-        <div class="card-header">
-            daily task
-        </div>
-        <div class="card-body">
-            @foreach ($taskdaily as $tsk)
-                <div class="card" style="width: 18rem;">
-
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $tsk->title }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ $tsk->proearty }}</h6>
-                        <p class="card-text">{{ $tsk->description }}</p>
-                        
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
+ 
     <div class="container-fluid card">
 
         <div class="d-flex flex-row" style="overflow-x: scroll;">

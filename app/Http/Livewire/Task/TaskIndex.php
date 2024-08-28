@@ -49,8 +49,10 @@ class TaskIndex extends Component
     public $the_manager_id;
     public $the_employee_id;
 
+    public $dailytask;
+
     public $admin_view_status = '', $by, $url;
-    public function mount($admin_view_status = '', $the_manager_id = null, $the_employee_id = null)
+    public function mount($admin_view_status = '', $the_manager_id = null, $the_employee_id = null, $dailytask = null)
     {
         $this->url = Route::current()->getName();
         $this->admin_view_status = $admin_view_status;
@@ -59,6 +61,7 @@ class TaskIndex extends Component
 
         $this->task = new Task();
 
+        $this->dailytask = $dailytask;
 
         $this->all = true;
         // $this->fromDate = date('Y-m-d', strtotime("-5 days"));
@@ -334,6 +337,9 @@ class TaskIndex extends Component
 
         if ($this->the_manager_id)
             $tasks = $tasks->where('the_manager_id', $this->the_manager_id);
+
+        if ($this->dailytask)
+            $tasks = $tasks->where('daily_task_id', $this->dailytask->id);
 
         if ($this->the_employee_id)
             $tasks = $tasks->whereHas('employees', function ($q) {
