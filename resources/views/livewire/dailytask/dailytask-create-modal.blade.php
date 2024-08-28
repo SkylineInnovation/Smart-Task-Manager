@@ -21,7 +21,7 @@
 
                             <div class="row">
 
-                                @include('inputs.create.input', [
+                                {{-- @include('inputs.create.input', [
                                     'label' => 'dailytask.slug',
                                     'name' => 'dailytask.slug',
                                     'livewire' => 'slug',
@@ -30,85 +30,161 @@
                                     'lg' => 12,
                                     'md' => 12,
                                     'sm' => 12,
-                                ])
+                                ]) --}}
 
 
-                                @include('inputs.create.select', [
+                                {{-- @include('inputs.create.select', [
                                     'label' => 'dailytask.manager',
                                     'name' => 'dailytask.manager_id',
                                     'arr' => $managers,
                                     'livewire' => 'manager_id',
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
+                                ]) --}}
+
                                 @include('inputs.create.input', [
                                     'label' => 'dailytask.title',
                                     'name' => 'dailytask.title',
                                     'livewire' => 'title',
                                     'type' => 'text', // 'step' => 1,
                                     // 'required' => 'required',
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                    'lg' => 8,
+                                    'md' => 8,
+                                    'sm' => 8,
                                 ])
+                                
+                                @include('inputs.create.input', [
+                                    'label' => 'task.discount',
+                                    'name' => 'task.discount',
+                                    'livewire' => 'discount',
+                                    'type' => 'number',
+                                    'step' => 1,
+                                    // 'required' => 'required',
+                                    'lg' => 4,
+                                    'md' => 4,
+                                    'sm' => 12,
+                                ])
+
+
+
                                 @include('inputs.create.input', [
                                     'label' => 'dailytask.description',
                                     'name' => 'dailytask.description',
                                     'livewire' => 'description',
                                     'type' => 'text', // 'step' => 1,
                                     // 'required' => 'required',
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                    'lg' => 12,
+                                    'md' => 12,
+                                    'sm' => 12,
                                 ])
-                                @include('inputs.create.input', [
-                                    'label' => 'dailytask.start_time',
-                                    'name' => 'dailytask.start_time',
-                                    'livewire' => 'start_time',
-                                    'type' => 'text', // 'step' => 1,
-                                    // 'required' => 'required',
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
-                                @include('inputs.create.input', [
-                                    'label' => 'dailytask.end_time',
-                                    'name' => 'dailytask.end_time',
-                                    'livewire' => 'end_time',
-                                    'type' => 'text', // 'step' => 1,
-                                    // 'required' => 'required',
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
-                                @include('inputs.create.input', [
+
+
+                                {{-- @include('inputs.create.input', [
                                     'label' => 'dailytask.proearty',
                                     'name' => 'dailytask.proearty',
                                     'livewire' => 'proearty',
                                     'type' => 'text', // 'step' => 1,
                                     // 'required' => 'required',
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                ]) --}}
+
+
+
+                                @include('inputs.create.input', [
+                                    'label' => 'dailytask.start_time',
+                                    'name' => 'dailytask.start_time',
+                                    'livewire' => 'start_time',
+                                    'type' => 'datetime-local', // 'step' => 1,
+                                    // 'required' => 'required',
+                                    'lg' => 4,
+                                    'md' => 4,
+                                    'sm' => 12,
                                 ])
                                 @include('inputs.create.input', [
+                                    'label' => 'dailytask.end_time',
+                                    'name' => 'dailytask.end_time',
+                                    'livewire' => 'end_time',
+                                    'type' => 'datetime-local', // 'step' => 1,
+                                    // 'required' => 'required',
+                                    'lg' => 4,
+                                    'md' => 4,
+                                    'sm' => 12,
+                                ])
+
+                                {{-- @include('inputs.create.input', [
                                     'label' => 'dailytask.status',
                                     'name' => 'dailytask.status',
                                     'livewire' => 'status',
                                     'type' => 'text', // 'step' => 1,
                                     // 'required' => 'required',
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
+                                ]) --}}
+
+
                                 @include('inputs.create.input', [
                                     'label' => 'dailytask.repeat_time',
                                     'name' => 'dailytask.repeat_time',
                                     'livewire' => 'repeat_time',
-                                    'type' => 'text', // 'step' => 1,
+                                    'type' => 'time', // 'step' => 1,
                                     // 'required' => 'required',
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                    'lg' => 4,
+                                    'md' => 4,
+                                    'sm' => 12,
                                 ])
-                                @include('inputs.create.input', [
+                                {{-- @include('inputs.create.input', [
                                     'label' => 'dailytask.repeat_evrey',
                                     'name' => 'dailytask.repeat_evrey',
                                     'livewire' => 'repeat_evrey',
-                                    'type' => 'text', // 'step' => 1,
+                                    'type' => 'time', // 'step' => 1,
                                     // 'required' => 'required',
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
+                                ]) --}}
+
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="proearty">{{ __('task.proearty') }}</label>
+                                        <select wire:model="proearty" name="proearty" id="proearty" class="form-control">
+                                            <option value="low">{{ __('task.low') }}</option>
+                                            <option value="medium">{{ __('task.medium') }}</option>
+                                            <option value="high">{{ __('task.high') }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="status">{{ __('task.status') }}</label>
+                                        <select wire:model="status" name="status" id="status" class="form-control">
+                                            <option value="active">{{ __('task.active') }}</option>
+                                            <option value="disapled">{{ __('task.disapled') }}</option>
+                                        </select>
+                                    </div>
+                                </div>
 
                             </div>
 
+                            @role('owner')
+                                <div>
+                                    <p>{{ __('global.employees') }}</p>
+                                    <div class="row">
+                                        @foreach ($employees as $employee)
+                                            <div class="col-4">
+                                                <div class="form-check form-check-inline">
+                                                    <input wire:model='selectedEmployees' class="form-check-input"
+                                                        type="checkbox" value="{{ $employee->id }}"
+                                                        id="selected-employee-{{ $employee->id }}">
+                                                    <label class="form-check-label"
+                                                        for="selected-employee-{{ $employee->id }}">
+                                                        {{ $employee->name() }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endrole
+
                         </div>
+
 
                         <div class="form-group">
 
@@ -157,7 +233,7 @@
 
                             <div class="row">
 
-                                @include('inputs.edit.input', [
+                                {{-- @include('inputs.edit.input', [
                                     'label' => 'dailytask.slug',
                                     'name' => 'dailytask.slug',
                                     'livewire' => 'slug',
@@ -166,10 +242,10 @@
                                     'lg' => 12,
                                     'md' => 12,
                                     'sm' => 12,
-                                ])
+                                ]) --}}
 
 
-                                @include('inputs.edit.select', [
+                                {{-- @include('inputs.edit.select', [
                                     'label' => 'dailytask.manager',
                                     'name' => 'dailytask.manager_id',
                                     'arr' => $managers,
@@ -177,7 +253,7 @@
                                     'val' => $dailytask->manager_id,
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
+                                ]) --}}
                                 @include('inputs.edit.input', [
                                     'label' => 'dailytask.title',
                                     'name' => 'dailytask.title',
@@ -185,8 +261,25 @@
                                     'livewire' => 'title',
                                     'type' => 'text', // 'step' => 1,
                                     // 'required' => 'required',
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                    'lg' => 8,
+                                    'md' => 8,
+                                    'sm' => 8,
                                 ])
+
+                                @include('inputs.edit.input', [
+                                    'label' => 'task.discount',
+                                    'name' => 'task.discount',
+                                    'livewire' => 'discount',
+                                    'val' => $dailytask->discount(),
+                                    'type' => 'number',
+                                    'step' => 1,
+                                    // 'required' => 'required',
+                                    'lg' => 4,
+                                    'md' => 4,
+                                    'sm' => 4,
+                                ])
+
+
                                 @include('inputs.edit.input', [
                                     'label' => 'dailytask.description',
                                     'name' => 'dailytask.description',
@@ -194,66 +287,132 @@
                                     'livewire' => 'description',
                                     'type' => 'text', // 'step' => 1,
                                     // 'required' => 'required',
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                    'lg' => 12,
+                                    'md' => 1,
+                                    'sm' => 12,
                                 ])
+
+
+
+
+
+
                                 @include('inputs.edit.input', [
                                     'label' => 'dailytask.start_time',
                                     'name' => 'dailytask.start_time',
                                     'val' => $dailytask->start_time,
                                     'livewire' => 'start_time',
-                                    'type' => 'text', // 'step' => 1,
+                                    'type' => 'datetime-local', // 'step' => 1,
                                     // 'required' => 'required',
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                    'lg' => 4,
+                                    'md' => 4,
+                                    'sm' => 12,
                                 ])
+
+
                                 @include('inputs.edit.input', [
                                     'label' => 'dailytask.end_time',
                                     'name' => 'dailytask.end_time',
                                     'val' => $dailytask->end_time,
                                     'livewire' => 'end_time',
-                                    'type' => 'text', // 'step' => 1,
+                                    'type' => 'datetime-local', // 'step' => 1,
                                     // 'required' => 'required',
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                    'lg' => 4,
+                                    'md' => 4,
+                                    'sm' => 12,
                                 ])
-                                @include('inputs.edit.input', [
+                                {{-- @include('inputs.edit.input', [
                                     'label' => 'dailytask.proearty',
                                     'name' => 'dailytask.proearty',
                                     'val' => $dailytask->proearty,
                                     'livewire' => 'proearty',
                                     'type' => 'text', // 'step' => 1,
                                     // 'required' => 'required',
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
-                                @include('inputs.edit.input', [
+                                    // 'lg' => 4, 'md' => 4, 'sm' => 12,
+                                ]) --}}
+
+
+                                {{-- @include('inputs.edit.input', [
                                     'label' => 'dailytask.status',
                                     'name' => 'dailytask.status',
                                     'val' => $dailytask->status,
                                     'livewire' => 'status',
                                     'type' => 'text', // 'step' => 1,
                                     // 'required' => 'required',
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
+                                    // 'lg' => 4, 'md' => 4, 'sm' => 12,
+                                ]) --}}
+
+
                                 @include('inputs.edit.input', [
                                     'label' => 'dailytask.repeat_time',
                                     'name' => 'dailytask.repeat_time',
                                     'val' => $dailytask->repeat_time,
                                     'livewire' => 'repeat_time',
-                                    'type' => 'text', // 'step' => 1,
+                                    'type' => 'time', // 'step' => 1,
                                     // 'required' => 'required',
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                    'lg' => 4,
+                                    'md' => 4,
+                                    'sm' => 12,
                                 ])
-                                @include('inputs.edit.input', [
+
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="proearty">{{ __('dailytask.proearty') }}</label>
+                                        <select wire:model="proearty" name="proearty" id="proearty" class="form-control">
+                                            <option value="low">{{ __('dailytask.low') }}</option>
+                                            <option value="medium">{{ __('dailytask.medium') }}</option>
+                                            <option value="high">{{ __('dailytask.high') }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="status">{{ __('task.status') }}</label>
+                                        <select wire:model="status" name="status" id="status" class="form-control">
+                                            <option value="pending">{{ __('task.pending') }}</option>
+                                            <option value="active">{{ __('task.active') }}</option>
+                                            {{-- <option value="auto-finished">{{ __('dailytask.auto-finished') }}</option>
+                                            <option value="manual-finished">{{ __('dailytask.manual-finished') }}</option> --}}
+                                            {{-- <option value="draft">{{ __('task.draft') }}</option> --}}
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                {{-- @include('inputs.edit.input', [
                                     'label' => 'dailytask.repeat_evrey',
                                     'name' => 'dailytask.repeat_evrey',
                                     'val' => $dailytask->repeat_evrey,
                                     'livewire' => 'repeat_evrey',
-                                    'type' => 'text', // 'step' => 1,
+                                    'type' => 'time', // 'step' => 1,
                                     // 'required' => 'required',
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
+                                ]) --}}
 
                             </div>
 
+                            @role('owner')
+                                <div>
+                                    <p>{{ __('global.employees') }}</p>
+                                    <div class="row">
+                                        @foreach ($employees as $employee)
+                                            <div class="col-4">
+                                                <div class="form-check form-check-inline">
+                                                    <input wire:model='selectedEmployees' class="form-check-input"
+                                                        type="checkbox" value="{{ $employee->id }}"
+                                                        id="selected-employee-{{ $employee->id }}">
+                                                    <label class="form-check-label"
+                                                        for="selected-employee-{{ $employee->id }}">
+                                                        {{ $employee->name() }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endrole
                         </div>
+
 
                         <div class="form-group">
 

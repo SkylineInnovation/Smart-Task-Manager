@@ -18,6 +18,7 @@ return new class extends Migration
         Schema::create('daily_task_user', function (Blueprint $table) {
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(DailyTask::class);
+            $table->double('discount')->nullable()->default(0.0);
         });
     }
 

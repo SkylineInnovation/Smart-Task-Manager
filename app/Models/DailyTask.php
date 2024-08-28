@@ -174,6 +174,11 @@ class DailyTask extends Model
 
     public function employees()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'daily_task_user')->withPivot('discount');
+    }
+
+    public function discount()
+    {
+        return $this->employees->first()->pivot->discount;
     }
 }

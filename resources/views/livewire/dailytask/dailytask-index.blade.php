@@ -23,7 +23,7 @@
                             <td style="width: 75px"> {{ __('global.select') }} </td>
                         @endif
                     --}}
-                    
+
                     @if ($showColumn['id'])
                         <td>{{ __('global.id') }}</td>
                     @endif
@@ -31,45 +31,45 @@
                     @if ($showColumn['slug'])
                         <td>{{ __('global.slug') }}</td>
                     @endif
-                    
-                    
-                            @if ($showColumn['manager_id'])
-                                <td>{{ __('dailytask.manager') }}</td>
-                            @endif
 
-                            @if ($showColumn['title'])
-                                <td>{{ __('dailytask.title') }}</td>
-                            @endif
 
-                            @if ($showColumn['description'])
-                                <td>{{ __('dailytask.description') }}</td>
-                            @endif
+                    @if ($showColumn['manager_id'])
+                        <td>{{ __('dailytask.manager') }}</td>
+                    @endif
 
-                            @if ($showColumn['start_time'])
-                                <td>{{ __('dailytask.start_time') }}</td>
-                            @endif
+                    @if ($showColumn['title'])
+                        <td>{{ __('dailytask.title') }}</td>
+                    @endif
 
-                            @if ($showColumn['end_time'])
-                                <td>{{ __('dailytask.end_time') }}</td>
-                            @endif
+                    @if ($showColumn['description'])
+                        <td>{{ __('dailytask.description') }}</td>
+                    @endif
 
-                            @if ($showColumn['proearty'])
-                                <td>{{ __('dailytask.proearty') }}</td>
-                            @endif
+                    @if ($showColumn['start_time'])
+                        <td>{{ __('dailytask.start_time') }}</td>
+                    @endif
 
-                            @if ($showColumn['status'])
-                                <td>{{ __('dailytask.status') }}</td>
-                            @endif
+                    @if ($showColumn['end_time'])
+                        <td>{{ __('dailytask.end_time') }}</td>
+                    @endif
 
-                            @if ($showColumn['repeat_time'])
-                                <td>{{ __('dailytask.repeat_time') }}</td>
-                            @endif
+                    @if ($showColumn['proearty'])
+                        <td>{{ __('dailytask.proearty') }}</td>
+                    @endif
 
-                            @if ($showColumn['repeat_evrey'])
-                                <td>{{ __('dailytask.repeat_evrey') }}</td>
-                            @endif
+                    @if ($showColumn['status'])
+                        <td>{{ __('dailytask.status') }}</td>
+                    @endif
 
-                    
+                    @if ($showColumn['repeat_time'])
+                        <td>{{ __('dailytask.repeat_time') }}</td>
+                    @endif
+
+                    @if ($showColumn['repeat_evrey'])
+                        <td>{{ __('dailytask.repeat_evrey') }}</td>
+                    @endif
+
+
                     @if ($showColumn['date'])
                         <td>{{ __('global.date') }}</td>
                     @endif
@@ -104,12 +104,12 @@
                         @if ($showColumn['id'])
                             <td> {{ $dailytask->id }} </td>
                         @endif
-                        
+
                         @if ($showColumn['slug'])
                             <td> {{ $dailytask->slug }} </td>
                         @endif
-                        
-                        
+
+
                         @if ($showColumn['manager_id'])
                             <td>
                                 @if ($dailytask->manager)
@@ -150,37 +150,38 @@
                             <td> {{ $dailytask->repeat_evrey }} </td>
                         @endif
 
-                        
+
                         @if ($showColumn['date'])
                             <td> {{ date('d/m/Y', strtotime($dailytask->created_at)) }} </td>
                         @endif
                         @if ($showColumn['time'])
                             <td> {{ date('h:i A', strtotime($dailytask->created_at)) }} </td>
                         @endif
-                        
+
                         @permission('edit-dailytask|delete-dailytask|restore-dailytask')
                             <td>
                                 @if ($admin_view_status != 'deleted')
                                     @permission('edit-dailytask')
                                         <button data-toggle="modal" data-target="#update-dailytask-modal"
-                                            wire:click="edit({{ $dailytask->id }})"
-                                            class="btn btn-primary">
+                                            wire:click="edit({{ $dailytask->id }})" class="btn btn-primary">
                                             <i class="ti-pencil text-white"></i>
                                         </button>
                                     @endpermission
-                                
+
                                     @permission('delete-dailytask')
                                         <button class="btn btn-danger" type="button" data-toggle="modal"
-                                                data-target="#delete-dailytask-{{ $dailytask->id }}">
+                                            data-target="#delete-dailytask-{{ $dailytask->id }}">
                                             <i class="ti-trash text-white"></i>
                                         </button>
 
-                                        <div id="delete-dailytask-{{ $dailytask->id }}" class="modal fade" tabindex="-1" role="dialog"
-                                            aria-labelledby="delete-dailytask-{{ $dailytask->id }}-title" aria-hidden="true">
+                                        <div id="delete-dailytask-{{ $dailytask->id }}" class="modal fade" tabindex="-1"
+                                            role="dialog" aria-labelledby="delete-dailytask-{{ $dailytask->id }}-title"
+                                            aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="delete-dailytask-{{ $dailytask->id }}-title">
+                                                        <h5 class="modal-title"
+                                                            id="delete-dailytask-{{ $dailytask->id }}-title">
                                                             {{ $dailytask->crud_name() }}
                                                         </h5>
                                                         <button class="close" data-dismiss="modal" aria-label="Close">
@@ -197,8 +198,8 @@
                                                             {{ __('global.close') }}
                                                         </button>
 
-                                                        <button wire:click="delete({{ $dailytask->id }})" class="btn btn-danger"
-                                                            data-dismiss="modal">
+                                                        <button wire:click="delete({{ $dailytask->id }})"
+                                                            class="btn btn-danger" data-dismiss="modal">
                                                             {{ __('global.delete') }}
                                                         </button>
                                                     </div>
@@ -216,9 +217,8 @@
                                         </button>
 
                                         <div wire:ignore.self id="restore-dailytask-{{ $dailytask->id }}"
-                                            aria-labelledby="restore-dailytask-{{ $dailytask->id }}-title"
-                                            class="modal fade" tabindex="-1" role="dialog"
-                                            aria-hidden="true">
+                                            aria-labelledby="restore-dailytask-{{ $dailytask->id }}-title" class="modal fade"
+                                            tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">

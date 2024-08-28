@@ -34,9 +34,12 @@ class DailytaskIndex extends Component
 
     public $managers = [];
 
-
+    public $employees = [];
+    public $selectedEmployees = [];
 
     public $filter_managers_id = [];
+
+    public $discount;
 
 
 
@@ -54,34 +57,38 @@ class DailytaskIndex extends Component
         // $this->fromDate = date('Y-m-d', strtotime("-5 days"));
         $this->toDate = date('Y-m-d');
 
+        $this->start_time = date('Y-m-d\TH:i');
+        $this->end_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+
+        $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
 
 
         $this->managers = \App\Models\User::orderBy('user_name')->get();
 
 
         $this->showColumn = collect([
-            'id' => true,
+            'id' => false,
             'slug' => false,
 
 
             'manager_id' => true,
             'title' => true,
-            'description' => true,
+            'description' => false,
             'start_time' => true,
             'end_time' => true,
             'proearty' => true,
             'status' => true,
-            'repeat_time' => true,
-            'repeat_evrey' => true,
+            'repeat_time' => false,
+            'repeat_evrey' => false,
 
             // 'status' => false,
-            'date' => true,
-            'time' => true,
+            'date' => false,
+            'time' => false,
         ]);
     }
 
     public $slug;
-    public $dailytask_id, $manager_id, $title, $description, $start_time, $end_time, $proearty, $status, $repeat_time, $repeat_evrey;
+    public $dailytask_id, $manager_id, $title, $description, $start_time, $end_time, $proearty = 'low', $status = 'pending', $repeat_time, $repeat_evrey;
     public $updateMode = false;
 
     private function resetInputFields()
@@ -91,12 +98,17 @@ class DailytaskIndex extends Component
         $this->manager_id = null;
         $this->title = '';
         $this->description = '';
-        $this->start_time = '';
-        $this->end_time = '';
+
+        $this->start_time = date('Y-m-d\TH:i');
+        $this->end_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
         $this->proearty = '';
         $this->status = '';
         $this->repeat_time = '';
         $this->repeat_evrey = '';
+
+        $this->discount = 0;
+
+        $this->selectedEmployees = [];
     }
 
 
@@ -107,17 +119,24 @@ class DailytaskIndex extends Component
             // 'slug' => $this-slug,
 
 
-            'manager_id' => 'required',
+            // 'manager_id' => 'required',
             'title' => 'required',
-            'description' => 'required',
+            // 'description' => 'required',
             'start_time' => 'required',
             'end_time' => 'required',
             'proearty' => 'required',
             'status' => 'required',
             'repeat_time' => 'required',
-            'repeat_evrey' => 'required',
+            // 'repeat_evrey' => 'required',
+
+            'selectedEmployees' => 'required',
+
         ];
     }
+
+    protected $messages = [
+        'selectedEmployees.required' => 'Please Select Employee',
+    ];
 
     public function updated($propertyName)
     {
@@ -128,11 +147,11 @@ class DailytaskIndex extends Component
     {
         $validatedData = $this->validate();
 
-        DailyTask::create([
+        $dailytask = DailyTask::create([
             'add_by' => $this->by->id,
             'slug' => $this->slug,
 
-            'manager_id' => $this->manager_id,
+            'manager_id' => $this->by->id,
             'title' => $this->title,
             'description' => $this->description,
             'start_time' => $this->start_time,
@@ -142,6 +161,9 @@ class DailytaskIndex extends Component
             'repeat_time' => $this->repeat_time,
             'repeat_evrey' => $this->repeat_evrey,
         ]);
+
+        $dailytask->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
+        // $dailytask->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => 0]);
 
         session()->flash('message', 'DailyTask Created Successfully.');
 
@@ -168,6 +190,10 @@ class DailytaskIndex extends Component
         $this->status = $dailytask->status;
         $this->repeat_time = $dailytask->repeat_time;
         $this->repeat_evrey = $dailytask->repeat_evrey;
+
+        $this->selectedEmployees = $dailytask->employees->pluck('id');
+
+        $this->discount = $dailytask->discount();
     }
 
     public function cancel()
@@ -194,6 +220,10 @@ class DailytaskIndex extends Component
                 'repeat_time' => $this->repeat_time,
                 'repeat_evrey' => $this->repeat_evrey,
             ]);
+
+            $dailytask->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
+            // $dailytask->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => 0]);
+
 
             $this->updateMode = false;
             session()->flash('message', 'DailyTask Updated Successfully.');

@@ -27,17 +27,17 @@ class CreateDailyTasksTable extends Migration
 
             $table->string('description')->nullable();
 
-            $table->time('start_time')->nullable();
+            $table->string('start_time')->nullable();
 
-            $table->time('end_time')->nullable();
+            $table->string('end_time')->nullable();
 
             $table->string('proearty')->nullable();
 
             $table->string('status')->nullable();
 
-            $table->time('repeat_time')->nullable();
+            $table->string('repeat_time')->nullable();
 
-            $table->time('repeat_evrey')->nullable();
+            $table->string('repeat_evrey')->nullable();
 
 
             $table->boolean('show')->default(true);

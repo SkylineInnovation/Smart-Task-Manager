@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DailyTask;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -176,8 +177,8 @@ class HomeController extends Controller
 
     public function taskBoard()
     {
+        $taskdaily = DailyTask::where('manager_id',auth()->user()->id)->get();
 
-        
-        return view('Web.task-board');
+        return view('Web.task-board',compact('taskdaily'));
     }
 }
