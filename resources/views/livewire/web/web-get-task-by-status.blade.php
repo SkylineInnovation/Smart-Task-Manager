@@ -272,6 +272,16 @@
                                         aria-selected="{{ $tab == 6 }}">{{ __('task.leave') }}</a>
                                 </li>
                                 {{-- 6 TAB END --}}
+
+
+                                {{-- 7 TAB START --}}
+                                <li class="nav-item px-1">
+                                    <a class="nav-link py-3 rounded-pill {{ $tab == 7 ? 'active' : '' }}"
+                                        id="emp_task-tab" data-toggle="tab" wire:click="changeTab(7)"
+                                        href="#emp_task" role="tab" aria-controls="emp_task"
+                                        aria-selected="{{ $tab == 7 }}">{{ __('task.addEmpTask') }}</a>
+                                </li>
+                                {{-- 7 TAB END --}}
                             </ul>
 
                             <div class="tab-content pt-2" id="myTabContent">
@@ -922,6 +932,142 @@
                                     </div>
                                 </div>
                                 {{-- 6 TAB END --}}
+
+                                {{-- 7 TAB START --}}
+                                <div class="tab-pane fade {{ $tab == 7 ? 'show active' : '' }}" id="emp_task"
+                                    role="tabpanel" aria-labelledby="emp_task-tab">
+                                    <div class="text-start py-4">
+
+                                        <div class="mb-5">
+                                            <div class="row">
+
+                                                <div class="input-group mb-1 col-9">
+                                                    <div class="input-group-prepend ">
+                                                        <span class="input-group-text btn-secondary text-white"
+                                                            id="inputGroup-sizing-default">{{ __('task.Title') }}</span>
+                                                    </div>
+
+                                                    <input wire:model.defer="sub_task_title" type="text"
+                                                        class="form-control" aria-label="Default"
+                                                        aria-describedby="inputGroup-sizing-default">
+                                                </div>
+
+                                                <div class="form-group mb-1 col-3">
+                                                    <select wire:model.defer="sub_task_priority_level"
+                                                        class="form-control">
+                                                        <option value="low">{{ __('task.low') }}</option>
+                                                        <option value="medium">{{ __('task.medium') }}</option>
+                                                        <option value="high">{{ __('task.high') }}</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-12 mb-3">
+                                                    <p>{{ __('task.employees') }}</p>
+                                                    <div class="row">
+                                                        @foreach ($task->employees as $sub_employee)
+                                                            <div class="col-4">
+                                                                <div class="form-check form-check-inline">
+                                                                    <input wire:model='selected_employe_task'
+                                                                        class="form-check-input" type="checkbox"
+                                                                        value="{{ $sub_employee->id }}"
+                                                                        id="selected-sub_employee-{{ $sub_employee->id }}">
+                                                                    <label class="form-check-label"
+                                                                        for="selected-sub_employee-{{ $sub_employee->id }}">
+                                                                        {{ $sub_employee->name() }}
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+
+                                                <div class="input-group mb-1  col-md-6">
+                                                    <div class="input-group-prepend ">
+                                                        <span class="input-group-text btn-secondary text-white"
+                                                            id="inputGroup-sizing-default">{{ __('task.start_time') }}</span>
+                                                    </div>
+                                                    <input wire:model.defer="sub_task_start_time"
+                                                        type="datetime-local" class="form-control"
+                                                        aria-label="Default"
+                                                        aria-describedby="inputGroup-sizing-default">
+                                                </div>
+
+                                                <div class="input-group mb-1  col-md-6">
+                                                    <div class="input-group-prepend ">
+                                                        <span class="input-group-text btn-secondary text-white"
+                                                            id="inputGroup-sizing-default">{{ __('task.end_time') }}</span>
+                                                    </div>
+                                                    <input wire:model.defer="sub_task_end_time" type="datetime-local"
+                                                        class="form-control" aria-label="Default"
+                                                        aria-describedby="inputGroup-sizing-default">
+                                                </div>
+
+
+                                                <div wire:ignore.self class="col-md-12">
+                                                    {{-- <div wire:ignore.self id="summer_desc"></div> --}}
+                                                    <textarea name='desc' id='desc' rows="4" class='form-control'
+                                                        placeholder='{{ __(' global.enter') }} {{ __('task.desc') }}' wire:model.defer="sub_task_desc"></textarea>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                @foreach ($errors->all() as $error)
+                                                    <span class='alert alert-danger btn'>{{ $error }}</span>
+                                                @endforeach
+                                            </div>
+
+                                            <button wire:click="employeeCreatTask()" type="button"
+                                                class="w-100 btn btn-success">
+                                                {{ __('task.Add_Emp_Sub_Task') }}
+                                            </button>
+                                        </div>
+
+
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">{{__('task.from')}}</th>
+                                                    <th scope="col">{{__('task.to')}}</th>
+                                                    <th scope="col">{{__('task.title')}}</th>
+                                                    <th scope="col">{{__('task.start')}}</th>
+                                                    <th scope="col">{{__('task.end')}}</th>
+                                                    <th scope="col">{{__('task.view')}}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($task->emp_sub_tasks as $empTask)
+                                                    <tr>
+                                                        <td>{{ $empTask->manager->crud_name() }}</td>
+
+                                                        <td>
+                                                            @foreach ($empTask->employees as $empTo)
+                                                                {{ $empTo->name() }}
+                                                            @endforeach
+                                                        </td>
+                                                        <td>
+                                                            {{ $empTask->title }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $empTask->start_time }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $empTask->end_time }}
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ route('task.show', $empTask->id) }}"
+                                                                class="btn btn-warning ti ti-eye"></a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+
+                                            </tbody>
+                                        </table>
+
+
+                                    </div>
+                                </div>
+                                {{-- 7 TAB END --}}
                             </div>
                         </div>
                     </div>

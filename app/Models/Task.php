@@ -268,7 +268,15 @@ class Task extends Model
 
     public function sub_tasks()
     {
-        return $this->hasMany(Task::class, 'main_task_id');
+        return $this->hasMany(Task::class, 'main_task_id')->whereHas('manager', function ($q) {
+            $q->whereRoleIs('manager');
+        });
+    }
+    public function emp_sub_tasks()
+    {
+        return $this->hasMany(Task::class, 'main_task_id')->whereHas('manager', function ($q) {
+            $q->whereRoleIs('employee');
+        });
     }
 
     public function extra_times()

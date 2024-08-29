@@ -108,4 +108,14 @@ return [
     "Discounts"                                         => "Discounts",
 
     'Sub-Task' => 'Sub Task',
+
+    'Add_Emp_Sub_Task' => ' Emp Add Task',
+    'AddEmpTask' => ' Emp Add Task',
+    'addEmpTask' => 'Emp Add Task',
+    'from' => 'from',
+    'to' => 'to',
+    'title' => 'title',
+    'start' => 'start',
+    'end' => 'end',
+    'view' => 'view',
 ];

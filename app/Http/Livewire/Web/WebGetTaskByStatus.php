@@ -47,6 +47,9 @@ class WebGetTaskByStatus extends Component
 
     public $task;
     public $task_id = 0;
+
+
+    public $empTask;
     public function setTask($id)
     {
         $this->tab = 1;
@@ -82,18 +85,30 @@ class WebGetTaskByStatus extends Component
 
     public function rules()
     {
-        return [
-            // 'manager_id' => 'required',
-            'sub_task_title' => 'required',
-            'sub_task_desc' => 'required',
-            'sub_task_start_time' => 'required',
-            'sub_task_end_time' => 'required',
-            'sub_task_priority_level' => 'required',
-            'sub_task_status' => 'required',
-            'sub_task_discount' => 'required',
-            // 'main_task_id' => 'required',
+        if ($this->tab == 4) {
+            return [
+                'sub_task_title' => 'required',
+                'sub_task_desc' => 'required',
+                'sub_task_start_time' => 'required',
+                'sub_task_end_time' => 'required',
+                'sub_task_priority_level' => 'required',
+                'sub_task_status' => 'required',
+                'sub_task_discount' => 'required',
+            ];
+        } elseif ($this->tab == 7) {
+            return [
+                'sub_task_title' => 'required',
+                'sub_task_desc' => 'required',
+                'sub_task_start_time' => 'required',
+                'sub_task_end_time' => 'required',
+                'sub_task_priority_level' => 'required',
+                'sub_task_status' => 'required',
+                'selected_employe_task' => 'required',
+            ];
+        }
 
-            // 'selectedEmployees' => 'required',
+        return [
+            'task_id' => 'nullable',
         ];
     }
 
@@ -202,6 +217,8 @@ class WebGetTaskByStatus extends Component
     public $sub_task_title, $sub_task_desc,
         $sub_task_start_time, $sub_task_end_time,
         $sub_task_priority_level = 'low', $sub_task_status = 'pending';
+
+    public $selected_employe_task = [];
 
     public function addSubTask()
     {
@@ -548,6 +565,45 @@ class WebGetTaskByStatus extends Component
         $task->update(['status' => 'manual-finished']);
     }
 
+
+    public function employeeCreatTask()
+    {
+        $validatedData = $this->validate();
+
+
+        $empTask = Task::create([
+
+            'add_by' => $this->by->id,
+            'manager_id' => $this->by->id,
+            'title' => $this->sub_task_title,
+            'desc' => $this->sub_task_desc,
+            'start_time' => $this->sub_task_start_time,
+            'end_time' => $this->sub_task_end_time,
+            'priority_level' => $this->sub_task_priority_level,
+            'status' => $this->sub_task_status,
+            'main_task_id' => $this->task_id,
+
+        ]);
+
+        $empTask->employees()->syncWithPivotValues($this->selected_employe_task, ['discount' => 0]);
+
+
+
+        $this->sub_task_title = null;
+        $this->sub_task_desc = null;
+
+        $this->sub_task_start_time  = date('Y-m-d\TH:i', strtotime($this->sub_task_end_time));
+        $this->sub_task_end_time  = date('Y-m-d\TH:i', strtotime($this->sub_task_start_time . ' +1 Hours'));
+
+        $this->sub_task_priority_level = 'low';
+
+        $this->selected_employe_task = [];
+
+        $this->task = Task::find($this->task->id);
+
+
+        session()->flash('emp-task-message', 'emp Task Created Successfully.');
+    }
     public function render()
     {
         $tasks = Task::whereNullOrEmptyOrZero('slug')

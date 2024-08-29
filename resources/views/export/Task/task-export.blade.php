@@ -31,32 +31,43 @@
     <tbody>
         @foreach ($tasks as $task)
             <tr>
-                <td>{{ ++$number }}</td>
+                <td style="width: 20px ">{{ ++$number }}</td>
                 {{-- <td>{{ $task->id }}</td>
                 <td>{{ $task->slug }}</td> --}}
 
 
-                <td>{{ $task->manager ? $task->manager->crud_name() : '-- --' }}</td>
+                <td style="width: 100pt">{{ $task->manager ? $task->manager->crud_name() : '-- --' }}</td>
 
-                <td>{{ $task->title }}</td>
+                <td style="width: 100pt">{{ $task->title }}</td>
 
-                <td>{{ $task->desc }}</td>
+                <td class="w-100">{{ $task->desc }}</td>
 
-                <td>{{ $task->start_time }}</td>
+                <td style="width: 100pt">{{ $task->start_time }}</td>
 
-                <td>{{ $task->end_time }}</td>
+                <td style="width: 100pt">{{ $task->end_time }}</td>
 
-                <td>{{ $task->the_priority_level() }}</td>
+                <td style="width: 100pt">{{ $task->the_priority_level() }}</td>
 
-                <td>{{ $task->the_status() }}</td>
+                <td style="width: 100pt">{{ $task->the_status() }}</td>
 
-                <td>{{ $task->main_task ? $task->main_task->crud_name() : '-- --' }}</td>
+                <td style="width: 100pt">{{ $task->main_task ? $task->main_task->crud_name() : '-- --' }}</td>
 
 
-                <td>{{ $task->created_at ? date('d/m/Y', strtotime($task->created_at)) : '' }}</td>
+                <td style="width: 100pt">{{ $task->created_at ? date('d/m/Y', strtotime($task->created_at)) : '' }}</td>
                 {{-- <td>{{ $task->updated_at ? date('d/m/Y', strtotime($task->updated_at)) : '' }}</td>
                 <td>{{ $task->deleted_at ? date('d/m/Y', strtotime($task->deleted_at)) : '' }}</td> --}}
+
             </tr>
+
+            @foreach ($task->comments as $tskCom)
+                <tr>
+                    <td colspan="0"></td>
+
+                    <td colspan="3">{{ $tskCom->user->name() }}</td>
+                    <td colspan="2">{{ $tskCom->title }}</td>
+                    <td colspan="4">{{ $tskCom->desc }}</td>
+                </tr>
+            @endforeach
         @endforeach
     </tbody>
 </table>
