@@ -3,10 +3,30 @@
 
         @role('owner|manager|employee')
             <li aria-haspopup="true">
-                <a href="{{ route('task-board') }}" class="sub-icon"><i class="ti-home"></i>
+                <a href="#" class="sub-icon"><i class="ti-home"></i>
                     {{ __('global.task-board') }}
                     <i class="fa fa-angle-down horizontal-icon"></i>
                 </a>
+
+                <ul class="sub-menu">
+                    <li aria-haspopup="true">
+                        <a href="{{ route('task-board') }}">
+                            {{ __('global.task-board') }}
+                        </a>
+                    </li>
+
+                    <li aria-haspopup="true">
+                        <a href="{{ route('dailytask.index') }}">
+                            {{ __('global.dailytasks') }}
+                        </a>
+                    </li>
+
+                    <li aria-haspopup="true">
+                        <a href="{{ route('task.index') }}">
+                            {{ __('global.tasks') }}
+                        </a>
+                    </li>
+                </ul>
             </li>
         @endrole
 
