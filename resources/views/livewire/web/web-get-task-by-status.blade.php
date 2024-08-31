@@ -1027,12 +1027,12 @@
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">{{__('task.from')}}</th>
-                                                    <th scope="col">{{__('task.to')}}</th>
-                                                    <th scope="col">{{__('task.title')}}</th>
-                                                    <th scope="col">{{__('task.start')}}</th>
-                                                    <th scope="col">{{__('task.end')}}</th>
-                                                    <th scope="col">{{__('task.view')}}</th>
+                                                    <th scope="col">{{ __('task.from') }}</th>
+                                                    <th scope="col">{{ __('task.to') }}</th>
+                                                    <th scope="col">{{ __('task.title') }}</th>
+                                                    <th scope="col">{{ __('task.start') }}</th>
+                                                    <th scope="col">{{ __('task.end') }}</th>
+                                                    <th scope="col">{{ __('task.view') }}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -1346,6 +1346,13 @@
                                     @endforeach
 
                                 </div>
+
+
+                                @if (session()->has('message'))
+                                    <div class="alert alert-success" style="margin-top:30px;">
+                                        {{ session('message') }}
+                                    </div>
+                                @endif
 
                                 <div class="modal-footer">
                                     <button type="button" wire:click.prevent="cancelTask()"

@@ -322,6 +322,7 @@ class WebGetTaskByStatus extends Component
         ]);
 
         $task->employees()->syncWithPivotValues($this->edit_task_selectedEmployees, ['discount' => $this->edit_task_discount]);
+        session()->flash('message', 'Task Updated Successfully.');
 
         // 
     }
