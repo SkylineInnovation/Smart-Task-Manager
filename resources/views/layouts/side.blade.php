@@ -24,21 +24,15 @@
     </li>
 @endpermission
 
-@permission('index-task')
-    <li>
-        <a class='slide-item' href='{{ route('task.index') }}'>
-            <span>{{ __('global.tasks') }}</span>
-        </a>
-    </li>
+@permission('index-attachment')
+<li>
+    <a class='slide-item' href='{{ route('attachment.index') }}'>
+        <span>{{ __('global.attachments') }}</span>
+    </a>
+</li>
 @endpermission
 
-@permission('index-attachment')
-    <li>
-        <a class='slide-item' href='{{ route('attachment.index') }}'>
-            <span>{{ __('global.attachments') }}</span>
-        </a>
-    </li>
-@endpermission
+
 
 @permission('index-comment')
     <li>
@@ -72,11 +66,5 @@
     </li>
 @endpermission
 
-@permission('index-dailytask')
-    <li>
-        <a class='slide-item' href='{{ route('dailytask.index') }}'>
-            <span>{{ __('global.dailytasks') }}</span>
-        </a>
-    </li>
-@endpermission
+
 

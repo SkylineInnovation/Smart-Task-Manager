@@ -185,4 +185,5 @@ return [
     'by_accepted_by_users' => 'by accepted by users',
     'by_managers' => 'by managers',
     'by_main_tasks' => 'by main tasks',
+    'dailytasks'=>'daily tasks'
 ];

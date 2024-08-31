@@ -88,24 +88,42 @@
 
 
         <li class="slide">
+            <a class="side-menu__item" data-toggle="slide" href='{{ route('task-board') }}'>
+                <i class="side-menu__icon ti-home"></i>
+                <span class="side-menu__label">{{ __('global.task-board') }}</span>
+                <i class="angle fa fa-angle-right"></i>
+            </a>
+           
+        </li>
+
+       
+        <li class="slide">
             <a class="side-menu__item" data-toggle="slide" href=javascript:;>
                 <i class="side-menu__icon ti-home"></i>
                 <span class="side-menu__label">{{ __('global.tasks') }}</span>
                 <i class="angle fa fa-angle-right"></i>
             </a>
             <ul class="slide-menu">
-                <li>
-                    <a class="slide-item" href="{{ route('task-board') }}">
-                        <span>{{ __('global.task-board') }}</span>
-                    </a>
-                </li>
+                @permission('index-task')
+                    <li>
+                        <a class='slide-item' href='{{ route('task.index') }}'>
+                            <span>{{ __('global.tasks') }}</span>
+                        </a>
+                    </li>
+                @endpermission
+               
 
-                <li>
-                    <a class="slide-item" href="{{ route('task-view') }}">
-                        <span>{{ __('global.task_view') }}</span>
-                    </a>
-                </li>
-                
+             
+                @permission('index-dailytask')
+                    <li>
+                        <a class='slide-item' href='{{ route('dailytask.index') }}'>
+                            <span>{{ __('global.dailytasks') }}</span>
+                        </a>
+                    </li>
+                @endpermission
+
+              
+
 
                 {{-- <li><a class="slide-item" href="{{ route('banner.index') }}"><span>{{ __('global.Banner') }}</span></a></li> --}}
             </ul>

@@ -158,6 +158,8 @@ return [
     'all_users_in_the_app' => 'جميع المستخدمين في النظام',
     'task_view' => 'عرض المهمة',
 
+    'dailytasks'=>'مهام يومية',
+
 
     // some role valideate message in sub
     // 'please_select_customer' => 'Please Select Customer',
