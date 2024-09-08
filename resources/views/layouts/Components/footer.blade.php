@@ -3,8 +3,15 @@
     <div class="container">
         <div class="row align-items-center flex-row-reverse">
             <div class="col-md-12 col-sm-12 text-center">
-                Copyright © 2023 <a href="https://codexal.co">Codexal</a>.
-                {{--  Designed by <a href=javascript:;> Codexal </a> All rights reserved.  --}}
+                Copyright © {{ date('Y') }}
+                <a href="{{ env('COPYRIGHT_COMPANY_LINK') }}">
+                    {{ env('COPYRIGHT_COMPANY_NAME') }}
+                </a>.
+                <br>
+                Power By
+                <a href="{{ env('POWER_COMPANY_LINK') }}">
+                    {{ env('POWER_COMPANY_NAME') }}
+                </a>.
             </div>
         </div>
     </div>
