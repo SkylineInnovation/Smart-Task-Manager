@@ -80,10 +80,10 @@ class HomeController extends Controller
 
     public function home(Request $request)
     {
-        $user = $request->user();
-        if (!$user->hasRole('owner|manager')) {
-            return redirect()->route('task-board');
-        }
+        // $user = $request->user();
+        // if (!$user->hasRole('owner|manager')) {
+        return redirect()->route('task-board');
+        // }
 
         $listOfDates = [
             date('Y-m-d', strtotime("-7 days")),
@@ -177,8 +177,8 @@ class HomeController extends Controller
 
     public function taskBoard()
     {
-        $taskdaily = DailyTask::where('manager_id',auth()->user()->id)->get();
+        $taskdaily = DailyTask::where('manager_id', auth()->user()->id)->get();
 
-        return view('Web.task-board',compact('taskdaily'));
+        return view('Web.task-board', compact('taskdaily'));
     }
 }

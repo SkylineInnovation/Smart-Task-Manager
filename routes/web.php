@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return redirect()->route('dashboard');
+    return redirect()->route('task-board');
     // return view('welcome');
 });
 
@@ -164,7 +164,7 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     Route::get('export/dailytasks', [App\Http\Controllers\DailyTaskController::class, 'exportFullData'])->name('dailytask.export');
     Route::post('import/dailytasks', [App\Http\Controllers\DailyTaskController::class, 'importData'])->name('dailytask.import');
 
-    Route::get('daily-task-view/{dailytask}',[DailyTaskController::class,'livewireShow'])->name('dailyTaskView');
+    Route::get('daily-task-view/{dailytask}', [DailyTaskController::class, 'livewireShow'])->name('dailyTaskView');
 });
 
 
