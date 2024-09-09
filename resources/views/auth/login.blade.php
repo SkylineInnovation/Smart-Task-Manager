@@ -1,33 +1,34 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
+
+<style>
+    .imageBg {
+        background-position: center;
+        background-repeat: no-repeat;
+
+        background-image: url({{ asset('assets/images/login/maham1-02-04.png') }});
+    }
+
+    .posetions {
+        position: absolute;
+        top: 7%;
+        left: 5%;
+        width: 50%;
+    }
+
+    .inputBg {
+        background-color: #00000000 !important;
+    }
+
+    .inputBg::placeholder {
+        color: #ffffff !important;
+    }
+</style>
+
 <x-guest-layout>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-
-    <style>
-        .imageBg {
-            background-position: center;
-            background-repeat: no-repeat;
-
-            background-image: url({{ asset('assets/images/login/maham1-02-04.png') }});
-        }
-
-        .posetions {
-            position: absolute;
-            top: 7%;
-            left: 5%;
-            width: 50%;
-        }
-
-        .inputBg {
-            background-color: #00000000 !important;
-        }
-
-        .inputBg::placeholder {
-            color: #ffffff !important;
-        }
-    </style>
     {{-- <x-auth-card>
         <x-slot name="logo">
             <a href="/">
