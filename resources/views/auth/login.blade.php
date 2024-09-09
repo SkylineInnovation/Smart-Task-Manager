@@ -20,13 +20,14 @@
         width: 50%;
     }
 
-    .inputBg{
+    .inputBg {
         background-color: #00000000 !important;
-        
+
     }
-    .inputBg::placeholder{
+
+    .inputBg::placeholder {
         color: #ffffff !important;
-        
+
     }
 </style>
 <x-guest-layout>
@@ -62,16 +63,17 @@
                     <div class=" justify-content-center">
                         {{-- <x-input-label for="email" :value="__('Email')" /> --}}
 
-                        <x-text-input  id="email" class="block mt-1 w-100 rounded-pill inputBg"  placeholder="email"  type="email" name="email" 
-                            :value="old('email')" required autofocus  />
+                        <x-text-input id="email" class="block mt-1 w-100 rounded-pill inputBg" placeholder="email"
+                            type="email" name="email" :value="old('email')" required autofocus />
                     </div>
 
                     <!-- Password -->
-                    
+
                     <div class="mt-4">
                         {{-- <x-input-label for="password" :value="__('Password')" /> --}}
 
-                        <x-text-input id="password" class="block mt-1 w-100 rounded-pill inputBg" placeholder="password" type="password" name="password" required
+                        <x-text-input id="password" class="block mt-1 w-100 rounded-pill inputBg"
+                            placeholder="password" type="password" name="password" required
                             autocomplete="current-password" />
                     </div>
 
@@ -86,12 +88,12 @@
                     </div>
 
                     <div class="flex items-center justify-end mt-4 ">
-                        @if (Route::has('password.request'))
+                        {{-- @if (Route::has('password.request'))
                             <a class="underline text-sm text-light"
                                 href="{{ route('password.request') }}">
                                 {{ __('Forgot your password?') }}
                             </a>
-                        @endif
+                        @endif --}}
 
                         <x-primary-button class="ml-3">
                             {{ __('Log in') }}
