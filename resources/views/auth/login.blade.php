@@ -3,14 +3,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
+
 <style>
     .imageBg {
         background-position: center;
         background-repeat: no-repeat;
 
         background-image: url({{ asset('assets/images/login/maham1-02-04.png') }});
-
-
     }
 
     .posetions {
@@ -20,15 +19,15 @@
         width: 43%;
     }
 
-    .inputBg{
+    .inputBg {
         background-color: #00000000 !important;
-        
     }
-    .inputBg::placeholder{
+
+    .inputBg::placeholder {
         color: #ffffff !important;
-        
     }
 </style>
+
 <x-guest-layout>
     {{-- <x-auth-card>
         <x-slot name="logo">
@@ -45,7 +44,7 @@
 
     </x-auth-card> --}}
 
-    <div class="container-fluid   p-4 imageBg h-100">
+    <div class="container-fluid p-4 imageBg h-100">
         <div class="row">
             <div class="col-md-12 d-flex align-items-center justify-content-center">
                 <img src="{{ asset('assets/images/login/maham1-02-03-02.png') }}" width="300" height="300"
@@ -62,16 +61,17 @@
                     <div class=" justify-content-center">
                         {{-- <x-input-label for="email" :value="__('Email')" /> --}}
 
-                        <x-text-input  id="email" class="block mt-1 w-100 rounded-pill inputBg"  placeholder="email"  type="email" name="email" 
-                            :value="old('email')" required autofocus  />
+                        <x-text-input id="email" class="block mt-1 w-100 rounded-pill inputBg" placeholder="email"
+                            type="email" name="email" :value="old('email')" required autofocus />
                     </div>
 
                     <!-- Password -->
-                    
+
                     <div class="mt-4">
                         {{-- <x-input-label for="password" :value="__('Password')" /> --}}
 
-                        <x-text-input id="password" class="block mt-1 w-100 rounded-pill inputBg" placeholder="password" type="password" name="password" required
+                        <x-text-input id="password" class="block mt-1 w-100 rounded-pill inputBg"
+                            placeholder="password" type="password" name="password" required
                             autocomplete="current-password" />
                     </div>
 
@@ -86,12 +86,12 @@
                     </div>
 
                     <div class="flex items-center justify-end mt-4 ">
-                        @if (Route::has('password.request'))
+                        {{-- @if (Route::has('password.request'))
                             <a class="underline text-sm text-light"
                                 href="{{ route('password.request') }}">
                                 {{ __('Forgot your password?') }}
                             </a>
-                        @endif
+                        @endif --}}
 
                         <x-primary-button class="ml-3">
                             {{ __('Log in') }}
