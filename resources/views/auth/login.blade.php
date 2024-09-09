@@ -17,7 +17,7 @@
         position: absolute;
         top: 7%;
         left: 5%;
-        width: 50%;
+        width: 43%;
     }
 
     .inputBg{
