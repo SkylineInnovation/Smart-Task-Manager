@@ -7,7 +7,7 @@ return [
         'flag-icon' => 'us'
     ],
     'ar' => [
-        'display' => 'Arabic',
+        'display' => 'عربي',
         'flag-icon' => 'jo'
     ],
 ];

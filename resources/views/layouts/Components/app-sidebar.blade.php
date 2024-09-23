@@ -54,7 +54,7 @@
         </li>
         <li class="slide">
             <a class="side-menu__item" data-toggle="slide" href="javascript:;">
-                <i class="side-menu__icon ti-home"></i>
+                <i class="side-menu__icon ti-dashboard"></i>
                 <span class="side-menu__label">{{ __('global.dashboard') }}</span>
                 <i class="angle fa fa-angle-right"></i>
             </a>
@@ -89,7 +89,7 @@
 
         <li class="slide">
             <a class="side-menu__item" data-toggle="slide" href='{{ route('task-board') }}'>
-                <i class="side-menu__icon ti-home"></i>
+                <i class="side-menu__icon ti-blackboard"></i>
                 <span class="side-menu__label">{{ __('global.task-board') }}</span>
                 <i class="angle fa fa-angle-right"></i>
             </a>
@@ -99,7 +99,7 @@
        
         <li class="slide">
             <a class="side-menu__item" data-toggle="slide" href=javascript:;>
-                <i class="side-menu__icon ti-home"></i>
+                <i class="side-menu__icon fa fa-tasks"></i>
                 <span class="side-menu__label">{{ __('global.tasks') }}</span>
                 <i class="angle fa fa-angle-right"></i>
             </a>

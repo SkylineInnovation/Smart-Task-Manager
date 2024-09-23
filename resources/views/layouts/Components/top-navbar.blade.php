@@ -3,7 +3,7 @@
 
         @role('owner|manager|employee')
             <li aria-haspopup="true">
-                <a href="#" class="sub-icon"><i class="ti-home"></i>
+                <a href="#" class="sub-icon"><i class="fa fa-tasks"></i>
                     {{ __('global.task-board') }}
                     <i class="fa fa-angle-down horizontal-icon"></i>
                 </a>
@@ -33,7 +33,7 @@
         @role('owner|manager')
             <li aria-haspopup="true">
                 <a href="#" class="sub-icon">
-                    <i class="ti-home"></i>
+                    <i class="fa fa-flag"></i>
                     {{ __('global.reports') }}
                     <i class="fa fa-angle-down horizontal-icon"></i>
                 </a>

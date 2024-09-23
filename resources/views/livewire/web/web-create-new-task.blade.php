@@ -1,7 +1,7 @@
 <div>
     {{-- Knowing others is intelligence; knowing yourself is true wisdom. --}}
 
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-new-task">
+    <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#create-new-task">
         <i class="ti-plus text-white"></i>
     </button>
 
@@ -10,7 +10,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ __('global.creat task') }}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('global.creat_task') }}</h5>
                     <button wire:click="cancel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

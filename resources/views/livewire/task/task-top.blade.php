@@ -14,7 +14,7 @@
 
                 <option value='title'>{{ __('task.title') }}</option>
 
-                <option value='desc'>{{ __('task.desc') }}</option>
+                <option  value='desc'>{{ __('task.desc') }}</option>
 
                 <option value='start_time'>{{ __('task.start_time') }}</option>
 
@@ -32,7 +32,7 @@
         </div>
 
         <div>
-            <select wire:model="orderWay" class="form-control form-group">
+            <select wire:model="orderWay" class="form-control form-group w-100">
                 <option value="asc">{{ __('global.Asc') }}</option>
                 <option value="desc">{{ __('global.Desc') }}</option>
             </select>

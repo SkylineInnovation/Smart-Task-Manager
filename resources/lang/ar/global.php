@@ -160,6 +160,8 @@ return [
 
     'dailytasks'=>'مهام يومية',
 
+    'creat_task'=>'إنشاء المهام',
+
 
     // some role valideate message in sub
     // 'please_select_customer' => 'Please Select Customer',
