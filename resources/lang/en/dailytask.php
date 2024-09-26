@@ -19,7 +19,7 @@ return [
 
     'end_time' => 'End Time',
 
-    'proearty' => 'Proearty',
+    'proearty' => 'Priority',
 
     'status' => 'Status',
 
