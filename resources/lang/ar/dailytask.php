@@ -9,23 +9,23 @@ return [
     'time' => 'time',
 
 
-    'manager' => 'manager',
+    'manager' => 'رئيس',
 
-    'title' => 'title',
+    'title' => 'عنوان',
 
-    'description' => 'description',
+    'description' => 'وصف',
 
-    'start_time' => 'start_time',
+    'start_time' => 'وقت البدء',
 
-    'end_time' => 'end_time',
+    'end_time' => 'وقت الانتهاء',
 
-    'proearty' => 'proearty',
+    'proearty' => 'أولوية',
 
-    'status' => 'status',
+    'status' => 'حالة',
 
-    'repeat_time' => 'repeat_time',
+    'repeat_time' => 'كرر الوقت',
 
-    'repeat_evrey' => 'repeat_evrey',
+    'repeat_evrey' => 'كرر في كل مرة',
 
 
 ];

@@ -9,15 +9,15 @@ return [
     'time' => 'time',
 
 
-    'user' => 'user',
+    'user' => 'مستخدم',
 
-    'device_info' => 'device_info',
+    'device_info' => 'معلومات الجهاز',
 
-    'device_type' => 'device_type',
+    'device_type' => 'نوع الجهاز',
 
-    'application' => 'application',
+    'application' => 'طلب',
 
-    'device_token' => 'device_token',
+    'device_token' => 'رمز الجهاز',
 
 
 ];

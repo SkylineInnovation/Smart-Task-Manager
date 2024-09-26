@@ -9,15 +9,15 @@ return [
     'time' => 'time',
 
 
-    'user' => 'user',
+    'user' => 'مستخدم',
 
-    'code' => 'code',
+    'code' => 'رمز',
 
-    'note' => 'note',
+    'note' => 'ملحوظة',
 
-    'is_used' => 'is_used',
+    'is_used' => 'يستخدم',
 
-    'ip_address' => 'ip_address',
+    'ip_address' => 'عنوان IP',
 
 
 ];

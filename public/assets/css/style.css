@@ -4952,6 +4952,7 @@ ul.dropdown-menu li.dropdown ul.dropdown-menu .dropdown-plus-title {
 select.form-control:not([size]):not([multiple]) {
     height: 2.375rem;
     width: 100px !important;
+    /* TODO ma */
 }
 select.form-control:focus::-ms-value {
     color: #495057;

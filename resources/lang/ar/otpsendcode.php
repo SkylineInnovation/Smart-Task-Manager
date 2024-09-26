@@ -9,17 +9,17 @@ return [
     'time' => 'time',
 
 
-    'user' => 'user',
+    'user' => 'مستخدم',
 
-    'otp_code' => 'otp_code',
+    'otp_code' =>'رمز otp',
 
-    'phone_number' => 'phone_number',
+    'phone_number' => 'رقم التليفون',
 
-    'applecation' => 'applecation',
+    'applecation' => 'طلب',
 
-    'code_status' => 'code_status',
+    'code_status' => 'حالة الكود',
 
-    'back_response' => 'back_response',
+    'back_response' => 'استجابة الظهر',
 
 
 ];
