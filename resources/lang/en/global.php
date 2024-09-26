@@ -186,6 +186,6 @@ return [
     'by_managers' => 'By Managers',
     'by_main_tasks' => 'By Main Tasks',
     'dailytasks'=>'Daily Tasks',
-    'creat_task'=>'Creat Task'
+    'creat_task'=>'Create Task'
     
 ];
