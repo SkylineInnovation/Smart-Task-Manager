@@ -28,7 +28,7 @@
         </div>
 
         <div>
-            <select wire:model="orderWay" class="form-control form-group">
+            <select wire:model="orderWay" class="form-control form-group px-4">
                 <option value="asc">{{ __('global.Asc') }}</option>
                 <option value="desc">{{ __('global.Desc') }}</option>
             </select>

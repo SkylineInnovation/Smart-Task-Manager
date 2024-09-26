@@ -311,7 +311,8 @@
                                                     </div>
 
                                                     <div class="form-group col-md-6">
-                                                        <label for="exampleFormControlSelect1">proearty</label>
+                                                        <label
+                                                            for="exampleFormControlSelect1">{{ __('task.priority_level') }}</label>
                                                         <select wire:model.defer="priority_level" class="form-control">
                                                             <option value="low">low</option>
                                                             <option value="medium">medium</option>

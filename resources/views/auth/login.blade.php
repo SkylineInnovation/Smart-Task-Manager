@@ -16,7 +16,7 @@
         position: absolute;
         top: 7%;
         left: 5%;
-        width: 50%;
+        width: 43%;
     }
 
     .inputBg {
@@ -61,8 +61,8 @@
                     <div class=" justify-content-center">
                         {{-- <x-input-label for="email" :value="__('Email')" /> --}}
 
-                        <x-text-input id="email" class="block mt-1 w-100 rounded-pill inputBg" placeholder="email"
-                            type="email" name="email" :value="old('email')" required autofocus />
+                        <x-text-input class="" id="email" class="block mt-1 w-100 rounded-pill inputBg"
+                            placeholder="email" type="email" name="email" :value="old('email')" required autofocus />
                     </div>
 
                     <!-- Password -->

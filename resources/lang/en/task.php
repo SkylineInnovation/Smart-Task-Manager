@@ -3,40 +3,40 @@
 return [
 
     'id' => 'Id',
-    'slug' => 'slug',
+    'slug' => 'Slug',
     'created_at' => 'Created Date',
-    'date' => 'date',
-    'time' => 'time',
+    'date' => 'Date',
+    'time' => 'Time',
 
 
-    'manager' => 'manager',
+    'manager' => 'Manager',
 
-    'title' => 'title',
+    'title' => 'Title',
 
-    'desc' => 'desc',
+    'desc' => 'Description',
 
-    'start_time' => 'start time',
+    'start_time' => 'Start Time',
 
-    'end_time' => 'end time',
+    'end_time' => 'End Time',
 
     'priority_level' => 'Priority',
 
-    'status' => 'status',
+    'status' => 'Status',
 
-    'main_task' => 'main task',
+    'main_task' => 'Main Task',
 
-    'discount' => 'discount',
-
-
+    'discount' => 'Discount',
 
 
-    'low' => 'low',
-    'medium' => 'medium',
-    'high' => 'high',
-    'pending' => 'pending',
-    'active' => 'active',
-    'auto-finished' => 'auto finished',
-    'manual-finished' => 'manual finished',
+
+
+    'low' => 'Low',
+    'medium' => 'Medium',
+    'high' => 'High',
+    'pending' => 'Pending',
+    'active' => 'Active',
+    'auto-finished' => 'Auto Finished',
+    'manual-finished' => 'Manual Finished',
     'draft' => 'Draft',
     'in_draft' => 'In Draft',
     'move_draft' => 'Move TO Draft',
@@ -47,9 +47,9 @@ return [
 
 
     // 
-    'employees' => 'employees',
-    'start_at' => 'start at',
-    'end_at' => 'end at',
+    'employees' => 'Employees',
+    'start_at' => 'Start At',
+    'end_at' => 'End At',
 
     'assigend' => 'Assigend',
     'remain' => 'Remain',
@@ -112,10 +112,10 @@ return [
     'Add_Emp_Sub_Task' => ' Emp Add Task',
     'AddEmpTask' => ' Emp Add Task',
     'addEmpTask' => 'Emp Add Task',
-    'from' => 'from',
-    'to' => 'to',
-    'title' => 'title',
-    'start' => 'start',
-    'end' => 'end',
-    'view' => 'view',
+    'from' => 'From',
+    'to' => 'To',
+    'title' => 'Title',
+    'start' => 'Start',
+    'end' => 'End',
+    'view' => 'View',
 ];

@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Database\Events\MigrationsStarted;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         ///...
+        Schema::defaultStringLength(191);
 
         // $the_expense_types = ExpenseType::where('slug', 'lifting-weights')->get();
         // View::share('the_expense_types', $the_expense_types);
