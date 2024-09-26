@@ -601,7 +601,7 @@
                                         <div class="col-md-12">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    {{ __('task.Priority') }}:
+                                                    {{ __('task.priority_level') }}:
                                                 </div>
 
                                                 <div class="col-md-6">

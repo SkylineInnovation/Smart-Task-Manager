@@ -19,7 +19,7 @@ return [
 
     'end_time' => 'end time',
 
-    'priority_level' => 'priority level',
+    'priority_level' => 'Priority',
 
     'status' => 'status',
 
