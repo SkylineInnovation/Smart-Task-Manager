@@ -31,7 +31,7 @@
                 <td>{{ $devicetokenlist->slug }}</td>
 
 
-                <td>{{ $devicetokenlist->user->crud_name() }}</td>
+                <td>{{$devicetokenlist->user ? $devicetokenlist->user->crud_name():"-- -- " }}</td>
 
                 <td>{{ $devicetokenlist->device_info }}</td>
 

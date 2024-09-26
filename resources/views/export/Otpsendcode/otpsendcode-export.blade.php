@@ -27,29 +27,29 @@
 
     <tbody>
         @foreach ($otpsendcodes as $otpsendcode)
-            <tr>
-                <td>{{ ++$number }}</td>
-                <td>{{ $otpsendcode->id }}</td>
-                <td>{{ $otpsendcode->slug }}</td>
+        <tr>
+            <td>{{ ++$number }}</td>
+            <td>{{ $otpsendcode->id }}</td>
+            <td>{{ $otpsendcode->slug }}</td>
 
 
-                <td>{{ $otpsendcode->user->crud_name() }}</td>
+            <td>{{$otpsendcode->user ? $otpsendcode->user->crud_name() : '-- --' }}</td>
 
-                <td>{{ $otpsendcode->otp_code }}</td>
+            <td>{{ $otpsendcode->otp_code }}</td>
 
-                <td>{{ $otpsendcode->phone_number }}</td>
+            <td>{{ $otpsendcode->phone_number }}</td>
 
-                <td>{{ $otpsendcode->applecation }}</td>
+            <td>{{ $otpsendcode->applecation }}</td>
 
-                <td>{{ $otpsendcode->code_status }}</td>
+            <td>{{ $otpsendcode->code_status }}</td>
 
-                <td>{{ $otpsendcode->back_response }}</td>
+            <td>{{ $otpsendcode->back_response }}</td>
 
 
-                <td>{{ $otpsendcode->created_at ? date('d/m/Y', strtotime($otpsendcode->created_at)) : '' }}</td>
-                <td>{{ $otpsendcode->updated_at ? date('d/m/Y', strtotime($otpsendcode->updated_at)) : '' }}</td>
-                <td>{{ $otpsendcode->deleted_at ? date('d/m/Y', strtotime($otpsendcode->deleted_at)) : '' }}</td>
-            </tr>
+            <td>{{ $otpsendcode->created_at ? date('d/m/Y', strtotime($otpsendcode->created_at)) : '' }}</td>
+            <td>{{ $otpsendcode->updated_at ? date('d/m/Y', strtotime($otpsendcode->updated_at)) : '' }}</td>
+            <td>{{ $otpsendcode->deleted_at ? date('d/m/Y', strtotime($otpsendcode->deleted_at)) : '' }}</td>
+        </tr>
         @endforeach
     </tbody>
 </table>

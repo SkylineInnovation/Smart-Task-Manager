@@ -31,7 +31,7 @@
                 <td>{{ $passwordcode->slug }}</td>
 
 
-                <td>{{ $passwordcode->user->crud_name() }}</td>
+                <td>{{$passwordcode->user ? $passwordcode->user->crud_name() : "-- --" }}</td>
 
                 <td>{{ $passwordcode->code }}</td>
 
