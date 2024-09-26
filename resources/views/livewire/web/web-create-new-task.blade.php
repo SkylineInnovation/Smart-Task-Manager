@@ -1,7 +1,7 @@
 <div>
     {{-- Knowing others is intelligence; knowing yourself is true wisdom. --}}
 
-    <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#create-new-task">
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-new-task">
         <i class="ti-plus text-white"></i>
     </button>
 
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="exampleFormControlSelect1">proearty</label>
+                            <label for="exampleFormControlSelect1">{{ __('task.priority_level') }}</label>
                             <select wire:model.defer="priority_level" class="form-control">
                                 <option value="low">low</option>
                                 <option value="medium">medium</option>
