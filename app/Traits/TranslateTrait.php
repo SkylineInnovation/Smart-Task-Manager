@@ -21,8 +21,10 @@ trait TranslateTrait
             return Arr::get($col, 'ar');
     }
 
-    public function created_ago($datetime, $lang = 'ar', $full = false)
+    public function created_ago($datetime, $lang = null, $full = false)
     {
+        $lang ??= App::getLocale();
+
         $now = new DateTime();
         $ago = new DateTime($datetime);
         $diff = $now->diff($ago);
@@ -32,13 +34,23 @@ trait TranslateTrait
 
         if ($lang == 'ar') {
             $string = array(
-                'y' => 'سنة', 'm' => 'شهر', 'w' => 'اسبوع', 'd' => 'يوم',
-                'h' => 'ساعة', 'i' => 'دقيقة', 's' => 'ثانية',
+                'y' => 'سنة',
+                'm' => 'شهر',
+                'w' => 'اسبوع',
+                'd' => 'يوم',
+                'h' => 'ساعة',
+                'i' => 'دقيقة',
+                's' => 'ثانية',
             );
         } else {
             $string = array(
-                'y' => 'year', 'm' => 'month', 'w' => 'week', 'd' => 'day',
-                'h' => 'hour', 'i' => 'minute', 's' => 'second',
+                'y' => 'year',
+                'm' => 'month',
+                'w' => 'week',
+                'd' => 'day',
+                'h' => 'hour',
+                'i' => 'minute',
+                's' => 'second',
             );
         }
 
