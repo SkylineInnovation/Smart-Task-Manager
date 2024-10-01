@@ -63,7 +63,7 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
 
     Route::get('task-board', [HomeController::class, 'taskBoard'])->name('task-board');
 
-    Route::get('taskView', [HomeController::class, 'taskView'])->name('task-view');
+    Route::get('dailytask/{dailytask}', [DailyTaskController::class, 'livewireShow'])->name('dailytask.show');
 
     // Route::post('change/user/password/{user}', [UserController::class, "updateUserPassword"])->name('update.user.password');
 
@@ -163,8 +163,6 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     Route::middleware('permission:restore-dailytask')->get('trash/dailytasks', [App\Http\Controllers\DailyTaskController::class, 'livewireDeletedIndex'])->name('dailytask.index.trash');
     Route::get('export/dailytasks', [App\Http\Controllers\DailyTaskController::class, 'exportFullData'])->name('dailytask.export');
     Route::post('import/dailytasks', [App\Http\Controllers\DailyTaskController::class, 'importData'])->name('dailytask.import');
-
-    Route::get('daily-task-view/{dailytask}', [DailyTaskController::class, 'livewireShow'])->name('dailyTaskView');
 });
 
 

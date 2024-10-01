@@ -160,7 +160,7 @@
 
                         @permission('edit-dailytask|delete-dailytask|restore-dailytask')
                             <td>
-                                <a href="{{route('dailyTaskView', $dailytask->id)}}" class="btn btn-warning">
+                                <a href="{{ route('dailytask.show', $dailytask) }}" class="btn btn-warning">
                                     <i class="ti-eye text-white"></i>
                                 </a>
                                 @if ($admin_view_status != 'deleted')

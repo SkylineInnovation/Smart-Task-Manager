@@ -20,6 +20,11 @@ class DailyTaskController extends Controller
         return view('pages.crud.dailytask.dailytask-home', compact('admin_view_status'));
     }
 
+    public function livewireShow(DailyTask $dailytask)
+    {
+        return view('pages.crud.dailytask.dailytask-show', compact('dailytask'));
+    }
+
     public function livewireDeletedIndex()
     {
         $admin_view_status = 'deleted';
@@ -30,7 +35,7 @@ class DailyTaskController extends Controller
     {
         // $extension = '.pdf';
         // if (auth()->user()->hasRole('owner'))
-            $extension = '.xlsx';
+        $extension = '.xlsx';
 
         $name = 'dailytasks-' . date('Y-m-d') . $extension;
         $by_date = $request->input('by_date', 'created_at');
@@ -50,15 +55,10 @@ class DailyTaskController extends Controller
 
         $import_type = $request->input('import_type', 'stander');
 
-        if ($import_type == 'stander'){
+        if ($import_type == 'stander') {
             Excel::import(new FullDailyTasksImport, $request->excel_file);
         }
 
         return Redirect::back()->with('success', 'Data Imported Successfully');
-    }
-
-    public function livewireShow(DailyTask $dailytask)
-    {
-        return view('pages.crud.dailytask.dailytask-show',compact('dailytask'));
     }
 }

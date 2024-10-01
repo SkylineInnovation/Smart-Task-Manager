@@ -5,7 +5,7 @@
 
     <div class="card">
         <div class="card-header">
-            automation tasks
+            {{ __('global.automation tasks') }}
         </div>
         <div class="card-body">
             <livewire:task.task-index :dailytask="$dailytask" />

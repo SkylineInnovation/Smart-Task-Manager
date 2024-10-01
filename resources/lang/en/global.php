@@ -189,4 +189,5 @@ return [
     'creat_task' => 'Create Task',
 
     'enter desc' => 'Enter Description',
+    'automation tasks' => 'Automation Tasks',
 ];

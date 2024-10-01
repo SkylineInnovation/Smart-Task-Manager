@@ -37,7 +37,7 @@
             </div>
         </div>
     @endrole
- 
+
     <div class="container-fluid card">
 
         <div class="d-flex flex-row" style="overflow-x: scroll;">

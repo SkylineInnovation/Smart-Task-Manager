@@ -169,16 +169,8 @@ class HomeController extends Controller
         return back()->with('success', __('global.Profile Updated'));
     }
 
-
-    public function taskView()
-    {
-        return view('Web.TaskView.task');
-    }
-
     public function taskBoard()
     {
-        $taskdaily = DailyTask::where('manager_id', auth()->user()->id)->get();
-
-        return view('Web.task-board', compact('taskdaily'));
+        return view('Web.task-board');
     }
 }
