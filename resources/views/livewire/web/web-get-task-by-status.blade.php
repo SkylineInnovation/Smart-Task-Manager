@@ -625,7 +625,6 @@
                                             </div>
                                         @endrole
 
-                                        T - {{ count($task->sub_tasks) }} - T
                                         <div class="py-4">
                                             @foreach ($task->sub_tasks as $sub)
                                                 <div class="row w-100 m-0 border shadow text-start">
