@@ -13929,10 +13929,11 @@ body.fixed-header .header {
         margin: 0 0 0 -11px;
         position: static;
     }
-    .header-1 .form-inline .form-control,
+    /* .header-1 .form-inline .form-control,
     .header-2 .form-inline .form-control {
         width: 100px !important;
-    }
+        TODO ma
+    } */
     .header-1 .header-search,
     .header-2 .header-search {
         min-width: auto !important;
