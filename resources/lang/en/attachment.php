@@ -15,7 +15,7 @@ return [
 
     'title' => 'title',
 
-    'desc' => 'desc',
+    'desc' => 'Description',
 
     'file' => 'file',
 
