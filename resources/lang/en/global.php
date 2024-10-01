@@ -185,7 +185,8 @@ return [
     'by_accepted_by_users' => 'By Accepted By Users',
     'by_managers' => 'By Managers',
     'by_main_tasks' => 'By Main Tasks',
-    'dailytasks'=>'Daily Tasks',
-    'creat_task'=>'Create Task'
-    
+    'dailytasks' => 'Daily Tasks',
+    'creat_task' => 'Create Task',
+
+    'enter desc' => 'Enter Description',
 ];

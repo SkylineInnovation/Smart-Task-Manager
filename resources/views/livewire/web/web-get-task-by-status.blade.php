@@ -192,7 +192,7 @@
                                 </div>
 
                                 <div>
-                                    <h5>{{ __('task.Discription') }}:</h5>
+                                    <h5>{{ __('task.Description') }}:</h5>
                                     <small class="fs-5 text-gray">{!! $task->desc !!}</small>
                                 </div>
                             </div>
@@ -233,7 +233,7 @@
                                     <a class="nav-link py-3 rounded-pill {{ $tab == 2 ? 'active' : '' }}"
                                         id="attatchment-tab" data-toggle="tab" wire:click="changeTab(2)"
                                         href="#attatchment" role="tab" aria-controls="attatchment"
-                                        aria-selected="{{ $tab == 2 }}">{{ __('task.Attatchments') }}</a>
+                                        aria-selected="{{ $tab == 2 }}">{{ __('task.Attachments') }}</a>
                                 </li>
                                 {{-- 2 TAB END --}}
 
@@ -379,7 +379,7 @@
                                         </div>
 
                                         <div class="container py-3">
-                                            @foreach ($task->attatchments as $attatch)
+                                            @foreach ($task->attachments as $attatch)
                                                 <div class="row w-100 m-0 border">
                                                     <div class="col-md-3">
                                                         {{-- @if ($attatch->is_image())
@@ -625,6 +625,7 @@
                                             </div>
                                         @endrole
 
+                                        T - {{ count($task->sub_tasks) }} - T
                                         <div class="py-4">
                                             @foreach ($task->sub_tasks as $sub)
                                                 <div class="row w-100 m-0 border shadow text-start">

@@ -63,11 +63,11 @@ return [
 
     'Title' => 'عنوان',
 
-    'Discription'       => 'الوصف',
+    'Description'       => 'الوصف',
     'From'              => 'من',
     'To'                => 'إلى',
     'Users'             => 'الموظفون',
-    'Attatchments'      => 'المرفقات',
+    'Attachments'      => 'المرفقات',
     'Comments'          => 'التعليقات',
     'Sub_Tasks'         => 'المهام الفرعية',
     'Extra_Time'        => 'وقت إضافي',
@@ -106,9 +106,9 @@ return [
 
     'Sub-Task' => 'المهام الفرعية',
 
-    'Add_Emp_Sub_Task'=>' إضافة مهمة',
-    'AddEmpTask'=>'إضافة مهمة',
-    'addEmpTask'=>'إضافة مهمة',
+    'Add_Emp_Sub_Task' => ' إضافة مهمة',
+    'AddEmpTask' => 'إضافة مهمة',
+    'addEmpTask' => 'إضافة مهمة',
     'from' => 'من',
     'to' => 'إلى',
     'title' => 'العنوان',

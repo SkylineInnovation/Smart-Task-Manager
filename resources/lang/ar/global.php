@@ -158,9 +158,9 @@ return [
     'all_users_in_the_app' => 'جميع المستخدمين في النظام',
     'task_view' => 'عرض المهمة',
 
-    'dailytasks'=>'مهام يومية',
+    'dailytasks' => 'مهام يومية',
 
-    'creat_task'=>'إنشاء المهام',
+    'creat_task' => 'إنشاء المهام',
 
 
     // some role valideate message in sub
@@ -184,4 +184,6 @@ return [
 
 
     'reports' => 'تقارير',
+
+    'enter desc' => 'ادخل الوصف',
 ];

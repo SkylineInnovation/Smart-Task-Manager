@@ -256,7 +256,7 @@ class Task extends Model
         return date('Y-m-d h:i A', strtotime($data));
     }
 
-    public function attatchments()
+    public function attachments()
     {
         return $this->hasMany(Attachment::class);
     }

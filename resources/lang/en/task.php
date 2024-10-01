@@ -65,11 +65,11 @@ return [
     'System_Finished' => 'System Finished',
 
 
-    'Discription'       => 'Discription',
+    'Description'       => 'Description',
     'From'              => 'From',
     'To'                => 'To',
     'Users'             => 'Users',
-    'Attatchments'      => 'Attatchments',
+    'Attachments'      => 'Attachments',
     'Comments'          => 'Comments',
     'Sub_Tasks'         => 'Sub Tasks',
     'Extra_Time'        => 'Extra Time',

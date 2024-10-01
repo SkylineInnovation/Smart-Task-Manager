@@ -127,11 +127,12 @@
                                                             <div class="col-12">
 
                                                                 <div class="col-12">
-                                                                    <strong>Discription :</strong>
+                                                                    <strong>{{ __('task.Description') }} :</strong>
                                                                     <br>
 
-                                                                    <small class="fs-6 text-gray">Postim Beka
-                                                                        travel</small>
+                                                                    <small class="fs-6 text-gray">
+                                                                        Postim Beka travel
+                                                                    </small>
                                                                 </div>
 
 
