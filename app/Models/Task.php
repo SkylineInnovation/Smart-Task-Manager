@@ -270,6 +270,7 @@ class Task extends Model
     {
         return $this->hasMany(Task::class, 'main_task_id')->whereHas('manager', function ($q) {
             $q->whereRoleIs('manager');
+            $q->whereRoleIs('owner');
         });
     }
     public function emp_sub_tasks()
