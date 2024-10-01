@@ -312,7 +312,7 @@
                             <div wire:ignore.self class="mb-1">
                                 {{-- <div wire:ignore.self id="summer_desc"></div> --}}
                                 <textarea name='desc' id='desc' rows="3" class='form-control'
-                                    placeholder='{{ __(' global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="attatchment_desc"></textarea>
+                                    placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="attatchment_desc"></textarea>
                             </div>
 
                             <button wire:click="addAttatchment()" type="button" class="w-100 btn btn-success">
@@ -464,7 +464,7 @@
                                                 <div wire:ignore.self class="mb-1">
                                                     {{-- <div wire:ignore.self id="summer_desc"></div> --}}
                                                     <textarea name='desc' id='desc' rows="3" class='form-control'
-                                                        placeholder='{{ __(' global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="replay_comment_desc"></textarea>
+                                                        placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="replay_comment_desc"></textarea>
                                                 </div>
 
 
@@ -537,7 +537,7 @@
                                     <div wire:ignore.self class="col-md-12">
                                         {{-- <div wire:ignore.self id="summer_desc"></div> --}}
                                         <textarea name='desc' id='desc' rows="4" class='form-control'
-                                            placeholder='{{ __(' global.enter') }} {{ __('task.desc') }}' wire:model.defer="sub_task_desc"></textarea>
+                                            placeholder='{{ __('global.enter') }} {{ __('task.desc') }}' wire:model.defer="sub_task_desc"></textarea>
                                     </div>
 
                                 </div>
