@@ -160,13 +160,13 @@ class DailyTask extends Model
         });
     }
 
-    public function the_priority_level()
+    public function the_proearty()
     {
-        if ($this->priority_level == 'low')
+        if ($this->proearty == 'low')
             return __('task.low');
-        elseif ($this->priority_level == 'medium')
+        elseif ($this->proearty == 'medium')
             return __('task.medium');
-        elseif ($this->priority_level == 'high')
+        elseif ($this->proearty == 'high')
             return __('task.high');
 
         return '';
@@ -174,11 +174,11 @@ class DailyTask extends Model
 
     public function the_priority_color()
     {
-        if ($this->priority_level == 'low')
+        if ($this->proearty == 'low')
             return '#00FF00';
-        elseif ($this->priority_level == 'medium')
+        elseif ($this->proearty == 'medium')
             return '#0000FF';
-        elseif ($this->priority_level == 'high')
+        elseif ($this->proearty == 'high')
             return '#FF0000';
 
         return '';
