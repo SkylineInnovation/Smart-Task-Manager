@@ -3,7 +3,6 @@
 use App\Http\Controllers\DailyTaskController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
-use App\Models\Task;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
