@@ -1,14 +1,14 @@
 <div class="d-flex mb-2">
     <div id="search-sort-section" class="form-inline mr-auto">
         <div>
-            <small class="form-text text-muted">{{ __('global.search') }}</small>
+            {{-- <small class="form-text text-muted">{{ __('global.search') }}</small> --}}
             <div class="form-group">
                 <input wire:model="search" class="form-control" placeholder="{{ __('global.search') }}">
             </div>
         </div>
 
         <div>
-            <small class="form-text text-muted">{{ __('global.order-by') }}</small>
+            {{-- <small class="form-text text-muted">{{ __('global.order-by') }}</small> --}}
 
             <select wire:model='orderBy' class="form-control form-group">
                 <option value="id">{{ __('global.id') }}</option>
@@ -25,7 +25,7 @@
         </div>
 
         <div>
-            <small class="form-text text-muted">{{ __('global.sort-by') }}</small>
+            {{-- <small class="form-text text-muted">{{ __('global.sort-by') }}</small> --}}
             <select wire:model="order" class="form-control form-group">
                 <option value="asc">{{ __('global.Asc') }}</option>
                 <option value="desc">{{ __('global.Desc') }}</option>
@@ -33,7 +33,7 @@
         </div>
 
         <div>
-            <small class="form-text text-muted">{{ __('global.per-page') }}</small>
+            {{-- <small class="form-text text-muted">{{ __('global.per-page') }}</small> --}}
             <select wire:model='perPage' class="form-control form-group">
                 <option value="5">5</option>
                 <option value="10">10</option>
@@ -45,7 +45,7 @@
     </div>
 
     <div>
-        <small class="form-text text-muted">{{ __('global.pop-up') }}</small>
+        {{-- <small class="form-text text-muted">{{ __('global.pop-up') }}</small> --}}
 
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#show-hide-user-columnModal">
             <i class="ti-layout-column4 text-white"></i>
