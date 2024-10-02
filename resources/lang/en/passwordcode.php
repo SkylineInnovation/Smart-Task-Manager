@@ -3,21 +3,21 @@
 return [
 
     'id' => 'Id',
-    'slug' => 'slug',
+    'slug' => 'Slug',
     'created_at' => 'Created Date',
     'date' => 'Date',
     'time' => 'Time',
 
 
-    'user' => 'user',
+    'user' => 'User',
 
-    'code' => 'code',
+    'code' => 'Code',
 
-    'note' => 'note',
+    'note' => 'Note',
 
-    'is_used' => 'is_used',
+    'is_used' => 'IS_used',
 
-    'ip_address' => 'ip_address',
+    'ip_address' => 'IP_address',
 
 
 ];
