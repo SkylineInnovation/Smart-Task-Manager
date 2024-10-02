@@ -130,8 +130,12 @@
                                         class="block font-medium text-sm text-gray-700">{{ __('user.gender') }}</label>
                                     <select name="gender" id="gender"
                                         class="form-control rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('gender') is-invalid @enderror">
-                                        <option value="male">{{ __('user.male') }}</option>
-                                        <option value="female">{{ __('user.female') }}</option>
+                                        <option @if ($user->gender == 'male') selected @endif value="male">
+                                            {{ __('user.male') }}
+                                        </option>
+                                        <option @if ($user->gender == 'female') selected @endif value="female">
+                                            {{ __('user.female') }}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
