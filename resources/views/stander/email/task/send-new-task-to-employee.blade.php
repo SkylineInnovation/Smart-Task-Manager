@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h2>there is new task assigned</h2>
+    <h2>{{ __('email.there is new task assigned') }}</h2>
 
     <p>{{ $task->title }}</p>
     <p>{{ $task->desc }}</p>
@@ -20,7 +20,7 @@
     <p>{{ $task->priority_level }}</p>
     <p>{{ $task->status }}</p>
 
-    <a class="btn btn-info" href="{{ route('task.show', $task) }}">Open Task</a>
+    <a class="btn btn-info" href="{{ route('task.show', $task) }}">{{ __('email.Open Task') }}</a>
 
     <br>
     <p>Thank You</p>

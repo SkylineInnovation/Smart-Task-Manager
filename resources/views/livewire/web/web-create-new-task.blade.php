@@ -42,9 +42,9 @@
                         <div class="form-group col-md-6">
                             <label for="exampleFormControlSelect1">{{ __('task.priority_level') }}</label>
                             <select wire:model.defer="priority_level" class="form-control">
-                                <option value="low">low</option>
-                                <option value="medium">medium</option>
-                                <option value="high">high</option>
+                                <option value="low">{{ __('task.low') }}</option>
+                                <option value="medium">{{ __('task.medium') }}</option>
+                                <option value="high">{{ __('task.high') }}</option>
                             </select>
                         </div>
 
@@ -101,11 +101,11 @@
                 </div>
                 <div class="modal-footer">
                     <button wire:click="cancel()" type="button" class="btn btn-secondary" data-dismiss="modal">
-                        Close
+                        {{ __('global.Close') }}
                     </button>
 
                     <button wire:click="store()" type="submit" class="btn btn-primary">
-                        Save Changes
+                        {{ __('global.Save Changes') }}
                     </button>
                 </div>
             </div>

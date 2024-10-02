@@ -163,27 +163,6 @@ return [
     'creat_task' => 'إنشاء المهام',
 
 
-    // some role valideate message in sub
-    // 'please_select_customer' => 'Please Select Customer',
-
-    // 'employees' => 'employees',
-    // 'task-board' => 'task board',
-    // // 
-    // 'from_date' => 'من تاريخ',
-    // 'to_date' => 'حتى تاريخ',
-    // // 'search' => 'search',
-    // 'restart_filter' => 'إعادة تشغيل الفلتر',
-    // // 'clear' => 'clear',
-
-    // 'total' => 'المجموع',
-    // 'auto' => 'تلقائي',
-    // 'completed' => 'مكتمل',
-
-    // 'accept-extratime' => 'قبول وقت إضافي',
-    // 'accept-leave' => 'قبول المغادرة',
-
-
     'reports' => 'تقارير',
-
     'enter desc' => 'ادخل الوصف',
 ];

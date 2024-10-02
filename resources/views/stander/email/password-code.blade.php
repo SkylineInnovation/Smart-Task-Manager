@@ -9,12 +9,12 @@
 </head>
 
 <body>
-    <h2>The Code For forget password</h2>
+    <h2>{{ __('email.The Code For forget password') }}</h2>
 
-    <h4>the code for reset your password is : {{ $passwordCode->code }}</h4>
+    <h4>{{ __('email.the code for reset your password is :') }} {{ $passwordCode->code }}</h4>
 
     <br>
-    <p>Thank You</p>
+    <p>{{ __('email.Thank You') }}</p>
 
     <a href="{{ env('APP_URL') }}">{{ env('APP_NAME') }}</a>
 </body>

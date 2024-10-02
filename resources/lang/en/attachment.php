@@ -9,17 +9,17 @@ return [
     'time' => 'time',
 
 
-    'user' => 'user',
+    'user' => 'User',
 
-    'task' => 'task',
+    'task' => 'Task',
 
     'title' => 'title',
 
     'desc' => 'Description',
 
-    'file' => 'file',
+    'file' => 'File',
 
-    'main_attachment' => 'main attachment',
+    'main_attachment' => 'Main attachment',
 
 
 ];

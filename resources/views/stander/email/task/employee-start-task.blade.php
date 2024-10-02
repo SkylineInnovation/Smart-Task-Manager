@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h2>the task {{ $task->title }} started by employee</h2>
+    <h2>{{ __('email.the task') }} {{ $task->title }} {{ __('email.started by employee') }}</h2>
 
     <p>{{ $task->title }}</p>
     <p>{{ $task->desc }}</p>
@@ -20,10 +20,10 @@
     <p>{{ $task->priority_level }}</p>
     <p>{{ $task->status }}</p>
 
-    <a class="btn btn-info" href="{{ route('task.show', $task) }}">Open Task</a>
+    <a class="btn btn-info" href="{{ route('task.show', $task) }}">{{ __('email.Open Task') }}</a>
 
     <br>
-    <p>Thank You</p>
+    <p>{{ __('Thank You') }}</p>
 
     <a href="{{ env('APP_URL') }}">{{ env('APP_NAME') }}</a>
 </body>

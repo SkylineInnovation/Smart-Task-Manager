@@ -9,17 +9,17 @@ return [
     'time' => 'time',
 
 
-    'task' => 'task',
+    'task' => 'Task',
 
-    'user' => 'user',
+    'user' => 'User',
 
-    'title' => 'title',
+    'title' => 'Title',
 
     'desc' => 'Description',
 
-    'replay_time' => 'replay time',
+    'replay_time' => 'Replay time',
 
-    'main_comment' => 'main comment',
+    'main_comment' => 'Main comment',
 
 
 ];

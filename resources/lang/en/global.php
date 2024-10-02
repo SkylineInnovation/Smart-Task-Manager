@@ -144,10 +144,10 @@ return [
     'extratimes' => 'Extra Time',
     'create-extratime' => 'Create New Extra Time',
 
-    'leaves' => 'Leave',
+    'leaves' => 'Leaves',
     'create-leave' => 'Create New Leave',
 
-    'discounts' => 'Discount',
+    'discounts' => 'Discounts',
     'create-discount' => 'Create New Discount',
 
     // some role valideate message in sub

@@ -44,7 +44,6 @@
             <div class="col-lg-4 col-md-6 col-sm-12 col-12 py-4">
                 <h4 class="p-0 text-gray-400 fw-bold text-center">{{ __('task.Pending') }}</h4>
                 <hr style="margin-top:0px !important;">
-
                 <livewire:web.web-get-task-by-status status='pending' />
             </div>
 
