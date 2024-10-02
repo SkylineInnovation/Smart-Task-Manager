@@ -13,7 +13,7 @@ return [
     |
     */
     'id' => 'Id',
-    'slug' => 'slug',
+    'slug' => 'Slug',
     'created_at' => 'Created Date',
     'date' => 'Date',
     'time' => 'Time',

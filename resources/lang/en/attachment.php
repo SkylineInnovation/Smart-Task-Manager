@@ -3,7 +3,7 @@
 return [
 
     'id' => 'Id',
-    'slug' => 'slug',
+    'slug' => 'Slug',
     'created_at' => 'Created Date',
     'date' => 'Date',
     'time' => 'Time',
@@ -13,7 +13,7 @@ return [
 
     'task' => 'Task',
 
-    'title' => 'title',
+    'title' => 'Title',
 
     'desc' => 'Description',
 
