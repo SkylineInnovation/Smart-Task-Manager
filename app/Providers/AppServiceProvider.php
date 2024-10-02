@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Database\Events\MigrationsStarted;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -37,6 +38,9 @@ class AppServiceProvider extends ServiceProvider
         ///...
         Schema::defaultStringLength(191);
 
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
         // $the_expense_types = ExpenseType::where('slug', 'lifting-weights')->get();
         // View::share('the_expense_types', $the_expense_types);
 
