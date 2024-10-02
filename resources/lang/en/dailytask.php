@@ -37,5 +37,7 @@ return [
     'medium' => 'Medium',
     'high' => 'High',
 
+    'discount' => 'Discount',
+
 
 ];
