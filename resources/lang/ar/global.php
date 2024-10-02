@@ -13,94 +13,92 @@ return [
     |
     */
 
-    'dashboard' => 'اللوحة الرئيسية',
+    'dashboard' => 'لوحة المعلومات',
     'main' => 'الرئيسية',
-    'crud' => 'الخام',
-    'trash' => 'نفاية',
-    'all' => 'الجميع',
+    'crud' => 'CRUD',
+    'trash' => 'سلة المهملات',
+    'all' => 'الكل',
     'show-and-hide-table-columns' => 'إظهار وإخفاء أعمدة الجدول',
-    'search' => 'بحث',
-    'order-by' => 'ترتيب حسب',
-    'sort-by' => 'ترتيب حسب',
+    'search' => 'البحث',
+    'order-by' => 'الترتيب حسب',
+    'sort-by' => 'الفرز حسب',
     'per-page' => 'لكل صفحة',
-    'columns' => 'أعمدة',
-    'pop-up' => 'اظهار',
-    'select' => 'اختيار',
-    'edit' => 'تعديل',
-    'show' => 'عرض',
+    'columns' => 'الأعمدة',
+    'pop-up' => 'المنبثقة',
+    'select' => 'تحديد',
+    'edit' => 'تحرير',
+    'show' => 'إظهار',
     'delete' => 'حذف',
-    'close' => 'اغلاق',
+    'close' => 'إغلاق',
     'save-changes' => 'حفظ التغييرات',
     'confirm-delete' => 'تأكيد الحذف',
-    'drag-drop-category' => 'السحب والإفلات الاقسام',
-    'enter' => 'ادخل',
+    'drag-drop-category' => 'سحب وإفلات الفئة',
+    'enter' => 'إدخال',
     'update' => 'تحديث',
 
     'home' => 'الصفحة الرئيسية',
     'home-page' => 'الصفحة الرئيسية',
-    'roles' => 'الصلاحيات',
+    'roles' => 'الأدوار',
 
-    'id' => 'رقم تعريفي',
-    'slug' => 'سلج',
+    'id' => 'المعرف',
+    'slug' => 'الاسم المستعار',
     'created_at' => 'تاريخ الإنشاء',
     'change-status' => 'تغيير الحالة',
-    'options' => 'خيارات',
+    'options' => 'الخيارات',
 
-    'excel' => 'اكسل',
+    'excel' => 'Excel',
     'export' => 'تصدير',
-    'export_excel' => 'تصدير اكسل',
+    'export_excel' => 'تصدير Excel',
 
-    'import_excel' => 'استيراد اكسل',
+    'import_excel' => 'استيراد Excel',
     'import' => 'استيراد',
-
     'import_type' => 'نوع الاستيراد',
-    'stander' => 'العادي',
+    'stander' => 'الموقف',
 
-    'Accept' => 'يقبل',
-    'Reject' => 'يرفض',
+    'Accept' => 'قبول',
+    'Reject' => 'رفض',
 
-    'filter' => 'فلتر',
-    'clear' => 'افراغ',
+    'filter' => 'تصفية',
+    'clear' => 'مسح',
 
 
     'first_name' => 'الاسم الأول',
-    'last_name' => 'اسم العائلة',
-    'email' => 'بريد إلكتروني',
-    'phone' => 'هاتف',
-    'gender' => 'جنس',
-    'birth_day' => 'عيد ميلاد',
-    'new_password' => 'كلمة المرور الجديدة',
+    'last_name' => 'الاسم الأخير',
+    'email' => 'البريد الإلكتروني',
+    'phone' => 'الهاتف',
+    'gender' => 'الجنس',
+    'birth_day' => 'تاريخ الميلاد',
+    'new_password' => 'كلمة مرور جديدة',
     'confirm_password' => 'تأكيد كلمة المرور',
-    'updated' => 'تم تحديث',
-    'edit-profile' => 'تعديل الملف الشخصي',
-    'sign-out' => 'خروج',
+    'updated' => 'تم التحديث',
+    'edit-profile' => 'تحرير الملف الشخصي',
+    'sign-out' => 'تسجيل الخروج',
     'edit-password' => 'تحرير كلمة المرور',
 
-    'time' => 'وقت',
-    'date' => 'تاريخ',
+    'time' => 'الوقت',
+    'date' => 'التاريخ',
 
-    'users' => 'المستخدمين',
+    'users' => 'المستخدمون',
     'create-user' => 'إنشاء مستخدم',
 
-    'switch' => 'تحويل',
-    'active' => 'نشيط',
-    'pending' => 'قيد الانتظار',
+    'switch' => 'تبديل',
+    'active' => 'نشط',
+    'pending' => 'معلق',
     'block' => 'حظر',
 
     'blocked' => 'محظور',
-    'activate' => 'تفعيل',
+    'activate' => 'تنشيط',
 
-    // 'filter' => 'فلتر',
-    'create' => 'انشاء',
+    'create' => 'إنشاء',
 
     'select_all' => 'تحديد الكل',
-    'un_select_all' => 'إلغاء تحديد الكل',
+    'un_select_all' => 'إلغاء التحديد الكل',
 
     'search_by_date' => 'البحث حسب التاريخ',
 
     'confirm-restore' => 'تأكيد الاستعادة',
-    'restore' => 'اعادة',
-    'action' => 'فعل',
+    'restore' => 'استعادة',
+    'action' => 'الإجراء',
 
     'Asc' => 'تصاعدي',
     'Desc' => 'تنازلي',
@@ -108,66 +106,86 @@ return [
     'yes' => 'نعم',
     'no' => 'لا',
 
-    'created date time' => 'وقت الاضافة',
+    'created date time' => 'وقت الإنشاء',
     'updated date time' => 'وقت التحديث',
     'deleted date time' => 'وقت الحذف',
 
     'by_date' => 'حسب التاريخ',
-    'by_users' => 'من قبل المستخدمين',
+    'by_users' => 'حسب المستخدمين',
 
-    'applang' => 'لغة',
-    'name' => 'اسم',
+    'applang' => 'اللغة',
+    'name' => 'الاسم',
 
-    'add' => 'اضافة',
+    'add' => 'إضافة',
 
-    'applangs' => 'لغة',
-    'create-applang' => 'إنشاء لغة',
+    'applangs' => 'لغات التطبيق',
+    'create-applang' => 'إنشاء لغة التطبيق',
 
-    'otpsendcodes' => 'إرسال رمز التحقق',
-    'create-otpsendcode' => 'إرسال رمز التحقق',
+    'otpsendcodes' => 'رموز إرسال كلمة المرور',
+    'create-otpsendcode' => 'إنشاء رمز كلمة المرور',
 
     'passwordcodes' => 'رموز كلمة المرور',
     'create-passwordcode' => 'إنشاء رموز كلمة المرور',
 
-    'devicetokenlists' => 'قوائم الرمز المميز',
-    'create-devicetokenlist' => 'إنشاء قوائم الرموز المميزة',
+    'devicetokenlists' => 'قوائم الرموز',
+    'create-devicetokenlist' => 'إنشاء قوائم الرموز',
 
-    // 
-    'tasks' => 'المهام',
-    'create-task' => 'إنشاء مهمة',
+    'tasks' => 'المهمة',
+    'create-task' => 'إنشاء مهمة جديدة',
 
-    'attachments' => 'المرفقات',
-    'create-attachment' => 'إنشاء مرفق',
+    'attachments' => 'مرفق',
+    'create-attachment' => 'إنشاء مرفق جديد',
 
-    'comments' => 'التعليقات',
-    'create-comment' => 'إنشاء تعليق',
+    'comments' => 'تعليق',
+    'create-comment' => 'إنشاء تعليق جديد',
 
-    'extratimes' => 'أوقات إضافية',
-    'create-extratime' => 'إنشاء وقت إضافي',
+    'extratimes' => 'وقت إضافي',
+    'create-extratime' => 'إنشاء وقت إضافي جديد',
 
-    'leaves' => 'إجازات',
-    'create-leave' => 'إنشاء إجازات',
+    'leaves' => 'الإجازات',
+    'create-leave' => 'إنشاء إجازة جديدة',
 
-    'discounts' => 'خصومات',
-    'create-discount' => 'إنشاء خصم',
+    'discounts' => 'الخصومات',
+    'create-discount' => 'إنشاء خصم جديد',
 
-    'dailytasks' => 'مهام يومية',
-    'create-dailytask' => 'اضافة مهمة يومية',
+    'dailytasks' => 'المهام اليومية',
+    'create-dailytask' => 'إنشاء مهمة يومية جديدة',
 
-
+    'employees' => 'الموظفون',
     'task-board' => 'لوحة المهام',
-    'task view' => 'عرض المهام',
-    'accept-extratime' => 'قبول الوقت الإضافي',
+
+    'from_date' => 'من التاريخ',
+    'to_date' => 'حتى التاريخ',
+    'restart_filter' => 'إعادة تشغيل الفلتر',
+
+    'total' => 'الإجمالي',
+    'auto' => 'تلقائيًا',
+    'completed' => 'مكتمل',
+
+    'accept-extratime' => 'قبول وقت إضافي',
+    'accept-leave' => 'قبول المغادرة',
+
+    'extratime' => 'وقت إضافي',
+    'leave' => 'مغادرة',
+
+    'discount' => 'خصم',
+
     'all_users_in_the_app' => 'جميع المستخدمين في النظام',
-    'task_view' => 'عرض المهمة',
 
-    'dailytasks' => 'مهام يومية',
+    'task_view' => 'المهمة عرض',
+    'reports' => 'التقارير',
 
-    'creat_task' => 'إنشاء المهام',
+    'by_tasks' => 'حسب المهام',
+    'by_main_attachments' => 'حسب المرفقات الرئيسية',
+    'by_main_comments' => 'حسب التعليقات الرئيسية',
+    'by_accepted_by_users' => 'حسب المقبولة من قبل المستخدمين',
+    'by_managers' => 'حسب المديرين',
+    'by_main_tasks' => 'حسب المهام الرئيسية',
+    'dailytasks' => 'المهام اليومية',
+    'creat_task' => 'إنشاء مهمة',
 
-
-    'reports' => 'تقارير',
-    'enter desc' => 'ادخل الوصف',
+    'enter desc' => 'إدخال الوصف',
+    'automation tasks' => 'مهام الأتمتة',
 
     'Profile Updated' => 'تم تحديث الملف الشخصي',
     'Password Changed' => 'تم تغيير كلمة المرور',

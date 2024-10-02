@@ -52,7 +52,6 @@ return [
 
     'import_excel' => 'Import Excel',
     'import' => 'Import',
-
     'import_type' => 'Import Type',
     'stander' => 'Stander',
 
@@ -90,7 +89,6 @@ return [
     'blocked' => 'Blocked',
     'activate' => 'Activate',
 
-    // 'filter' => 'Filter',
     'create' => 'Create',
 
     'select_all' => 'Select All',
@@ -153,17 +151,12 @@ return [
     'dailytasks' => 'Daily Tasks',
     'create-dailytask' => 'Create New Daily Task',
 
-    // some role valideate message in sub
-    // 'please_select_customer' => 'Please Select Customer',
-
     'employees' => 'Employees',
     'task-board' => 'Task Board',
-    // 
+
     'from_date' => 'From Date',
     'to_date' => 'To Date',
-    // 'search' => 'search',
     'restart_filter' => 'Restart Filter',
-    // 'clear' => 'clear',
 
     'total' => 'Total',
     'auto' => 'Auto',
