@@ -17,7 +17,7 @@
 
             <td>{{ __('dailytask.proearty') }}</td>
 
-            <td>{{ __('dailytask.status') }}</td>
+            {{-- <td>{{ __('dailytask.status') }}</td> --}}
 
             <td>{{ __('dailytask.repeat_time') }}</td>
 
@@ -51,7 +51,7 @@
 
                 <td>{{ $dailytask->proearty }}</td>
 
-                <td>{{ $dailytask->status }}</td>
+                {{-- <td>{{ $dailytask->status }}</td> --}}
 
                 <td>{{ $dailytask->repeat_time }}</td>
 
