@@ -31,6 +31,9 @@ return [
     'birth_day' => 'Birthdate',
     'status' => 'Status',
 
+    'male' => 'Male',
+    'female' => 'Female',
+
     'role' => 'Role',
 
     'edit-password' => 'edit password',

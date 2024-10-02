@@ -43,7 +43,6 @@
                             {{-- @include('inputs.create.input', [
                                 'label' => 'user.current_password',
                                 'name' => 'current_password',
-                                'required' => 'required',
                                 'type' => 'password',
                                 'lg' => 12, 'md' => 12, 'sm' => 12,
                             ]) --}}
@@ -52,7 +51,6 @@
                             @include('inputs.create.input', [
                                 'label' => 'user.new_password',
                                 'name' => 'new_password',
-                                'required' => 'required',
                                 'type' => 'password',
                                 'lg' => 12,
                                 'md' => 12,
@@ -63,7 +61,6 @@
                             @include('inputs.create.input', [
                                 'label' => 'user.confirm_password',
                                 'name' => 'confirm_password',
-                                'required' => 'required',
                                 'type' => 'password',
                                 'lg' => 12,
                                 'md' => 12,
@@ -99,21 +96,18 @@
                                 'label' => 'user.first_name',
                                 'name' => 'first_name',
                                 'val' => $user->first_name,
-                                'required' => 'required',
                             ])
 
                             @include('inputs.edit.input', [
                                 'label' => 'user.last_name',
                                 'name' => 'last_name',
                                 'val' => $user->last_name,
-                                'required' => 'required',
                             ])
 
                             @include('inputs.edit.input', [
                                 'label' => 'user.user_name',
                                 'name' => 'user_name',
                                 'val' => $user->user_name,
-                                'required' => 'required',
                             ])
 
                             @include('inputs.edit.input', [
@@ -121,7 +115,6 @@
                                 'name' => 'email',
                                 'val' => $user->email,
                                 'type' => 'email',
-                                'required' => 'required',
                             ])
 
                             @include('inputs.edit.input', [
@@ -129,7 +122,6 @@
                                 'name' => 'phone',
                                 'val' => $user->phone,
                                 'type' => 'tel',
-                                'required' => 'required',
                             ])
 
                             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -138,15 +130,9 @@
                                         class="block font-medium text-sm text-gray-700">{{ __('user.gender') }}</label>
                                     <select name="gender" id="gender"
                                         class="form-control rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('gender') is-invalid @enderror">
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
+                                        <option value="male">{{ __('user.male') }}</option>
+                                        <option value="female">{{ __('user.female') }}</option>
                                     </select>
-
-                                    @error('gender')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
                                 </div>
                             </div>
 
@@ -155,14 +141,9 @@
                                 'name' => 'birth_day',
                                 'val' => $user->birth_day,
                                 'type' => 'date',
-                                'required' => 'required',
                             ])
 
                         </div>
-
-                        {{-- <x-input-label for="textarea" :value="__('user.textarea')" />
-                            <x-textarea id="textarea" class="block mt-1 w-full" type="text" name="textarea" :value="old('textarea')" required/> --}}
-
 
                     </div>
                     <div class="card-footer">
