@@ -36,10 +36,10 @@ return [
 
     'role' => 'Role',
 
-    'edit-password' => 'edit password',
+    'edit-password' => 'Edit password',
 
-    'current_password' => 'current password',
-    'new_password' => 'new password',
-    'edit-profile' => 'edit profile',
+    'current_password' => 'Current Password',
+    'new_password' => 'New Password',
+    'edit-profile' => 'Edit Profile',
 
 ];
