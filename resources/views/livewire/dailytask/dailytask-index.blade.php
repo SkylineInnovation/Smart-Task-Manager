@@ -135,7 +135,7 @@
                         @endif
 
                         @if ($showColumn['proearty'])
-                            <td> {{ $dailytask->the_proearty() }} </td>
+                            <td> {{ $dailytask->the_priority_level() }} </td>
                         @endif
 
                         @if ($showColumn['status'])
