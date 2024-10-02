@@ -28,7 +28,10 @@ return [
     'repeat_evrey' => 'Repeat Evrey',
 
     'pending' => 'Pending',
+    // 'active' => 'Active',
+
     'active' => 'Active',
+    'disapled' => 'Disapled',
 
 
 ];

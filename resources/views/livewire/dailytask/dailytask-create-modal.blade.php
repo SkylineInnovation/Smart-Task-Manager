@@ -54,8 +54,8 @@
                                 ])
 
                                 @include('inputs.create.input', [
-                                    'label' => 'task.discount',
-                                    'name' => 'task.discount',
+                                    'label' => 'dailytask.discount',
+                                    'name' => 'dailytask.discount',
                                     'livewire' => 'discount',
                                     'type' => 'number',
                                     'step' => 1,
@@ -144,18 +144,18 @@
                                     <div class="form-group">
                                         <label for="proearty">{{ __('dailytask.proearty') }}</label>
                                         <select wire:model="proearty" name="proearty" id="proearty" class="form-control">
-                                            <option value="low">{{ __('task.low') }}</option>
-                                            <option value="medium">{{ __('task.medium') }}</option>
-                                            <option value="high">{{ __('task.high') }}</option>
+                                            <option value="low">{{ __('dailytask.low') }}</option>
+                                            <option value="medium">{{ __('dailytask.medium') }}</option>
+                                            <option value="high">{{ __('dailytask.high') }}</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label for="status">{{ __('task.status') }}</label>
+                                        <label for="status">{{ __('dailytask.status') }}</label>
                                         <select wire:model="status" name="status" id="status" class="form-control">
-                                            <option value="active">{{ __('task.active') }}</option>
-                                            <option value="disapled">{{ __('task.disapled') }}</option>
+                                            <option value="active">{{ __('dailytask.active') }}</option>
+                                            <option value="disapled">{{ __('dailytask.disapled') }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -267,8 +267,8 @@
                                 ])
 
                                 @include('inputs.edit.input', [
-                                    'label' => 'task.discount',
-                                    'name' => 'task.discount',
+                                    'label' => 'dailytask.discount',
+                                    'name' => 'dailytask.discount',
                                     'livewire' => 'discount',
                                     'val' => $dailytask->discount(),
                                     'type' => 'number',
@@ -369,11 +369,11 @@
                                     <div class="form-group">
                                         <label for="status">{{ __('dailytask.status') }}</label>
                                         <select wire:model="status" name="status" id="status" class="form-control">
-                                            <option value="pending">{{ __('dailytask.pending') }}</option>
                                             <option value="active">{{ __('dailytask.active') }}</option>
+                                            <option value="disapled">{{ __('dailytask.disapled') }}</option>
                                             {{-- <option value="auto-finished">{{ __('dailytask.auto-finished') }}</option>
                                             <option value="manual-finished">{{ __('dailytask.manual-finished') }}</option> --}}
-                                            {{-- <option value="draft">{{ __('task.draft') }}</option> --}}
+                                            {{-- <option value="draft">{{ __('dailytask.draft') }}</option> --}}
                                         </select>
                                     </div>
                                 </div>

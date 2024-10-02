@@ -29,5 +29,8 @@ return [
 
 
     'pending' => 'معلق',
+    // 'active' => 'نشط',
+
     'active' => 'نشط',
+    'disapled' => 'معلق',
 ];
