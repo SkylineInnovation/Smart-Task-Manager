@@ -389,7 +389,7 @@
                             </div>
 
                             <button wire:click="addComment()" type="button" class="w-100 btn btn-success">
-                                {{ __('task.Commet') }}
+                                {{ __('task.Comment') }}
                             </button>
                         </div>
 
@@ -475,7 +475,7 @@
 
                                                 <button wire:click="replayComment()" type="button"
                                                     class="btn btn-success">
-                                                    {{ __('task.Commet') }}
+                                                    {{ __('task.Comment') }}
                                                 </button>
                                             </div>
                                         </div>

@@ -1,6 +1,6 @@
 <!-- FAVICON -->
-<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/brand/favicon.ico') }}" />
-{{-- <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png"> --}}
+<link rel="shortcut icon" type="image/x-icon" sizes="50x50" href="{{ asset('assets/images/brand/favicon.png') }}" />
+{{-- <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png"> image/x-icon .ico --}}
 
 <!-- TITLE -->
 <title>{{ config('app.name', 'Laravel') }}</title>
