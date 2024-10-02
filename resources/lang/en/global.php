@@ -193,4 +193,6 @@ return [
 
     'enter desc' => 'Enter Description',
     'automation tasks' => 'Automation Tasks',
+
+    'Profile Updated' => 'Profile Updated',
 ];

@@ -168,4 +168,6 @@ return [
 
     'reports' => 'تقارير',
     'enter desc' => 'ادخل الوصف',
+
+    'Profile Updated' => 'تم تحديث الملف الشخصي',
 ];
