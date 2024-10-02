@@ -28,7 +28,7 @@ return [
     'email' => 'Email',
     'phone' => 'Phone',
     'gender' => 'Gender',
-    'birth_day' => 'Birth Day',
+    'birth_day' => 'Birthdate',
     'status' => 'Status',
 
     'role' => 'Role',
