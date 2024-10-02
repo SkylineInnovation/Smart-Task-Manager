@@ -195,4 +195,6 @@ return [
     'automation tasks' => 'Automation Tasks',
 
     'Profile Updated' => 'Profile Updated',
+    'Password Changed' => 'Password Changed',
+    'Password Not Match' => 'Password Not Match',
 ];

@@ -9,9 +9,9 @@
                 <div class="card-body">
                     <div class="text-center">
                         <div class="userprofile">
-                            <div class="userpic brround">
+                            {{-- <div class="userpic brround">
                                 <img src="{{ asset($user->image) }}" class="userpic brround">
-                            </div>
+                            </div> --}}
                             <h3 class="username text-dark mb-2">{{ $user->name() }}</h3>
                             <p class="mb-1 text-muted">{{ $user->rolesSideBySide() }}</p>
                             <div class="text-center mb-4">
