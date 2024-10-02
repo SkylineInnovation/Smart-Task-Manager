@@ -9,10 +9,8 @@
                 {{ env('COPYRIGHT_COMPANY_NAME', 'Codexal') }}
                 {{-- </a> --}}
                 {{-- <br> --}}
-
-
             </div>
-            <div class="col-md-4 col-sm-4 col-4 text-end">
+            <div class="col-md-4 col-sm-4 col-4 text-end pe-5">
                 Power By
                 <a href="{{ env('POWER_COMPANY_LINK', 'javascript:;') }}" target="_blank">
                     {{-- {{ env('POWER_COMPANY_NAME', 'Codexal') }} --}}
