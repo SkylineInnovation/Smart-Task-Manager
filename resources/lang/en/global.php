@@ -14,11 +14,11 @@ return [
     */
 
     'dashboard' => 'Dashboard',
-    'main' => 'main',
+    'main' => 'Main',
     'crud' => 'CRUD',
     'trash' => 'Trash',
     'all' => 'All',
-    'show-and-hide-table-columns' => 'Show and hide table columns',
+    'show-and-hide-table-columns' => 'Show & Hide Table Columns',
     'search' => 'Search',
     'order-by' => 'Order By',
     'sort-by' => 'Sort By',
@@ -162,14 +162,14 @@ return [
     'from_date' => 'From Date',
     'to_date' => 'To Date',
     // 'search' => 'search',
-    'restart_filter' => 'Restart filter',
+    'restart_filter' => 'Restart Filter',
     // 'clear' => 'clear',
 
     'total' => 'Total',
     'auto' => 'Auto',
     'completed' => 'Completed',
 
-    'accept-extratime' => 'Accept Extratime',
+    'accept-extratime' => 'Accept Extra Time',
     'accept-leave' => 'Accept Leave',
 
     'extratime' => 'Extra Time',
