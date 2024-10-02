@@ -6,25 +6,25 @@
             {{-- <td>slug</td> --}}
 
 
-            <td>manager</td>
-            <td>title</td>
+            <td>{{ __('dailytask.manager') }}</td>
+            <td>{{ __('dailytask.title') }}</td>
 
-            <td>description</td>
+            <td>{{ __('dailytask.description') }}</td>
 
-            <td>start_time</td>
+            <td>{{ __('dailytask.start_time') }}</td>
 
-            <td>end_time</td>
+            <td>{{ __('dailytask.end_time') }}</td>
 
-            <td>proearty</td>
+            <td>{{ __('dailytask.proearty') }}</td>
 
-            <td>status</td>
+            <td>{{ __('dailytask.status') }}</td>
 
-            <td>repeat_time</td>
+            <td>{{ __('dailytask.repeat_time') }}</td>
 
-            <td>repeat_evrey</td>
+            <td>{{ __('dailytask.repeat_evrey') }}</td>
 
 
-            <td>created at</td>
+            <td>{{ __('dailytask.created_at') }}</td>
             {{-- <td>updated at</td> --}}
             {{-- <td>deleted at</td> --}}
 
