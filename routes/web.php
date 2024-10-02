@@ -190,6 +190,3 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
 //         $tasks
 //     ];
 // });
-
-
-// Mixed Content: The page at 'https://taskm3020.com/admin/task-board' was loaded over HTTPS, but requested an insecure XMLHttpRequest endpoint 'http://taskm3020.com/livewire/upload-file?expires=1727852709&signature=ace12c1141b1f5ee580d959c16bcf7baa862f9f9ae514d31f42f8d4729789058'. This request has been blocked; the content must be served over HTTPS.
