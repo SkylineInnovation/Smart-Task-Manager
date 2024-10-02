@@ -33,5 +33,9 @@ return [
     'active' => 'Active',
     'disapled' => 'Disapled',
 
+    'low' => 'Low',
+    'medium' => 'Medium',
+    'high' => 'High',
+
 
 ];
