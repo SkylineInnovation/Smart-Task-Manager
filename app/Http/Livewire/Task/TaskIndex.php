@@ -77,7 +77,7 @@ class TaskIndex extends Component
 
         $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
 
-        $this->main_tasks = \App\Models\Task::whereNullOrEmptyOrZero('main_task_id')->where('show', 1)->orderBy('sort')->get();
+        // $this->main_tasks = \App\Models\Task::whereNullOrEmptyOrZero('main_task_id')->where('show', 1)->orderBy('sort')->get();
 
 
         $this->showColumn = collect([

@@ -118,7 +118,7 @@
                                     </div>
                                 </div>
 
-                                @include('inputs.create.select', [
+                                {{-- @include('inputs.create.select', [
                                     'label' => 'task.main_task',
                                     'name' => 'task.main_task_id',
                                     'arr' => $main_tasks,
@@ -127,7 +127,7 @@
                                     'lg' => 12,
                                     'md' => 12,
                                     'sm' => 12,
-                                ])
+                                ]) --}}
 
                             </div>
 
@@ -161,10 +161,13 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title=" {{ __('global.close') }}" class="btn btn-secondary close-btn" data-dismiss="modal">
+                            <button type="button" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title=" {{ __('global.close') }}" class="btn btn-secondary close-btn" data-dismiss="modal">
                                 {{ __('global.close') }}
                             </button>
-                            <button type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('global.save-changes') }}" wire:click.prevent="store()" class="btn btn-success">
+                            <button type="submit" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="{{ __('global.save-changes') }}" wire:click.prevent="store()"
+                                class="btn btn-success">
                                 {{ __('global.save-changes') }}
                             </button>
                         </div>
@@ -299,7 +302,7 @@
                                     </div>
                                 </div>
 
-                                @include('inputs.edit.select', [
+                                {{-- @include('inputs.edit.select', [
                                     'label' => 'task.main_task',
                                     'name' => 'task.main_task_id',
                                     'arr' => $main_tasks,
@@ -309,7 +312,7 @@
                                     'lg' => 12,
                                     'md' => 12,
                                     'sm' => 12,
-                                ])
+                                ]) --}}
 
                             </div>
 
