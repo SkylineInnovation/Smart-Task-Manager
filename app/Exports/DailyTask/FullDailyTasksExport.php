@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\FromView;
 
 class FullDailyTasksExport implements FromView
 {
-    private $dailytasks = [];
+    private $dailytasks;
 
     public $by_date;
     public $from_date;
@@ -30,7 +30,7 @@ class FullDailyTasksExport implements FromView
      */
     public function view(): View
     {
-        return view('export.DailyTask.dailytask-export', [
+        return view('export.Dailytask.dailytask-export', [
             'dailytasks' => $this->dailytasks,
             'number' => 0,
         ]);
