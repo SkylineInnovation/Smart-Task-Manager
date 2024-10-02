@@ -142,7 +142,7 @@
 
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label for="proearty">{{ __('task.proearty') }}</label>
+                                        <label for="proearty">{{ __('dailytask.proearty') }}</label>
                                         <select wire:model="proearty" name="proearty" id="proearty" class="form-control">
                                             <option value="low">{{ __('task.low') }}</option>
                                             <option value="medium">{{ __('task.medium') }}</option>
