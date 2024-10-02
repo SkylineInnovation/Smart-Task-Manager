@@ -12,6 +12,11 @@ return [
     | these language lines according to your application's requirements.
     |
     */
+    'id' => 'Id',
+    'slug' => 'slug',
+    'created_at' => 'Created Date',
+    'date' => 'Date',
+    'time' => 'Time',
 
     'name' => 'Name',
     'first_name' => 'First Name',

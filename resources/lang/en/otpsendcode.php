@@ -5,8 +5,8 @@ return [
     'id' => 'Id',
     'slug' => 'slug',
     'created_at' => 'Created Date',
-    'date' => 'date',
-    'time' => 'time',
+    'date' => 'Date',
+    'time' => 'Time',
 
 
     'user' => 'user',

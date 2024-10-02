@@ -2,16 +2,16 @@
 
 return [
 
-    'id' => 'Id',
+    'id' => 'id',
     'slug' => 'slug',
-    'created_at' => 'Created Date',
-    'date' => 'date',
-    'time' => 'time',
+    'created_at' => 'تاريخ الإنشاء',
+    'date' => 'التاريخ',
+    'time' => 'الوقت',
 
 
     'user' => 'مستخدم',
 
-    'otp_code' =>'رمز otp',
+    'otp_code' => 'رمز otp',
 
     'phone_number' => 'رقم التليفون',
 

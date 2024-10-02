@@ -3,7 +3,7 @@
 return [
 
     'id' => 'Id',
-    'slug' => 'Slug',
+    'slug' => 'slug',
     'created_at' => 'Created Date',
     'date' => 'Date',
     'time' => 'Time',

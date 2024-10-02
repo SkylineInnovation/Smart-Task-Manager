@@ -2,11 +2,11 @@
 
 return [
 
-    'id' => 'Id',
+    'id' => 'id',
     'slug' => 'slug',
-    'created_at' => 'Created Date',
-    'date' => 'date',
-    'time' => 'time',
+    'created_at' => 'تاريخ الإنشاء',
+    'date' => 'التاريخ',
+    'time' => 'الوقت',
 
 
     'manager' => 'رئيس',

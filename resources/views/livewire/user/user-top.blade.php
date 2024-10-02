@@ -3,7 +3,7 @@
         <div>
             <small class="form-text text-muted">{{ __('global.search') }}</small>
             <div class="form-group">
-                <input wire:model="search" class="form-control">
+                <input wire:model="search" class="form-control" placeholder="{{ __('global.search') }}">
             </div>
         </div>
 
