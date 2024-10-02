@@ -26,7 +26,7 @@
 
         <div>
             {{-- <small class="form-text text-muted">{{ __('global.sort-by') }}</small> --}}
-            <select wire:model="order" class="form-control form-group">
+            <select wire:model="order" class="form-control form-group" style="width: 100px;">
                 <option value="asc">{{ __('global.Asc') }}</option>
                 <option value="desc">{{ __('global.Desc') }}</option>
             </select>

@@ -32,7 +32,7 @@
         </div>
 
         <div>
-            <select wire:model="orderWay" class="form-control form-group w-100">
+            <select wire:model="orderWay" class="form-control form-group" style="width: 100px;">
                 <option value="asc">{{ __('global.Asc') }}</option>
                 <option value="desc">{{ __('global.Desc') }}</option>
             </select>
