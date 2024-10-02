@@ -28,4 +28,6 @@ return [
     'repeat_evrey' => 'كرر في كل مرة',
 
 
+    'pending' => 'معلق',
+    'active' => 'نشط',
 ];

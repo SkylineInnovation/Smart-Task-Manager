@@ -52,7 +52,7 @@
                                     'md' => 8,
                                     'sm' => 8,
                                 ])
-                                
+
                                 @include('inputs.create.input', [
                                     'label' => 'task.discount',
                                     'name' => 'task.discount',
@@ -367,10 +367,10 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label for="status">{{ __('task.status') }}</label>
+                                        <label for="status">{{ __('dailytask.status') }}</label>
                                         <select wire:model="status" name="status" id="status" class="form-control">
-                                            <option value="pending">{{ __('task.pending') }}</option>
-                                            <option value="active">{{ __('task.active') }}</option>
+                                            <option value="pending">{{ __('dailytask.pending') }}</option>
+                                            <option value="active">{{ __('dailytask.active') }}</option>
                                             {{-- <option value="auto-finished">{{ __('dailytask.auto-finished') }}</option>
                                             <option value="manual-finished">{{ __('dailytask.manual-finished') }}</option> --}}
                                             {{-- <option value="draft">{{ __('task.draft') }}</option> --}}

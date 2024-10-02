@@ -151,6 +151,9 @@ return [
     'discounts' => 'خصومات',
     'create-discount' => 'إنشاء خصم',
 
+    'dailytasks' => 'مهام يومية',
+    'create-dailytask' => 'اضافة مهمة يومية',
+
 
     'task-board' => 'لوحة المهام',
     'task view' => 'عرض المهام',

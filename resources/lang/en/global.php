@@ -150,6 +150,9 @@ return [
     'discounts' => 'Discounts',
     'create-discount' => 'Create New Discount',
 
+    'dailytasks' => 'Daily Tasks',
+    'create-dailytask' => 'Create New Daily Task',
+
     // some role valideate message in sub
     // 'please_select_customer' => 'Please Select Customer',
 
