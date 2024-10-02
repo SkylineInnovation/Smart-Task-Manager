@@ -15,9 +15,9 @@ return [
 
     'note' => 'Note',
 
-    'is_used' => 'IS_used',
+    'is_used' => 'Is Used',
 
-    'ip_address' => 'IP_address',
+    'ip_address' => 'IP Address',
 
 
 ];
