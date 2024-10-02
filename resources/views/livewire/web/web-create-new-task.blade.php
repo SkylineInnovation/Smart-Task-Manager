@@ -101,11 +101,11 @@
                 </div>
                 <div class="modal-footer">
                     <button wire:click="cancel()" type="button" class="btn btn-secondary" data-dismiss="modal">
-                        {{ __('global.Close') }}
+                        {{ __('global.close') }}
                     </button>
 
                     <button wire:click="store()" type="submit" class="btn btn-primary">
-                        {{ __('global.Save Changes') }}
+                        {{ __('global.save-changes') }}
                     </button>
                 </div>
             </div>
