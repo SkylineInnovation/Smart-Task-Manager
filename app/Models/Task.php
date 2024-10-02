@@ -195,8 +195,9 @@ class Task extends Model
         elseif ($this->priority_level == 'high')
             return __('task.high');
 
-        return 'ERROR';
+        return '';
     }
+
     public function the_priority_color()
     {
         if ($this->priority_level == 'low')

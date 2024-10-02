@@ -135,11 +135,11 @@
                         @endif
 
                         @if ($showColumn['proearty'])
-                            <td> {{ $dailytask->proearty }} </td>
+                            <td> {{ $dailytask->the_proearty() }} </td>
                         @endif
 
                         @if ($showColumn['status'])
-                            <td> {{ $dailytask->status }} </td>
+                            <td> {{ $dailytask->the_status() }} </td>
                         @endif
 
                         @if ($showColumn['repeat_time'])

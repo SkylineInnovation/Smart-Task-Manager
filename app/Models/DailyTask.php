@@ -160,6 +160,44 @@ class DailyTask extends Model
         });
     }
 
+    public function the_priority_level()
+    {
+        if ($this->priority_level == 'low')
+            return __('task.low');
+        elseif ($this->priority_level == 'medium')
+            return __('task.medium');
+        elseif ($this->priority_level == 'high')
+            return __('task.high');
+
+        return '';
+    }
+
+    public function the_priority_color()
+    {
+        if ($this->priority_level == 'low')
+            return '#00FF00';
+        elseif ($this->priority_level == 'medium')
+            return '#0000FF';
+        elseif ($this->priority_level == 'high')
+            return '#FF0000';
+
+        return '';
+    }
+
+    public function the_status()
+    {
+        if ($this->status == 'pending')
+            return __('task.pending');
+        elseif ($this->status == 'active')
+            return __('task.active');
+        elseif ($this->status == 'auto-finished')
+            return __('task.auto-finished');
+        elseif ($this->status == 'manual-finished')
+            return __('task.manual-finished');
+
+        return '';
+    }
+
     public function add_by_user()
     {
         return $this->belongsTo(User::class, 'add_by');
