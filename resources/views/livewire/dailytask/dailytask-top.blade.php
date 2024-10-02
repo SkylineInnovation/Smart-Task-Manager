@@ -7,41 +7,41 @@
         </div>
 
         <div>
-            <select wire:model='orderBy' class="form-control form-group">
+            <select wire:model='orderBy' class="form-control form-group" style="width: 150px;">
                 <option value="id">{{ __('global.id') }}</option>
-                
-                        <option value='manager_id'>{{ __('dailytask.manager') }}</option>
-                    
-                        <option value='title'>{{ __('dailytask.title') }}</option>
-                    
-                        <option value='description'>{{ __('dailytask.description') }}</option>
-                    
-                        <option value='start_time'>{{ __('dailytask.start_time') }}</option>
-                    
-                        <option value='end_time'>{{ __('dailytask.end_time') }}</option>
-                    
-                        <option value='proearty'>{{ __('dailytask.proearty') }}</option>
-                    
-                        <option value='status'>{{ __('dailytask.status') }}</option>
-                    
-                        <option value='repeat_time'>{{ __('dailytask.repeat_time') }}</option>
-                    
-                        <option value='repeat_evrey'>{{ __('dailytask.repeat_evrey') }}</option>
-                    
+
+                <option value='manager_id'>{{ __('dailytask.manager') }}</option>
+
+                <option value='title'>{{ __('dailytask.title') }}</option>
+
+                <option value='description'>{{ __('dailytask.description') }}</option>
+
+                <option value='start_time'>{{ __('dailytask.start_time') }}</option>
+
+                <option value='end_time'>{{ __('dailytask.end_time') }}</option>
+
+                <option value='proearty'>{{ __('dailytask.proearty') }}</option>
+
+                <option value='status'>{{ __('dailytask.status') }}</option>
+
+                <option value='repeat_time'>{{ __('dailytask.repeat_time') }}</option>
+
+                <option value='repeat_evrey'>{{ __('dailytask.repeat_evrey') }}</option>
+
 
                 <option value="created_at">{{ __('global.created_at') }}</option>
             </select>
         </div>
 
         <div>
-            <select wire:model="orderWay" class="form-control form-group">
+            <select wire:model="orderWay" class="form-control form-group" style="width: 100px;">
                 <option value="asc">{{ __('global.Asc') }}</option>
                 <option value="desc">{{ __('global.Desc') }}</option>
             </select>
         </div>
 
         <div>
-            <select wire:model='perPage' class="form-control form-group">
+            <select wire:model='perPage' class="form-control form-group" style="width: 100px;">
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="25">25</option>
@@ -62,7 +62,8 @@
         @endrole
         @role('owner|operations')
             <div>
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#show-hide-dailytask-columnModal">
+                <button type="button" class="btn btn-info" data-toggle="modal"
+                    data-target="#show-hide-dailytask-columnModal">
                     <i class="ti-layout-column4 text-white"></i>
                 </button>
             </div>
@@ -91,7 +92,8 @@
         @if ($admin_view_status != 'deleted')
             @permission('create-dailytask')
                 <div>
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-new-dailytask-modal">
+                    <button type="button" class="btn btn-success" data-toggle="modal"
+                        data-target="#create-new-dailytask-modal">
                         <i class="ti-plus text-white"></i>
                     </button>
                 </div>
@@ -175,7 +177,7 @@
                                 @include('inputs.create.input', [
                                     'label' => '',
                                     'name' => 'excel_file',
-                                    'type' => 'file', 
+                                    'type' => 'file',
                                     'required' => 'required',
                                     'lg' => 12,
                                     'md' => 12,
@@ -271,7 +273,7 @@
                         </div>
                     @endrole --}}
 
-                    
+
                     <div class='form-group'>
                         <label for='manager-select'>{{ __('global.by_managers') }}</label>
                         <select id='manager-select' class='form-control' wire:model='select_manager'>

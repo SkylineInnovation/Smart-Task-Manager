@@ -51,11 +51,11 @@
 
                                     @role('owner|manager')
                                         {{-- @if (in_array($task->status, ['auto-finished', 'manual-finished'])) --}}
-                                        <a class="dropdown-item" href="javascript:;"
+                                        {{-- <a class="dropdown-item" href="javascript:;"
                                             wire:click="draftTask({{ $task->id }})">
                                             <i class="fa fa-warning text-danger" aria-hidden="true"></i>
                                             &nbsp; {{ __('task.draft') }}
-                                        </a>
+                                        </a> --}}
                                         {{-- @endif --}}
 
                                         <a class="dropdown-item" href="javascript:;" data-toggle="modal"
@@ -163,9 +163,9 @@
         </div>
 
         {{-- --}}{{-- --}}{{-- --}}{{-- --}}
-        <div wire:ignore.self class="modal fade" id="show-task-modal-{{ $task->id }}" tabindex="-1"
-            role="dialog" aria-labelledby="show-task-modal-{{ $task->id }}Label" aria-hidden="true"
-            data-backdrop="static" data-keyboard="false">
+        <div wire:ignore.self class="modal fade" id="show-task-modal-{{ $task->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="show-task-modal-{{ $task->id }}Label" aria-hidden="true" data-backdrop="static"
+            data-keyboard="false">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
