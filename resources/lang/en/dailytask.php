@@ -31,7 +31,7 @@ return [
     // 'active' => 'Active',
 
     'active' => 'Active',
-    'disapled' => 'Disapled',
+    'disabled' => 'Disabled',
 
     'low' => 'Low',
     'medium' => 'Medium',

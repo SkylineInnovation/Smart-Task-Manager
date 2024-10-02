@@ -32,7 +32,7 @@ return [
     // 'active' => 'نشط',
 
     'active' => 'نشط',
-    'disapled' => 'معلق',
+    'disabled' => 'معلق',
 
     'low' => 'منخفض',
     'medium' => 'متوسط',

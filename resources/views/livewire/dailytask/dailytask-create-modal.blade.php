@@ -155,7 +155,7 @@
                                         <label for="status">{{ __('dailytask.status') }}</label>
                                         <select wire:model="status" name="status" id="status" class="form-control">
                                             <option value="active">{{ __('dailytask.active') }}</option>
-                                            <option value="disapled">{{ __('dailytask.disapled') }}</option>
+                                            <option value="disabled">{{ __('dailytask.disabled') }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -370,7 +370,7 @@
                                         <label for="status">{{ __('dailytask.status') }}</label>
                                         <select wire:model="status" name="status" id="status" class="form-control">
                                             <option value="active">{{ __('dailytask.active') }}</option>
-                                            <option value="disapled">{{ __('dailytask.disapled') }}</option>
+                                            <option value="disabled">{{ __('dailytask.disabled') }}</option>
                                             {{-- <option value="auto-finished">{{ __('dailytask.auto-finished') }}</option>
                                             <option value="manual-finished">{{ __('dailytask.manual-finished') }}</option> --}}
                                             {{-- <option value="draft">{{ __('dailytask.draft') }}</option> --}}
