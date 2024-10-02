@@ -10,7 +10,7 @@
         <div>
             {{-- <small class="form-text text-muted">{{ __('global.order-by') }}</small> --}}
 
-            <select wire:model='orderBy' class="form-control form-group">
+            <select wire:model='orderBy' class="form-control form-group" style="width: 150px;">
                 <option value="id">{{ __('global.id') }}</option>
                 <option value="first_name">{{ __('user.first_name') }}</option>
                 <option value="last_name">{{ __('user.last_name') }}</option>
@@ -34,7 +34,7 @@
 
         <div>
             {{-- <small class="form-text text-muted">{{ __('global.per-page') }}</small> --}}
-            <select wire:model='perPage' class="form-control form-group">
+            <select wire:model='perPage' class="form-control form-group" style="width: 100px;">
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="25">25</option>

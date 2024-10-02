@@ -7,14 +7,14 @@
         </div>
 
         <div>
-            <select wire:model='orderBy' class="form-control form-group">
+            <select wire:model='orderBy' class="form-control form-group" style="width: 150px;">
                 <option value="id">{{ __('global.id') }}</option>
 
                 <option value='manager_id'>{{ __('task.manager') }}</option>
 
                 <option value='title'>{{ __('task.title') }}</option>
 
-                <option  value='desc'>{{ __('task.desc') }}</option>
+                <option value='desc'>{{ __('task.desc') }}</option>
 
                 <option value='start_time'>{{ __('task.start_time') }}</option>
 
@@ -39,7 +39,7 @@
         </div>
 
         <div>
-            <select wire:model='perPage' class="form-control form-group">
+            <select wire:model='perPage' class="form-control form-group" style="width: 100px;">
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="25">25</option>
