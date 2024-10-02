@@ -542,7 +542,7 @@
 
                                                                 <button wire:click="replayComment()" type="button"
                                                                     class="btn btn-success">
-                                                                    {{ __('task.Commet') }}
+                                                                    {{ __('task.Comment') }}
                                                                 </button>
                                                             </div>
                                                         </div>
