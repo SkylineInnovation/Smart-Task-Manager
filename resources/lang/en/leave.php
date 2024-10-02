@@ -9,34 +9,34 @@ return [
     'time' => 'Time',
 
 
-    'task' => 'task',
+    'task' => 'Task',
 
-    'user' => 'user',
+    'user' => 'User',
 
-    'type' => 'type',
+    'type' => 'Type',
 
-    'time_out' => 'time out',
+    'time_out' => 'Time Out',
 
-    'time_in' => 'time in',
+    'time_in' => 'Time In',
 
-    'effect_on_time' => 'effect on time',
+    'effect_on_time' => 'Effect On Time',
 
-    'reason' => 'reason',
+    'reason' => 'Reason',
 
-    'result' => 'result',
+    'result' => 'Result',
 
-    'status' => 'status',
+    'status' => 'Status',
 
-    'accepted_by_user' => 'accepted by user',
+    'accepted_by_user' => 'Accepted By User',
 
-    'accepted_time' => 'accepted time',
+    'accepted_time' => 'Accepted Time',
 
-    'leave' => 'leave',
-    'part_of_task' => 'part of task',
+    'leave' => 'Leave',
+    'part_of_task' => 'Part Of Task',
 
-    'pending' => 'pending',
-    'accepted' => 'accepted',
-    'rejected' => 'rejected',
+    'pending' => 'Pending',
+    'accepted' => 'Accepted',
+    'rejected' => 'Rejected',
 
 
 ];

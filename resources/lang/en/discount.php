@@ -9,13 +9,13 @@ return [
     'time' => 'Time',
 
 
-    'task' => 'task',
+    'task' => 'Task',
 
-    'user' => 'user',
+    'user' => 'User',
 
-    'amount' => 'amount',
+    'amount' => 'Amount',
 
-    'reason' => 'reason',
+    'reason' => 'Reason',
 
     'auto-finish-task' => 'Auto Finish Task',
 ];
