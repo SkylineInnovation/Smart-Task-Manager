@@ -68,7 +68,7 @@ return [
     'email' => 'Email',
     'phone' => 'Phone',
     'gender' => 'Gender',
-    'birth_day' => 'Birth Day',
+    'birth_day' => 'Birthdate',
     'new_password' => 'New Password',
     'confirm_password' => 'Confirm Password',
     'updated' => 'Updated',
@@ -112,8 +112,8 @@ return [
     'updated date time' => 'Updated Time',
     'deleted date time' => 'Deleted Time',
 
-    'by_date' => 'By date',
-    'by_users' => 'By users',
+    'by_date' => 'By Date',
+    'by_users' => 'By Users',
 
     'applang' => 'Lang',
     'name' => 'Name',

@@ -13,7 +13,7 @@ return [
 
     'task' => 'Task',
 
-    'title' => 'title',
+    'title' => 'Title',
 
     'desc' => 'Description',
 

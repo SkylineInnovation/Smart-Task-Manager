@@ -9,29 +9,29 @@ return [
     'time' => 'Time',
 
 
-    'task' => 'task',
+    'task' => 'Task',
 
-    'user' => 'user',
+    'user' => 'User',
 
-    'accepted_by_user' => 'accepted by user',
+    'accepted_by_user' => 'Accepted By User',
 
-    'reason' => 'reason',
+    'reason' => 'Reason',
 
-    'result' => 'result',
+    'result' => 'Result',
 
-    'request_time' => 'request time',
+    'request_time' => 'Request Time',
 
-    'from_time' => 'from time',
-    'to_time' => 'to time',
+    'from_time' => 'From Time',
+    'to_time' => 'To Time',
 
-    'response_time' => 'response time',
+    'response_time' => 'Response Time',
 
-    'status' => 'status',
+    'status' => 'Status',
 
-    'duration' => 'duration',
+    'duration' => 'Duration',
 
-    'pending' => 'pending',
-    'accepted' => 'accepted',
-    'rejected' => 'rejected',
+    'pending' => 'Pending',
+    'accepted' => 'Accepted',
+    'rejected' => 'Rejected',
 
 ];
