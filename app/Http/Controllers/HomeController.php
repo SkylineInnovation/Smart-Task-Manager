@@ -51,7 +51,10 @@ class HomeController extends Controller
             Auth::logout();
 
             $user = session()->get('admin_user');
-            Auth::login($user);
+            try {
+                Auth::login($user);
+            } catch (\Throwable $th) {
+            }
             session()->forget('admin_user');
         } else {
             if (!session()->has('admin_user'))
