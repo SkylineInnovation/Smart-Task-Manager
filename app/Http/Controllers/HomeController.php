@@ -48,19 +48,21 @@ class HomeController extends Controller
     public function logInAsUser($id)
     {
         if ($id == 0) {
+            $user = session()->get('admin_user');
+            if (!$user) return;
+
             Auth::logout();
 
-            $user = session()->get('admin_user');
-            try {
-                Auth::login($user);
-            } catch (\Throwable $th) {
-            }
+            Auth::login($user);
+
             session()->forget('admin_user');
         } else {
             if (!session()->has('admin_user'))
                 session()->put('admin_user', Auth::user());
 
             $user = User::find($id);
+            if (!$user) return;
+
             Auth::logout();
 
             Auth::login($user);
