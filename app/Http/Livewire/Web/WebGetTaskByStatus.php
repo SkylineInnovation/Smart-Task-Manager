@@ -301,7 +301,13 @@ class WebGetTaskByStatus extends Component
         $this->edit_task_priority_level = $task->priority_level;
         $this->edit_task_status = $task->status;
 
-        $this->employees = $task->employees;
+        // $this->employees = $task->employees;
+        if ($this->user->hasRole('owner')) {
+            $this->employees = \App\Models\User::orderBy('first_name')->get();
+        } else {
+            $this->employees = $this->user->employees;
+        }
+
         $this->edit_task_selectedEmployees = $task->employees->pluck('id');
 
         $this->edit_task_discount = $task->discount();
