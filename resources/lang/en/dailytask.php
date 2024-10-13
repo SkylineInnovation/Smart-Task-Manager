@@ -25,7 +25,7 @@ return [
 
     'repeat_time' => 'Repeat Time',
 
-    'repeat_evrey' => 'Repeat Evrey',
+    'repeat_evrey' => 'Repeat Every',
 
     'pending' => 'Pending',
     // 'active' => 'Active',
@@ -37,7 +37,7 @@ return [
     'medium' => 'Medium',
     'high' => 'High',
 
-    'discount' => 'Discount',
+    'discount' => 'Deduction',
 
 
 ];

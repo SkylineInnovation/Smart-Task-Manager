@@ -17,7 +17,7 @@ return [
 
     'desc' => 'Description',
 
-    'replay_time' => 'Replay Time',
+    'replay_time' => 'Reply Time',
 
     'main_comment' => 'Main comment',
 

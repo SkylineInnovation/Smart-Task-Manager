@@ -14,7 +14,7 @@ return [
     'the task' => 'The task',
     'started by employee' => 'Started by employee',
     ////////////employee_manual
-    'there is new task assigned' => 'Shere is new task assigned',
+    'there is new task assigned' => 'There is new task assigned',
 
 
 

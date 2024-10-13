@@ -9,7 +9,7 @@ return [
     'time' => 'الوقت',
 
 
-    'manager' => 'رئيس',
+    'manager' => 'مدير',
 
     'title' => 'عنوان',
 
@@ -23,16 +23,16 @@ return [
 
     'status' => 'حالة',
 
-    'repeat_time' => 'كرر الوقت',
+    'repeat_time' => 'تكرار الوقت',
 
-    'repeat_evrey' => 'كرر في كل مرة',
+    'repeat_evrey' => 'تكرار في كل مرة',
 
 
     'pending' => 'معلق',
     // 'active' => 'نشط',
 
     'active' => 'نشط',
-    'disabled' => 'معلق',
+    'disabled' => 'غير مفعل',
 
     'low' => 'منخفض',
     'medium' => 'متوسط',

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'dashboard' => 'لوحة المعلومات',
+    'dashboard' => 'لوحة التحكم',
     'main' => 'الرئيسية',
     'crud' => 'CRUD',
     'trash' => 'سلة المهملات',
@@ -53,7 +53,7 @@ return [
     'import_excel' => 'استيراد Excel',
     'import' => 'استيراد',
     'import_type' => 'نوع الاستيراد',
-    'stander' => 'الموقف',
+    'stander' => 'قياسي',
 
     'Accept' => 'قبول',
     'Reject' => 'رفض',
@@ -172,7 +172,7 @@ return [
 
     'all_users_in_the_app' => 'جميع المستخدمين في النظام',
 
-    'task_view' => 'المهمة عرض',
+    'task_view' => 'عرض المهمة ',
     'reports' => 'التقارير',
 
     'by_tasks' => 'حسب المهام',

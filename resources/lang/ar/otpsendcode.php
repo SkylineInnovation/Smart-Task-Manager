@@ -13,13 +13,13 @@ return [
 
     'otp_code' => 'رمز otp',
 
-    'phone_number' => 'رقم التليفون',
+    'phone_number' => 'رقم الهاتف',
 
     'applecation' => 'طلب',
 
     'code_status' => 'حالة الكود',
 
-    'back_response' => 'استجابة الظهر',
+    'back_response' => 'استجابة عائدة',
 
 
 ];

@@ -9,7 +9,7 @@ return [
     'time' => 'الوقت',
 
 
-    'task' => 'تاسك',
+    'task' => 'مهمة',
 
     'user' => 'المستخدم',
 
@@ -19,7 +19,7 @@ return [
 
     'time_in' => 'وقت الدخول',
 
-    'effect_on_time' => 'تاثير على الوقت',
+    'effect_on_time' => 'تأثير على الوقت',
 
     'reason' => 'السبب',
 
@@ -32,7 +32,7 @@ return [
     'accepted_time' => 'وقت الموافقة',
 
     'leave' => 'مغادرة',
-    'part_of_task' => 'جزء من تاسك',
+    'part_of_task' => 'جزء من مهمة',
 
     'pending' => 'قيد الانتظار',
     'accepted' => 'تم الموافقة',

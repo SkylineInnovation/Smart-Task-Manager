@@ -15,7 +15,7 @@ return [
 
     'phone_number' => 'Phone Number',
 
-    'applecation' => 'Applecation',
+    'applecation' => 'Application',
 
     'code_status' => 'Code Status',
 

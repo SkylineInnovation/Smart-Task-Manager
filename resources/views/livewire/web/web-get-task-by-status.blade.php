@@ -449,6 +449,10 @@
                                                     placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="comment_desc"></textarea>
                                             </div>
 
+                                            @error('comment_desc')
+                                                <span class="error">{{ $message }}</span>
+                                            @enderror
+
                                             <button wire:click="addComment()" type="button"
                                                 class="w-100 btn btn-success">
                                                 {{ __('task.Comment') }}
@@ -532,6 +536,10 @@
                                                                     {{-- <div wire:ignore.self id="summer_desc"></div> --}}
                                                                     <textarea name='desc' id='desc' rows="3" class='form-control'
                                                                         placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="replay_comment_desc"></textarea>
+
+                                                                    @error('comment_desc')
+                                                                        <span class="error">{{ $message }}</span>
+                                                                    @enderror
                                                                 </div>
 
 

@@ -53,7 +53,7 @@ return [
     'import_excel' => 'Import Excel',
     'import' => 'Import',
     'import_type' => 'Import Type',
-    'stander' => 'Stander',
+    'stander' => 'Standard',
 
     'Accept' => 'Accept',
     'Reject' => 'Reject',
@@ -92,7 +92,7 @@ return [
     'create' => 'Create',
 
     'select_all' => 'Select All',
-    'un_select_all' => 'Un Select All',
+    'un_select_all' => 'Unselect All',
 
     'search_by_date' => 'Search By Date',
 
@@ -145,8 +145,8 @@ return [
     'leaves' => 'Leaves',
     'create-leave' => 'Create New Leave',
 
-    'discounts' => 'Discounts',
-    'create-discount' => 'Create New Discount',
+    'discounts' => 'Deduction',
+    'create-discount' => 'Create New Deduction',
 
     'dailytasks' => 'Daily Tasks',
     'create-dailytask' => 'Create New Daily Task',
@@ -168,7 +168,7 @@ return [
     'extratime' => 'Extra Time',
     'leave' => 'Leave',
 
-    'discount' => 'Discount',
+    'discount' => 'Deduction',
 
     'all_users_in_the_app' => 'All Users In The System',
 
@@ -189,5 +189,5 @@ return [
 
     'Profile Updated' => 'Profile Updated',
     'Password Changed' => 'Password Changed',
-    'Password Not Match' => 'Password Not Match',
+    'Password Not Match' => 'Password does not Match',
 ];
