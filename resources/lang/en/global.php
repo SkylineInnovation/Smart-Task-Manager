@@ -190,4 +190,7 @@ return [
     'Profile Updated' => 'Profile Updated',
     'Password Changed' => 'Password Changed',
     'Password Not Match' => 'Password does not Match',
+
+    'archive' => 'Archive',
+    'activate' => 'Activate',
 ];

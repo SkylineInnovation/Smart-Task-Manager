@@ -54,6 +54,12 @@ class UserIndex extends Component
         // $this->roles = Role::whereIn('name', ['owner',])->get();
         $this->roles = Role::get();
 
+        if ($this->auth->hasRole('manager')) {
+            $employeeRole = Role::where('name', 'employee')->first();
+
+            $this->selectedRoles = [$employeeRole->id];
+        }
+
 
         $this->ids = $this->by->employees->pluck('id');
 
@@ -139,6 +145,13 @@ class UserIndex extends Component
 
 
         $user->employees()->sync($this->selectedEmployees);
+
+        if ($this->by->hasRole('manager')) {
+            try {
+                $this->by->employees()->attach($user->id);
+            } catch (\Throwable $th) {
+            }
+        }
 
         Artisan::call('cache:clear');
 

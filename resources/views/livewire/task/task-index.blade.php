@@ -134,7 +134,12 @@
                         @endif
 
                         @if ($showColumn['status'])
-                            <td> {{ $task->the_status() }} </td>
+                            <td>
+                                {{ $task->the_status() }}
+                                @if ($task->slug)
+                                    ({{ $task->slug }})
+                                @endif
+                            </td>
                         @endif
 
                         @if ($showColumn['main_task_id'])
@@ -156,7 +161,7 @@
                         @permission('edit-task|delete-task|restore-task')
                             <td>
 
-                                
+
                                 @if ($admin_view_status != 'deleted')
                                     @permission('show-task')
                                         <a href="{{ route('task.show', $task) }}" target="_blank" class="btn btn-info">

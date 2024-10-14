@@ -30,33 +30,33 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    @role('employee')
-                                        @if ($task->status == 'pending')
-                                            <a class="dropdown-item" href="javascript:;"
-                                                wire:click="startWithTask({{ $task->id }})">
-                                                <i class="fa fa-hourglass-end text-info" aria-hidden="true"></i>
-                                                &nbsp; {{ __('task.Start') }}
-                                            </a>
-                                        @endif
+                                    {{-- @role('employee') --}}
+                                    @if ($task->status == 'pending')
+                                        <a class="dropdown-item" href="javascript:;"
+                                            wire:click="startWithTask({{ $task->id }})">
+                                            <i class="fa fa-hourglass-end text-info" aria-hidden="true"></i>
+                                            &nbsp; {{ __('task.start') }}
+                                        </a>
+                                    @endif
 
-                                        @if ($task->status == 'active')
-                                            <a class="dropdown-item" href="javascript:;"
-                                                wire:click="finishWithTask({{ $task->id }})">
-                                                <i class="fa fa-check-square text-success" aria-hidden="true"></i>
-                                                &nbsp; {{ __('task.Finsh') }}
-                                            </a>
-                                        @endif
-                                    @endrole
+                                    @if ($task->status == 'active')
+                                        <a class="dropdown-item" href="javascript:;"
+                                            wire:click="finishWithTask({{ $task->id }})">
+                                            <i class="fa fa-check-square text-success" aria-hidden="true"></i>
+                                            &nbsp; {{ __('task.finsh') }}
+                                        </a>
+                                    @endif
+                                    {{-- @endrole --}}
 
 
                                     @role('owner|manager')
-                                        {{-- @if (in_array($task->status, ['auto-finished', 'manual-finished'])) --}}
-                                        {{-- <a class="dropdown-item" href="javascript:;"
-                                            wire:click="draftTask({{ $task->id }})">
-                                            <i class="fa fa-warning text-danger" aria-hidden="true"></i>
-                                            &nbsp; {{ __('task.draft') }}
-                                        </a> --}}
-                                        {{-- @endif --}}
+                                        @if (in_array($task->status, ['auto-finished', 'manual-finished']))
+                                            <a class="dropdown-item" href="javascript:;"
+                                                wire:click="draftTask({{ $task->id }})">
+                                                <i class="fa fa-warning text-danger" aria-hidden="true"></i>
+                                                &nbsp; {{ __('task.draft') }}
+                                            </a>
+                                        @endif
 
                                         <a class="dropdown-item" href="javascript:;" data-toggle="modal"
                                             wire:click="editTask({{ $task->id }})"
@@ -117,6 +117,15 @@
                                     {{ $task->the_priority_level() }}
                                 </div>
                             </div>
+
+                            {{-- error-finish-task --}}
+                            {{-- @if (session()->has('error_finish_task'))
+                                <span class="error">{{ $message }}</span>
+                            @endif --}}
+                            @error('error_finish_task')
+                                <span class="error">{{ $message }}</span>
+                            @enderror
+
                         </div>
                     </div>
 
@@ -163,9 +172,9 @@
         </div>
 
         {{-- --}}{{-- --}}{{-- --}}{{-- --}}
-        <div wire:ignore.self class="modal fade" id="show-task-modal-{{ $task->id }}" tabindex="-1" role="dialog"
-            aria-labelledby="show-task-modal-{{ $task->id }}Label" aria-hidden="true" data-backdrop="static"
-            data-keyboard="false">
+        <div wire:ignore.self class="modal fade" id="show-task-modal-{{ $task->id }}" tabindex="-1"
+            role="dialog" aria-labelledby="show-task-modal-{{ $task->id }}Label" aria-hidden="true"
+            data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -585,9 +594,10 @@
                                                     <div class="form-group mb-1 col-4">
                                                         <select wire:model.defer="sub_task_priority_level"
                                                             class="form-control">
-                                                            <option value="low">{{ __('task.low') }}</option>
-                                                            <option value="medium">{{ __('task.medium') }}</option>
+                                                            <option value="urgent">{{ __('task.urgent') }}</option>
                                                             <option value="high">{{ __('task.high') }}</option>
+                                                            <option value="medium">{{ __('task.medium') }}</option>
+                                                            <option value="low">{{ __('task.low') }}</option>
                                                         </select>
                                                     </div>
 
@@ -963,9 +973,10 @@
                                                 <div class="form-group mb-1 col-3">
                                                     <select wire:model.defer="sub_task_priority_level"
                                                         class="form-control">
-                                                        <option value="low">{{ __('task.low') }}</option>
-                                                        <option value="medium">{{ __('task.medium') }}</option>
+                                                        <option value="urgent">{{ __('task.urgent') }}</option>
                                                         <option value="high">{{ __('task.high') }}</option>
+                                                        <option value="medium">{{ __('task.medium') }}</option>
+                                                        <option value="low">{{ __('task.low') }}</option>
                                                     </select>
                                                 </div>
 
@@ -1301,9 +1312,10 @@
                                                 <label for="priority_level">{{ __('task.priority_level') }}</label>
                                                 <select wire:model="edit_task_priority_level" name="priority_level"
                                                     id="priority_level" class="form-control">
-                                                    <option value="low">{{ __('task.low') }}</option>
-                                                    <option value="medium">{{ __('task.medium') }}</option>
+                                                    <option value="urgent">{{ __('task.urgent') }}</option>
                                                     <option value="high">{{ __('task.high') }}</option>
+                                                    <option value="medium">{{ __('task.medium') }}</option>
+                                                    <option value="low">{{ __('task.low') }}</option>
                                                 </select>
                                             </div>
                                         </div>

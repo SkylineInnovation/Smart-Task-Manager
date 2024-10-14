@@ -50,6 +50,22 @@
     </div>
 
     <div class="form-inline">
+
+        @role('owner|manager')
+            <div>
+                {{-- <small class="form-text text-muted">{{ __('task.status') }}</small> --}}
+                <select wire:model="task_status" class="form-control form-group">
+                    <option value="all">{{ __('task.status') }}</option>
+                    <option value="pending">{{ __('task.pending') }}</option>
+                    <option value="active">{{ __('task.active') }}</option>
+                    <option value="auto-finished">{{ __('task.auto-finished') }}</option>
+                    <option value="manual-finished">{{ __('task.manual-finished') }}</option>
+                    <option value="draft">{{ __('task.draft') }}</option>
+                    <option value="archive">{{ __('task.archive') }}</option>
+                </select>
+            </div>
+        @endrole
+
         @role('owner|operations')
             <div>
                 <button type="button" class="mr-1 btn btn-warning" data-toggle="modal" data-target="#filter-task-modal">

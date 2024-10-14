@@ -42,9 +42,10 @@
                         <div class="form-group col-md-6">
                             <label for="exampleFormControlSelect1">{{ __('task.priority_level') }}</label>
                             <select wire:model.defer="priority_level" class="form-control">
-                                <option value="low">{{ __('task.low') }}</option>
-                                <option value="medium">{{ __('task.medium') }}</option>
+                                <option value="urgent">{{ __('task.urgent') }}</option>
                                 <option value="high">{{ __('task.high') }}</option>
+                                <option value="medium">{{ __('task.medium') }}</option>
+                                <option value="low">{{ __('task.low') }}</option>
                             </select>
                         </div>
 

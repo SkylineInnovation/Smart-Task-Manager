@@ -98,9 +98,10 @@
                                         <label for="priority_level">{{ __('task.priority_level') }}</label>
                                         <select wire:model="priority_level" name="priority_level" id="priority_level"
                                             class="form-control">
-                                            <option value="low">{{ __('task.low') }}</option>
-                                            <option value="medium">{{ __('task.medium') }}</option>
+                                            <option value="urgent">{{ __('task.urgent') }}</option>
                                             <option value="high">{{ __('task.high') }}</option>
+                                            <option value="medium">{{ __('task.medium') }}</option>
+                                            <option value="low">{{ __('task.low') }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -169,6 +170,11 @@
                                 title="{{ __('global.save-changes') }}" wire:click.prevent="store()"
                                 class="btn btn-success">
                                 {{ __('global.save-changes') }}
+                            </button>
+                            <button type="submit" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="{{ __('global.archive') }}" wire:click.prevent="store(true)"
+                                class="btn btn-success">
+                                {{ __('global.archive') }}
                             </button>
                         </div>
                     </form>
@@ -282,9 +288,10 @@
                                         <label for="priority_level">{{ __('task.priority_level') }}</label>
                                         <select wire:model="priority_level" name="priority_level" id="priority_level"
                                             class="form-control">
-                                            <option value="low">{{ __('task.low') }}</option>
-                                            <option value="medium">{{ __('task.medium') }}</option>
+                                            <option value="urgent">{{ __('task.urgent') }}</option>
                                             <option value="high">{{ __('task.high') }}</option>
+                                            <option value="medium">{{ __('task.medium') }}</option>
+                                            <option value="low">{{ __('task.low') }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -353,6 +360,11 @@
                             <button type="button" wire:click.prevent="update()" class="btn btn-success">
                                 {{ __('global.save-changes') }}
                             </button>
+                            @if ($task->slug == 'archive')
+                                <button type="button" wire:click.prevent="update(true)" class="btn btn-success">
+                                    {{ __('global.activate') }}
+                                </button>
+                            @endif
                         </div>
                     </form>
                 @endif

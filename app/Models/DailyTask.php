@@ -168,6 +168,8 @@ class DailyTask extends Model
             return __('task.medium');
         elseif ($this->proearty == 'high')
             return __('task.high');
+        elseif ($this->proearty == 'urgent')
+            return __('task.urgent');
 
         return '';
     }
@@ -179,6 +181,8 @@ class DailyTask extends Model
         elseif ($this->proearty == 'medium')
             return '#0000FF';
         elseif ($this->proearty == 'high')
+            return '#FF0000';
+        elseif ($this->proearty == 'urgent') // TODO
             return '#FF0000';
 
         return '';

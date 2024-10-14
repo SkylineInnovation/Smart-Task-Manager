@@ -33,13 +33,17 @@ return [
     'low' => 'Low',
     'medium' => 'Medium',
     'high' => 'High',
+    'urgent' => 'Urgent',
+
     'pending' => 'Pending',
     'active' => 'Active',
     'auto-finished' => 'Auto Finished',
     'manual-finished' => 'Manual Finished',
+
     'draft' => 'Draft',
     'in_draft' => 'In Draft',
     'move_draft' => 'Move TO Draft',
+    'archive' => 'Archive',
 
     'Return' => 'Return',
     'Move' => 'Move',
@@ -116,6 +120,7 @@ return [
     'to' => 'To',
     'title' => 'Title',
     'start' => 'Start',
+    'finsh' => 'Finsh',
     'end' => 'End',
     'view' => 'View',
 ];

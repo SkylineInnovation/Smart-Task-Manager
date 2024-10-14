@@ -73,9 +73,10 @@
                     <div class="form-group">
                         <label for="priority_level">{{ __('task.priority_level') }}</label>
                         <select wire:model="priority_level" name="priority_level" id="priority_level" class="form-control">
-                            <option value="low">{{ __('task.low') }}</option>
-                            <option value="medium">{{ __('task.medium') }}</option>
+                            <option value="urgent">{{ __('task.urgent') }}</option>
                             <option value="high">{{ __('task.high') }}</option>
+                            <option value="medium">{{ __('task.medium') }}</option>
+                            <option value="low">{{ __('task.low') }}</option>
                         </select>
                     </div>
                 </div>
@@ -508,9 +509,10 @@
 
                                     <div class="form-group mb-1 col-4">
                                         <select wire:model.defer="sub_task_priority_level" class="form-control">
-                                            <option value="low">{{ __('task.low') }}</option>
-                                            <option value="medium">{{ __('task.medium') }}</option>
+                                            <option value="urgent">{{ __('task.urgent') }}</option>
                                             <option value="high">{{ __('task.high') }}</option>
+                                            <option value="medium">{{ __('task.medium') }}</option>
+                                            <option value="low">{{ __('task.low') }}</option>
                                         </select>
                                     </div>
 

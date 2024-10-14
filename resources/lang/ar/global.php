@@ -190,4 +190,7 @@ return [
     'Profile Updated' => 'تم تحديث الملف الشخصي',
     'Password Changed' => 'تم تغيير كلمة المرور',
     'Password Not Match' => 'كلمة المرور غير متطابقة',
+
+    'archive' => 'أرشيف',
+    'activate' => 'تفعيل',
 ];

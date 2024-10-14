@@ -194,6 +194,8 @@ class Task extends Model
             return __('task.medium');
         elseif ($this->priority_level == 'high')
             return __('task.high');
+        elseif ($this->priority_level == 'urgent')
+            return __('task.urgent');
 
         return '';
     }
@@ -205,6 +207,8 @@ class Task extends Model
         elseif ($this->priority_level == 'medium')
             return '#0000FF';
         elseif ($this->priority_level == 'high')
+            return '#FF0000';
+        elseif ($this->priority_level == 'urgent') // TODO
             return '#FF0000';
 
         return '';

@@ -94,9 +94,10 @@
                             <div class="form-group">
                                 <label for="proearty">{{ __('dailytask.proearty') }}</label>
                                 <select wire:model="proearty" name="proearty" id="proearty" class="form-control">
-                                    <option value="low">{{ __('dailytask.low') }}</option>
-                                    <option value="medium">{{ __('dailytask.medium') }}</option>
+                                    <option value="urgent">{{ __('dailytask.urgent') }}</option>
                                     <option value="high">{{ __('dailytask.high') }}</option>
+                                    <option value="medium">{{ __('dailytask.medium') }}</option>
+                                    <option value="low">{{ __('dailytask.low') }}</option>
                                 </select>
                             </div>
                         </div>

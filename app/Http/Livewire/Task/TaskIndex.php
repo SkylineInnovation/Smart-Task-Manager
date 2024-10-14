@@ -102,6 +102,8 @@ class TaskIndex extends Component
 
     public $slug;
     public $task_id, $manager_id, $title, $desc, $start_time, $end_time, $priority_level = 'low', $status = 'pending', $main_task_id;
+
+    public $task_status = 'all';
     public $discount = 0;
     public $updateMode = false;
 
@@ -149,14 +151,14 @@ class TaskIndex extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function store()
+    public function store($save_for_later = false)
     {
         $validatedData = $this->validate();
 
 
         $task = Task::create([
             'add_by' => $this->by->id,
-            'slug' => $this->slug,
+            'slug' => $save_for_later ? 'archive' : $this->slug,
 
             'manager_id' => $this->by->id,
             'title' => $this->title,
@@ -211,13 +213,13 @@ class TaskIndex extends Component
         $this->resetInputFields();
     }
 
-    public function update()
+    public function update($activate = false)
     {
 
         if ($this->task_id) {
             $task = Task::find($this->task_id);
             $task->update([
-                'slug' => $this->slug,
+                'slug' => $activate ? null : $this->slug,
 
                 // 'manager_id' => $this->manager_id,
                 'title' => $this->title,
@@ -328,6 +330,14 @@ class TaskIndex extends Component
             $tasks = $tasks->whereBetween($this->byDate, [$this->fromDate . ' 00:00:00', $this->toDate . ' 23:59:59']);
 
 
+
+        if ($this->task_status != 'all') {
+            if (in_array($this->task_status, ['draft', 'archive'])) {
+                $tasks = $tasks->where('slug', $this->task_status);
+            } else {
+                $tasks = $tasks->where('status', $this->task_status);
+            }
+        }
 
         if ($this->filter_managers_id)
             $tasks = $tasks->whereIn('manager_id', $this->filter_managers_id);

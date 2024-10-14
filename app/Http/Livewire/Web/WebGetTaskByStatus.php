@@ -135,6 +135,14 @@ class WebGetTaskByStatus extends Component
     public function finishWithTask($id)
     {
         $task = Task::find($id);
+
+        // if (count($task->comments) == 0) {
+        //     // session()->flash('error_finish_task', 'Can\'t Finish Task, Add Comment.');
+        //     $this->addError('error_finish_task', 'Can\'t Finish Task, Add Comment.');
+
+        //     return;
+        // }
+
         $task->update(['status' => 'manual-finished']);
 
         $this->emit('render-manual-finished'); // Close model to using to jquery
@@ -617,7 +625,7 @@ class WebGetTaskByStatus extends Component
     }
     public function render()
     {
-        $tasks = Task::whereNullOrEmptyOrZero('slug')
+        $tasks = Task::whereNullOrEmpty('slug')
             ->whereNullOrEmptyOrZero('main_task_id')
             ->where('status', $this->status);
 
