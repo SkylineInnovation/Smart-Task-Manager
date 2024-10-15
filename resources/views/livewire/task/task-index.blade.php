@@ -74,7 +74,7 @@
                     @endif
 
                     @permission('edit-task|delete-task|restore-task')
-                        <td style="width: 150px">
+                        <td style="width: 200px">
                             {{ __('global.action') }}
                         </td>
                     @endpermission
@@ -160,8 +160,6 @@
 
                         @permission('edit-task|delete-task|restore-task')
                             <td>
-
-
                                 @if ($admin_view_status != 'deleted')
                                     @permission('show-task')
                                         <a href="{{ route('task.show', $task) }}" target="_blank" class="btn btn-info">
