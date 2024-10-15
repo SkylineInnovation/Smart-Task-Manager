@@ -147,11 +147,11 @@
                         @endif
 
                         @if ($showColumn['from_data'])
-                            <td> {{ $loghistory->from_readable() }} </td>
+                            <td> {!! $loghistory->from_readable() !!} </td>
                         @endif
 
                         @if ($showColumn['to_data'])
-                            <td> {{ $loghistory->to_readable() }} </td>
+                            <td> {!! $loghistory->to_readable() !!} </td>
                         @endif
 
                         @if ($showColumn['preaf'])

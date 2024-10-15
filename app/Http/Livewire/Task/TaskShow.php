@@ -211,6 +211,55 @@ class TaskShow extends Component
         $this->emit('close-replay-comment-model', $this->task_id);
     }
 
+
+    public $sub_task_discount;
+    public $sub_task_title, $sub_task_desc,
+        $sub_task_start_time, $sub_task_end_time,
+        $sub_task_priority_level = 'low', $sub_task_status = 'pending';
+
+    public $selected_employe_task = [];
+
+    public function addSubTask()
+    {
+        $validatedData = $this->validate();
+
+        $task = Task::create([
+            'add_by' => $this->by->id,
+
+            'manager_id' => $this->by->id,
+            'title' => $this->sub_task_title,
+            'desc' => $this->sub_task_desc,
+            'start_time' => $this->sub_task_start_time,
+            'end_time' => $this->sub_task_end_time,
+            'priority_level' => $this->sub_task_priority_level,
+            'status' => $this->sub_task_status,
+            'main_task_id' => $this->task_id,
+        ]);
+
+        $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->sub_task_discount]);
+
+        // if (env('SEND_MAIL', false))
+        //     Mail::to(
+        //         $task->employees->pluck('email')->toArray()
+        //     )->send(new SendNewTaskToEmployee($task));
+
+        $this->sub_task_title = null;
+        $this->sub_task_desc = null;
+
+        $this->sub_task_start_time  = date('Y-m-d\TH:i', strtotime($this->sub_task_end_time));
+        $this->sub_task_end_time  = date('Y-m-d\TH:i', strtotime($this->sub_task_start_time . ' +1 Hours'));
+
+        $this->sub_task_priority_level = 'low';
+
+        // $this->selectedEmployees = [];
+
+        $this->task = Task::find($this->task->id);
+
+        $this->sub_task_discount = $this->task->discount();
+
+        session()->flash('sub-task-message', 'Sub Task Created Successfully.');
+    }
+
     public function render()
     {
         return view('livewire.task.task-show');

@@ -194,10 +194,16 @@ class LogHistory extends Model
     public function from_readable()
     {
         $data = $this->from_data;
+        if (!$data) return '';
 
         $formatted_data = "";
-        foreach ($data as $key => $value)
-            $formatted_data .= "$key: $value <br>";
+        foreach ($data as $key => $value) {
+            if (str_contains($key, 'time')) {
+                $formatted_data .= "$key: " . date('Y-m-d H:i', strtotime($value)) . " <br>";
+            } else {
+                $formatted_data .= "$key: $value <br>";
+            }
+        }
 
         return trim($formatted_data);
     }
@@ -205,18 +211,26 @@ class LogHistory extends Model
     public function to_readable()
     {
         $data = $this->to_data;
+        if (!$data) return '';
 
         $formatted_data = "";
-        foreach ($data as $key => $value)
-            $formatted_data .= "$key: $value <br>";
+        foreach ($data as $key => $value) {
+            if (str_contains($key, 'time')) {
+                $formatted_data .= "$key: " . date('Y-m-d H:i', strtotime($value)) . " <br>";
+            } else {
+                $formatted_data .= "$key: $value <br>";
+            }
+        }
 
         return trim($formatted_data);
     }
 
     public function readable()
     {
-        $from_data = json_decode($this->from_data);
-        $to_data = get_object_vars(json_decode($this->to_data));
+        $from_data = $this->from_data;
+        $to_data = get_object_vars($this->to_data);
+
+        if (!$from_data || $to_data) return '';
 
         $formatted_data = "";
         foreach ($from_data as $key => $value) {

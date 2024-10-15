@@ -72,7 +72,37 @@ class Comment extends Model
         parent::boot();
 
         static::created(function ($model) {
-            // 
+            if ($model->main_comment) {
+                LogHistory::create([
+                    'user_id' => auth()->user()->id,
+                    'action' => 'create',
+                    'by_model_name' => 'comment', // attachment, comment, extra_time, leave, 
+                    'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
+                    'on_model_name' => 'task', // task, daily_task,
+                    'on_model_id' => $model->task_id, // task, daily_task,
+                    'preaf' => [
+                        'en' => 'comment replay',
+                    ],
+                    'desc' => [
+                        'en' => 'there is new replay on comment - ' . $model->task_id,
+                    ],
+                ]);
+            } else {
+                LogHistory::create([
+                    'user_id' => auth()->user()->id,
+                    'action' => 'create',
+                    'by_model_name' => 'comment', // attachment, comment, extra_time, leave, 
+                    'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
+                    'on_model_name' => 'task', // task, daily_task,
+                    'on_model_id' => $model->task_id, // task, daily_task,
+                    'preaf' => [
+                        'en' => 'new comment',
+                    ],
+                    'desc' => [
+                        'en' => 'there is new comment on task - ' . $model->task_id,
+                    ],
+                ]);
+            }
         });
 
         static::updating(function ($model) {
@@ -84,9 +114,40 @@ class Comment extends Model
             foreach ($dirtyAttributes as $attribute => $value)
                 $oldValues[$attribute] = $model->getOriginal($attribute);
 
-            // 'subscription_id' => $model->id,
-            // 'from_type_id' => $model->getOriginal()['subscription_type_id'],
-            // 'to_type_id' => $model->getAttributes()['subscription_type_id'],
+            LogHistory::create([
+                'user_id' => auth()->user()->id,
+                'action' => 'update',
+                'by_model_name' => 'comment', // attachment, comment, extra_time, leave, 
+                'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
+                'on_model_name' => 'task', // task, daily_task,
+                'on_model_id' => $model->task_id, // task, daily_task,
+                'from_data' => $oldValues,
+                'to_data' => $dirtyAttributes,
+                'preaf' => [
+                    'en' => 'comment updated',
+                ],
+                'desc' => [
+                    'en' => 'there is new comment on task - ' . $model->task_id,
+                ],
+                // 'color' => '',
+            ]);
+        });
+
+        static::deleted(function ($model) {
+            LogHistory::create([
+                'user_id' => auth()->user()->id,
+                'action' => 'delete',
+                'by_model_name' => 'comment', // attachment, comment, extra_time, leave, 
+                'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
+                'on_model_name' => 'task', // task, daily_task,
+                'on_model_id' => $model->task_id, // task, daily_task,
+                'preaf' => [
+                    'en' => 'comment deleted',
+                ],
+                'desc' => [
+                    'en' => 'delete comment from task - ' . $model->task_id,
+                ],
+            ]);
         });
     }
 

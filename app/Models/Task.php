@@ -78,8 +78,69 @@ class Task extends Model
     {
         parent::boot();
 
+        // Mail::to([])->send(new SendNewTaskToEmployee($model));
         static::created(function ($model) {
-            // Mail::to([])->send(new SendNewTaskToEmployee($model));
+            if ($model->main_task) {
+                LogHistory::create([
+                    'user_id' => auth()->user()->id,
+                    'action' => 'create',
+                    'by_model_name' => 'sub_task', // attachment, comment, extra_time, leave, 
+                    'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
+                    'on_model_name' => 'task', // task, daily_task,
+                    'on_model_id' => $model->main_task_id, // task, daily_task,
+                    'preaf' => [
+                        'en' => 'new sub task added',
+                    ],
+                    'desc' => [
+                        'en' => 'there is a new sub task on task - ' . $model->main_task_id,
+                    ],
+                ]);
+            } elseif ($model->daily_task) {
+                LogHistory::create([
+                    'user_id' => auth()->user()->id,
+                    'action' => 'create',
+                    'by_model_name' => 'daily_task', // attachment, comment, extra_time, leave, 
+                    'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
+                    'on_model_name' => 'task', // task, daily_task,
+                    'on_model_id' => $model->daily_task_id, // task, daily_task,
+                    'preaf' => [
+                        'en' => 'new task added by daily task',
+                    ],
+                    'desc' => [
+                        'en' => 'there is a new task added by daily task - ' . $model->daily_task_id,
+                    ],
+                ]);
+            } elseif ($model->reopen_from_task) {
+                LogHistory::create([
+                    'user_id' => auth()->user()->id,
+                    'action' => 'create',
+                    'by_model_name' => 'reopen_task', // attachment, comment, extra_time, leave, 
+                    'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
+                    'on_model_name' => 'task', // task, daily_task,
+                    'on_model_id' => $model->reopen_from_task_id, // task, daily_task,
+                    'preaf' => [
+                        'en' => 'task has opend',
+                    ],
+                    'desc' => [
+                        'en' => 'there is task reopend again from task - ' . $model->reopen_from_task_id,
+                    ],
+                ]);
+            } else {
+                LogHistory::create([
+                    'user_id' => auth()->user()->id,
+                    'action' => 'create',
+                    'by_model_name' => 'task', // attachment, comment, extra_time, leave, 
+                    'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
+                    'on_model_name' => '', // task, daily_task,
+                    'on_model_id' => 0, // task, daily_task,
+                    'preaf' => [
+                        'en' => 'new task added',
+                    ],
+                    'desc' => [
+                        'en' => 'there is a new task - ' . $model->id,
+                    ],
+                ]);
+            }
         });
 
         static::updating(function ($model) {
@@ -91,9 +152,23 @@ class Task extends Model
             foreach ($dirtyAttributes as $attribute => $value)
                 $oldValues[$attribute] = $model->getOriginal($attribute);
 
-            // 'subscription_id' => $model->id,
-            // 'from_status' => $model->getOriginal()['status'],
-            // 'to_status' => $model->getAttributes()['status'],
+            LogHistory::create([
+                'user_id' => auth()->user()->id,
+                'action' => 'update',
+                'by_model_name' => 'task', // attachment, comment, extra_time, leave, 
+                'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
+                'on_model_name' => '', // task, daily_task,
+                'on_model_id' => 0, // task, daily_task,
+                'from_data' => $oldValues,
+                'to_data' => $dirtyAttributes,
+                'preaf' => [
+                    'en' => 'the task updated',
+                ],
+                'desc' => [
+                    'en' => 'there is update on task - ' . $model->id,
+                ],
+                // 'color' => '',
+            ]);
 
             if (env('SEND_MAIL', false)) {
                 if ($model->getOriginal()['status'] != $model->getAttributes()['status']) {
@@ -118,6 +193,23 @@ class Task extends Model
                         Mail::to($mail_list)->send(new SendStatusChangeOnTask($template, $model));
                 }
             }
+        });
+
+        static::deleted(function ($model) {
+            LogHistory::create([
+                'user_id' => auth()->user()->id,
+                'action' => 'delete',
+                'by_model_name' => 'task', // attachment, comment, extra_time, leave, 
+                'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
+                'on_model_name' => '', // task, daily_task,
+                'on_model_id' => 0, // task, daily_task,
+                'preaf' => [
+                    'en' => 'task deleted',
+                ],
+                'desc' => [
+                    'en' => 'task deleted - ' . $model->id,
+                ],
+            ]);
         });
     }
 
@@ -358,6 +450,6 @@ class Task extends Model
 
     public function reopen_from_task()
     {
-        return $this->belongsTo(Task::class, 'reopen_from_task_id', 'id');
+        return $this->belongsTo(Task::class, 'reopen_from_task_id');
     }
 }

@@ -104,12 +104,10 @@ class Attachment extends Model
                 'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
                 'on_model_name' => 'task', // task, daily_task,
                 'on_model_id' => $model->task_id, // task, daily_task,
-                // 'from_data' => [],
-                // 'to_data' => [],
                 'from_data' => $oldValues,
                 'to_data' => $dirtyAttributes,
                 'preaf' => [
-                    'en' => 'new attachment',
+                    'en' => 'attachment updated',
                 ],
                 'desc' => [
                     'en' => 'there is new attachment on task - ' . $model->task_id,
@@ -127,7 +125,7 @@ class Attachment extends Model
                 'on_model_name' => 'task', // task, daily_task,
                 'on_model_id' => $model->task_id, // task, daily_task,
                 'preaf' => [
-                    'en' => 'delete attachment',
+                    'en' => 'attachment deleted',
                 ],
                 'desc' => [
                     'en' => 'delete attachment from task - ' . $model->task_id,
