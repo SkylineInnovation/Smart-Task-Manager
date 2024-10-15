@@ -121,6 +121,8 @@ class TaskIndex extends Component
         $this->main_task_id = null;
         $this->discount = 0;
 
+        $this->reopen_from_task_id = 0;
+
         $this->selectedEmployees = [];
     }
 
@@ -168,6 +170,7 @@ class TaskIndex extends Component
             'priority_level' => $this->priority_level,
             'status' => $this->status,
             'main_task_id' => $this->main_task_id,
+            'reopen_from_task_id' => $this->reopen_from_task_id,
         ]);
 
         $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
@@ -201,6 +204,7 @@ class TaskIndex extends Component
         $this->priority_level = $task->priority_level;
         $this->status = $task->status;
         $this->main_task_id = $task->main_task_id;
+        $this->reopen_from_task_id = $task->reopen_from_task_id;
 
         $this->selectedEmployees = $task->employees->pluck('id');
 
@@ -229,6 +233,7 @@ class TaskIndex extends Component
                 'priority_level' => $this->priority_level,
                 'status' => $this->status,
                 'main_task_id' => $this->main_task_id,
+                'reopen_from_task_id' => $this->reopen_from_task_id,
             ]);
 
             $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
@@ -301,7 +306,26 @@ class TaskIndex extends Component
         $this->filter_main_tasks_id[] = $val;
     }
 
+    public $reopen_from_task_id = 0;
+    public function reopen_task($oldID)
+    {
+        $task = Task::find($oldID);
 
+        $this->reopen_from_task_id = $oldID;
+
+        $this->manager_id = $task->manager_id;
+        $this->title = $task->title;
+        $this->desc = $task->desc;
+
+        $this->start_time = date('Y-m-d\TH:i');
+        $this->end_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+
+        $this->selectedEmployees = [];
+
+        $this->priority_level = $task->priority_level;
+        $this->status = 'pending';
+        $this->discount = $task->discount();
+    }
 
 
     public function gotoPage($page)

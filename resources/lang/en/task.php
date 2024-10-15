@@ -123,4 +123,7 @@ return [
     'finsh' => 'Finsh',
     'end' => 'End',
     'view' => 'View',
+
+    'open_history' => 'Open History',
+    'history' => 'History',
 ];

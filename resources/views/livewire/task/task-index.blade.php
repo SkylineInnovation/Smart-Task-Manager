@@ -176,6 +176,13 @@
                                         </button>
                                     @endpermission
 
+                                    @permission('edit-task')
+                                        <button data-toggle="modal" data-target="#create-new-task-modal"
+                                            wire:click="reopen_task({{ $task->id }})" class="btn btn-primary">
+                                            <i class="fa fa-refresh text-white"></i>
+                                        </button>
+                                    @endpermission
+
                                     @permission('delete-task')
                                         <button class="btn btn-danger" type="button" data-toggle="modal"
                                             data-target="#delete-task-{{ $task->id }}">

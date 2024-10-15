@@ -68,6 +68,7 @@ class Task extends Model
         'status',
         'main_task_id',
         'daily_task_id',
+        'reopen_from_task_id',
 
         'show',
         'sort',
@@ -253,7 +254,7 @@ class Task extends Model
 
     public function discount()
     {
-        return $this->employees->first()->pivot->discount;
+        return $this->employees ? $this->employees->first()->pivot->discount : 0;
     }
 
     public function format_date($data)
@@ -349,8 +350,14 @@ class Task extends Model
     {
         return $this->hasMany(Discount::class);
     }
+
     public function daily_task()
     {
         return $this->belongsTo(DailyTask::class);
+    }
+
+    public function reopen_from_task()
+    {
+        return $this->belongsTo(Task::class, 'reopen_from_task_id', 'id');
     }
 }

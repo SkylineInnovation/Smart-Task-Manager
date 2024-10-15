@@ -39,6 +39,7 @@ class CreateTasksTable extends Migration
 
             $table->foreignIdFor(App\Models\DailyTask::class)->nullable()->default(0);
 
+            $table->foreignIdFor(App\Models\Task::class, 'reopen_from_task_id')->nullable()->default(0);
 
             $table->boolean('show')->default(true);
             $table->integer('sort')->default(1000);

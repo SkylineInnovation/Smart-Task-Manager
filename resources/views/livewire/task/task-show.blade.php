@@ -7,10 +7,20 @@
                 @include('inputs.show.input', [
                     'label' => 'task.manager',
                     'val' => $task->manager->name(),
-                    'lg' => 12,
-                    'md' => 12,
-                    'sm' => 12,
+                    'lg' => 10,
+                    'md' => 10,
+                    'sm' => 10,
                 ])
+
+                @if ($task->reopen_from_task)
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label for="draft">{{ __('task.open_history') }}</label>
+
+                        <a href="{{ route('task.show', $task->reopen_from_task) }}" class="btn btn-info w-100">
+                            {{ __('task.history') }}
+                        </a>
+                    </div>
+                @endif
 
                 @include('inputs.edit.input', [
                     'label' => 'task.title',
@@ -72,7 +82,8 @@
                 <div class="col-lg-4 col-md-4 col-sm-10">
                     <div class="form-group">
                         <label for="priority_level">{{ __('task.priority_level') }}</label>
-                        <select wire:model="priority_level" name="priority_level" id="priority_level" class="form-control">
+                        <select wire:model="priority_level" name="priority_level" id="priority_level"
+                            class="form-control">
                             <option value="urgent">{{ __('task.urgent') }}</option>
                             <option value="high">{{ __('task.high') }}</option>
                             <option value="medium">{{ __('task.medium') }}</option>
