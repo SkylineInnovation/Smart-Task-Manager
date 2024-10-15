@@ -237,7 +237,12 @@ class LogHistory extends Model
             if ($key != 'order_status_id') {
                 $key_text = str_replace('_', ' ', $key);
                 $ftom_val = $value ?? '--';
-                $formatted_data .= "$key_text: $ftom_val -> " . $to_data[$key] . "<br>";
+
+                if (str_contains($key, 'time')) {
+                    $formatted_data .= "$key_text: " . date('Y-m-d H:i', strtotime($ftom_val)) . " -> " . date('Y-m-d H:i', strtotime($to_data[$key])) . "<br>";
+                } else {
+                    $formatted_data .= "$key_text: $ftom_val -> " . $to_data[$key] . "<br>";
+                }
             }
         }
 
