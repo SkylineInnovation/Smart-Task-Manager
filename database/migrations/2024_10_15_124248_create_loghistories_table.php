@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommentsTable extends Migration
+class CreateLogHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,24 +14,34 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('log_histories', function (Blueprint $table) {
             $table->bigIncrements('id');
 
             $table->foreignIdFor(User::class, 'add_by')->default(0);
             $table->string('slug')->nullable();
 
 
-            $table->foreignIdFor(App\Models\Task::class)->nullable()->default(0);
-
             $table->foreignIdFor(App\Models\User::class)->nullable()->default(0);
 
-            $table->string('title')->nullable();
+            $table->string('action')->nullable();
 
-            $table->text('desc')->nullable();
+            $table->string('by_model_name')->nullable();
 
-            $table->string('replay_time')->nullable();
+            $table->integer('by_model_id')->nullable();
 
-            $table->foreignIdFor(App\Models\Comment::class, 'main_comment_id')->nullable()->default(0);
+            $table->string('on_model_name')->nullable();
+
+            $table->integer('on_model_id')->nullable();
+
+            $table->json('from_data')->nullable();
+
+            $table->json('to_data')->nullable();
+
+            $table->json('preaf')->nullable();
+
+            $table->json('desc')->nullable();
+
+            $table->string('color')->nullable();
 
 
             $table->boolean('show')->default(true);
@@ -48,6 +58,6 @@ class CreateCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('log_histories');
     }
 }

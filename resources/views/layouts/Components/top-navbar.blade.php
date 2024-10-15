@@ -47,5 +47,25 @@
                 </ul>
             </li>
         @endrole
+
+        {{-- @role('owner|manager')
+            <li aria-haspopup="true">
+                <a href="#" class="sub-icon">
+                    <i class="fa fa-flag"></i>
+                    {{ __('global.reports') }}
+                    <i class="fa fa-angle-down horizontal-icon"></i>
+                </a>
+
+                <ul class="sub-menu">
+                    @permission('index-loghistory')
+                        <li aria-haspopup="true">
+                            <a href="{{ route('loghistory.index') }}">
+                                {{ __('global.loghistories') }}
+                            </a>
+                        </li>
+                    @endpermission
+                </ul>
+            </li>
+        @endrole --}}
     </ul>
 </nav>

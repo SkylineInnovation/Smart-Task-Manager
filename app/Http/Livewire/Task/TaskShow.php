@@ -2,7 +2,11 @@
 
 namespace App\Http\Livewire\Task;
 
+use App\Http\Controllers\HomeController;
+use App\Models\Attachment;
+use App\Models\Comment;
 use App\Models\Task;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Illuminate\Support\Facades\Route;
 
@@ -10,17 +14,22 @@ class TaskShow extends Component
 {
     public Task $task;
 
-    public $title, $discount, $desc, $start_time, $end_time;
+    public $task_id, $title, $discount, $desc, $start_time, $end_time;
     public $priority_level, $status;
 
     public $employees;
     public $selectedEmployees = [];
 
-    public $url;
+
+    public $url, $by, $user;
     public function mount($task)
     {
         $this->url = Route::current()->getName();
         $this->task = $task;
+        $this->task_id = $task->id;
+
+        $this->user = Auth::user();
+        $this->by = session()->get('admin_user', $this->user);
 
         $this->title = $task->title;
         $this->desc = $task->desc;
@@ -122,6 +131,84 @@ class TaskShow extends Component
 
         $this->extratime_from_time = date('Y-m-d\TH:i', strtotime($task->end_time));
         $this->extratime_to_time = date('Y-m-d\TH:i', strtotime($task->end_time . ' +1 Hours'));
+    }
+
+    public $attatchment_file, $attatchment_title, $attatchment_desc;
+    public function addAttatchment()
+    {
+        Attachment::create([
+            'add_by' => $this->by->id,
+
+            'user_id' => $this->by->id,
+            'task_id' => $this->task_id,
+            'title' => $this->attatchment_title,
+            'desc' => $this->attatchment_desc,
+            'file' => HomeController::saveImageWeb($this->attatchment_file, 'attachment'),
+        ]);
+
+        $this->attatchment_title = '';
+        $this->attatchment_desc = '';
+        $this->attatchment_file = null;
+
+        $this->task = Task::find($this->task_id);
+    }
+
+    public function deleteAttatchment($id)
+    {
+        $attche = Attachment::find($id);
+        $attche->delete();
+
+        $this->task = Task::find($this->task_id);
+    }
+
+    public $comment_title, $comment_desc;
+    public function addComment()
+    {
+        $validatedData = $this->validate([
+            'comment_desc' => 'required|min:60',
+        ]);
+
+        Comment::create([
+            'add_by' => $this->by->id,
+
+            'task_id' => $this->task_id,
+            'user_id' => $this->by->id,
+            'title' => $this->comment_title,
+            'desc' => $this->comment_desc,
+            // 'replay_time' => $this->replay_time,
+            // 'main_comment_id' => $this->main_comment_id,
+        ]);
+
+        $this->comment_title = '';
+        $this->comment_desc = '';
+        $this->task = Task::find($this->task_id);
+    }
+
+    public $comment_id, $replay_comment_title, $replay_comment_desc;
+
+    public function setCommentId($id)
+    {
+        $this->comment_id = $id;
+    }
+    public function replayComment()
+    {
+        Comment::create([
+            'add_by' => $this->by->id,
+
+            'task_id' => $this->task_id,
+            'user_id' => $this->by->id,
+            'title' => $this->replay_comment_title,
+            'desc' => $this->replay_comment_desc,
+            // 'replay_time' => $this->replay_time,
+            'main_comment_id' => $this->comment_id,
+        ]);
+
+        $this->replay_comment_title = '';
+        $this->replay_comment_desc = '';
+
+        $this->task = Task::find($this->task_id);
+
+        $this->emit('close-replay-comment-model', $this->task_id);
     }
 
     public function render()

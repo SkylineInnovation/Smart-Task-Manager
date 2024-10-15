@@ -6,7 +6,6 @@
     </li>
 @endpermission
 
-
 @permission('index-otpsendcode')
     <li>
         <a class='slide-item' href='{{ route('otpsendcode.index') }}'>
@@ -14,7 +13,6 @@
         </a>
     </li>
 @endpermission
-
 
 @permission('index-passwordcode')
     <li>
@@ -25,14 +23,12 @@
 @endpermission
 
 @permission('index-attachment')
-<li>
-    <a class='slide-item' href='{{ route('attachment.index') }}'>
-        <span>{{ __('global.attachments') }}</span>
-    </a>
-</li>
+    <li>
+        <a class='slide-item' href='{{ route('attachment.index') }}'>
+            <span>{{ __('global.attachments') }}</span>
+        </a>
+    </li>
 @endpermission
-
-
 
 @permission('index-comment')
     <li>
@@ -66,5 +62,10 @@
     </li>
 @endpermission
 
-
-
+@permission('index-loghistory')
+    <li>
+        <a class='slide-item' href='{{ route('loghistory.index') }}'>
+            <span>{{ __('global.loghistories') }}</span>
+        </a>
+    </li>
+@endpermission

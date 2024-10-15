@@ -93,10 +93,10 @@
                 <span class="side-menu__label">{{ __('global.task-board') }}</span>
                 <i class="angle fa fa-angle-right"></i>
             </a>
-           
+
         </li>
 
-       
+
         <li class="slide">
             <a class="side-menu__item" data-toggle="slide" href=javascript:;>
                 <i class="side-menu__icon fa fa-tasks"></i>
@@ -111,9 +111,9 @@
                         </a>
                     </li>
                 @endpermission
-               
 
-             
+
+
                 @permission('index-dailytask')
                     <li>
                         <a class='slide-item' href='{{ route('dailytask.index') }}'>
@@ -121,8 +121,6 @@
                         </a>
                     </li>
                 @endpermission
-
-              
 
 
                 {{-- <li><a class="slide-item" href="{{ route('banner.index') }}"><span>{{ __('global.Banner') }}</span></a></li> --}}

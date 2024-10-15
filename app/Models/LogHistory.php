@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
 // use Laratrust\Traits\LaratrustUserTrait;
 
-class Attachment extends Model
+class LogHistory extends Model
 {
     // use LaratrustUserTrait;
     use HasFactory;
@@ -57,11 +57,16 @@ class Attachment extends Model
 
 
         'user_id',
-        'task_id',
-        'title',
+        'action',
+        'by_model_name', // attachment, comment, extra_time, leave, 
+        'by_model_id', // attachment, comment, extra_time, leave, 
+        'on_model_name', // task, daily_task,
+        'on_model_id', // task, daily_task,
+        'from_data',
+        'to_data',
+        'preaf',
         'desc',
-        'file',
-        'main_attachment_id',
+        'color',
 
         'show',
         'sort',
@@ -72,20 +77,7 @@ class Attachment extends Model
         parent::boot();
 
         static::created(function ($model) {
-            LogHistory::create([
-                'user_id' => auth()->user()->id,
-                'action' => 'create',
-                'by_model_name' => 'attachment', // attachment, comment, extra_time, leave, 
-                'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
-                'on_model_name' => 'task', // task, daily_task,
-                'on_model_id' => $model->task_id, // task, daily_task,
-                'preaf' => [
-                    'en' => 'new attachment',
-                ],
-                'desc' => [
-                    'en' => 'there is new attachment on task - ' . $model->task_id,
-                ],
-            ]);
+            // 
         });
 
         static::updating(function ($model) {
@@ -97,42 +89,9 @@ class Attachment extends Model
             foreach ($dirtyAttributes as $attribute => $value)
                 $oldValues[$attribute] = $model->getOriginal($attribute);
 
-            LogHistory::create([
-                'user_id' => auth()->user()->id,
-                'action' => 'update',
-                'by_model_name' => 'attachment', // attachment, comment, extra_time, leave, 
-                'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
-                'on_model_name' => 'task', // task, daily_task,
-                'on_model_id' => $model->task_id, // task, daily_task,
-                // 'from_data' => [],
-                // 'to_data' => [],
-                'from_data' => $oldValues,
-                'to_data' => $dirtyAttributes,
-                'preaf' => [
-                    'en' => 'new attachment',
-                ],
-                'desc' => [
-                    'en' => 'there is new attachment on task - ' . $model->task_id,
-                ],
-                // 'color' => '',
-            ]);
-        });
-
-        static::deleted(function ($model) {
-            LogHistory::create([
-                'user_id' => auth()->user()->id,
-                'action' => 'delete',
-                'by_model_name' => 'attachment', // attachment, comment, extra_time, leave, 
-                'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
-                'on_model_name' => 'task', // task, daily_task,
-                'on_model_id' => $model->task_id, // task, daily_task,
-                'preaf' => [
-                    'en' => 'delete attachment',
-                ],
-                'desc' => [
-                    'en' => 'delete attachment from task - ' . $model->task_id,
-                ],
-            ]);
+            // 'subscription_id' => $model->id,
+            // 'from_type_id' => $model->getOriginal()['subscription_type_id'],
+            // 'to_type_id' => $model->getAttributes()['subscription_type_id'],
         });
     }
 
@@ -157,7 +116,11 @@ class Attachment extends Model
         'show' => 'boolean',
         'sort' => 'integer',
 
-        // 'the_name' => 'json',
+        'preaf' => 'json',
+        'desc' => 'json',
+
+        'from_data' => 'json',
+        'to_data' => 'json',
     ];
 
     public function crud_name()
@@ -165,10 +128,15 @@ class Attachment extends Model
         return $this->id;
     }
 
-    // public function name($lang = null)
-    // {
-    //     return $this->translateCol($this->the_name, $lang);
-    // }
+    public function the_preaf($lang = null)
+    {
+        return $this->translateCol($this->preaf, $lang);
+    }
+
+    public function the_desc($lang = null)
+    {
+        return $this->translateCol($this->desc, $lang);
+    }
 
     public static function livewireSearch($search)
     {
@@ -184,13 +152,24 @@ class Attachment extends Model
             $q->whereIn('id', array_map('intval', explode(',', $search)));
 
 
-            $q->orWhere('user_id', $search);
-            $q->orWhere('task_id', $search);
-            $q->orWhereSearch('title', $search);
+            // $q->orWhere('user_id', $search);
+            // $q->orWhereSearch('action', $search);
+            // $q->orWhereSearch('by_model_name', $search);
+            // $q->orWhereSearch('by_model_id', $search);
+            // $q->orWhereSearch('on_model_name', $search);
+            // $q->orWhereSearch('on_model_id', $search);
+            // $q->orWhereSearch('from_data', $search);
+            // $q->orWhereSearch('to_data', $search);
+            $q->orWhereSearch('preaf', $search);
             $q->orWhereSearch('desc', $search);
-            $q->orWhereSearch('file', $search);
-            $q->orWhere('main_attachment_id', $search);
+            // $q->orWhereSearch('color', $search);
 
+        })->orWhereHas('user', function ($q) use ($search) {
+            $q->orWhereSearch('first_name', $search);
+            $q->orWhereSearch('last_name', $search);
+            $q->orWhereRaw('concat(first_name, " ", last_name) like "%' . $search . '%"');
+            $q->orWhereSearch('email', $search);
+            $q->orWhereSearch('phone', $search);
             // })->orWhereHas('add_by_user', function ($q) use ($search) {
             //     $q->orWhereSearch('first_name', $search);
             //     $q->orWhereSearch('last_name', $search);
@@ -212,25 +191,42 @@ class Attachment extends Model
         return $this->belongsTo(User::class);
     }
 
-
-    public function task()
+    public function from_readable()
     {
-        return $this->belongsTo(Task::class);
+        $data = $this->from_data;
+
+        $formatted_data = "";
+        foreach ($data as $key => $value)
+            $formatted_data .= "$key: $value <br>";
+
+        return trim($formatted_data);
     }
 
-
-    public function main_attachment()
+    public function to_readable()
     {
-        return $this->belongsTo(Attachment::class, 'main_attachment_id');
+        $data = $this->to_data;
+
+        $formatted_data = "";
+        foreach ($data as $key => $value)
+            $formatted_data .= "$key: $value <br>";
+
+        return trim($formatted_data);
     }
 
-    public function is_image()
+    public function readable()
     {
-        $ext = ['png', 'jpg', 'webg', 'jpg'];
+        $from_data = json_decode($this->from_data);
+        $to_data = get_object_vars(json_decode($this->to_data));
 
-        if (in_array($this->file, $ext))
-            return true;
+        $formatted_data = "";
+        foreach ($from_data as $key => $value) {
+            if ($key != 'order_status_id') {
+                $key_text = str_replace('_', ' ', $key);
+                $ftom_val = $value ?? '--';
+                $formatted_data .= "$key_text: $ftom_val -> " . $to_data[$key] . "<br>";
+            }
+        }
 
-        return false;
+        return $formatted_data;
     }
 }

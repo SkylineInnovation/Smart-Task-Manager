@@ -162,6 +162,13 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     Route::middleware('permission:restore-dailytask')->get('trash/dailytasks', [App\Http\Controllers\DailyTaskController::class, 'livewireDeletedIndex'])->name('dailytask.index.trash');
     Route::get('export/dailytasks', [App\Http\Controllers\DailyTaskController::class, 'exportFullData'])->name('dailytask.export');
     Route::post('import/dailytasks', [App\Http\Controllers\DailyTaskController::class, 'importData'])->name('dailytask.import');
+
+
+    // the full routes for loghistories
+    Route::middleware('permission:index-loghistory')->get('loghistories', [App\Http\Controllers\LogHistoryController::class, 'livewireIndex'])->name('loghistory.index');
+    Route::middleware('permission:restore-loghistory')->get('trash/loghistories', [App\Http\Controllers\LogHistoryController::class, 'livewireDeletedIndex'])->name('loghistory.index.trash');
+    Route::get('export/loghistories', [App\Http\Controllers\LogHistoryController::class, 'exportFullData'])->name('loghistory.export');
+    Route::post('import/loghistories', [App\Http\Controllers\LogHistoryController::class, 'importData'])->name('loghistory.import');
 });
 
 

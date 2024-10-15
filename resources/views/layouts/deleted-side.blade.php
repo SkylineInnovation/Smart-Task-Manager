@@ -80,3 +80,11 @@
     </li>
 @endpermission
 
+
+@permission('restore-loghistory')
+    <li>
+        <a class='slide-item' href='{{ route('loghistory.index.trash') }}'>
+            <span>{{ __('global.loghistories') }}</span>
+        </a>
+    </li>
+@endpermission
