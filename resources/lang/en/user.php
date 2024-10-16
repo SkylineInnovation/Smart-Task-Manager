@@ -42,4 +42,5 @@ return [
     'new_password' => 'New Password',
     'edit-profile' => 'Edit Profile',
 
+    'guest' => 'Guest User',
 ];

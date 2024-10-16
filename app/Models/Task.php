@@ -170,29 +170,29 @@ class Task extends Model
                 // 'color' => '',
             ]);
 
-            if (env('SEND_MAIL', false)) {
-                if ($model->getOriginal()['status'] != $model->getAttributes()['status']) {
-                    $template = '';
-                    if ($model->status == 'active') {
-                        $template = 'active';
-                    } elseif ($model->status == 'auto-finished') {
-                        $template = 'auto-finished';
-                    } elseif ($model->status == 'manual-finished') {
-                        $template = 'manual-finished';
-                    }
-
-                    $mail_list = [
-                        $model->manager->email,
-                    ];
-
-                    foreach ($model->employees as $emp) {
-                        $mail_list[] = $emp->email;
-                    }
-
-                    if ($template != '')
-                        Mail::to($mail_list)->send(new SendStatusChangeOnTask($template, $model));
-                }
-            }
+            // if (env('SEND_MAIL', false)) {
+            //     if ($model->getOriginal()['status'] != $model->getAttributes()['status']) {
+            //         $template = '';
+            //         if ($model->status == 'active') {
+            //             $template = 'active';
+            //         } elseif ($model->status == 'auto-finished') {
+            //             $template = 'auto-finished';
+            //         } elseif ($model->status == 'manual-finished') {
+            //             $template = 'manual-finished';
+            //         }
+            // 
+            //         $mail_list = [
+            //             $model->manager->email,
+            //         ];
+            // 
+            //         foreach ($model->employees as $emp) {
+            //             $mail_list[] = $emp->email;
+            //         }
+            // 
+            //         if ($template != '')
+            //             Mail::to($mail_list)->send(new SendStatusChangeOnTask($template, $model));
+            //     }
+            // }
         });
 
         static::deleted(function ($model) {
@@ -346,7 +346,7 @@ class Task extends Model
 
     public function discount()
     {
-        return $this->employees ? $this->employees->first()->pivot->discount : 0;
+        return count($this->employees) > 0 ? $this->employees->first()->pivot->discount : 0;
     }
 
     public function format_date($data)

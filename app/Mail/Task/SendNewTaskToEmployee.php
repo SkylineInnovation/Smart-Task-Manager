@@ -10,6 +10,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Crypt;
 
 class SendNewTaskToEmployee extends Mailable
 {
@@ -35,7 +36,7 @@ class SendNewTaskToEmployee extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Send New Task To Employee',
+            subject: 'New Task',
         );
     }
 

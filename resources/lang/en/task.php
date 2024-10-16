@@ -42,7 +42,7 @@ return [
 
     'draft' => 'Draft',
     'in_draft' => 'In Draft',
-    'move_draft' => 'Move TO Draft',
+    'move_draft' => 'Move To Draft',
     'archive' => 'Archive',
 
     'Return' => 'Return',

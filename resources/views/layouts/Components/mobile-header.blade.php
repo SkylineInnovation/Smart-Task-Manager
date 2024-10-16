@@ -42,10 +42,12 @@
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                         <div class="drop-heading">
                             <div class="text-center">
-                                <h5 class="text-dark mb-0">{{ auth()->user()->name() }}</h5>
-                                <div class="text-muted text-sm">
-                                    {{ auth()->user()->rolesSideBySide() }}
-                                </div>
+                                @auth
+                                    <h5 class="text-dark mb-0">{{ auth()->user()->name() }}</h5>
+                                    <div class="text-muted text-sm">
+                                        {{ auth()->user()->rolesSideBySide() }}
+                                    </div>
+                                @endauth
                             </div>
                         </div>
 

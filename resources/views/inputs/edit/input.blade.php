@@ -8,7 +8,7 @@
             class='form-control rounded-md shadow-sm border-gray-300 @error('{{ $name }}') is-invalid @enderror'
             placeholder='{{ __('global.enter') }} {{ __($placeholder ?? '') }}'
             {{ ($type ?? 'text') == 'number' ? 'step=' . ($step ?? 1) : '' }}
-            {{ ($livewire ?? null) == null ? null : 'wire:model=' . $livewire }}>
+            {{ ($livewire ?? null) == null ? null : 'wire:model=' . $livewire }} @guest disabled readonly @endguest>
         @error('{{ $name }}')
             <span class='invalid-feedback' role='alert'>
                 <strong>{{ $message }}</strong>

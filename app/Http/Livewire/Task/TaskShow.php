@@ -3,15 +3,20 @@
 namespace App\Http\Livewire\Task;
 
 use App\Http\Controllers\HomeController;
+use App\Jobs\SendNewAttachment;
+use App\Jobs\SendNewTask;
 use App\Models\Attachment;
 use App\Models\Comment;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Illuminate\Support\Facades\Route;
+use Livewire\WithFileUploads;
 
 class TaskShow extends Component
 {
+    use WithFileUploads;
+
     public Task $task;
 
     public $task_id, $title, $discount, $desc, $start_time, $end_time;
@@ -136,7 +141,7 @@ class TaskShow extends Component
     public $attatchment_file, $attatchment_title, $attatchment_desc;
     public function addAttatchment()
     {
-        Attachment::create([
+        $attachment = Attachment::create([
             'add_by' => $this->by->id,
 
             'user_id' => $this->by->id,
@@ -151,6 +156,9 @@ class TaskShow extends Component
         $this->attatchment_file = null;
 
         $this->task = Task::find($this->task_id);
+
+        // if (env('SEND_MAIL', false))
+        SendNewAttachment::dispatch($attachment);
     }
 
     public function deleteAttatchment($id)
@@ -238,11 +246,6 @@ class TaskShow extends Component
 
         $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->sub_task_discount]);
 
-        // if (env('SEND_MAIL', false))
-        //     Mail::to(
-        //         $task->employees->pluck('email')->toArray()
-        //     )->send(new SendNewTaskToEmployee($task));
-
         $this->sub_task_title = null;
         $this->sub_task_desc = null;
 
@@ -258,6 +261,9 @@ class TaskShow extends Component
         $this->sub_task_discount = $this->task->discount();
 
         session()->flash('sub-task-message', 'Sub Task Created Successfully.');
+
+        if (env('SEND_MAIL', false))
+            SendNewTask::dispatchAfterResponse($task);
     }
 
     public function render()

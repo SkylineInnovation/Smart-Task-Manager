@@ -12,15 +12,16 @@
                     'sm' => 10,
                 ])
 
-                @if ($task->reopen_from_task)
-                    <div class="col-lg-2 col-md-2 col-sm-2">
-                        <label for="draft">{{ __('task.open_history') }}</label>
-
-                        <a href="{{ route('task.show', $task->reopen_from_task) }}" class="btn btn-info w-100">
-                            {{ __('task.history') }}
-                        </a>
-                    </div>
-                @endif
+                @auth
+                    @if ($task->reopen_from_task)
+                        <div class="col-lg-2 col-md-2 col-sm-2">
+                            <label for="draft">{{ __('task.open_history') }}</label>
+                            <a href="{{ route('task.show', $task->reopen_from_task) }}" class="btn btn-info w-100">
+                                {{ __('task.history') }}
+                            </a>
+                        </div>
+                    @endif
+                @endauth
 
                 @include('inputs.edit.input', [
                     'label' => 'task.title',
@@ -47,16 +48,9 @@
                     'sm' => 3,
                 ])
 
-                @include('inputs.edit.input', [
+                @include('inputs.textarea', [
                     'label' => 'task.desc',
-                    'name' => 'task.desc',
-                    'val' => $task->desc,
                     'livewire' => 'desc',
-                    'type' => 'text', // 'step' => 1,
-                    // 'required' => 'required',
-                    'lg' => 12,
-                    'md' => 12,
-                    'sm' => 12,
                 ])
 
                 @include('inputs.edit.input', [
@@ -83,7 +77,7 @@
                     <div class="form-group">
                         <label for="priority_level">{{ __('task.priority_level') }}</label>
                         <select wire:model="priority_level" name="priority_level" id="priority_level"
-                            class="form-control">
+                            class="form-control" @guest disabled readonly @endguest>
                             <option value="urgent">{{ __('task.urgent') }}</option>
                             <option value="high">{{ __('task.high') }}</option>
                             <option value="medium">{{ __('task.medium') }}</option>
@@ -92,24 +86,25 @@
                     </div>
                 </div>
 
-                <div class="col-lg-2 col-md-2 col-sm-2">
-                    <label for="draft">{{ __('task.move_draft') }}?</label>
-
-                    <button wire:click="moveDraft()"
-                        class="btn {{ $task->slug == 'draft' ? 'btn-info' : 'btn-danger' }} w-100">
-                        {{-- {{ $task->slug == 'draft' ? __('task.Return') : __('task.Move') }} --}}
-                        @if ($task->slug == 'draft')
-                            {{ __('task.Return') }}
-                        @else
-                            {{ __('task.Move') }}
-                        @endif
-                    </button>
-                </div>
+                @auth
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <label for="draft">{{ __('task.move_draft') }}?</label>
+                        <button wire:click="moveDraft()"
+                            class="btn {{ $task->slug == 'draft' ? 'btn-info' : 'btn-danger' }} w-100">
+                            @if ($task->slug == 'draft')
+                                {{ __('task.Return') }}
+                            @else
+                                {{ __('task.Move') }}
+                            @endif
+                        </button>
+                    </div>
+                @endauth
 
                 <div class="col-lg-4 col-md-4 col-sm-10">
                     <div class="form-group">
                         <label for="status">{{ __('task.status') }}</label>
-                        <select wire:model="status" name="status" id="status" class="form-control">
+                        <select wire:model="status" name="status" id="status" class="form-control"
+                            @guest disabled readonly @endguest>
                             <option value="pending">{{ __('task.pending') }}</option>
                             <option value="active">{{ __('task.active') }}</option>
                             <option value="auto-finished">{{ __('task.auto-finished') }}</option>
@@ -161,11 +156,13 @@
             </div>
         @endif
 
-        <div class="card-footer">
-            <button type="button" wire:click.prevent="updateTask()" class="btn btn-success">
-                {{ __('global.save-changes') }}
-            </button>
-        </div>
+        @auth
+            <div class="card-footer">
+                <button type="button" wire:click.prevent="updateTask()" class="btn btn-success">
+                    {{ __('global.save-changes') }}
+                </button>
+            </div>
+        @endauth
     </div>
     {{--  --}}
 
@@ -292,46 +289,52 @@
                     aria-labelledby="attatchment-tab">
 
                     <div class="text-start">
-                        <div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="input-group mb-1">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text btn-secondary text-white"
-                                                id="inputGroup-sizing-default">{{ __('attachment.title') }}</span>
-                                        </div>
-                                        <input wire:model.defer="attatchment_title" type="text"
-                                            class="form-control" aria-label="Default"
-                                            aria-describedby="inputGroup-sizing-default">
-                                    </div>
-                                </div>
 
-                                <div class="col">
-                                    <div class="input-group mb-1">
-                                        {{-- <div class="input-group-prepend">
+                        @auth
+                            <div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="input-group mb-1">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text btn-secondary text-white"
+                                                    id="inputGroup-sizing-default">{{ __('attachment.title') }}</span>
+                                            </div>
+                                            <input wire:model.defer="attatchment_title" type="text"
+                                                class="form-control" aria-label="Default"
+                                                aria-describedby="inputGroup-sizing-default">
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="input-group mb-1">
+                                            {{-- <div class="input-group-prepend">
                                             <span class="input-group-text btn-secondary text-white"
                                                 id="inputGroup-sizing-default">{{ __('attachment.file') }}</span>
                                         </div> --}}
-                                        <input wire:model.defer="attatchment_file" type="file"
-                                            class="form-control" aria-label="Default"
-                                            aria-describedby="inputGroup-sizing-default">
+                                            <input wire:model.defer="attatchment_file" type="file"
+                                                class="form-control" aria-label="Default"
+                                                aria-describedby="inputGroup-sizing-default">
+                                        </div>
+                                        <div wire:loading wire:target="attatchment_file">
+                                            {{ __('task.Uploading...') }}</div>
                                     </div>
-                                    <div wire:loading wire:target="attatchment_file">
-                                        {{ __('task.Uploading...') }}</div>
                                 </div>
+
+
+                                <div class="mb-1">
+                                    {{-- <div wire:ignore.self id="summer_desc"></div> --}}
+
+                                    <textarea name='desc' id='desc' rows="3" class='form-control'
+                                        placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="attatchment_desc"></textarea>
+
+                                </div>
+
+                                <button wire:click="addAttatchment()" type="button" class="w-100 btn btn-success">
+                                    {{ __('task.Upload') }}
+                                </button>
+
                             </div>
-
-                            <div wire:ignore.self class="mb-1">
-                                {{-- <div wire:ignore.self id="summer_desc"></div> --}}
-                                <textarea name='desc' id='desc' rows="3" class='form-control'
-                                    placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="attatchment_desc"></textarea>
-                            </div>
-
-                            <button wire:click="addAttatchment()" type="button" class="w-100 btn btn-success">
-                                {{ __('task.Upload') }}
-                            </button>
-
-                        </div>
+                        @endauth
 
                         <div class="container py-3">
                             @foreach ($task->attachments as $attatch)
@@ -384,26 +387,29 @@
                     aria-labelledby="comment-tab">
 
                     <div class="text-start">
-                        <div>
-                            <div class="input-group mb-1">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text btn-secondary text-white"
-                                        id="inputGroup-sizing-default">{{ __('attachment.title') }}</span>
+
+                        @auth
+                            <div>
+                                <div class="input-group mb-1">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text btn-secondary text-white"
+                                            id="inputGroup-sizing-default">{{ __('attachment.title') }}</span>
+                                    </div>
+                                    <input wire:model.defer="comment_title" type="text" class="form-control"
+                                        aria-label="Default" aria-describedby="inputGroup-sizing-default">
                                 </div>
-                                <input wire:model.defer="comment_title" type="text" class="form-control"
-                                    aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                            </div>
 
-                            <div wire:ignore.self class="mb-1">
-                                {{-- <div wire:ignore.self id="summer_desc"></div> --}}
-                                <textarea name='desc' id='desc' rows="3" class='form-control'
-                                    placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="comment_desc"></textarea>
-                            </div>
+                                <div wire:ignore.self class="mb-1">
+                                    {{-- <div wire:ignore.self id="summer_desc"></div> --}}
+                                    <textarea name='desc' id='desc' rows="3" class='form-control'
+                                        placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="comment_desc"></textarea>
+                                </div>
 
-                            <button wire:click="addComment()" type="button" class="w-100 btn btn-success">
-                                {{ __('task.Comment') }}
-                            </button>
-                        </div>
+                                <button wire:click="addComment()" type="button" class="w-100 btn btn-success">
+                                    {{ __('task.Comment') }}
+                                </button>
+                            </div>
+                        @endauth
 
                         <div class="container py-3">
                             @foreach ($task->comments as $comment)
@@ -519,7 +525,8 @@
                                     </div>
 
                                     <div class="form-group mb-1 col-4">
-                                        <select wire:model.defer="sub_task_priority_level" class="form-control">
+                                        <select wire:model.defer="sub_task_priority_level"
+                                            class="form-control"@guest disabled readonly @endguest>
                                             <option value="urgent">{{ __('task.urgent') }}</option>
                                             <option value="high">{{ __('task.high') }}</option>
                                             <option value="medium">{{ __('task.medium') }}</option>

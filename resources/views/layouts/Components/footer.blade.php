@@ -10,10 +10,10 @@
                 {{-- </a> --}}
                 {{-- <br> --}}
             </div>
+            {{-- {{ env('POWER_COMPANY_NAME', 'Codexal') }} --}}
             <div class="col-md-4 col-sm-4 col-4 text-end pe-5">
                 Power By
                 <a href="{{ env('POWER_COMPANY_LINK', 'javascript:;') }}" target="_blank">
-                    {{-- {{ env('POWER_COMPANY_NAME', 'Codexal') }} --}}
                     <img src="{{ asset('assets/logo.png') }}" style="display: inline; height: 20px;">
                 </a>
             </div>

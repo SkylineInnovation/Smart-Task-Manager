@@ -2,10 +2,9 @@
 
 namespace App\Http\Livewire\Task;
 
-use App\Mail\Task\SendNewTaskToEmployee;
+use App\Jobs\SendNewTask;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -155,7 +154,8 @@ class TaskIndex extends Component
 
     public function store($save_for_later = false)
     {
-        $validatedData = $this->validate();
+        if (!$save_for_later)
+            $validatedData = $this->validate();
 
 
         $task = Task::create([
@@ -175,16 +175,14 @@ class TaskIndex extends Component
 
         $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
 
-        if (env('SEND_MAIL', false))
-            Mail::to(
-                $task->employees->pluck('email')->toArray()
-            )->send(new SendNewTaskToEmployee($task));
-
         session()->flash('message', 'Task Created Successfully.');
 
         $this->resetInputFields();
 
         $this->emit('close-model'); // Close model to using to jquery
+
+        if (env('SEND_MAIL', false))
+            SendNewTask::dispatchAfterResponse($task);
     }
 
     public function edit($id)

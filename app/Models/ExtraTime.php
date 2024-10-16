@@ -65,8 +65,6 @@ class ExtraTime extends Model
         'from_time',
         'to_time',
         'request_time',
-        'from_time',
-        'to_time',
         'response_time',
         'status',
         'duration',

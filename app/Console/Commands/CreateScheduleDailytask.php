@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\SendNewTask;
 use App\Models\DailyTask;
 use App\Models\Task;
 use Carbon\Carbon;
@@ -58,6 +59,9 @@ class CreateScheduleDailytask extends Command
             $discount = $taskD->discount();
 
             $task->employees()->syncWithPivotValues($selectedEmployees, ['discount' => $discount]);
+
+            if (env('SEND_MAIL', false))
+                SendNewTask::dispatch($task);
         }
 
 

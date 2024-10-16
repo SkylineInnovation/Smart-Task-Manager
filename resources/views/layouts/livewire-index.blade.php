@@ -27,9 +27,11 @@
     </div>
 
     @php
-        $show_side = $show_side ?? auth()->user()->hasRole('owner') && auth()->user()->hasRole('dev');
-        // $show_side = $show_side ?? auth()->user()->hasRole('owner');
-        // $show_side = false;
+        $show_side = false;
+        if (Auth::check()) {
+            $show_side = $show_side ?? auth()->user()->hasRole('owner') && auth()->user()->hasRole('dev');
+        }
+
     @endphp
 
     <div class="page">
@@ -46,6 +48,7 @@
                 <div class="@if ($show_side) side-app @else container-fluid @endif">
 
                     {{--  --}}{{--  --}}{{--  --}}{{--  --}}
+
                     @include('layouts.Components.top-navbar')
                     {{--  --}}{{--  --}}{{--  --}}{{--  --}}
 

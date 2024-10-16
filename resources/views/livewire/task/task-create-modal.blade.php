@@ -64,7 +64,12 @@
                                     'sm' => 3,
                                 ])
 
-                                @include('inputs.create.input', [
+                                @include('inputs.textarea', [
+                                    'label' => 'task.desc',
+                                    'livewire' => 'desc',
+                                ])
+
+                                {{-- @include('inputs.create.input', [
                                     'label' => 'task.desc',
                                     'name' => 'task.desc',
                                     'livewire' => 'desc',
@@ -73,7 +78,7 @@
                                     'lg' => 12,
                                     'md' => 12,
                                     'sm' => 12,
-                                ])
+                                ]) --}}
 
                                 @include('inputs.create.input', [
                                     'label' => 'task.start_time',
@@ -252,7 +257,13 @@
                                     'md' => 3,
                                     'sm' => 3,
                                 ])
-                                @include('inputs.edit.input', [
+
+                                @include('inputs.textarea', [
+                                    'label' => 'task.desc',
+                                    'livewire' => 'desc',
+                                ])
+
+                                {{-- @include('inputs.edit.input', [
                                     'label' => 'task.desc',
                                     'name' => 'task.desc',
                                     'val' => $task->desc,
@@ -262,7 +273,7 @@
                                     'lg' => 12,
                                     'md' => 12,
                                     'sm' => 12,
-                                ])
+                                ]) --}}
 
                                 @include('inputs.edit.input', [
                                     'label' => 'task.start_time',

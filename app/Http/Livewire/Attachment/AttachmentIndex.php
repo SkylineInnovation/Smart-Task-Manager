@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Attachment;
 
 use App\Http\Controllers\HomeController;
+use App\Jobs\SendNewAttachment;
 use App\Models\Attachment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -145,7 +146,7 @@ class AttachmentIndex extends Component
     {
         $validatedData = $this->validate();
 
-        Attachment::create([
+        $attachment = Attachment::create([
             'add_by' => $this->by->id,
             'slug' => $this->slug,
 
@@ -163,6 +164,9 @@ class AttachmentIndex extends Component
         $this->resetInputFields();
 
         $this->emit('close-model'); // Close model to using to jquery
+
+        if (env('SEND_MAIL', false))
+            SendNewAttachment::dispatchAfterResponse($attachment);
     }
 
     public function edit($id)

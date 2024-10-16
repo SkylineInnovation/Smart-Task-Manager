@@ -3,7 +3,8 @@
 namespace App\Http\Livewire\Web;
 
 use App\Http\Controllers\HomeController;
-use App\Mail\Task\SendNewTaskToEmployee;
+use App\Jobs\SendNewAttachment;
+use App\Jobs\SendNewTask;
 use App\Models\Attachment;
 use App\Models\Comment;
 use App\Models\ExtraTime;
@@ -11,11 +12,9 @@ use App\Models\Leave;
 use App\Models\Task;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Log;
 
 class WebGetTaskByStatus extends Component
 {
@@ -159,7 +158,7 @@ class WebGetTaskByStatus extends Component
     public $attatchment_file, $attatchment_title, $attatchment_desc;
     public function addAttatchment()
     {
-        Attachment::create([
+        $attachment = Attachment::create([
             'add_by' => $this->by->id,
 
             'user_id' => $this->by->id,
@@ -172,6 +171,9 @@ class WebGetTaskByStatus extends Component
         $this->attatchment_title = '';
         $this->attatchment_desc = '';
         $this->attatchment_file = null;
+
+        if (env('SEND_MAIL', false))
+            SendNewAttachment::dispatchAfterResponse($attachment);
     }
 
 
@@ -251,11 +253,6 @@ class WebGetTaskByStatus extends Component
 
         $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->sub_task_discount]);
 
-        // if (env('SEND_MAIL', false))
-        //     Mail::to(
-        //         $task->employees->pluck('email')->toArray()
-        //     )->send(new SendNewTaskToEmployee($task));
-
         $this->sub_task_title = null;
         $this->sub_task_desc = null;
 
@@ -271,6 +268,9 @@ class WebGetTaskByStatus extends Component
         $this->sub_task_discount = $this->task->discount();
 
         session()->flash('sub-task-message', 'Sub Task Created Successfully.');
+
+        if (env('SEND_MAIL', false))
+            SendNewTask::dispatchAfterResponse($task);
     }
 
     public $select_emp;
@@ -606,8 +606,6 @@ class WebGetTaskByStatus extends Component
 
         $empTask->employees()->syncWithPivotValues($this->selected_employe_task, ['discount' => 0]);
 
-
-
         $this->sub_task_title = null;
         $this->sub_task_desc = null;
 
@@ -622,6 +620,9 @@ class WebGetTaskByStatus extends Component
 
 
         session()->flash('emp-task-message', 'emp Task Created Successfully.');
+
+        if (env('SEND_MAIL', false))
+            SendNewTask::dispatchAfterResponse($empTask);
     }
     public function render()
     {

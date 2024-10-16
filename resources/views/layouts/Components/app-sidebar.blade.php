@@ -15,10 +15,12 @@
     <div class="app-sidebar__user">
         <div class="dropdown text-center">
             <div class="user-info">
-                <h6 class=" mb-0 text-dark">{{ auth()->user()->name() }}</h6>
-                <div class="text-muted text-sm">
-                    {{ auth()->user()->rolesSideBySide() }}
-                </div>
+                @auth
+                    <h6 class=" mb-0 text-dark">{{ auth()->user()->name() }}</h6>
+                    <div class="text-muted text-sm">
+                        {{ auth()->user()->rolesSideBySide() }}
+                    </div>
+                @endauth
             </div>
         </div>
     </div>

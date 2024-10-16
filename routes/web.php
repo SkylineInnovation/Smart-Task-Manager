@@ -3,6 +3,7 @@
 use App\Http\Controllers\DailyTaskController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Web\WebTaskController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -56,6 +57,7 @@ Route::get('migrate', function (Request $request) {
     return 'Seed NOT Done';
 });
 
+Route::get('lang/{lang}', [HomeController::class, 'switchLang'])->name('lang.switch');
 
 Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group(function () {
     Route::get('dashboard', [HomeController::class, 'home'])->name('dashboard');
@@ -67,8 +69,6 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     // Route::post('change/user/password/{user}', [UserController::class, "updateUserPassword"])->name('update.user.password');
 
     // Route::get('home', [HomeController::class, 'home'])->name('home');
-
-    Route::get('lang/{lang}', [HomeController::class, 'switchLang'])->name('lang.switch');
 
     Route::get('set-session/{id}', [HomeController::class, 'logInAsUser'])->name('set-session');
 
@@ -171,6 +171,7 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     Route::post('import/loghistories', [App\Http\Controllers\LogHistoryController::class, 'importData'])->name('loghistory.import');
 });
 
+Route::get('web/task/{slug}', [WebTaskController::class, 'openTask'])->name('web.task');
 
 // Route::get('tr', function () {
 //     $date = date('Y-m-d\TH:i');

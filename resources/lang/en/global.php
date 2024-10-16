@@ -73,6 +73,7 @@ return [
     'updated' => 'Updated',
     'edit-profile' => 'Edit Profile',
     'sign-out' => 'Sign Out',
+    'sign-in' => 'Log In',
     'edit-password' => 'Edit Password',
 
     'time' => 'Time',
@@ -193,4 +194,6 @@ return [
 
     'archive' => 'Archive',
     'activate' => 'Activate',
+
+    'view' => 'View',
 ];
