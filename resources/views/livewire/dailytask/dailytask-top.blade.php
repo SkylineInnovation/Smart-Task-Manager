@@ -302,6 +302,10 @@
                 </div>
 
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-info close-btn" data-dismiss="modal">
+                        {{ __('global.done') }}
+                    </button>
+
                     <button type="button" class="btn btn-warning" wire:click.prevent="clearFilter()">
                         {{ __('global.clear') }}
                     </button>

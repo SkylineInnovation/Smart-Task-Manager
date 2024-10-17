@@ -196,4 +196,5 @@ return [
     'activate' => 'Activate',
 
     'view' => 'View',
+    'done' => 'Done',
 ];

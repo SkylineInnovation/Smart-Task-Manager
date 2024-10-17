@@ -196,4 +196,5 @@ return [
     'activate' => 'تفعيل',
 
     'view' => 'عرض',
+    'done' => 'Done',
 ];
