@@ -9,14 +9,17 @@
         background-position: center;
         background-repeat: no-repeat;
 
-        background-image: url({{ asset('assets/images/login/maham1-02-04.png') }});
+        background-size: 100%;
+        background-image: url({{ asset('assets/images/login/login-bg.png') }});
     }
 
     .posetions {
         position: absolute;
-        top: 7%;
-        left: 5%;
-        width: 43%;
+        top: 25%;
+        left: 15%;
+        /* width: 500px;
+        height: 500px; */
+        width: 33%;
     }
 
     .inputBg {
@@ -29,29 +32,14 @@
 </style>
 
 <x-guest-layout>
-    {{-- <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-    </x-auth-card> --}}
 
     <div class="container-fluid p-4 imageBg h-100">
         <div class="row">
-            <div class="col-md-12 d-flex align-items-center justify-content-center">
-                <img src="{{ asset('assets/images/login/maham1-02-03-02.png') }}" width="300" height="300"
-                    alt="">
+            <div class="col-md-12 d-flex ps-5">
+                <img src="{{ asset('assets/images/login/login-logo.png') }}" style="width: 200px;height: 200px;">
             </div>
             <div class="col-md-8 d-none d-sm-block">
-                <img class="posetions" src="{{ asset('assets/images/login/maham1-02-03-03.png') }}" alt="">
+                <img class="posetions" src="{{ asset('assets/images/login/login-icon.png') }}">
             </div>
             <div class="col-md-3  d-flex align-items-center">
                 <form method="POST" class="w-100" action="{{ route('login') }}">
@@ -61,7 +49,7 @@
                     <div class=" justify-content-center">
                         {{-- <x-input-label for="email" :value="__('Email')" /> --}}
 
-                        <x-text-input class="" id="email" class="block mt-1 w-100 rounded-pill inputBg"
+                        <x-text-input class="" id="email" class="block mt-1 w-100 rounded-3 inputBg"
                             placeholder="email" type="email" name="email" :value="old('email')" required autofocus />
                     </div>
 
@@ -70,9 +58,8 @@
                     <div class="mt-4">
                         {{-- <x-input-label for="password" :value="__('Password')" /> --}}
 
-                        <x-text-input id="password" class="block mt-1 w-100 rounded-pill inputBg"
-                            placeholder="password" type="password" name="password" required
-                            autocomplete="current-password" />
+                        <x-text-input id="password" class="block mt-1 w-100 rounded-3 inputBg" placeholder="password"
+                            type="password" name="password" required autocomplete="current-password" />
                     </div>
 
                     <!-- Remember Me -->
