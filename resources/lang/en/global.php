@@ -197,4 +197,11 @@ return [
 
     'view' => 'View',
     'done' => 'Done',
+
+    'select-users' => 'Select Users',
+    'select-tasks' => 'Select Tasks',
+    'select-managers' => 'Select Managers',
+    'select-employees' => 'Select Employees',
+    // 'select-main_attachments' => 'Select Main Attachments',
+    // 'select-main_comments' => 'Select Main Comments',
 ];

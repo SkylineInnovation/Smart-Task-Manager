@@ -269,7 +269,7 @@
                     <div class='form-group'>
                         <label for='user-select'>{{ __('global.by_users') }}</label>
                         <select id='user-select' class='form-control' wire:model='select_user'>
-                            <option>Select users</option>
+                            <option>{{ __('global.select-users') }}</option>
                             @foreach ($users as $user)
                                 <option value='{{ $user->id }}'>{{ $user->crud_name() }}</option>
                             @endforeach

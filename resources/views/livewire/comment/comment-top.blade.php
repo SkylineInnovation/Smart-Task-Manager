@@ -270,7 +270,7 @@
                     <div class='form-group'>
                         <label for='task-select'>{{ __('global.by_tasks') }}</label>
                         <select id='task-select' class='form-control' wire:model='select_task'>
-                            <option>Select tasks</option>
+                            <option>{{ __('global.select-tasks') }}</option>
                             @foreach ($tasks as $task)
                                 <option value='{{ $task->id }}'>{{ $task->crud_name() }}</option>
                             @endforeach
@@ -292,7 +292,7 @@
                     <div class='form-group'>
                         <label for='user-select'>{{ __('global.by_users') }}</label>
                         <select id='user-select' class='form-control' wire:model='select_user'>
-                            <option>Select users</option>
+                            <option>{{ __('global.select-users') }}</option>
                             @foreach ($users as $user)
                                 <option value='{{ $user->id }}'>{{ $user->crud_name() }}</option>
                             @endforeach
@@ -311,10 +311,10 @@
                         @endforeach
                     </div>
 
-                    <div class='form-group'>
+                    {{-- <div class='form-group'>
                         <label for='main_comment-select'>{{ __('global.by_main_comments') }}</label>
                         <select id='main_comment-select' class='form-control' wire:model='select_main_comment'>
-                            <option>Select main_comments</option>
+                            <option>{{ __('global.select-main_comments') }}</option>
                             @foreach ($main_comments as $main_comment)
                                 <option value='{{ $main_comment->id }}'>{{ $main_comment->crud_name() }}</option>
                             @endforeach
@@ -333,7 +333,7 @@
                                 </div>
                             @endif
                         @endforeach
-                    </div>
+                    </div> --}}
 
 
                     <br>

@@ -196,5 +196,9 @@ return [
     'activate' => 'تفعيل',
 
     'view' => 'عرض',
-    'done' => 'Done',
+    'done' => 'تم',
+    'select-users' => 'حدد المستخدمين',
+    'select-tasks' => 'حدد المهام',
+    'select-managers' => 'حدد المديرين',
+    'select-employees' => 'حدد الموظفين',
 ];

@@ -20,7 +20,7 @@
                         <div class='form-group col-6'>
                             <label for='employee-select'>{{ __('task.employees') }}</label>
                             <select id='employee-select' class='form-control' wire:model='select_emp'>
-                                <option>Select employees</option>
+                                <option>{{ __('global.select-employees') }}</option>
                                 @foreach ($employees as $employee)
                                     <option value='{{ $employee->id }}'>{{ $employee->crud_name() }}</option>
                                 @endforeach

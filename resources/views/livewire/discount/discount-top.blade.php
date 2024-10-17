@@ -267,7 +267,7 @@
                     <div class='form-group'>
                         <label for='task-select'>{{ __('global.by_tasks') }}</label>
                         <select id='task-select' class='form-control' wire:model='select_task'>
-                            <option>Select tasks</option>
+                            <option>{{ __('global.select-tasks') }}</option>
                             @foreach ($tasks as $task)
                                 <option value='{{ $task->id }}'>{{ $task->crud_name() }}</option>
                             @endforeach
@@ -289,7 +289,7 @@
                     <div class='form-group'>
                         <label for='user-select'>{{ __('global.by_users') }}</label>
                         <select id='user-select' class='form-control' wire:model='select_user'>
-                            <option>Select users</option>
+                            <option>{{ __('global.select-users') }}</option>
                             @foreach ($users as $user)
                                 <option value='{{ $user->id }}'>{{ $user->crud_name() }}</option>
                             @endforeach
