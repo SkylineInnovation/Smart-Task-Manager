@@ -232,7 +232,7 @@
 
     <div class="card">
         <div class="card-header">
-            {{ __('task.Leaves_&_Extra_Time') }}
+            {{ __('task.Leaves_&_Extra_Times') }}
         </div>
         <div class="card-body">
             <div id="leave-extratime-echart" class="chart-donut chart-dropshadow"></div>
