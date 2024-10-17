@@ -36,10 +36,10 @@
     <div class="container-fluid p-4 imageBg h-100">
         <div class="row">
             <div class="col-md-12 d-flex ps-5">
-                <img src="{{ asset('assets/images/login/login-logo.png') }}" style="width: 200px;height: 200px;">
+                {{-- <img src="{{ asset('assets/images/login/login-logo.png') }}" style="width: 200px;height: 200px;"> --}}
             </div>
             <div class="col-md-8 d-none d-sm-block">
-                <img class="posetions" src="{{ asset('assets/images/login/login-icon.png') }}">
+                {{-- <img class="posetions" src="{{ asset('assets/images/login/login-icon.png') }}"> --}}
             </div>
             <div class="col-md-3  d-flex align-items-center">
                 <form method="POST" class="w-100" action="{{ route('login') }}">
