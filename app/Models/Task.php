@@ -321,6 +321,20 @@ class Task extends Model
         return '';
     }
 
+    public function the_status_color()
+    {
+        if ($this->status == 'pending')
+            return '#00FF00';
+        elseif ($this->status == 'active')
+            return '#0000FF';
+        elseif ($this->status == 'auto-finished')
+            return '#FF0000';
+        elseif ($this->status == 'manual-finished') // TODO
+            return '#FF0000';
+
+        return '';
+    }
+
     public function add_by_user()
     {
         return $this->belongsTo(User::class, 'add_by');
