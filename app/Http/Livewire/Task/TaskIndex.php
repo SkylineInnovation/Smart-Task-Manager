@@ -74,9 +74,11 @@ class TaskIndex extends Component
         $this->start_time = date('Y-m-d\TH:i');
         $this->end_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
 
-        $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
-
-        // $this->main_tasks = \App\Models\Task::whereNullOrEmptyOrZero('main_task_id')->where('show', 1)->orderBy('sort')->get();
+        if (!$this->user->hasRole('owner')) {
+            $this->employees = $this->user->employees;
+        } else {
+            $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
+        }
 
 
         $this->showColumn = collect([
