@@ -40,5 +40,5 @@ return [
 
     'discount' => 'Deduction',
 
-
+    'employees' => 'Employees',
 ];

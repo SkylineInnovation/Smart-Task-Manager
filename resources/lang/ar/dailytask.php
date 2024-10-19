@@ -41,4 +41,6 @@ return [
 
     'discount' => 'الخصم',
 
+    'employees' => 'موظفين',
+
 ];
