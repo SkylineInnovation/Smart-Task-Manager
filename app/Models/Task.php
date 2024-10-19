@@ -361,10 +361,8 @@ class Task extends Model
     public function employee_names()
     {
         $text = '';
-
-        foreach ($this->employees as $employee) {
+        foreach ($this->employees as $employee)
             $text .= $employee->name() . '<br>';
-        }
 
         return $text;
     }

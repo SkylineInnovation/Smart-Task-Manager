@@ -72,6 +72,7 @@ class DailytaskIndex extends Component
 
 
             'manager_id' => true,
+            'employees' => true,
             'title' => true,
             'description' => false,
             'start_time' => true,
