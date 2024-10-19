@@ -37,6 +37,10 @@
                         <td>{{ __('task.manager') }}</td>
                     @endif
 
+                    @if ($showColumn['employees'])
+                        <td>{{ __('task.employees') }}</td>
+                    @endif
+
                     @if ($showColumn['title'])
                         <td>{{ __('task.title') }}</td>
                     @endif
@@ -109,6 +113,14 @@
                             <td>
                                 @if ($task->manager)
                                     {{ $task->manager->crud_name() }}
+                                @endif
+                            </td>
+                        @endif
+
+                        @if ($showColumn['employees'])
+                            <td>
+                                @if ($task->employees)
+                                    {!! $task->employee_names() !!}
                                 @endif
                             </td>
                         @endif
