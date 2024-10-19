@@ -315,7 +315,7 @@ class WebGetTaskByStatus extends Component
 
         // $this->employees = $task->employees;
         if ($this->user->hasRole('owner')) {
-            $this->employees = \App\Models\User::orderBy('first_name')->get();
+            $this->employees = \App\Models\User::whereRoleIs('employee|manager')->orderBy('first_name')->get();
         } else {
             $this->employees = $this->user->employees;
         }

@@ -63,7 +63,7 @@ class DailytaskIndex extends Component
         $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
 
 
-        $this->managers = \App\Models\User::orderBy('user_name')->get();
+        $this->managers = \App\Models\User::whereRoleIs('manager')->orderBy('user_name')->get();
 
 
         $this->showColumn = collect([

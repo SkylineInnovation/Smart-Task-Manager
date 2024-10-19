@@ -30,9 +30,8 @@ class WebCreateNewTask extends Component
         $this->end_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
 
 
-        // $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
         if ($this->user->hasRole('owner')) {
-            $this->employees = \App\Models\User::orderBy('first_name')->get();
+            $this->employees = \App\Models\User::whereRoleIs('employee|manager')->orderBy('first_name')->get();
         } else {
             $this->employees = $this->user->employees;
         }

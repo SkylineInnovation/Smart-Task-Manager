@@ -79,7 +79,7 @@ class AttachmentIndex extends Component
 
 
 
-        $this->users = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
+        $this->users = \App\Models\User::whereRoleIs('employee|manager')->orderBy('first_name')->get();
 
         $this->tasks = \App\Models\Task::whereNullOrEmptyOrZero('main_task_id')->where('show', 1)->orderBy('sort')->get();
 
