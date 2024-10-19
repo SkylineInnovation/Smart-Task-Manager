@@ -126,7 +126,7 @@
 
                         <td>
                             @if ($user->managers)
-                                {!! $task->manager_names() !!}
+                                {!! $user->manager_names() !!}
                             @endif
                         </td>
 
