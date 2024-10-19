@@ -379,6 +379,10 @@ class TaskIndex extends Component
                 $q->where('user_id', $this->the_employee_id);
             });
 
+        if (!$this->auth->hasRole('owner')) {
+            $tasks = $tasks->where('manager_id', $this->auth->id);
+        }
+
 
         if ($this->admin_view_status == 'deleted')
             $tasks = $tasks->onlyTrashed();
