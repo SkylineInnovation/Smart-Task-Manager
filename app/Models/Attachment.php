@@ -73,7 +73,7 @@ class Attachment extends Model
 
         static::created(function ($model) {
             LogHistory::create([
-                'user_id' => auth()->user()->id,
+                'user_id' => auth()->user() ? auth()->user()->id : 0,
                 'action' => 'create',
                 'by_model_name' => 'attachment', // attachment, comment, extra_time, leave, 
                 'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
@@ -98,7 +98,7 @@ class Attachment extends Model
                 $oldValues[$attribute] = $model->getOriginal($attribute);
 
             LogHistory::create([
-                'user_id' => auth()->user()->id,
+                'user_id' => auth()->user() ? auth()->user()->id : 0,
                 'action' => 'update',
                 'by_model_name' => 'attachment', // attachment, comment, extra_time, leave, 
                 'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
@@ -118,7 +118,7 @@ class Attachment extends Model
 
         static::deleted(function ($model) {
             LogHistory::create([
-                'user_id' => auth()->user()->id,
+                'user_id' => auth()->user() ? auth()->user()->id : 0,
                 'action' => 'delete',
                 'by_model_name' => 'attachment', // attachment, comment, extra_time, leave, 
                 'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 

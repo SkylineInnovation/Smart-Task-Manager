@@ -253,10 +253,10 @@
                                     <tr>
                                         <td>
                                             <div class="row w-100 m-0 ">
-                                                <div class="col-3">
+                                                {{-- <div class="col-3">
                                                     <img src="{{ asset($employee->image) }}"
                                                         style="border-radius: 40%; width: 50px;">
-                                                </div>
+                                                </div> --}}
                                                 <div class="col">
                                                     <div class="col-12">
                                                         <a href="{{ route('user.show', $employee) }}">
@@ -867,10 +867,10 @@
                                         <tr>
                                             <td>
                                                 <div class="row w-100 m-0 ">
-                                                    <div class="col-3">
+                                                    {{-- <div class="col-3">
                                                         <img src="{{ asset($discount->user->image) }}"
                                                             style="border-radius: 40%; width: 50px;">
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="col">
                                                         <div class="col-12">
                                                             <a href="{{ route('user.show', $discount->user) }}">

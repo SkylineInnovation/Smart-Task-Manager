@@ -35,13 +35,20 @@
 
     <div class="container-fluid p-4 imageBg h-100">
         <div class="row">
-            <div class="col-md-12 d-flex ps-5">
-                {{-- <img src="{{ asset('assets/images/login/login-logo.png') }}" style="width: 200px;height: 200px;"> --}}
+            <div class="col-12 ps-5">
+                <img src="{{ asset('assets/images/login/login-logo.png') }}" style="width: 250px;height: 250px;">
             </div>
             <div class="col-md-8 d-none d-sm-block">
-                {{-- <img class="posetions" src="{{ asset('assets/images/login/login-icon.png') }}"> --}}
+                <img class="posetions" src="{{ asset('assets/images/login/login-icon.png') }}">
             </div>
-            <div class="col-md-3  d-flex align-items-center">
+            <div class="col-md-3 align-items-center">
+
+                <!-- Session Status -->
+                <x-auth-session-status class="mb-4" :status="session('status')" />
+
+                <!-- Validation Errors -->
+                <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
                 <form method="POST" class="w-100" action="{{ route('login') }}">
                     @csrf
 
@@ -50,7 +57,8 @@
                         {{-- <x-input-label for="email" :value="__('Email')" /> --}}
 
                         <x-text-input class="" id="email" class="block mt-1 w-100 rounded-3 inputBg"
-                            placeholder="email" type="email" name="email" :value="old('email')" required autofocus />
+                            placeholder="{{ __('user.email') }}" type="email" name="email" :value="old('email')"
+                            required autofocus />
                     </div>
 
                     <!-- Password -->
@@ -58,8 +66,21 @@
                     <div class="mt-4">
                         {{-- <x-input-label for="password" :value="__('Password')" /> --}}
 
-                        <x-text-input id="password" class="block mt-1 w-100 rounded-3 inputBg" placeholder="password"
-                            type="password" name="password" required autocomplete="current-password" />
+                        <div class="input-group">
+                            <x-text-input id="password" class="form-control block inputBg"
+                                placeholder="{{ __('user.password') }}" type="password" name="password" required
+                                autocomplete="current-password" id="myInput" />
+
+                            <button class="btn btn-outline-light" type="button" id="button-addon">
+                                <span class="password-toggle-icon center">
+                                    <i class="fa fa-eye"></i>
+                                </span>
+                            </button>
+                        </div>
+
+
+                        {{-- <input type="checkbox" onclick="myFunction()">Show Password --}}
+
                     </div>
 
                     <!-- Remember Me -->
@@ -97,5 +118,32 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
 
+    <script>
+        // function myFunction() {
+        //     var x = document.getElementById("myInput");
+        //     if (x.type === "password") {
+        //         x.type = "text";
+        //     } else {
+        //         x.type = "password";
+        //     }
+        // }
+
+        const passwordField = document.getElementById("myInput");
+        const btnPassword = document.getElementById("button-addon");
+
+        const togglePassword = document.querySelector(".password-toggle-icon i");
+
+        btnPassword.addEventListener("click", function() {
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                togglePassword.classList.remove("fa-eye");
+                togglePassword.classList.add("fa-eye-slash");
+            } else {
+                passwordField.type = "password";
+                togglePassword.classList.remove("fa-eye-slash");
+                togglePassword.classList.add("fa-eye");
+            }
+        });
+    </script>
 
 </x-guest-layout>

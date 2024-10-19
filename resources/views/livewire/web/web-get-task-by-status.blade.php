@@ -139,9 +139,9 @@
                             @foreach ($task->employees as $employee)
                                 <div class="col-4" data-container="body" data-toggle="tooltip"
                                     data-popover-color="default" data-placement="top" title="{{ $employee->name() }}">
-                                    <img src="{{ asset($employee->image) }}"
+                                    {{-- <img src="{{ asset($employee->image) }}"
                                         style="width: 40px !important; border-radius: 100px;"
-                                        alt="{{ $employee->name() }}">
+                                        alt="{{ $employee->name() }}"> --}}
                                     {{ $employee->name() }}
                                 </div>
                             @endforeach
@@ -311,10 +311,10 @@
                                                     <tr>
                                                         <td>
                                                             <div class="row w-100 m-0 ">
-                                                                <div class="col-3">
+                                                                {{-- <div class="col-3">
                                                                     <img src="{{ asset($employee->image) }}"
                                                                         style="border-radius: 40%; width: 50px;">
-                                                                </div>
+                                                                </div> --}}
                                                                 <div class="col">
                                                                     <div class="col-12">
                                                                         {{ $employee->name() }}
