@@ -60,7 +60,9 @@
 
                     <td>{{ __('global.roles') }}</td>
 
-                    <td>{{ __('user.managers') }}</td>
+                    @role('owner')
+                        <td>{{ __('user.managers') }}</td>
+                    @endrole
 
                     <td style="width: 150px">
                         {{ __('global.action') }}
@@ -124,11 +126,13 @@
 
                         <td> {{ $user->rolesSideBySide() }} </td>
 
-                        <td>
-                            @if ($user->managers)
-                                {!! $user->manager_names() !!}
-                            @endif
-                        </td>
+                        @role('owner')
+                            <td>
+                                @if ($user->managers)
+                                    {!! $user->manager_names() !!}
+                                @endif
+                            </td>
+                        @endrole
 
                         <td>
                             @permission('show-user')
