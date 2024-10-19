@@ -49,7 +49,9 @@
                             <h1 class="page-title">{{ __('global.dashboard') }}</h1>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="{{ route('dashboard') }}">{{ __('global.home') }}</a>
+                                    <a href="{{ route('dashboard') }}">
+                                        <h4>{{ __('global.home') }}</h4>
+                                    </a>
                                 </li>
                                 @yield('page-header')
                                 {{-- <li class="breadcrumb-item active" aria-current="page">Text</li> --}}

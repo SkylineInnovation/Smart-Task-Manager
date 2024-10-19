@@ -65,6 +65,8 @@ class RoleSeeder extends Seeder
             'dailytask',
 
             'loghistory',
+
+            'department',
         ];
 
         foreach ($lists as $item) {

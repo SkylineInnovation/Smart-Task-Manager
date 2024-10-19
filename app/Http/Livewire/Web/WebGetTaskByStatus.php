@@ -180,9 +180,11 @@ class WebGetTaskByStatus extends Component
     public $comment_title, $comment_desc;
     public function addComment()
     {
-        $validatedData = $this->validate([
-            'comment_desc' => 'required|min:60',
-        ]);
+        if ($this->user->hasRole('employee')) {
+            $validatedData = $this->validate([
+                'comment_desc' => 'required|min:60',
+            ]);
+        }
 
         Comment::create([
             'add_by' => $this->by->id,
@@ -635,6 +637,11 @@ class WebGetTaskByStatus extends Component
                 $q->where('user_id', $this->user->id);
             });
         }
+
+        if ($this->user->hasRole('manager')) {
+            $tasks = $tasks->where('manager_id', $this->user->id);
+        }
+
 
         $date = date('Y-m-d\TH:i', strtotime('-1 days'));
 

@@ -1,5 +1,13 @@
 @extends('layouts.livewire-index')
 
+@section('page-header')
+    <li class="breadcrumb-item">
+        <a href="{{ route('dailytask.index') }}" class="h4">
+            {{ __('global.dailytasks') }}
+        </a>
+    </li>
+@endsection
+
 @section('content')
     <div class="card">
         {{-- 
@@ -7,9 +15,9 @@
                 <h4>{{ __('global.all') }} {{ __('global.dailytasks') }} </h4>
             </div>
         --}}
-        
+
         <div class="card-body">
-            <livewire:dailytask.dailytask-index :admin_view_status="$admin_view_status"/>
+            <livewire:dailytask.dailytask-index :admin_view_status="$admin_view_status" />
         </div>
     </div>
 @endsection

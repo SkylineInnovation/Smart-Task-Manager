@@ -88,3 +88,11 @@
         </a>
     </li>
 @endpermission
+
+@permission('restore-department')
+    <li>
+        <a class='slide-item' href='{{ route('department.index.trash') }}'>
+            <span>{{ __('global.departments') }}</span>
+        </a>
+    </li>
+@endpermission

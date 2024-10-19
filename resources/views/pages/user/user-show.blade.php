@@ -1,5 +1,13 @@
 @extends('layouts.livewire-index')
 
+@section('page-header')
+    <li class="breadcrumb-item">
+        <a href="{{ route('user.index') }}" class="h4">
+            {{ __('global.users') }}
+        </a>
+    </li>
+@endsection
+
 @section('content')
     <livewire:user.user-show :user="$user" />
 

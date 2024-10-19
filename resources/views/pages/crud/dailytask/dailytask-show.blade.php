@@ -1,5 +1,13 @@
 @extends('layouts.livewire-index')
 
+@section('page-header')
+    <li class="breadcrumb-item">
+        <a href="{{ route('dailytask.index') }}" class="h4">
+            {{ __('global.dailytasks') }}
+        </a>
+    </li>
+@endsection
+
 @section('content')
     <livewire:dailytask.daily-task-show :dailytask="$dailytask" />
 

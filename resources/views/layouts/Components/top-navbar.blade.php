@@ -44,6 +44,13 @@
                             {{ __('global.users') }}
                         </a>
                     </li>
+                    @permission('index-department')
+                        <li aria-haspopup="true">
+                            <a href="{{ route('department.index') }}">
+                                {{ __('global.departments') }}
+                            </a>
+                        </li>
+                    @endpermission
                 </ul>
             </li>
         @endrole

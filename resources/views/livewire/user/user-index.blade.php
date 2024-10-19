@@ -62,6 +62,8 @@
 
                     @role('owner')
                         <td>{{ __('user.managers') }}</td>
+
+                        <td>{{ __('user.department') }}</td>
                     @endrole
 
                     <td style="width: 150px">
@@ -127,11 +129,8 @@
                         <td> {{ $user->rolesSideBySide() }} </td>
 
                         @role('owner')
-                            <td>
-                                @if ($user->managers)
-                                    {!! $user->manager_names() !!}
-                                @endif
-                            </td>
+                            <td>{!! $user->manager_names() !!}</td>
+                            <td>{!! $user->department_names() !!}</td>
                         @endrole
 
                         <td>

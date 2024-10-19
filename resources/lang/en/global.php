@@ -152,6 +152,9 @@ return [
     'dailytasks' => 'Daily Tasks',
     'create-dailytask' => 'Create New Daily Task',
 
+    'departments' => 'Departments',
+    'create-department' => 'Create New Department',
+
     'employees' => 'Employees',
     'task-board' => 'Task Board',
 

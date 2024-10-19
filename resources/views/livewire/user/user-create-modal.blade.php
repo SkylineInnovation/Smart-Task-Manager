@@ -105,6 +105,26 @@
 
                     @role('owner')
                         <div>
+                            <p>{{ __('global.departments') }}</p>
+                            <div class="row">
+                                @foreach ($departments as $department)
+                                    <div class="col-4">
+                                        <div class="form-check form-check-inline">
+                                            <input wire:model='selectedDepartments' class="form-check-input" type="checkbox"
+                                                value="{{ $department->id }}"
+                                                id="selected-department-{{ $department->id }}">
+                                            <label class="form-check-label" for="selected-department-{{ $department->id }}">
+                                                {{ $department->name }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endrole
+
+                    @role('owner')
+                        <div>
                             <p>{{ __('global.employees') }}</p>
                             <div class="row">
                                 @foreach ($employees as $employee)
@@ -278,6 +298,27 @@
                                                 value="{{ $role->id }}" id="selected-role-{{ $role->id }}">
                                             <label class="form-check-label" for="selected-role-{{ $role->id }}">
                                                 {{ $role->display_name }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endrole
+
+                    @role('owner')
+                        <div>
+                            <p>{{ __('global.departments') }}</p>
+                            <div class="row">
+                                @foreach ($departments as $department)
+                                    <div class="col-4">
+                                        <div class="form-check form-check-inline">
+                                            <input wire:model='selectedDepartments' class="form-check-input"
+                                                type="checkbox" value="{{ $department->id }}"
+                                                id="selected-department-{{ $department->id }}">
+                                            <label class="form-check-label"
+                                                for="selected-department-{{ $department->id }}">
+                                                {{ $department->name }}
                                             </label>
                                         </div>
                                     </div>

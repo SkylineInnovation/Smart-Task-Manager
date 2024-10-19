@@ -1,5 +1,13 @@
 @extends('layouts.livewire-index')
 
+@section('page-header')
+    <li class="breadcrumb-item">
+        <a href="{{ route('task.index') }}" class="h4">
+            {{ __('global.tasks') }}
+        </a>
+    </li>
+@endsection
+
 @section('content')
     <livewire:task.task-show :task="$task" />
 @endsection
@@ -14,3 +22,47 @@
         });
     </script>
 @endsection --}}
+
+@section('js')
+    <script>
+        // $(function(e) {
+        //     $("#summer_desc").summernote({
+        //         tabsize: 3,
+        //         height: 200,
+        //     });
+        // });
+
+        $(document).ready(function() {
+            window.livewire.on('render-index', () => {
+                window.livewire.emit('refreshRender');
+            });
+
+            window.livewire.on('render-active', () => {
+                window.livewire.emit('refreshRender');
+            });
+
+            window.livewire.on('render-manual-finished', () => {
+                window.livewire.emit('refreshRender');
+            });
+
+            window.livewire.on('close-leave-request-model', id => {
+                $('#request-leave-modal-' + id).modal('hide');
+            })
+
+            window.livewire.on('close-extra-time-model', id => {
+                $('#extra-time-modal-' + id).modal('hide');
+            })
+
+            window.livewire.on('close-replay-comment-model', id => {
+                $('#replay-modal-' + id).modal('hide');
+            })
+
+            window.livewire.on('close-accept-extra-time-model', id => {
+                $('#accept-extratime-modal-' + id).modal('hide');
+            })
+            window.livewire.on('close-accept-leave-model', id => {
+                $('#accept-leave-modal-' + id).modal('hide');
+            })
+        });
+    </script>
+@endsection

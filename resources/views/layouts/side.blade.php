@@ -69,3 +69,11 @@
         </a>
     </li>
 @endpermission
+
+@permission('index-department')
+    <li>
+        <a class='slide-item' href='{{ route('department.index') }}'>
+            <span>{{ __('global.departments') }}</span>
+        </a>
+    </li>
+@endpermission

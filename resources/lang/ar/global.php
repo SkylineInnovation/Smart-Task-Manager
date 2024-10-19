@@ -152,6 +152,9 @@ return [
     'dailytasks' => 'المهام اليومية',
     'create-dailytask' => 'إنشاء مهمة يومية جديدة',
 
+    'departments' => 'الاقسام',
+    'create-department' => 'اضافة قسم جديد',
+
     'employees' => 'الموظفون',
     'task-board' => 'لوحة المهام',
 

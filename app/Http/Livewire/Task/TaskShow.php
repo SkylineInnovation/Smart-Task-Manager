@@ -172,10 +172,11 @@ class TaskShow extends Component
     public $comment_title, $comment_desc;
     public function addComment()
     {
-        $validatedData = $this->validate([
-            'comment_desc' => 'required|min:60',
-        ]);
-
+        if ($this->user->hasRole('employee')) {
+            $validatedData = $this->validate([
+                'comment_desc' => 'required|min:60',
+            ]);
+        }
         Comment::create([
             'add_by' => $this->by->id,
 

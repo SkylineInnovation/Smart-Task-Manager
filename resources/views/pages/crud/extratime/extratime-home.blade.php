@@ -1,5 +1,13 @@
 @extends('layouts.livewire-index')
 
+@section('page-header')
+    <li class="breadcrumb-item">
+        <a href="{{ route('extratime.index') }}" class="h4">
+            {{ __('global.extratimes') }}
+        </a>
+    </li>
+@endsection
+
 @section('content')
     <div class="card">
         {{-- 

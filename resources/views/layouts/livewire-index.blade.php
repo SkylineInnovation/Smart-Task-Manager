@@ -58,7 +58,9 @@
                             <h1 class="page-title">{{ __('global.dashboard') }}</h1>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="{{ route('dashboard') }}">{{ __('global.home') }}</a>
+                                    <a href="{{ route('dashboard') }}" class="h4">
+                                        {{ __('global.home') }}
+                                    </a>
                                 </li>
                                 @yield('page-header')
                             </ol>

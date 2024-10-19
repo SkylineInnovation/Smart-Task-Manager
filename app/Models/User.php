@@ -178,4 +178,17 @@ class User extends Authenticatable
             $text .= $manager->name() . '<br>';
         return $text;
     }
+
+    public function departments()
+    {
+        return $this->belongsToMany(Department::class, 'department_employee', 'department_id', 'employee_id');
+    }
+
+    public function department_names()
+    {
+        $text = '';
+        foreach ($this->departments as $department)
+            $text .= $department->name . '<br>';
+        return $text;
+    }
 }

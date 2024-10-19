@@ -59,6 +59,8 @@ Route::get('migrate', function (Request $request) {
 
 Route::get('lang/{lang}', [HomeController::class, 'switchLang'])->name('lang.switch');
 
+Route::get('web/task/{slug}', [WebTaskController::class, 'openTask'])->name('web.task');
+
 Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group(function () {
     Route::get('dashboard', [HomeController::class, 'home'])->name('dashboard');
 
@@ -169,9 +171,16 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     Route::middleware('permission:restore-loghistory')->get('trash/loghistories', [App\Http\Controllers\LogHistoryController::class, 'livewireDeletedIndex'])->name('loghistory.index.trash');
     Route::get('export/loghistories', [App\Http\Controllers\LogHistoryController::class, 'exportFullData'])->name('loghistory.export');
     Route::post('import/loghistories', [App\Http\Controllers\LogHistoryController::class, 'importData'])->name('loghistory.import');
+
+
+    // the full routes for departments
+    Route::middleware('permission:index-department')->get('departments', [App\Http\Controllers\DepartmentController::class, 'livewireIndex'])->name('department.index');
+    Route::middleware('permission:restore-department')->get('trash/departments', [App\Http\Controllers\DepartmentController::class, 'livewireDeletedIndex'])->name('department.index.trash');
+    Route::get('export/departments', [App\Http\Controllers\DepartmentController::class, 'exportFullData'])->name('department.export');
+    Route::post('import/departments', [App\Http\Controllers\DepartmentController::class, 'importData'])->name('department.import');
 });
 
-Route::get('web/task/{slug}', [WebTaskController::class, 'openTask'])->name('web.task');
+
 
 // Route::get('tr', function () {
 //     $date = date('Y-m-d\TH:i');

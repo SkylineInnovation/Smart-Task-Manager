@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\User;
 
+use App\Models\Department;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
@@ -32,6 +33,9 @@ class UserIndex extends Component
     public $employees = [];
     public $selectedEmployees = [];
 
+    public $departments = [];
+    public $selectedDepartments = [];
+
     public User $user;
     private $users;
 
@@ -50,6 +54,8 @@ class UserIndex extends Component
         $this->user = new User();
 
         $this->employees = User::whereRoleIs('employee')->get();
+
+        $this->departments = Department::get();
 
         // $this->roles = Role::whereIn('name', ['owner',])->get();
         $this->roles = Role::get();
@@ -96,6 +102,7 @@ class UserIndex extends Component
 
         $this->selectedRoles = [];
         $this->selectedEmployees = [];
+        $this->selectedDepartments = [];
     }
 
     public function rules()
@@ -110,11 +117,13 @@ class UserIndex extends Component
             'password' => !$this->updateMode ? 'required' : 'nullable',
 
             'selectedRoles' => 'required',
+            // 'selectedDepartments' => 'required',
         ];
     }
 
     protected $messages = [
         'selectedRoles.required' => 'Please Select Role',
+        'selectedDepartments.required' => 'Please Select Department',
     ];
 
 
@@ -145,6 +154,8 @@ class UserIndex extends Component
 
 
         $user->employees()->sync($this->selectedEmployees);
+
+        $user->departments()->sync($this->selectedDepartments);
 
         if ($this->by->hasRole('manager')) {
             try {
@@ -178,6 +189,7 @@ class UserIndex extends Component
 
         $this->selectedRoles = $user->roles->pluck('id');
         $this->selectedEmployees = $user->employees->pluck('id');
+        $this->selectedDepartments = $user->departments->pluck('id');
     }
 
     public function cancel()
@@ -211,6 +223,7 @@ class UserIndex extends Component
             $user->syncRoles($this->selectedRoles);
 
             $user->employees()->sync($this->selectedEmployees);
+            $user->departments()->sync($this->selectedDepartments);
 
             Artisan::call('cache:clear');
 
