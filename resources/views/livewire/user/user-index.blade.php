@@ -60,6 +60,8 @@
 
                     <td>{{ __('global.roles') }}</td>
 
+                    <td>{{ __('user.managers') }}</td>
+
                     <td style="width: 150px">
                         {{ __('global.action') }}
                     </td>
@@ -121,6 +123,12 @@
                         @endif
 
                         <td> {{ $user->rolesSideBySide() }} </td>
+
+                        <td>
+                            @if ($user->managers)
+                                {!! $task->manager_names() !!}
+                            @endif
+                        </td>
 
                         <td>
                             @permission('show-user')

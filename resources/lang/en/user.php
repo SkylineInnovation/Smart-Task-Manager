@@ -43,4 +43,5 @@ return [
     'edit-profile' => 'Edit Profile',
 
     'guest' => 'Guest User',
+    'managers' => 'Managers',
 ];

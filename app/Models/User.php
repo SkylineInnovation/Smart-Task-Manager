@@ -170,4 +170,12 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'employee_manager', 'employee_id', 'manager_id');
     }
+
+    public function manager_names()
+    {
+        $text = '';
+        foreach ($this->managers as $manager)
+            $text .= $manager->name() . '<br>';
+        return $text;
+    }
 }
