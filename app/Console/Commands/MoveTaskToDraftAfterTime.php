@@ -29,7 +29,7 @@ class MoveTaskToDraftAfterTime extends Command
     public function handle()
     {
         // return Command::SUCCESS;
-        $date = date('Y-m-dTH:i', strtotime('-12 Hours'));
+        $date = date('Y-m-d\TH:i', strtotime('-12 Hours'));
 
         $tasks = Task::whereNullOrEmptyOrZero('main_task_id')->whereNullOrEmpty('slug');
 
