@@ -85,6 +85,7 @@ class TaskIndex extends Component
 
 
             'manager_id' => true,
+            'employees' => true,
             'title' => true,
             'desc' => false,
             'start_time' => true,
