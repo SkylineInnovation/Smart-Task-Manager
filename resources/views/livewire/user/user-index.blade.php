@@ -58,6 +58,8 @@
                         <td>{{ __('global.created_at') }}</td>
                     @endif
 
+                    <td>{{ __('global.roles') }}</td>
+
                     <td style="width: 150px">
                         {{ __('global.action') }}
                     </td>
@@ -117,6 +119,8 @@
                         @if ($showColumn['created_at'])
                             <td> {{ $user->created_at }} </td>
                         @endif
+
+                        <td> {{ $user->rolesSideBySide() }} </td>
 
                         <td>
                             @permission('show-user')
