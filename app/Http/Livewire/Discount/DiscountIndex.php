@@ -14,7 +14,7 @@ class DiscountIndex extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public $perPage = 25;
+    public $perPage = 15;
     public $search = '';
     public $orderBy = 'id';
     public $orderWay = 'desc';
