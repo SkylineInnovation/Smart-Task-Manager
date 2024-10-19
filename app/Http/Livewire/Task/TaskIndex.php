@@ -77,7 +77,7 @@ class TaskIndex extends Component
         if (!$this->user->hasRole('owner')) {
             $this->employees = $this->user->employees;
         } else {
-            $this->employees = \App\Models\User::whereRoleIs('employee|manager')->orderBy('first_name')->get();
+            $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
         }
 
 

@@ -83,7 +83,7 @@ class ExtratimeIndex extends Component
 
         $this->tasks = \App\Models\Task::whereNullOrEmptyOrZero('main_task_id')->where('show', 1)->orderBy('sort')->get();
 
-        $this->users = \App\Models\User::whereRoleIs('employee|manager')->orderBy('first_name')->get();
+        $this->users = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
 
         // $this->accepted_by_users = \App\Models\User::whereRoleIs('manager')->where('show', 1)->orderBy('sort')->get();
 
