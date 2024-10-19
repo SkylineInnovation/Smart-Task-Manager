@@ -139,11 +139,11 @@
                         @endif
 
                         @if ($showColumn['start_time'])
-                            <td> {{ $dailytask->start_time }} </td>
+                            <td> {{ $dailytask->format_date($dailytask->start_time) }} </td>
                         @endif
 
                         @if ($showColumn['end_time'])
-                            <td> {{ $dailytask->end_time }} </td>
+                            <td> {{ $dailytask->format_date($dailytask->end_time) }} </td>
                         @endif
 
                         @if ($showColumn['proearty'])

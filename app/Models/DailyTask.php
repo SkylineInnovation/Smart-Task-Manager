@@ -276,4 +276,9 @@ class DailyTask extends Model
     {
         return count($this->employees) > 0 ? $this->employees->first()->pivot->discount : 0;
     }
+
+    public function format_date($data)
+    {
+        return date('Y-m-d h:i A', strtotime($data));
+    }
 }
