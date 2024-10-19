@@ -317,6 +317,9 @@ class DailytaskIndex extends Component
         if ($this->filter_managers_id)
             $dailytasks = $dailytasks->whereIn('manager_id', $this->filter_managers_id);
 
+        if (!$this->user->hasRole('owner')) {
+            $dailytasks = $dailytasks->where('manager_id', $this->user->id);
+        }
 
         if ($this->admin_view_status == 'deleted')
             $dailytasks = $dailytasks->onlyTrashed();
