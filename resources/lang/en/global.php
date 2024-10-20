@@ -207,4 +207,6 @@ return [
     'select-employees' => 'Select Employees',
     // 'select-main_attachments' => 'Select Main Attachments',
     // 'select-main_comments' => 'Select Main Comments',
+
+    'open-task' => 'Open Task',
 ];

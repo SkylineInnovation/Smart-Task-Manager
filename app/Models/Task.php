@@ -296,13 +296,13 @@ class Task extends Model
     public function the_priority_color()
     {
         if ($this->priority_level == 'low')
-            return '#00FF00';
+            return '#ffff4d';
         elseif ($this->priority_level == 'medium')
-            return '#0000FF';
+            return '#668cff';
         elseif ($this->priority_level == 'high')
-            return '#FF0000';
+            return '#00ff00';
         elseif ($this->priority_level == 'urgent') // TODO
-            return '#FF0000';
+            return '#cc0000';
 
         return '';
     }
@@ -324,13 +324,13 @@ class Task extends Model
     public function the_status_color()
     {
         if ($this->status == 'pending')
-            return '#00FF00';
+            return '#ff6361';
         elseif ($this->status == 'active')
-            return '#0000FF';
+            return '#ff33cc';
         elseif ($this->status == 'auto-finished')
-            return '#FF0000';
+            return '#009999';
         elseif ($this->status == 'manual-finished') // TODO
-            return '#FF0000';
+            return '#00ccff';
 
         return '';
     }

@@ -7,9 +7,13 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="create-new-task-modal-label">
-                        {{ __('global.create-task') }}
+                        @if ($reopen_from_task_id > 0)
+                            {{ __('global.open-task') }}
+                        @else
+                            {{ __('global.create-task') }}
+                        @endif
                     </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="cancel">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -167,7 +171,7 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" data-bs-toggle="tooltip" data-bs-placement="top"
+                            <button type="button" data-bs-toggle="tooltip" data-bs-placement="top" wire:click="cancel"
                                 title=" {{ __('global.close') }}" class="btn btn-secondary close-btn" data-dismiss="modal">
                                 {{ __('global.close') }}
                             </button>
