@@ -6,11 +6,33 @@
 
 <style>
     .imageBg {
-        background-position: center;
+        /* background-position: center; */
         background-repeat: no-repeat;
 
+        height: 100%;
+        width: 100%;
+
         background-size: 100%;
-        background-image: url({{ asset('assets/images/login/login-bg.png') }});
+        background-image: url('assets/images/login/login-bg.png');
+
+    }
+
+    @media (max-width: 768px) {
+
+        /* Adjust breakpoint as needed */
+        .imageBg {
+            background-image: url('assets/images/login/sm-login-bg.png');
+            /* Image for medium-sized screens */
+        }
+    }
+
+    @media (max-width: 1024px) {
+
+        /* Adjust breakpoint as needed */
+        .imageBg {
+            background-image: url('assets/images/login/sm-login-bg.png');
+            /* Image for large screens */
+        }
     }
 
     .posetions {
@@ -33,7 +55,7 @@
 
 <x-guest-layout>
 
-    <div class="container-fluid p-4 imageBg" style="height: 100%; width: 100%">
+    <div class="container-fluid p-4 imageBg">
         <div class="row">
             <div class="col-12 ps-5">
                 <img src="{{ asset('assets/images/login/login-logo.png') }}" style="width: 250px;height: 250px;">
