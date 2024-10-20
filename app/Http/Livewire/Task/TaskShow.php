@@ -56,7 +56,7 @@ class TaskShow extends Component
             'title' => 'required',
             'desc' => 'required',
             // 'start_time' => 'required|date',
-            'start_time' => 'required|date|after:' . date('Y-m-d\TH:i'),
+            'start_time' => 'required|date|after:' . date('Y-m-d\TH:i', strtotime('-5 Minutes')),
             'end_time' => 'required|date|after:start_time', // _or_equal
             'priority_level' => 'required',
             'status' => 'required',
@@ -79,6 +79,11 @@ class TaskShow extends Component
     public function updateTask()
     {
         $validatedData = $this->validate();
+
+        if (in_array($this->task->status, ['auto-finished', 'manual-finished'])) {
+            session()->flash('message', 'Task Can\'t be Updated.');
+            return;
+        }
 
         $this->task->update([
             // 'manager_id' => $this->manager_id,

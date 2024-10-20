@@ -331,7 +331,7 @@ class WebGetTaskByStatus extends Component
         $task = Task::find($this->task_id);
 
         $validatedData = $this->validate([
-            'edit_task_start_time' => 'required|date|after:' . date('Y-m-d\TH:i'),
+            'edit_task_start_time' => 'required|date|after:' . date('Y-m-d\TH:i', strtotime('-5 Minutes')),
             'edit_task_end_time' => 'required|date|after:edit_task_start_time', // _or_equal
         ]);
 
