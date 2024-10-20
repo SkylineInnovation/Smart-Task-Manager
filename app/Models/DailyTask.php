@@ -221,7 +221,7 @@ class DailyTask extends Model
     public function the_priority_color()
     {
         if ($this->proearty == 'low')
-            return '#ffff4d';
+            return '#ffcc00';
         elseif ($this->proearty == 'medium')
             return '#668cff';
         elseif ($this->proearty == 'high')
@@ -249,7 +249,7 @@ class DailyTask extends Model
     public function the_status_color()
     {
         if ($this->status == 'pending')
-            return '#ffff4d';
+            return '#ffcc00';
         elseif ($this->status == 'active')
             return '#33cc33';
         elseif ($this->status == 'auto-finished')
