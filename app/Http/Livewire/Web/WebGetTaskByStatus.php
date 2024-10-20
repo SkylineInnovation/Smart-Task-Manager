@@ -330,6 +330,11 @@ class WebGetTaskByStatus extends Component
         $this->updateMode = true;
         $task = Task::find($this->task_id);
 
+        if (in_array($this->task->status, ['auto-finished', 'manual-finished'])) {
+            session()->flash('message', 'Task Can\'t be Updated.');
+            return;
+        }
+
         $validatedData = $this->validate([
             'edit_task_start_time' => 'required|date|after:' . date('Y-m-d\TH:i', strtotime('-5 Minutes')),
             'edit_task_end_time' => 'required|date|after:edit_task_start_time', // _or_equal
