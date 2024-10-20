@@ -85,7 +85,7 @@
                                     'name' => 'task.start_time',
                                     'livewire' => 'start_time',
                                     'type' => 'datetime-local', // 'step' => 1,
-                                    // 'required' => 'required',
+                                    'min' => date('Y-m-d\TH:i'),
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
 
@@ -94,7 +94,7 @@
                                     'name' => 'task.end_time',
                                     'livewire' => 'end_time',
                                     'type' => 'datetime-local', // 'step' => 1,
-                                    // 'required' => 'required',
+                                    'min' => date('Y-m-d\TH:i', strtotime($start_time . '+1 Hours')),
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
 
@@ -281,7 +281,7 @@
                                     'val' => $task->start_time,
                                     'livewire' => 'start_time',
                                     'type' => 'datetime-local', // 'step' => 1,
-                                    // 'required' => 'required',
+                                    'min' => date('Y-m-d\TH:i'),
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
                                 @include('inputs.edit.input', [
@@ -290,7 +290,7 @@
                                     'val' => $task->end_time,
                                     'livewire' => 'end_time',
                                     'type' => 'datetime-local', // 'step' => 1,
-                                    // 'required' => 'required',
+                                    'min' => date('Y-m-d\TH:i', strtotime($start_time . '+1 Hours')),
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
 

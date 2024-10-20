@@ -69,8 +69,8 @@ class WebCreateNewTask extends Component
             // 'manager_id' => 'required',
             'title' => 'required',
             'desc' => 'required',
-            'start_time' => 'required',
-            'end_time' => 'required',
+            'start_time' => 'required|date',
+            'end_time' => 'required|date|after:start_time', // _or_equal
             'priority_level' => 'required',
             'status' => 'required',
             'discount' => 'required',
@@ -113,6 +113,8 @@ class WebCreateNewTask extends Component
         $this->resetInputFields();
 
         $this->emit('render-index'); // Close model to using to jquery
+
+        $this->emit('close-model'); // Close model to using to jquery
 
         if (env('SEND_MAIL', false))
             SendNewTask::dispatchAfterResponse($task);

@@ -40,8 +40,11 @@
                             'sm' => 4,
                         ])
 
-
-                        @include('inputs.edit.input', [
+                        @include('inputs.textarea', [
+                            'label' => 'dailytask.description',
+                            'livewire' => 'description',
+                        ])
+                        {{-- @include('inputs.edit.input', [
                             'label' => 'dailytask.description',
                             'name' => 'dailytask.description',
                             'val' => $dailytask->description,
@@ -51,7 +54,7 @@
                             'lg' => 12,
                             'md' => 1,
                             'sm' => 12,
-                        ])
+                        ]) --}}
 
                         @include('inputs.edit.input', [
                             'label' => 'dailytask.start_time',
@@ -59,7 +62,7 @@
                             'val' => $dailytask->start_time,
                             'livewire' => 'start_time',
                             'type' => 'datetime-local', // 'step' => 1,
-                            // 'required' => 'required',
+                            'min' => date('Y-m-d\TH:i'),
                             'lg' => 4,
                             'md' => 4,
                             'sm' => 12,
@@ -72,7 +75,7 @@
                             'val' => $dailytask->end_time,
                             'livewire' => 'end_time',
                             'type' => 'datetime-local', // 'step' => 1,
-                            // 'required' => 'required',
+                            'min' => date('Y-m-d\TH:i', strtotime($start_time . '+1 Hours')),
                             'lg' => 4,
                             'md' => 4,
                             'sm' => 12,

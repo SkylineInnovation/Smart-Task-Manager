@@ -135,8 +135,8 @@ class TaskIndex extends Component
             // 'manager_id' => 'required',
             'title' => 'required',
             'desc' => 'required',
-            'start_time' => 'required',
-            'end_time' => 'required',
+            'start_time' => 'required|date',
+            'end_time' => 'required|date|after:start_time', // _or_equal
             'priority_level' => 'required',
             'status' => 'required',
             'discount' => 'required',

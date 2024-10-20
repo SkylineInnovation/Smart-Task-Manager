@@ -19,16 +19,16 @@ class DailyTaskResource extends JsonResource
             "dailytask_id" => $this->id,
             "slug" => $this->slug,
 
-            
-                    'manager' => new ManagerResource($this->whenLoaded('manager')),
-                        'title' => $this->title,
-                        'description' => $this->description,
-                        'start_time' => $this->start_time,
-                        'end_time' => $this->end_time,
-                        'proearty' => $this->proearty,
-                        'status' => $this->status,
-                        'repeat_time' => $this->repeat_time,
-                        'repeat_evrey' => $this->repeat_evrey,
+
+            'manager' => new UserResource($this->whenLoaded('manager')),
+            'title' => $this->title,
+            'description' => $this->description,
+            'start_time' => $this->start_time,
+            'end_time' => $this->end_time,
+            'proearty' => $this->proearty,
+            'status' => $this->status,
+            'repeat_time' => $this->repeat_time,
+            'repeat_evrey' => $this->repeat_evrey,
 
             "date" => date("d/m/Y", strtotime($this->created_at)),
             "time" => date("h:i A", strtotime($this->created_at)),

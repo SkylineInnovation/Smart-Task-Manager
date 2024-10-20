@@ -35,11 +35,7 @@ class CreateScheduleDailytask extends Command
 
         $currentTime = date('H:i');
 
-        Log::alert("currentTime --->>> " . json_encode($currentTime));
-
         $dailyTasks = DailyTask::where('repeat_time', $currentTime)->get();
-
-        Log::alert("dailyTasks --->>> " . json_encode(count($dailyTasks)));
 
         foreach ($dailyTasks as $taskD) {
             $task = Task::create([

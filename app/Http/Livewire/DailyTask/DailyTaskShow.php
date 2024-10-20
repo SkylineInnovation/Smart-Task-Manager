@@ -28,8 +28,8 @@ class DailyTaskShow extends Component
             // 'manager_id' => 'required',
             'title' => 'required',
             // 'description' => 'required',
-            'start_time' => 'required',
-            'end_time' => 'required',
+            'start_time' => 'required|date',
+            'end_time' => 'required|date|after:start_time', // _or_equal
             'proearty' => 'required',
             'status' => 'required',
             'repeat_time' => 'required',

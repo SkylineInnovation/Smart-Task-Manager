@@ -81,6 +81,7 @@
                             'name' => 'birth_day',
                             'livewire' => 'birth_day',
                             'type' => 'date',
+                            'min' => date('Y-m-d\TH:i'),
                         ]) --}}
                     </div>
 
@@ -284,6 +285,7 @@
                             'livewire' => 'birth_day',
                             'val' => $birth_day,
                             'type' => 'date',
+                            'min' => date('Y-m-d\TH:i'),
                         ]) --}}
                     </div>
 

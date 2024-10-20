@@ -18,23 +18,23 @@ class FullDailyTasksImport implements ToCollection, WithHeadingRow
 
             $id = trim($row['id']);
             $slug = trim($row['slug']);
-            
-            
-                        $title = trim($row['title']);
 
-                        $description = trim($row['description']);
 
-                        $start_time = trim($row['start_time']);
+            $title = trim($row['title']);
 
-                        $end_time = trim($row['end_time']);
+            $description = trim($row['description']);
 
-                        $proearty = trim($row['proearty']);
+            $start_time = trim($row['start_time']);
 
-                        $status = trim($row['status']);
+            $end_time = trim($row['end_time']);
 
-                        $repeat_time = trim($row['repeat_time']);
+            $proearty = trim($row['proearty']);
 
-                        $repeat_evrey = trim($row['repeat_evrey']);
+            $status = trim($row['status']);
+
+            $repeat_time = trim($row['repeat_time']);
+
+            $repeat_evrey = trim($row['repeat_evrey']);
 
 
             $dailytask = DailyTask::find($id);
@@ -44,29 +44,29 @@ class FullDailyTasksImport implements ToCollection, WithHeadingRow
                     'add_by' => auth()->user()->id,
                     'slug' => $slug,
 
-                    
-                        'title' => $title,
-                        'description' => $description,
-                        'start_time' => $start_time,
-                        'end_time' => $end_time,
-                        'proearty' => $proearty,
-                        'status' => $status,
-                        'repeat_time' => $repeat_time,
-                        'repeat_evrey' => $repeat_evrey,
+
+                    'title' => $title,
+                    'description' => $description,
+                    'start_time' => $start_time,
+                    'end_time' => $end_time,
+                    'proearty' => $proearty,
+                    'status' => $status,
+                    'repeat_time' => $repeat_time,
+                    'repeat_evrey' => $repeat_evrey,
                 ]);
             } else {
                 $dailytask->update([
                     'slug' => $slug,
 
-                    
-                        'title' => $title,
-                        'description' => $description,
-                        'start_time' => $start_time,
-                        'end_time' => $end_time,
-                        'proearty' => $proearty,
-                        'status' => $status,
-                        'repeat_time' => $repeat_time,
-                        'repeat_evrey' => $repeat_evrey,
+
+                    'title' => $title,
+                    'description' => $description,
+                    'start_time' => $start_time,
+                    'end_time' => $end_time,
+                    'proearty' => $proearty,
+                    'status' => $status,
+                    'repeat_time' => $repeat_time,
+                    'repeat_evrey' => $repeat_evrey,
                 ]);
             }
         }

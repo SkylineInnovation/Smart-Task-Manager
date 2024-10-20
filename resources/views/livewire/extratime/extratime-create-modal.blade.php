@@ -73,7 +73,7 @@
                                     'name' => 'extratime.request_time',
                                     'livewire' => 'request_time',
                                     'type' => 'datetime-local', // 'step' => 1,
-                                    // 'required' => 'required',
+                                    'min' => date('Y-m-d\TH:i'),
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
                                 @include('inputs.create.input', [
@@ -81,7 +81,7 @@
                                     'name' => 'extratime.from_time',
                                     'livewire' => 'from_time',
                                     'type' => 'datetime-local', // 'step' => 1,
-                                    // 'required' => 'required',
+                                    'min' => date('Y-m-d\TH:i'),
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
                                 @include('inputs.create.input', [
@@ -89,7 +89,7 @@
                                     'name' => 'extratime.to_time',
                                     'livewire' => 'to_time',
                                     'type' => 'datetime-local', // 'step' => 1,
-                                    // 'required' => 'required',
+                                    'min' => date('Y-m-d\TH:i'),
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
                                 @include('inputs.create.input', [
@@ -97,7 +97,7 @@
                                     'name' => 'extratime.response_time',
                                     'livewire' => 'response_time',
                                     'type' => 'datetime-local', // 'step' => 1,
-                                    // 'required' => 'required',
+                                    'min' => date('Y-m-d\TH:i'),
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
                                 {{-- @include('inputs.create.input', [
@@ -234,7 +234,7 @@
                                     'val' => $extratime->request_time,
                                     'livewire' => 'request_time',
                                     'type' => 'datetime-local', // 'step' => 1,
-                                    // 'required' => 'required',
+                                    'min' => date('Y-m-d\TH:i'),
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
                                 @include('inputs.edit.input', [
@@ -243,7 +243,7 @@
                                     'val' => $extratime->from_time,
                                     'livewire' => 'from_time',
                                     'type' => 'datetime-local', // 'step' => 1,
-                                    // 'required' => 'required',
+                                    'min' => date('Y-m-d\TH:i'),
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
                                 @include('inputs.edit.input', [
@@ -252,7 +252,7 @@
                                     'val' => $extratime->to_time,
                                     'livewire' => 'to_time',
                                     'type' => 'datetime-local', // 'step' => 1,
-                                    // 'required' => 'required',
+                                    'min' => date('Y-m-d\TH:i'),
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
 
@@ -262,7 +262,7 @@
                                     'val' => $extratime->response_time,
                                     'livewire' => 'response_time',
                                     'type' => 'datetime-local', // 'step' => 1,
-                                    // 'required' => 'required',
+                                    'min' => date('Y-m-d\TH:i'),
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
 
@@ -369,7 +369,7 @@
                                 'label' => 'extratime.request_time',
                                 'val' => $request_time,
                                 // 'type' => 'datetime-local', // 'step' => 1,
-                                // 'required' => 'required',
+                                'min' => date('Y-m-d\TH:i'),
                                 'lg' => 4,
                                 'md' => 4,
                                 'sm' => 4,
@@ -380,7 +380,7 @@
                                 'name' => 'extratime.from_time',
                                 'livewire' => 'from_time',
                                 'type' => 'datetime-local', // 'step' => 1,
-                                // 'required' => 'required',
+                                'min' => date('Y-m-d\TH:i'),
                                 // 'lg' => 6, 'md' => 6, 'sm' => 12,
                             ])
 
@@ -389,7 +389,7 @@
                                 'name' => 'extratime.to_time',
                                 'livewire' => 'to_time',
                                 'type' => 'datetime-local', // 'step' => 1,
-                                // 'required' => 'required',
+                                'min' => date('Y-m-d\TH:i'),
                                 // 'lg' => 6, 'md' => 6, 'sm' => 12,
                             ])
 

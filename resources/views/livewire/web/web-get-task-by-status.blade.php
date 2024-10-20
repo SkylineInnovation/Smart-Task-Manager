@@ -58,12 +58,14 @@
                                             </a>
                                         @endif
 
-                                        <a class="dropdown-item" href="javascript:;" data-toggle="modal"
-                                            wire:click="editTask({{ $task->id }})"
-                                            data-target="#update-task-{{ $task->id }}">
-                                            <i class="fa fa-pencil-square-o text-secondarye" aria-hidden="true"></i>
-                                            &nbsp; {{ __('task.Edit') }}
-                                        </a>
+                                        @if (in_array($task->status, ['pending', 'active']))
+                                            <a class="dropdown-item" href="javascript:;" data-toggle="modal"
+                                                wire:click="editTask({{ $task->id }})"
+                                                data-target="#update-task-{{ $task->id }}">
+                                                <i class="fa fa-pencil-square-o text-secondarye" aria-hidden="true"></i>
+                                                &nbsp; {{ __('task.Edit') }}
+                                            </a>
+                                        @endif
 
                                         <a class="dropdown-item" href="javascript:;"
                                             wire:click='deleteTask({{ $task->id }})'>
@@ -72,21 +74,23 @@
                                         </a>
                                     @endrole
 
-                                    @role('employee')
-                                        <a class="dropdown-item" href="javascript:;" data-toggle="modal"
-                                            data-target="#request-leave-modal-{{ $task->id }}"
-                                            wire:click="setTask({{ $task->id }})">
-                                            <i class="fa fa-sign-out text-info" aria-hidden="true"></i>
-                                            &nbsp; {{ __('task.Request_Leave') }}
-                                        </a>
+                                    @if (in_array($task->status, ['pending', 'active']))
+                                        @role('employee')
+                                            <a class="dropdown-item" href="javascript:;" data-toggle="modal"
+                                                data-target="#request-leave-modal-{{ $task->id }}"
+                                                wire:click="setTask({{ $task->id }})">
+                                                <i class="fa fa-sign-out text-info" aria-hidden="true"></i>
+                                                &nbsp; {{ __('task.Request_Leave') }}
+                                            </a>
 
-                                        <a class="dropdown-item" data-toggle="modal"
-                                            data-target="#extra-time-modal-{{ $task->id }}" href=javascript:;
-                                            wire:click="setTask({{ $task->id }})">
-                                            <i class="fa fa-clock-o text-warning" aria-hidden="true"></i>
-                                            &nbsp; {{ __('task.Extra_Time') }}
-                                        </a>
-                                    @endrole
+                                            <a class="dropdown-item" data-toggle="modal"
+                                                data-target="#extra-time-modal-{{ $task->id }}" href=javascript:;
+                                                wire:click="setTask({{ $task->id }})">
+                                                <i class="fa fa-clock-o text-warning" aria-hidden="true"></i>
+                                                &nbsp; {{ __('task.Extra_Time') }}
+                                            </a>
+                                        @endrole
+                                    @endif
 
                                 </div>
                             </div>
@@ -302,8 +306,9 @@
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col-8">{{ __('task.Users') }}</th>
-                                                    <th scope="col">{{ __('task.Role') }}</th>
+                                                    <th scope="col-6">{{ __('task.Users') }}</th>
+                                                    <th scope="col">{{ __('global.roles') }}</th>
+                                                    <th scope="col">{{ __('global.departments') }}</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="fs-6">
@@ -332,6 +337,9 @@
                                                         <td class="align-content-center">
                                                             {{ $employee->rolesSideBySide() }}
                                                         </td>
+                                                        <td class="align-content-center">
+                                                            {!! $employee->department_names() !!}
+                                                        </td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -344,48 +352,56 @@
                                 <div class="tab-pane fade {{ $tab == 2 ? 'show active' : '' }}" id="attatchment"
                                     role="tabpanel" aria-labelledby="attatchment-tab">
 
+
                                     <div class="text-start">
-                                        <div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="input-group mb-1">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text btn-secondary text-white"
-                                                                id="inputGroup-sizing-default">{{ __('attachment.title') }}</span>
+                                        @if (in_array($task->status, ['pending', 'active']))
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="input-group mb-1">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text btn-secondary text-white"
+                                                                    id="inputGroup-sizing-default">{{ __('attachment.title') }}</span>
+                                                            </div>
+                                                            <input wire:model.defer="attatchment_title" type="text"
+                                                                class="form-control" aria-label="Default"
+                                                                aria-describedby="inputGroup-sizing-default">
                                                         </div>
-                                                        <input wire:model.defer="attatchment_title" type="text"
-                                                            class="form-control" aria-label="Default"
-                                                            aria-describedby="inputGroup-sizing-default">
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <div class="input-group mb-1">
+                                                            {{-- <div class="input-group-prepend">
+                                                                <span class="input-group-text btn-secondary text-white"
+                                                                    id="inputGroup-sizing-default">{{ __('attachment.file') }}</span>
+                                                            </div> --}}
+                                                            <input wire:model.defer="attatchment_file" type="file"
+                                                                class="form-control" aria-label="Default"
+                                                                aria-describedby="inputGroup-sizing-default">
+                                                        </div>
+                                                        <div wire:loading wire:target="attatchment_file">
+                                                            {{ __('task.Uploading...') }}</div>
                                                     </div>
                                                 </div>
 
-                                                <div class="col">
-                                                    <div class="input-group mb-1">
-                                                        {{-- <div class="input-group-prepend">
-                                                        <span class="input-group-text btn-secondary text-white"
-                                                            id="inputGroup-sizing-default">{{ __('attachment.file') }}</span>
-                                                    </div> --}}
-                                                        <input wire:model.defer="attatchment_file" type="file"
-                                                            class="form-control" aria-label="Default"
-                                                            aria-describedby="inputGroup-sizing-default">
-                                                    </div>
-                                                    <div wire:loading wire:target="attatchment_file">
-                                                        {{ __('task.Uploading...') }}</div>
+                                                <div wire:ignore.self class="mb-1">
+                                                    {{-- <div wire:ignore.self id="summer_desc"></div> --}}
+                                                    {{-- <textarea name='desc' id='desc' rows="3" class='form-control'
+                                                        placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="attatchment_desc"></textarea> --}}
+
+                                                    @include('inputs.textarea', [
+                                                        'label' => 'attachment.desc',
+                                                        'livewire' => 'attatchment_desc',
+                                                    ])
                                                 </div>
+
+                                                <button wire:click="addAttatchment()" type="button"
+                                                    class="w-100 btn btn-success">
+                                                    {{ __('task.Upload') }}
+                                                </button>
+
                                             </div>
-
-                                            <div wire:ignore.self class="mb-1">
-                                                {{-- <div wire:ignore.self id="summer_desc"></div> --}}
-                                                <textarea name='desc' id='desc' rows="3" class='form-control'
-                                                    placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="attatchment_desc"></textarea>
-                                            </div>
-
-                                            <button wire:click="addAttatchment()" type="button"
-                                                class="w-100 btn btn-success">
-                                                {{ __('task.Upload') }}
-                                            </button>
-
-                                        </div>
+                                        @endif
 
                                         <div class="container py-3">
                                             @foreach ($task->attachments as $attatch)
@@ -404,12 +420,9 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <h4>{{ $attatch->title }}</h4>
-
-
                                                         <p>
                                                             {{ $attatch->desc }}
                                                         </p>
-
 
                                                     </div>
                                                     <div
@@ -419,12 +432,15 @@
                                                             download>
                                                             <i class="fa fa-download text-white"></i>
                                                         </a>
-                                                        @role('owner|manager')
-                                                            <a class="btn btn-danger"
-                                                                wire:click='deleteAttatchment({{ $attatch->id }})'>
-                                                                <i class="fa fa-trash text-white"></i>
-                                                            </a>
-                                                        @endrole
+
+                                                        @if (in_array($task->status, ['pending', 'active']))
+                                                            @role('owner|manager')
+                                                                <a class="btn btn-danger"
+                                                                    wire:click='deleteAttatchment({{ $attatch->id }})'>
+                                                                    <i class="fa fa-trash text-white"></i>
+                                                                </a>
+                                                            @endrole
+                                                        @endif
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -441,66 +457,76 @@
                                     role="tabpanel" aria-labelledby="comment-tab">
 
                                     <div class="text-start">
-                                        <div>
-                                            <div class="input-group mb-1">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text btn-secondary text-white"
-                                                        id="inputGroup-sizing-default">{{ __('attachment.title') }}</span>
+                                        @if (in_array($task->status, ['pending', 'active']))
+                                            <div>
+                                                <div class="input-group mb-1">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text btn-secondary text-white"
+                                                            id="inputGroup-sizing-default">{{ __('attachment.title') }}</span>
+                                                    </div>
+                                                    <input wire:model.defer="comment_title" type="text"
+                                                        class="form-control" aria-label="Default"
+                                                        aria-describedby="inputGroup-sizing-default">
                                                 </div>
-                                                <input wire:model.defer="comment_title" type="text"
-                                                    class="form-control" aria-label="Default"
-                                                    aria-describedby="inputGroup-sizing-default">
+
+                                                <div wire:ignore.self class="mb-1">
+                                                    {{-- <div wire:ignore.self id="summer_desc"></div> --}}
+                                                    {{-- <textarea name='desc' id='desc' rows="3" class='form-control'
+                                                        placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="comment_desc"></textarea> --}}
+
+                                                    @include('inputs.textarea', [
+                                                        'label' => 'attachment.desc',
+                                                        'livewire' => 'comment_desc',
+                                                    ])
+                                                </div>
+
+                                                @error('comment_desc')
+                                                    <span class="error">{{ $message }}</span>
+                                                @enderror
+
+                                                <button wire:click="addComment()" type="button"
+                                                    class="w-100 btn btn-success">
+                                                    {{ __('task.Comment') }}
+                                                </button>
                                             </div>
-
-                                            <div wire:ignore.self class="mb-1">
-                                                {{-- <div wire:ignore.self id="summer_desc"></div> --}}
-                                                <textarea name='desc' id='desc' rows="3" class='form-control'
-                                                    placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="comment_desc"></textarea>
-                                            </div>
-
-                                            @error('comment_desc')
-                                                <span class="error">{{ $message }}</span>
-                                            @enderror
-
-                                            <button wire:click="addComment()" type="button"
-                                                class="w-100 btn btn-success">
-                                                {{ __('task.Comment') }}
-                                            </button>
-                                        </div>
+                                        @endif
 
                                         <div class="container py-3">
                                             @foreach ($task->comments as $comment)
                                                 <div class="media">
-                                                    <img class="mr-3"
+                                                    {{-- <img class="mr-3"
                                                         src="{{ asset('assets/images/users/10.jpg') }}"
-                                                        alt="Generic placeholder image">
+                                                        alt="Generic placeholder image"> --}}
                                                     <div class="media-body">
                                                         <h5 class="mt-0">{{ $comment->user->name() }},
                                                             {{ $comment->title }}</h5>
                                                         <p>{{ $comment->desc }}</p>
                                                         <div class="col-12 d-flex justify-content-end">
-
-                                                            <a class="btn btn-primary-gradient" data-toggle="modal"
-                                                                wire:click="setCommentId({{ $comment->id }})"
-                                                                data-target="#replay-modal-{{ $task->id }}">
-                                                                <i class="fa fa-comment text-white"></i>
-                                                            </a>
-                                                            &nbsp;
-
-                                                            @role('owner|manager')
-                                                                <a class="btn btn-danger"
-                                                                    wire:click='deleteComents({{ $comment->id }})'>
-                                                                    <i class="fa fa-trash text-white"></i>
+                                                            @if (in_array($task->status, ['pending', 'active']))
+                                                                <a class="btn btn-primary-gradient"
+                                                                    data-toggle="modal"
+                                                                    wire:click="setCommentId({{ $comment->id }})"
+                                                                    data-target="#replay-modal-{{ $task->id }}">
+                                                                    <i class="fa fa-comment text-white"></i>
                                                                 </a>
-                                                            @endrole
+                                                                &nbsp;
+
+                                                                @role('owner|manager')
+                                                                    <a class="btn btn-danger"
+                                                                        wire:click='deleteComents({{ $comment->id }})'>
+                                                                        <i class="fa fa-trash text-white"></i>
+                                                                    </a>
+                                                                @endrole
+                                                            @endif
+
                                                         </div>
 
                                                         @foreach ($comment->subs as $subCom)
                                                             <div class="media mt-3">
-                                                                <a class="pr-3" href="#">
+                                                                {{-- <a class="pr-3" href="#">
                                                                     <img src="{{ asset('assets/images/users/10.jpg') }}"
                                                                         alt="Generic placeholder image">
-                                                                </a>
+                                                                </a> --}}
                                                                 <div class="media-body">
                                                                     <h5 class="mt-0">{{ $subCom->user->name() }},
                                                                         {{ $subCom->title }}</h5>
@@ -543,8 +569,12 @@
 
                                                                 <div wire:ignore.self class="mb-1">
                                                                     {{-- <div wire:ignore.self id="summer_desc"></div> --}}
-                                                                    <textarea name='desc' id='desc' rows="3" class='form-control'
-                                                                        placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="replay_comment_desc"></textarea>
+                                                                    {{-- <textarea name='desc' id='desc' rows="3" class='form-control'
+                                                                        placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="replay_comment_desc"></textarea> --}}
+                                                                    @include('inputs.textarea', [
+                                                                        'label' => 'attachment.desc',
+                                                                        'livewire' => 'replay_comment_desc',
+                                                                    ])
 
                                                                     @error('comment_desc')
                                                                         <span class="error">{{ $message }}</span>
@@ -576,72 +606,80 @@
                                 <div class="tab-pane fade {{ $tab == 4 ? 'show active' : '' }}" id="subTask"
                                     role="tabpanel" aria-labelledby="subTask-tab">
                                     <div class="text-start">
-                                        @role('owner|manager')
-                                            <div>
-                                                <div class="row">
+                                        @if (in_array($task->status, ['pending', 'active']))
+                                            @role('owner|manager')
+                                                <div>
+                                                    <div class="row">
 
-                                                    <div class="input-group mb-1 col-8">
-                                                        <div class="input-group-prepend ">
-                                                            <span class="input-group-text btn-secondary text-white"
-                                                                id="inputGroup-sizing-default">{{ __('task.Title') }}</span>
+                                                        <div class="input-group mb-1 col-8">
+                                                            <div class="input-group-prepend ">
+                                                                <span class="input-group-text btn-secondary text-white"
+                                                                    id="inputGroup-sizing-default">{{ __('task.Title') }}</span>
+                                                            </div>
+
+                                                            <input wire:model.defer="sub_task_title" type="text"
+                                                                class="form-control" aria-label="Default"
+                                                                aria-describedby="inputGroup-sizing-default">
                                                         </div>
 
-                                                        <input wire:model.defer="sub_task_title" type="text"
-                                                            class="form-control" aria-label="Default"
-                                                            aria-describedby="inputGroup-sizing-default">
-                                                    </div>
-
-                                                    <div class="form-group mb-1 col-4">
-                                                        <select wire:model.defer="sub_task_priority_level"
-                                                            class="form-control">
-                                                            <option value="urgent">{{ __('task.urgent') }}</option>
-                                                            <option value="high">{{ __('task.high') }}</option>
-                                                            <option value="medium">{{ __('task.medium') }}</option>
-                                                            <option value="low">{{ __('task.low') }}</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="input-group mb-1  col-md-6">
-                                                        <div class="input-group-prepend ">
-                                                            <span class="input-group-text btn-secondary text-white"
-                                                                id="inputGroup-sizing-default">{{ __('task.start_time') }}</span>
+                                                        <div class="form-group mb-1 col-4">
+                                                            <select wire:model.defer="sub_task_priority_level"
+                                                                class="form-control">
+                                                                <option value="urgent">{{ __('task.urgent') }}</option>
+                                                                <option value="high">{{ __('task.high') }}</option>
+                                                                <option value="medium">{{ __('task.medium') }}</option>
+                                                                <option value="low">{{ __('task.low') }}</option>
+                                                            </select>
                                                         </div>
-                                                        <input wire:model.defer="sub_task_start_time"
-                                                            type="datetime-local" class="form-control"
-                                                            aria-label="Default"
-                                                            aria-describedby="inputGroup-sizing-default">
-                                                    </div>
 
-                                                    <div class="input-group mb-1  col-md-6">
-                                                        <div class="input-group-prepend ">
-                                                            <span class="input-group-text btn-secondary text-white"
-                                                                id="inputGroup-sizing-default">{{ __('task.end_time') }}</span>
+                                                        <div class="input-group mb-1  col-md-6">
+                                                            <div class="input-group-prepend ">
+                                                                <span class="input-group-text btn-secondary text-white"
+                                                                    id="inputGroup-sizing-default">{{ __('task.start_time') }}</span>
+                                                            </div>
+                                                            <input wire:model.defer="sub_task_start_time"
+                                                                type="datetime-local" class="form-control"
+                                                                aria-label="Default"
+                                                                aria-describedby="inputGroup-sizing-default">
                                                         </div>
-                                                        <input wire:model.defer="sub_task_end_time" type="datetime-local"
-                                                            class="form-control" aria-label="Default"
-                                                            aria-describedby="inputGroup-sizing-default">
-                                                    </div>
 
-                                                    <div wire:ignore.self class="col-md-12">
+                                                        <div class="input-group mb-1  col-md-6">
+                                                            <div class="input-group-prepend ">
+                                                                <span class="input-group-text btn-secondary text-white"
+                                                                    id="inputGroup-sizing-default">{{ __('task.end_time') }}</span>
+                                                            </div>
+                                                            <input wire:model.defer="sub_task_end_time"
+                                                                type="datetime-local" class="form-control"
+                                                                aria-label="Default"
+                                                                aria-describedby="inputGroup-sizing-default">
+                                                        </div>
+
+                                                        {{-- <div wire:ignore.self class="col-md-12"> --}}
                                                         {{-- <div wire:ignore.self id="summer_desc"></div> --}}
-                                                        <textarea name='desc' id='desc' rows="4" class='form-control'
-                                                            placeholder='{{ __('global.enter') }} {{ __('task.desc') }}' wire:model.defer="sub_task_desc"></textarea>
+                                                        {{-- <textarea name='desc' id='desc' rows="4" class='form-control'
+                                                                placeholder='{{ __('global.enter') }} {{ __('task.desc') }}' wire:model.defer="sub_task_desc"></textarea> --}}
+                                                        @include('inputs.textarea', [
+                                                            'label' => 'task.desc',
+                                                            'livewire' => 'sub_task_desc',
+                                                        ])
+                                                        {{-- </div> --}}
+
                                                     </div>
 
-                                                </div>
+                                                    <div class="form-group">
+                                                        @foreach ($errors->all() as $error)
+                                                            <span
+                                                                class='alert alert-danger btn'>{{ $error }}</span>
+                                                        @endforeach
+                                                    </div>
 
-                                                <div class="form-group">
-                                                    @foreach ($errors->all() as $error)
-                                                        <span class='alert alert-danger btn'>{{ $error }}</span>
-                                                    @endforeach
+                                                    <button wire:click="addSubTask()" type="button"
+                                                        class="w-100 btn btn-success">
+                                                        {{ __('task.Add_Sub_Task') }}
+                                                    </button>
                                                 </div>
-
-                                                <button wire:click="addSubTask()" type="button"
-                                                    class="w-100 btn btn-success">
-                                                    {{ __('task.Add_Sub_Task') }}
-                                                </button>
-                                            </div>
-                                        @endrole
+                                            @endrole
+                                        @endif
 
                                         <div class="py-4">
                                             @foreach ($task->sub_tasks as $sub)
@@ -729,6 +767,7 @@
                                                                     <button class="btn btn-info"
                                                                         wire:click="startSubTask({{ $sub->id }})">
                                                                         start
+                                                                        {{-- // TODO --}}
                                                                     </button>
                                                                 </div>
                                                             @elseif($sub->status == 'active')
@@ -955,93 +994,99 @@
                                 <div class="tab-pane fade {{ $tab == 7 ? 'show active' : '' }}" id="emp_task"
                                     role="tabpanel" aria-labelledby="emp_task-tab">
                                     <div class="text-start py-4">
+                                        @if (in_array($task->status, ['pending', 'active']))
+                                            <div class="mb-5">
+                                                <div class="row">
 
-                                        <div class="mb-5">
-                                            <div class="row">
+                                                    <div class="input-group mb-1 col-9">
+                                                        <div class="input-group-prepend ">
+                                                            <span class="input-group-text btn-secondary text-white"
+                                                                id="inputGroup-sizing-default">{{ __('task.Title') }}</span>
+                                                        </div>
 
-                                                <div class="input-group mb-1 col-9">
-                                                    <div class="input-group-prepend ">
-                                                        <span class="input-group-text btn-secondary text-white"
-                                                            id="inputGroup-sizing-default">{{ __('task.Title') }}</span>
+                                                        <input wire:model.defer="sub_task_title" type="text"
+                                                            class="form-control" aria-label="Default"
+                                                            aria-describedby="inputGroup-sizing-default">
                                                     </div>
 
-                                                    <input wire:model.defer="sub_task_title" type="text"
-                                                        class="form-control" aria-label="Default"
-                                                        aria-describedby="inputGroup-sizing-default">
-                                                </div>
+                                                    <div class="form-group mb-1 col-3">
+                                                        <select wire:model.defer="sub_task_priority_level"
+                                                            class="form-control">
+                                                            <option value="urgent">{{ __('task.urgent') }}</option>
+                                                            <option value="high">{{ __('task.high') }}</option>
+                                                            <option value="medium">{{ __('task.medium') }}</option>
+                                                            <option value="low">{{ __('task.low') }}</option>
+                                                        </select>
+                                                    </div>
 
-                                                <div class="form-group mb-1 col-3">
-                                                    <select wire:model.defer="sub_task_priority_level"
-                                                        class="form-control">
-                                                        <option value="urgent">{{ __('task.urgent') }}</option>
-                                                        <option value="high">{{ __('task.high') }}</option>
-                                                        <option value="medium">{{ __('task.medium') }}</option>
-                                                        <option value="low">{{ __('task.low') }}</option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="col-12 mb-3">
-                                                    <p>{{ __('task.employees') }}</p>
-                                                    <div class="row">
-                                                        @foreach ($task->employees as $sub_employee)
-                                                            <div class="col-4">
-                                                                <div class="form-check form-check-inline">
-                                                                    <input wire:model='selected_employe_task'
-                                                                        class="form-check-input" type="checkbox"
-                                                                        value="{{ $sub_employee->id }}"
-                                                                        id="selected-sub_employee-{{ $sub_employee->id }}">
-                                                                    <label class="form-check-label"
-                                                                        for="selected-sub_employee-{{ $sub_employee->id }}">
-                                                                        {{ $sub_employee->name() }}
-                                                                    </label>
+                                                    <div class="col-12 mb-3">
+                                                        <p>{{ __('task.employees') }}</p>
+                                                        <div class="row">
+                                                            @foreach ($task->employees as $sub_employee)
+                                                                <div class="col-4">
+                                                                    <div class="form-check form-check-inline">
+                                                                        <input wire:model='selected_employe_task'
+                                                                            class="form-check-input" type="checkbox"
+                                                                            value="{{ $sub_employee->id }}"
+                                                                            id="selected-sub_employee-{{ $sub_employee->id }}">
+                                                                        <label class="form-check-label"
+                                                                            for="selected-sub_employee-{{ $sub_employee->id }}">
+                                                                            {{ $sub_employee->name() }}
+                                                                        </label>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        @endforeach
+                                                            @endforeach
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="input-group mb-1  col-md-6">
-                                                    <div class="input-group-prepend ">
-                                                        <span class="input-group-text btn-secondary text-white"
-                                                            id="inputGroup-sizing-default">{{ __('task.start_time') }}</span>
+                                                    <div class="input-group mb-1  col-md-6">
+                                                        <div class="input-group-prepend ">
+                                                            <span class="input-group-text btn-secondary text-white"
+                                                                id="inputGroup-sizing-default">{{ __('task.start_time') }}</span>
+                                                        </div>
+                                                        <input wire:model.defer="sub_task_start_time"
+                                                            type="datetime-local" class="form-control"
+                                                            aria-label="Default"
+                                                            aria-describedby="inputGroup-sizing-default">
                                                     </div>
-                                                    <input wire:model.defer="sub_task_start_time"
-                                                        type="datetime-local" class="form-control"
-                                                        aria-label="Default"
-                                                        aria-describedby="inputGroup-sizing-default">
-                                                </div>
 
-                                                <div class="input-group mb-1  col-md-6">
-                                                    <div class="input-group-prepend ">
-                                                        <span class="input-group-text btn-secondary text-white"
-                                                            id="inputGroup-sizing-default">{{ __('task.end_time') }}</span>
+                                                    <div class="input-group mb-1  col-md-6">
+                                                        <div class="input-group-prepend ">
+                                                            <span class="input-group-text btn-secondary text-white"
+                                                                id="inputGroup-sizing-default">{{ __('task.end_time') }}</span>
+                                                        </div>
+                                                        <input wire:model.defer="sub_task_end_time"
+                                                            type="datetime-local" class="form-control"
+                                                            aria-label="Default"
+                                                            aria-describedby="inputGroup-sizing-default">
                                                     </div>
-                                                    <input wire:model.defer="sub_task_end_time" type="datetime-local"
-                                                        class="form-control" aria-label="Default"
-                                                        aria-describedby="inputGroup-sizing-default">
-                                                </div>
 
 
-                                                <div wire:ignore.self class="col-md-12">
+                                                    {{-- <div wire:ignore.self class="col-md-12"> --}}
                                                     {{-- <div wire:ignore.self id="summer_desc"></div> --}}
-                                                    <textarea name='desc' id='desc' rows="4" class='form-control'
-                                                        placeholder='{{ __('global.enter') }} {{ __('task.desc') }}' wire:model.defer="sub_task_desc"></textarea>
+                                                    {{-- <textarea name='desc' id='desc' rows="4" class='form-control'
+                                                            placeholder='{{ __('global.enter') }} {{ __('task.desc') }}' wire:model.defer="sub_task_desc"></textarea> --}}
+                                                    @include('inputs.textarea', [
+                                                        'label' => 'task.desc',
+                                                        'livewire' => 'sub_task_desc',
+                                                    ])
+                                                    {{-- </div> --}}
+
                                                 </div>
 
+                                                <div class="form-group">
+                                                    @foreach ($errors->all() as $error)
+                                                        <span
+                                                            class='alert alert-danger btn'>{{ $error }}</span>
+                                                    @endforeach
+                                                </div>
+
+                                                <button wire:click="employeeCreatTask()" type="button"
+                                                    class="w-100 btn btn-success">
+                                                    {{ __('task.Add_Emp_Sub_Task') }}
+                                                </button>
                                             </div>
-
-                                            <div class="form-group">
-                                                @foreach ($errors->all() as $error)
-                                                    <span class='alert alert-danger btn'>{{ $error }}</span>
-                                                @endforeach
-                                            </div>
-
-                                            <button wire:click="employeeCreatTask()" type="button"
-                                                class="w-100 btn btn-success">
-                                                {{ __('task.Add_Emp_Sub_Task') }}
-                                            </button>
-                                        </div>
-
+                                        @endif
 
                                         <table class="table table-striped">
                                             <thead>
@@ -1099,296 +1144,309 @@
             </div>
         </div>
         {{-- --}}{{-- --}}{{-- --}}{{-- --}}
-
-        <div wire:ignore.self id="request-leave-modal-{{ $task->id }}" class="modal fade" tabindex="-1"
-            role="dialog" aria-labelledby="request-leave-modal-{{ $task->id }}-title" aria-hidden="true"
-            data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="request-leave-modal-{{ $task->id }}-title">
-                            {{ __('task.Request_Leave') }}
-                        </h5>
-                        <button class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        {{-- --}}
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-12">
-                                <div class="form-group">
-                                    <label for="type">{{ __('leave.type') }}</label>
-                                    <select wire:model="leave_type" name="type" id="type"
-                                        class="form-control">
-                                        <option value="leave">{{ __('leave.leave') }}</option>
-                                        <option value="part_of_task">{{ __('leave.part_of_task') }}</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            @include('inputs.create.input', [
-                                'label' => 'leave.time_out',
-                                'name' => 'leave.time_out',
-                                'livewire' => 'leave_time_out',
-                                'type' => 'datetime-local', // 'step' => 1,
-                                // 'required' => 'required',
-                                'lg' => 4,
-                                'md' => 4,
-                                'sm' => 6,
-                            ])
-
-                            @include('inputs.create.input', [
-                                'label' => 'leave.time_in',
-                                'name' => 'leave.time_in',
-                                'livewire' => 'leave_time_in',
-                                'type' => 'datetime-local', // 'step' => 1,
-                                // 'required' => 'required',
-                                'lg' => 4,
-                                'md' => 4,
-                                'sm' => 6,
-                            ])
-
-                            <div class="col-12">
-                                <textarea name='reason' id='reason' rows="3" class='form-control'
-                                    placeholder='{{ __('global.enter') }} {{ __('leave.reason') }}' wire:model.defer="leave_reason"></textarea>
-                            </div>
-                        </div>
-                        {{-- --}}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary close-btn"
-                            data-dismiss="modal">{{ __('global.close') }}</button>
-                        <button type="button" wire:click.prevent="addLeaveRequest()" class="btn btn-success">
-                            {{ __('task.request') }}
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div wire:ignore.self id="extra-time-modal-{{ $task->id }}" class="modal fade" tabindex="-1"
-            role="dialog" aria-labelledby="extra-time-modal-{{ $task->id }}-title" aria-hidden="true"
-            data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="extra-time-modal-{{ $task->id }}-title">
-                            {{ __('task.Request_Leave') }}</h5>
-                        <button class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        {{-- --}}
-                        {{-- --}}{{-- --}}{{-- --}}
-
-
-                        <div class="row">
-                            @include('inputs.create.input', [
-                                'label' => 'extratime.from_time',
-                                'name' => 'extratime.from_time',
-                                'livewire' => 'extratime_from_time',
-                                'type' => 'datetime-local', // 'step' => 1,
-                                // 'required' => 'required',
-                                // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                            ])
-
-                            @include('inputs.create.input', [
-                                'label' => 'extratime.to_time',
-                                'name' => 'extratime.to_time',
-                                'livewire' => 'extratime_to_time',
-                                'type' => 'datetime-local', // 'step' => 1,
-                                // 'required' => 'required',
-                                // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                            ])
-
-                            <div class="col-12">
-                                <textarea name='reason' id='reason' rows="3" class='form-control'
-                                    placeholder='{{ __('global.enter') }} {{ __('extratime.reason') }}' wire:model.defer="extratime_reason"></textarea>
-                            </div>
-
-                        </div>
-                        {{-- --}}{{-- --}}{{-- --}}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary close-btn"
-                            data-dismiss="modal">{{ __('global.close') }}</button>
-                        <button type="button" wire:click.prevent="addExtraTime()" class="btn btn-success">
-                            {{ __('task.Request') }}
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        @role('owner|manager')
-            {{--  --}}{{--  --}}{{--  --}}
-
-            <div wire:ignore.self data-backdrop="static" data-keyboard="true" class="modal fade"
-                id="update-task-{{ $task->id }}" tabindex="-1" role="dialog"
-                aria-labelledby="update-task-{{ $task->id }}-label" aria-hidden="true" data-backdrop="static"
-                data-keyboard="false">
-                <div class="modal-dialog modal-lg text-start" role="document">
+        @if (in_array($task->status, ['pending', 'active']))
+            <div wire:ignore.self id="request-leave-modal-{{ $task->id }}" class="modal fade" tabindex="-1"
+                role="dialog" aria-labelledby="request-leave-modal-{{ $task->id }}-title" aria-hidden="true"
+                data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="update-task-{{ $task->id }}-label">
-                                {{ $task->crud_name() }}</h5>
-                            <button wire:click.prevent="cancelTask()" type="button" class="close" data-dismiss="modal"
-                                aria-label="Close">
+                            <h5 class="modal-title" id="request-leave-modal-{{ $task->id }}-title">
+                                {{ __('task.Request_Leave') }}
+                            </h5>
+                            <button class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-
-                        @if ($updateMode)
-                            <form enctype="multipart/form-data" method="post" accept-charset="utf-8"
-                                class="form-horizontal">
-                                <div class="modal-body">
-                                    <input type="hidden" wire:model="task_id">
-                                    @csrf
-
-                                    <div class="row">
-                                        @include('inputs.edit.input', [
-                                            'label' => 'task.title',
-                                            'name' => 'task.title',
-                                            'val' => $task->title,
-                                            'livewire' => 'edit_task_title',
-                                            'type' => 'text', // 'step' => 1,
-                                            // 'required' => 'required',
-                                            'lg' => 9,
-                                            'md' => 9,
-                                            'sm' => 9,
-                                        ])
-
-                                        @include('inputs.edit.input', [
-                                            'label' => 'task.discount',
-                                            'name' => 'task.discount',
-                                            'val' => $task->discount(),
-                                            'livewire' => 'edit_task_discount',
-                                            'type' => 'number',
-                                            'step' => 1,
-                                            // 'required' => 'required',
-                                            'lg' => 3,
-                                            'md' => 3,
-                                            'sm' => 3,
-                                        ])
-
-                                        @include('inputs.edit.input', [
-                                            'label' => 'task.desc',
-                                            'name' => 'task.desc',
-                                            'val' => $task->desc,
-                                            'livewire' => 'edit_task_desc',
-                                            'type' => 'text', // 'step' => 1,
-                                            // 'required' => 'required',
-                                            'lg' => 12,
-                                            'md' => 12,
-                                            'sm' => 12,
-                                        ])
-
-                                        @include('inputs.edit.input', [
-                                            'label' => 'task.start_time',
-                                            'name' => 'task.start_time',
-                                            'val' => $task->start_time,
-                                            'livewire' => 'edit_task_start_time',
-                                            'type' => 'datetime-local', // 'step' => 1,
-                                            // 'required' => 'required',
-                                            // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                        ])
-
-                                        @include('inputs.edit.input', [
-                                            'label' => 'task.end_time',
-                                            'name' => 'task.end_time',
-                                            'val' => $task->end_time,
-                                            'livewire' => 'edit_task_end_time',
-                                            'type' => 'datetime-local', // 'step' => 1,
-                                            // 'required' => 'required',
-                                            // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                        ])
-
-                                        <div class="col-lg-6 col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <label for="priority_level">{{ __('task.priority_level') }}</label>
-                                                <select wire:model="edit_task_priority_level" name="priority_level"
-                                                    id="priority_level" class="form-control">
-                                                    <option value="urgent">{{ __('task.urgent') }}</option>
-                                                    <option value="high">{{ __('task.high') }}</option>
-                                                    <option value="medium">{{ __('task.medium') }}</option>
-                                                    <option value="low">{{ __('task.low') }}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-6 col-md-6 col-sm-12">
-                                            <div class="form-group">
-                                                <label for="status">{{ __('task.status') }}</label>
-                                                <select wire:model="edit_task_status" name="status" id="status"
-                                                    class="form-control">
-                                                    <option value="pending">{{ __('task.pending') }}</option>
-                                                    <option value="active">{{ __('task.active') }}</option>
-                                                    <option value="auto-finished">{{ __('task.auto-finished') }}</option>
-                                                    <option value="manual-finished">{{ __('task.manual-finished') }}
-                                                    </option>
-                                                </select>
-                                            </div>
-                                        </div>
+                        <div class="modal-body">
+                            {{-- --}}
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="type">{{ __('leave.type') }}</label>
+                                        <select wire:model="leave_type" name="type" id="type"
+                                            class="form-control">
+                                            <option value="leave">{{ __('leave.leave') }}</option>
+                                            <option value="part_of_task">{{ __('leave.part_of_task') }}</option>
+                                        </select>
                                     </div>
-
-                                    @role('owner')
-                                        <div>
-                                            <p>{{ __('global.employees') }}</p>
-                                            <div class="row">
-                                                @foreach ($employees as $employee)
-                                                    <div class="col-4">
-                                                        <div class="form-check form-check-inline">
-                                                            <input wire:model='edit_task_selectedEmployees'
-                                                                class="form-check-input" type="checkbox"
-                                                                value="{{ $employee->id }}"
-                                                                id="selected-employee-{{ $employee->id }}">
-                                                            <label class="form-check-label"
-                                                                for="selected-employee-{{ $employee->id }}">
-                                                                {{ $employee->name() }}
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    @endrole
-
                                 </div>
 
-                                <div class="form-group">
+                                @include('inputs.create.input', [
+                                    'label' => 'leave.time_out',
+                                    'name' => 'leave.time_out',
+                                    'livewire' => 'leave_time_out',
+                                    'type' => 'datetime-local', // 'step' => 1,
+                                    'min' => date('Y-m-d\TH:i'),
+                                    'lg' => 4,
+                                    'md' => 4,
+                                    'sm' => 6,
+                                ])
 
-                                    @foreach ($errors->all() as $error)
-                                        <span class='alert alert-danger btn'>{{ $error }}</span>
-                                    @endforeach
+                                @include('inputs.create.input', [
+                                    'label' => 'leave.time_in',
+                                    'name' => 'leave.time_in',
+                                    'livewire' => 'leave_time_in',
+                                    'type' => 'datetime-local', // 'step' => 1,
+                                    'min' => date('Y-m-d\TH:i'),
+                                    'lg' => 4,
+                                    'md' => 4,
+                                    'sm' => 6,
+                                ])
 
-                                </div>
-
-
-                                @if (session()->has('message'))
-                                    <div class="alert alert-success" style="margin-top:30px;">
-                                        {{ session('message') }}
-                                    </div>
-                                @endif
-
-                                <div class="modal-footer">
-                                    <button type="button" wire:click.prevent="cancelTask()"
-                                        class="btn btn-secondary close-btn"
-                                        data-dismiss="modal">{{ __('global.close') }}</button>
-                                    <button type="button" wire:click.prevent="updateTask()" class="btn btn-success">
-                                        {{ __('global.save-changes') }}
-                                    </button>
-                                </div>
-                            </form>
-                        @endif
-
+                                {{-- <div class="col-12"> --}}
+                                {{-- <textarea name='reason' id='reason' rows="3" class='form-control'
+                                        placeholder='{{ __('global.enter') }} {{ __('leave.reason') }}' wire:model.defer="leave_reason"></textarea> --}}
+                                @include('inputs.textarea', [
+                                    'label' => 'task.desc',
+                                    'livewire' => 'sub_task_desc',
+                                ])
+                                {{-- </div> --}}
+                            </div>
+                            {{-- --}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary close-btn"
+                                data-dismiss="modal">{{ __('global.close') }}</button>
+                            <button type="button" wire:click.prevent="addLeaveRequest()" class="btn btn-success">
+                                {{ __('task.request') }}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
+        @endif
 
+        @if (in_array($task->status, ['pending', 'active']))
+            <div wire:ignore.self id="extra-time-modal-{{ $task->id }}" class="modal fade" tabindex="-1"
+                role="dialog" aria-labelledby="extra-time-modal-{{ $task->id }}-title" aria-hidden="true"
+                data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="extra-time-modal-{{ $task->id }}-title">
+                                {{ __('task.Request_Leave') }}</h5>
+                            <button class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {{-- --}}
+                            {{-- --}}{{-- --}}{{-- --}}
+
+
+                            <div class="row">
+                                @include('inputs.create.input', [
+                                    'label' => 'extratime.from_time',
+                                    'name' => 'extratime.from_time',
+                                    'livewire' => 'extratime_from_time',
+                                    'type' => 'datetime-local', // 'step' => 1,
+                                    'min' => date('Y-m-d\TH:i'),
+                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                ])
+
+                                @include('inputs.create.input', [
+                                    'label' => 'extratime.to_time',
+                                    'name' => 'extratime.to_time',
+                                    'livewire' => 'extratime_to_time',
+                                    'type' => 'datetime-local', // 'step' => 1,
+                                    'min' => date('Y-m-d\TH:i'),
+                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                ])
+
+                                {{-- <div class="col-12">
+                                    <textarea name='reason' id='reason' rows="3" class='form-control'
+                                        placeholder='{{ __('global.enter') }} {{ __('extratime.reason') }}' wire:model.defer="extratime_reason"></textarea>
+                                </div> --}}
+                                @include('inputs.textarea', [
+                                    'label' => 'extratime.reason',
+                                    'livewire' => 'extratime_reason',
+                                ])
+
+                            </div>
+                            {{-- --}}{{-- --}}{{-- --}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary close-btn"
+                                data-dismiss="modal">{{ __('global.close') }}</button>
+                            <button type="button" wire:click.prevent="addExtraTime()" class="btn btn-success">
+                                {{ __('task.Request') }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+        @role('owner|manager')
+            {{--  --}}{{--  --}}{{--  --}}
+            @if (in_array($task->status, ['pending', 'active']))
+                <div wire:ignore.self data-backdrop="static" data-keyboard="true" class="modal fade"
+                    id="update-task-{{ $task->id }}" tabindex="-1" role="dialog"
+                    aria-labelledby="update-task-{{ $task->id }}-label" aria-hidden="true" data-backdrop="static"
+                    data-keyboard="false">
+                    <div class="modal-dialog modal-lg text-start" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="update-task-{{ $task->id }}-label">
+                                    {{ $task->crud_name() }}</h5>
+                                <button wire:click.prevent="cancelTask()" type="button" class="close"
+                                    data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            @if ($updateMode)
+                                <form enctype="multipart/form-data" method="post" accept-charset="utf-8"
+                                    class="form-horizontal">
+                                    <div class="modal-body">
+                                        <input type="hidden" wire:model="task_id">
+                                        @csrf
+
+                                        <div class="row">
+                                            @include('inputs.edit.input', [
+                                                'label' => 'task.title',
+                                                'name' => 'task.title',
+                                                'val' => $task->title,
+                                                'livewire' => 'edit_task_title',
+                                                'type' => 'text', // 'step' => 1,
+                                                // 'required' => 'required',
+                                                'lg' => 9,
+                                                'md' => 9,
+                                                'sm' => 9,
+                                            ])
+
+                                            @include('inputs.edit.input', [
+                                                'label' => 'task.discount',
+                                                'name' => 'task.discount',
+                                                'val' => $task->discount(),
+                                                'livewire' => 'edit_task_discount',
+                                                'type' => 'number',
+                                                'step' => 1,
+                                                // 'required' => 'required',
+                                                'lg' => 3,
+                                                'md' => 3,
+                                                'sm' => 3,
+                                            ])
+
+                                            {{-- @include('inputs.edit.input', [
+                                                'label' => 'task.desc',
+                                                'name' => 'task.desc',
+                                                'val' => $task->desc,
+                                                'livewire' => 'edit_task_desc',
+                                                'type' => 'text', // 'step' => 1,
+                                                // 'required' => 'required',
+                                                'lg' => 12,
+                                                'md' => 12,
+                                                'sm' => 12,
+                                            ]) --}}
+                                            @include('inputs.textarea', [
+                                                'label' => 'task.desc',
+                                                'livewire' => 'edit_task_desc',
+                                            ])
+
+                                            @include('inputs.edit.input', [
+                                                'label' => 'task.start_time',
+                                                'name' => 'task.start_time',
+                                                'val' => $task->start_time,
+                                                'livewire' => 'edit_task_start_time',
+                                                'type' => 'datetime-local', // 'step' => 1,
+                                                'min' => date('Y-m-d\TH:i'),
+                                                // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                            ])
+
+                                            @include('inputs.edit.input', [
+                                                'label' => 'task.end_time',
+                                                'name' => 'task.end_time',
+                                                'val' => $task->end_time,
+                                                'livewire' => 'edit_task_end_time',
+                                                'type' => 'datetime-local', // 'step' => 1,
+                                                'min' => date('Y-m-d\TH:i'),
+                                                // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                            ])
+
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="priority_level">{{ __('task.priority_level') }}</label>
+                                                    <select wire:model="edit_task_priority_level" name="priority_level"
+                                                        id="priority_level" class="form-control">
+                                                        <option value="urgent">{{ __('task.urgent') }}</option>
+                                                        <option value="high">{{ __('task.high') }}</option>
+                                                        <option value="medium">{{ __('task.medium') }}</option>
+                                                        <option value="low">{{ __('task.low') }}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="status">{{ __('task.status') }}</label>
+                                                    <select wire:model="edit_task_status" name="status" id="status"
+                                                        class="form-control">
+                                                        <option value="pending">{{ __('task.pending') }}</option>
+                                                        <option value="active">{{ __('task.active') }}</option>
+                                                        <option value="auto-finished">{{ __('task.auto-finished') }}
+                                                        </option>
+                                                        <option value="manual-finished">{{ __('task.manual-finished') }}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @role('owner')
+                                            <div>
+                                                <p>{{ __('global.employees') }}</p>
+                                                <div class="row">
+                                                    @foreach ($employees as $employee)
+                                                        <div class="col-4">
+                                                            <div class="form-check form-check-inline">
+                                                                <input wire:model='edit_task_selectedEmployees'
+                                                                    class="form-check-input" type="checkbox"
+                                                                    value="{{ $employee->id }}"
+                                                                    id="selected-employee-{{ $employee->id }}">
+                                                                <label class="form-check-label"
+                                                                    for="selected-employee-{{ $employee->id }}">
+                                                                    {{ $employee->name() }}
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @endrole
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        @foreach ($errors->all() as $error)
+                                            <span class='alert alert-danger btn'>{{ $error }}</span>
+                                        @endforeach
+
+                                    </div>
+
+
+                                    @if (session()->has('message'))
+                                        <div class="alert alert-success" style="margin-top:30px;">
+                                            {{ session('message') }}
+                                        </div>
+                                    @endif
+
+                                    <div class="modal-footer">
+                                        <button type="button" wire:click.prevent="cancelTask()"
+                                            class="btn btn-secondary close-btn"
+                                            data-dismiss="modal">{{ __('global.close') }}</button>
+                                        <button type="button" wire:click.prevent="updateTask()" class="btn btn-success">
+                                            {{ __('global.save-changes') }}
+                                        </button>
+                                    </div>
+                                </form>
+                            @endif
+
+                        </div>
+                    </div>
+                </div>
+            @endif
             {{--  --}}{{--  --}}{{--  --}}
 
             <div wire:ignore.self class="modal fade" id="accept-extratime-modal-{{ $task->id }}"
@@ -1435,8 +1493,8 @@
                                         @include('inputs.show.input', [
                                             'label' => 'extratime.request_time',
                                             'val' => $extratime->request_time,
-                                            // 'type' => 'datetime-local', // 'step' => 1,
-                                            // 'required' => 'required',
+                                            'type' => 'datetime-local', // 'step' => 1,
+                                            'min' => date('Y-m-d\TH:i'),
                                             'lg' => 4,
                                             'md' => 4,
                                             'sm' => 4,
@@ -1447,7 +1505,7 @@
                                             'name' => 'extratime.from_time',
                                             'livewire' => 'extratime_from_time',
                                             'type' => 'datetime-local', // 'step' => 1,
-                                            // 'required' => 'required',
+                                            'min' => date('Y-m-d\TH:i'),
                                             // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                         ])
 
@@ -1456,7 +1514,7 @@
                                             'name' => 'extratime.to_time',
                                             'livewire' => 'extratime_to_time',
                                             'type' => 'datetime-local', // 'step' => 1,
-                                            // 'required' => 'required',
+                                            'min' => date('Y-m-d\TH:i'),
                                             // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                         ])
 
@@ -1549,7 +1607,7 @@
                                             'val' => $leave->time_out,
                                             'livewire' => 'leave_time_out',
                                             'type' => 'datetime-local', // 'step' => 1,
-                                            // 'required' => 'required',
+                                            'min' => date('Y-m-d\TH:i'),
                                             'lg' => 4,
                                             'md' => 4,
                                             'sm' => 12,
@@ -1561,7 +1619,7 @@
                                             'val' => $leave->time_in,
                                             'livewire' => 'leave_time_in',
                                             'type' => 'datetime-local', // 'step' => 1,
-                                            // 'required' => 'required',
+                                            'min' => date('Y-m-d\TH:i'),
                                             'lg' => 4,
                                             'md' => 5,
                                             'sm' => 12,

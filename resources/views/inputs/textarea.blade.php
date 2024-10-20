@@ -6,6 +6,6 @@
         <textarea name="{{ $livewire }}" id="{{ $livewire }}" rows="{{ $rows ?? 3 }}"
             @if (!($active ?? true)) disabled readonly @endif class="form-control rounded-md shadow-sm border-gray-300"
             placeholder="{{ __('global.enter') }} {{ __($label ?? 'apptext.the_text') }}" wire:model="{{ $livewire }}"
-            @guest disabled readonly @endguest></textarea>
+            @guest disabled readonly @endguest @if ($is_disable ?? null) disabled readonly @endif></textarea>
     </div>
 </div>

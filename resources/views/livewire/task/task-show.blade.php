@@ -29,6 +29,7 @@
                     'val' => $task->title,
                     'livewire' => 'title',
                     'type' => 'text', // 'step' => 1,
+                    'is_disable' => auth()->user()->hasRole('employee'),
                     // 'required' => 'required',
                     'lg' => 9,
                     'md' => 9,
@@ -41,6 +42,7 @@
                     'val' => $task->discount(),
                     'livewire' => 'discount',
                     'type' => 'number',
+                    'is_disable' => auth()->user()->hasRole('employee'),
                     'step' => 1,
                     // 'required' => 'required',
                     'lg' => 3,
@@ -50,6 +52,7 @@
 
                 @include('inputs.textarea', [
                     'label' => 'task.desc',
+                    'is_disable' => auth()->user()->hasRole('employee'),
                     'livewire' => 'desc',
                 ])
 
@@ -59,8 +62,9 @@
                     'val' => $task->start_time,
                     'livewire' => 'start_time',
                     'type' => 'datetime-local', // 'step' => 1,
-                    // 'required' => 'required',
+                    'min' => date('Y-m-d\TH:i'),
                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                    'is_disable' => auth()->user()->hasRole('employee'),
                 ])
 
                 @include('inputs.edit.input', [
@@ -69,15 +73,17 @@
                     'val' => $task->end_time,
                     'livewire' => 'end_time',
                     'type' => 'datetime-local', // 'step' => 1,
-                    // 'required' => 'required',
+                    'min' => date('Y-m-d\TH:i', strtotime($start_time . '+1 Hours')),
                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                    'is_disable' => auth()->user()->hasRole('employee'),
                 ])
 
                 <div class="col-lg-4 col-md-4 col-sm-10">
                     <div class="form-group">
                         <label for="priority_level">{{ __('task.priority_level') }}</label>
                         <select wire:model="priority_level" name="priority_level" id="priority_level"
-                            class="form-control" @guest disabled readonly @endguest>
+                            class="form-control" @guest disabled readonly @endguest
+                            @if (auth()->user()->hasRole('employee')) disabled readonly @endif>
                             <option value="urgent">{{ __('task.urgent') }}</option>
                             <option value="high">{{ __('task.high') }}</option>
                             <option value="medium">{{ __('task.medium') }}</option>
@@ -87,24 +93,30 @@
                 </div>
 
                 @auth
-                    <div class="col-lg-2 col-md-2 col-sm-2">
-                        <label for="draft">{{ __('task.move_draft') }}?</label>
-                        <button wire:click="moveDraft()"
-                            class="btn {{ $task->slug == 'draft' ? 'btn-info' : 'btn-danger' }} w-100">
-                            @if ($task->slug == 'draft')
-                                {{ __('task.Return') }}
-                            @else
-                                {{ __('task.Move') }}
-                            @endif
-                        </button>
-                    </div>
+                    @if (!auth()->user()->hasRole('employee'))
+                        <div class="col-lg-2 col-md-2 col-sm-2">
+                            <label for="draft">{{ __('task.move_draft') }}?</label>
+                            <button wire:click="moveDraft()"
+                                class="btn {{ $task->slug == 'draft' ? 'btn-info' : 'btn-danger' }} w-100">
+                                @if ($task->slug == 'draft')
+                                    {{ __('task.Return') }}
+                                @else
+                                    {{ __('task.Move') }}
+                                @endif
+                            </button>
+                        </div>
+                    @else
+                        <div class="col-lg-2 col-md-2 col-sm-2">
+                        </div>
+                    @endif
                 @endauth
 
                 <div class="col-lg-4 col-md-4 col-sm-10">
                     <div class="form-group">
                         <label for="status">{{ __('task.status') }}</label>
                         <select wire:model="status" name="status" id="status" class="form-control"
-                            @guest disabled readonly @endguest>
+                            @guest disabled readonly @endguest
+                            @if (auth()->user()->hasRole('employee')) disabled readonly @endif>
                             <option value="pending">{{ __('task.pending') }}</option>
                             <option value="active">{{ __('task.active') }}</option>
                             <option value="auto-finished">{{ __('task.auto-finished') }}</option>
@@ -124,7 +136,7 @@
 
             </div>
 
-            @role('owner')
+            @role('owner|manager')
                 <div>
                     <p>{{ __('global.employees') }}</p>
                     <div class="row">
@@ -157,11 +169,13 @@
         @endif
 
         @auth
-            <div class="card-footer">
-                <button type="button" wire:click.prevent="updateTask()" class="btn btn-success">
-                    {{ __('global.save-changes') }}
-                </button>
-            </div>
+            @role('owner|manager')
+                <div class="card-footer">
+                    <button type="button" wire:click.prevent="updateTask()" class="btn btn-success">
+                        {{ __('global.save-changes') }}
+                    </button>
+                </div>
+            @endrole
         @endauth
     </div>
     {{--  --}}
@@ -207,30 +221,34 @@
                 {{-- 4 TAB END --}}
 
                 {{-- 5 TAB START --}}
-                <li class="nav-item px-1">
-                    <a class="nav-link py-3 rounded-pill {{ $tab == 5 ? 'active' : '' }}" id="extra-tab"
-                        data-toggle="tab" wire:click="changeTab(5)" href="#extra" role="tab" aria-controls="extra"
-                        aria-selected="{{ $tab == 5 }}">{{ __('task.Extra_Time') }}</a>
-                </li>
+                @role('owner|manager')
+                    <li class="nav-item px-1">
+                        <a class="nav-link py-3 rounded-pill {{ $tab == 5 ? 'active' : '' }}" id="extra-tab"
+                            data-toggle="tab" wire:click="changeTab(5)" href="#extra" role="tab" aria-controls="extra"
+                            aria-selected="{{ $tab == 5 }}">{{ __('task.Extra_Time') }}</a>
+                    </li>
+                @endrole
                 {{-- 5 TAB END --}}
 
                 {{-- 6 TAB START --}}
-                <li class="nav-item px-1">
-                    <a class="nav-link py-3 rounded-pill {{ $tab == 6 ? 'active' : '' }}" id="leave-tab"
-                        data-toggle="tab" wire:click="changeTab(6)" href="#leave" role="tab"
-                        aria-controls="leave" aria-selected="{{ $tab == 6 }}">{{ __('task.leave') }}</a>
-                </li>
+                @role('owner|manager')
+                    <li class="nav-item px-1">
+                        <a class="nav-link py-3 rounded-pill {{ $tab == 6 ? 'active' : '' }}" id="leave-tab"
+                            data-toggle="tab" wire:click="changeTab(6)" href="#leave" role="tab"
+                            aria-controls="leave" aria-selected="{{ $tab == 6 }}">{{ __('task.leave') }}</a>
+                    </li>
+                @endrole
                 {{-- 6 TAB END --}}
 
+                {{-- 7 TAB START --}}
                 @role('owner|manager')
-                    {{-- 7 TAB START --}}
                     <li class="nav-item px-1">
                         <a class="nav-link py-3 rounded-pill {{ $tab == 7 ? 'active' : '' }}" id="discount-tab"
                             data-toggle="tab" wire:click="changeTab(7)" href="#discount" role="tab"
                             aria-controls="discount" aria-selected="{{ $tab == 7 }}">{{ __('task.discount') }}</a>
                     </li>
-                    {{-- 7 TAB END --}}
                 @endrole
+                {{-- 7 TAB END --}}
             </ul>
         </div>
 
@@ -554,11 +572,15 @@
                                             aria-describedby="inputGroup-sizing-default">
                                     </div>
 
-                                    <div wire:ignore.self class="col-md-12">
-                                        {{-- <div wire:ignore.self id="summer_desc"></div> --}}
-                                        <textarea name='desc' id='desc' rows="4" class='form-control'
-                                            placeholder='{{ __('global.enter') }} {{ __('task.desc') }}' wire:model.defer="sub_task_desc"></textarea>
-                                    </div>
+                                    @include('inputs.textarea', [
+                                        'label' => 'task.desc',
+                                        'livewire' => 'sub_task_desc',
+                                    ])
+                                    {{-- <div wire:ignore.self class="col-md-12"> --}}
+                                    {{-- <div wire:ignore.self id="summer_desc"></div> --}}
+                                    {{-- <textarea name='desc' id='desc' rows="4" class='form-control'
+                                            placeholder='{{ __('global.enter') }} {{ __('task.desc') }}' wire:model.defer="sub_task_desc"></textarea> --}}
+                                    {{-- </div> --}}
 
                                 </div>
 
@@ -654,203 +676,207 @@
                 {{-- 4 TAB END --}}
 
                 {{-- 5 TAB START --}}
-                <div class="tab-pane fade {{ $tab == 5 ? 'show active' : '' }}" id="extra" role="tabpanel"
-                    aria-labelledby="extra-tab">
-                    <div class="text-start py-4">
-                        @foreach ($task->extra_times as $extra_time)
-                            <div class="row w-100 m-0 border shadow ">
+                @role('owner|manager')
+                    <div class="tab-pane fade {{ $tab == 5 ? 'show active' : '' }}" id="extra" role="tabpanel"
+                        aria-labelledby="extra-tab">
+                        <div class="text-start py-4">
+                            @foreach ($task->extra_times as $extra_time)
+                                <div class="row w-100 m-0 border shadow ">
 
-                                <div class="col-md-6 ">
-                                    <div class="col-md-12">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                {{ __('task.Title') }}:
+                                    <div class="col-md-6 ">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    {{ __('task.Title') }}:
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    {{ $extra_time->reason }}
+                                                </div>
                                             </div>
+                                        </div>
 
-                                            <div class="col-md-6">
-                                                {{ $extra_time->reason }}
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    {{ __('task.Employee') }}:
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    {{ $extra_time->user->name() }}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                {{ __('task.Employee') }}:
-                                            </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12 mb-3">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    {{ __('task.status') }}:
+                                                </div>
 
-                                            <div class="col-md-6">
-                                                {{ $extra_time->user->name() }}
+                                                <div class="col-md-6">
+                                                    @if ($extra_time->status == 'pending')
+                                                        <div class="dropdown">
+                                                            <button
+                                                                class="btn {{ $extra_time->the_extra_color() }} dropdown-toggle p-1"
+                                                                type="button" id="dropdownMenuButton"
+                                                                data-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false">
+                                                                {{ $extra_time->the_status() }}
+                                                            </button>
+                                                            @role('owner|manager')
+                                                                <div class="dropdown-menu"
+                                                                    aria-labelledby="dropdownMenuButton">
+                                                                    <button class="dropdown-item" data-toggle="modal"
+                                                                        data-target="#accept-extratime-modal-{{ $task->id }}"
+                                                                        wire:click="setExtraTime({{ $extra_time->id }})">
+                                                                        <i class="ti-check text-success"></i>
+                                                                        {{ __('task.Accept') }}
+                                                                    </button>
+                                                                    <button class="dropdown-item" data-toggle="modal"
+                                                                        data-target="#reject-extratime-modal-{{ $task->id }}"
+                                                                        wire:click="rejectExtraTime({{ $extra_time->id }})">
+                                                                        <i class="ti-close text-danger"></i>
+                                                                        {{ __('task.Reject') }}
+                                                                    </button>
+                                                                </div>
+                                                            @endrole
+                                                        </div>
+                                                    @else
+                                                        {{ $extra_time->the_status() }}
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    {{ __('task.From') }}:
+                                                    <br>
+                                                    {{ date('Y-m-d h:i A', strtotime($extra_time->from_time)) }}
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    {{ __('task.To') }}:
+                                                    <br>
+                                                    {{ date('Y-m-d h:i A', strtotime($extra_time->to_time)) }}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
-
-                                <div class="col-md-6">
-                                    <div class="col-md-12 mb-3">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                {{ __('task.status') }}:
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                @if ($extra_time->status == 'pending')
-                                                    <div class="dropdown">
-                                                        <button
-                                                            class="btn {{ $extra_time->the_extra_color() }} dropdown-toggle p-1"
-                                                            type="button" id="dropdownMenuButton"
-                                                            data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                            {{ $extra_time->the_status() }}
-                                                        </button>
-                                                        @role('owner|manager')
-                                                            <div class="dropdown-menu"
-                                                                aria-labelledby="dropdownMenuButton">
-                                                                <button class="dropdown-item" data-toggle="modal"
-                                                                    data-target="#accept-extratime-modal-{{ $task->id }}"
-                                                                    wire:click="setExtraTime({{ $extra_time->id }})">
-                                                                    <i class="ti-check text-success"></i>
-                                                                    {{ __('task.Accept') }}
-                                                                </button>
-                                                                <button class="dropdown-item" data-toggle="modal"
-                                                                    data-target="#reject-extratime-modal-{{ $task->id }}"
-                                                                    wire:click="rejectExtraTime({{ $extra_time->id }})">
-                                                                    <i class="ti-close text-danger"></i>
-                                                                    {{ __('task.Reject') }}
-                                                                </button>
-                                                            </div>
-                                                        @endrole
-                                                    </div>
-                                                @else
-                                                    {{ $extra_time->the_status() }}
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                {{ __('task.From') }}:
-                                                <br>
-                                                {{ date('Y-m-d h:i A', strtotime($extra_time->from_time)) }}
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                {{ __('task.To') }}:
-                                                <br>
-                                                {{ date('Y-m-d h:i A', strtotime($extra_time->to_time)) }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
-                </div>
+                @endrole
                 {{-- 5 TAB END --}}
 
                 {{-- 6 TAB START --}}
-                <div class="tab-pane fade {{ $tab == 6 ? 'show active' : '' }}" id="leave" role="tabpanel"
-                    aria-labelledby="leave-tab">
-                    <div class="text-start py-4">
-                        @foreach ($task->leaves_times as $leave)
-                            <div class="row w-100 m-0 border shadow ">
+                @role('owner|manager')
+                    <div class="tab-pane fade {{ $tab == 6 ? 'show active' : '' }}" id="leave" role="tabpanel"
+                        aria-labelledby="leave-tab">
+                        <div class="text-start py-4">
+                            @foreach ($task->leaves_times as $leave)
+                                <div class="row w-100 m-0 border shadow ">
 
-                                <div class="col-md-6 ">
-                                    <div class="col-md-12">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                {{ __('task.Title') }}:
+                                    <div class="col-md-6 ">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    {{ __('task.Title') }}:
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    {{ $leave->reason }}
+                                                </div>
                                             </div>
+                                        </div>
 
-                                            <div class="col-md-6">
-                                                {{ $leave->reason }}
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    {{ __('task.Employee') }}:
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    {{ $leave->user->name() }}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                {{ __('task.Employee') }}:
-                                            </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-12 mb-3">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    {{ __('task.status') }}:
+                                                </div>
 
-                                            <div class="col-md-6">
-                                                {{ $leave->user->name() }}
+                                                <div class="col-md-6">
+                                                    @if ($leave->status == 'pending')
+                                                        <div class="dropdown">
+                                                            <button
+                                                                class="btn {{ $leave->the_leave_color() }} dropdown-toggle p-1"
+                                                                type="button" id="dropdownMenuButton"
+                                                                data-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false">
+                                                                {{ $leave->the_status() }}
+                                                            </button>
+                                                            @role('owner|manager')
+                                                                <div class="dropdown-menu"
+                                                                    aria-labelledby="dropdownMenuButton">
+                                                                    <button class="dropdown-item" data-toggle="modal"
+                                                                        data-target="#accept-leave-modal-{{ $task->id }}"
+                                                                        wire:click="setLeave({{ $leave->id }})">
+                                                                        <i class="ti-check text-success"></i>
+                                                                        {{ __('task.Accept') }}
+                                                                    </button>
+                                                                    <button class="dropdown-item" data-toggle="modal"
+                                                                        data-target="#reject-leave-modal"
+                                                                        wire:click="rejectLeave({{ $leave->id }})">
+                                                                        <i class="ti-close text-danger"></i>
+                                                                        {{ __('task.Reject') }}
+                                                                    </button>
+                                                                </div>
+                                                            @endrole
+                                                        </div>
+                                                    @else
+                                                        {{ $leave->the_status() }}
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    {{ __('task.From') }}:
+                                                    <br>
+                                                    {{ date('Y-m-d h:i A', strtotime($leave->time_out)) }}
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    {{ __('task.To') }}:
+                                                    <br>
+                                                    {{ date('Y-m-d h:i A', strtotime($leave->time_in)) }}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
-
-                                <div class="col-md-6">
-                                    <div class="col-md-12 mb-3">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                {{ __('task.status') }}:
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                @if ($leave->status == 'pending')
-                                                    <div class="dropdown">
-                                                        <button
-                                                            class="btn {{ $leave->the_leave_color() }} dropdown-toggle p-1"
-                                                            type="button" id="dropdownMenuButton"
-                                                            data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                            {{ $leave->the_status() }}
-                                                        </button>
-                                                        @role('owner|manager')
-                                                            <div class="dropdown-menu"
-                                                                aria-labelledby="dropdownMenuButton">
-                                                                <button class="dropdown-item" data-toggle="modal"
-                                                                    data-target="#accept-leave-modal-{{ $task->id }}"
-                                                                    wire:click="setLeave({{ $leave->id }})">
-                                                                    <i class="ti-check text-success"></i>
-                                                                    {{ __('task.Accept') }}
-                                                                </button>
-                                                                <button class="dropdown-item" data-toggle="modal"
-                                                                    data-target="#reject-leave-modal"
-                                                                    wire:click="rejectLeave({{ $leave->id }})">
-                                                                    <i class="ti-close text-danger"></i>
-                                                                    {{ __('task.Reject') }}
-                                                                </button>
-                                                            </div>
-                                                        @endrole
-                                                    </div>
-                                                @else
-                                                    {{ $leave->the_status() }}
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                {{ __('task.From') }}:
-                                                <br>
-                                                {{ date('Y-m-d h:i A', strtotime($leave->time_out)) }}
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                {{ __('task.To') }}:
-                                                <br>
-                                                {{ date('Y-m-d h:i A', strtotime($leave->time_in)) }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
-                </div>
+                @endrole
                 {{-- 6 TAB END --}}
 
+                {{-- 7 TAB START --}}
                 @role('owner|manager')
-                    {{-- 7 TAB START --}}
                     <div class="tab-pane fade {{ $tab == 7 ? 'show active' : '' }}" id="leave" role="tabpanel"
                         aria-labelledby="leave-tab">
                         <div class="table-responsive text-start">
@@ -898,8 +924,8 @@
                             </table>
                         </div>
                     </div>
-                    {{-- 7 TAB END --}}
                 @endrole
+                {{-- 7 TAB END --}}
 
             </div>
         </div>

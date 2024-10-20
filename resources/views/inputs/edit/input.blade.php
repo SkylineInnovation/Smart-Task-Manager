@@ -4,15 +4,11 @@
             {{ $required ?? false ? '***' : '' }} {{ __($label ?? '') }}
         </label>
         <input {{ $required ?? null }} name='{{ $name }}' id='{{ $name }}' type='{{ $type ?? 'text' }}'
-            value='{{ $val ?? '' }}'
-            class='form-control rounded-md shadow-sm border-gray-300 @error('{{ $name }}') is-invalid @enderror'
+            value='{{ $val ?? '' }}' class='form-control rounded-md shadow-sm border-gray-300'
+            min="{{ $min ?? '' }}" max="{{ $max ?? '' }}"
             placeholder='{{ __('global.enter') }} {{ __($placeholder ?? '') }}'
             {{ ($type ?? 'text') == 'number' ? 'step=' . ($step ?? 1) : '' }}
-            {{ ($livewire ?? null) == null ? null : 'wire:model=' . $livewire }} @guest disabled readonly @endguest>
-        @error('{{ $name }}')
-            <span class='invalid-feedback' role='alert'>
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
+            {{ ($livewire ?? null) == null ? null : 'wire:model=' . $livewire }} @guest disabled readonly @endguest
+            @if ($is_disable ?? null) disabled readonly @endif>
     </div>
 </div>

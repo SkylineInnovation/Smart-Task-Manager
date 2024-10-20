@@ -81,6 +81,9 @@
         // });
 
         $(document).ready(function() {
+            window.livewire.on('close-model', () => {
+                $('#create-new-task').modal('hide');
+            });
             window.livewire.on('render-index', () => {
                 window.livewire.emit('refreshRender');
             });
