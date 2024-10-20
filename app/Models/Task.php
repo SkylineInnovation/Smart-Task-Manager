@@ -475,4 +475,29 @@ class Task extends Model
     {
         return $this->belongsTo(Task::class, 'reopen_from_task_id');
     }
+
+    public function all_comments()
+    {
+        $employees = $this->employees;
+
+        foreach ($employees as $employee) {
+            $comment_count = $this->comments()->where('user_id', $employee->id)->count();
+
+            if ($comment_count == 0) return false;
+        }
+
+        return true;
+    }
+
+    public function have_new_comment()
+    {
+        $comments = $this->comments()->where('created_at', '>=', date('Y-m-d H:i', strtotime('-1 Hour')))->count();
+        return $comments > 0;
+    }
+
+    public function have_new_attachment()
+    {
+        $attachments = $this->attachments()->where('created_at', '>=', date('Y-m-d H:i', strtotime('-1 Hour')))->count();
+        return $attachments > 0;
+    }
 }

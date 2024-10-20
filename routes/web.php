@@ -4,6 +4,7 @@ use App\Http\Controllers\DailyTaskController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Web\WebTaskController;
+use App\Models\Task;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -194,15 +195,14 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
 // });
 
 
-// Route::get('trt', function () {
-//     $date = date('Y-m-d\TH:i');
+Route::get('id/{id}', function ($id) {
 
-//     $tasks = Task::whereNullOrEmptyOrZero('main_task_id')
-//         ->whereIn('status', ['pending', 'active',])
-//         ->where('end_time', '<=', $date)->get();
-
-//     return [
-//         $date,
-//         $tasks
-//     ];
-// });
+    $task = Task::find($id);
+    $task->all_comments();
+    return [
+        'comments' => $task->all_comments(),
+        'have_new_comment' => $task->have_new_comment(),
+        'have_new_attachment' => $task->have_new_attachment(),
+        'task' => $task,
+    ];
+});

@@ -135,12 +135,10 @@ class WebGetTaskByStatus extends Component
     {
         $task = Task::find($id);
 
-        // if (count($task->comments) == 0) {
-        //     // session()->flash('error_finish_task', 'Can\'t Finish Task, Add Comment.');
-        //     $this->addError('error_finish_task', 'Can\'t Finish Task, Add Comment.');
-
-        //     return;
-        // }
+        if (!$task->all_comments()) {
+            $this->addError('error_finish_task', 'Can\'t Finish Task, Add Comment.');
+            return;
+        }
 
         $task->update(['status' => 'manual-finished']);
 

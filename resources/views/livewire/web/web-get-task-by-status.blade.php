@@ -18,6 +18,14 @@
                             <h6 class="text-gray px-4">
                                 {{ __('task.Sub-Task') }}: {{ $task->sub_tasks->count() }}
                             </h6>
+
+                            <h6 class="px-4 @if ($task->have_new_comment()) text-danger @else text-gray @endif">
+                                {{ __('task.Comment') }}: {{ $task->comments->count() }}
+                            </h6>
+
+                            <h6 class="px-4 @if ($task->have_new_attachment()) text-danger @else text-gray @endif">
+                                {{ __('task.Attachments') }}: {{ $task->attachments->count() }}
+                            </h6>
                         </div>
                     </div>
 
