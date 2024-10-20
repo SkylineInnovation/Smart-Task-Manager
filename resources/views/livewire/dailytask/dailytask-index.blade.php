@@ -147,11 +147,19 @@
                         @endif
 
                         @if ($showColumn['proearty'])
-                            <td> {{ $dailytask->the_proearty() }} </td>
+                            <td>
+                                <span class="dot-label mx-2"
+                                    style="background-color: {{ $dailytask->the_priority_color() }};"></span>
+                                {{ $dailytask->the_proearty() }}
+                            </td>
                         @endif
 
                         @if ($showColumn['status'])
-                            <td> {{ $dailytask->the_status() }} </td>
+                            <td>
+                                <span class="dot-label mx-2"
+                                    style="background-color: {{ $dailytask->the_status_color() }};"></span>
+                                {{ $dailytask->the_status() }}
+                            </td>
                         @endif
 
                         @if ($showColumn['repeat_time'])
