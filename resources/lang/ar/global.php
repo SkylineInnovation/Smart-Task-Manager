@@ -205,5 +205,5 @@ return [
     'select-managers' => 'حدد المديرين',
     'select-employees' => 'حدد الموظفين',
 
-    'open-task' => 'Open Task',
+    'open-task' => 'اعادة توجيه',
 ];

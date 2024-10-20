@@ -208,5 +208,5 @@ return [
     // 'select-main_attachments' => 'Select Main Attachments',
     // 'select-main_comments' => 'Select Main Comments',
 
-    'open-task' => 'Re Open Task',
+    'open-task' => 'Reopen Task',
 ];
