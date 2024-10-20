@@ -17,7 +17,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row w-100 m-0">
-                        <div class='form-group col-6'>
+                        <div class='form-group col-lg-6 col-md-6 col-sm-12'>
                             <label for='employee-select'>{{ __('task.employees') }}</label>
                             <select id='employee-select' class='form-control' wire:model='select_emp'>
                                 <option>{{ __('global.select-employees') }}</option>
@@ -39,7 +39,7 @@
                             @endforeach
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
                             <label for="exampleFormControlSelect1">{{ __('task.priority_level') }}</label>
                             <select wire:model.defer="priority_level" class="form-control">
                                 <option value="urgent">{{ __('task.urgent') }}</option>
@@ -49,7 +49,7 @@
                             </select>
                         </div>
 
-                        <div class="input-group mb-3 col-md-8">
+                        <div class="input-group mb-3 col-lg-8 col-md-8 col-sm-12">
                             <div class="input-group-prepend ">
                                 <span class="input-group-text btn-secondary text-white"
                                     id="inputGroup-sizing-default">{{ __('task.title') }}</span>
@@ -58,7 +58,7 @@
                                 aria-label="Default" aria-describedby="inputGroup-sizing-default">
                         </div>
 
-                        <div class="input-group mb-3 col-md-4">
+                        <div class="input-group mb-3 col-lg-4 col-md-4 col-sm-12">
                             <div class="input-group-prepend ">
                                 <span class="input-group-text btn-secondary text-white"
                                     id="inputGroup-sizing-default">{{ __('task.discount') }}</span>
@@ -67,7 +67,7 @@
                                 aria-describedby="inputGroup-sizing-default">
                         </div>
 
-                        <div class="input-group mb-3  col-md-6">
+                        <div class="input-group mb-3 col-lg-6 col-md-6 col-sm-12">
                             <div class="input-group-prepend ">
                                 <span class="input-group-text btn-secondary text-white"
                                     id="inputGroup-sizing-default">{{ __('task.start_time') }}</span>
@@ -77,7 +77,7 @@
                                 aria-describedby="inputGroup-sizing-default">
                         </div>
 
-                        <div class="input-group mb-3  col-md-6">
+                        <div class="input-group mb-3 col-lg-6 col-md-6 col-sm-12">
                             <div class="input-group-prepend ">
                                 <span class="input-group-text btn-secondary text-white"
                                     id="inputGroup-sizing-default">{{ __('task.end_time') }}</span>
