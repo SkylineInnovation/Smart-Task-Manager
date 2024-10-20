@@ -296,7 +296,7 @@ class Task extends Model
     public function the_priority_color()
     {
         if ($this->priority_level == 'low')
-            return '#ffff4d';
+            return '#ffcc00';
         elseif ($this->priority_level == 'medium')
             return '#668cff';
         elseif ($this->priority_level == 'high')
@@ -324,7 +324,7 @@ class Task extends Model
     public function the_status_color()
     {
         if ($this->status == 'pending')
-            return '#ffff4d';
+            return '#ffcc00';
         elseif ($this->status == 'active')
             return '#33cc33';
         elseif ($this->status == 'auto-finished')
