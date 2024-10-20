@@ -2,12 +2,6 @@
 
 @section('content')
     <div class="card">
-        {{-- 
-            <div class="card-header">
-                <h4>{{ __('global.all') }} {{ __('global.loghistories') }} </h4>
-            </div>
-        --}}
-
         <div class="card-body">
             <livewire:loghistory.loghistory-index :admin_view_status="$admin_view_status" />
         </div>
