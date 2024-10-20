@@ -44,4 +44,5 @@ return [
 
     'guest' => 'مستخدم ضيف',
     'managers' => 'المدير',
+    'departments' => 'القسم',
 ];

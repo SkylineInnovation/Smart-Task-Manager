@@ -44,4 +44,5 @@ return [
 
     'guest' => 'Guest User',
     'managers' => 'Managers',
+    'departments' => 'Departments',
 ];

@@ -63,7 +63,7 @@
                     @role('owner')
                         <td>{{ __('user.managers') }}</td>
 
-                        <td>{{ __('user.department') }}</td>
+                        <td>{{ __('user.departments') }}</td>
                     @endrole
 
                     <td style="width: 150px">
