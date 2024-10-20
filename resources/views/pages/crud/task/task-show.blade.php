@@ -12,11 +12,14 @@
     <livewire:task.task-show :task="$task" />
 
 
-    <div class="card">
-        <div class="card-body">
-            <livewire:loghistory.loghistory-index on_model_name="task" :on_model_id="$task->id" />
+    @auth
+        <div class="card">
+            <div class="card-body">
+                <livewire:loghistory.loghistory-index on_model_name="task" :on_model_id="$task->id" />
+            </div>
         </div>
-    </div>
+
+    @endauth
 @endsection
 
 {{-- @section('livewire-js')

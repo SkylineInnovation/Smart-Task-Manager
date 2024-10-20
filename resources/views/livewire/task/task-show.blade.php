@@ -29,7 +29,7 @@
                     'val' => $task->title,
                     'livewire' => 'title',
                     'type' => 'text', // 'step' => 1,
-                    'is_disable' => auth()->user()->hasRole('employee'),
+                    'is_disable' => auth()->user() ? auth()->user()->hasRole('employee') : true,
                     // 'required' => 'required',
                     'lg' => 9,
                     'md' => 9,
@@ -42,7 +42,7 @@
                     'val' => $task->discount(),
                     'livewire' => 'discount',
                     'type' => 'number',
-                    'is_disable' => auth()->user()->hasRole('employee'),
+                    'is_disable' => auth()->user() ? auth()->user()->hasRole('employee') : true,
                     'step' => 1,
                     // 'required' => 'required',
                     'lg' => 3,
@@ -52,7 +52,7 @@
 
                 @include('inputs.textarea', [
                     'label' => 'task.desc',
-                    'is_disable' => auth()->user()->hasRole('employee'),
+                    'is_disable' => auth()->user() ? auth()->user()->hasRole('employee') : true,
                     'livewire' => 'desc',
                 ])
 
@@ -64,7 +64,7 @@
                     'type' => 'datetime-local', // 'step' => 1,
                     'min' => date('Y-m-d\TH:i'),
                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                    'is_disable' => auth()->user()->hasRole('employee'),
+                    'is_disable' => auth()->user() ? auth()->user()->hasRole('employee') : true,
                 ])
 
                 @include('inputs.edit.input', [
@@ -75,7 +75,7 @@
                     'type' => 'datetime-local', // 'step' => 1,
                     'min' => date('Y-m-d\TH:i', strtotime($start_time . '+1 Hours')),
                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                    'is_disable' => auth()->user()->hasRole('employee'),
+                    'is_disable' => auth()->user() ? auth()->user()->hasRole('employee') : true,
                 ])
 
                 <div class="col-lg-4 col-md-4 col-sm-10">
@@ -83,7 +83,7 @@
                         <label for="priority_level">{{ __('task.priority_level') }}</label>
                         <select wire:model="priority_level" name="priority_level" id="priority_level"
                             class="form-control" @guest disabled readonly @endguest
-                            @if (auth()->user()->hasRole('employee')) disabled readonly @endif>
+                            @if (auth()->user() ? auth()->user()->hasRole('employee') : true) disabled readonly @endif>
                             <option value="urgent">{{ __('task.urgent') }}</option>
                             <option value="high">{{ __('task.high') }}</option>
                             <option value="medium">{{ __('task.medium') }}</option>
@@ -116,7 +116,7 @@
                         <label for="status">{{ __('task.status') }}</label>
                         <select wire:model="status" name="status" id="status" class="form-control"
                             @guest disabled readonly @endguest
-                            @if (auth()->user()->hasRole('employee')) disabled readonly @endif>
+                            @if (auth()->user() ? auth()->user()->hasRole('employee') : true) disabled readonly @endif>
                             <option value="pending">{{ __('task.pending') }}</option>
                             <option value="active">{{ __('task.active') }}</option>
                             <option value="auto-finished">{{ __('task.auto-finished') }}</option>

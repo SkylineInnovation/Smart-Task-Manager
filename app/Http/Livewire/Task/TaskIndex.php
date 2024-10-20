@@ -355,6 +355,7 @@ class TaskIndex extends Component
         if ($this->all == false)
             $tasks = $tasks->whereBetween($this->byDate, [$this->fromDate . ' 00:00:00', $this->toDate . ' 23:59:59']);
 
+        $tasks = $tasks->whereNullOrEmptyOrZero('main_task_id');
 
 
         if ($this->task_status != 'all') {
