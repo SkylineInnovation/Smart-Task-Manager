@@ -10,12 +10,6 @@
 
 @section('content')
     <div class="card">
-        {{-- 
-            <div class="card-header">
-                <h4>{{ __('global.all') }} {{ __('global.tasks') }} </h4>
-            </div>
-        --}}
-
         <div class="card-body">
             <livewire:task.task-index :admin_view_status="$admin_view_status" />
         </div>

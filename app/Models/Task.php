@@ -131,8 +131,8 @@ class Task extends Model
                     'action' => 'create',
                     'by_model_name' => 'task', // attachment, comment, extra_time, leave, 
                     'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
-                    'on_model_name' => '', // task, daily_task,
-                    'on_model_id' => 0, // task, daily_task,
+                    'on_model_name' => 'task', // task, daily_task,
+                    'on_model_id' => $model->id, // task, daily_task,
                     'preaf' => [
                         'en' => 'new task added',
                     ],
@@ -157,8 +157,8 @@ class Task extends Model
                 'action' => 'update',
                 'by_model_name' => 'task', // attachment, comment, extra_time, leave, 
                 'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
-                'on_model_name' => '', // task, daily_task,
-                'on_model_id' => 0, // task, daily_task,
+                'on_model_name' => 'task', // task, daily_task,
+                'on_model_id' => $model->id, // task, daily_task,
                 'from_data' => $oldValues,
                 'to_data' => $dirtyAttributes,
                 'preaf' => [
@@ -201,8 +201,8 @@ class Task extends Model
                 'action' => 'delete',
                 'by_model_name' => 'task', // attachment, comment, extra_time, leave, 
                 'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
-                'on_model_name' => '', // task, daily_task,
-                'on_model_id' => 0, // task, daily_task,
+                'on_model_name' => 'task', // task, daily_task,
+                'on_model_id' => $model->id, // task, daily_task,
                 'preaf' => [
                     'en' => 'task deleted',
                 ],
