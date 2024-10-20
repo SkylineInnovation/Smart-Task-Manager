@@ -33,7 +33,7 @@
 
 <x-guest-layout>
 
-    <div class="container-fluid p-4 imageBg h-100">
+    <div class="container-fluid p-4 imageBg" style="height: 100%; width: 100%">
         <div class="row">
             <div class="col-12 ps-5">
                 <img src="{{ asset('assets/images/login/login-logo.png') }}" style="width: 250px;height: 250px;">
