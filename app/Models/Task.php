@@ -300,7 +300,7 @@ class Task extends Model
         elseif ($this->priority_level == 'medium')
             return '#668cff';
         elseif ($this->priority_level == 'high')
-            return '#00ff00';
+            return '#33cc33';
         elseif ($this->priority_level == 'urgent') // TODO
             return '#cc0000';
 
