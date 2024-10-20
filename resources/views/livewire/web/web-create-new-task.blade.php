@@ -72,8 +72,9 @@
                                 <span class="input-group-text btn-secondary text-white"
                                     id="inputGroup-sizing-default">{{ __('task.start_time') }}</span>
                             </div>
-                            <input wire:model.defer="start_time" type="datetime-local" class="form-control"
-                                aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                            <input wire:model="start_time" type="datetime-local" class="form-control"
+                                min="{{ date('Y-m-d\TH:i') }}" aria-label="Default"
+                                aria-describedby="inputGroup-sizing-default">
                         </div>
 
                         <div class="input-group mb-3  col-md-6">
@@ -82,7 +83,8 @@
                                     id="inputGroup-sizing-default">{{ __('task.end_time') }}</span>
                             </div>
                             <input wire:model.defer="end_time" type="datetime-local" class="form-control"
-                                aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                min="{{ date('Y-m-d\TH:i', strtotime($start_time . '+1 Hours')) }}"
+                                aria-label="Default" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                         </div>
 
                         @include('inputs.textarea', [

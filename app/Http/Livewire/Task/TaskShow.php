@@ -55,7 +55,8 @@ class TaskShow extends Component
             // 'manager_id' => 'required',
             'title' => 'required',
             'desc' => 'required',
-            'start_time' => 'required|date',
+            // 'start_time' => 'required|date',
+            'start_time' => 'required|date|after:' . date('Y-m-d\TH:i'),
             'end_time' => 'required|date|after:start_time', // _or_equal
             'priority_level' => 'required',
             'status' => 'required',
