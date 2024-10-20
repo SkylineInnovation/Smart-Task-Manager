@@ -324,13 +324,13 @@ class Task extends Model
     public function the_status_color()
     {
         if ($this->status == 'pending')
-            return '#ff6361';
+            return '#ffff4d';
         elseif ($this->status == 'active')
-            return '#ff33cc';
+            return '#33cc33';
         elseif ($this->status == 'auto-finished')
-            return '#009999';
+            return '#cc0000';
         elseif ($this->status == 'manual-finished') // TODO
-            return '#00ccff';
+            return '#668cff';
 
         return '';
     }
