@@ -142,15 +142,18 @@
                         @endif
 
                         @if ($showColumn['priority_level'])
-                            <td
-                                style="color:#ffffff;font-weight: 500; background-color: {{ $task->the_priority_color() }}">
-                                {{ $task->the_priority_level() }} </td>
+                            <td>
+                                {{ $task->the_priority_level() }}
+                                <span class="dot-label mx-2"
+                                    style="background-color: {{ $task->the_priority_color() }};"></span>
+                            </td>
                         @endif
 
                         @if ($showColumn['status'])
-                            <td
-                                style="color:#ffffff;font-weight: 500; background-color: {{ $task->the_status_color() }}">
+                            <td>
                                 {{ $task->the_status() }}
+                                <span class="dot-label mx-2"
+                                    style="background-color: {{ $task->the_status_color() }};"></span>
                                 @if ($task->slug)
                                     ({{ $task->slug }})
                                 @endif

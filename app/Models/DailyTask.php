@@ -221,13 +221,13 @@ class DailyTask extends Model
     public function the_priority_color()
     {
         if ($this->proearty == 'low')
-            return '#00FF00';
+            return '#ffff4d';
         elseif ($this->proearty == 'medium')
-            return '#0000FF';
+            return '#668cff';
         elseif ($this->proearty == 'high')
-            return '#FF0000';
-        elseif ($this->proearty == 'urgent') // TODO
-            return '#FF0000';
+            return '#33cc33';
+        elseif ($this->proearty == 'urgent')
+            return '#cc0000';
 
         return '';
     }
@@ -242,6 +242,20 @@ class DailyTask extends Model
             return __('task.auto-finished');
         elseif ($this->status == 'manual-finished')
             return __('task.manual-finished');
+
+        return '';
+    }
+
+    public function the_status_color()
+    {
+        if ($this->status == 'pending')
+            return '#ffff4d';
+        elseif ($this->status == 'active')
+            return '#33cc33';
+        elseif ($this->status == 'auto-finished')
+            return '#cc0000';
+        elseif ($this->status == 'manual-finished')
+            return '#668cff';
 
         return '';
     }
