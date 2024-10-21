@@ -8,32 +8,28 @@
     .imageBg {
         /* background-position: center; */
         background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
 
         height: 100%;
         width: 100%;
 
-        background-size: 100%;
+        /* background-size: 100%; */
         background-image: url('assets/images/login/login-bg.png');
 
     }
 
-    @media (max-width: 768px) {
-
-        /* Adjust breakpoint as needed */
+    /* @media (max-width: 768px) {
         .imageBg {
             background-image: url('assets/images/login/sm-login-bg.png');
-            /* Image for medium-sized screens */
         }
-    }
+    } */
 
-    @media (max-width: 1024px) {
-
-        /* Adjust breakpoint as needed */
+    /* @media (max-width: 1024px) {
         .imageBg {
             background-image: url('assets/images/login/sm-login-bg.png');
-            /* Image for large screens */
         }
-    }
+    } */
 
     .posetions {
         position: absolute;
