@@ -91,7 +91,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="mr-auto">
             {{--  --}}{{--  --}}
             <a class="dropdown-item" href="{{ route('task-board') }}">
                 <i class="fa fa-tasks"></i>
