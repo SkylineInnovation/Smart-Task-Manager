@@ -12756,7 +12756,7 @@ img {
     }
 }
 .navbar-nav {
-    flex-direction: row !important;
+    /* flex-direction: unset ; */
 }
 .pricing-divider {
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);

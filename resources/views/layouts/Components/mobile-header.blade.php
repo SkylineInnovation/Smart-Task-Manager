@@ -1,14 +1,11 @@
 <!-- Mobile Header -->
-<div class="mobile-header">
+{{-- <div class="mobile-header">
     <div class="container-fluid">
         <div class="d-flex">
             <a onclick="sidenavToggledApi()" aria-label="Hide Sidebar" class="app-sidebar__toggle" data-toggle="sidebar"
                 href=javascript:;></a>
-            <!-- sidebar-toggle-->
-            <a class="header-brand" href="{{ route('dashboard') }}">
-                {{-- <img src="{{ asset('assets/images/brand/logo.png') }}" class="header-brand-img desktop-logo" alt="logo">
-                <img src="{{ asset('assets/images/brand/logo-3.png') }}" class="header-brand-img desktop-logo mobile-light" alt="logo"> --}}
-            </a>
+
+            <a class="header-brand" href="{{ route('dashboard') }}"></a>
 
 
             <div class="d-flex order-lg-2 ml-auto header-right-icons">
@@ -72,4 +69,82 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light d-sm-block d-md-none">
+    <!--tips: to change the nav placement use .fixed-top,.fixed-bottom,.sticky-top-->
+    <a class="navbar-brand" href="#">
+        @auth
+            <h5 class="text-dark mb-0">{{ auth()->user()->name() }}</h5>
+        @endauth
+
+        @guest
+            <h5 class="text-dark mb-0">{{ __('user.guest') }}</h5>
+        @endguest
+
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mr-auto">
+            {{--  --}}{{--  --}}
+            <a class="dropdown-item" href="{{ route('task-board') }}">
+                <i class="fa fa-tasks"></i>
+                {{ __('global.task-board') }}
+            </a>
+
+            @permission('index-dailytask')
+                <a class="dropdown-item" href="{{ route('dailytask.index') }}">
+                    <i class=" mdi mdi-view-day"></i>
+                    {{ __('global.dailytasks') }}
+                </a>
+            @endpermission
+
+            @permission('index-task')
+                <a class="dropdown-item" href="{{ route('task.index') }}">
+                    <i class="fa fa-paper-plane"></i>
+                    {{ __('global.tasks') }}
+                </a>
+            @endpermission
+            @permission('index-user')
+                <a class="dropdown-item" href="{{ route('user.index') }}">
+                    <i class="fa fa-flag"></i>
+                    {{ __('global.users') }}
+                </a>
+            @endpermission
+            @permission('index-department')
+                <a class="dropdown-item" href="{{ route('department.index') }}">
+                    <i class=" mdi mdi-diamond"></i>
+                    {{ __('global.departments') }}
+                </a>
+            @endpermission
+            {{--  --}}{{--  --}}
+
+            {{--  --}}{{--  --}}{{--  --}}
+
+
+            {{-- <a class="dropdown-item" href="{{ route('dashboard') }}">
+                <i class="dropdown-icon mdi mdi-home-outline"></i>
+                {{ __('global.home') }}
+            </a> --}}
+
+            <a class="dropdown-item" href="{{ route('edit.profile') }}">
+                <i class="dropdown-icon mdi mdi-account-outline"></i>
+                {{ __('global.edit-profile') }}
+            </a>
+            <div class="dropdown-divider m-0"></div>
+
+
+            <a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out
+            </a>
+            {{--  --}}{{--  --}}{{--  --}}
+
+    </div>
+</nav>
