@@ -8,27 +8,27 @@
 
         <div>
             <select wire:model='orderBy' class="form-control form-group" style="width: 150px;">
-                <option value="id">{{ __('global.id') }}</option>
+                {{-- <option value="id">{{ __('global.id') }}</option> --}}
 
                 <option value='user_id'>{{ __('loghistory.user') }}</option>
 
                 <option value='action'>{{ __('loghistory.action') }}</option>
 
-                <option value='by_model_name'>{{ __('loghistory.by_model_name') }}</option>
+                {{-- <option value='by_model_name'>{{ __('loghistory.by_model_name') }}</option> --}}
 
-                <option value='by_model_id'>{{ __('loghistory.by_model_id') }}</option>
+                {{-- <option value='by_model_id'>{{ __('loghistory.by_model_id') }}</option> --}}
 
-                <option value='on_model_name'>{{ __('loghistory.on_model_name') }}</option>
+                {{-- <option value='on_model_name'>{{ __('loghistory.on_model_name') }}</option> --}}
 
-                <option value='on_model_id'>{{ __('loghistory.on_model_id') }}</option>
+                {{-- <option value='on_model_id'>{{ __('loghistory.on_model_id') }}</option> --}}
 
-                <option value='from_data'>{{ __('loghistory.from_data') }}</option>
+                {{-- <option value='from_data'>{{ __('loghistory.from_data') }}</option> --}}
 
-                <option value='to_data'>{{ __('loghistory.to_data') }}</option>
+                {{-- <option value='to_data'>{{ __('loghistory.to_data') }}</option> --}}
 
-                <option value='preaf'>{{ __('loghistory.preaf') }}</option>
+                {{-- <option value='preaf'>{{ __('loghistory.preaf') }}</option> --}}
 
-                <option value='desc'>{{ __('loghistory.desc') }}</option>
+                {{-- <option value='desc'>{{ __('loghistory.desc') }}</option> --}}
 
                 <option value='color'>{{ __('loghistory.color') }}</option>
 
@@ -64,32 +64,33 @@
                 </button>
             </div>
         @endrole
-        @role('owner|operations')
+
+        {{-- @role('owner|operations')
             <div>
                 <button type="button" class="btn btn-info" data-toggle="modal"
                     data-target="#show-hide-loghistory-columnModal">
                     <i class="ti-layout-column4 text-white"></i>
                 </button>
             </div>
-        @endrole
+        @endrole --}}
 
         @if ($admin_view_status != 'deleted')
-            @permission('import-excel-loghistory')
+            {{-- @permission('import-excel-loghistory')
                 <div>
                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#import-data">
                         <i class="ti-import text-white"></i>
                     </button>
                 </div>
-            @endpermission
+            @endpermission --}}
 
-            @permission('export-excel-loghistory')
+            {{-- @permission('export-excel-loghistory')
                 <div>
                     <a class="mr-1 btn btn-warning" target="_blank"
                         href="{{ route('loghistory.export', ['by_date' => $byDate, 'from_date' => $fromDate, 'to_date' => $toDate]) }}">
                         <i class="ti-export text-white"></i>
                     </a>
                 </div>
-            @endpermission
+            @endpermission --}}
         @endif
 
 
@@ -105,7 +106,7 @@
         @endif
     </div>
 
-    <div wire:ignore.self class="modal fade" id="show-hide-loghistory-columnModal" tabindex="-1"
+    {{-- <div wire:ignore.self class="modal fade" id="show-hide-loghistory-columnModal" tabindex="-1"
         aria-labelledby="show-hide-loghistory-columnModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -146,7 +147,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     @if ($admin_view_status != 'deleted')
         @include('livewire.loghistory.loghistory-create-modal')

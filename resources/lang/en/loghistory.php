@@ -9,27 +9,27 @@ return [
     'time' => 'time',
 
 
-    'user' => 'user',
+    'user' => 'User',
 
-    'action' => 'action',
+    'action' => 'Action',
 
-    'by_model_name' => 'by_model_name',
+    'by_model_name' => 'By name',
 
-    'by_model_id' => 'by_model_id',
+    'by_model_id' => 'By id',
 
-    'on_model_name' => 'on_model_name',
+    'on_model_name' => 'On name',
 
-    'on_model_id' => 'on_model_id',
+    'on_model_id' => 'On id',
 
-    'from_data' => 'from_data',
+    'from_data' => 'From data',
 
-    'to_data' => 'to_data',
+    'to_data' => 'To data',
 
-    'preaf' => 'preaf',
+    'preaf' => 'Brief',
 
-    'desc' => 'desc',
+    'desc' => 'Desc',
 
-    'color' => 'color',
+    'color' => 'Color',
 
 
 ];

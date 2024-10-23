@@ -9,9 +9,9 @@ return [
     'time' => 'time',
 
 
-    'user' => 'user',
+    'user' => 'مستخدم',
 
-    'action' => 'action',
+    'action' => 'الإجراء',
 
     'by_model_name' => 'by_model_name',
 
@@ -21,15 +21,15 @@ return [
 
     'on_model_id' => 'on_model_id',
 
-    'from_data' => 'from_data',
+    'from_data' => 'من الحالة',
 
-    'to_data' => 'to_data',
+    'to_data' => 'إلى الحالة',
 
-    'preaf' => 'preaf',
+    'preaf' => 'ملخص',
 
-    'desc' => 'desc',
+    'desc' => 'وصف',
 
-    'color' => 'color',
+    'color' => 'لون',
 
 
 ];

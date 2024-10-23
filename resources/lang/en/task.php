@@ -81,7 +81,7 @@ return [
     'Uploading...' => 'Uploading...',
     'Upload' => 'Upload',
     'Comment' => 'Comment',
-    'Replay' => 'Replay',
+    'Replay' => 'Reply',
     'Close' => 'Close',
     'Add_Sub_Task' => 'Add Sub Task',
     'Description' => 'Description',

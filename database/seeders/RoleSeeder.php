@@ -120,24 +120,24 @@ class RoleSeeder extends Seeder
             } catch (\Throwable $th) {
             }
 
-            try {
-                $importExcelPermission = Permission::create([
-                    'name' => "import-excel-$item",
-                    'display_name' => "import excel $item", // optional
-                    'description' => "allow user import $item excel", // optional
-                ]);
-                $ownerRole->attachPermissions([$importExcelPermission]);
-            } catch (\Throwable $th) {
-            }
-            try {
-                $exportExcelPermission = Permission::create([
-                    'name' => "export-excel-$item",
-                    'display_name' => "export excel $item", // optional
-                    'description' => "allow user export $item excel", // optional
-                ]);
-                $ownerRole->attachPermissions([$exportExcelPermission]);
-            } catch (\Throwable $th) {
-            }
+            // try {
+            //     $importExcelPermission = Permission::create([
+            //         'name' => "import-excel-$item",
+            //         'display_name' => "import excel $item", // optional
+            //         'description' => "allow user import $item excel", // optional
+            //     ]);
+            //     $ownerRole->attachPermissions([$importExcelPermission]);
+            // } catch (\Throwable $th) {
+            // }
+            // try {
+            //     $exportExcelPermission = Permission::create([
+            //         'name' => "export-excel-$item",
+            //         'display_name' => "export excel $item", // optional
+            //         'description' => "allow user export $item excel", // optional
+            //     ]);
+            //     $ownerRole->attachPermissions([$exportExcelPermission]);
+            // } catch (\Throwable $th) {
+            // }
         }
 
         $customPermissions = [
