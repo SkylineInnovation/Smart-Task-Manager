@@ -104,11 +104,11 @@
                                 'val' => $user->last_name,
                             ])
 
-                            @include('inputs.edit.input', [
+                            {{-- @include('inputs.edit.input', [
                                 'label' => 'user.user_name',
                                 'name' => 'user_name',
                                 'val' => $user->user_name,
-                            ])
+                            ]) --}}
 
                             @include('inputs.edit.input', [
                                 'label' => 'user.email',

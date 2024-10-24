@@ -49,6 +49,7 @@
                             </a>
                         </li>
                     @endpermission
+
                     @permission('index-department')
                         <li aria-haspopup="true">
                             <a href="{{ route('department.index') }}">

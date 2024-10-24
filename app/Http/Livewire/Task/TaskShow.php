@@ -7,7 +7,10 @@ use App\Jobs\SendNewAttachment;
 use App\Jobs\SendNewTask;
 use App\Models\Attachment;
 use App\Models\Comment;
+use App\Models\ExtraTime;
+use App\Models\Leave;
 use App\Models\Task;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Illuminate\Support\Facades\Route;
@@ -271,6 +274,119 @@ class TaskShow extends Component
 
         if (env('SEND_MAIL', false))
             SendNewTask::dispatchAfterResponse($task);
+    }
+
+    public $extratime, $extratime_id;
+    public function setExtraTime($id)
+    {
+        $this->extratime_id = $id;
+
+        $extratime = ExtraTime::find($id);
+        $this->extratime = $extratime;
+
+        $this->extratime_from_time = $extratime->from_time;
+        $this->extratime_to_time = $extratime->to_time;
+        $this->extratime_reason = $extratime->reason;
+
+        $this->cal_extratime_duration();
+
+        $this->show_extratime = true;
+    }
+
+    public function rejectExtraTime($id)
+    {
+        $extratime = ExtraTime::find($id);
+
+        $extratime->update([
+            'response_time' => date('Y-m-d h:i A'),
+            'status' => 'rejected',
+        ]);
+    }
+
+    // // // // 
+    public $leave, $leave_id;
+    public function setLeave($id)
+    {
+        $this->leave_id = $id;
+
+        $leave = Leave::find($id);
+        $this->leave = $leave;
+
+        $this->leave_type = $leave->type;
+        $this->leave_time_out = $leave->time_out;
+        $this->leave_time_in = $leave->time_in;
+        $this->leave_effect_on_time = $leave->effect_on_time;
+        $this->leave_reason = $leave->reason;
+        $this->leave_result = $leave->result;
+
+        $this->show_leave = true;
+    }
+
+
+    public $show_leave = false;
+    public function acceptLeave()
+    {
+        $leaveTime = Leave::find($this->leave_id);
+
+        $leaveTime->update([
+            'type' => $this->leave_type,
+            'time_out' => $this->leave_time_out,
+            'time_in' => $this->leave_time_in,
+            'effect_on_time' => $this->leave_effect_on_time,
+            'status' => 'accepted',
+            'accepted_by_user_id' => auth()->user()->id,
+            'accepted_time' => date('Y-m-d h:i A'),
+        ]);
+
+        if ($this->leave_effect_on_time) {
+            $task = Task::find($leaveTime->task_id);
+
+            $task->update([
+                'end_time' => $this->leave_time_in,
+            ]);
+        }
+
+        $this->emit('close-accept-leave-model', $this->task_id); // Close model to using to jquery
+
+    }
+
+    public function rejectLeave($id)
+    {
+        $leaveTime = Leave::find($id);
+
+        $leaveTime->update([
+            'response_time' => date('Y-m-d h:i A'),
+            'status' => 'rejected',
+        ]);
+    }
+
+    public function updatedExtratimeFromTime()
+    {
+        $this->cal_extratime_duration();
+    }
+
+    public function updatedExtratimeToTime()
+    {
+        $this->cal_extratime_duration();
+    }
+
+    public function cal_extratime_duration()
+    {
+        $startDate = Carbon::parse(date('Y-m-d h:i', strtotime($this->extratime_from_time)));
+        $endDate = Carbon::parse(date('Y-m-d h:i', strtotime($this->extratime_to_time)));
+
+        $totalSeconds = $endDate->diffInSeconds($startDate);
+
+        // Convert seconds to hours and minutes
+        $hours = intval($totalSeconds / 3600);
+        $minutes = intval(($totalSeconds % 3600) / 60);
+        // 
+        $hours_string = $hours > 9 ? $hours : '0' . $hours;
+        $minutes_string = $minutes > 9 ? $minutes : '0' . $minutes;
+        // Format the output
+        $result = $hours_string . ':' . $minutes_string . ':00';
+
+        $this->extratime_duration = $result;
     }
 
     public function render()

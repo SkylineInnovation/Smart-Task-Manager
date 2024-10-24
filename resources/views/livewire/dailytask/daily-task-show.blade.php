@@ -146,8 +146,8 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" wire:click.prevent="cancel()" class="btn btn-secondary close-btn"
-                        data-dismiss="modal">{{ __('global.close') }}</button>
+                    {{-- <button type="button" wire:click.prevent="cancel()" class="btn btn-secondary close-btn"
+                        data-dismiss="modal">{{ __('global.close') }}</button> --}}
                     <button type="button" wire:click.prevent="update()" class="btn btn-success">
                         {{ __('global.save-changes') }}
                     </button>

@@ -26,6 +26,14 @@
                             <h6 class="px-4 @if ($task->have_new_attachment()) text-danger @else text-gray @endif">
                                 {{ __('task.Attachments') }}: {{ $task->attachments->count() }}
                             </h6>
+
+                            <h6 class="px-4 @if ($task->have_new_extra_time()) text-danger @else text-gray @endif">
+                                {{ __('task.Extra_Time') }}: {{ $task->extra_times->count() }}
+                            </h6>
+
+                            <h6 class="px-4 @if ($task->have_new_leave()) text-danger @else text-gray @endif">
+                                {{ __('task.leave') }}: {{ $task->leaves_times->count() }}
+                            </h6>
                         </div>
                     </div>
 
@@ -1217,7 +1225,7 @@
                             <button type="button" class="btn btn-secondary close-btn"
                                 data-dismiss="modal">{{ __('global.close') }}</button>
                             <button type="button" wire:click.prevent="addLeaveRequest()" class="btn btn-success">
-                                {{ __('task.request') }}
+                                {{ __('task.Request_Leave') }}
                             </button>
                         </div>
                     </div>
@@ -1233,7 +1241,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="extra-time-modal-{{ $task->id }}-title">
-                                {{ __('task.Request_Leave') }}</h5>
+                                {{ __('task.Request_Extra_Time') }}</h5>
                             <button class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -1278,7 +1286,7 @@
                             <button type="button" class="btn btn-secondary close-btn"
                                 data-dismiss="modal">{{ __('global.close') }}</button>
                             <button type="button" wire:click.prevent="addExtraTime()" class="btn btn-success">
-                                {{ __('task.Request') }}
+                                {{ __('task.Request_Extra_Time') }}
                             </button>
                         </div>
                     </div>

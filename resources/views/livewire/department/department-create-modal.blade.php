@@ -32,24 +32,36 @@
                                     'sm' => 12,
                                 ]) --}}
 
+                                @if (!$the_manager)
+                                    @include('inputs.create.select', [
+                                        'label' => 'department.manager',
+                                        'name' => 'department.manager_id',
+                                        'arr' => $managers,
+                                        'livewire' => 'manager_id',
+                                        // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                        // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                    ])
+                                    @include('inputs.create.input', [
+                                        'label' => 'department.name',
+                                        'name' => 'department.name',
+                                        'livewire' => 'name',
+                                        'type' => 'text', // 'step' => 1,
+                                        // 'required' => 'required',
+                                        // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                    ])
+                                @else
+                                    @include('inputs.create.input', [
+                                        'label' => 'department.name',
+                                        'name' => 'department.name',
+                                        'livewire' => 'name',
+                                        'type' => 'text', // 'step' => 1,
+                                        // 'required' => 'required',
+                                        'lg' => 12,
+                                        'md' => 12,
+                                        'sm' => 12,
+                                    ])
+                                @endif
 
-                                @include('inputs.create.select', [
-                                    'label' => 'department.manager',
-                                    'name' => 'department.manager_id',
-                                    'arr' => $managers,
-                                    'livewire' => 'manager_id',
-                                    // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
-
-                                @include('inputs.create.input', [
-                                    'label' => 'department.name',
-                                    'name' => 'department.name',
-                                    'livewire' => 'name',
-                                    'type' => 'text', // 'step' => 1,
-                                    // 'required' => 'required',
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
 
                             </div>
 
@@ -114,24 +126,39 @@
                                 ]) --}}
 
 
-                                @include('inputs.edit.select', [
-                                    'label' => 'department.manager',
-                                    'name' => 'department.manager_id',
-                                    'arr' => $managers,
-                                    'livewire' => 'manager_id',
-                                    'val' => $department->manager_id,
-                                    // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
-                                @include('inputs.edit.input', [
-                                    'label' => 'department.name',
-                                    'name' => 'department.name',
-                                    'val' => $department->name,
-                                    'livewire' => 'name',
-                                    'type' => 'text', // 'step' => 1,
-                                    // 'required' => 'required',
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
+                                @if (!$the_manager)
+                                    @include('inputs.edit.select', [
+                                        'label' => 'department.manager',
+                                        'name' => 'department.manager_id',
+                                        'arr' => $managers,
+                                        'livewire' => 'manager_id',
+                                        'val' => $department->manager_id,
+                                        // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                        // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                    ])
+                                    @include('inputs.edit.input', [
+                                        'label' => 'department.name',
+                                        'name' => 'department.name',
+                                        'val' => $department->name,
+                                        'livewire' => 'name',
+                                        'type' => 'text', // 'step' => 1,
+                                        // 'required' => 'required',
+                                        // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                    ])
+                                @else
+                                    @include('inputs.edit.input', [
+                                        'label' => 'department.name',
+                                        'name' => 'department.name',
+                                        'val' => $department->name,
+                                        'livewire' => 'name',
+                                        'type' => 'text', // 'step' => 1,
+                                        // 'required' => 'required',
+                                        'lg' => 12,
+                                        'md' => 12,
+                                        'sm' => 12,
+                                    ])
+                                @endif
+
 
                             </div>
 

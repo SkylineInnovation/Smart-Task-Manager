@@ -150,15 +150,15 @@ class HomeController extends Controller
     {
         $user = $request->user();
 
-        $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'user_name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'gender' => 'required',
-            'birth_day' => 'required',
-        ]);
+        // $request->validate([
+        //     'first_name' => 'required',
+        //     'last_name' => 'required',
+        //     'user_name' => 'required',
+        //     'email' => 'required',
+        //     'phone' => 'required',
+        //     'gender' => 'required',
+        //     'birth_day' => 'required',
+        // ]);
 
         $user->update([
             'first_name' => $request->input('first_name', $user->first_name),

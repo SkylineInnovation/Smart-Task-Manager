@@ -500,4 +500,16 @@ class Task extends Model
         $attachments = $this->attachments()->where('created_at', '>=', date('Y-m-d H:i', strtotime('-1 Hour')))->count();
         return $attachments > 0;
     }
+
+    public function have_new_extra_time()
+    {
+        $comments = $this->extra_times()->where('created_at', '>=', date('Y-m-d H:i', strtotime('-1 Hour')))->count();
+        return $comments > 0;
+    }
+
+    public function have_new_leave()
+    {
+        $attachments = $this->leaves_times()->where('created_at', '>=', date('Y-m-d H:i', strtotime('-1 Hour')))->count();
+        return $attachments > 0;
+    }
 }

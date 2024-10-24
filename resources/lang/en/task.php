@@ -90,6 +90,7 @@ return [
     'Accept' => 'Accept',
     'Reject' => 'Reject',
     'Request_Leave' => 'Request Leave',
+    'Request_Extra_Time' => 'Request Extra Time',
     'Role' => 'Role',
 
 

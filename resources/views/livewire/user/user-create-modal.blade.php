@@ -104,7 +104,7 @@
                         </div>
                     @endrole
 
-                    @role('owner')
+                    @role('owner|manager')
                         <div>
                             <p>{{ __('global.departments') }}</p>
                             <div class="row">
@@ -308,7 +308,7 @@
                         </div>
                     @endrole
 
-                    @role('owner')
+                    @role('owner|manager')
                         <div>
                             <p>{{ __('global.departments') }}</p>
                             <div class="row">

@@ -34,6 +34,7 @@ class DepartmentIndex extends Component
 
     public $managers = [];
 
+    public $the_manager;
 
 
     public $filter_managers_id = [];
@@ -41,7 +42,7 @@ class DepartmentIndex extends Component
 
 
     public $admin_view_status = '', $by, $url;
-    public function mount($admin_view_status = '')
+    public function mount($admin_view_status = '', $the_manager = null)
     {
         $this->url = Route::current()->getName();
         $this->admin_view_status = $admin_view_status;
@@ -54,9 +55,17 @@ class DepartmentIndex extends Component
         // $this->fromDate = date('Y-m-d', strtotime("-5 days"));
         $this->toDate = date('Y-m-d');
 
+        // if (!$this->user->hasRole('owner') && $the_manager == null) {
+        if (!$this->user->hasRole('owner')) {
+            $the_manager = $this->user;
+        }
 
-
-        $this->managers = \App\Models\User::whereRoleIs('manager')->orderBy('first_name')->get();
+        if ($the_manager) {
+            $this->the_manager = $the_manager;
+            $this->manager_id = $the_manager->id;
+        } else {
+            $this->managers = \App\Models\User::whereRoleIs('manager')->orderBy('first_name')->get();
+        }
 
 
         $this->showColumn = collect([
@@ -64,7 +73,7 @@ class DepartmentIndex extends Component
             'slug' => false,
 
 
-            'manager_id' => true,
+            'manager_id' => !$this->the_manager ? true : false,
             'name' => true,
 
             // 'status' => false,
@@ -81,7 +90,9 @@ class DepartmentIndex extends Component
     {
         $this->slug = '';
 
-        $this->manager_id = null;
+        if (!$this->the_manager)
+            $this->manager_id = null;
+
         $this->name = '';
     }
 
@@ -241,6 +252,9 @@ class DepartmentIndex extends Component
             $departments = $departments->whereBetween($this->byDate, [$this->fromDate . ' 00:00:00', $this->toDate . ' 23:59:59']);
 
 
+
+        if ($this->the_manager)
+            $departments = $departments->where('manager_id', $this->the_manager->id);
 
         if ($this->filter_managers_id)
             $departments = $departments->whereIn('manager_id', $this->filter_managers_id);

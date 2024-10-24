@@ -330,7 +330,7 @@ class WebGetTaskByStatus extends Component
         $this->updateMode = true;
         $task = Task::find($this->task_id);
 
-        if (in_array($this->task->status, ['auto-finished', 'manual-finished'])) {
+        if (in_array($task->status, ['auto-finished', 'manual-finished'])) {
             session()->flash('message', 'Task Can\'t be Updated.');
             return;
         }
