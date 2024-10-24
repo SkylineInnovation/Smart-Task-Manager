@@ -47,9 +47,6 @@
                 <option value="100">100</option>
             </select>
         </div>
-    </div>
-
-    <div class="form-inline">
 
         @role('owner|manager')
             <div>
@@ -65,6 +62,9 @@
                 </select>
             </div>
         @endrole
+    </div>
+
+    <div class="form-inline">
 
         @role('owner|operations')
             <div>

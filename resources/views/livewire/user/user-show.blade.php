@@ -85,7 +85,7 @@
                     </div>
                 </div>
 
-                <div class="col-2">
+                <div class="col-lg-2 col-md-2 col-sm-12">
                     <label for="to_date">{{ __('global.restart_filter') }}</label>
                     <button type="button" wire:click.prevent="clear()" class="btn btn-danger w-100">
                         {{ __('global.clear') }}

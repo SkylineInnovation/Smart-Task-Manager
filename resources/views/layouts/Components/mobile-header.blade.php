@@ -87,7 +87,8 @@
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        {{-- <span class="navbar-toggler-icon"></span> --}}
+        <span class="fa fa-navicon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarContent">

@@ -124,6 +124,7 @@ class TaskIndex extends Component
         $this->discount = 0;
 
         $this->reopen_from_task_id = 0;
+        $this->daily_task_id = 0;
 
         $this->selectedEmployees = [];
     }
@@ -175,6 +176,7 @@ class TaskIndex extends Component
             'status' => $this->status,
             'main_task_id' => $this->main_task_id,
             'reopen_from_task_id' => $this->reopen_from_task_id,
+            'daily_task_id' => $this->daily_task_id,
         ]);
 
         $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
@@ -207,6 +209,7 @@ class TaskIndex extends Component
         $this->status = $task->status;
         $this->main_task_id = $task->main_task_id;
         $this->reopen_from_task_id = $task->reopen_from_task_id;
+        $this->daily_task_id = $task->daily_task_id;
 
         $this->selectedEmployees = $task->employees->pluck('id');
 
@@ -242,6 +245,7 @@ class TaskIndex extends Component
                 'status' => $this->status,
                 'main_task_id' => $this->main_task_id,
                 'reopen_from_task_id' => $this->reopen_from_task_id,
+                'daily_task_id' => $this->daily_task_id,
             ]);
 
             $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
@@ -331,6 +335,7 @@ class TaskIndex extends Component
         $this->selectedEmployees = [];
 
         $this->priority_level = $task->priority_level;
+        $this->daily_task_id = $task->daily_task_id;
         $this->status = 'pending';
         $this->discount = $task->discount();
     }
