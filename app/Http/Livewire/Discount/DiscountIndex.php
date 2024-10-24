@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Discount;
 
+use App\Jobs\SendNewDiscount;
 use App\Models\Discount;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -130,7 +131,7 @@ class DiscountIndex extends Component
     {
         $validatedData = $this->validate();
 
-        Discount::create([
+        $discount = Discount::create([
             'add_by' => $this->by->id,
             'slug' => $this->slug,
 
@@ -145,6 +146,9 @@ class DiscountIndex extends Component
         $this->resetInputFields();
 
         $this->emit('close-model'); // Close model to using to jquery
+
+        if (env('SEND_MAIL', false))
+            SendNewDiscount::dispatch($discount);
     }
 
     public function edit($id)

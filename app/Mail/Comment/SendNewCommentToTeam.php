@@ -2,6 +2,7 @@
 
 namespace App\Mail\Comment;
 
+use App\Models\Comment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,14 +14,16 @@ class SendNewCommentToTeam extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public Comment $comment;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Comment $comment)
     {
-        //
+        $this->comment = $comment;
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Comment;
 
+use App\Jobs\SendNewComment;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -142,7 +143,7 @@ class CommentIndex extends Component
     {
         $validatedData = $this->validate();
 
-        Comment::create([
+        $comment = Comment::create([
             'add_by' => $this->by->id,
             'slug' => $this->slug,
 
@@ -159,6 +160,9 @@ class CommentIndex extends Component
         $this->resetInputFields();
 
         $this->emit('close-model'); // Close model to using to jquery
+
+        if (env('SEND_MAIL', false))
+            SendNewComment::dispatch($comment);
     }
 
     public function edit($id)

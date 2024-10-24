@@ -4,6 +4,9 @@ namespace App\Http\Livewire\Web;
 
 use App\Http\Controllers\HomeController;
 use App\Jobs\SendNewAttachment;
+use App\Jobs\SendNewComment;
+use App\Jobs\SendNewExtraTime;
+use App\Jobs\SendNewLeave;
 use App\Jobs\SendNewTask;
 use App\Models\Attachment;
 use App\Models\Comment;
@@ -171,7 +174,7 @@ class WebGetTaskByStatus extends Component
         $this->attatchment_file = null;
 
         if (env('SEND_MAIL', false))
-            SendNewAttachment::dispatchAfterResponse($attachment);
+            SendNewAttachment::dispatch($attachment);
     }
 
 
@@ -184,7 +187,7 @@ class WebGetTaskByStatus extends Component
             ]);
         }
 
-        Comment::create([
+        $comment = Comment::create([
             'add_by' => $this->by->id,
 
             'task_id' => $this->task_id,
@@ -197,6 +200,9 @@ class WebGetTaskByStatus extends Component
 
         $this->comment_title = '';
         $this->comment_desc = '';
+
+        if (env('SEND_MAIL', false))
+            SendNewComment::dispatch($comment);
     }
 
     public $comment_id, $replay_comment_title, $replay_comment_desc;
@@ -207,7 +213,7 @@ class WebGetTaskByStatus extends Component
     }
     public function replayComment()
     {
-        Comment::create([
+        $comment = Comment::create([
             'add_by' => $this->by->id,
 
             'task_id' => $this->task_id,
@@ -222,6 +228,9 @@ class WebGetTaskByStatus extends Component
         $this->replay_comment_desc = '';
 
         $this->emit('close-replay-comment-model', $this->task_id);
+
+        if (env('SEND_MAIL', false))
+            SendNewComment::dispatch($comment);
     }
 
     public $employees;
@@ -386,7 +395,7 @@ class WebGetTaskByStatus extends Component
     public $leave_type = 'leave', $leave_time_out, $leave_time_in, $leave_effect_on_time, $leave_reason, $leave_result;
     public function addLeaveRequest()
     {
-        Leave::create([
+        $leave = Leave::create([
             'add_by' => $this->by->id,
 
             'task_id' => $this->task_id,
@@ -403,6 +412,9 @@ class WebGetTaskByStatus extends Component
         ]);
 
         $this->emit('close-leave-request-model', $this->task_id); // Close model to using to jquery
+
+        if (env('SEND_MAIL', false))
+            SendNewLeave::dispatch($leave);
     }
 
     public $extratime_from_time, $extratime_to_time, $extratime_reason, $extratime_duration;
@@ -413,7 +425,7 @@ class WebGetTaskByStatus extends Component
 
         $dur = $from_date->diff($to_date);
 
-        ExtraTime::create([
+        $extra_time = ExtraTime::create([
             'add_by' => $this->by->id,
 
             'task_id' => $this->task_id,
@@ -437,6 +449,8 @@ class WebGetTaskByStatus extends Component
 
         $this->emit('close-extra-time-model', $this->task_id); // Close model to using to jquery
 
+        if (env('SEND_MAIL', false))
+            SendNewExtraTime::dispatch($extra_time);
     }
 
     public $extratime, $extratime_id;
@@ -632,7 +646,7 @@ class WebGetTaskByStatus extends Component
         session()->flash('emp-task-message', 'emp Task Created Successfully.');
 
         if (env('SEND_MAIL', false))
-            SendNewTask::dispatchAfterResponse($empTask);
+            SendNewTask::dispatch($empTask);
     }
     public function render()
     {

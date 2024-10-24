@@ -2,6 +2,7 @@
 
 namespace App\Mail\DailyTask;
 
+use App\Models\DailyTask;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,14 +14,16 @@ class SendNewDailyTaskToTeam extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public DailyTask $daily_task;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(DailyTask $daily_task)
     {
-        //
+        $this->daily_task = $daily_task;
     }
 
     /**

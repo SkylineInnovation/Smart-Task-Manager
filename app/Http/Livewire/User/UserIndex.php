@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\User;
 
+use App\Jobs\SendNewUser;
 use App\Models\Department;
 use App\Models\Role;
 use App\Models\User;
@@ -171,6 +172,9 @@ class UserIndex extends Component
         $this->resetInputFields();
 
         $this->emit('close-model'); // Close model to using to jquery
+
+        if (env('SEND_MAIL', false))
+            SendNewUser::dispatch($user);
     }
 
     public function edit($id)

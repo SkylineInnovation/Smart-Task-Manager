@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Dailytask;
 
+use App\Jobs\SendNewDailyTask;
 use App\Models\DailyTask;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -172,6 +173,9 @@ class DailytaskIndex extends Component
         $this->resetInputFields();
 
         $this->emit('close-model'); // Close model to using to jquery
+
+        if (env('SEND_MAIL', false))
+            SendNewDailyTask::dispatch($dailytask);
     }
 
     public function edit($id)

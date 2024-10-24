@@ -166,7 +166,7 @@ class AttachmentIndex extends Component
         $this->emit('close-model'); // Close model to using to jquery
 
         if (env('SEND_MAIL', false))
-            SendNewAttachment::dispatchAfterResponse($attachment);
+            SendNewAttachment::dispatch($attachment);
     }
 
     public function edit($id)

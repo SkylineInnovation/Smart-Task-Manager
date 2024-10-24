@@ -2,6 +2,7 @@
 
 namespace App\Mail\Discount;
 
+use App\Models\Discount;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,14 +14,16 @@ class SendNewDiscountToTeam extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public Discount $discount;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Discount $discount)
     {
-        //
+        $this->discount = $discount;
     }
 
     /**

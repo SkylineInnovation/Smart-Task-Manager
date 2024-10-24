@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Leave;
 
+use App\Jobs\SendNewLeave;
 use App\Models\Leave;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -162,7 +163,7 @@ class LeaveIndex extends Component
     {
         $validatedData = $this->validate();
 
-        Leave::create([
+        $leave = Leave::create([
             'add_by' => $this->by->id,
             'slug' => $this->slug,
 
@@ -184,6 +185,9 @@ class LeaveIndex extends Component
         $this->resetInputFields();
 
         $this->emit('close-model'); // Close model to using to jquery
+
+        if (env('SEND_MAIL', false))
+            SendNewLeave::dispatch($leave);
     }
 
     public function edit($id)

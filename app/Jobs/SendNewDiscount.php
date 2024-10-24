@@ -39,6 +39,10 @@ class SendNewDiscount implements ShouldQueue
             $this->discount->task->manager->email
         )->send(new SendNewDiscountToTeam($this->discount));
 
+        Mail::to(
+            $this->discount->user->email
+        )->send(new SendNewDiscountToTeam($this->discount));
+
         // Mail::to(
         //     $this->discount->task->employees->pluck('email')->toArray()
         // )->send(new SendNewDiscountToTeam($this->discount));

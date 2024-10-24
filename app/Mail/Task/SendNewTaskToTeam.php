@@ -2,6 +2,7 @@
 
 namespace App\Mail\Task;
 
+use App\Models\Task;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,14 +14,16 @@ class SendNewTaskToTeam extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public Task $task;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Task $task)
     {
-        //
+        $this->task = $task;
     }
 
     /**

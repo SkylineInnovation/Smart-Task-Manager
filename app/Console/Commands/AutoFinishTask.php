@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\SendNewDiscount;
 use App\Models\Comment;
 use App\Models\Discount;
 use App\Models\Task;
@@ -47,12 +48,15 @@ class AutoFinishTask extends Command
                     ->where('user_id', $employee->id)->get();
 
                 if (count($comments) == 0) {
-                    Discount::create([
+                    $discount = Discount::create([
                         'task_id' => $task->id,
                         'user_id' => $employee->id,
                         'amount' => $task->discount(),
                         'reason' => 'auto-finish-task',
                     ]);
+
+                    if (env('SEND_MAIL', false))
+                        SendNewDiscount::dispatch($discount);
                 }
             }
         }

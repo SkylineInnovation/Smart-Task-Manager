@@ -117,7 +117,7 @@ class WebCreateNewTask extends Component
         $this->emit('close-model'); // Close model to using to jquery
 
         if (env('SEND_MAIL', false))
-            SendNewTask::dispatchAfterResponse($task);
+            SendNewTask::dispatch($task);
     }
 
     public function cancel()

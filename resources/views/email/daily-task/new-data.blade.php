@@ -1,6 +1,4 @@
-@extends('email.layout', [
-    'task' => $daily_task->task,
-])
+@extends('email.layout')
 
 @section('title')
     {{ __('email.there-is-new-daily-task') }}

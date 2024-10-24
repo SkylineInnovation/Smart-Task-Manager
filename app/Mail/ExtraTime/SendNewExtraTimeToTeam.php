@@ -2,6 +2,7 @@
 
 namespace App\Mail\ExtraTime;
 
+use App\Models\ExtraTime;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,14 +14,16 @@ class SendNewExtraTimeToTeam extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public ExtraTime $extra_time;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ExtraTime $extra_time)
     {
-        //
+        $this->extra_time = $extra_time;
     }
 
     /**

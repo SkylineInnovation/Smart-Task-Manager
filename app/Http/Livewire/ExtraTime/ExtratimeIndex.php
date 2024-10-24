@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Extratime;
 
+use App\Jobs\SendNewExtraTime;
 use App\Models\ExtraTime;
 
 use App\Models\Task;
@@ -163,7 +164,7 @@ class ExtratimeIndex extends Component
     {
         $validatedData = $this->validate();
 
-        ExtraTime::create([
+        $extra_time = ExtraTime::create([
             'add_by' => $this->by->id,
             'slug' => $this->slug,
 
@@ -185,6 +186,9 @@ class ExtratimeIndex extends Component
         $this->resetInputFields();
 
         $this->emit('close-model'); // Close model to using to jquery
+
+        if (env('SEND_MAIL', false))
+            SendNewExtraTime::dispatch($extra_time);
     }
 
     public function edit($id)

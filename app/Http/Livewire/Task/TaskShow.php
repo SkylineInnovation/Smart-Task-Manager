@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Task;
 
 use App\Http\Controllers\HomeController;
 use App\Jobs\SendNewAttachment;
+use App\Jobs\SendNewComment;
 use App\Jobs\SendNewTask;
 use App\Models\Attachment;
 use App\Models\Comment;
@@ -166,8 +167,8 @@ class TaskShow extends Component
 
         $this->task = Task::find($this->task_id);
 
-        // if (env('SEND_MAIL', false))
-        SendNewAttachment::dispatch($attachment);
+        if (env('SEND_MAIL', false))
+            SendNewAttachment::dispatch($attachment);
     }
 
     public function deleteAttatchment($id)
@@ -186,7 +187,7 @@ class TaskShow extends Component
                 'comment_desc' => 'required|min:60',
             ]);
         }
-        Comment::create([
+        $comment = Comment::create([
             'add_by' => $this->by->id,
 
             'task_id' => $this->task_id,
@@ -200,6 +201,9 @@ class TaskShow extends Component
         $this->comment_title = '';
         $this->comment_desc = '';
         $this->task = Task::find($this->task_id);
+
+        if (env('SEND_MAIL', false))
+            SendNewComment::dispatch($comment);
     }
 
     public $comment_id, $replay_comment_title, $replay_comment_desc;
@@ -210,7 +214,7 @@ class TaskShow extends Component
     }
     public function replayComment()
     {
-        Comment::create([
+        $comment = Comment::create([
             'add_by' => $this->by->id,
 
             'task_id' => $this->task_id,
@@ -227,6 +231,9 @@ class TaskShow extends Component
         $this->task = Task::find($this->task_id);
 
         $this->emit('close-replay-comment-model', $this->task_id);
+
+        if (env('SEND_MAIL', false))
+            SendNewComment::dispatch($comment);
     }
 
 
@@ -273,7 +280,7 @@ class TaskShow extends Component
         session()->flash('sub-task-message', 'Sub Task Created Successfully.');
 
         if (env('SEND_MAIL', false))
-            SendNewTask::dispatchAfterResponse($task);
+            SendNewTask::dispatch($task);
     }
 
     public $extratime, $extratime_id;
