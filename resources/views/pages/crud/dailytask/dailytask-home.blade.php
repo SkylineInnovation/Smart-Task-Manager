@@ -28,9 +28,6 @@
             window.livewire.on('close-model', () => {
                 $('#create-new-dailytask-modal').modal('hide');
                 $('#update-dailytask-modal').modal('hide');
-
-                $('#create-new-task-modal').modal('hide');
-                $('#update-task-modal').modal('hide');
             });
         });
     </script>
