@@ -82,7 +82,7 @@ class TaskIndex extends Component
 
 
         $this->showColumn = collect([
-            'id' => false,
+            'id' => true,
             'slug' => false,
 
 

@@ -16,7 +16,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <td>#</td>
+                    {{-- <td>#</td> --}}
 
                     {{-- 
                         @if ($admin_view_status != 'deleted')
@@ -88,7 +88,7 @@
             <tbody>
                 @foreach ($tasks as $task)
                     <tr>
-                        <td>{{ ++$number }}</td>
+                        {{-- <td>{{ ++$number }}</td> --}}
 
                         {{-- 
                             @if ($admin_view_status != 'deleted')
