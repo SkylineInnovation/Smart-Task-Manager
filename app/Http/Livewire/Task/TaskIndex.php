@@ -53,6 +53,7 @@ class TaskIndex extends Component
     public $admin_view_status = '', $by, $url;
     public function mount($admin_view_status = '', $the_manager_id = null, $the_employee_id = null, $dailytask = null)
     {
+        // $this->numberOfPaginatorsRendered = 5;
         $this->url = Route::current()->getName();
         $this->admin_view_status = $admin_view_status;
         $this->user = Auth::user();

@@ -294,7 +294,7 @@
             </tbody>
 
         </table>
-    </div>
 
-    {{ $leaves->links() }}
+        {{ $leaves->links() }}
+    </div>
 </div>

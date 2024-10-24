@@ -227,7 +227,7 @@
             </tbody>
 
         </table>
-    </div>
 
-    {{ $devicetokenlists->links() }}
+        {{ $devicetokenlists->links() }}
+    </div>
 </div>

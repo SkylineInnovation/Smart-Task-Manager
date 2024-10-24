@@ -182,7 +182,7 @@
             </tbody>
 
         </table>
-    </div>
 
-    {{ ${{models}}->links() }}
+        {{ ${{models}}->links() }}
+    </div>
 </div>

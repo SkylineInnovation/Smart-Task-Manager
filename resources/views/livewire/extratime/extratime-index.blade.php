@@ -293,7 +293,7 @@
             </tbody>
 
         </table>
-    </div>
 
-    {{ $extratimes->links() }}
+        {{ $extratimes->links() }}
+    </div>
 </div>

@@ -234,7 +234,7 @@
             </tbody>
 
         </table>
-    </div>
 
-    {{ $otpsendcodes->links() }}
+        {{ $otpsendcodes->links() }}
+    </div>
 </div>

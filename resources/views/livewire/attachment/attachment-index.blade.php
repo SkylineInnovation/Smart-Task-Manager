@@ -248,7 +248,7 @@
             </tbody>
 
         </table>
-    </div>
 
-    {{ $attachments->links() }}
+        {{ $attachments->links() }}
+    </div>
 </div>

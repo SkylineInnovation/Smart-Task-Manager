@@ -221,7 +221,7 @@
             </tbody>
 
         </table>
-    </div>
 
-    {{ $discounts->links() }}
+        {{ $discounts->links() }}
+    </div>
 </div>

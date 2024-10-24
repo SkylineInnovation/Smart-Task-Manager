@@ -274,7 +274,7 @@
             </tbody>
 
         </table>
-    </div>
 
-    {{ $loghistories->links() }}
+        {{ $loghistories->links() }}
+    </div>
 </div>

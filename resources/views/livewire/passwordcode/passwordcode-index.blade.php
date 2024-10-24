@@ -226,7 +226,7 @@
             </tbody>
 
         </table>
-    </div>
 
-    {{ $passwordcodes->links() }}
+        {{ $passwordcodes->links() }}
+    </div>
 </div>

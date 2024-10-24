@@ -202,7 +202,7 @@
             </tbody>
 
         </table>
-    </div>
 
-    {{ $departments->links() }}
+        {{ $departments->links() }}
+    </div>
 </div>

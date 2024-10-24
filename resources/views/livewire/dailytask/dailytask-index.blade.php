@@ -281,7 +281,7 @@
             </tbody>
 
         </table>
-    </div>
 
-    {{ $dailytasks->links() }}
+        {{ $dailytasks->links() }}
+    </div>
 </div>
