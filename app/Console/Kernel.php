@@ -29,6 +29,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('task:auto-finish')->everyMinute();
         $schedule->command('task:auto-draft')->everyMinute();
         $schedule->command('daily:task-run')->everyMinute();
+        $schedule->command('task:urgent-reminder')->everyMinute();
     }
 
     /**

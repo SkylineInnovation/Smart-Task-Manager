@@ -205,6 +205,7 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
 //         ->where('end_time', '<=', $date)->get();
 
 //     // php /home/forge/task-manager.codexal.co/artisan task:auto-finish
+//     // php /home/forge/task-manager.codexal.co/artisan task:urgent-reminder
 
 //     return $tasks;
 // });
