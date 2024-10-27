@@ -186,6 +186,7 @@ return [
     'by_accepted_by_users' => 'حسب المقبولة من قبل المستخدمين',
     'by_managers' => 'حسب المديرين',
     'by_main_tasks' => 'حسب المهام الرئيسية',
+    'by_branches' => 'حسب الافرع',
     'dailytasks' => 'المهام اليومية',
     'creat_task' => 'إنشاء مهمة',
 

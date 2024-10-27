@@ -83,13 +83,13 @@
         @endrole
 
         @if ($admin_view_status != 'deleted')
-            @permission('import-excel-task')
+            {{-- @permission('import-excel-task')
                 <div>
                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#import-data">
                         <i class="ti-import text-white"></i>
                     </button>
                 </div>
-            @endpermission
+            @endpermission --}}
 
             @permission('export-excel-task')
                 <div>

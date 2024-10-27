@@ -11,11 +11,11 @@
     {{--  --}}
 
     <div class="card">
-        {{-- 
-            <div class="card-header">
-                <h4>{{ __('global.all') }} {{ __('global.departments') }} </h4>
-            </div>
-        --}}
+
+        <div class="card-header">
+            <h4>{{ __('global.departments') }} </h4>
+        </div>
+
 
         <div class="card-body">
             <livewire:department.department-index :the_branch="$branch" />

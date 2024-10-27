@@ -74,24 +74,24 @@
             </div>
         @endrole --}}
 
-        @if ($admin_view_status != 'deleted')
-            {{-- @permission('import-excel-loghistory')
+        {{-- @if ($admin_view_status != 'deleted')
+            @permission('import-excel-loghistory')
                 <div>
                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#import-data">
                         <i class="ti-import text-white"></i>
                     </button>
                 </div>
-            @endpermission --}}
+            @endpermission
 
-            {{-- @permission('export-excel-loghistory')
+            @permission('export-excel-loghistory')
                 <div>
                     <a class="mr-1 btn btn-warning" target="_blank"
                         href="{{ route('loghistory.export', ['by_date' => $byDate, 'from_date' => $fromDate, 'to_date' => $toDate]) }}">
                         <i class="ti-export text-white"></i>
                     </a>
                 </div>
-            @endpermission --}}
-        @endif
+            @endpermission
+        @endif --}}
 
 
         @if ($admin_view_status != 'deleted')

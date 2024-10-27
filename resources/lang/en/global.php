@@ -190,6 +190,7 @@ return [
     'by_accepted_by_users' => 'By Accepted By Users',
     'by_managers' => 'By Managers',
     'by_main_tasks' => 'By Main Tasks',
+    'by_branches' => 'By Branches',
     'dailytasks' => 'Daily Tasks',
     'creat_task' => 'Create Task',
 

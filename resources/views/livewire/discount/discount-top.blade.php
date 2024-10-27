@@ -59,7 +59,7 @@
             </div>
         @endrole
 
-        @if ($admin_view_status != 'deleted')
+        {{-- @if ($admin_view_status != 'deleted')
             @permission('import-excel-discount')
                 <div>
                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#import-data">
@@ -76,7 +76,7 @@
                     </a>
                 </div>
             @endpermission
-        @endif
+        @endif --}}
 
 
         @if ($admin_view_status != 'deleted')
