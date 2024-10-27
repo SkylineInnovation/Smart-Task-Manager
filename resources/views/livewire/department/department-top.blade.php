@@ -261,7 +261,7 @@
                         </div>
                     @endrole --}}
 
-                    @if (!$the_manager)
+                    @if (!$the_branch)
                         <div class='form-group'>
                             <label for='branch-select'>{{ __('global.by_branches') }}</label>
                             <select id='branch-select' class='form-control' wire:model='select_branch'>
@@ -286,7 +286,7 @@
                         </div>
                     @endif
 
-                    @if (!$the_branch)
+                    @if (!$the_manager)
                         <div class='form-group'>
                             <label for='manager-select'>{{ __('global.by_managers') }}</label>
                             <select id='manager-select' class='form-control' wire:model='select_manager'>
