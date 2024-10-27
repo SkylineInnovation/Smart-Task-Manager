@@ -261,50 +261,57 @@
                         </div>
                     @endrole --}}
 
+                    @if (!$the_manager)
 
-                    <div class='form-group'>
-                        <label for='branch-select'>{{ __('global.by_branches') }}</label>
-                        <select id='branch-select' class='form-control' wire:model='select_branch'>
-                            <option>Select branches</option>
+                        <div class='form-group'>
+                            <label for='branch-select'>{{ __('global.by_branches') }}</label>
+                            <select id='branch-select' class='form-control' wire:model='select_branch'>
+                                <option>Select branches</option>
+                                @foreach ($branches as $branch)
+                                    <option value='{{ $branch->id }}'>{{ $branch->crud_name() }}</option>
+                                @endforeach
+                            </select>
+
                             @foreach ($branches as $branch)
-                                <option value='{{ $branch->id }}'>{{ $branch->crud_name() }}</option>
+                                @if (in_array($branch->id, $filter_branches_id))
+                                    <div class='form-check form-check-inline'>
+                                        <input wire:model='filter_branches_id' class='form-check-input'
+                                            type='checkbox' value='{{ $branch->id }}'
+                                            id='filter-branches-id-{{ $branch->id }}'>
+                                        <label class='form-check-label' for='filter-branches-id-{{ $branch->id }}'>
+                                            {{ $branch->crud_name() }}
+                                        </label>
+                                    </div>
+                                @endif
                             @endforeach
-                        </select>
+                        </div>
+                    @endif
 
-                        @foreach ($branches as $branch)
-                            @if (in_array($branch->id, $filter_branches_id))
-                                <div class='form-check form-check-inline'>
-                                    <input wire:model='filter_branches_id' class='form-check-input' type='checkbox'
-                                        value='{{ $branch->id }}' id='filter-branches-id-{{ $branch->id }}'>
-                                    <label class='form-check-label' for='filter-branches-id-{{ $branch->id }}'>
-                                        {{ $branch->crud_name() }}
-                                    </label>
-                                </div>
-                            @endif
-                        @endforeach
-                    </div>
+                    @if (!$the_branch)
 
-                    <div class='form-group'>
-                        <label for='manager-select'>{{ __('global.by_managers') }}</label>
-                        <select id='manager-select' class='form-control' wire:model='select_manager'>
-                            <option>Select managers</option>
+                        <div class='form-group'>
+                            <label for='manager-select'>{{ __('global.by_managers') }}</label>
+                            <select id='manager-select' class='form-control' wire:model='select_manager'>
+                                <option>Select managers</option>
+                                @foreach ($managers as $manager)
+                                    <option value='{{ $manager->id }}'>{{ $manager->crud_name() }}</option>
+                                @endforeach
+                            </select>
+
                             @foreach ($managers as $manager)
-                                <option value='{{ $manager->id }}'>{{ $manager->crud_name() }}</option>
+                                @if (in_array($manager->id, $filter_managers_id))
+                                    <div class='form-check form-check-inline'>
+                                        <input wire:model='filter_managers_id' class='form-check-input'
+                                            type='checkbox' value='{{ $manager->id }}'
+                                            id='filter-managers-id-{{ $manager->id }}'>
+                                        <label class='form-check-label' for='filter-managers-id-{{ $manager->id }}'>
+                                            {{ $manager->crud_name() }}
+                                        </label>
+                                    </div>
+                                @endif
                             @endforeach
-                        </select>
-
-                        @foreach ($managers as $manager)
-                            @if (in_array($manager->id, $filter_managers_id))
-                                <div class='form-check form-check-inline'>
-                                    <input wire:model='filter_managers_id' class='form-check-input' type='checkbox'
-                                        value='{{ $manager->id }}' id='filter-managers-id-{{ $manager->id }}'>
-                                    <label class='form-check-label' for='filter-managers-id-{{ $manager->id }}'>
-                                        {{ $manager->crud_name() }}
-                                    </label>
-                                </div>
-                            @endif
-                        @endforeach
-                    </div>
+                        </div>
+                    @endif
 
 
                     <br>
