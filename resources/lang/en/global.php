@@ -211,6 +211,7 @@ return [
     'select-tasks' => 'Select Tasks',
     'select-managers' => 'Select Managers',
     'select-employees' => 'Select Employees',
+    'select-branches' => 'Select Branches',
     // 'select-main_attachments' => 'Select Main Attachments',
     // 'select-main_comments' => 'Select Main Comments',
 

@@ -206,6 +206,7 @@ return [
     'select-tasks' => 'حدد المهام',
     'select-managers' => 'حدد المديرين',
     'select-employees' => 'حدد الموظفين',
+    'select-branches' => 'حدد الافرع',
 
     'open-task' => 'اعادة توجيه',
 ];
