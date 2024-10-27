@@ -216,4 +216,5 @@ return [
     // 'select-main_comments' => 'Select Main Comments',
 
     'open-task' => 'Reopen Task',
+    'Print' => 'Print',
 ];

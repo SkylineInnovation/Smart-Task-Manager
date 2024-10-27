@@ -2,29 +2,15 @@
     <thead>
         <tr>
             <td>#</td>
-            {{-- <td>id</td>
-            <td>slug</td> --}}
-
-
             <td>manager</td>
             <td>title</td>
-
             <td>desc</td>
-
             <td>start_time</td>
-
             <td>end_time</td>
-
             <td>priority_level</td>
-
             <td>status</td>
-
             <td>main_task</td>
-
             <td>created at</td>
-            {{-- <td>updated at</td>
-            <td>deleted at</td> --}}
-
         </tr>
     </thead>
 
@@ -32,10 +18,6 @@
         @foreach ($tasks as $task)
             <tr>
                 <td style="width: 20px ">{{ ++$number }}</td>
-                {{-- <td>{{ $task->id }}</td>
-                <td>{{ $task->slug }}</td> --}}
-
-
                 <td style="width: 100pt">{{ $task->manager ? $task->manager->crud_name() : '-- --' }}</td>
 
                 <td style="width: 100pt">{{ $task->title }}</td>
@@ -54,9 +36,6 @@
 
 
                 <td style="width: 100pt">{{ $task->created_at ? date('d/m/Y', strtotime($task->created_at)) : '' }}</td>
-                {{-- <td>{{ $task->updated_at ? date('d/m/Y', strtotime($task->updated_at)) : '' }}</td>
-                <td>{{ $task->deleted_at ? date('d/m/Y', strtotime($task->deleted_at)) : '' }}</td> --}}
-
             </tr>
 
             @foreach ($task->comments as $tskCom)

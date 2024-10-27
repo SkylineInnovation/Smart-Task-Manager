@@ -367,6 +367,18 @@ class Task extends Model
         return $text;
     }
 
+    public function employee_names_export()
+    {
+        $text = '';
+        foreach ($this->employees as $employee) {
+            if ($employee) {
+                $text .= $employee->name() . ', ';
+            }
+        }
+
+        return $text;
+    }
+
     public function discount()
     {
         return count($this->employees) > 0 ? $this->employees->first()->pivot->discount : 0;

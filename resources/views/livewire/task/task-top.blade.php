@@ -66,6 +66,14 @@
 
     <div class="form-inline">
 
+        @if ($the_employee_id)
+            <div>
+                <a href="{{ route('user.show.report', $the_employee_id) }}" target="_blank" class="btn btn-info">
+                    <i class="ti-receipt text-white"></i>
+                </a>
+            </div>
+        @endif
+
         @role('owner|operations')
             <div>
                 <button type="button" class="mr-1 btn btn-warning" data-toggle="modal" data-target="#filter-task-modal">

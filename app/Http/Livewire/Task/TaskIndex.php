@@ -69,6 +69,7 @@ class TaskIndex extends Component
 
         if ($the_manager_id)
             $this->the_manager_id = $the_manager_id;
+
         if ($the_employee_id)
             $this->the_employee_id = $the_employee_id;
 

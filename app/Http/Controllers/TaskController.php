@@ -61,4 +61,9 @@ class TaskController extends Controller
 
         return Redirect::back()->with('success', 'Data Imported Successfully');
     }
+
+    public function showReport(Task $task)
+    {
+        return view('pages.crud.task.task-report', compact('task'));
+    }
 }

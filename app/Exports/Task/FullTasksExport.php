@@ -22,7 +22,7 @@ class FullTasksExport implements FromView
 
         $this->tasks = Task::whereBetween($this->by_date, [$this->from_date . ' 00:00:00', $this->to_date . ' 23:59:59']);
 
-        $this->tasks = $this->tasks->orderBy('id', 'asc')->get();
+        $this->tasks = $this->tasks->orderBy('id', 'desc')->get();
     }
 
     /**

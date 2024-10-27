@@ -1,5 +1,5 @@
 <!-- BACK-TO-TOP -->
-<a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+<a class="hidden-print" href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 
 <!-- JQUERY JS -->
 <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>

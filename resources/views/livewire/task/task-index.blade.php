@@ -180,6 +180,10 @@
                             <td>
                                 @if ($admin_view_status != 'deleted')
                                     @permission('show-task')
+                                        <a href="{{ route('task.show.report', $task) }}" target="_blank" class="btn btn-info">
+                                            <i class="ti-receipt text-white"></i>
+                                        </a>
+
                                         <a href="{{ route('task.show', $task) }}" target="_blank" class="btn btn-info">
                                             <i class="ti-eye text-white"></i>
                                         </a>

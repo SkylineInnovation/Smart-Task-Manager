@@ -209,4 +209,5 @@ return [
     'select-branches' => 'حدد الافرع',
 
     'open-task' => 'اعادة توجيه',
+    'Print' => 'طباعة',
 ];

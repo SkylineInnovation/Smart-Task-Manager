@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DailyTaskController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Web\WebTaskController;
 use App\Models\Task;
@@ -85,6 +86,7 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
 
     Route::middleware('permission:index-user')->get('users', [UserController::class, 'index'])->name('user.index');
     Route::middleware('permission:show-user')->get('user/{user}', [UserController::class, 'show'])->name('user.show');
+    Route::middleware('permission:show-user')->get('user/{id}/report', [UserController::class, 'showReport'])->name('user.show.report');
 
     // 
     // the full routes for otpsendcodes
@@ -119,6 +121,8 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     Route::middleware('permission:index-task')->get('tasks', [App\Http\Controllers\TaskController::class, 'livewireIndex'])->name('task.index');
 
     Route::middleware('permission:show-task')->get('task/{task}', [App\Http\Controllers\TaskController::class, 'livewireShow'])->name('task.show');
+
+    Route::middleware('permission:show-task')->get('task/{task}/report', [TaskController::class, 'showReport'])->name('task.show.report');
 
     Route::middleware('permission:restore-task')->get('trash/tasks', [App\Http\Controllers\TaskController::class, 'livewireDeletedIndex'])->name('task.index.trash');
     Route::get('export/tasks', [App\Http\Controllers\TaskController::class, 'exportFullData'])->name('task.export');
