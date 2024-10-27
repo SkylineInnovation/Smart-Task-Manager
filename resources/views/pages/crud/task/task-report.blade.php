@@ -44,7 +44,7 @@
             <tr>
                 <td class="sub-colored">ﺟﻬﺔ ﺍﻟﺘﻜﻠﻴﻒ</td>
                 <td>{{ $task->manager->name() }}</td>
-                <td class="sub-colored">الموضفين</td>
+                <td class="sub-colored">الموظفين</td>
                 <td colspan="5">{{ $task->employees ? $task->employee_names_export() : '' }}</td>
 
                 <td class="sub-colored">تاريخ الاستلام</td>
