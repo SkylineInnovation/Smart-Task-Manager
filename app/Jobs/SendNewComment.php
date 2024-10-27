@@ -37,19 +37,24 @@ class SendNewComment implements ShouldQueue
     public function handle()
     {
         $owners = User::whereRoleIs('owner')->pluck('email')->toArray();
-        Mail::to($owners)->send(new SendNewCommentToTeam($this->comment));
 
-        Mail::to(
-            $this->comment->task->manager->email
-        )->send(new SendNewCommentToTeam($this->comment));
+        if (env('SEND_MAIL', false))
+            Mail::to($owners)->send(new SendNewCommentToTeam($this->comment));
 
-        if ($this->comment->main_comment)
+        if (env('SEND_MAIL', false))
             Mail::to(
-                $this->comment->main_comment->user->email
+                $this->comment->task->manager->email
             )->send(new SendNewCommentToTeam($this->comment));
 
-        // Mail::to(
-        //     $this->comment->task->employees->pluck('email')->toArray()
-        // )->send(new SendNewCommentToTeam($this->comment));
+        if (env('SEND_MAIL', false))
+            if ($this->comment->main_comment)
+                Mail::to(
+                    $this->comment->main_comment->user->email
+                )->send(new SendNewCommentToTeam($this->comment));
+
+        // if (env('SEND_MAIL', false))
+        //     Mail::to(
+        //         $this->comment->task->employees->pluck('email')->toArray()
+        //     )->send(new SendNewCommentToTeam($this->comment));
     }
 }

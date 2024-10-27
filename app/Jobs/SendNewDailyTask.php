@@ -37,14 +37,18 @@ class SendNewDailyTask implements ShouldQueue
     public function handle()
     {
         $owners = User::whereRoleIs('owner')->pluck('email')->toArray();
-        Mail::to($owners)->send(new SendNewDailyTaskToTeam($this->daily_task));
 
-        Mail::to(
-            $this->daily_task->manager->email
-        )->send(new SendNewDailyTaskToTeam($this->daily_task));
+        if (env('SEND_MAIL', false))
+            Mail::to($owners)->send(new SendNewDailyTaskToTeam($this->daily_task));
 
-        Mail::to(
-            $this->daily_task->employees->pluck('email')->toArray()
-        )->send(new SendNewDailyTaskToTeam($this->daily_task));
+        if (env('SEND_MAIL', false))
+            Mail::to(
+                $this->daily_task->manager->email
+            )->send(new SendNewDailyTaskToTeam($this->daily_task));
+
+        if (env('SEND_MAIL', false))
+            Mail::to(
+                $this->daily_task->employees->pluck('email')->toArray()
+            )->send(new SendNewDailyTaskToTeam($this->daily_task));
     }
 }

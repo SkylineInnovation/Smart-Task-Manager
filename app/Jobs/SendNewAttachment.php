@@ -37,14 +37,18 @@ class SendNewAttachment implements ShouldQueue
     public function handle()
     {
         $owners = User::whereRoleIs('owner')->pluck('email')->toArray();
-        Mail::to($owners)->send(new SendNewAttachmentToTeam($this->attachment));
 
-        Mail::to(
-            $this->attachment->task->manager->email
-        )->send(new SendNewAttachmentToTeam($this->attachment));
+        if (env('SEND_MAIL', false))
+            Mail::to($owners)->send(new SendNewAttachmentToTeam($this->attachment));
 
-        Mail::to(
-            $this->attachment->task->employees->pluck('email')->toArray()
-        )->send(new SendNewAttachmentToTeam($this->attachment));
+        if (env('SEND_MAIL', false))
+            Mail::to(
+                $this->attachment->task->manager->email
+            )->send(new SendNewAttachmentToTeam($this->attachment));
+
+        if (env('SEND_MAIL', false))
+            Mail::to(
+                $this->attachment->task->employees->pluck('email')->toArray()
+            )->send(new SendNewAttachmentToTeam($this->attachment));
     }
 }

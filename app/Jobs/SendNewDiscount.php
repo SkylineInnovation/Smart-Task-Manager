@@ -37,18 +37,23 @@ class SendNewDiscount implements ShouldQueue
     public function handle()
     {
         $owners = User::whereRoleIs('owner')->pluck('email')->toArray();
-        Mail::to($owners)->send(new SendNewDiscountToTeam($this->discount));
 
-        Mail::to(
-            $this->discount->task->manager->email
-        )->send(new SendNewDiscountToTeam($this->discount));
+        if (env('SEND_MAIL', false))
+            Mail::to($owners)->send(new SendNewDiscountToTeam($this->discount));
 
-        Mail::to(
-            $this->discount->user->email
-        )->send(new SendNewDiscountToTeam($this->discount));
+        if (env('SEND_MAIL', false))
+            Mail::to(
+                $this->discount->task->manager->email
+            )->send(new SendNewDiscountToTeam($this->discount));
 
-        // Mail::to(
-        //     $this->discount->task->employees->pluck('email')->toArray()
-        // )->send(new SendNewDiscountToTeam($this->discount));
+        if (env('SEND_MAIL', false))
+            Mail::to(
+                $this->discount->user->email
+            )->send(new SendNewDiscountToTeam($this->discount));
+
+        // if (env('SEND_MAIL', false))
+        //     Mail::to(
+        //         $this->discount->task->employees->pluck('email')->toArray()
+        //     )->send(new SendNewDiscountToTeam($this->discount));
     }
 }

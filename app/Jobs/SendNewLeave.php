@@ -37,14 +37,18 @@ class SendNewLeave implements ShouldQueue
     public function handle()
     {
         $owners = User::whereRoleIs('owner')->pluck('email')->toArray();
-        Mail::to($owners)->send(new SendNewLeaveToTeam($this->leave));
 
-        Mail::to(
-            $this->leave->task->manager->email
-        )->send(new SendNewLeaveToTeam($this->leave));
+        if (env('SEND_MAIL', false))
+            Mail::to($owners)->send(new SendNewLeaveToTeam($this->leave));
 
-        // Mail::to(
-        //     $this->leave->task->employees->pluck('email')->toArray()
-        // )->send(new SendNewLeaveToTeam($this->leave));
+        if (env('SEND_MAIL', false))
+            Mail::to(
+                $this->leave->task->manager->email
+            )->send(new SendNewLeaveToTeam($this->leave));
+
+        // if (env('SEND_MAIL', false))
+        //     Mail::to(
+        //         $this->leave->task->employees->pluck('email')->toArray()
+        //     )->send(new SendNewLeaveToTeam($this->leave));
     }
 }

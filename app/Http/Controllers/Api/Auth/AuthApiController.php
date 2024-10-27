@@ -572,8 +572,8 @@ class AuthApiController extends Controller
         // $location = Location::get($ip);
         // $user = $request->user();
 
-        // if (env('SEND_MAIL', false))
-        Mail::to($user->email)->send(new SendForgetPasswordCode($user, $ip));
+        if (env('SEND_MAIL', false))
+            Mail::to($user->email)->send(new SendForgetPasswordCode($user, $ip));
 
         return response()->json([
             "message" => "code send",

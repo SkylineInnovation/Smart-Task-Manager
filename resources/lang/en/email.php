@@ -37,5 +37,7 @@ return [
     'there-is-new-user' => 'There Is New User',
     'there-is-a-new-user-added' => 'There Is a New User Added',
 
+    'urgent-task-reminder' => 'Urgent Task Reminder',
+
 
 ];

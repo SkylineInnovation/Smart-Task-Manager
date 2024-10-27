@@ -37,14 +37,18 @@ class SendNewExtraTime implements ShouldQueue
     public function handle()
     {
         $owners = User::whereRoleIs('owner')->pluck('email')->toArray();
-        Mail::to($owners)->send(new SendNewExtraTimeToTeam($this->extra_time));
 
-        Mail::to(
-            $this->extra_time->task->manager->email
-        )->send(new SendNewExtraTimeToTeam($this->extra_time));
+        if (env('SEND_MAIL', false))
+            Mail::to($owners)->send(new SendNewExtraTimeToTeam($this->extra_time));
 
-        // Mail::to(
-        //     $this->extra_time->task->employees->pluck('email')->toArray()
-        // )->send(new SendNewExtraTimeToTeam($this->extra_time));
+        if (env('SEND_MAIL', false))
+            Mail::to(
+                $this->extra_time->task->manager->email
+            )->send(new SendNewExtraTimeToTeam($this->extra_time));
+
+        // if (env('SEND_MAIL', false))
+        //     Mail::to(
+        //         $this->extra_time->task->employees->pluck('email')->toArray()
+        //     )->send(new SendNewExtraTimeToTeam($this->extra_time));
     }
 }

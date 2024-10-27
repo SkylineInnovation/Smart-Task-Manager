@@ -220,3 +220,17 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
 //         'task' => $task,
 //     ];
 // });
+
+Route::get('urg', function () {
+    // $date = date('Y-m-d\TH:i', strtotime('+12 Hours'));
+    $date = date('Y-m-d\TH:i');
+
+    $tasks = Task::whereNullOrEmptyOrZero('main_task_id')->whereNullOrEmpty('slug');
+
+    $tasks = $tasks->where('priority_level', 'urgent')
+        ->whereIn('status', ['pending', 'active',]);
+
+    $tasks = $tasks->where('end_time', '>=', $date)->get();
+
+    return $tasks;
+});

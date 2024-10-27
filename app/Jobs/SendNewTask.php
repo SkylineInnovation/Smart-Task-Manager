@@ -37,10 +37,13 @@ class SendNewTask implements ShouldQueue
     public function handle()
     {
         $owners = User::whereRoleIs('owner')->pluck('email')->toArray();
-        Mail::to($owners)->send(new SendNewTaskToEmployee($this->task));
 
-        Mail::to(
-            $this->task->employees->pluck('email')->toArray()
-        )->send(new SendNewTaskToEmployee($this->task));
+        if (env('SEND_MAIL', false))
+            Mail::to($owners)->send(new SendNewTaskToEmployee($this->task));
+
+        if (env('SEND_MAIL', false))
+            Mail::to(
+                $this->task->employees->pluck('email')->toArray()
+            )->send(new SendNewTaskToEmployee($this->task));
     }
 }
