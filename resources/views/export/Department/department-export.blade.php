@@ -6,6 +6,7 @@
             <td>slug</td>
 
 
+            <td>branch</td>
             <td>manager</td>
             <td>name</td>
 
@@ -24,6 +25,8 @@
                 <td>{{ $department->id }}</td>
                 <td>{{ $department->slug }}</td>
 
+
+                <td>{{ $department->branch->crud_name() }}</td>
 
                 <td>{{ $department->manager->crud_name() }}</td>
 

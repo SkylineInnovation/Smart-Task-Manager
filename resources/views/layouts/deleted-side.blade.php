@@ -96,3 +96,11 @@
         </a>
     </li>
 @endpermission
+
+@permission('restore-branch')
+    <li>
+        <a class='slide-item' href='{{ route('branch.index.trash') }}'>
+            <span>{{ __('global.branches') }}</span>
+        </a>
+    </li>
+@endpermission

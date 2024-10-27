@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
 // use Laratrust\Traits\LaratrustUserTrait;
 
-class Department extends Model
+class Branch extends Model
 {
     // use LaratrustUserTrait;
     use HasFactory;
@@ -56,9 +56,8 @@ class Department extends Model
         'slug',
 
 
-        'branch_id',
-        'manager_id',
         'name',
+        'location',
 
         'show',
         'sort',
@@ -135,9 +134,8 @@ class Department extends Model
             $q->whereIn('id', array_map('intval', explode(',', $search)));
 
 
-            $q->orWhere('branch_id', $search);
-            $q->orWhere('manager_id', $search);
             $q->orWhereSearch('name', $search);
+            $q->orWhereSearch('location', $search);
 
             // })->orWhereHas('add_by_user', function ($q) use ($search) {
             //     $q->orWhereSearch('first_name', $search);
@@ -153,21 +151,8 @@ class Department extends Model
         return $this->belongsTo(User::class, 'add_by');
     }
 
-
-
-    public function branch()
+    public function managers()
     {
-        return $this->belongsTo(Branch::class);
-    }
-
-
-    public function manager()
-    {
-        return $this->belongsTo(User::class, 'manager_id');
-    }
-
-    public function employees()
-    {
-        return $this->belongsToMany(User::class, 'department_employee', 'department_id', 'employee_id');
+        return $this->belongsToMany(User::class, 'branch_manager', 'branch_id', 'manager_id');
     }
 }

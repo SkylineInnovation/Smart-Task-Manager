@@ -67,6 +67,7 @@ class RoleSeeder extends Seeder
             'loghistory',
 
             'department',
+            'branch',
         ];
 
         foreach ($lists as $item) {
@@ -143,6 +144,7 @@ class RoleSeeder extends Seeder
         $customPermissions = [
             'show-user',
             'show-task',
+            'show-branch',
         ];
 
         foreach ($customPermissions as $customPermission) {

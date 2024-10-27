@@ -179,6 +179,16 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     Route::middleware('permission:restore-department')->get('trash/departments', [App\Http\Controllers\DepartmentController::class, 'livewireDeletedIndex'])->name('department.index.trash');
     Route::get('export/departments', [App\Http\Controllers\DepartmentController::class, 'exportFullData'])->name('department.export');
     Route::post('import/departments', [App\Http\Controllers\DepartmentController::class, 'importData'])->name('department.import');
+
+
+    // the full routes for branches
+    Route::middleware('permission:index-branch')->get('branches', [App\Http\Controllers\BranchController::class, 'livewireIndex'])->name('branch.index');
+
+    Route::middleware('permission:index-branch')->get('branch/{branch}', [App\Http\Controllers\BranchController::class, 'livewireShow'])->name('branch.show');
+
+    Route::middleware('permission:restore-branch')->get('trash/branches', [App\Http\Controllers\BranchController::class, 'livewireDeletedIndex'])->name('branch.index.trash');
+    Route::get('export/branches', [App\Http\Controllers\BranchController::class, 'exportFullData'])->name('branch.export');
+    Route::post('import/branches', [App\Http\Controllers\BranchController::class, 'importData'])->name('branch.import');
 });
 
 
@@ -195,14 +205,13 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
 // });
 
 
-Route::get('id/{id}', function ($id) {
-
-    $task = Task::find($id);
-    $task->all_comments();
-    return [
-        'comments' => $task->all_comments(),
-        'have_new_comment' => $task->have_new_comment(),
-        'have_new_attachment' => $task->have_new_attachment(),
-        'task' => $task,
-    ];
-});
+// Route::get('id/{id}', function ($id) {
+//     $task = Task::find($id);
+//     $task->all_comments();
+//     return [
+//         'comments' => $task->all_comments(),
+//         'have_new_comment' => $task->have_new_comment(),
+//         'have_new_attachment' => $task->have_new_attachment(),
+//         'task' => $task,
+//     ];
+// });

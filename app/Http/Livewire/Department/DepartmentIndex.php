@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Department;
 
+use App\Models\Branch;
 use App\Models\Department;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -32,17 +33,21 @@ class DepartmentIndex extends Component
     public $user;
 
 
+    public $branches = [];
+
     public $managers = [];
 
     public $the_manager;
+    public $the_branch;
 
+    public $filter_branches_id = [];
 
     public $filter_managers_id = [];
 
 
 
     public $admin_view_status = '', $by, $url;
-    public function mount($admin_view_status = '', $the_manager = null)
+    public function mount($admin_view_status = '', $the_manager = null, $the_branch = null)
     {
         $this->url = Route::current()->getName();
         $this->admin_view_status = $admin_view_status;
@@ -55,7 +60,6 @@ class DepartmentIndex extends Component
         // $this->fromDate = date('Y-m-d', strtotime("-5 days"));
         $this->toDate = date('Y-m-d');
 
-        // if (!$this->user->hasRole('owner') && $the_manager == null) {
         if (!$this->user->hasRole('owner')) {
             $the_manager = $this->user;
         }
@@ -63,9 +67,21 @@ class DepartmentIndex extends Component
         if ($the_manager) {
             $this->the_manager = $the_manager;
             $this->manager_id = $the_manager->id;
+
+            $this->managers = collect([$the_manager]);
         } else {
             $this->managers = \App\Models\User::whereRoleIs('manager')->orderBy('first_name')->get();
         }
+
+        if ($the_branch) {
+            $this->the_branch = $the_branch;
+            $this->branch_id = $the_branch->id;
+
+            $this->branches = collect([$the_branch]);
+        } else {
+            $this->branches = \App\Models\Branch::where('show', 1)->orderBy('sort')->get();
+        }
+
 
 
         $this->showColumn = collect([
@@ -73,6 +89,7 @@ class DepartmentIndex extends Component
             'slug' => false,
 
 
+            'branch_id' => !$this->the_branch ? true : false,
             'manager_id' => !$this->the_manager ? true : false,
             'name' => true,
 
@@ -83,16 +100,18 @@ class DepartmentIndex extends Component
     }
 
     public $slug;
-    public $department_id, $manager_id, $name;
+    public $department_id, $branch_id, $manager_id, $name;
     public $updateMode = false;
 
     private function resetInputFields()
     {
         $this->slug = '';
 
+        if (!$this->the_branch)
+            $this->branch_id = null;
+
         if (!$this->the_manager)
             $this->manager_id = null;
-
         $this->name = '';
     }
 
@@ -104,6 +123,7 @@ class DepartmentIndex extends Component
             // 'slug' => $this-slug,
 
 
+            'branch_id' => 'required',
             'manager_id' => 'required',
             'name' => 'required',
         ];
@@ -122,6 +142,7 @@ class DepartmentIndex extends Component
             'add_by' => $this->by->id,
             'slug' => $this->slug,
 
+            'branch_id' => $this->branch_id,
             'manager_id' => $this->manager_id,
             'name' => $this->name,
         ]);
@@ -142,6 +163,7 @@ class DepartmentIndex extends Component
         $this->slug = $department->slug;
 
 
+        $this->branch_id = $department->branch_id;
         $this->manager_id = $department->manager_id;
         $this->name = $department->name;
     }
@@ -160,6 +182,7 @@ class DepartmentIndex extends Component
             $department->update([
                 'slug' => $this->slug,
 
+                'branch_id' => $this->branch_id,
                 'manager_id' => $this->manager_id,
                 'name' => $this->name,
             ]);
@@ -213,7 +236,16 @@ class DepartmentIndex extends Component
         $this->toDate = date('Y-m-d');
 
 
+        $this->filter_branches_id = [];
+
         $this->filter_managers_id = [];
+    }
+
+
+    public $select_branch;
+    public function updatedSelectBranch($val)
+    {
+        $this->filter_branches_id[] = $val;
     }
 
 
@@ -223,6 +255,15 @@ class DepartmentIndex extends Component
         $this->filter_managers_id[] = $val;
     }
 
+    public function updatedBranchId($val)
+    {
+        $branch = Branch::find($this->branch_id);
+
+        if ($branch)
+            $this->managers = $branch->managers;
+        else
+            $this->managers = \App\Models\User::whereRoleIs('manager')->orderBy('first_name')->get();
+    }
 
 
 
@@ -252,9 +293,14 @@ class DepartmentIndex extends Component
             $departments = $departments->whereBetween($this->byDate, [$this->fromDate . ' 00:00:00', $this->toDate . ' 23:59:59']);
 
 
-
         if ($this->the_manager)
             $departments = $departments->where('manager_id', $this->the_manager->id);
+        if ($this->the_branch)
+            $departments = $departments->where('branch_id', $this->the_branch->id);
+
+
+        if ($this->filter_branches_id)
+            $departments = $departments->whereIn('branch_id', $this->filter_branches_id);
 
         if ($this->filter_managers_id)
             $departments = $departments->whereIn('manager_id', $this->filter_managers_id);

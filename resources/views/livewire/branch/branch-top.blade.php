@@ -10,11 +10,9 @@
             <select wire:model='orderBy' class="form-control form-group" style="width: 150px;">
                 <option value="id">{{ __('global.id') }}</option>
 
-                <option value='branch_id'>{{ __('department.branch') }}</option>
+                <option value='name'>{{ __('branch.name') }}</option>
 
-                <option value='manager_id'>{{ __('department.manager') }}</option>
-
-                <option value='name'>{{ __('department.name') }}</option>
+                <option value='location'>{{ __('branch.location') }}</option>
 
 
                 <option value="created_at">{{ __('global.created_at') }}</option>
@@ -42,23 +40,21 @@
     <div class="form-inline">
         @role('owner|operations')
             <div>
-                <button type="button" class="mr-1 btn btn-warning" data-toggle="modal"
-                    data-target="#filter-department-modal">
+                <button type="button" class="mr-1 btn btn-warning" data-toggle="modal" data-target="#filter-branch-modal">
                     <i class="ti-filter text-white"></i>
                 </button>
             </div>
         @endrole
         @role('owner|operations')
             <div>
-                <button type="button" class="btn btn-info" data-toggle="modal"
-                    data-target="#show-hide-department-columnModal">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#show-hide-branch-columnModal">
                     <i class="ti-layout-column4 text-white"></i>
                 </button>
             </div>
         @endrole
 
         @if ($admin_view_status != 'deleted')
-            @permission('import-excel-department')
+            @permission('import-excel-branch')
                 <div>
                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#import-data">
                         <i class="ti-import text-white"></i>
@@ -66,10 +62,10 @@
                 </div>
             @endpermission
 
-            @permission('export-excel-department')
+            @permission('export-excel-branch')
                 <div>
                     <a class="mr-1 btn btn-warning" target="_blank"
-                        href="{{ route('department.export', ['by_date' => $byDate, 'from_date' => $fromDate, 'to_date' => $toDate]) }}">
+                        href="{{ route('branch.export', ['by_date' => $byDate, 'from_date' => $fromDate, 'to_date' => $toDate]) }}">
                         <i class="ti-export text-white"></i>
                     </a>
                 </div>
@@ -78,10 +74,10 @@
 
 
         @if ($admin_view_status != 'deleted')
-            @permission('create-department')
+            @permission('create-branch')
                 <div>
                     <button type="button" class="btn btn-success" data-toggle="modal"
-                        data-target="#create-new-department-modal">
+                        data-target="#create-new-branch-modal">
                         <i class="ti-plus text-white"></i>
                     </button>
                 </div>
@@ -89,12 +85,12 @@
         @endif
     </div>
 
-    <div wire:ignore.self class="modal fade" id="show-hide-department-columnModal" tabindex="-1"
-        aria-labelledby="show-hide-department-columnModalLabel" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="show-hide-branch-columnModal" tabindex="-1"
+        aria-labelledby="show-hide-branch-columnModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="show-hide-department-columnModalLabel">
+                    <h5 class="modal-title" id="show-hide-branch-columnModalLabel">
                         {{ __('global.show-and-hide-table-columns') }}
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -110,12 +106,12 @@
                                 $show_kye = str_replace('_id', '', $kye);
                             @endphp
 
-                            @if (strlen(__('department.' . $show_kye)) > 2)
+                            @if (strlen(__('branch.' . $show_kye)) > 2)
                                 <div class="form-check">
                                     <input wire:model="showColumn.{{ $kye }}" class="form-check-input"
-                                        type="checkbox" value="true" id="filter-department-{{ $kye }}">
-                                    <label class="form-check-label" for="filter-department-{{ $kye }}">
-                                        {{ __('department.' . $show_kye) }}
+                                        type="checkbox" value="true" id="filter-branch-{{ $kye }}">
+                                    <label class="form-check-label" for="filter-branch-{{ $kye }}">
+                                        {{ __('branch.' . $show_kye) }}
                                     </label>
                                 </div>
                             @endif
@@ -133,11 +129,11 @@
     </div>
 
     @if ($admin_view_status != 'deleted')
-        @include('livewire.department.department-create-modal')
+        @include('livewire.branch.branch-create-modal')
     @endif
 
 
-    @permission('import-excel-department')
+    @permission('import-excel-branch')
         <div wire:ignore.self class="modal fade" id="import-data" tabindex="-1" aria-labelledby="import-dataLabel"
             aria-hidden="true">
             <div class="modal-dialog">
@@ -151,7 +147,7 @@
                         </button>
                     </div>
 
-                    <form action="{{ route('department.import') }}" enctype="multipart/form-data" method="post"
+                    <form action="{{ route('branch.import') }}" enctype="multipart/form-data" method="post"
                         accept-charset="utf-8" class="form-horizontal m-t-30">
                         <div class="modal-body">
                             @csrf
@@ -202,12 +198,12 @@
     @endpermission
 
 
-    <div wire:ignore.self class="modal fade" id="filter-department-modal" tabindex="-1"
-        aria-labelledby="filter-department-modalLabel" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="filter-branch-modal" tabindex="-1"
+        aria-labelledby="filter-branch-modalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="filter-department-modalLabel">
+                    <h5 class="modal-title" id="filter-branch-modalLabel">
                         {{ __('global.filter') }}
                     </h5>
 
@@ -261,50 +257,6 @@
                         </div>
                     @endrole --}}
 
-
-                    <div class='form-group'>
-                        <label for='branch-select'>{{ __('global.by_branches') }}</label>
-                        <select id='branch-select' class='form-control' wire:model='select_branch'>
-                            <option>Select branches</option>
-                            @foreach ($branches as $branch)
-                                <option value='{{ $branch->id }}'>{{ $branch->crud_name() }}</option>
-                            @endforeach
-                        </select>
-
-                        @foreach ($branches as $branch)
-                            @if (in_array($branch->id, $filter_branches_id))
-                                <div class='form-check form-check-inline'>
-                                    <input wire:model='filter_branches_id' class='form-check-input' type='checkbox'
-                                        value='{{ $branch->id }}' id='filter-branches-id-{{ $branch->id }}'>
-                                    <label class='form-check-label' for='filter-branches-id-{{ $branch->id }}'>
-                                        {{ $branch->crud_name() }}
-                                    </label>
-                                </div>
-                            @endif
-                        @endforeach
-                    </div>
-
-                    <div class='form-group'>
-                        <label for='manager-select'>{{ __('global.by_managers') }}</label>
-                        <select id='manager-select' class='form-control' wire:model='select_manager'>
-                            <option>Select managers</option>
-                            @foreach ($managers as $manager)
-                                <option value='{{ $manager->id }}'>{{ $manager->crud_name() }}</option>
-                            @endforeach
-                        </select>
-
-                        @foreach ($managers as $manager)
-                            @if (in_array($manager->id, $filter_managers_id))
-                                <div class='form-check form-check-inline'>
-                                    <input wire:model='filter_managers_id' class='form-check-input' type='checkbox'
-                                        value='{{ $manager->id }}' id='filter-managers-id-{{ $manager->id }}'>
-                                    <label class='form-check-label' for='filter-managers-id-{{ $manager->id }}'>
-                                        {{ $manager->crud_name() }}
-                                    </label>
-                                </div>
-                            @endif
-                        @endforeach
-                    </div>
 
 
                     <br>

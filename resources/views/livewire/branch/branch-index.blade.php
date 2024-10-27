@@ -1,6 +1,6 @@
 <div>
 
-    @include('livewire.department.department-top')
+    @include('livewire.branch.branch-top')
 
     @if (session()->has('message'))
         <div class="alert alert-success" style="margin-top:30px;">
@@ -9,7 +9,7 @@
     @endif
 
     @php
-        $number = ($departments->currentPage() - 1) * $perPage;
+        $number = ($branches->currentPage() - 1) * $perPage;
     @endphp
 
     <div class="table-responsive">
@@ -33,16 +33,12 @@
                     @endif
 
 
-                    @if ($showColumn['branch_id'])
-                        <td>{{ __('department.branch') }}</td>
-                    @endif
-
-                    @if ($showColumn['manager_id'])
-                        <td>{{ __('department.manager') }}</td>
-                    @endif
-
                     @if ($showColumn['name'])
-                        <td>{{ __('department.name') }}</td>
+                        <td>{{ __('branch.name') }}</td>
+                    @endif
+
+                    @if ($showColumn['location'])
+                        <td>{{ __('branch.location') }}</td>
                     @endif
 
 
@@ -53,7 +49,7 @@
                         <td>{{ __('global.time') }}</td>
                     @endif
 
-                    @permission('edit-department|delete-department|restore-department')
+                    @permission('edit-branch|delete-branch|restore-branch')
                         <td style="width: 150px">
                             {{ __('global.action') }}
                         </td>
@@ -62,7 +58,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($departments as $department)
+                @foreach ($branches as $branch)
                     <tr>
                         <td>{{ ++$number }}</td>
 
@@ -70,75 +66,68 @@
                             @if ($admin_view_status != 'deleted')
                                 <td>
                                     <div class="form-check">
-                                        <input wire:model.defer="selectedDepartments.{{ $department->id }}" class="form-check-input"
-                                            type="checkbox" value="{{ $department->id }}" id="department-{{ $department->id }}">
+                                        <input wire:model.defer="selectedBranches.{{ $branch->id }}" class="form-check-input"
+                                            type="checkbox" value="{{ $branch->id }}" id="branch-{{ $branch->id }}">
                                     </div>
                                 </td>
                             @endif
                         --}}
 
                         @if ($showColumn['id'])
-                            <td> {{ $department->id }} </td>
+                            <td> {{ $branch->id }} </td>
                         @endif
 
                         @if ($showColumn['slug'])
-                            <td> {{ $department->slug }} </td>
+                            <td> {{ $branch->slug }} </td>
                         @endif
 
-
-                        @if ($showColumn['branch_id'])
-                            <td>
-                                @if ($department->branch)
-                                    {{ $department->branch->crud_name() }}
-                                @endif
-                            </td>
-                        @endif
-
-                        @if ($showColumn['manager_id'])
-                            <td>
-                                @if ($department->manager)
-                                    {{ $department->manager->crud_name() }}
-                                @endif
-                            </td>
-                        @endif
 
                         @if ($showColumn['name'])
-                            <td> {{ $department->name }} </td>
+                            <td> {{ $branch->name }} </td>
+                        @endif
+
+                        @if ($showColumn['location'])
+                            <td> {{ $branch->location }} </td>
                         @endif
 
 
                         @if ($showColumn['date'])
-                            <td> {{ date('d/m/Y', strtotime($department->created_at)) }} </td>
+                            <td> {{ date('d/m/Y', strtotime($branch->created_at)) }} </td>
                         @endif
                         @if ($showColumn['time'])
-                            <td> {{ date('h:i A', strtotime($department->created_at)) }} </td>
+                            <td> {{ date('h:i A', strtotime($branch->created_at)) }} </td>
                         @endif
 
-                        @permission('edit-department|delete-department|restore-department')
+                        @permission('edit-branch|delete-branch|restore-branch')
                             <td>
                                 @if ($admin_view_status != 'deleted')
-                                    @permission('edit-department')
-                                        <button data-toggle="modal" data-target="#update-department-modal"
-                                            wire:click="edit({{ $department->id }})" class="btn btn-primary">
+                                    @permission('show-branch')
+                                        <a href="{{ route('branch.show', $branch) }}" target="_blank" class="btn btn-info">
+                                            <i class="ti-eye text-white"></i>
+                                        </a>
+                                    @endpermission
+
+                                    @permission('edit-branch')
+                                        <button data-toggle="modal" data-target="#update-branch-modal"
+                                            wire:click="edit({{ $branch->id }})" class="btn btn-primary">
                                             <i class="ti-pencil text-white"></i>
                                         </button>
                                     @endpermission
 
-                                    @permission('delete-department')
+                                    @permission('delete-branch')
                                         <button class="btn btn-danger" type="button" data-toggle="modal"
-                                            data-target="#delete-department-{{ $department->id }}">
+                                            data-target="#delete-branch-{{ $branch->id }}">
                                             <i class="ti-trash text-white"></i>
                                         </button>
 
-                                        <div id="delete-department-{{ $department->id }}" class="modal fade" tabindex="-1"
-                                            role="dialog" aria-labelledby="delete-department-{{ $department->id }}-title"
+                                        <div id="delete-branch-{{ $branch->id }}" class="modal fade" tabindex="-1"
+                                            role="dialog" aria-labelledby="delete-branch-{{ $branch->id }}-title"
                                             aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title"
-                                                            id="delete-department-{{ $department->id }}-title">
-                                                            {{ $department->crud_name() }}
+                                                        <h5 class="modal-title" id="delete-branch-{{ $branch->id }}-title">
+                                                            {{ $branch->crud_name() }}
                                                         </h5>
                                                         <button class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -154,8 +143,8 @@
                                                             {{ __('global.close') }}
                                                         </button>
 
-                                                        <button wire:click="delete({{ $department->id }})"
-                                                            class="btn btn-danger" data-dismiss="modal">
+                                                        <button wire:click="delete({{ $branch->id }})" class="btn btn-danger"
+                                                            data-dismiss="modal">
                                                             {{ __('global.delete') }}
                                                         </button>
                                                     </div>
@@ -166,21 +155,20 @@
                                 @endif
 
                                 @if ($admin_view_status == 'deleted')
-                                    @permission('restore-department')
+                                    @permission('restore-branch')
                                         <button class="btn btn-danger" type="button" data-toggle="modal"
-                                            data-target="#restore-department-{{ $department->id }}">
+                                            data-target="#restore-branch-{{ $branch->id }}">
                                             <i class="ti-reload text-white"></i>
                                         </button>
 
-                                        <div wire:ignore.self id="restore-department-{{ $department->id }}"
-                                            aria-labelledby="restore-department-{{ $department->id }}-title" class="modal fade"
+                                        <div wire:ignore.self id="restore-branch-{{ $branch->id }}"
+                                            aria-labelledby="restore-branch-{{ $branch->id }}-title" class="modal fade"
                                             tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title"
-                                                            id="restore-department-{{ $department->id }}-title">
-                                                            {{ $department->crud_name() }}
+                                                        <h5 class="modal-title" id="restore-branch-{{ $branch->id }}-title">
+                                                            {{ $branch->crud_name() }}
                                                         </h5>
                                                         <button class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -196,7 +184,7 @@
                                                             {{ __('global.close') }}
                                                         </button>
 
-                                                        <button wire:click="restore({{ $department->id }})"
+                                                        <button wire:click="restore({{ $branch->id }})"
                                                             class="btn btn-danger" data-dismiss="modal">
                                                             {{ __('global.restore') }}
                                                         </button>
@@ -215,6 +203,6 @@
 
         </table>
 
-        {{ $departments->links() }}
+        {{ $branches->links() }}
     </div>
 </div>

@@ -155,7 +155,12 @@ return [
     'departments' => 'Departments',
     'create-department' => 'Create New Department',
 
+    'branches' => 'Branches',
+    'branch' => 'Branch',
+    'create-branch' => 'Create New Branch',
+
     'employees' => 'Employees',
+    'managers' => 'Managers',
     'task-board' => 'Task Board',
 
     'from_date' => 'From Date',

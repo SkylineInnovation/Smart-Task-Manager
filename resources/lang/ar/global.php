@@ -156,6 +156,7 @@ return [
     'create-department' => 'اضافة قسم جديد',
 
     'employees' => 'الموظفون',
+    'managers' => 'المدراء',
     'task-board' => 'لوحة المهام',
 
     'from_date' => 'من التاريخ',

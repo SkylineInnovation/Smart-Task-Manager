@@ -21,6 +21,8 @@ class CreateDepartmentsTable extends Migration
             $table->string('slug')->nullable();
 
 
+            $table->foreignIdFor(App\Models\Branch::class)->nullable()->default(0);
+
             $table->foreignIdFor(App\Models\User::class, 'manager_id')->nullable()->default(0);
 
             $table->string('name')->nullable();

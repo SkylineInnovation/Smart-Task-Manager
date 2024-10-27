@@ -191,4 +191,9 @@ class User extends Authenticatable
             $text .= $department->name . '<br>';
         return $text;
     }
+
+    public function branches()
+    {
+        return $this->belongsToMany(Branch::class, 'branch_manager', 'branch_id', 'manager_id');
+    }
 }

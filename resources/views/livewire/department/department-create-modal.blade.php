@@ -32,6 +32,18 @@
                                     'sm' => 12,
                                 ]) --}}
 
+
+                                @include('inputs.create.select', [
+                                    'label' => 'department.branch',
+                                    'name' => 'department.branch_id',
+                                    'arr' => $branches,
+                                    'livewire' => 'branch_id',
+                                    // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                    'lg' => 12,
+                                    'md' => 12,
+                                    'sm' => 12,
+                                ])
+
                                 @if (!$the_manager)
                                     @include('inputs.create.select', [
                                         'label' => 'department.manager',
@@ -126,6 +138,18 @@
                                 ]) --}}
 
 
+                                @include('inputs.edit.select', [
+                                    'label' => 'department.branch',
+                                    'name' => 'department.branch_id',
+                                    'arr' => $branches,
+                                    'livewire' => 'branch_id',
+                                    'val' => $department->branch_id,
+                                    // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                    'lg' => 12,
+                                    'md' => 12,
+                                    'sm' => 12,
+                                ])
+
                                 @if (!$the_manager)
                                     @include('inputs.edit.select', [
                                         'label' => 'department.manager',
@@ -158,7 +182,6 @@
                                         'sm' => 12,
                                     ])
                                 @endif
-
 
                             </div>
 

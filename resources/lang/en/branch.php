@@ -9,11 +9,9 @@ return [
     'time' => 'Time',
 
 
-    'branch' => 'Branch',
-
-    'manager' => 'Manager',
-
     'name' => 'Name',
+
+    'location' => 'Location',
 
 
 ];

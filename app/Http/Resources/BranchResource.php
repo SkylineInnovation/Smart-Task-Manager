@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DepartmentResource extends JsonResource
+class BranchResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,13 +16,12 @@ class DepartmentResource extends JsonResource
     {
         // return parent::toArray($request);
         return [
-            "department_id" => $this->id,
+            "branch_id" => $this->id,
             "slug" => $this->slug,
 
 
-            'branch' => new BranchResource($this->whenLoaded('branch')),
-            'manager' => new UserResource($this->whenLoaded('manager')),
             'name' => $this->name,
+            'location' => $this->location,
 
             "date" => date("d/m/Y", strtotime($this->created_at)),
             "time" => date("h:i A", strtotime($this->created_at)),

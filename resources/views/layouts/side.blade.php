@@ -77,3 +77,11 @@
         </a>
     </li>
 @endpermission
+
+@permission('index-branch')
+    <li>
+        <a class='slide-item' href='{{ route('branch.index') }}'>
+            <span>{{ __('global.branches') }}</span>
+        </a>
+    </li>
+@endpermission
