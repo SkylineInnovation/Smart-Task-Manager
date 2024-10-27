@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Mail\ExtraTime\SendNewExtraTimeToTeam;
 use App\Models\ExtraTime;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -35,6 +36,9 @@ class SendNewExtraTime implements ShouldQueue
      */
     public function handle()
     {
+        $owners = User::whereRoleIs('owner')->pluck('email')->toArray();
+        Mail::to($owners)->send(new SendNewExtraTimeToTeam($this->extra_time));
+
         Mail::to(
             $this->extra_time->task->manager->email
         )->send(new SendNewExtraTimeToTeam($this->extra_time));

@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Mail\Discount\SendNewDiscountToTeam;
 use App\Models\Discount;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -35,6 +36,9 @@ class SendNewDiscount implements ShouldQueue
      */
     public function handle()
     {
+        $owners = User::whereRoleIs('owner')->pluck('email')->toArray();
+        Mail::to($owners)->send(new SendNewDiscountToTeam($this->discount));
+
         Mail::to(
             $this->discount->task->manager->email
         )->send(new SendNewDiscountToTeam($this->discount));

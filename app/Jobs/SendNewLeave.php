@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Mail\Leave\SendNewLeaveToTeam;
 use App\Models\Leave;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -35,6 +36,9 @@ class SendNewLeave implements ShouldQueue
      */
     public function handle()
     {
+        $owners = User::whereRoleIs('owner')->pluck('email')->toArray();
+        Mail::to($owners)->send(new SendNewLeaveToTeam($this->leave));
+
         Mail::to(
             $this->leave->task->manager->email
         )->send(new SendNewLeaveToTeam($this->leave));

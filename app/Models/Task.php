@@ -406,6 +406,7 @@ class Task extends Model
             $q->orWhereRoleIs('owner');
         });
     }
+
     public function emp_sub_tasks()
     {
         return $this->hasMany(Task::class, 'main_task_id')->whereHas('manager', function ($q) {
@@ -523,5 +524,11 @@ class Task extends Model
     {
         $attachments = $this->leaves_times()->where('created_at', '>=', date('Y-m-d H:i', strtotime('-1 Hour')))->count();
         return $attachments > 0;
+    }
+
+    public function have_new_sub_tasks()
+    {
+        $sub_tasks = $this->sub_tasks()->where('created_at', '>=', date('Y-m-d H:i', strtotime('-1 Hour')))->count();
+        return $sub_tasks > 0;
     }
 }

@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Mail\DailyTask\SendNewDailyTaskToTeam;
 use App\Models\DailyTask;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -35,6 +36,9 @@ class SendNewDailyTask implements ShouldQueue
      */
     public function handle()
     {
+        $owners = User::whereRoleIs('owner')->pluck('email')->toArray();
+        Mail::to($owners)->send(new SendNewDailyTaskToTeam($this->daily_task));
+
         Mail::to(
             $this->daily_task->manager->email
         )->send(new SendNewDailyTaskToTeam($this->daily_task));

@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Mail\Attachment\SendNewAttachmentToTeam;
 use App\Models\Attachment;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -35,6 +36,9 @@ class SendNewAttachment implements ShouldQueue
      */
     public function handle()
     {
+        $owners = User::whereRoleIs('owner')->pluck('email')->toArray();
+        Mail::to($owners)->send(new SendNewAttachmentToTeam($this->attachment));
+
         Mail::to(
             $this->attachment->task->manager->email
         )->send(new SendNewAttachmentToTeam($this->attachment));

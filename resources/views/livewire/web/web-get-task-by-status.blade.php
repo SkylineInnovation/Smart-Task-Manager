@@ -15,7 +15,7 @@
                             </h6>
                         </div>
                         <div class="col-md-12">
-                            <h6 class="text-gray px-4">
+                            <h6 class="px-4 @if ($task->have_new_sub_tasks()) text-danger @else text-gray @endif">
                                 {{ __('task.Sub-Task') }}: {{ $task->sub_tasks->count() }}
                             </h6>
 

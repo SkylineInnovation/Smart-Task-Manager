@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Mail\Comment\SendNewCommentToTeam;
 use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -35,6 +36,9 @@ class SendNewComment implements ShouldQueue
      */
     public function handle()
     {
+        $owners = User::whereRoleIs('owner')->pluck('email')->toArray();
+        Mail::to($owners)->send(new SendNewCommentToTeam($this->comment));
+
         Mail::to(
             $this->comment->task->manager->email
         )->send(new SendNewCommentToTeam($this->comment));

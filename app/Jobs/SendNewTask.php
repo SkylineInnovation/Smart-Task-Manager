@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Mail\Task\SendNewTaskToEmployee;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -35,6 +36,9 @@ class SendNewTask implements ShouldQueue
      */
     public function handle()
     {
+        $owners = User::whereRoleIs('owner')->pluck('email')->toArray();
+        Mail::to($owners)->send(new SendNewTaskToEmployee($this->task));
+
         Mail::to(
             $this->task->employees->pluck('email')->toArray()
         )->send(new SendNewTaskToEmployee($this->task));
