@@ -33,6 +33,8 @@ class CreateScheduleDailytask extends Command
     public function handle()
     {
 
+        Log::alert("HI AWWAD this is from daily:task-run");
+
         $currentTime = date('H:i');
 
         $dailyTasks = DailyTask::where('repeat_time', $currentTime)->get();
