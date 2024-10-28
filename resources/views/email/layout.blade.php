@@ -109,13 +109,13 @@
 
     <div style="width:90%;">
         <div style="float: left">
-            <a href="{{ env('APP_URL') }}">{{ env('APP_NAME') }}</a>
+            {{ env('APP_NAME') }}
         </div>
         <div style="float: right">
-            Power By
-            <a href="{{ env('POWER_COMPANY_LINK', 'javascript:;') }}" target="_blank">
-                {{ env('POWER_COMPANY_NAME', 'Codexal') }}
-            </a>
+            Copyright © {{ date('Y') }}
+            {{ env('COPYRIGHT_COMPANY_NAME', 'Codexal') }},
+
+            Power By {{ env('POWER_COMPANY_NAME', 'Codexal') }}
         </div>
     </div>
 
