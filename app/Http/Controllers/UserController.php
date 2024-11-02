@@ -33,7 +33,7 @@ class UserController extends Controller
             $q->where('user_id', $id);
         });
 
-        $tasks = $tasks->orderBy('created_at', 'desc')->paginate();
+        $tasks = $tasks->orderBy('created_at', 'desc')->get();
 
         return view('pages.user.user-report', compact('user', 'tasks'));
     }
