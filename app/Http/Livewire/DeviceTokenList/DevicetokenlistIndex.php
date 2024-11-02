@@ -59,7 +59,7 @@ class DevicetokenlistIndex extends Component
 
 
         $this->showColumn = collect([
-            'id' => true,
+            'id' => false,
             'slug' => false,
 
 
@@ -71,7 +71,7 @@ class DevicetokenlistIndex extends Component
 
             // 'status' => false,
             'date' => true,
-            'time' => true,
+            'time' => false,
         ]);
     }
 

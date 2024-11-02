@@ -59,7 +59,7 @@ class PasswordcodeIndex extends Component
 
 
         $this->showColumn = collect([
-            'id' => true,
+            'id' => false,
             'slug' => false,
 
 

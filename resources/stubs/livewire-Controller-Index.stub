@@ -54,14 +54,14 @@ class {{Model}}Index extends Component
         {{livewireRelationshipMount}}
 
         $this->showColumn = collect([
-            'id' => true,
+            'id' => false,
             'slug' => false,
 
             {{livewireShowColumn}}
             
             // 'status' => false,
             'date' => true,
-            'time' => true,
+            'time' => false,
         ]);
     }
 

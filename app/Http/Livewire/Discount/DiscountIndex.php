@@ -78,7 +78,7 @@ class DiscountIndex extends Component
 
 
         $this->showColumn = collect([
-            'id' => true,
+            'id' => false,
             'slug' => false,
 
 
