@@ -309,44 +309,49 @@
                     @endrole
 
                     @role('owner|manager')
-                        <div>
-                            <p>{{ __('global.departments') }}</p>
-                            <div class="row">
-                                @foreach ($departments as $department)
-                                    <div class="col-4">
-                                        <div class="form-check form-check-inline">
-                                            <input wire:model='selectedDepartments' class="form-check-input"
-                                                type="checkbox" value="{{ $department->id }}"
-                                                id="selected-department-{{ $department->id }}">
-                                            <label class="form-check-label"
-                                                for="selected-department-{{ $department->id }}">
-                                                {{ $department->name }}
-                                            </label>
+                        @if ($edit_user->hasRole('employee'))
+                            <div>
+                                <p>{{ __('global.departments') }}</p>
+                                <div class="row">
+                                    @foreach ($departments as $department)
+                                        <div class="col-4">
+                                            <div class="form-check form-check-inline">
+                                                <input wire:model='selectedDepartments' class="form-check-input"
+                                                    type="checkbox" value="{{ $department->id }}"
+                                                    id="selected-department-{{ $department->id }}">
+                                                <label class="form-check-label"
+                                                    for="selected-department-{{ $department->id }}">
+                                                    {{ $department->name }}
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     @endrole
 
                     @role('owner')
-                        <div>
-                            <p>{{ __('global.employees') }}</p>
-                            <div class="row">
-                                @foreach ($employees as $employee)
-                                    <div class="col-4">
-                                        <div class="form-check form-check-inline">
-                                            <input wire:model='selectedEmployees' class="form-check-input"
-                                                type="checkbox" value="{{ $employee->id }}"
-                                                id="selected-employee-{{ $employee->id }}">
-                                            <label class="form-check-label" for="selected-employee-{{ $employee->id }}">
-                                                {{ $employee->name() }}
-                                            </label>
+                        @if ($edit_user->hasRole('employee'))
+                            <div>
+                                <p>{{ __('global.employees') }}</p>
+                                <div class="row">
+                                    @foreach ($employees as $employee)
+                                        <div class="col-4">
+                                            <div class="form-check form-check-inline">
+                                                <input wire:model='selectedEmployees' class="form-check-input"
+                                                    type="checkbox" value="{{ $employee->id }}"
+                                                    id="selected-employee-{{ $employee->id }}">
+                                                <label class="form-check-label"
+                                                    for="selected-employee-{{ $employee->id }}">
+                                                    {{ $employee->name() }}
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     @endrole
 
                     <div class="form-group">

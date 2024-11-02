@@ -177,11 +177,14 @@ class UserIndex extends Component
             SendNewUser::dispatch($user);
     }
 
+    public $edit_user;
     public function edit($id)
     {
         $this->updateMode = true;
         $user = User::where('id', $id)->first();
         $this->user_id = $id;
+
+        $this->edit_user = $user;
 
         $this->first_name = $user->first_name;
         $this->last_name = $user->last_name;
