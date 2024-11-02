@@ -115,7 +115,7 @@
             Copyright © {{ date('Y') }}
             {{ env('COPYRIGHT_COMPANY_NAME', 'Codexal') }},
 
-            Power By {{ env('POWER_COMPANY_NAME', 'Codexal') }}
+            Powered By {{ env('POWER_COMPANY_NAME', 'Codexal') }}
         </div>
     </div>
 

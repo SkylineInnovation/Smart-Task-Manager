@@ -12,7 +12,7 @@
             </div>
             {{-- {{ env('POWER_COMPANY_NAME', 'Codexal') }} --}}
             <div class="col-lg-4 col-md-4 col-sm-12 text-lg-end text-md-end text-sm-center pe-5">
-                Power By
+                Powered By
                 {{-- <a href="{{ env('POWER_COMPANY_LINK', 'javascript:;') }}" target="_blank"> --}}
                 <img src="{{ asset('assets/logo.png') }}" style="display: inline; height: 20px;">
                 {{-- </a> --}}

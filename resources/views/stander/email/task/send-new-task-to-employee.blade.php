@@ -99,10 +99,10 @@
             <a href="{{ env('APP_URL') }}">{{ env('APP_NAME') }}</a>
         </div>
         <div style="float: right">
-            Power By
-            <a href="{{ env('POWER_COMPANY_LINK', 'javascript:;') }}" target="_blank">
-                {{ env('POWER_COMPANY_NAME', 'Codexal') }}
-            </a>
+            Powered By
+            {{-- <a href="{{ env('POWER_COMPANY_LINK', 'javascript:;') }}" target="_blank"> --}}
+            {{ env('POWER_COMPANY_NAME', 'Codexal') }}
+            {{-- </a> --}}
         </div>
     </div>
 
