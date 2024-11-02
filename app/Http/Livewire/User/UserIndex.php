@@ -58,8 +58,8 @@ class UserIndex extends Component
 
         $this->departments = Department::get();
 
-        // $this->roles = Role::whereIn('name', ['owner',])->get();
-        $this->roles = Role::get();
+        $this->roles = Role::whereIn('name', ['owner', 'manager', 'employee',])->get();
+        // $this->roles = Role::get();
 
         if ($this->auth->hasRole('manager')) {
             $employeeRole = Role::where('name', 'employee')->first();
