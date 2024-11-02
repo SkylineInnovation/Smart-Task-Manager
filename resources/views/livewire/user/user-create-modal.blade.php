@@ -309,7 +309,7 @@
                     @endrole
 
                     @role('owner|manager')
-                        @if ($edit_user->hasRole('employee'))
+                        @if ($edit_user && $edit_user->hasRole('employee'))
                             <div>
                                 <p>{{ __('global.departments') }}</p>
                                 <div class="row">
@@ -332,7 +332,7 @@
                     @endrole
 
                     @role('owner')
-                        @if ($edit_user->hasRole('employee'))
+                        @if ($edit_user && $edit_user->hasRole('employee'))
                             <div>
                                 <p>{{ __('global.employees') }}</p>
                                 <div class="row">

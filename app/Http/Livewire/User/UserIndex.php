@@ -104,6 +104,8 @@ class UserIndex extends Component
         $this->selectedRoles = [];
         $this->selectedEmployees = [];
         $this->selectedDepartments = [];
+
+        $this->edit_user = null;
     }
 
     public function rules()
