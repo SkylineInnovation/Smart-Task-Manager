@@ -64,13 +64,13 @@
 
     <div class="ml-auto">
         <p class="text-gray-700 leading-5">
-            <span>{!! __('Showing') !!}</span>
+            <span>{!! __('global.Showing') !!}</span>
             <span class="font-medium">{{ $paginator->firstItem() }}</span>
-            <span>{!! __('to') !!}</span>
+            <span>{!! __('global.to') !!}</span>
             <span class="font-medium">{{ $paginator->lastItem() }}</span>
-            <span>{!! __('of') !!}</span>
+            <span>{!! __('global.of') !!}</span>
             <span class="font-medium">{{ $paginator->total() }}</span>
-            <span>{!! __('results') !!}</span>
+            <span>{!! __('global.results') !!}</span>
         </p>
     </div>
 </div>

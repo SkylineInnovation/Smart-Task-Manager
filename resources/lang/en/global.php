@@ -220,4 +220,9 @@ return [
 
     'open-task' => 'Reopen Task',
     'Print' => 'Print',
+
+    'Showing' => 'Showing',
+    'to' => 'To',
+    'of' => 'Of',
+    'results' => 'Results',
 ];
