@@ -68,7 +68,8 @@
 
         @if ($the_employee_id)
             <div>
-                <a href="{{ route('user.show.report', $the_employee_id) }}" target="_blank" class="btn btn-info">
+                <a href="{{ route('user.show.report', $the_employee_id) }}?from_date={{ $fromDate }}&to_date={{ $toDate }}"
+                    target="_blank" class="btn btn-info">
                     <i class="ti-receipt text-white"></i>
                 </a>
             </div>
