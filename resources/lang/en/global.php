@@ -159,6 +159,9 @@ return [
     'branch' => 'Branch',
     'create-branch' => 'Create New Branch',
 
+    'loghistories' => 'Log Histories',
+    'create-loghistory' => 'Create New History',
+
     'employees' => 'Employees',
     'managers' => 'Managers',
     'task-board' => 'Task Board',

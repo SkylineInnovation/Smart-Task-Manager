@@ -155,6 +155,13 @@ return [
     'departments' => 'الاقسام',
     'create-department' => 'اضافة قسم جديد',
 
+    'branches' => 'الافرع',
+    'branch' => 'الفرع',
+    'create-branch' => 'اضافة فرع جديد',
+
+    'loghistories' => 'سجل التعديلات',
+    'create-loghistory' => 'اضافة سجل التعديلات',
+
     'employees' => 'الموظفون',
     'managers' => 'المدراء',
     'task-board' => 'لوحة المهام',
