@@ -1214,8 +1214,8 @@
                                 {{-- <textarea name='reason' id='reason' rows="3" class='form-control'
                                         placeholder='{{ __('global.enter') }} {{ __('leave.reason') }}' wire:model.defer="leave_reason"></textarea> --}}
                                 @include('inputs.textarea', [
-                                    'label' => 'task.desc',
-                                    'livewire' => 'sub_task_desc',
+                                    'label' => 'leave.reason',
+                                    'livewire' => 'leave_reason',
                                 ])
                                 {{-- </div> --}}
                             </div>
