@@ -108,10 +108,10 @@ class LoghistoryIndex extends Component
 
         $this->user_id = null;
         $this->action = '';
-        $this->by_model_name = '';
-        $this->by_model_id = 0;
-        $this->on_model_name = '';
-        $this->on_model_id = 0;
+        // $this->by_model_name = '';
+        // $this->by_model_id = 0;
+        // $this->on_model_name = '';
+        // $this->on_model_id = 0;
         $this->from_data = '';
         $this->to_data = '';
         $this->preaf = '';
