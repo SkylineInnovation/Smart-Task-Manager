@@ -25,9 +25,9 @@ class CreateAttachmentsTable extends Migration
 
             $table->foreignIdFor(App\Models\Task::class)->nullable()->default(0);
 
-            $table->string('title')->nullable();
+            $table->longText('title')->nullable();
 
-            $table->string('desc')->nullable();
+            $table->longText('desc')->nullable();
 
             $table->string('file')->nullable();
 

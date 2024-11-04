@@ -27,9 +27,9 @@ class CreateExtraTimesTable extends Migration
 
             $table->foreignIdFor(App\Models\User::class, 'accepted_by_user_id')->nullable()->default(0);
 
-            $table->string('reason')->nullable();
+            $table->longText('reason')->nullable();
 
-            $table->string('result')->nullable();
+            $table->longText('result')->nullable();
 
             $table->string('request_time')->nullable()->default(date('Y-m-d H:i A'));
 

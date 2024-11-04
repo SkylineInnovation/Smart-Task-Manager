@@ -23,9 +23,9 @@ class CreateTasksTable extends Migration
 
             $table->foreignIdFor(App\Models\User::class, 'manager_id')->nullable()->default(0);
 
-            $table->string('title')->nullable();
+            $table->longText('title')->nullable();
 
-            $table->string('desc')->nullable();
+            $table->longText('desc')->nullable();
 
             $table->string('start_time')->nullable()->default(date('Y-m-d'));
 

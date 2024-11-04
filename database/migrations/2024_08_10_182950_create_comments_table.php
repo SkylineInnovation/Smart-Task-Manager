@@ -25,9 +25,9 @@ class CreateCommentsTable extends Migration
 
             $table->foreignIdFor(App\Models\User::class)->nullable()->default(0);
 
-            $table->string('title')->nullable();
+            $table->longText('title')->nullable();
 
-            $table->text('desc')->nullable();
+            $table->longText('desc')->nullable();
 
             $table->string('replay_time')->nullable();
 

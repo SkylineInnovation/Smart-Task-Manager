@@ -27,7 +27,7 @@ class CreateDiscountsTable extends Migration
 
             $table->double('amount')->nullable()->default(0.0);
 
-            $table->string('reason')->nullable();
+            $table->longText('reason')->nullable();
 
 
             $table->boolean('show')->default(true);

@@ -21,19 +21,19 @@ class CreateDailyTasksTable extends Migration
             $table->string('slug')->nullable();
 
 
-            $table->foreignIdFor(App\Models\User::class,'manager_id')->nullable()->default(0);
+            $table->foreignIdFor(App\Models\User::class, 'manager_id')->nullable()->default(0);
 
-            $table->string('title')->nullable();
+            $table->longText('title')->nullable();
 
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
 
-            $table->string('start_time')->nullable();
+            $table->string('start_time')->nullable()->default(date('Y-m-d'));
 
-            $table->string('end_time')->nullable();
+            $table->string('end_time')->nullable()->default(date('Y-m-d', strtotime('+60 minutes')));
 
-            $table->string('proearty')->nullable();
+            $table->string('priority_level')->nullable()->default('low');
 
-            $table->string('status')->nullable();
+            $table->string('status')->nullable()->default('pending');
 
             $table->string('repeat_time')->nullable();
 
