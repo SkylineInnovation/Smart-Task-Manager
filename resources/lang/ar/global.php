@@ -222,4 +222,9 @@ return [
     'to' => 'إلى',
     'of' => 'من',
     'results' => 'نتيجة',
+
+    'board-action' => 'الفعل',
+    'board-details' => 'معلومات',
+    'board-comment' => 'تعليق',
+    'board-show' => 'عرض',
 ];
