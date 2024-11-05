@@ -225,4 +225,9 @@ return [
     'to' => 'To',
     'of' => 'Of',
     'results' => 'Results',
+
+    'board-action' => 'action',
+    'board-details' => 'details',
+    'board-comment' => 'comment',
+    'board-show' => 'action',
 ];

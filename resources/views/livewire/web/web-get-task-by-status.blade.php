@@ -40,12 +40,11 @@
                     <div class="col-md-4 col-5 d-flex align-items-center p-0">
                         <div class="row w-100 m-0 justify-content-md-around">
                             <div class="col-3 d-flex justify-content-center fs-4 dropdown show">
-                                <div>
-                                    <a class="fa fa-cog text-secondarye" href="javascript:;" role="button"
-                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
+                                <div role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <a class="fa fa-cog text-secondarye" href="javascript:;">
                                     </a>
-                                    <p>action</p>
+                                    <p style="font-size: 9px;">{{ __('global.board-action') }}</p>
                                 </div>
 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -115,23 +114,32 @@
                             </div>
 
                             <div class="col-3 d-flex justify-content-center fs-4">
-                                <button type="button" class="fa fa-exclamation-circle text-azure" data-toggle="modal"
-                                    data-target="#show-task-modal-{{ $task->id }}"
-                                    wire:click="setTask({{ $task->id }})">
-                                </button>
+                                <div>
+                                    <button type="button" class="fa fa-exclamation-circle text-azure"
+                                        data-toggle="modal" data-target="#show-task-modal-{{ $task->id }}"
+                                        wire:click="setTask({{ $task->id }})">
+                                    </button>
+                                    <p style="font-size: 9px;">{{ __('global.board-details') }}</p>
+                                </div>
                             </div>
 
                             <div class="col-3 d-flex justify-content-center fs-4">
-                                <button type="button" class="fa fa-commenting-o text-info" data-toggle="modal"
-                                    data-target="#show-task-modal-{{ $task->id }}"
-                                    wire:click="openCommentTask({{ $task->id }})">
-                                </button>
+                                <div>
+                                    <button type="button" class="fa fa-commenting-o text-info" data-toggle="modal"
+                                        data-target="#show-task-modal-{{ $task->id }}"
+                                        wire:click="openCommentTask({{ $task->id }})">
+                                    </button>
+                                    <p style="font-size: 9px;">{{ __('global.board-comment') }}</p>
+                                </div>
                             </div>
 
                             <div class="col-3 d-flex justify-content-center fs-4">
-                                <a type="button" class="ti-eye text-success" href="{{ route('task.show', $task) }}"
-                                    target="_blank">
-                                </a>
+                                <div>
+                                    <a type="button" class="ti-eye text-success"
+                                        href="{{ route('task.show', $task) }}" target="_blank">
+                                    </a>
+                                    <p style="font-size: 9px;">{{ __('global.board-show') }}</p>
+                                </div>
                             </div>
 
                             <div class="col-12 py-3">
