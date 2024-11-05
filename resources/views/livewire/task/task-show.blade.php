@@ -186,7 +186,7 @@
 
     <div class="card">
         <div class="card-header">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <ul class="nav nav-tabs overflow-auto nav-pills" id="myTab" role="tablist">
                 {{-- 1 TAB START --}}
                 <li class="nav-item px-1">
                     <a class="nav-link py-3 rounded-pill {{ $tab == 1 ? 'active' : '' }}" id="user-tab"

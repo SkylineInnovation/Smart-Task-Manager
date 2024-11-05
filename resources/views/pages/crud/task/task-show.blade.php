@@ -1,5 +1,23 @@
 @extends('layouts.livewire-index')
 
+@section('css')
+    <style>
+        @media (max-width: 768px) {
+            .nav-pills {
+                flex-wrap: nowrap;
+            }
+
+            .nav-pills .nav-item {
+                flex: 0 0 auto;
+            }
+
+            .d-flex.overflow-auto {
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+    </style>
+@endsection
+
 @section('page-header')
     <li class="breadcrumb-item">
         <a href="{{ route('task.index') }}" class="h4">
