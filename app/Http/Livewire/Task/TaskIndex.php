@@ -105,7 +105,7 @@ class TaskIndex extends Component
     }
 
     public $slug;
-    public $task_id, $manager_id, $title, $desc, $start_time, $end_time, $priority_level = 'low', $status = 'pending', $main_task_id;
+    public $task_id, $manager_id, $title, $desc, $start_time, $end_time, $priority_level = 'low', $status = 'pending', $main_task_id, $daily_task_id;
 
     public $task_status = 'all';
     public $discount = 0;
