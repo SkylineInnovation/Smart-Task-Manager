@@ -40,11 +40,13 @@
                     <div class="col-md-4 col-5 d-flex align-items-center p-0">
                         <div class="row w-100 m-0 justify-content-md-around">
                             <div class="col-3 d-flex justify-content-center fs-4 dropdown show">
-                                <a class="fa fa-cog text-secondarye" href="javascript:;" role="button"
-                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                </a>
-                                <p>action</p>
+                                <div>
+                                    <a class="fa fa-cog text-secondarye" href="javascript:;" role="button"
+                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                    </a>
+                                    <p>action</p>
+                                </div>
 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     {{-- @role('employee') --}}
