@@ -34,7 +34,7 @@ class SendNewDiscountToTeam extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'New Discount',
+            subject: 'New Discount, ' . $this->discount->task_id,
         );
     }
 

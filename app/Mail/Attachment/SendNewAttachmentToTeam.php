@@ -34,7 +34,7 @@ class SendNewAttachmentToTeam extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'New Attachment',
+            subject: 'New Attachment, ' . $this->attachment->task_id,
         );
     }
 

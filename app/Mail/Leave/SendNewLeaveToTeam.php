@@ -34,7 +34,7 @@ class SendNewLeaveToTeam extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Leave Requested',
+            subject: 'Leave Requested, ' . $this->leave->task_id,
         );
     }
 
