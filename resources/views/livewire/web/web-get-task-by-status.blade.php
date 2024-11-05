@@ -37,7 +37,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-5 d-flex align-items-center p-0">
+                    <div class="col-md-4 col-5 d-flex align-items-start p-0">
                         <div class="row w-100 m-0 justify-content-md-around">
                             <div class="col-3 d-flex justify-content-center fs-4 dropdown show">
                                 <div role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
