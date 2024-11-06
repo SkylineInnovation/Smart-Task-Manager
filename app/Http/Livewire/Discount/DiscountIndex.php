@@ -238,6 +238,9 @@ class DiscountIndex extends Component
         $this->filter_tasks_id = [];
 
         $this->filter_users_id = [];
+
+        $this->select_task = '';
+        $this->select_user = '';
     }
 
 

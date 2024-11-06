@@ -276,6 +276,8 @@ class WebGetTaskByStatus extends Component
 
         $this->sub_task_discount = $this->task->discount();
 
+        $this->select_emp = '';
+
         session()->flash('sub-task-message', 'Sub Task Created Successfully.');
 
         if (env('SEND_MAIL', false))

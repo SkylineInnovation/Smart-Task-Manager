@@ -283,6 +283,8 @@ class DailytaskIndex extends Component
 
 
         $this->filter_managers_id = [];
+
+        $this->select_manager = '';
     }
 
 

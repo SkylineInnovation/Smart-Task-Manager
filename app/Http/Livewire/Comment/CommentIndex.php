@@ -258,6 +258,10 @@ class CommentIndex extends Component
         $this->filter_users_id = [];
 
         $this->filter_main_comments_id = [];
+
+        $this->select_task = '';
+        $this->select_user = '';
+        $this->select_main_comment = '';
     }
 
 
@@ -276,7 +280,7 @@ class CommentIndex extends Component
 
 
     public $select_main_comment;
-    public function updatedSelectMain_comment($val)
+    public function updatedSelectMainComment($val)
     {
         $this->filter_main_comments_id[] = $val;
     }

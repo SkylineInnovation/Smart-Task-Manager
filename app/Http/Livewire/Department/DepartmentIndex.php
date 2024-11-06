@@ -239,6 +239,9 @@ class DepartmentIndex extends Component
         $this->filter_branches_id = [];
 
         $this->filter_managers_id = [];
+
+        $this->select_branch = '';
+        $this->select_manager = '';
     }
 
 

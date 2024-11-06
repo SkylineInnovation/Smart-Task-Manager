@@ -261,6 +261,10 @@ class AttachmentIndex extends Component
         $this->filter_tasks_id = [];
 
         $this->filter_main_attachments_id = [];
+
+        $this->select_user = '';
+        $this->select_task = '';
+        $this->select_main_attachment = '';
     }
 
 
@@ -279,7 +283,7 @@ class AttachmentIndex extends Component
 
 
     public $select_main_attachment;
-    public function updatedSelectMain_attachment($val)
+    public function updatedSelectMainAttachment($val)
     {
         $this->filter_main_attachments_id[] = $val;
     }

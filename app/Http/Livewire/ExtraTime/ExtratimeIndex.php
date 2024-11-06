@@ -295,6 +295,10 @@ class ExtratimeIndex extends Component
         $this->filter_users_id = [];
 
         $this->filter_accepted_by_users_id = [];
+
+        $this->select_task = '';
+        $this->select_user = '';
+        $this->select_accepted_by_user = '';
     }
 
 
@@ -313,7 +317,7 @@ class ExtratimeIndex extends Component
 
 
     public $select_accepted_by_user;
-    public function updatedSelectAccepted_by_user($val)
+    public function updatedSelectAcceptedByUser($val)
     {
         $this->filter_accepted_by_users_id[] = $val;
     }

@@ -218,6 +218,8 @@ class DevicetokenlistIndex extends Component
 
 
         $this->filter_users_id = [];
+
+        $this->select_user = '';
     }
 
 

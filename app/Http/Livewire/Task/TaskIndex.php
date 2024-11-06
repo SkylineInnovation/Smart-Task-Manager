@@ -304,6 +304,9 @@ class TaskIndex extends Component
         $this->filter_managers_id = [];
 
         $this->filter_main_tasks_id = [];
+
+        $this->select_manager = '';
+        $this->select_main_task = '';
     }
 
 
@@ -315,7 +318,7 @@ class TaskIndex extends Component
 
 
     public $select_main_task;
-    public function updatedSelectMain_task($val)
+    public function updatedSelectMainTask($val)
     {
         $this->filter_main_tasks_id[] = $val;
     }
