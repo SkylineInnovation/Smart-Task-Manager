@@ -34,7 +34,7 @@ class SendNewDailyTaskToTeam extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'New Daily Task, ' . $this->daily_task->id,
+            subject: 'New Daily Task, task #' . $this->daily_task->id,
         );
     }
 

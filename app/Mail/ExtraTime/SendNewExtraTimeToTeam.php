@@ -34,7 +34,7 @@ class SendNewExtraTimeToTeam extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Extra Time Requested, ' . $this->extra_time->task_id,
+            subject: 'Extra Time Requested, task #' . $this->extra_time->task_id,
         );
     }
 

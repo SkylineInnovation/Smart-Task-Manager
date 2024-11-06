@@ -34,7 +34,7 @@ class SendReminderOnTask extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Urgent Task Reminder',
+            subject: 'Urgent Task Reminder, task #' . $this->task->id,
         );
     }
 

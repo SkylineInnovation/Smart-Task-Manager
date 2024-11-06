@@ -34,7 +34,7 @@ class SendNewCommentToTeam extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'New Comment, ' . $this->comment->task_id,
+            subject: 'New Comment, task #' . $this->comment->task_id,
         );
     }
 
