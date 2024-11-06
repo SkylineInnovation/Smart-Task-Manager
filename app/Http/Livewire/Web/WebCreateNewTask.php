@@ -61,6 +61,8 @@ class WebCreateNewTask extends Component
         $this->discount = 0;
 
         $this->selectedEmployees = [];
+
+        $this->select_emp = '';
     }
 
     public function rules()
