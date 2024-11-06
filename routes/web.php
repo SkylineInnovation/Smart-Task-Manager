@@ -235,13 +235,3 @@ Route::get('urg', function () {
 
     return $tasks;
 });
-
-
-// Server Credentials
-// Please store these credentials safely, as they will not be shown again.
-// Sudo Password: VK;lw0H8iY(${wK_=eN]
-// Database Password: MA1pp23EkpL84Eks3ivC
-
-// php /home/forge/task-manager.codexal.co/artisan task:auto-finish
-// php /home/forge/task-manager.codexal.co/artisan daily:task-run
-// php /home/forge/task-manager.codexal.co/artisan task:auto-draft
