@@ -76,10 +76,10 @@ class TaskIndex extends Component
         $this->start_time = date('Y-m-d\TH:i');
         $this->end_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
 
-        if (!$this->user->hasRole('owner')) {
-            $this->employees = $this->user->employees;
+        if ($this->user->hasRole('owner')) {
+            $this->employees = \App\Models\User::whereRoleIs('manager')->orWhereRoleIs('employee')->orderBy('first_name')->get();
         } else {
-            $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
+            $this->employees = $this->user->employees;
         }
 
 

@@ -31,7 +31,7 @@ class WebCreateNewTask extends Component
 
 
         if ($this->user->hasRole('owner')) {
-            $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
+            $this->employees = \App\Models\User::whereRoleIs('manager')->orWhereRoleIs('employee')->orderBy('first_name')->get();
         } else {
             $this->employees = $this->user->employees;
         }
