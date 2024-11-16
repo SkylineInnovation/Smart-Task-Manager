@@ -159,6 +159,10 @@ return [
     'branch' => 'Branch',
     'create-branch' => 'Create New Branch',
 
+    'companies' => 'companies',
+    'company' => 'Company',
+    'create-company' => 'Create New Company',
+
     'loghistories' => 'Log Histories',
     'create-loghistory' => 'Create New History',
 

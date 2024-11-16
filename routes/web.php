@@ -194,6 +194,15 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     Route::middleware('permission:restore-branch')->get('trash/branches', [App\Http\Controllers\BranchController::class, 'livewireDeletedIndex'])->name('branch.index.trash');
     Route::get('export/branches', [App\Http\Controllers\BranchController::class, 'exportFullData'])->name('branch.export');
     Route::post('import/branches', [App\Http\Controllers\BranchController::class, 'importData'])->name('branch.import');
+
+    // the full routes for companies
+    Route::middleware('permission:index-company')->get('companies', [App\Http\Controllers\CompanyController::class, 'livewireIndex'])->name('company.index');
+
+    Route::middleware('permission:show-company')->get('company/{company}', [App\Http\Controllers\CompanyController::class, 'livewireShow'])->name('company.show');
+
+    Route::middleware('permission:restore-company')->get('trash/companies', [App\Http\Controllers\CompanyController::class, 'livewireDeletedIndex'])->name('company.index.trash');
+    Route::get('export/companies', [App\Http\Controllers\CompanyController::class, 'exportFullData'])->name('company.export');
+    Route::post('import/companies', [App\Http\Controllers\CompanyController::class, 'importData'])->name('company.import');
 });
 
 
