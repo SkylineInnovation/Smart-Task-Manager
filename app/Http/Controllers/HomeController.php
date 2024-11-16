@@ -112,7 +112,90 @@ class HomeController extends Controller
 
         // return view('home', compact('listOfDates', 'userList'));
 
-        return view('home');
+
+        $mainBtns = [
+            [
+                'image' => asset('assets/dashboard/company.png'),
+                'text' =>  __('global.company'),
+            ],
+            [
+                'image' => asset('assets/dashboard/region.png'),
+                'text' =>  __('global.region'),
+            ],
+            [
+                'image' => asset('assets/dashboard/branch.png'),
+                'text' =>  __('global.branch'),
+            ],
+            [
+                'image' => asset('assets/dashboard/department.png'),
+                'text' =>  __('global.departments'),
+            ],
+            [
+                'image' => asset('assets/dashboard/person.png'),
+                'text' =>  __('global.person'),
+            ],
+            [
+                'image' => asset('assets/dashboard/employee.png'),
+                'text' =>  __('global.employee'),
+            ],
+            [
+                'image' => asset('assets/dashboard/team.png'),
+                'text' =>  __('global.team'),
+            ],
+            [
+                'image' => asset('assets/dashboard/report.png'),
+                'text' =>  __('global.report'),
+            ],
+            [
+                'image' => asset('assets/dashboard/profile.png'),
+                'text' =>  __('global.profile'),
+            ],
+            [
+                'image' => asset('assets/dashboard/about.png'),
+                'text' =>  __('global.about'),
+            ],
+        ];
+
+        $actionBtns = [
+            [
+
+                'text' =>  __('global.add-region'),
+            ],
+            [
+
+                'text' =>  __('global.add-branch'),
+            ],
+            [
+
+                'text' =>  __('global.add-department'),
+            ],
+            [
+
+                'text' =>  __('global.Add-User'),
+            ],
+            [
+
+                'text' =>  __('global.add-job'),
+            ],
+            [
+
+                'text' =>  __('global.add-permissions'),
+            ],
+            [
+
+                'text' =>  __('global.submit-task'),
+            ],
+            [
+
+                'text' =>  __('global.submit-departure-form'),
+            ],
+            [
+
+                'text' =>  __('global.submit-disbursement-permit'),
+            ],
+        ];
+
+        return view('home', compact('mainBtns', 'actionBtns'));
     }
 
     public function editProfile()
