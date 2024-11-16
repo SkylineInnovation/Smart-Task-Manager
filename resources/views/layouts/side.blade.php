@@ -93,3 +93,11 @@
         </a>
     </li>
 @endpermission
+
+@permission('index-area')
+    <li>
+        <a class='slide-item' href='{{ route('area.index') }}'>
+            <span>{{ __('global.areas') }}</span>
+        </a>
+    </li>
+@endpermission

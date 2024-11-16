@@ -24,6 +24,20 @@ class FullBranchsImport implements ToCollection, WithHeadingRow
 
             $location = trim($row['location']);
 
+            $phone = trim($row['phone']);
+
+            $number = trim($row['number']);
+
+            $fax = trim($row['fax']);
+
+            $email = trim($row['email']);
+
+            $password = trim($row['password']);
+
+            $website = trim($row['website']);
+
+            $commercial_register = trim($row['commercial_register']);
+
 
             $branch = Branch::find($id);
 
@@ -35,6 +49,13 @@ class FullBranchsImport implements ToCollection, WithHeadingRow
 
                     'name' => $name,
                     'location' => $location,
+                    'phone' => $phone,
+                    'number' => $number,
+                    'fax' => $fax,
+                    'email' => $email,
+                    'password' => $password,
+                    'website' => $website,
+                    'commercial_register' => $commercial_register,
                 ]);
             } else {
                 $branch->update([
@@ -43,6 +64,13 @@ class FullBranchsImport implements ToCollection, WithHeadingRow
 
                     'name' => $name,
                     'location' => $location,
+                    'phone' => $phone,
+                    'number' => $number,
+                    'fax' => $fax,
+                    'email' => $email,
+                    'password' => $password,
+                    'website' => $website,
+                    'commercial_register' => $commercial_register,
                 ]);
             }
         }

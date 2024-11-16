@@ -112,3 +112,11 @@
         </a>
     </li>
 @endpermission
+
+@permission('restore-area')
+    <li>
+        <a class='slide-item' href='{{ route('area.index.trash') }}'>
+            <span>{{ __('global.areas') }}</span>
+        </a>
+    </li>
+@endpermission

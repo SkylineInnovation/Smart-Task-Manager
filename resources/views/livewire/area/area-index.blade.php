@@ -1,6 +1,6 @@
 <div>
 
-    @include('livewire.branch.branch-top')
+    @include('livewire.area.area-top')
 
     @if (session()->has('message'))
         <div class="alert alert-success" style="margin-top:30px;">
@@ -9,7 +9,7 @@
     @endif
 
     @php
-        $number = ($branches->currentPage() - 1) * $perPage;
+        $number = ($areas->currentPage() - 1) * $perPage;
     @endphp
 
     <div class="table-responsive">
@@ -34,51 +34,15 @@
 
 
                     @if ($showColumn['name'])
-                        <td>{{ __('branch.name') }}</td>
+                        <td>{{ __('area.name') }}</td>
                     @endif
 
                     @if ($showColumn['location'])
-                        <td>{{ __('branch.location') }}</td>
-                    @endif
-
-                    @if ($showColumn['phone'])
-                        <td>{{ __('branch.phone') }}</td>
-                    @endif
-
-                    @if ($showColumn['number'])
-                        <td>{{ __('branch.number') }}</td>
-                    @endif
-
-                    @if ($showColumn['fax'])
-                        <td>{{ __('branch.fax') }}</td>
-                    @endif
-
-                    @if ($showColumn['email'])
-                        <td>{{ __('branch.email') }}</td>
-                    @endif
-
-                    @if ($showColumn['password'])
-                        <td>{{ __('branch.password') }}</td>
-                    @endif
-
-                    @if ($showColumn['website'])
-                        <td>{{ __('branch.website') }}</td>
-                    @endif
-
-                    @if ($showColumn['commercial_register'])
-                        <td>{{ __('branch.commercial_register') }}</td>
-                    @endif
-
-                    @if ($showColumn['area_id'])
-                        <td>{{ __('branch.area') }}</td>
+                        <td>{{ __('area.location') }}</td>
                     @endif
 
                     @if ($showColumn['manager_id'])
-                        <td>{{ __('branch.manager') }}</td>
-                    @endif
-
-                    @if ($showColumn['responsible_id'])
-                        <td>{{ __('branch.responsible') }}</td>
+                        <td>{{ __('area.manager') }}</td>
                     @endif
 
 
@@ -89,7 +53,7 @@
                         <td>{{ __('global.time') }}</td>
                     @endif
 
-                    @permission('edit-branch|delete-branch|restore-branch')
+                    @permission('edit-area|delete-area|restore-area')
                         <td style="width: 150px">
                             {{ __('global.action') }}
                         </td>
@@ -98,7 +62,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($branches as $branch)
+                @foreach ($areas as $area)
                     <tr>
                         <td>{{ ++$number }}</td>
 
@@ -106,114 +70,70 @@
                             @if ($admin_view_status != 'deleted')
                                 <td>
                                     <div class="form-check">
-                                        <input wire:model.defer="selectedBranches.{{ $branch->id }}" class="form-check-input"
-                                            type="checkbox" value="{{ $branch->id }}" id="branch-{{ $branch->id }}">
+                                        <input wire:model.defer="selectedAreas.{{ $area->id }}" class="form-check-input"
+                                            type="checkbox" value="{{ $area->id }}" id="area-{{ $area->id }}">
                                     </div>
                                 </td>
                             @endif
                         --}}
 
                         @if ($showColumn['id'])
-                            <td> {{ $branch->id }} </td>
+                            <td> {{ $area->id }} </td>
                         @endif
 
                         @if ($showColumn['slug'])
-                            <td> {{ $branch->slug }} </td>
+                            <td> {{ $area->slug }} </td>
                         @endif
 
 
                         @if ($showColumn['name'])
-                            <td> {{ $branch->name }} </td>
+                            <td> {{ $area->name }} </td>
                         @endif
 
                         @if ($showColumn['location'])
-                            <td> {{ $branch->location }} </td>
-                        @endif
-
-                        @if ($showColumn['phone'])
-                            <td> {{ $branch->phone }} </td>
-                        @endif
-
-                        @if ($showColumn['number'])
-                            <td> {{ $branch->number }} </td>
-                        @endif
-
-                        @if ($showColumn['fax'])
-                            <td> {{ $branch->fax }} </td>
-                        @endif
-
-                        @if ($showColumn['email'])
-                            <td> {{ $branch->email }} </td>
-                        @endif
-
-                        @if ($showColumn['password'])
-                            <td> {{ $branch->password }} </td>
-                        @endif
-
-                        @if ($showColumn['website'])
-                            <td> {{ $branch->website }} </td>
-                        @endif
-
-                        @if ($showColumn['commercial_register'])
-                            <td> {{ $branch->commercial_register }} </td>
-                        @endif
-
-                        @if ($showColumn['area_id'])
-                            <td>
-                                @if ($branch->area)
-                                    {{ $branch->area->crud_name() }}
-                                @endif
-                            </td>
+                            <td> {{ $area->location }} </td>
                         @endif
 
                         @if ($showColumn['manager_id'])
                             <td>
-                                @if ($branch->manager)
-                                    {{ $branch->manager->crud_name() }}
-                                @endif
-                            </td>
-                        @endif
-
-                        @if ($showColumn['responsible_id'])
-                            <td>
-                                @if ($branch->responsible)
-                                    {{ $branch->responsible->crud_name() }}
+                                @if ($area->manager)
+                                    {{ $area->manager->crud_name() }}
                                 @endif
                             </td>
                         @endif
 
 
                         @if ($showColumn['date'])
-                            <td> {{ date('d/m/Y', strtotime($branch->created_at)) }} </td>
+                            <td> {{ date('d/m/Y', strtotime($area->created_at)) }} </td>
                         @endif
                         @if ($showColumn['time'])
-                            <td> {{ date('h:i A', strtotime($branch->created_at)) }} </td>
+                            <td> {{ date('h:i A', strtotime($area->created_at)) }} </td>
                         @endif
 
-                        @permission('edit-branch|delete-branch|restore-branch')
+                        @permission('edit-area|delete-area|restore-area')
                             <td>
                                 @if ($admin_view_status != 'deleted')
-                                    @permission('edit-branch')
-                                        <button data-toggle="modal" data-target="#update-branch-modal"
-                                            wire:click="edit({{ $branch->id }})" class="btn btn-primary">
+                                    @permission('edit-area')
+                                        <button data-toggle="modal" data-target="#update-area-modal"
+                                            wire:click="edit({{ $area->id }})" class="btn btn-primary">
                                             <i class="ti-pencil text-white"></i>
                                         </button>
                                     @endpermission
 
-                                    @permission('delete-branch')
+                                    @permission('delete-area')
                                         <button class="btn btn-danger" type="button" data-toggle="modal"
-                                            data-target="#delete-branch-{{ $branch->id }}">
+                                            data-target="#delete-area-{{ $area->id }}">
                                             <i class="ti-trash text-white"></i>
                                         </button>
 
-                                        <div id="delete-branch-{{ $branch->id }}" class="modal fade" tabindex="-1"
-                                            role="dialog" aria-labelledby="delete-branch-{{ $branch->id }}-title"
+                                        <div id="delete-area-{{ $area->id }}" class="modal fade" tabindex="-1"
+                                            role="dialog" aria-labelledby="delete-area-{{ $area->id }}-title"
                                             aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="delete-branch-{{ $branch->id }}-title">
-                                                            {{ $branch->crud_name() }}
+                                                        <h5 class="modal-title" id="delete-area-{{ $area->id }}-title">
+                                                            {{ $area->crud_name() }}
                                                         </h5>
                                                         <button class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -229,7 +149,7 @@
                                                             {{ __('global.close') }}
                                                         </button>
 
-                                                        <button wire:click="delete({{ $branch->id }})" class="btn btn-danger"
+                                                        <button wire:click="delete({{ $area->id }})" class="btn btn-danger"
                                                             data-dismiss="modal">
                                                             {{ __('global.delete') }}
                                                         </button>
@@ -241,20 +161,20 @@
                                 @endif
 
                                 @if ($admin_view_status == 'deleted')
-                                    @permission('restore-branch')
+                                    @permission('restore-area')
                                         <button class="btn btn-danger" type="button" data-toggle="modal"
-                                            data-target="#restore-branch-{{ $branch->id }}">
+                                            data-target="#restore-area-{{ $area->id }}">
                                             <i class="ti-reload text-white"></i>
                                         </button>
 
-                                        <div wire:ignore.self id="restore-branch-{{ $branch->id }}"
-                                            aria-labelledby="restore-branch-{{ $branch->id }}-title" class="modal fade"
+                                        <div wire:ignore.self id="restore-area-{{ $area->id }}"
+                                            aria-labelledby="restore-area-{{ $area->id }}-title" class="modal fade"
                                             tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="restore-branch-{{ $branch->id }}-title">
-                                                            {{ $branch->crud_name() }}
+                                                        <h5 class="modal-title" id="restore-area-{{ $area->id }}-title">
+                                                            {{ $area->crud_name() }}
                                                         </h5>
                                                         <button class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -270,7 +190,7 @@
                                                             {{ __('global.close') }}
                                                         </button>
 
-                                                        <button wire:click="restore({{ $branch->id }})"
+                                                        <button wire:click="restore({{ $area->id }})"
                                                             class="btn btn-danger" data-dismiss="modal">
                                                             {{ __('global.restore') }}
                                                         </button>
@@ -289,6 +209,6 @@
 
         </table>
 
-        {{ $branches->links() }}
+        {{ $areas->links() }}
     </div>
 </div>
