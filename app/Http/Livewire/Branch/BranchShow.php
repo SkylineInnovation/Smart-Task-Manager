@@ -52,7 +52,9 @@ class BranchShow extends Component
 
         $this->branch->managers()->sync($this->selectedManagers);
 
-        session()->flash('message', 'Branch Updated Successfully.');
+        session()->flash('message', __('global.updated-successfully'));
+        $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('show-message', ['message' => __('global.updated-successfully')]); // show toster message
     }
 
     public function render()

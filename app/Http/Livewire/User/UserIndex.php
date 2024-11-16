@@ -169,11 +169,10 @@ class UserIndex extends Component
 
         Artisan::call('cache:clear');
 
-        session()->flash('message', 'Users Created Successfully.');
-
+        session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();
-
         $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('show-message', ['message' => __('global.created-successfully')]); // show toster message
 
         if (env('SEND_MAIL', false))
             SendNewUser::dispatch($user);
@@ -237,11 +236,11 @@ class UserIndex extends Component
             Artisan::call('cache:clear');
 
             $this->updateMode = false;
-            session()->flash('message', 'Users Updated Successfully.');
+            session()->flash('message', __('global.updated-successfully'));
             $this->resetInputFields();
+            $this->emit('close-model'); // Close model to using to jquery
+            $this->emit('show-message', ['message' => __('global.updated-successfully')]); // show toster message
         }
-
-        $this->emit('close-model'); // Close model to using to jquery
     }
 
     public function delete($id)
@@ -256,7 +255,8 @@ class UserIndex extends Component
 
             $user->delete();
 
-            session()->flash('message', 'Users Deleted Successfully.');
+            session()->flash('message', __('global.deleted-successfully'));
+            $this->emit('show-message', ['message' => __('global.deleted-successfully')]); // show toster message
         }
     }
 

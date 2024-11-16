@@ -129,11 +129,10 @@ class OtpsendcodeIndex extends Component
             'back_response' => $this->back_response,
         ]);
 
-        session()->flash('message', 'OtpSendCode Created Successfully.');
-
+        session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();
-
-        // $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('show-message', ['message' => __('global.created-successfully')]); // show toster message
     }
 
     public function edit($id)
@@ -175,11 +174,11 @@ class OtpsendcodeIndex extends Component
             ]);
 
             $this->updateMode = false;
-            session()->flash('message', 'OtpSendCode Updated Successfully.');
+            session()->flash('message', __('global.updated-successfully'));
             $this->resetInputFields();
+            $this->emit('close-model'); // Close model to using to jquery
+            $this->emit('show-message', ['message' => __('global.updated-successfully')]); // show toster message
         }
-
-        $this->emit('close-model'); // Close model to using to jquery
     }
 
     public function delete($id)
@@ -189,7 +188,8 @@ class OtpsendcodeIndex extends Component
 
             $otpsendcode->delete();
 
-            session()->flash('message', 'OtpSendCode Deleted Successfully.');
+            session()->flash('message', __('global.deleted-successfully'));
+            $this->emit('show-message', ['message' => __('global.deleted-successfully')]); // show toster message
         }
     }
 
@@ -200,7 +200,8 @@ class OtpsendcodeIndex extends Component
 
             $otpsendcode->restore();
 
-            session()->flash('message', 'OtpSendCode Recovered Successfully.');
+            session()->flash('message', __('global.recovered-successfully'));
+            $this->emit('show-message', ['message' => __('global.recovered-successfully')]); // show toster message
         }
     }
 

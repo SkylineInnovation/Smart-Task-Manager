@@ -85,7 +85,8 @@ class TaskShow extends Component
         $validatedData = $this->validate();
 
         if (in_array($this->task->status, ['auto-finished', 'manual-finished'])) {
-            session()->flash('message', 'Task Can\'t be Updated.');
+            session()->flash('message', __('global.task-cant-be-updated'));
+            $this->emit('show-message', ['message' => __('global.task-cant-be-updated')]); // show toster message
             return;
         }
 
@@ -102,17 +103,21 @@ class TaskShow extends Component
 
         $this->task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
 
-        session()->flash('message', 'Task Updated Successfully.');
+        session()->flash('message', __('global.updated-successfully'));
+        $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('show-message', ['message' => __('global.updated-successfully')]); // show toster message
     }
 
     public function moveDraft()
     {
         if ($this->task->slug == 'draft') {
             $this->task->update(['slug' => null]);
-            session()->flash('message', 'Task Un Archived Successfully.');
+            session()->flash('message', __('global.task-unarchived-successfully'));
+            $this->emit('show-message', ['message' => __('global.task-unarchived-successfully')]); // show toster message
         } else {
             $this->task->update(['slug' => 'draft']);
-            session()->flash('message', 'Task Archived Successfully.');
+            session()->flash('message', __('global.task-archived-successfully'));
+            $this->emit('show-message', ['message' => __('global.task-archived-successfully')]); // show toster message
         }
     }
 

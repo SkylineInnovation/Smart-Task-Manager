@@ -256,10 +256,18 @@ return [
     'add-branch' => 'Add Branch',
     'add-department' => 'Add Department',
 
-    'Add-User' => 'Add User',
+    'add-user' => 'Add User',
     'add-job' => 'add job',
     'add-permissions' => 'add permissions',
     'submit-task' => 'submit task',
     'submit-departure-form' => 'submit departure form',
     'submit-disbursement-permit' => 'submit disbursement permit',
+    'created-successfully' => 'Created Successfully',
+    'updated-successfully' => 'Updated Successfully',
+    'deleted-successfully' => 'Deleted Successfully',
+    'recovered-successfully' => 'Recovered Successfully',
+    'task-cant-be-updated' => 'Task Can\'t Be Updated',
+
+    'task-unarchived-successfully' => 'Task UnArchived Successfully',
+    'task-archived-successfully' => 'Task Archived Successfully',
 ];

@@ -209,6 +209,12 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     Route::middleware('permission:restore-area')->get('trash/areas', [App\Http\Controllers\AreaController::class, 'livewireDeletedIndex'])->name('area.index.trash');
     Route::get('export/areas', [App\Http\Controllers\AreaController::class, 'exportFullData'])->name('area.export');
     Route::post('import/areas', [App\Http\Controllers\AreaController::class, 'importData'])->name('area.import');
+
+    // the full routes for userdetails
+    Route::middleware('permission:index-userdetail')->get('userdetails', [App\Http\Controllers\UserDetailController::class, 'livewireIndex'])->name('userdetail.index');
+    Route::middleware('permission:restore-userdetail')->get('trash/userdetails', [App\Http\Controllers\UserDetailController::class, 'livewireDeletedIndex'])->name('userdetail.index.trash');
+    Route::get('export/userdetails', [App\Http\Controllers\UserDetailController::class, 'exportFullData'])->name('userdetail.export');
+    Route::post('import/userdetails', [App\Http\Controllers\UserDetailController::class, 'importData'])->name('userdetail.import');
 });
 
 

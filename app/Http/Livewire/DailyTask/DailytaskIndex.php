@@ -168,11 +168,10 @@ class DailytaskIndex extends Component
         $dailytask->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
         // $dailytask->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => 0]);
 
-        session()->flash('message', 'DailyTask Created Successfully.');
-
+        session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();
-
         $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('show-message', ['message' => __('global.created-successfully')]); // show toster message
 
         if (env('SEND_MAIL', false))
             SendNewDailyTask::dispatch($dailytask);
@@ -234,11 +233,11 @@ class DailytaskIndex extends Component
 
 
             $this->updateMode = false;
-            session()->flash('message', 'DailyTask Updated Successfully.');
+            session()->flash('message', __('global.updated-successfully'));
             $this->resetInputFields();
+            $this->emit('close-model'); // Close model to using to jquery
+            $this->emit('show-message', ['message' => __('global.updated-successfully')]); // show toster message
         }
-
-        $this->emit('close-model'); // Close model to using to jquery
     }
 
     public function delete($id)
@@ -248,7 +247,8 @@ class DailytaskIndex extends Component
 
             $dailytask->delete();
 
-            session()->flash('message', 'DailyTask Deleted Successfully.');
+            session()->flash('message', __('global.deleted-successfully'));
+            $this->emit('show-message', ['message' => __('global.deleted-successfully')]); // show toster message
         }
     }
 
@@ -259,7 +259,8 @@ class DailytaskIndex extends Component
 
             $dailytask->restore();
 
-            session()->flash('message', 'DailyTask Recovered Successfully.');
+            session()->flash('message', __('global.recovered-successfully'));
+            $this->emit('show-message', ['message' => __('global.recovered-successfully')]); // show toster message
         }
     }
 

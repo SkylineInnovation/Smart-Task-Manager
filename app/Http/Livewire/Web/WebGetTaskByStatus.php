@@ -342,7 +342,8 @@ class WebGetTaskByStatus extends Component
         $task = Task::find($this->task_id);
 
         if (in_array($task->status, ['auto-finished', 'manual-finished'])) {
-            session()->flash('message', 'Task Can\'t be Updated.');
+            session()->flash('message', __('global.task-cant-be-updated'));
+            $this->emit('show-message', ['message' => __('global.task-cant-be-updated')]); // show toster message
             return;
         }
 
@@ -361,9 +362,10 @@ class WebGetTaskByStatus extends Component
         ]);
 
         $task->employees()->syncWithPivotValues($this->edit_task_selectedEmployees, ['discount' => $this->edit_task_discount]);
-        session()->flash('message', 'Task Updated Successfully.');
 
-        // 
+        session()->flash('message', __('global.updated-successfully'));
+        $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('show-message', ['message' => __('global.updated-successfully')]); // show toster message
     }
 
     public function cancelTask()

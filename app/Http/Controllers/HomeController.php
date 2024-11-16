@@ -86,33 +86,6 @@ class HomeController extends Controller
 
     public function home(Request $request)
     {
-        // $user = $request->user();
-        // if (!$user->hasRole('owner|manager')) {
-        // return redirect()->route('task-board');
-        // }
-
-        // $listOfDates = [
-        //     date('Y-m-d', strtotime("-7 days")),
-        //     date('Y-m-d', strtotime("-6 days")),
-        //     date('Y-m-d', strtotime("-5 days")),
-        //     date('Y-m-d', strtotime("-4 days")),
-        //     date('Y-m-d', strtotime("-3 days")),
-        //     date('Y-m-d', strtotime("-2 days")),
-        //     date('Y-m-d', strtotime("-1 days")),
-        //     date('Y-m-d', strtotime("0 days")),
-        // ];
-
-        // $userList = [];
-
-        // for ($i = 0; $i < count($listOfDates); $i++) {
-        //     $userList[] = User::where('created_at', 'like', '%' . $listOfDates[$i] . '%')->count();
-        // }
-
-        // $listOfDates[] = date('Y-m-d', strtotime("+1 days"));
-        // $listOfDates[] = date('Y-m-d', strtotime("+2 days"));
-
-        // return view('home', compact('listOfDates', 'userList'));
-
         $company = \App\Models\Company::latest()->first();
         $mainBtns = [
             [
@@ -155,6 +128,7 @@ class HomeController extends Controller
             [
                 'image' => asset('assets/dashboard/profile.png'),
                 'text' =>  __('global.profile'),
+                'link' => route('edit.profile'),
             ],
             [
                 'image' => asset('assets/dashboard/about.png'),
@@ -163,65 +137,56 @@ class HomeController extends Controller
         ];
 
         $actionBtns = [
+            // [
+            //     'text' =>  __('global.add-region'),
+            // ],
+            // [
+            //     'text' =>  __('global.add-branch'),
+            // ],
+            // [
+            //     'text' =>  __('global.add-department'),
+            // ],
+            // [
+            //     'text' =>  __('global.add-user'),
+            // ],
             [
-
-                'text' =>  __('global.add-region'),
-            ],
-            [
-
-                'text' =>  __('global.add-branch'),
-            ],
-            [
-
-                'text' =>  __('global.add-department'),
-            ],
-            [
-
-                'text' =>  __('global.Add-User'),
-            ],
-            [
-
                 'text' =>  __('global.add-job'),
             ],
             [
-
                 'text' =>  __('global.add-permissions'),
             ],
             [
-
                 'text' =>  __('global.submit-task'),
             ],
             [
-
                 'text' =>  __('global.submit-departure-form'),
             ],
-            [
-
-                'text' =>  __('global.submit-disbursement-permit'),
-            ],
+            // [
+            //     'text' =>  __('global.submit-disbursement-permit'),
+            // ],
         ];
 
         $tasksBtns = [
             [
                 'image' => asset('assets/dashboard/task.png'),
                 'text' =>  __('global.tasks'),
-                'link' => '',
+                'link' => route('task.index'),
             ],
             [
                 'image' => asset('assets/dashboard/deduction.png'),
                 'text' =>  __('global.discounts'),
-                'link' => '',
+                'link' => route('discount.index'),
             ],
             [
                 'image' => asset('assets/dashboard/ticket.png'),
-                'text' =>  __('global.ticket'),
-                'link' => '',
+                'text' =>  __('global.leaves'),
+                'link' => route('leave.index'),
             ],
-            [
-                'image' => asset('assets/dashboard/notice.png'),
-                'text' =>  __('global.note'),
-                'link' => '',
-            ],
+            // [
+            //     'image' => asset('assets/dashboard/notice.png'),
+            //     'text' =>  __('global.note'),
+            //     'link' => '',
+            // ],
         ];
 
         return view('home', compact('mainBtns', 'actionBtns', 'tasksBtns'));

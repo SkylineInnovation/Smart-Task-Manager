@@ -180,11 +180,10 @@ class LeaveIndex extends Component
             'accepted_time' => $this->accepted_time,
         ]);
 
-        session()->flash('message', 'Leave Created Successfully.');
-
+        session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();
-
         $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('show-message', ['message' => __('global.created-successfully')]); // show toster message
 
         if (env('SEND_MAIL', false))
             SendNewLeave::dispatch($leave);
@@ -241,11 +240,11 @@ class LeaveIndex extends Component
             ]);
 
             $this->updateMode = false;
-            session()->flash('message', 'Leave Updated Successfully.');
+            session()->flash('message', __('global.updated-successfully'));
             $this->resetInputFields();
+            $this->emit('close-model'); // Close model to using to jquery
+            $this->emit('show-message', ['message' => __('global.updated-successfully')]); // show toster message
         }
-
-        $this->emit('close-model'); // Close model to using to jquery
     }
 
     public function delete($id)
@@ -255,7 +254,8 @@ class LeaveIndex extends Component
 
             $leave->delete();
 
-            session()->flash('message', 'Leave Deleted Successfully.');
+            session()->flash('message', __('global.deleted-successfully'));
+            $this->emit('show-message', ['message' => __('global.deleted-successfully')]); // show toster message
         }
     }
 
@@ -266,7 +266,8 @@ class LeaveIndex extends Component
 
             $leave->restore();
 
-            session()->flash('message', 'Leave Recovered Successfully.');
+            session()->flash('message', __('global.recovered-successfully'));
+            $this->emit('show-message', ['message' => __('global.recovered-successfully')]); // show toster message
         }
     }
 
@@ -360,6 +361,7 @@ class LeaveIndex extends Component
         ]);
 
         $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('show-message', ['message' => __('global.created-successfully')]); // show toster message
 
     }
 

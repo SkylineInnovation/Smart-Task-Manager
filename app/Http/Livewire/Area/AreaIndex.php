@@ -120,11 +120,10 @@ class AreaIndex extends Component
             'manager_id' => $this->manager_id,
         ]);
 
-        session()->flash('message', 'Area Created Successfully.');
-
+        session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();
-
         $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('show-message', ['message' => __('global.created-successfully')]); // show toster message
     }
 
     public function edit($id)
@@ -161,11 +160,11 @@ class AreaIndex extends Component
             ]);
 
             $this->updateMode = false;
-            session()->flash('message', 'Area Updated Successfully.');
+            session()->flash('message', __('global.updated-successfully'));
             $this->resetInputFields();
+            $this->emit('close-model'); // Close model to using to jquery
+            $this->emit('show-message', ['message' => __('global.updated-successfully')]); // show toster message
         }
-
-        $this->emit('close-model'); // Close model to using to jquery
     }
 
     public function delete($id)
@@ -175,7 +174,8 @@ class AreaIndex extends Component
 
             $area->delete();
 
-            session()->flash('message', 'Area Deleted Successfully.');
+            session()->flash('message', __('global.deleted-successfully'));
+            $this->emit('show-message', ['message' => __('global.deleted-successfully')]); // show toster message
         }
     }
 
@@ -186,7 +186,8 @@ class AreaIndex extends Component
 
             $area->restore();
 
-            session()->flash('message', 'Area Recovered Successfully.');
+            session()->flash('message', __('global.recovered-successfully'));
+            $this->emit('show-message', ['message' => __('global.recovered-successfully')]); // show toster message
         }
     }
 

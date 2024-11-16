@@ -120,3 +120,11 @@
         </a>
     </li>
 @endpermission
+
+@permission('restore-userdetail')
+    <li>
+        <a class='slide-item' href='{{ route('userdetail.index.trash') }}'>
+            <span>{{ __('global.userdetails') }}</span>
+        </a>
+    </li>
+@endpermission

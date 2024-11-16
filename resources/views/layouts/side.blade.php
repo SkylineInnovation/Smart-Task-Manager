@@ -101,3 +101,11 @@
         </a>
     </li>
 @endpermission
+
+@permission('index-userdetail')
+    <li>
+        <a class='slide-item' href='{{ route('userdetail.index') }}'>
+            <span>{{ __('global.userdetails') }}</span>
+        </a>
+    </li>
+@endpermission

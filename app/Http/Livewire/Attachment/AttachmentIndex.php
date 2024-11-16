@@ -159,11 +159,10 @@ class AttachmentIndex extends Component
             'main_attachment_id' => $this->main_attachment_id,
         ]);
 
-        session()->flash('message', 'Attachment Created Successfully.');
-
+        session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();
-
         $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('show-message', ['message' => __('global.created-successfully')]); // show toster message
 
         if (env('SEND_MAIL', false))
             SendNewAttachment::dispatch($attachment);
@@ -208,11 +207,11 @@ class AttachmentIndex extends Component
             ]);
 
             $this->updateMode = false;
-            session()->flash('message', 'Attachment Updated Successfully.');
+            session()->flash('message', __('global.updated-successfully'));
             $this->resetInputFields();
+            $this->emit('close-model'); // Close model to using to jquery
+            $this->emit('show-message', ['message' => __('global.updated-successfully')]); // show toster message
         }
-
-        $this->emit('close-model'); // Close model to using to jquery
     }
 
     public function delete($id)
@@ -222,7 +221,8 @@ class AttachmentIndex extends Component
 
             $attachment->delete();
 
-            session()->flash('message', 'Attachment Deleted Successfully.');
+            session()->flash('message', __('global.deleted-successfully'));
+            $this->emit('show-message', ['message' => __('global.deleted-successfully')]); // show toster message
         }
     }
 
@@ -233,7 +233,8 @@ class AttachmentIndex extends Component
 
             $attachment->restore();
 
-            session()->flash('message', 'Attachment Recovered Successfully.');
+            session()->flash('message', __('global.recovered-successfully'));
+            $this->emit('show-message', ['message' => __('global.recovered-successfully')]); // show toster message
         }
     }
 

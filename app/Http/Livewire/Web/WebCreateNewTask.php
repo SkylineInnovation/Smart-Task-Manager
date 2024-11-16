@@ -110,13 +110,11 @@ class WebCreateNewTask extends Component
 
         $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
 
-        session()->flash('message', 'Task Created Successfully.');
-
+        session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();
-
-        $this->emit('render-index'); // Close model to using to jquery
-
         $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('show-message', ['message' => __('global.created-successfully')]); // show toster message        
+        $this->emit('render-index'); // Close model to using to jquery
 
         if (env('SEND_MAIL', false))
             SendNewTask::dispatch($task);
