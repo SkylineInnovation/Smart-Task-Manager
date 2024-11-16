@@ -141,11 +141,10 @@ class DiscountIndex extends Component
             'reason' => $this->reason,
         ]);
 
-        session()->flash('message', 'Discount Created Successfully.');
-
+        session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();
-
         $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('show-message', ['message' => __('global.created-successfully')]); // show toster message
 
         if (env('SEND_MAIL', false))
             SendNewDiscount::dispatch($discount);
@@ -187,11 +186,11 @@ class DiscountIndex extends Component
             ]);
 
             $this->updateMode = false;
-            session()->flash('message', 'Discount Updated Successfully.');
+            session()->flash('message', __('global.updated-successfully'));
             $this->resetInputFields();
+            $this->emit('close-model'); // Close model to using to jquery
+            $this->emit('show-message', ['message' => __('global.updated-successfully')]); // show toster message
         }
-
-        $this->emit('close-model'); // Close model to using to jquery
     }
 
     public function delete($id)
@@ -201,7 +200,8 @@ class DiscountIndex extends Component
 
             $discount->delete();
 
-            session()->flash('message', 'Discount Deleted Successfully.');
+            session()->flash('message', __('global.deleted-successfully'));
+            $this->emit('show-message', ['message' => __('global.deleted-successfully')]); // show toster message
         }
     }
 
@@ -212,7 +212,8 @@ class DiscountIndex extends Component
 
             $discount->restore();
 
-            session()->flash('message', 'Discount Recovered Successfully.');
+            session()->flash('message', __('global.recovered-successfully'));
+            $this->emit('show-message', ['message' => __('global.recovered-successfully')]); // show toster message
         }
     }
 

@@ -204,4 +204,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Branch::class, 'branch_manager', 'branch_id', 'manager_id');
     }
+
+    public function details()
+    {
+        return $this->hasMany(UserDetail::class);
+    }
+
+    public function detail()
+    {
+        return $this->hasOne(UserDetail::class)->latestOfMany();
+    }
 }

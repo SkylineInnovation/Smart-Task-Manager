@@ -35,6 +35,16 @@
                         </div>
                         <div class="card-body">
                             <div class="row w-100 m-0">
+
+                                {{-- // DONE --}}
+                                <livewire:dashboard.dashboard-add-region />
+                                {{-- // DONE --}}
+                                <livewire:dashboard.dashboard-add-branch />
+                                {{-- // DONE --}}
+                                <livewire:dashboard.dashboard-add-department />
+
+                                <livewire:dashboard.dashboard-add-user />
+
                                 @foreach ($actionBtns as $actionBtn)
                                     @include('Web.components.quick-btn', [
                                         'text' => $actionBtn['text'],
@@ -255,6 +265,24 @@
 @section('js')
     <script type="text/javascript">
         $(function() {
+            // 
+        });
+    </script>
+@endsection
+
+@section('livewire-js')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            window.livewire.on('close-model', () => {
+                $('#create-new-area-modal').modal('hide');
+
+                $('#create-new-branch-modal').modal('hide');
+
+                $('#create-new-department-modal').modal('hide');
+
+                $('#create-new-user-modal').modal('hide');
+            });
+
             // 
         });
     </script>

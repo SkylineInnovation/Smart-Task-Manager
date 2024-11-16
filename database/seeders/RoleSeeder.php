@@ -70,6 +70,8 @@ class RoleSeeder extends Seeder
             'branch',
             'company',
             'area',
+
+            'userdetail',
         ];
 
         foreach ($lists as $item) {

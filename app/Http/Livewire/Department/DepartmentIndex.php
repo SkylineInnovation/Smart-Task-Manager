@@ -124,9 +124,9 @@ class DepartmentIndex extends Component
             // 'slug' => $this-slug,
 
 
+            'name' => 'required',
             'branch_id' => 'required',
             'manager_id' => 'required',
-            'name' => 'required',
         ];
     }
 
@@ -148,11 +148,10 @@ class DepartmentIndex extends Component
             'name' => $this->name,
         ]);
 
-        session()->flash('message', 'Department Created Successfully.');
-
+        session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();
-
         $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('show-message', ['message' => __('global.created-successfully')]); // show toster message
     }
 
     public function edit($id)
@@ -189,11 +188,11 @@ class DepartmentIndex extends Component
             ]);
 
             $this->updateMode = false;
-            session()->flash('message', 'Department Updated Successfully.');
+            session()->flash('message', __('global.updated-successfully'));
             $this->resetInputFields();
+            $this->emit('close-model'); // Close model to using to jquery
+            $this->emit('show-message', ['message' => __('global.updated-successfully')]); // show toster message
         }
-
-        $this->emit('close-model'); // Close model to using to jquery
     }
 
     public function delete($id)
@@ -203,7 +202,8 @@ class DepartmentIndex extends Component
 
             $department->delete();
 
-            session()->flash('message', 'Department Deleted Successfully.');
+            session()->flash('message', __('global.deleted-successfully'));
+            $this->emit('show-message', ['message' => __('global.deleted-successfully')]); // show toster message
         }
     }
 
@@ -214,7 +214,8 @@ class DepartmentIndex extends Component
 
             $department->restore();
 
-            session()->flash('message', 'Department Recovered Successfully.');
+            session()->flash('message', __('global.recovered-successfully'));
+            $this->emit('show-message', ['message' => __('global.recovered-successfully')]); // show toster message
         }
     }
 

@@ -244,12 +244,16 @@ return [
     'add-region' => 'إضافة منطقة',
     'add-branch' => 'إضافة فرع',
     'add-department' => 'إضافة قسم',
-    'Add-User' => 'إضافة مستخدم',
+
+    'add-user' => 'إضافة مستخدم',
     'add-job' => 'إضافة وظيفة',
     'add-permissions' => 'إضافة أذونات',
     'submit-task' => 'إرسال مهمة',
     'submit-departure-form' => 'إرسال نموذج المغادرة',
     'submit-disbursement-permit' => 'إرسال تصريح الصرف',
-
+    'created-successfully' => 'تم الاضافة بنجاح',
+    'updated-successfully' => 'تم التحديث بنجاح',
+    'deleted-successfully' => 'تم الحذف بنجاح',
+    'recovered-successfully' => 'تم استردادها بنجاح',
 
 ];

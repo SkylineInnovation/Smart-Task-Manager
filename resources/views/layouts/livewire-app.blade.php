@@ -12,6 +12,10 @@
 
     @include('layouts.Components.head')
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+
+
     @livewireStyles
 
     @stack('styles')
@@ -93,6 +97,8 @@
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 
     @livewireScripts
@@ -102,6 +108,30 @@
     @yield('livewire-js')
 
     @yield('js')
+
+    <script type="text/javascript">
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-bottom-left zindex",
+        };
+
+        @if (App::getLocale() == 'ar')
+            toastr.options.positionClass = "toast-bottom-right";
+        @endif
+
+
+        $(document).ready(function() {
+
+            Livewire.on('show-message', data => {
+                console.log("message -> " + data['message']);
+
+                toastr.success(data['message']);
+            });
+        });
+    </script>
 
 </body>
 

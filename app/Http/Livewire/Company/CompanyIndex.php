@@ -160,11 +160,10 @@ class CompanyIndex extends Component
             'logo' => HomeController::saveImageWeb($this->logo, 'company'),
         ]);
 
-        session()->flash('message', 'Company Created Successfully.');
-
+        session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();
-
         $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('show-message', ['message' => __('global.created-successfully')]); // show toster message
     }
 
     public function edit($id)
@@ -218,11 +217,11 @@ class CompanyIndex extends Component
             ]);
 
             $this->updateMode = false;
-            session()->flash('message', 'Company Updated Successfully.');
+            session()->flash('message', __('global.updated-successfully'));
             $this->resetInputFields();
+            $this->emit('close-model'); // Close model to using to jquery
+            $this->emit('show-message', ['message' => __('global.updated-successfully')]); // show toster message
         }
-
-        $this->emit('close-model'); // Close model to using to jquery
     }
 
     public function delete($id)
@@ -232,7 +231,8 @@ class CompanyIndex extends Component
 
             $company->delete();
 
-            session()->flash('message', 'Company Deleted Successfully.');
+            session()->flash('message', __('global.deleted-successfully'));
+            $this->emit('show-message', ['message' => __('global.deleted-successfully')]); // show toster message
         }
     }
 
@@ -243,7 +243,8 @@ class CompanyIndex extends Component
 
             $company->restore();
 
-            session()->flash('message', 'Company Recovered Successfully.');
+            session()->flash('message', __('global.recovered-successfully'));
+            $this->emit('show-message', ['message' => __('global.recovered-successfully')]); // show toster message
         }
     }
 

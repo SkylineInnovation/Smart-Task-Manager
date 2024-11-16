@@ -183,11 +183,10 @@ class TaskIndex extends Component
 
         $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
 
-        session()->flash('message', 'Task Created Successfully.');
-
+        session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();
-
         $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('show-message', ['message' => __('global.created-successfully')]); // show toster message
 
         if (env('SEND_MAIL', false))
             SendNewTask::dispatch($task);
@@ -231,7 +230,9 @@ class TaskIndex extends Component
             $task = Task::find($this->task_id);
 
             if (in_array($task->status, ['auto-finished', 'manual-finished'])) {
-                session()->flash('message', 'Task Can\'t be Updated.');
+
+                session()->flash('message', __('global.task-cant-be-updated'));
+                $this->emit('show-message', ['message' => __('global.task-cant-be-updated')]); // show toster message
                 return;
             }
 
@@ -253,11 +254,11 @@ class TaskIndex extends Component
             $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
 
             $this->updateMode = false;
-            session()->flash('message', 'Task Updated Successfully.');
+            session()->flash('message', __('global.updated-successfully'));
             $this->resetInputFields();
+            $this->emit('close-model'); // Close model to using to jquery
+            $this->emit('show-message', ['message' => __('global.updated-successfully')]); // show toster message
         }
-
-        $this->emit('close-model'); // Close model to using to jquery
     }
 
     public function delete($id)
@@ -267,7 +268,8 @@ class TaskIndex extends Component
 
             $task->delete();
 
-            session()->flash('message', 'Task Deleted Successfully.');
+            session()->flash('message', __('global.deleted-successfully'));
+            $this->emit('show-message', ['message' => __('global.deleted-successfully')]); // show toster message
         }
     }
 
@@ -278,7 +280,8 @@ class TaskIndex extends Component
 
             $task->restore();
 
-            session()->flash('message', 'Task Recovered Successfully.');
+            session()->flash('message', __('global.recovered-successfully'));
+            $this->emit('show-message', ['message' => __('global.recovered-successfully')]); // show toster message
         }
     }
 

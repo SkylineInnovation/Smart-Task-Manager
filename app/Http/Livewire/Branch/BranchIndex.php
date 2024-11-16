@@ -167,11 +167,10 @@ class BranchIndex extends Component
             'responsible_id' => $this->responsible_id,
         ]);
 
-        session()->flash('message', 'Branch Created Successfully.');
-
+        session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();
-
         $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('show-message', ['message' => __('global.created-successfully')]); // show toster message
     }
 
     public function edit($id)
@@ -226,11 +225,12 @@ class BranchIndex extends Component
             ]);
 
             $this->updateMode = false;
-            session()->flash('message', 'Branch Updated Successfully.');
-            $this->resetInputFields();
-        }
 
-        $this->emit('close-model'); // Close model to using to jquery
+            session()->flash('message', __('global.updated-successfully'));
+            $this->resetInputFields();
+            $this->emit('close-model'); // Close model to using to jquery
+            $this->emit('show-message', ['message' => __('global.updated-successfully')]); // show toster message
+        }
     }
 
     public function delete($id)
@@ -240,7 +240,8 @@ class BranchIndex extends Component
 
             $branch->delete();
 
-            session()->flash('message', 'Branch Deleted Successfully.');
+            session()->flash('message', __('global.deleted-successfully'));
+            $this->emit('show-message', ['message' => __('global.deleted-successfully')]); // show toster message
         }
     }
 
@@ -251,7 +252,8 @@ class BranchIndex extends Component
 
             $branch->restore();
 
-            session()->flash('message', 'Branch Recovered Successfully.');
+            session()->flash('message', __('global.deleted-successfully'));
+            $this->emit('show-message', ['message' => __('global.deleted-successfully')]); // show toster message
         }
     }
 

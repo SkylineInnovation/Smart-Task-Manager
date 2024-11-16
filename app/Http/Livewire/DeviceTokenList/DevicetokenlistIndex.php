@@ -125,11 +125,10 @@ class DevicetokenlistIndex extends Component
             'device_token' => $this->device_token,
         ]);
 
-        session()->flash('message', 'DeviceTokenList Created Successfully.');
-
+        session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();
-
-        // $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('show-message', ['message' => __('global.created-successfully')]); // show toster message
     }
 
     public function edit($id)
@@ -169,11 +168,11 @@ class DevicetokenlistIndex extends Component
             ]);
 
             $this->updateMode = false;
-            session()->flash('message', 'DeviceTokenList Updated Successfully.');
+            session()->flash('message', __('global.updated-successfully'));
             $this->resetInputFields();
+            $this->emit('close-model'); // Close model to using to jquery
+            $this->emit('show-message', ['message' => __('global.updated-successfully')]); // show toster message
         }
-
-        $this->emit('close-model'); // Close model to using to jquery
     }
 
     public function delete($id)
@@ -183,7 +182,8 @@ class DevicetokenlistIndex extends Component
 
             $devicetokenlist->delete();
 
-            session()->flash('message', 'DeviceTokenList Deleted Successfully.');
+            session()->flash('message', __('global.deleted-successfully'));
+            $this->emit('show-message', ['message' => __('global.deleted-successfully')]); // show toster message
         }
     }
 
@@ -194,7 +194,8 @@ class DevicetokenlistIndex extends Component
 
             $devicetokenlist->restore();
 
-            session()->flash('message', 'DeviceTokenList Recovered Successfully.');
+            session()->flash('message', __('global.recovered-successfully'));
+            $this->emit('show-message', ['message' => __('global.recovered-successfully')]); // show toster message
         }
     }
 

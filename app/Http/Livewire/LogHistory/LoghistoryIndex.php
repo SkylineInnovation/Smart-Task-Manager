@@ -168,11 +168,10 @@ class LoghistoryIndex extends Component
             'color' => $this->color,
         ]);
 
-        session()->flash('message', 'LogHistory Created Successfully.');
-
+        session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();
-
         $this->emit('close-model'); // Close model to using to jquery
+        $this->emit('show-message', ['message' => __('global.created-successfully')]); // show toster message
     }
 
     public function edit($id)
@@ -226,11 +225,11 @@ class LoghistoryIndex extends Component
             ]);
 
             $this->updateMode = false;
-            session()->flash('message', 'LogHistory Updated Successfully.');
+            session()->flash('message', __('global.updated-successfully'));
             $this->resetInputFields();
+            $this->emit('close-model'); // Close model to using to jquery
+            $this->emit('show-message', ['message' => __('global.updated-successfully')]); // show toster message
         }
-
-        $this->emit('close-model'); // Close model to using to jquery
     }
 
     public function delete($id)
@@ -241,7 +240,8 @@ class LoghistoryIndex extends Component
 
             $loghistory->delete();
 
-            session()->flash('message', 'LogHistory Deleted Successfully.');
+            session()->flash('message', __('global.deleted-successfully'));
+            $this->emit('show-message', ['message' => __('global.deleted-successfully')]); // show toster message
         }
     }
 
@@ -252,7 +252,8 @@ class LoghistoryIndex extends Component
 
             $loghistory->restore();
 
-            session()->flash('message', 'LogHistory Recovered Successfully.');
+            session()->flash('message', __('global.recovered-successfully'));
+            $this->emit('show-message', ['message' => __('global.recovered-successfully')]); // show toster message
         }
     }
 
