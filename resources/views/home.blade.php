@@ -30,6 +30,7 @@
                                 @include('Web.components.main-btn', [
                                     'image' => $Mbtn['image'],
                                     'text' => $Mbtn['text'],
+                                    'link' => $Mbtn['link'] ?? '',
                                 ])
                             @endforeach
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\DailyTask;
 use App\Models\Task;
 use App\Models\User;
@@ -112,27 +113,32 @@ class HomeController extends Controller
 
         // return view('home', compact('listOfDates', 'userList'));
 
-
+        $company = \App\Models\Company::latest()->first();
         $mainBtns = [
             [
                 'image' => asset('assets/dashboard/company.png'),
                 'text' =>  __('global.company'),
+                'link' => $company ? route('company.show', $company) : '#',
             ],
             [
                 'image' => asset('assets/dashboard/region.png'),
                 'text' =>  __('global.region'),
+                'link' => route('area.index'),
             ],
             [
                 'image' => asset('assets/dashboard/branch.png'),
                 'text' =>  __('global.branch'),
+                'link' => route('branch.index'),
             ],
             [
                 'image' => asset('assets/dashboard/department.png'),
                 'text' =>  __('global.departments'),
+                'link' => route('department.index'),
             ],
             [
                 'image' => asset('assets/dashboard/person.png'),
                 'text' =>  __('global.person'),
+                'link' => route('user.index'),
             ],
             [
                 'image' => asset('assets/dashboard/employee.png'),
