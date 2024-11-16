@@ -45,6 +45,10 @@
                         <td>{{ __('area.manager') }}</td>
                     @endif
 
+                    @if ($showColumn['branches'])
+                        <td>{{ __('area.branches') }}</td>
+                    @endif
+
 
                     @if ($showColumn['date'])
                         <td>{{ __('global.date') }}</td>
@@ -99,6 +103,12 @@
                                 @if ($area->manager)
                                     {{ $area->manager->crud_name() }}
                                 @endif
+                            </td>
+                        @endif
+
+                        @if ($showColumn['branches'])
+                            <td>
+                                {{ $area->branches->count() }}
                             </td>
                         @endif
 

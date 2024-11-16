@@ -15,5 +15,6 @@ return [
 
     'manager' => 'manager',
 
+    'branches' => 'branches',
 
 ];

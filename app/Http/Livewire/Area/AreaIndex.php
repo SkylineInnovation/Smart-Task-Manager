@@ -67,6 +67,7 @@ class AreaIndex extends Component
             'name' => true,
             'location' => true,
             'manager_id' => true,
+            'branches' => true,
 
             // 'status' => false,
             'date' => true,
