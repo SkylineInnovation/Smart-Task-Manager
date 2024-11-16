@@ -32,17 +32,23 @@
                         <td>{{ __('global.slug') }}</td>
                     @endif
 
+                    @if ($showColumn['name'])
+                        <td>{{ __('department.name') }}</td>
+                    @endif
 
                     @if ($showColumn['branch_id'])
                         <td>{{ __('department.branch') }}</td>
                     @endif
 
+                    @if ($showColumn['area_id'])
+                        <td>{{ __('department.area') }}</td>
+                    @endif
+
                     @if ($showColumn['manager_id'])
                         <td>{{ __('department.manager') }}</td>
                     @endif
-
-                    @if ($showColumn['name'])
-                        <td>{{ __('department.name') }}</td>
+                    @if ($showColumn['employee'])
+                        <td>{{ __('department.employee') }}</td>
                     @endif
 
 
@@ -85,11 +91,22 @@
                             <td> {{ $department->slug }} </td>
                         @endif
 
+                        @if ($showColumn['name'])
+                            <td> {{ $department->name }} </td>
+                        @endif
+
 
                         @if ($showColumn['branch_id'])
                             <td>
                                 @if ($department->branch)
                                     {{ $department->branch->crud_name() }}
+                                @endif
+                            </td>
+                        @endif
+                        @if ($showColumn['area_id'])
+                            <td>
+                                @if ($department->branch && $department->branch->area)
+                                    {{ $department->branch->area->crud_name() }}
                                 @endif
                             </td>
                         @endif
@@ -101,9 +118,10 @@
                                 @endif
                             </td>
                         @endif
-
-                        @if ($showColumn['name'])
-                            <td> {{ $department->name }} </td>
+                        @if ($showColumn['employee'])
+                            <td>
+                                {{ $department->employees->count() }}
+                            </td>
                         @endif
 
 

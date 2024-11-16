@@ -37,6 +37,12 @@
                         {{ __('global.branches') }}
                     </a>
                 </li>
+
+                <li aria-haspopup="true">
+                    <a href="{{ route('department.index') }}">
+                        {{ __('global.departments') }}
+                    </a>
+                </li>
             </ul>
         </li>
 
@@ -85,14 +91,6 @@
                         <li aria-haspopup="true">
                             <a href="{{ route('user.index') }}">
                                 {{ __('global.users') }}
-                            </a>
-                        </li>
-                    @endpermission
-
-                    @permission('index-department')
-                        <li aria-haspopup="true">
-                            <a href="{{ route('department.index') }}">
-                                {{ __('global.departments') }}
                             </a>
                         </li>
                     @endpermission

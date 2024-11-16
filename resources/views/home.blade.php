@@ -122,8 +122,7 @@
 
                     </div>
                 </div>
-                <div class="col-md-12 p-0">
-
+                {{-- <div class="col-md-12 p-0">
                     <div class="card">
                         <div class="card-header bg-dark text-light">
                             <div class="col-md-12">
@@ -143,12 +142,10 @@
                                         'text' => $actionBtn['text'],
                                     ])
                                 @endforeach
-
                             </div>
                         </div>
-
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="col-lg-6 p{{ App::getLocale() == 'en' ? 'e' : 'e' }}-0  col-xl-6 col-md-6 col-sm-12 col-12">
                 <div class="col-md-12 p-0">

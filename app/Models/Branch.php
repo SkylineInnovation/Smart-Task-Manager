@@ -122,7 +122,7 @@ class Branch extends Model
 
     public function crud_name()
     {
-        return $this->id;
+        return $this->name;
     }
 
     // public function name($lang = null)

@@ -64,22 +64,21 @@ class DepartmentIndex extends Component
             $the_manager = $this->user;
         }
 
+        $this->managers = \App\Models\User::whereRoleIs('owner')->orWhereRoleIs('manager')->orderBy('first_name')->get();
+
         if ($the_manager) {
             $this->the_manager = $the_manager;
             $this->manager_id = $the_manager->id;
 
-            $this->managers = collect([$the_manager]);
-        } else {
-            $this->managers = \App\Models\User::whereRoleIs('manager')->orderBy('first_name')->get();
+            // $this->managers = collect([$the_manager]);
         }
 
+        $this->branches = \App\Models\Branch::where('show', 1)->orderBy('sort')->get();
         if ($the_branch) {
             $this->the_branch = $the_branch;
             $this->branch_id = $the_branch->id;
 
-            $this->branches = collect([$the_branch]);
-        } else {
-            $this->branches = \App\Models\Branch::where('show', 1)->orderBy('sort')->get();
+            // $this->branches = collect([$the_branch]);
         }
 
 
@@ -89,9 +88,11 @@ class DepartmentIndex extends Component
             'slug' => false,
 
 
-            'branch_id' => !$this->the_branch ? true : false,
-            'manager_id' => !$this->the_manager ? true : false,
             'name' => true,
+            'branch_id' => !$this->the_branch ? true : false,
+            'area_id' => true,
+            'manager_id' => !$this->the_manager ? true : false,
+            'employee' => true,
 
             // 'status' => false,
             'date' => false,
@@ -258,15 +259,15 @@ class DepartmentIndex extends Component
         $this->filter_managers_id[] = $val;
     }
 
-    public function updatedBranchId($val)
-    {
-        $branch = Branch::find($this->branch_id);
+    // public function updatedBranchId($val)
+    // {
+    //     $branch = Branch::find($this->branch_id);
 
-        if ($branch)
-            $this->managers = $branch->managers;
-        else
-            $this->managers = \App\Models\User::whereRoleIs('manager')->orderBy('first_name')->get();
-    }
+    //     if ($branch)
+    //         $this->managers = $branch->managers;
+    //     else
+    //         $this->managers = \App\Models\User::whereRoleIs('manager')->orderBy('first_name')->get();
+    // }
 
 
 
