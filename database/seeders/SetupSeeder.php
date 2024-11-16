@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Applang;
 use App\Models\Appsetting;
+use App\Models\Company;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -58,5 +60,21 @@ class SetupSeeder extends Seeder
         //         'icons_color' => '#FF5200',
         //     ]);
 
+
+        // 
+        $company = Company::latest()->first();
+        if (!$company)
+            Company::create([
+                'name' => 'Codexal',
+                'address' => 'Amman',
+                'phone' => '06',
+                'number' => '06',
+                'fax' => '06',
+                'email' => 'info@codexal.co',
+                'website' => 'codexal.co',
+                'commercial_register' => '',
+                'technical_director_id' => User::whereRoleIs('owner')->orderBy('first_name')->first()->id ?? 0,
+                'financial_director_id' => User::whereRoleIs('owner')->orderBy('first_name')->first()->id ?? 0,
+            ]);
     }
 }

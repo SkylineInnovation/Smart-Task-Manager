@@ -58,6 +58,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'company' => [
+            'driver' => 'company',
+            'root' => storage_path('app/company'),
+            'url' => env('APP_URL') . '/company',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -88,6 +95,7 @@ return [
 
         // public_path('applang') => storage_path('app/applang'),
         public_path('attachment') => storage_path('app/attachment'),
+        public_path('company') => storage_path('app/company'),
 
     ],
 

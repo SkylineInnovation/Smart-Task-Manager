@@ -85,3 +85,11 @@
         </a>
     </li>
 @endpermission
+
+@permission('index-company')
+    <li>
+        <a class='slide-item' href='{{ route('company.index') }}'>
+            <span>{{ __('global.companies') }}</span>
+        </a>
+    </li>
+@endpermission

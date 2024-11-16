@@ -68,6 +68,7 @@ class RoleSeeder extends Seeder
 
             'department',
             'branch',
+            'company',
         ];
 
         foreach ($lists as $item) {
@@ -145,6 +146,7 @@ class RoleSeeder extends Seeder
             'show-user',
             'show-task',
             'show-branch',
+            'show-company',
         ];
 
         foreach ($customPermissions as $customPermission) {

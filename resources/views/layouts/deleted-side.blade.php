@@ -104,3 +104,11 @@
         </a>
     </li>
 @endpermission
+
+@permission('restore-company')
+    <li>
+        <a class='slide-item' href='{{ route('company.index.trash') }}'>
+            <span>{{ __('global.companies') }}</span>
+        </a>
+    </li>
+@endpermission
