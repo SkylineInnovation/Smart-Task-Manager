@@ -136,11 +136,11 @@ class HomeController extends Controller
             ],
             [
                 'image' => asset('assets/dashboard/employee.png'),
-                'text' =>  __('global.employee'),
+                'text' =>  __('global.job'),
             ],
             [
                 'image' => asset('assets/dashboard/team.png'),
-                'text' =>  __('global.team'),
+                'text' =>  __('global.permissions'),
             ],
             [
                 'image' => asset('assets/dashboard/report.png'),
