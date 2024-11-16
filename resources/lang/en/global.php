@@ -166,6 +166,9 @@ return [
     'loghistories' => 'Log Histories',
     'create-loghistory' => 'Create New History',
 
+    'areas' => 'areas',
+    'create-area' => 'Create New Area',
+
     'employees' => 'Employees',
     'managers' => 'Managers',
     'task-board' => 'Task Board',

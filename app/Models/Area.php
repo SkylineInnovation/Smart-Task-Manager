@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
 // use Laratrust\Traits\LaratrustUserTrait;
 
-class Branch extends Model
+class Area extends Model
 {
     // use LaratrustUserTrait;
     use HasFactory;
@@ -58,16 +58,7 @@ class Branch extends Model
 
         'name',
         'location',
-        'phone',
-        'number',
-        'fax',
-        'email',
-        'password',
-        'website',
-        'commercial_register',
-        'area_id',
         'manager_id',
-        'responsible_id',
 
         'show',
         'sort',
@@ -122,7 +113,7 @@ class Branch extends Model
 
     public function crud_name()
     {
-        return $this->id;
+        return $this->name;
     }
 
     // public function name($lang = null)
@@ -146,16 +137,7 @@ class Branch extends Model
 
             $q->orWhereSearch('name', $search);
             $q->orWhereSearch('location', $search);
-            $q->orWhereSearch('phone', $search);
-            $q->orWhereSearch('number', $search);
-            $q->orWhereSearch('fax', $search);
-            $q->orWhereSearch('email', $search);
-            $q->orWhereSearch('password', $search);
-            $q->orWhereSearch('website', $search);
-            $q->orWhereSearch('commercial_register', $search);
-            $q->orWhere('area_id', $search);
             $q->orWhere('manager_id', $search);
-            $q->orWhere('responsible_id', $search);
 
             // })->orWhereHas('add_by_user', function ($q) use ($search) {
             //     $q->orWhereSearch('first_name', $search);
@@ -173,20 +155,8 @@ class Branch extends Model
 
 
 
-    public function area()
-    {
-        return $this->belongsTo(Area::class);
-    }
-
-
     public function manager()
     {
         return $this->belongsTo(User::class, 'manager_id');
-    }
-
-
-    public function responsible()
-    {
-        return $this->belongsTo(User::class, 'responsible_id');
     }
 }

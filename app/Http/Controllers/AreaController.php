@@ -2,28 +2,28 @@
 
 namespace App\Http\Controllers;
 
-// use App\Models\Branch;
+// use App\Models\Area;
 use Illuminate\Support\Facades\Redirect;
 // use Illuminate\Support\Facades\Auth;
 // use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\Branch\FullBranchsExport;
-use App\Imports\Branch\FullBranchsImport;
+use App\Exports\Area\FullAreasExport;
+use App\Imports\Area\FullAreasImport;
 
 
-class BranchController extends Controller
+class AreaController extends Controller
 {
     public function livewireIndex()
     {
         $admin_view_status = 'all';
-        return view('pages.crud.branch.branch-home', compact('admin_view_status'));
+        return view('pages.crud.area.area-home', compact('admin_view_status'));
     }
 
     public function livewireDeletedIndex()
     {
         $admin_view_status = 'deleted';
-        return view('pages.crud.branch.branch-home', compact('admin_view_status'));
+        return view('pages.crud.area.area-home', compact('admin_view_status'));
     }
 
     public function exportFullData(Request $request)
@@ -32,12 +32,12 @@ class BranchController extends Controller
         // if (auth()->user()->hasRole('owner'))
         $extension = '.xlsx';
 
-        $name = 'branches-' . date('Y-m-d') . $extension;
+        $name = 'areas-' . date('Y-m-d') . $extension;
         $by_date = $request->input('by_date', 'created_at');
         $from_date = $request->input('from_date', date('Y-m-d', strtotime("-150 days")));
         $to_date = $request->input('to_date', date('Y-m-d'));
 
-        return Excel::download(new FullBranchsExport($by_date, $from_date, $to_date), $name);
+        return Excel::download(new FullAreasExport($by_date, $from_date, $to_date), $name);
     }
 
     public function importData(Request $request)
@@ -51,7 +51,7 @@ class BranchController extends Controller
         $import_type = $request->input('import_type', 'stander');
 
         if ($import_type == 'stander') {
-            Excel::import(new FullBranchsImport, $request->excel_file);
+            Excel::import(new FullAreasImport, $request->excel_file);
         }
 
         return Redirect::back()->with('success', 'Data Imported Successfully');

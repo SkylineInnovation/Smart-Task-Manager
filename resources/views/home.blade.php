@@ -39,8 +39,20 @@
                         </div>
 
                     </div>
+<<<<<<< HEAD
                 </div>
                 <div class="col-md-12 p-0">
+=======
+                    <div class="card-body">
+                        <div class="row w-100 m-0">
+                            @foreach ($mainBtns as $Mbtn)
+                                @include('Web.components.main-btn', [
+                                    'image' => $Mbtn['image'],
+                                    'text' => $Mbtn['text'],
+                                    'link' => $Mbtn['link'] ?? '',
+                                ])
+                            @endforeach
+>>>>>>> refs/remotes/origin/main
 
                     <div class="card">
                         <div class="card-header bg-dark text-light">

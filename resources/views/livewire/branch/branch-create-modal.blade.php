@@ -48,30 +48,101 @@
                                     // 'required' => 'required',
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
+                                @include('inputs.create.input', [
+                                    'label' => 'branch.phone',
+                                    'name' => 'branch.phone',
+                                    'livewire' => 'phone',
+                                    'type' => 'text', // 'step' => 1,
+                                    // 'required' => 'required',
+                                    'lg' => 4,
+                                    'md' => 4,
+                                    'sm' => 6,
+                                ])
+                                @include('inputs.create.input', [
+                                    'label' => 'branch.number',
+                                    'name' => 'branch.number',
+                                    'livewire' => 'number',
+                                    'type' => 'text', // 'step' => 1,
+                                    // 'required' => 'required',
+                                    'lg' => 4,
+                                    'md' => 4,
+                                    'sm' => 6,
+                                ])
+                                @include('inputs.create.input', [
+                                    'label' => 'branch.fax',
+                                    'name' => 'branch.fax',
+                                    'livewire' => 'fax',
+                                    'type' => 'text', // 'step' => 1,
+                                    // 'required' => 'required',
+                                    'lg' => 4,
+                                    'md' => 4,
+                                    'sm' => 12,
+                                ])
+                                @include('inputs.create.input', [
+                                    'label' => 'branch.email',
+                                    'name' => 'branch.email',
+                                    'livewire' => 'email',
+                                    'type' => 'text', // 'step' => 1,
+                                    // 'required' => 'required',
+                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                ])
+                                @include('inputs.create.input', [
+                                    'label' => 'branch.password',
+                                    'name' => 'branch.password',
+                                    'livewire' => 'password',
+                                    'type' => 'text', // 'step' => 1,
+                                    // 'required' => 'required',
+                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                ])
+                                @include('inputs.create.input', [
+                                    'label' => 'branch.website',
+                                    'name' => 'branch.website',
+                                    'livewire' => 'website',
+                                    'type' => 'text', // 'step' => 1,
+                                    // 'required' => 'required',
+                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                ])
+                                @include('inputs.create.input', [
+                                    'label' => 'branch.commercial_register',
+                                    'name' => 'branch.commercial_register',
+                                    'livewire' => 'commercial_register',
+                                    'type' => 'text', // 'step' => 1,
+                                    // 'required' => 'required',
+                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                ])
+
+                                @include('inputs.create.select', [
+                                    'label' => 'branch.area',
+                                    'name' => 'branch.area_id',
+                                    'arr' => $areas,
+                                    'livewire' => 'area_id',
+                                    // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                    'lg' => 12,
+                                    'md' => 12,
+                                    'sm' => 12,
+                                ])
+
+                                @include('inputs.create.select', [
+                                    'label' => 'branch.manager',
+                                    'name' => 'branch.manager_id',
+                                    'arr' => $managers,
+                                    'livewire' => 'manager_id',
+                                    // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                ])
+
+                                @include('inputs.create.select', [
+                                    'label' => 'branch.responsible',
+                                    'name' => 'branch.responsible_id',
+                                    'arr' => $responsibles,
+                                    'livewire' => 'responsible_id',
+                                    // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                ])
 
                             </div>
 
-                            @role('owner')
-                                <div>
-                                    <p>{{ __('global.managers') }}</p>
-                                    <div class="row">
-                                        @foreach ($managers as $manager)
-                                            <div class="col-4">
-                                                <div class="form-check form-check-inline">
-                                                    <input wire:model='selectedManagers' class="form-check-input"
-                                                        type="checkbox" value="{{ $manager->id }}"
-                                                        id="selected-manager-{{ $manager->id }}">
-                                                    <label class="form-check-label" for="selected-manager-{{ $manager->id }}">
-                                                        {{ $manager->name() }}
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            @endrole
                         </div>
-
 
                         <div class="form-group">
 
@@ -149,31 +220,111 @@
                                     // 'required' => 'required',
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
+                                @include('inputs.edit.input', [
+                                    'label' => 'branch.phone',
+                                    'name' => 'branch.phone',
+                                    'val' => $branch->phone,
+                                    'livewire' => 'phone',
+                                    'type' => 'text', // 'step' => 1,
+                                    // 'required' => 'required',
+                                    'lg' => 4,
+                                    'md' => 4,
+                                    'sm' => 6,
+                                ])
+                                @include('inputs.edit.input', [
+                                    'label' => 'branch.number',
+                                    'name' => 'branch.number',
+                                    'val' => $branch->number,
+                                    'livewire' => 'number',
+                                    'type' => 'text', // 'step' => 1,
+                                    // 'required' => 'required',
+                                    'lg' => 4,
+                                    'md' => 4,
+                                    'sm' => 6,
+                                ])
+                                @include('inputs.edit.input', [
+                                    'label' => 'branch.fax',
+                                    'name' => 'branch.fax',
+                                    'val' => $branch->fax,
+                                    'livewire' => 'fax',
+                                    'type' => 'text', // 'step' => 1,
+                                    // 'required' => 'required',
+                                    'lg' => 4,
+                                    'md' => 4,
+                                    'sm' => 12,
+                                ])
+                                @include('inputs.edit.input', [
+                                    'label' => 'branch.email',
+                                    'name' => 'branch.email',
+                                    'val' => $branch->email,
+                                    'livewire' => 'email',
+                                    'type' => 'text', // 'step' => 1,
+                                    // 'required' => 'required',
+                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                ])
+                                @include('inputs.edit.input', [
+                                    'label' => 'branch.password',
+                                    'name' => 'branch.password',
+                                    'val' => $branch->password,
+                                    'livewire' => 'password',
+                                    'type' => 'text', // 'step' => 1,
+                                    // 'required' => 'required',
+                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                ])
+                                @include('inputs.edit.input', [
+                                    'label' => 'branch.website',
+                                    'name' => 'branch.website',
+                                    'val' => $branch->website,
+                                    'livewire' => 'website',
+                                    'type' => 'text', // 'step' => 1,
+                                    // 'required' => 'required',
+                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                ])
+                                @include('inputs.edit.input', [
+                                    'label' => 'branch.commercial_register',
+                                    'name' => 'branch.commercial_register',
+                                    'val' => $branch->commercial_register,
+                                    'livewire' => 'commercial_register',
+                                    'type' => 'text', // 'step' => 1,
+                                    // 'required' => 'required',
+                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                ])
+
+                                @include('inputs.edit.select', [
+                                    'label' => 'branch.area',
+                                    'name' => 'branch.area_id',
+                                    'arr' => $areas,
+                                    'livewire' => 'area_id',
+                                    'val' => $branch->area_id,
+                                    // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                    'lg' => 12,
+                                    'md' => 12,
+                                    'sm' => 12,
+                                ])
+
+                                @include('inputs.edit.select', [
+                                    'label' => 'branch.manager',
+                                    'name' => 'branch.manager_id',
+                                    'arr' => $managers,
+                                    'livewire' => 'manager_id',
+                                    'val' => $branch->manager_id,
+                                    // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                ])
+
+                                @include('inputs.edit.select', [
+                                    'label' => 'branch.responsible',
+                                    'name' => 'branch.responsible_id',
+                                    'arr' => $responsibles,
+                                    'livewire' => 'responsible_id',
+                                    'val' => $branch->responsible_id,
+                                    // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                ])
 
                             </div>
 
-                            @role('owner')
-                                <div>
-                                    <p>{{ __('global.managers') }}</p>
-                                    <div class="row">
-                                        @foreach ($managers as $manager)
-                                            <div class="col-4">
-                                                <div class="form-check form-check-inline">
-                                                    <input wire:model='selectedManagers' class="form-check-input"
-                                                        type="checkbox" value="{{ $manager->id }}"
-                                                        id="selected-manager-{{ $manager->id }}">
-                                                    <label class="form-check-label" for="selected-manager-{{ $manager->id }}">
-                                                        {{ $manager->name() }}
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            @endrole
-
                         </div>
-
 
                         <div class="form-group">
 

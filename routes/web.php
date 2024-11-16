@@ -203,6 +203,12 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     Route::middleware('permission:restore-company')->get('trash/companies', [App\Http\Controllers\CompanyController::class, 'livewireDeletedIndex'])->name('company.index.trash');
     Route::get('export/companies', [App\Http\Controllers\CompanyController::class, 'exportFullData'])->name('company.export');
     Route::post('import/companies', [App\Http\Controllers\CompanyController::class, 'importData'])->name('company.import');
+
+    // the full routes for areas
+    Route::middleware('permission:index-area')->get('areas', [App\Http\Controllers\AreaController::class, 'livewireIndex'])->name('area.index');
+    Route::middleware('permission:restore-area')->get('trash/areas', [App\Http\Controllers\AreaController::class, 'livewireDeletedIndex'])->name('area.index.trash');
+    Route::get('export/areas', [App\Http\Controllers\AreaController::class, 'exportFullData'])->name('area.export');
+    Route::post('import/areas', [App\Http\Controllers\AreaController::class, 'importData'])->name('area.import');
 });
 
 

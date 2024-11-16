@@ -10,29 +10,11 @@
             <select wire:model='orderBy' class="form-control form-group" style="width: 150px;">
                 <option value="id">{{ __('global.id') }}</option>
 
-                <option value='name'>{{ __('branch.name') }}</option>
+                <option value='name'>{{ __('area.name') }}</option>
 
-                <option value='location'>{{ __('branch.location') }}</option>
+                <option value='location'>{{ __('area.location') }}</option>
 
-                <option value='phone'>{{ __('branch.phone') }}</option>
-
-                <option value='number'>{{ __('branch.number') }}</option>
-
-                <option value='fax'>{{ __('branch.fax') }}</option>
-
-                <option value='email'>{{ __('branch.email') }}</option>
-
-                <option value='password'>{{ __('branch.password') }}</option>
-
-                <option value='website'>{{ __('branch.website') }}</option>
-
-                <option value='commercial_register'>{{ __('branch.commercial_register') }}</option>
-
-                <option value='area_id'>{{ __('branch.area') }}</option>
-
-                <option value='manager_id'>{{ __('branch.manager') }}</option>
-
-                <option value='responsible_id'>{{ __('branch.responsible') }}</option>
+                <option value='manager_id'>{{ __('area.manager') }}</option>
 
 
                 <option value="created_at">{{ __('global.created_at') }}</option>
@@ -60,21 +42,21 @@
     <div class="form-inline">
         @role('owner|operations')
             <div>
-                <button type="button" class="mr-1 btn btn-warning" data-toggle="modal" data-target="#filter-branch-modal">
+                <button type="button" class="mr-1 btn btn-warning" data-toggle="modal" data-target="#filter-area-modal">
                     <i class="ti-filter text-white"></i>
                 </button>
             </div>
         @endrole
         @role('owner|operations')
             <div>
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#show-hide-branch-columnModal">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#show-hide-area-columnModal">
                     <i class="ti-layout-column4 text-white"></i>
                 </button>
             </div>
         @endrole
 
         @if ($admin_view_status != 'deleted')
-            @permission('import-excel-branch')
+            @permission('import-excel-area')
                 <div>
                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#import-data">
                         <i class="ti-import text-white"></i>
@@ -82,10 +64,10 @@
                 </div>
             @endpermission
 
-            @permission('export-excel-branch')
+            @permission('export-excel-area')
                 <div>
                     <a class="mr-1 btn btn-warning" target="_blank"
-                        href="{{ route('branch.export', ['by_date' => $byDate, 'from_date' => $fromDate, 'to_date' => $toDate]) }}">
+                        href="{{ route('area.export', ['by_date' => $byDate, 'from_date' => $fromDate, 'to_date' => $toDate]) }}">
                         <i class="ti-export text-white"></i>
                     </a>
                 </div>
@@ -94,10 +76,9 @@
 
 
         @if ($admin_view_status != 'deleted')
-            @permission('create-branch')
+            @permission('create-area')
                 <div>
-                    <button type="button" class="btn btn-success" data-toggle="modal"
-                        data-target="#create-new-branch-modal">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-new-area-modal">
                         <i class="ti-plus text-white"></i>
                     </button>
                 </div>
@@ -105,12 +86,12 @@
         @endif
     </div>
 
-    <div wire:ignore.self class="modal fade" id="show-hide-branch-columnModal" tabindex="-1"
-        aria-labelledby="show-hide-branch-columnModalLabel" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="show-hide-area-columnModal" tabindex="-1"
+        aria-labelledby="show-hide-area-columnModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="show-hide-branch-columnModalLabel">
+                    <h5 class="modal-title" id="show-hide-area-columnModalLabel">
                         {{ __('global.show-and-hide-table-columns') }}
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -126,12 +107,12 @@
                                 $show_kye = str_replace('_id', '', $kye);
                             @endphp
 
-                            @if (strlen(__('branch.' . $show_kye)) > 2)
+                            @if (strlen(__('area.' . $show_kye)) > 2)
                                 <div class="form-check">
                                     <input wire:model="showColumn.{{ $kye }}" class="form-check-input"
-                                        type="checkbox" value="true" id="filter-branch-{{ $kye }}">
-                                    <label class="form-check-label" for="filter-branch-{{ $kye }}">
-                                        {{ __('branch.' . $show_kye) }}
+                                        type="checkbox" value="true" id="filter-area-{{ $kye }}">
+                                    <label class="form-check-label" for="filter-area-{{ $kye }}">
+                                        {{ __('area.' . $show_kye) }}
                                     </label>
                                 </div>
                             @endif
@@ -149,11 +130,11 @@
     </div>
 
     @if ($admin_view_status != 'deleted')
-        @include('livewire.branch.branch-create-modal')
+        @include('livewire.area.area-create-modal')
     @endif
 
 
-    @permission('import-excel-branch')
+    @permission('import-excel-area')
         <div wire:ignore.self class="modal fade" id="import-data" tabindex="-1" aria-labelledby="import-dataLabel"
             aria-hidden="true">
             <div class="modal-dialog">
@@ -167,7 +148,7 @@
                         </button>
                     </div>
 
-                    <form action="{{ route('branch.import') }}" enctype="multipart/form-data" method="post"
+                    <form action="{{ route('area.import') }}" enctype="multipart/form-data" method="post"
                         accept-charset="utf-8" class="form-horizontal m-t-30">
                         <div class="modal-body">
                             @csrf
@@ -218,12 +199,12 @@
     @endpermission
 
 
-    <div wire:ignore.self class="modal fade" id="filter-branch-modal" tabindex="-1"
-        aria-labelledby="filter-branch-modalLabel" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="filter-area-modal" tabindex="-1"
+        aria-labelledby="filter-area-modalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="filter-branch-modalLabel">
+                    <h5 class="modal-title" id="filter-area-modalLabel">
                         {{ __('global.filter') }}
                     </h5>
 
@@ -279,28 +260,6 @@
 
 
                     <div class='form-group'>
-                        <label for='area-select'>{{ __('global.by_areas') }}</label>
-                        <select id='area-select' class='form-control' wire:model='select_area'>
-                            <option>Select areas</option>
-                            @foreach ($areas as $area)
-                                <option value='{{ $area->id }}'>{{ $area->crud_name() }}</option>
-                            @endforeach
-                        </select>
-
-                        @foreach ($areas as $area)
-                            @if (in_array($area->id, $filter_areas_id))
-                                <div class='form-check form-check-inline'>
-                                    <input wire:model='filter_areas_id' class='form-check-input' type='checkbox'
-                                        value='{{ $area->id }}' id='filter-areas-id-{{ $area->id }}'>
-                                    <label class='form-check-label' for='filter-areas-id-{{ $area->id }}'>
-                                        {{ $area->crud_name() }}
-                                    </label>
-                                </div>
-                            @endif
-                        @endforeach
-                    </div>
-
-                    <div class='form-group'>
                         <label for='manager-select'>{{ __('global.by_managers') }}</label>
                         <select id='manager-select' class='form-control' wire:model='select_manager'>
                             <option>Select managers</option>
@@ -316,30 +275,6 @@
                                         value='{{ $manager->id }}' id='filter-managers-id-{{ $manager->id }}'>
                                     <label class='form-check-label' for='filter-managers-id-{{ $manager->id }}'>
                                         {{ $manager->crud_name() }}
-                                    </label>
-                                </div>
-                            @endif
-                        @endforeach
-                    </div>
-
-                    <div class='form-group'>
-                        <label for='responsible-select'>{{ __('global.by_responsibles') }}</label>
-                        <select id='responsible-select' class='form-control' wire:model='select_responsible'>
-                            <option>Select responsibles</option>
-                            @foreach ($responsibles as $responsible)
-                                <option value='{{ $responsible->id }}'>{{ $responsible->crud_name() }}</option>
-                            @endforeach
-                        </select>
-
-                        @foreach ($responsibles as $responsible)
-                            @if (in_array($responsible->id, $filter_responsibles_id))
-                                <div class='form-check form-check-inline'>
-                                    <input wire:model='filter_responsibles_id' class='form-check-input'
-                                        type='checkbox' value='{{ $responsible->id }}'
-                                        id='filter-responsibles-id-{{ $responsible->id }}'>
-                                    <label class='form-check-label'
-                                        for='filter-responsibles-id-{{ $responsible->id }}'>
-                                        {{ $responsible->crud_name() }}
                                     </label>
                                 </div>
                             @endif

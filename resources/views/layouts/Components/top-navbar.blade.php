@@ -16,15 +16,27 @@
                 </li>
 
                 @php
-                    $comapny = \App\Models\Company::latest()->first();
+                    $company = \App\Models\Company::latest()->first();
                 @endphp
-                @if ($comapny)
+                @if ($company)
                     <li aria-haspopup="true">
-                        <a href="{{ route('company.show', $comapny) }}">
+                        <a href="{{ route('company.show', $company) }}">
                             {{ __('global.company') }}
                         </a>
                     </li>
                 @endif
+
+                <li aria-haspopup="true">
+                    <a href="{{ route('area.index') }}">
+                        {{ __('global.areas') }}
+                    </a>
+                </li>
+
+                <li aria-haspopup="true">
+                    <a href="{{ route('branch.index') }}">
+                        {{ __('global.branches') }}
+                    </a>
+                </li>
             </ul>
         </li>
 
@@ -73,14 +85,6 @@
                         <li aria-haspopup="true">
                             <a href="{{ route('user.index') }}">
                                 {{ __('global.users') }}
-                            </a>
-                        </li>
-                    @endpermission
-
-                    @permission('index-branch')
-                        <li aria-haspopup="true">
-                            <a href="{{ route('branch.index') }}">
-                                {{ __('global.branches') }}
                             </a>
                         </li>
                     @endpermission

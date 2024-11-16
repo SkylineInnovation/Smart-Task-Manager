@@ -25,6 +25,26 @@ class CreateBranchesTable extends Migration
 
             $table->string('location')->nullable();
 
+            $table->string('phone')->nullable();
+
+            $table->string('number')->nullable();
+
+            $table->string('fax')->nullable();
+
+            $table->string('email')->nullable();
+
+            $table->string('password')->nullable();
+
+            $table->string('website')->nullable();
+
+            $table->string('commercial_register')->nullable();
+
+            $table->foreignIdFor(App\Models\Area::class)->nullable()->default(0);
+
+            $table->foreignIdFor(App\Models\User::class, 'manager_id')->nullable()->default(0);
+
+            $table->foreignIdFor(App\Models\User::class, 'responsible_id')->nullable()->default(0);
+
 
             $table->boolean('show')->default(true);
             $table->integer('sort')->default(1000);
