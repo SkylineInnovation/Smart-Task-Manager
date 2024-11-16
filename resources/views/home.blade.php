@@ -4,6 +4,12 @@
     .mouseHover:hover {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
     }
+    .borderColorGreen{
+        border-top: #1EAE9A solid 5px
+    }
+    .borderColorRed{
+        border-top: #E04B4A solid 5px
+    }
 </style>
 
 @section('content')
@@ -15,8 +21,8 @@
             <div class="col-lg-6 p{{ App::getLocale() == 'en' ? 's' : 's' }}-0 col-xl-6 col-md-6 col-sm-12 col-12">
                 <div class="col-md-12 p-0">
 
-                    <div class="card">
-                        <div class="card-header bg-dark text-light">
+                    <div class="card ">
+                        <div class="card-header bg-dark text-light borderColorGreen">
                             <div class="col-md-12">
                                 <h4>
                                     {{ __('global.quick_actions') }}
@@ -44,7 +50,7 @@
                 <div class="col-md-12 p-0">
 
                     <div class="card">
-                        <div class="card-header bg-dark text-light">
+                        <div class="card-header bg-dark text-light borderColorGreen">
                             <div class="col-md-12">
                                 <h4>
                                     {{ __('global.quick_actions') }}
@@ -72,7 +78,7 @@
                 </div>
                 <div class="col-md-12 p-0">
                     <div class="card ">
-                        <div class="card-header bg-dark text-light">
+                        <div class="card-header bg-dark text-light borderColorRed">
                             <div class="col-md-12 ">
                                 <h4 class="text-{{ App::getLocale() == 'en' ? 'start' : 'start' }}">
                                     {{ __('global.management and control') }}
@@ -98,7 +104,7 @@
                 </div>
                 <div class="col-md-12 p-0">
                     <div class="card ">
-                        <div class="card-header bg-dark text-light">
+                        <div class="card-header bg-dark text-light borderColorRed">
                             <div class="col-md-12 ">
                                 <h4 class="text-{{ App::getLocale() == 'en' ? 'start' : 'start' }}">
                                     {{ __('global.management and control') }}
@@ -150,7 +156,7 @@
             <div class="col-lg-6 p{{ App::getLocale() == 'en' ? 'e' : 'e' }}-0  col-xl-6 col-md-6 col-sm-12 col-12">
                 <div class="col-md-12 p-0">
                     <div class="card ">
-                        <div class="card-header bg-dark text-light">
+                        <div class="card-header bg-dark text-light borderColorGreen">
                             <div class="col-md-12 ">
                                 <h4 class="text-{{ App::getLocale() == 'en' ? 'start' : 'start' }}">
                                     {{ __('global.management and control') }}
@@ -181,7 +187,7 @@
                 </div>
                 <div class="col-md-12 p-0">
                     <div class="card ">
-                        <div class="card-header bg-dark text-light">
+                        <div class="card-header bg-dark text-light borderColorGreen">
                             <div class="col-md-12 ">
                                 <h4 class="text-{{ App::getLocale() == 'en' ? 'start' : 'start' }}">
                                     {{ __('global.management and control') }}
@@ -208,7 +214,7 @@
 
                 <div class="col-md-12 p-0">
                     <div class="card ">
-                        <div class="card-header bg-dark text-light">
+                        <div class="card-header bg-dark text-light borderColorGreen">
                             <div class="col-md-12 ">
                                 <h4 class="text-{{ App::getLocale() == 'en' ? 'start' : 'start' }}">
                                     {{ __('global.management and control') }}
