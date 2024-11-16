@@ -194,7 +194,7 @@ return [
              * If the message content is empty it won't be added to the redirection.
              */
             'redirect' => [
-                'url' => '/admin/task-board',
+                'url' => '/admin/dashboard',
                 'message' => [
                     'key' => 'error',
                     'content' => ''
@@ -289,7 +289,7 @@ return [
         | The route where the go back link should point
         |
         */
-        'go_back_route' => '/admin/task-board',
+        'go_back_route' => '/admin/dashboard',
 
         /*
         |--------------------------------------------------------------------------

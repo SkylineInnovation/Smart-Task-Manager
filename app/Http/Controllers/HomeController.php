@@ -87,30 +87,32 @@ class HomeController extends Controller
     {
         // $user = $request->user();
         // if (!$user->hasRole('owner|manager')) {
-        return redirect()->route('task-board');
+        // return redirect()->route('task-board');
         // }
 
-        $listOfDates = [
-            date('Y-m-d', strtotime("-7 days")),
-            date('Y-m-d', strtotime("-6 days")),
-            date('Y-m-d', strtotime("-5 days")),
-            date('Y-m-d', strtotime("-4 days")),
-            date('Y-m-d', strtotime("-3 days")),
-            date('Y-m-d', strtotime("-2 days")),
-            date('Y-m-d', strtotime("-1 days")),
-            date('Y-m-d', strtotime("0 days")),
-        ];
+        // $listOfDates = [
+        //     date('Y-m-d', strtotime("-7 days")),
+        //     date('Y-m-d', strtotime("-6 days")),
+        //     date('Y-m-d', strtotime("-5 days")),
+        //     date('Y-m-d', strtotime("-4 days")),
+        //     date('Y-m-d', strtotime("-3 days")),
+        //     date('Y-m-d', strtotime("-2 days")),
+        //     date('Y-m-d', strtotime("-1 days")),
+        //     date('Y-m-d', strtotime("0 days")),
+        // ];
 
-        $userList = [];
+        // $userList = [];
 
-        for ($i = 0; $i < count($listOfDates); $i++) {
-            $userList[] = User::where('created_at', 'like', '%' . $listOfDates[$i] . '%')->count();
-        }
+        // for ($i = 0; $i < count($listOfDates); $i++) {
+        //     $userList[] = User::where('created_at', 'like', '%' . $listOfDates[$i] . '%')->count();
+        // }
 
-        $listOfDates[] = date('Y-m-d', strtotime("+1 days"));
-        $listOfDates[] = date('Y-m-d', strtotime("+2 days"));
+        // $listOfDates[] = date('Y-m-d', strtotime("+1 days"));
+        // $listOfDates[] = date('Y-m-d', strtotime("+2 days"));
 
-        return view('home', compact('listOfDates', 'userList'));
+        // return view('home', compact('listOfDates', 'userList'));
+
+        return view('home');
     }
 
     public function editProfile()

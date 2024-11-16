@@ -23,7 +23,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return redirect()->route('task-board');
+    return redirect()->route('dashboard');
     // return view('welcome');
 });
 
