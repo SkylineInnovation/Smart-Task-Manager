@@ -201,7 +201,30 @@ class HomeController extends Controller
             ],
         ];
 
-        return view('home', compact('mainBtns', 'actionBtns'));
+        $tasksBtns = [
+            [
+                'image' => asset('assets/dashboard/task.png'),
+                'text' =>  __('global.tasks'),
+                'link' => '',
+            ],
+            [
+                'image' => asset('assets/dashboard/deduction.png'),
+                'text' =>  __('global.discounts'),
+                'link' => '',
+            ],
+            [
+                'image' => asset('assets/dashboard/ticket.png'),
+                'text' =>  __('global.ticket'),
+                'link' => '',
+            ],
+            [
+                'image' => asset('assets/dashboard/notice.png'),
+                'text' =>  __('global.note'),
+                'link' => '',
+            ],
+        ];
+
+        return view('home', compact('mainBtns', 'actionBtns', 'tasksBtns'));
     }
 
     public function editProfile()
