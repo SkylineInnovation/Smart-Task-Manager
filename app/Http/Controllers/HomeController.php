@@ -151,6 +151,7 @@ class HomeController extends Controller
             [
                 'image' => asset('assets/dashboard/report.png'),
                 'text' =>  __('global.report'),
+                'link' => route('view-reports'),
             ],
             [
                 'image' => asset('assets/dashboard/profile.png'),

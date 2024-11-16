@@ -4,6 +4,7 @@ use App\Http\Controllers\DailyTaskController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Web\WebReportController;
 use App\Http\Controllers\Web\WebTaskController;
 use App\Models\Task;
 use App\Models\User;
@@ -84,6 +85,9 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     Route::post('update-password', [HomeController::class, 'updatePassword'])->name('update.password');
 
     Route::post('update-profile', [HomeController::class, 'updateProfile'])->name('update.profile');
+
+
+    Route::get('reports', [WebReportController::class, 'indexReports'])->name('view-reports');
 
     Route::middleware('permission:index-user')->get('users', [UserController::class, 'index'])->name('user.index');
     Route::middleware('permission:show-user')->get('user/{user}', [UserController::class, 'show'])->name('user.show');

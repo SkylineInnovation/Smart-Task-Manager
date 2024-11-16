@@ -7,8 +7,6 @@
         font-family: feather !important;
         color: #68798b;
     }
-
-  
 </style>
 
 <nav class="horizontalMenu clearfix bg-white p-1">
@@ -22,108 +20,108 @@
             </a>
 
 
-                <ul class="sub-menu" class="">
+            <ul class="sub-menu" class="">
 
-                    <li aria-haspopup="true">
-                        <div class="col-md-12 d-flex justify-content-between pb-3">
-                            <i class="fa fa-dashboard text-gray fs-20"></i>
-                            <a href="{{ route('dashboard') }}">
-                                {{ __('global.dashboard') }}
-                            </a>
-                        </div>
-                    </li>
-    
-                    @php
-                        $company = \App\Models\Company::latest()->first();
-                    @endphp
-                    @if ($company)
-                        <li aria-haspopup="true">
-                            <div class="col-md-12 d-flex justify-content-between pb-4">
-                                <img src="{{ asset('assets/dashboard/company.png') }}" width="20" height="20"
-                                    alt="" srcset="">
-                                <a href="{{ route('company.show', $company) }}">
-                                    {{ __('global.company') }}
-                                </a>
-                            </div>
-                        </li>
-                    @endif
-    
+                <li aria-haspopup="true">
+                    <div class="col-md-12 d-flex justify-content-between pb-3">
+                        <i class="fa fa-dashboard text-gray fs-20"></i>
+                        <a class="text-dark" href="{{ route('dashboard') }}">
+                            {{ __('global.dashboard') }}
+                        </a>
+                    </div>
+                </li>
+
+                @php
+                    $company = \App\Models\Company::latest()->first();
+                @endphp
+                @if ($company)
                     <li aria-haspopup="true">
                         <div class="col-md-12 d-flex justify-content-between pb-4">
-                            <img src="{{ asset('assets/dashboard/region.png') }}" width="20" height="20"
+                            <img src="{{ asset('assets/dashboard/company.png') }}" width="20" height="20"
                                 alt="" srcset="">
-                            <a href="{{ route('area.index') }}">
-                                {{ __('global.region') }}
+                            <a class='text-dark' href="{{ route('company.show', $company) }}">
+                                {{ __('global.company') }}
                             </a>
                         </div>
                     </li>
-    
-                    <li aria-haspopup="true">
-                        <div class="col-md-12 d-flex justify-content-between pb-4">
-                            <img src="{{ asset('assets/dashboard/branch.png') }}" width="20" height="20"
-                                alt="" srcset="">
-                            <a href="{{ route('branch.index') }}">
-                                {{ __('global.branches') }}
-                            </a>
-                        </div>
-                    </li>
-    
-                    <li aria-haspopup="true">
-                        <div class="col-md-12 d-flex justify-content-between pb-4">
-                            <img src="{{ asset('assets/dashboard/department.png') }}" width="20" height="20"
-                                alt="" srcset="">
-                            <a href="{{ route('department.index') }}">
-                                {{ __('global.departments') }}
-                            </a>
-                        </div>
-                    </li>
-                    <li aria-haspopup="true">
-                        <div class="col-md-12 d-flex justify-content-between pb-4">
-                            <img src="{{ asset('assets/dashboard/person.png') }}" width="20" height="20"
-                                alt="" srcset="">
-                            <a href="{{ route('user.index') }}">
-                                {{ __('global.users') }}
-                            </a>
-                        </div>
-                    </li>
-                    <li aria-haspopup="true">
-                        <div class="col-md-12 d-flex justify-content-between pb-4">
-                            <img src="{{ asset('assets/dashboard/team.png') }}" width="20" height="20"
-                                alt="" srcset="">
-                            <a href="#">
-                                {{ __('global.permissions') }}
-                            </a>
-                        </div>
-                    </li>
-                    <li aria-haspopup="true">
-                        <div class="col-md-12 d-flex justify-content-between pb-4">
-                            <img src="{{ asset('assets/dashboard/report.png') }}" width="20" height="20"
-                                alt="" srcset="">
-                            <a href="#">
-                                {{ __('global.reports') }}
-                            </a>
-                        </div>
-                    </li>
-                    <li aria-haspopup="true">
-                        <div class="col-md-12 d-flex justify-content-between pb-4">
-                            <img src="{{ asset('assets/dashboard/profile.png') }}" width="20" height="20"
-                                alt="" srcset="">
-                            <a href="{{ route('edit.profile') }}">
-                                {{ __('global.profile') }}
-                            </a>
-                        </div>
-                    </li>
-                    <li aria-haspopup="true">
-                        <div class="col-md-12 d-flex justify-content-between pb-4">
-                            <img src="{{ asset('assets/dashboard/about.png') }}" width="20" height="20"
-                                alt="" srcset="">
-                            <a href="">
-                                {{ __('global.about') }}
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-           
+                @endif
+
+                <li aria-haspopup="true">
+                    <div class="col-md-12 d-flex justify-content-between pb-4">
+                        <img src="{{ asset('assets/dashboard/region.png') }}" width="20" height="20"
+                            alt="" srcset="">
+                        <a class='text-dark' href="{{ route('area.index') }}">
+                            {{ __('global.region') }}
+                        </a>
+                    </div>
+                </li>
+
+                <li aria-haspopup="true">
+                    <div class="col-md-12 d-flex justify-content-between pb-4">
+                        <img src="{{ asset('assets/dashboard/branch.png') }}" width="20" height="20"
+                            alt="" srcset="">
+                        <a class='text-dark' href="{{ route('branch.index') }}">
+                            {{ __('global.branches') }}
+                        </a>
+                    </div>
+                </li>
+
+                <li aria-haspopup="true">
+                    <div class="col-md-12 d-flex justify-content-between pb-4">
+                        <img src="{{ asset('assets/dashboard/department.png') }}" width="20" height="20"
+                            alt="" srcset="">
+                        <a class='text-dark' href="{{ route('department.index') }}">
+                            {{ __('global.departments') }}
+                        </a>
+                    </div>
+                </li>
+                <li aria-haspopup="true">
+                    <div class="col-md-12 d-flex justify-content-between pb-4">
+                        <img src="{{ asset('assets/dashboard/person.png') }}" width="20" height="20"
+                            alt="" srcset="">
+                        <a class='text-dark' href="{{ route('user.index') }}">
+                            {{ __('global.users') }}
+                        </a>
+                    </div>
+                </li>
+                <li aria-haspopup="true">
+                    <div class="col-md-12 d-flex justify-content-between pb-4">
+                        <img src="{{ asset('assets/dashboard/team.png') }}" width="20" height="20"
+                            alt="" srcset="">
+                        <a href="#" class="text-dark">
+                            {{ __('global.permissions') }}
+                        </a>
+                    </div>
+                </li>
+                <li aria-haspopup="true">
+                    <div class="col-md-12 d-flex justify-content-between pb-4">
+                        <img src="{{ asset('assets/dashboard/report.png') }}" width="20" height="20"
+                            alt="" srcset="">
+                        <a href="#" class="text-dark">
+                            {{ __('global.reports') }}
+                        </a>
+                    </div>
+                </li>
+                <li aria-haspopup="true">
+                    <div class="col-md-12 d-flex justify-content-between pb-4">
+                        <img src="{{ asset('assets/dashboard/profile.png') }}" width="20" height="20"
+                            alt="" srcset="">
+                        <a class='text-dark' href="{{ route('edit.profile') }}">
+                            {{ __('global.profile') }}
+                        </a>
+                    </div>
+                </li>
+                <li aria-haspopup="true">
+                    <div class="col-md-12 d-flex justify-content-between pb-4">
+                        <img src="{{ asset('assets/dashboard/about.png') }}" width="20" height="20"
+                            alt="" srcset="">
+                        <a href="" class="text-dark">
+                            {{ __('global.about') }}
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
         </li>
 
         {{-- @role('owner|manager|employee') --}}
