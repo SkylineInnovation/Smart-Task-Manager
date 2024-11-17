@@ -46,6 +46,8 @@
                                 <livewire:dashboard.dashboard-add-department />
                                 {{-- // DONE --}}
                                 <livewire:dashboard.dashboard-add-user />
+                                {{--  --}}
+                                <livewire:dashboard.dashboard-add-work />
                                 {{-- // DONE --}}
                                 <livewire:dashboard.dashboard-add-task />
                                 {{-- // DONE --}}
@@ -291,6 +293,8 @@
                 $('#create-submit-task').modal('hide');
 
                 $('#create-new-leave-modal').modal('hide');
+
+                $('#create-new-job-modal').modal('hide');
             });
 
             // 

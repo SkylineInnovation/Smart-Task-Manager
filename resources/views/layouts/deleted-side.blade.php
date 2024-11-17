@@ -128,3 +128,11 @@
         </a>
     </li>
 @endpermission
+
+@permission('restore-work')
+    <li>
+        <a class='slide-item' href='{{ route('work.index.trash') }}'>
+            <span>{{ __('global.works') }}</span>
+        </a>
+    </li>
+@endpermission

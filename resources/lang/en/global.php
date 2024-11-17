@@ -169,6 +169,9 @@ return [
     'areas' => 'areas',
     'create-area' => 'Create New Area',
 
+    'works' => 'Works',
+    'create-work' => 'Create New Work',
+
     'employees' => 'Employees',
     'managers' => 'Managers',
     'task-board' => 'Task Board',

@@ -219,6 +219,12 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     Route::middleware('permission:restore-userdetail')->get('trash/userdetails', [App\Http\Controllers\UserDetailController::class, 'livewireDeletedIndex'])->name('userdetail.index.trash');
     Route::get('export/userdetails', [App\Http\Controllers\UserDetailController::class, 'exportFullData'])->name('userdetail.export');
     Route::post('import/userdetails', [App\Http\Controllers\UserDetailController::class, 'importData'])->name('userdetail.import');
+
+    // the full routes for works
+    Route::middleware('permission:index-work')->get('works', [App\Http\Controllers\WorkController::class, 'livewireIndex'])->name('work.index');
+    Route::middleware('permission:restore-work')->get('trash/works', [App\Http\Controllers\WorkController::class, 'livewireDeletedIndex'])->name('work.index.trash');
+    Route::get('export/works', [App\Http\Controllers\WorkController::class, 'exportFullData'])->name('work.export');
+    Route::post('import/works', [App\Http\Controllers\WorkController::class, 'importData'])->name('work.import');
 });
 
 

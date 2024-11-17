@@ -150,9 +150,9 @@ class HomeController extends Controller
             // [
             //     'text' =>  __('global.add-user'),
             // ],
-            [
-                'text' =>  __('global.add-job'),
-            ],
+            // [
+            //     'text' =>  __('global.add-job'),
+            // ],
             [
                 'text' =>  __('global.add-permissions'),
             ],

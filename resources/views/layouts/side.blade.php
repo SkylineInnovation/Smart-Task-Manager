@@ -109,3 +109,11 @@
         </a>
     </li>
 @endpermission
+
+@permission('index-work')
+    <li>
+        <a class='slide-item' href='{{ route('work.index') }}'>
+            <span>{{ __('global.works') }}</span>
+        </a>
+    </li>
+@endpermission
