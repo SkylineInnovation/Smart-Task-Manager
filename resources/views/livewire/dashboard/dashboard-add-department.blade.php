@@ -1,16 +1,15 @@
-<div class="col-md-3  col-6 mb-4 d-flex justify-content-center ">
-
-    <a data-toggle="modal" data-target="#create-new-department-modal" class="mouseHover col-md-12 py-3 px-1">
-        <div class="col-md-12 d-flex justify-content-center pb-3"><img src="{{ asset('assets/dashboard/add.png') }}"
-                width="72px" height="72px" alt=""></div>
+<div class="col-md-3 col-6 mb-4 d-flex text-center justify-content-center ">
+    <a href="" class="mouseHover col-md-12 py-3 px-1">
+        <div class="col-md-12 d-flex justify-content-center pb-3">
+            <img src="{{ asset('assets/dashboard/add.png') }}" width="32px" height="32px">
+        </div>
         <div class="col-md-12 px-0 d-flex justify-content-center text-dark">{{ __('global.add-department') }}</div>
     </a>
     {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
 
     <!-- Modal -->
-    <div wire:ignore.self class="modal fade" id="create-new-department-modal" data-backdrop="static"
-        data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="create-new-department-modal-label"
-        aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="create-new-department-modal" data-backdrop="static" data-keyboard="false"
+        tabindex="-1" role="dialog" aria-labelledby="create-new-department-modal-label" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">

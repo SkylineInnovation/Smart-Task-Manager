@@ -1,9 +1,8 @@
-<div class="col-md-3  col-6 mb-4 d-flex justify-content-center ">
-    {{-- Because she competes with no one, no one can compete with her. --}}
-
-    <a data-toggle="modal" data-target="#create-new-user-modal" class="mouseHover col-md-12 py-3 px-1">
-        <div class="col-md-12 d-flex justify-content-center pb-3"><img src="{{ asset('assets/dashboard/add.png') }}"
-                width="72px" height="72px" alt=""></div>
+<div class="col-md-3 col-6 mb-4 d-flex text-center justify-content-center ">
+    <a href="" class="mouseHover col-md-12 py-3 px-1">
+        <div class="col-md-12 d-flex justify-content-center pb-3">
+            <img src="{{ asset('assets/dashboard/add.png') }}" width="32px" height="32px">
+        </div>
         <div class="col-md-12 px-0 d-flex justify-content-center text-dark">{{ __('global.add-user') }}</div>
     </a>
 
