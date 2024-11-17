@@ -88,6 +88,7 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
 
 
     Route::get('reports', [WebReportController::class, 'indexReports'])->name('view-reports');
+    Route::post('task-commintes', [WebReportController::class, 'taskCommintes'])->name('task.commintes.report');
 
     Route::middleware('permission:index-user')->get('users', [UserController::class, 'index'])->name('user.index');
     Route::middleware('permission:show-user')->get('user/{user}', [UserController::class, 'show'])->name('user.show');
