@@ -1,5 +1,6 @@
-<div class="col-md-3 col-6 mb-4 d-flex text-center justify-content-center ">
-    <a href="" class="mouseHover col-md-12 py-3 px-1">
+<div class="col-md-3 col-6 mb-4 d-flex text-center justify-content-center">
+    <a wire:click="get_create_date()" href="#" data-toggle="modal" data-target="#create-new-area-modal"
+        class="mouseHover col-md-12 py-3 px-1">
         <div class="col-md-12 d-flex justify-content-center pb-3">
             <img src="{{ asset('assets/dashboard/add.png') }}" width="32px" height="32px">
         </div>
@@ -9,8 +10,9 @@
     @permission('create-area')
 
         <!-- Modal -->
-        <div wire:ignore.self class="modal fade" id="create-new-area-modal" data-backdrop="static" data-keyboard="false"
-            tabindex="-1" role="dialog" aria-labelledby="create-new-area-modal-label" aria-hidden="true">
+        <div wire:ignore.self class="modal fade text-start" id="create-new-area-modal" data-backdrop="static"
+            data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="create-new-area-modal-label"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">

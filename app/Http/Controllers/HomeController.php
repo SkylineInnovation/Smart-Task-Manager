@@ -156,12 +156,12 @@ class HomeController extends Controller
             [
                 'text' =>  __('global.add-permissions'),
             ],
-            [
-                'text' =>  __('global.submit-task'),
-            ],
-            [
-                'text' =>  __('global.submit-departure-form'),
-            ],
+            // [
+            //     'text' =>  __('global.submit-task'),
+            // ],
+            // [
+            //     'text' =>  __('global.submit-departure-form'),
+            // ],
             // [
             //     'text' =>  __('global.submit-disbursement-permit'),
             // ],

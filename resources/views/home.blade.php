@@ -4,10 +4,12 @@
     .mouseHover:hover {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
     }
-    .borderColorGreen{
+
+    .borderColorGreen {
         border-top: #1EAE9A solid 5px
     }
-    .borderColorRed{
+
+    .borderColorRed {
         border-top: #E04B4A solid 5px
     }
 </style>
@@ -42,8 +44,12 @@
                                 <livewire:dashboard.dashboard-add-branch />
                                 {{-- // DONE --}}
                                 <livewire:dashboard.dashboard-add-department />
-
+                                {{-- // DONE --}}
                                 <livewire:dashboard.dashboard-add-user />
+                                {{-- // DONE --}}
+                                <livewire:dashboard.dashboard-add-task />
+                                {{-- // DONE --}}
+                                <livewire:dashboard.dashboard-add-leave />
 
                                 @foreach ($actionBtns as $actionBtn)
                                     @include('Web.components.quick-btn', [
@@ -281,6 +287,10 @@
                 $('#create-new-department-modal').modal('hide');
 
                 $('#create-new-user-modal').modal('hide');
+
+                $('#create-submit-task').modal('hide');
+
+                $('#create-new-leave-modal').modal('hide');
             });
 
             // 
