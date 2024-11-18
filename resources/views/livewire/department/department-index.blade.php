@@ -47,6 +47,11 @@
                     @if ($showColumn['manager_id'])
                         <td>{{ __('department.manager') }}</td>
                     @endif
+
+                    @if ($showColumn['main_department_id'])
+                        <td>{{ __('department.main_department') }}</td>
+                    @endif
+
                     @if ($showColumn['employee'])
                         <td>{{ __('department.employee') }}</td>
                     @endif
@@ -118,6 +123,15 @@
                                 @endif
                             </td>
                         @endif
+
+                        @if ($showColumn['main_department_id'])
+                            <td>
+                                @if ($department->main_department)
+                                    {{ $department->main_department->crud_name() }}
+                                @endif
+                            </td>
+                        @endif
+
                         @if ($showColumn['employee'])
                             <td>
                                 {{ $department->employees->count() }}

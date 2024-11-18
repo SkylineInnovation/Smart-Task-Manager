@@ -19,4 +19,6 @@ return [
 
     'employee' => 'الموظفين',
 
+    'main_department' => 'القسم الرئيسي',
+
 ];

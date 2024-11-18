@@ -20,9 +20,10 @@ class DepartmentResource extends JsonResource
             "slug" => $this->slug,
 
 
+            'name' => $this->name,
             'branch' => new BranchResource($this->whenLoaded('branch')),
             'manager' => new UserResource($this->whenLoaded('manager')),
-            'name' => $this->name,
+            'main_department' => new DepartmentResource($this->whenLoaded('main_department')),
 
             "date" => date("d/m/Y", strtotime($this->created_at)),
             "time" => date("h:i A", strtotime($this->created_at)),

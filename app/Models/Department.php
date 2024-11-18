@@ -56,9 +56,10 @@ class Department extends Model
         'slug',
 
 
+        'name',
         'branch_id',
         'manager_id',
-        'name',
+        'main_department_id',
 
         'show',
         'sort',
@@ -164,6 +165,11 @@ class Department extends Model
     public function manager()
     {
         return $this->belongsTo(User::class, 'manager_id');
+    }
+
+    public function main_department()
+    {
+        return $this->belongsTo(Department::class, 'main_department_id');
     }
 
     public function employees()
