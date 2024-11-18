@@ -88,7 +88,6 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
 
 
     Route::get('reports', [WebReportController::class, 'indexReports'])->name('view-reports');
-    Route::post('task-commintes', [WebReportController::class, 'taskCommintes'])->name('task.commintes.report');
 
     Route::middleware('permission:index-user')->get('users', [UserController::class, 'index'])->name('user.index');
     Route::middleware('permission:show-user')->get('user/{user}', [UserController::class, 'show'])->name('user.show');
@@ -269,5 +268,4 @@ Route::get('urg', function () {
 });
 
 // php artisan migrate:refresh --path=database/migrations/2024_10_26_232722_create_departments_table.php
-
-// 
+// exchange_permission
