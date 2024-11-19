@@ -273,4 +273,29 @@ return [
 
     'task-unarchived-successfully' => 'Task UnArchived Successfully',
     'task-archived-successfully' => 'Task Archived Successfully',
+
+    'task-omments-report' => 'Task Comments Report',
+    'closed-tasks-coming-soon' => 'Closed Tasks Coming Soon',
+    'outgoing-task-movements' => 'Outgoing Task Movements',
+    'incoming-task-movements' => 'Incoming Task Movements',
+    'outgoing-task-discounts' => 'Outgoing Task Discounts',
+    'incoming-task-discounts' => 'Incoming Task Discounts',
+    'follow-up-employee-tasks' => 'Follow Up Employee Tasks',
+
+    'from date' => 'from date',
+    'Gregorian' => 'Gregorian',
+    'to date' => 'to date',
+    'user account' => 'user account',
+    'Choose...' => 'Choose...',
+    'Close' => 'Close',
+    'Save changes' => 'Save changes',
+    'Outgoing Task Movements' => 'Outgoing Task Movements',
+    'Incoming Task Movements' => 'Incoming Task Movements',
+    'Select Filter' => 'Select Filter',
+    'Follow Up Employee Tasks' => 'Follow Up Employee Tasks',
+
+    'report-title' => 'Report Title',
+
+
+
 ];

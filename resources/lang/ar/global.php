@@ -256,4 +256,27 @@ return [
     'deleted-successfully' => 'تم الحذف بنجاح',
     'recovered-successfully' => 'تم استردادها بنجاح',
 
+
+    'task-omments-report' => 'تقرير تعليقات المهام',
+    'closed-tasks-coming-soon' => 'المهام المغلقة القادمة قريبًا',
+    'outgoing-task-movements' => 'حركات المهام الصادرة',
+    'incoming-task-movements' => 'حركات المهام الواردة',
+    'outgoing-task-discounts' => 'خصومات المهام الصادرة',
+    'incoming-task-discounts' => 'خصومات المهام الواردة',
+    'follow-up-employee-tasks' => 'متابعة مهام الموظفين',
+
+    'from date' => 'من تاريخ',
+    'Gregorian' => 'ميلادي',
+    'to date' => 'حتى تاريخه',
+    'user account' => 'حساب المستخدم',
+    'Choose...' => 'اختر...',
+    'Close' => 'إغلاق',
+    'Save changes' => 'حفظ التغييرات',
+    'Outgoing Task Movements' => 'حركات المهام الصادرة',
+    'Incoming Task Movements' => 'حركات المهام الواردة',
+    'Select Filter' => 'تحديد عامل التصفية',
+    'Follow Up Employee Tasks' => 'متابعة مهام الموظفين',
+
+    'report-title' => 'عنوان التقرير',
+
 ];

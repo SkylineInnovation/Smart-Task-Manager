@@ -29,8 +29,8 @@
                             <img src="{{ asset('assets/dashboard/report-one.png') }}" width="72" height="72"
                                 alt="">
                         </div>
-                        <div class="col-md-12 text-center">
-                            Task Comments Report
+                        <div class="col-md-12 text-center text-dark text-bold">
+                            {{__('global.task-omments-report')}}
                         </div>
                     </a>
                 </div>
@@ -42,8 +42,8 @@
                             <img src="{{ asset('assets/dashboard/report-one.png') }}" width="72" height="72"
                                 alt="">
                         </div>
-                        <div class="col-md-12 text-center">
-                            Closed Tasks Coming Soon
+                        <div class="col-md-12 text-center text-dark text-bold">
+                            {{__('global.closed-tasks-coming-soon')}}
                         </div>
                     </a>
                 </div>
@@ -55,8 +55,8 @@
                             <img src="{{ asset('assets/dashboard/report-one.png') }}" width="72" height="72"
                                 alt="">
                         </div>
-                        <div class="col-md-12 text-center">
-                            Outgoing Task Movements
+                        <div class="col-md-12 text-center text-dark text-bold">
+                            {{__('global.outgoing-task-movements')}}
                         </div>
                     </a>
                 </div>
@@ -68,8 +68,8 @@
                             <img src="{{ asset('assets/dashboard/report-one.png') }}" width="72" height="72"
                                 alt="">
                         </div>
-                        <div class="col-md-12 text-center">
-                            Incoming Task Movements
+                        <div class="col-md-12 text-center text-dark text-bold">
+                            {{__('global.incoming-task-movements')}}
                         </div>
                     </a>
                 </div>
@@ -81,8 +81,8 @@
                             <img src="{{ asset('assets/dashboard/report-one.png') }}" width="72" height="72"
                                 alt="">
                         </div>
-                        <div class="col-md-12 text-center">
-                            Outgoing Task Discounts
+                        <div class="col-md-12 text-center text-dark text-bold">
+                            {{__('global.outgoing-task-discounts')}}
                         </div>
                     </a>
                 </div>
@@ -94,8 +94,8 @@
                             <img src="{{ asset('assets/dashboard/report-one.png') }}" width="72" height="72"
                                 alt="">
                         </div>
-                        <div class="col-md-12 text-center">
-                            Incoming Task Discounts
+                        <div class="col-md-12 text-center text-dark text-bold">
+                            {{__('global.incoming-task-discounts')}}
                         </div>
                     </a>
                 </div>
@@ -107,8 +107,8 @@
                             <img src="{{ asset('assets/dashboard/report-one.png') }}" width="72" height="72"
                                 alt="">
                         </div>
-                        <div class="col-md-12 text-center">
-                            Follow Up Employee Tasks
+                        <div class="col-md-12 text-center text-dark text-bold">
+                            {{__('global.follow-up-employee-tasks')}}
                         </div>
                     </a>
                 </div>
@@ -120,6 +120,7 @@
 @endsection
 
 @section('js')
+    <script src="cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript">
         $(function() {
             // 

@@ -531,4 +531,6 @@ class Task extends Model
         $sub_tasks = $this->sub_tasks()->where('created_at', '>=', date('Y-m-d H:i', strtotime('-1 Hour')))->count();
         return $sub_tasks > 0;
     }
+
+    
 }
