@@ -8,6 +8,7 @@ use App\Models\Task;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WebReportController extends Controller
 {
@@ -15,6 +16,8 @@ class WebReportController extends Controller
     {
         $users = User::whereRoleIs('employee')->orderBy('first_name')->get();
         $tasks_status = Task::get();
+
+
 
         return view('Web.repots.reports-web', compact('users', 'tasks_status'));
     }
@@ -84,5 +87,10 @@ class WebReportController extends Controller
         $tasks_status = Task::get();
         return $tasks_status;
         // return view('Web.repots.prints.follow-up-employee-tasks');
+    }
+
+    public function IncomingTasksNotCommentedOnToday()
+    {
+       
     }
 }

@@ -18,7 +18,12 @@
 <link href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
 
 <!-- STYLE CSS -->
-<link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
+
+@if (App::getLocale() == 'en')
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
+@else
+    <link href="{{ asset('assets/css/ar-style.css') }}" rel="stylesheet" />
+@endif
 <link href="{{ asset('assets/css/skin-modes.css') }}" rel="stylesheet" />
 <link href="{{ asset('assets/css/dark-style.css') }}" rel="stylesheet" />
 

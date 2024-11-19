@@ -69,6 +69,8 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     Route::get('dashboard', [HomeController::class, 'home'])->name('dashboard');
 
     Route::get('task-board', [HomeController::class, 'taskBoard'])->name('task-board');
+    Route::get('permission-page', [HomeController::class, 'permissionPage'])->name('permission.page');
+
 
     Route::get('dailytask/{dailytask}', [DailyTaskController::class, 'livewireShow'])->name('dailytask.show');
 

@@ -1,7 +1,7 @@
 @extends('layouts.livewire-app')
 <style>
     .mouseHover:hover {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+        drop-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
     }
 
     .borderColorGreen {

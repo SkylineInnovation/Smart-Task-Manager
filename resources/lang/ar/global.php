@@ -278,5 +278,28 @@ return [
     'Follow Up Employee Tasks' => 'متابعة مهام الموظفين',
 
     'report-title' => 'عنوان التقرير',
+    'Incoming tasks about to close' => 'المهام الواردة على وشك الإغلاق',
+    'Show tasks that will be closed after three days' => 'إظهار المهام التي سيتم إغلاقها بعد ثلاثة أيام',
+    'Outgoing tasks about to close' => 'المهام الصادرة على وشك الإغلاق',
+    'Show tasks that will be closed after three days' => 'إظهار المهام التي سيتم إغلاقها بعد ثلاثة أيام',
+    'Recent Operations' => 'العمليات الأخيرة',
+    'All movements on the program that took place during the last 24 hours' => 'جميع الحركات التي تمت على البرنامج خلال آخر 24 ساعة',
+    'task-management' => 'إدارة المهام',
 
+    'Incoming tasks not commented on today' => 'المهام الواردة التي لم يتم التعليق عليها اليوم',
+    'Show all tasks that do not have comments from all parties.' => 'إظهار كافة المهام التي لا تحتوي على تعليقات من جميع الأطراف.',
+    'Outgoing tasks not commented on today' => 'مهام صادرة لم يعلق عليها اليوم',
+
+    'task-number' => 'رقم المهمة',
+    'task-manager' => 'مدير المهام',
+    'Task Details' => 'تفاصيل المهمة',
+    'Comment Grace Period' => 'تعليق فترة السماح',
+    'Maximum Warnings' => 'الحد الأقصى للتحذيرات',
+    'Discount Amount When Reaching Maximum Warnings' => 'مبلغ الخصم عند الوصول إلى الحد الأقصى للتحذيرات',
+    'Discount Amount When Reaching Maximum Warnings' => 'مبلغ الخصم عند الوصول إلى الحد الأقصى للتحذيرات',
+    'Discount Amount When Reaching Maximum Warnings' => 'مبلغ الخصم عند الوصول إلى الحد الأقصى للتحذيرات',
+    'Discount Amount When Reaching Maximum Warnings' => 'مبلغ الخصم عند الوصول إلى الحد الأقصى للتحذيرات',
+    'Delivery Date' => 'تاريخ التسليم',
+    'Assignee' => 'المكلف',
+    'Employees' => 'الموظفون',
 ];
