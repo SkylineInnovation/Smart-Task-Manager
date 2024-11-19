@@ -225,6 +225,13 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     Route::middleware('permission:restore-work')->get('trash/works', [App\Http\Controllers\WorkController::class, 'livewireDeletedIndex'])->name('work.index.trash');
     Route::get('export/works', [App\Http\Controllers\WorkController::class, 'exportFullData'])->name('work.export');
     Route::post('import/works', [App\Http\Controllers\WorkController::class, 'importData'])->name('work.import');
+
+
+    // the full routes for exchangepermissions
+    Route::middleware('permission:index-exchangepermission')->get('exchangepermissions', [App\Http\Controllers\ExchangePermissionController::class, 'livewireIndex'])->name('exchangepermission.index');
+    Route::middleware('permission:restore-exchangepermission')->get('trash/exchangepermissions', [App\Http\Controllers\ExchangePermissionController::class, 'livewireDeletedIndex'])->name('exchangepermission.index.trash');
+    Route::get('export/exchangepermissions', [App\Http\Controllers\ExchangePermissionController::class, 'exportFullData'])->name('exchangepermission.export');
+    Route::post('import/exchangepermissions', [App\Http\Controllers\ExchangePermissionController::class, 'importData'])->name('exchangepermission.import');
 });
 
 
@@ -268,4 +275,3 @@ Route::get('urg', function () {
 });
 
 // php artisan migrate:refresh --path=database/migrations/2024_10_26_232722_create_departments_table.php
-// exchange_permission
