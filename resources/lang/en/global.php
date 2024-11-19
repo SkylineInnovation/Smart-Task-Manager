@@ -273,4 +273,52 @@ return [
 
     'task-unarchived-successfully' => 'Task UnArchived Successfully',
     'task-archived-successfully' => 'Task Archived Successfully',
+
+    'task-omments-report' => 'Task Comments Report',
+    'closed-tasks-coming-soon' => 'Closed Tasks Coming Soon',
+    'outgoing-task-movements' => 'Outgoing Task Movements',
+    'incoming-task-movements' => 'Incoming Task Movements',
+    'outgoing-task-discounts' => 'Outgoing Task Discounts',
+    'incoming-task-discounts' => 'Incoming Task Discounts',
+    'follow-up-employee-tasks' => 'Follow Up Employee Tasks',
+
+    'from date' => 'from date',
+    'Gregorian' => 'Gregorian',
+    'to date' => 'to date',
+    'user account' => 'user account',
+    'Choose...' => 'Choose...',
+    'Close' => 'Close',
+    'Save changes' => 'Save changes',
+    'Outgoing Task Movements' => 'Outgoing Task Movements',
+    'Incoming Task Movements' => 'Incoming Task Movements',
+    'Select Filter' => 'Select Filter',
+    'Follow Up Employee Tasks' => 'Follow Up Employee Tasks',
+
+    'report-title' => 'Report Title',
+
+    'Incoming tasks about to close' => 'Incoming tasks about to close',
+    'Show tasks that will be closed after three days' => 'Show tasks that will be closed after three days',
+    'Outgoing tasks about to close' => 'Outgoing tasks about to close',
+    'Show tasks that will be closed after three days' => 'Show tasks that will be closed after three days',
+    'Recent Operations' => 'Recent Operations',
+    'All movements on the program that took place during the last 24 hours' => 'All movements on the program that took place during the last 24 hours',
+    'task-management' => 'Task Management',
+    'Incoming tasks not commented on today' => 'Incoming tasks not commented on today',
+    'Show all tasks that do not have comments from all parties.' => 'Show all tasks that do not have comments from all parties.',
+    'Outgoing tasks not commented on today' => 'Outgoing tasks not commented on today',
+    'task-number' => 'Task Number',
+    'task-manager' => 'Task Manager',
+
+    'Task Details' => 'Task Details',
+    'Comment Grace Period' => 'Comment Grace Period',
+    'Maximum Warnings' => 'Maximum Warnings',
+    'Discount Amount When Reaching Maximum Warnings' => 'Discount Amount When Reaching Maximum Warnings',
+    'Discount Amount When Reaching Maximum Warnings' => 'Discount Amount When Reaching Maximum Warnings',
+    'Discount Amount When Reaching Maximum Warnings' => 'Discount Amount When Reaching Maximum Warnings',
+    'Discount Amount When Reaching Maximum Warnings' => 'Discount Amount When Reaching Maximum Warnings',
+    'Delivery Date' => 'Delivery Date',
+    'Assignee' => 'Assignee',
+    'Employees' => 'Employees',
+
+
 ];

@@ -399,6 +399,11 @@ class Task extends Model
         return $this->hasMany(Comment::class)->where('main_comment_id', 0);
     }
 
+    public function today_comments()
+    {
+        return $this->hasMany(Comment::class)->whereBetween('created_at', [date('Y-m-d 00:00:00'), date('Y-m-d 23:59:59')]);
+    }
+
     public function sub_tasks()
     {
         return $this->hasMany(Task::class, 'main_task_id')->whereHas('manager', function ($q) {

@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\DailyTask;
+use App\Models\LogHistory;
 use App\Models\Task;
 use App\Models\User;
+use Carbon\Carbon;
+use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -191,7 +194,58 @@ class HomeController extends Controller
             // ],
         ];
 
-        return view('home', compact('mainBtns', 'actionBtns', 'tasksBtns'));
+        $users = Auth::user()->id;
+        $tasksInDashboard = Task::whereHas('employees', function ($q) use ($users) {
+            $q->where('user_id', $users);
+        })->get();
+
+        // //    Incoming tasks not commented on today
+        // $ITNCOT = Task::whereHas('employees', function ($q) use ($users) {
+        //     $q->where('user_id', $users);
+        // })->where('status', 'active')->whereDoesntHave('comments')->whereDate('created_at', Carbon::today())->get();
+
+        // // Outgoing tasks not commented on today
+        // $OTNCOT = Task::where('manager_id',)->whereDoesntHave('comments')->whereDate('created_at', Carbon::today())->get();
+
+
+        // DONE
+        // مهام واردة لم يعلق عليها اليوم
+        $income_tasks_not_commented = Task::whereHas('employees', function ($q) use ($users) {
+            $q->where('user_id', $users);
+        })->whereDoesntHave('today_comments')->where('end_time', '>=', date('Y-m-d\TH:i'))->get();
+
+
+        // مهام صادرة لم يعلق عليها اليوم
+        $outcome_tasks_not_commented = Task::where('manager_id', $users)
+            ->whereDoesntHave('today_comments')->where('end_time', '>=', date('Y-m-d\TH:i'))->get();
+
+
+        // مهام واردة أوشكت على الإغلاق
+        $income_tasks_almost_close = Task::whereHas('employees', function ($q) use ($users) {
+            $q->where('user_id', $users);
+        })->where('start_time', '>=', date('Y-m-d\T00:00'))->where('end_time', '<=', date('Y-m-d\TH:i', strtotime('+3 Days')))->get();
+
+
+        // مهام صادرة أوشكت على الإغلاق
+        $outcome_tasks_almost_close = Task::where('manager_id', $users)
+            ->where('start_time', '>=', date('Y-m-d\T00:00'))
+            ->where('end_time', '<=', date('Y-m-d\TH:i', strtotime('+3 Days')))->get();
+
+
+        $all_history = LogHistory::whereBetween('created_at', [date('Y-m-d H:i:s', strtotime('-1 Days')), date('Y-m-d H:i:s')])->get();
+
+
+        return view('home', compact(
+            'mainBtns',
+            'actionBtns',
+            'tasksBtns',
+            'tasksInDashboard',
+            'income_tasks_not_commented',
+            'outcome_tasks_not_commented',
+            'income_tasks_almost_close',
+            'outcome_tasks_almost_close',
+            'all_history',
+        ));
     }
 
     public function editProfile()
@@ -258,5 +312,10 @@ class HomeController extends Controller
     public function taskBoard()
     {
         return view('Web.task-board');
+    }
+
+    public function permissionPage()
+    {
+        return view('Web.permissions.permissions');
     }
 }
