@@ -76,6 +76,17 @@
                                     ])
                                 @endif
 
+                                @include('inputs.create.select', [
+                                    'label' => 'department.main_department',
+                                    'name' => 'department.main_department_id',
+                                    'arr' => $main_departments,
+                                    'livewire' => 'main_department_id',
+                                    // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                    'lg' => 12,
+                                    'md' => 12,
+                                    'sm' => 12,
+                                ])
+
 
                             </div>
 
@@ -185,6 +196,18 @@
                                         'sm' => 12,
                                     ])
                                 @endif
+
+                                @include('inputs.edit.select', [
+                                    'label' => 'department.main_department',
+                                    'name' => 'department.main_department_id',
+                                    'arr' => $main_departments,
+                                    'livewire' => 'main_department_id',
+                                    'val' => $department->main_department_id,
+                                    // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                    'lg' => 12,
+                                    'md' => 12,
+                                    'sm' => 12,
+                                ])
 
                             </div>
 

@@ -275,3 +275,6 @@ Route::get('urg', function () {
 
     return $tasks;
 });
+
+// php artisan migrate:refresh --path=database/migrations/2024_10_26_232722_create_departments_table.php
+// exchange_permission

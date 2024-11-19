@@ -18,5 +18,7 @@ return [
 
     'employee' => 'Employee',
 
+    'main_department' => 'Main Department',
+
 
 ];

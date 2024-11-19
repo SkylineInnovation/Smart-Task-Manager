@@ -21,12 +21,13 @@ class CreateDepartmentsTable extends Migration
             $table->string('slug')->nullable();
 
 
+            $table->string('name')->nullable();
+
             $table->foreignIdFor(App\Models\Branch::class)->nullable()->default(0);
 
             $table->foreignIdFor(App\Models\User::class, 'manager_id')->nullable()->default(0);
 
-            $table->string('name')->nullable();
-
+            $table->foreignIdFor(App\Models\Department::class, 'main_department_id')->nullable()->default(0);
 
             $table->boolean('show')->default(true);
             $table->integer('sort')->default(1000);

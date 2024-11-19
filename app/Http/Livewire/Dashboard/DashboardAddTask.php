@@ -24,6 +24,17 @@ class DashboardAddTask extends Component
         $this->user = Auth::user();
         $this->by = session()->get('admin_user', $this->user);
 
+        $this->get_create_date();
+    }
+
+    public $slug;
+    public $discount = 0;
+    public $task_id, $manager_id, $title, $desc,
+        $start_time, $end_time,
+        $priority_level = 'low', $status = 'pending';
+
+    public function get_create_date()
+    {
         $this->task = new Task();
 
         $this->start_time = date('Y-m-d\TH:i');
@@ -40,12 +51,6 @@ class DashboardAddTask extends Component
         //     return $q->where('manager_id', $this->user->id);
         // })->orderBy('first_name')->get();
     }
-
-    public $slug;
-    public $discount = 0;
-    public $task_id, $manager_id, $title, $desc,
-        $start_time, $end_time,
-        $priority_level = 'low', $status = 'pending';
 
     private function resetInputFields()
     {

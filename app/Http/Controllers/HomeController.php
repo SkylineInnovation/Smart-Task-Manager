@@ -116,6 +116,7 @@ class HomeController extends Controller
             [
                 'image' => asset('assets/dashboard/employee.png'),
                 'text' =>  __('global.job'),
+                'link' => route('work.index'),
             ],
             [
                 'image' => asset('assets/dashboard/team.png'),

@@ -37,12 +37,16 @@ class DepartmentIndex extends Component
 
     public $managers = [];
 
+    public $main_departments = [];
+
     public $the_manager;
     public $the_branch;
 
     public $filter_branches_id = [];
 
     public $filter_managers_id = [];
+
+    public $filter_main_departments_id = [];
 
 
 
@@ -81,7 +85,7 @@ class DepartmentIndex extends Component
             // $this->branches = collect([$the_branch]);
         }
 
-
+        $this->main_departments = \App\Models\Department::whereNullOrEmptyOrZero('main_department_id')->where('show', 1)->orderBy('sort')->get();
 
         $this->showColumn = collect([
             'id' => false,
@@ -92,6 +96,7 @@ class DepartmentIndex extends Component
             'branch_id' => !$this->the_branch ? true : false,
             'area_id' => true,
             'manager_id' => !$this->the_manager ? true : false,
+            'main_department_id' => true,
             'employee' => true,
 
             // 'status' => false,
@@ -101,7 +106,7 @@ class DepartmentIndex extends Component
     }
 
     public $slug;
-    public $department_id, $branch_id, $manager_id, $name;
+    public $department_id, $branch_id, $manager_id, $main_department_id, $name;
     public $updateMode = false;
 
     private function resetInputFields()
@@ -113,6 +118,9 @@ class DepartmentIndex extends Component
 
         if (!$this->the_manager)
             $this->manager_id = null;
+
+        $this->main_department_id = null;
+
         $this->name = '';
     }
 
@@ -127,6 +135,7 @@ class DepartmentIndex extends Component
             'name' => 'required',
             'branch_id' => 'required',
             'manager_id' => 'required',
+            // 'main_department_id' => 'required',
         ];
     }
 
@@ -145,6 +154,8 @@ class DepartmentIndex extends Component
 
             'branch_id' => $this->branch_id,
             'manager_id' => $this->manager_id,
+            'main_department_id' => $this->main_department_id,
+
             'name' => $this->name,
         ]);
 
@@ -166,6 +177,8 @@ class DepartmentIndex extends Component
         $this->branch_id = $department->branch_id;
         $this->manager_id = $department->manager_id;
         $this->name = $department->name;
+
+        $this->main_department_id = $department->main_department_id;
     }
 
     public function cancel()
@@ -182,9 +195,12 @@ class DepartmentIndex extends Component
             $department->update([
                 'slug' => $this->slug,
 
+                'name' => $this->name,
+
                 'branch_id' => $this->branch_id,
                 'manager_id' => $this->manager_id,
-                'name' => $this->name,
+                'main_department_id' => $this->main_department_id,
+
             ]);
 
             $this->updateMode = false;
@@ -242,6 +258,8 @@ class DepartmentIndex extends Component
 
         $this->filter_managers_id = [];
 
+        $this->filter_main_departments_id = [];
+
         $this->select_branch = '';
         $this->select_manager = '';
     }
@@ -260,15 +278,23 @@ class DepartmentIndex extends Component
         $this->filter_managers_id[] = $val;
     }
 
-    // public function updatedBranchId($val)
-    // {
-    //     $branch = Branch::find($this->branch_id);
+    public $select_main_department;
+    public function updatedSelectMainDepartment($val)
+    {
+        $this->filter_main_departments_id[] = $val;
+    }
 
-    //     if ($branch)
-    //         $this->managers = $branch->managers;
-    //     else
-    //         $this->managers = \App\Models\User::whereRoleIs('manager')->orderBy('first_name')->get();
-    // }
+    public function updatedBranchId($val)
+    {
+        $branch = Branch::find($this->branch_id);
+
+        $this->main_departments = Department::whereNullOrEmptyOrZero('main_department_id')->where('branch_id', $this->branch_id)->get();
+
+        // if ($branch)
+        //     $this->managers = $branch->managers;
+        // else
+        //     $this->managers = \App\Models\User::whereRoleIs('manager')->orderBy('first_name')->get();
+    }
 
 
 
@@ -310,6 +336,8 @@ class DepartmentIndex extends Component
         if ($this->filter_managers_id)
             $departments = $departments->whereIn('manager_id', $this->filter_managers_id);
 
+        if ($this->filter_main_departments_id)
+            $departments = $departments->whereIn('main_department_id', $this->filter_main_departments_id);
 
         if ($this->admin_view_status == 'deleted')
             $departments = $departments->onlyTrashed();

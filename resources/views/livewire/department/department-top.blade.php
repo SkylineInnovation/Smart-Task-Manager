@@ -10,12 +10,13 @@
             <select wire:model='orderBy' class="form-control form-group" style="width: 150px;">
                 <option value="id">{{ __('global.id') }}</option>
 
+                <option value='name'>{{ __('department.name') }}</option>
+
                 <option value='branch_id'>{{ __('department.branch') }}</option>
 
                 <option value='manager_id'>{{ __('department.manager') }}</option>
 
-                <option value='name'>{{ __('department.name') }}</option>
-
+                <option value='main_department_id'>{{ __('department.main_department') }}</option>
 
                 <option value="created_at">{{ __('global.created_at') }}</option>
             </select>
