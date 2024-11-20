@@ -1,46 +1,49 @@
 @extends('layouts.livewire-app')
 
-<style>
-    .mouseHover:hover {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
-    }
 
-    .iconsIffict:hover {
-        filter: drop-shadow(0 0 0.75rem rgb(209, 209, 209));
-    }
+@section('css')
+    <style>
+        .mouseHover:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+        }
 
-    .borderColorGreen {
-        border-top: #1EAE9A solid 5px
-    }
+        .iconsIffict:hover {
+            filter: drop-shadow(0 0 0.75rem rgb(209, 209, 209));
+        }
 
-    .borderColorRed {
-        border-top: #E04B4A solid 5px
-    }
+        .borderColorGreen {
+            border-top: #1EAE9A solid 5px
+        }
 
-    .bgHover {
-        background-color: white;
-        color: black;
-    }
+        .borderColorRed {
+            border-top: #E04B4A solid 5px
+        }
 
-    .bgHover:hover {
-        background-color: gainsboro !important;
-        color: black !important;
-    }
+        .bgHover {
+            background-color: white;
+            color: black;
+        }
 
-    li>a.active {
-        background-color: rgb(20, 20, 20) !important;
-        color: white !important;
+        .bgHover:hover {
+            background-color: gainsboro !important;
+            color: black !important;
+        }
 
-    }
+        li>a.active {
+            background-color: rgb(20, 20, 20) !important;
+            color: white !important;
 
-    li>a.border-bottom {
-        color: black
-    }
+        }
 
-    li>a.border-bottom:hover {
-        color: black
-    }
-</style>
+        li>a.border-bottom {
+            color: black
+        }
+
+        li>a.border-bottom:hover {
+            color: black
+        }
+    </style>
+@endsection
 
 @section('content')
     <div class="container-fluid p-0">
@@ -136,30 +139,7 @@
                         </div>
                         <div class="card-body px-0">
                             @foreach ($income_tasks_almost_close as $t)
-                                <div class="row w-100 m-0 bgHover py-3">
-                                    <div class="col-md-2 col-2 d-flex justify-content-center align-items-center">
-                                        <img src="{{ asset('assets/dashboard/task.png') }}" width="60px" height="60px"
-                                            alt="">
-                                    </div>
-
-                                    <div class="col-md-10 col-9">
-                                        <h3 class="mb-3">{{ $t->title }}</h3>
-                                        <p class="pb-0 mb-0">{{ __('global.task-number') }} : {{ $t->id }}</p>
-                                        <p class="pb-0 mb-0">{{ __('global.task-manager') }} : {{ $t->manager->name() }}
-                                        </p>
-                                        <div class="row w-100 m-0 p-0">
-                                            <div class="col-auto p-0">{{ __('global.employees') }}:</div>
-                                            @foreach ($t->employees as $tp)
-                                                <div class="col-3 text-{{ App::getLocale() == 'en' ? 'start' : 'end' }}">
-                                                    {{ $tp->name() }}
-                                                </div>
-                                            @endforeach
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
+                                <livewire:dashboard.task-detail :task="$t" />
                             @endforeach
                         </div>
 
@@ -183,30 +163,7 @@
                         </div>
                         <div class="card-body  px-0">
                             @foreach ($outcome_tasks_almost_close as $t)
-                                <div class="row w-100 m-0 bgHover py-3">
-                                    <div class="col-md-2 col-2 d-flex justify-content-center align-items-center">
-                                        <img src="{{ asset('assets/dashboard/task.png') }}" width="60px" height="60px"
-                                            alt="">
-                                    </div>
-
-                                    <div class="col-md-10 col-9">
-                                        <h3 class="mb-3">{{ $t->title }}</h3>
-                                        <p class="pb-0 mb-0">{{ __('global.task-number') }} : {{ $t->id }}</p>
-                                        <p class="pb-0 mb-0">{{ __('global.task-manager') }} : {{ $t->manager->name() }}
-                                        </p>
-                                        <div class="row w-100 m-0 p-0">
-                                            <div class="col-auto p-0">{{ __('global.employees') }}:</div>
-                                            @foreach ($t->employees as $tp)
-                                                <div class="col-3 text-{{ App::getLocale() == 'en' ? 'start' : 'end' }}">
-                                                    {{ $tp->name() }}
-                                                </div>
-                                            @endforeach
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
+                                <livewire:dashboard.task-detail :task="$t" />
                             @endforeach
                         </div>
 
@@ -295,34 +252,7 @@
                         </div>
                         <div class="card-body px-0">
                             @foreach ($income_tasks_not_commented as $t)
-                                <a href="">
-                                    <div class="row w-100 m-0 bgHover py-3">
-                                        <div class="col-md-2 col-2 d-flex justify-content-center align-items-center">
-                                            <img src="{{ asset('assets/dashboard/task.png') }}" width="60px"
-                                                height="60px" alt="">
-                                        </div>
-
-                                        <div class="col-md-10 col-9">
-                                            <h3 class="mb-3">{{ $t->title }}</h3>
-                                            <p class="pb-0 mb-0">{{ __('global.task-number') }} : {{ $t->id }}</p>
-                                            <p class="pb-0 mb-0">{{ __('global.task-manager') }} :
-                                                {{ $t->manager->name() }}
-                                            </p>
-                                            <div class="row w-100 m-0 p-0">
-                                                <div class="col-auto p-0">{{ __('global.employees') }}:</div>
-                                                @foreach ($t->employees as $tp)
-                                                    <div
-                                                        class="col-3 text-{{ App::getLocale() == 'en' ? 'start' : 'end' }}">
-                                                        {{ $tp->name() }}
-                                                    </div>
-                                                @endforeach
-                                            </div>
-
-                                        </div>
-
-
-                                    </div>
-                                </a>
+                                <livewire:dashboard.task-detail :task="$t" />
                             @endforeach
                         </div>
 
@@ -341,8 +271,6 @@
                                     {{ __('global.Show all tasks that do not have comments from all parties.') }}
                                 </small>
                             </div>
-
-
                         </div>
 
                         <div class="card-body px-0">
@@ -350,7 +278,6 @@
                                 <livewire:dashboard.task-detail :task="$t" />
                             @endforeach
                         </div>
-
                     </div>
                 </div>
 
@@ -362,15 +289,6 @@
 
 
 <!-- Modal -->
-
-
-@section('js')
-    <script type="text/javascript">
-        $(function() {
-            // 
-        });
-    </script>
-@endsection
 
 @section('livewire-js')
     <script type="text/javascript">

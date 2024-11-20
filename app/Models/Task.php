@@ -64,6 +64,8 @@ class Task extends Model
         'desc',
         'start_time',
         'end_time',
+        'comment_type',
+        'max_worning_count',
         'priority_level',
         'status',
         'main_task_id',
@@ -266,6 +268,8 @@ class Task extends Model
             $q->orWhereSearch('desc', $search);
             $q->orWhereSearch('start_time', $search);
             $q->orWhereSearch('end_time', $search);
+            $q->orWhereSearch('comment_type', $search);
+            $q->orWhereSearch('max_worning_count', $search);
             $q->orWhereSearch('priority_level', $search);
             $q->orWhereSearch('status', $search);
             // $q->orWhere('main_task_id', $search);
@@ -355,7 +359,7 @@ class Task extends Model
 
     public function employees()
     {
-        return $this->belongsToMany(User::class)->withPivot('discount');
+        return $this->belongsToMany(User::class)->withPivot('discount', 'max_worning_discount');
     }
 
     public function employee_names()

@@ -94,9 +94,12 @@ class TaskIndex extends Component
             'desc' => false,
             'start_time' => true,
             'end_time' => true,
+            'comment_type' => true,
+            'max_worning_count' => true,
             'priority_level' => true,
             'status' => true,
             'main_task_id' => false,
+
 
             // 'status' => false,
             'date' => false,
@@ -105,7 +108,7 @@ class TaskIndex extends Component
     }
 
     public $slug;
-    public $task_id, $manager_id, $title, $desc, $start_time, $end_time, $priority_level = 'low', $status = 'pending', $main_task_id, $daily_task_id;
+    public $task_id, $manager_id, $title, $desc, $start_time, $end_time, $comment_type = 'daily', $max_worning_count, $priority_level = 'low', $status = 'pending', $main_task_id, $daily_task_id;
 
     public $task_status = 'all';
     public $discount = 0;
@@ -120,6 +123,8 @@ class TaskIndex extends Component
         $this->desc = '';
         $this->start_time = date('Y-m-d\TH:i');
         $this->end_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        $this->comment_type = 'daily';
+        $this->max_worning_count = null;
         // $this->priority_level = 'low';
         // $this->status = 'pending';
         $this->main_task_id = null;
@@ -141,6 +146,8 @@ class TaskIndex extends Component
             // 'start_time' => 'required|date',
             'start_time' => 'required|date|after:' . date('Y-m-d\TH:i', strtotime('-5 Minutes')),
             'end_time' => 'required|date|after:start_time', // _or_equal
+            'comment_type' => 'required',
+            'max_worning_count' => 'required',
             'priority_level' => 'required',
             'status' => 'required',
             'discount' => 'required',
@@ -174,6 +181,8 @@ class TaskIndex extends Component
             'desc' => $this->desc,
             'start_time' => $this->start_time,
             'end_time' => $this->end_time,
+            'comment_type' => $this->comment_type,
+            'max_worning_count' => $this->max_worning_count,
             'priority_level' => $this->priority_level,
             'status' => $this->status,
             'main_task_id' => $this->main_task_id,
@@ -206,6 +215,8 @@ class TaskIndex extends Component
         $this->desc = $task->desc;
         $this->start_time = $task->start_time;
         $this->end_time = $task->end_time;
+        $this->comment_type = $task->comment_type;
+        $this->max_worning_count = $task->max_worning_count;
         $this->priority_level = $task->priority_level;
         $this->status = $task->status;
         $this->main_task_id = $task->main_task_id;
@@ -244,6 +255,8 @@ class TaskIndex extends Component
                 'desc' => $this->desc,
                 'start_time' => $this->start_time,
                 'end_time' => $this->end_time,
+                'comment_type' => $this->comment_type,
+                'max_worning_count' => $this->max_worning_count,
                 'priority_level' => $this->priority_level,
                 'status' => $this->status,
                 'main_task_id' => $this->main_task_id,
@@ -342,6 +355,8 @@ class TaskIndex extends Component
 
         $this->selectedEmployees = [];
 
+        $this->comment_type = $task->comment_type;
+        $this->max_worning_count = $task->max_worning_count;
         $this->priority_level = $task->priority_level;
         $this->daily_task_id = $task->daily_task_id;
         $this->status = 'pending';

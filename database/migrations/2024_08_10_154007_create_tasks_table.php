@@ -33,6 +33,10 @@ class CreateTasksTable extends Migration
 
             $table->string('priority_level')->nullable()->default('low');
 
+            $table->string('comment_type')->nullable()->default('daily');
+
+            $table->integer('max_worning_count')->nullable()->default(1);
+
             $table->string('status')->nullable()->default('pending');
 
             $table->foreignIdFor(App\Models\Task::class, 'main_task_id')->nullable()->default(0);

@@ -24,7 +24,7 @@ class TaskShow extends Component
     public Task $task;
 
     public $task_id, $title, $discount, $desc, $start_time, $end_time;
-    public $priority_level, $status;
+    public $comment_type = 'daily', $max_worning_count, $priority_level, $status;
 
     public $employees;
     public $selectedEmployees = [];
@@ -46,6 +46,8 @@ class TaskShow extends Component
         $this->start_time = $task->start_time;
         $this->end_time = $task->end_time;
 
+        $this->comment_type = $task->comment_type;
+        $this->max_worning_count = $task->max_worning_count;
         $this->priority_level = $task->priority_level;
         $this->status = $task->status;
 
@@ -62,6 +64,8 @@ class TaskShow extends Component
             // 'start_time' => 'required|date',
             'start_time' => 'required|date|after:' . date('Y-m-d\TH:i', strtotime('-5 Minutes')),
             'end_time' => 'required|date|after:start_time', // _or_equal
+            'comment_type' => 'required',
+            'max_worning_count' => 'required',
             'priority_level' => 'required',
             'status' => 'required',
             'discount' => 'required',
@@ -96,6 +100,8 @@ class TaskShow extends Component
             'desc' => $this->desc,
             'start_time' => $this->start_time,
             'end_time' => $this->end_time,
+            'comment_type' => $this->comment_type,
+            'max_worning_count' => $this->max_worning_count,
             'priority_level' => $this->priority_level,
             'status' => $this->status,
             // 'main_task_id' => $this->main_task_id,
@@ -142,6 +148,9 @@ class TaskShow extends Component
 
         // $this->sub_task_start_time  = date('Y-m-d\TH:i');
         // $this->sub_task_end_time  = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        $this->comment_type  = $task->comment_type;
+        $this->max_worning_count  = $task->max_worning_count;
+
         $this->sub_task_start_time  = $task->start_time;
         $this->sub_task_end_time  = $task->end_time;
 
@@ -192,6 +201,7 @@ class TaskShow extends Component
                 'comment_desc' => 'required|min:60',
             ]);
         }
+
         $comment = Comment::create([
             'add_by' => $this->by->id,
 
@@ -217,6 +227,7 @@ class TaskShow extends Component
     {
         $this->comment_id = $id;
     }
+
     public function replayComment()
     {
         $comment = Comment::create([
@@ -245,6 +256,7 @@ class TaskShow extends Component
     public $sub_task_discount;
     public $sub_task_title, $sub_task_desc,
         $sub_task_start_time, $sub_task_end_time,
+        $sub_task_comment_type = 'daily', $sub_task_max_worning_count,
         $sub_task_priority_level = 'low', $sub_task_status = 'pending';
 
     public $selected_employe_task = [];
@@ -261,6 +273,8 @@ class TaskShow extends Component
             'desc' => $this->sub_task_desc,
             'start_time' => $this->sub_task_start_time,
             'end_time' => $this->sub_task_end_time,
+            'comment_type' => $this->sub_task_comment_type,
+            'max_worning_count' => $this->sub_task_max_worning_count,
             'priority_level' => $this->sub_task_priority_level,
             'status' => $this->sub_task_status,
             'main_task_id' => $this->task_id,
@@ -274,6 +288,8 @@ class TaskShow extends Component
         $this->sub_task_start_time  = date('Y-m-d\TH:i', strtotime($this->sub_task_end_time));
         $this->sub_task_end_time  = date('Y-m-d\TH:i', strtotime($this->sub_task_start_time . ' +1 Hours'));
 
+        $this->sub_task_comment_type = 'daily';
+        $this->sub_task_max_worning_count = null;
         $this->sub_task_priority_level = 'low';
 
         // $this->selectedEmployees = [];

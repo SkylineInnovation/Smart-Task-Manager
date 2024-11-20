@@ -45,6 +45,7 @@
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ]) --}}
+
                                 @include('inputs.create.input', [
                                     'label' => 'task.title',
                                     'name' => 'task.title',
@@ -101,6 +102,9 @@
                                     'min' => date('Y-m-d\TH:i', strtotime($start_time . '+1 Hours')),
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
+
+                                {{-- comment_type --}}
+                                {{-- max_worning_count --}}
 
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
@@ -297,6 +301,9 @@
                                     'min' => date('Y-m-d\TH:i', strtotime($start_time . '+1 Hours')),
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
+
+                                {{-- comment_type --}}
+                                {{-- max_worning_count --}}
 
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
