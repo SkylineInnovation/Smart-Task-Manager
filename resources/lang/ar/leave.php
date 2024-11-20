@@ -37,4 +37,7 @@ return [
     'pending' => 'قيد الانتظار',
     'accepted' => 'تم الموافقة',
     'rejected' => 'مرفوض',
+
+    'action_by_user' => 'الإجراء الذي اتخذه المدير',
+    'action_time' => 'وقت الإجراء',
 ];

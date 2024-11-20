@@ -31,7 +31,11 @@ return [
 
     'max_worning_discount' => 'Amount of discount when reaching the maximum warning limit',
 
+    'short_max_worning_count' => 'max worning count',
+    'short_max_worning_discount' => 'discount',
+
     'discount' => 'Deduction',
+    'full_discount' => 'Amount Of Discount When The Task Is Closed Automatically',
 
 
     'low' => 'Low',
@@ -131,5 +135,9 @@ return [
 
     'open_history' => 'Open History',
     'history' => 'History',
-    'completePercentage' => 'Complete Percentage'
+    'completePercentage' => 'Complete Percentage',
+
+    'daily' => 'Daily',
+    'weekly' => 'Weekly',
+    'monthly' => 'Monthly',
 ];

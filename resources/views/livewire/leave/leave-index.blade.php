@@ -69,11 +69,11 @@
                     @endif
 
                     @if ($showColumn['accepted_by_user_id'])
-                        <td>{{ __('leave.accepted_by_user') }}</td>
+                        <td>{{ __('leave.action_by_user') }}</td>
                     @endif
 
                     @if ($showColumn['accepted_time'])
-                        <td>{{ __('leave.accepted_time') }}</td>
+                        <td>{{ __('leave.action_time') }}</td>
                     @endif
 
 
@@ -150,7 +150,7 @@
                         @endif
 
                         @if ($showColumn['effect_on_time'])
-                            <td> {{ $leave->effect_on_time }} </td>
+                            <td> {{ $leave->effect_on_time ? __('global.yes') : __('global.no') }} </td>
                         @endif
 
                         @if ($showColumn['reason'])

@@ -330,5 +330,7 @@ return [
     'Group number' => 'رقم المجموعة',
     'Group name' => 'اسم المجموعة',
     'Number of users' => 'عدد المستخدمين',
-    'create-permissions' => 'إنشاء الأذونات'
+    'create-permissions' => 'إنشاء الأذونات',
+
+    'no-task' => 'بدون تاسك',
 ];

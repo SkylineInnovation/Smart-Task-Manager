@@ -377,7 +377,7 @@
                         <div class="row">
                             @include('inputs.show.input', [
                                 'label' => 'leave.task',
-                                'val' => $leave->task->crud_name(),
+                                'val' => $leave->task ? $leave->task->crud_name() : __('global.no-task'),
                                 'lg' => 4,
                                 'md' => 4,
                                 'sm' => 12,

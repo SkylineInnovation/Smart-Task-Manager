@@ -38,5 +38,8 @@ return [
     'accepted' => 'Accepted',
     'rejected' => 'Rejected',
 
+    'action_by_user' => 'Action By Manager',
+    'action_time' => 'Action Time',
+
 
 ];

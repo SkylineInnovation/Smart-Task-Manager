@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Discount;
 
 use App\Jobs\SendNewDiscount;
 use App\Models\Discount;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Livewire\Component;
@@ -72,9 +73,9 @@ class DiscountIndex extends Component
             $this->the_task_id = $task_id;
         }
 
-        $this->tasks = \App\Models\Task::whereNullOrEmptyOrZero('main_task_id')->where('show', 1)->orderBy('sort')->get();
+        $this->tasks = \App\Models\Task::whereNullOrEmptyOrZero('main_task_id')->where('show', 1)->orderBy('id', 'desc')->get();
 
-        $this->users = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
+        $this->users = \App\Models\User::whereRoleIs('manager')->orWhereRoleIs('employee')->orderBy('first_name')->get();
 
 
         $this->showColumn = collect([
@@ -163,6 +164,8 @@ class DiscountIndex extends Component
         $this->user_id = $discount->user_id;
         $this->amount = $discount->amount;
         $this->reason = $discount->reason;
+
+        $this->users = \App\Models\User::whereRoleIs('manager')->orWhereRoleIs('employee')->orderBy('first_name')->get();
     }
 
     public function cancel()
@@ -258,7 +261,12 @@ class DiscountIndex extends Component
         $this->filter_users_id[] = $val;
     }
 
-
+    public function updatedTaskId($val)
+    {
+        $this->users = User::whereHas('tasks', function ($q) {
+            $q->where('task_id', $this->task_id);
+        })->orderBy('first_name')->get();
+    }
 
 
     public function gotoPage($page)

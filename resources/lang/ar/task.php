@@ -29,9 +29,13 @@ return [
 
     'main_task' => 'المهمة الرئيسية',
 
-    'discount' => 'مقدار الحسم عند إغلاق المهمة تلقائياً',
+    'discount' => 'مقدار الحسم',
+    'full_discount' => 'مقدار الحسم عند إغلاق المهمة تلقائياً',
 
     'max_worning_discount' => 'مقدار الحسم عند الوصول للحد الاقصي للتحذيرات',
+
+    'short_max_worning_count' => 'الحد الأقصى للتحذيرات',
+    'short_max_worning_discount' => 'الحسم',
 
     'low' => 'منخفض',
     'medium' => 'متوسط',
@@ -128,5 +132,9 @@ return [
     'open_history' => 'السجل',
     'history' => 'السجل',
 
-    'completePercentage' => 'التقيم '
+    'completePercentage' => 'التقيم',
+
+    'daily' => 'يومي',
+    'weekly' => 'اسبوعي',
+    'monthly' => 'شهري',
 ];

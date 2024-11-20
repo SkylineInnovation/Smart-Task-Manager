@@ -370,7 +370,8 @@ class LeaveIndex extends Component
         $leaveTime = Leave::find($id);
 
         $leaveTime->update([
-            'response_time' => date('Y-m-d h:i A'),
+            'accepted_by_user_id' => auth()->user()->id,
+            'accepted_time' => date('Y-m-d h:i A'),
             'status' => 'rejected',
         ]);
     }

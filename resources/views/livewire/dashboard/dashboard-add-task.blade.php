@@ -70,6 +70,47 @@
                                 aria-describedby="inputGroup-sizing-default">
                         </div>
 
+                        {{--  --}}
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                            <label for="exampleFormControlSelect1">{{ __('task.comment_type') }}</label>
+                            <select wire:model.defer="comment_type" class="form-control">
+                                <option value="daily">{{ __('task.daily') }}</option>
+                                <option value="weekly">{{ __('task.weekly') }}</option>
+                                <option value="monthly">{{ __('task.monthly') }}</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                            <div class="input-group">
+                                <div class="input-group-prepend ">
+                                    <span class="input-group-text btn-secondary text-white"
+                                        id="inputGroup-sizing-default">{{ __('task.short_max_worning_count') }}</span>
+                                </div>
+                                <input wire:model.defer="max_worning_count" type="number" multiple class="form-control"
+                                    aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                            </div>
+                            <span>
+                                {{ __('task.max_worning_count') }}
+                            </span>
+                        </div>
+
+                        <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
+                            <div class="input-group">
+                                <div class="input-group-prepend ">
+                                    <span class="input-group-text btn-secondary text-white"
+                                        id="inputGroup-sizing-default">{{ __('task.short_max_worning_discount') }}</span>
+                                </div>
+                                <input wire:model.defer="max_worning_discount" type="number" class="form-control"
+                                    aria-label="Default" aria-describedby="inputGroup-sizing-default">
+
+                                <span>
+                                    {{ __('task.max_worning_discount') }}
+                                </span>
+                            </div>
+                        </div>
+
+                        {{--  --}}
+
                         <div class="input-group mb-3 col-lg-6 col-md-6 col-sm-12">
                             <div class="input-group-prepend ">
                                 <span class="input-group-text btn-secondary text-white"
@@ -87,7 +128,8 @@
                             </div>
                             <input wire:model.defer="end_time" type="datetime-local" class="form-control"
                                 min="{{ date('Y-m-d\TH:i', strtotime($start_time . '+1 Hours')) }}"
-                                aria-label="Default" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                aria-label="Default" aria-label="Default"
+                                aria-describedby="inputGroup-sizing-default">
                         </div>
 
                         @include('inputs.textarea', [

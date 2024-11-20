@@ -28,11 +28,10 @@ class DashboardAddTask extends Component
     }
 
     public $slug;
-    public $discount = 0;
+    public $discount = 0, $max_worning_discount = 0;
     public $task_id, $manager_id, $title, $desc,
         $start_time, $end_time,
-        $comment_type,
-        $max_worning_count,
+        $comment_type = 'daily', $max_worning_count,
         $priority_level = 'low', $status = 'pending';
 
     public function get_create_date()
@@ -66,8 +65,12 @@ class DashboardAddTask extends Component
         // $this->priority_level = 'low';
         // $this->status = 'pending';
         $this->discount = 0;
+        $this->max_worning_discount = 0;
 
         $this->selectedEmployees = [];
+
+        $this->comment_type = 'daily';
+        $this->max_worning_count = null;
 
         $this->select_emp = '';
     }
@@ -82,7 +85,10 @@ class DashboardAddTask extends Component
             'end_time' => 'required|date|after:start_time', // _or_equal
             'priority_level' => 'required',
             'status' => 'required',
+            'comment_type' => 'required',
+            'max_worning_count' => 'required',
             'discount' => 'required',
+            // 'max_worning_discount' => 'required',
 
             'selectedEmployees' => 'required',
         ];
@@ -110,12 +116,17 @@ class DashboardAddTask extends Component
             'desc' => $this->desc,
             'start_time' => $this->start_time,
             'end_time' => $this->end_time,
+            'comment_type' => $this->comment_type,
+            'max_worning_count' => $this->max_worning_count,
             'priority_level' => $this->priority_level,
             'status' => $this->status,
             // 'main_task_id' => $this->main_task_id,
         ]);
 
-        $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
+        $task->employees()->syncWithPivotValues($this->selectedEmployees, [
+            'discount' => $this->discount,
+            'max_worning_discount' => $this->max_worning_discount,
+        ]);
 
         session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();

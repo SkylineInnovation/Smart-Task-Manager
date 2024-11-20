@@ -330,5 +330,7 @@ return [
     'Group number' => 'Group Number',
     'Group name' => 'Group Name',
     'Number of users' => 'Number Of Users',
-    'create-permissions' => 'Create Permissions'
+    'create-permissions' => 'Create Permissions',
+
+    'no-task' => 'No Task',
 ];
