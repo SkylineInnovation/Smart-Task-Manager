@@ -2,7 +2,7 @@
 
 return [
 
-    'id' => 'id',
+    'id' => 'معرف',
     'slug' => 'slug',
     'created_at' => 'تاريخ الإنشاء',
     'date' => 'التاريخ',
@@ -128,5 +128,5 @@ return [
     'open_history' => 'السجل',
     'history' => 'السجل',
 
-    'completePercentage'=>'التقيم '
+    'completePercentage' => 'التقيم '
 ];

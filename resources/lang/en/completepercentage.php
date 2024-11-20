@@ -3,21 +3,21 @@
 return [
 
     'id' => 'Id',
-    'slug' => 'slug',
+    'slug' => 'Slug',
     'created_at' => 'Created Date',
-    'date' => 'date',
-    'time' => 'time',
+    'date' => 'Date',
+    'time' => 'Time',
 
-    
-                    'task' => 'task',
 
-                    'user' => 'user',
+    'task' => 'Task',
 
-                    'percentage' => 'percentage',
+    'user' => 'User',
 
-                    'rate_text' => 'rate_text',
+    'percentage' => 'Percentage Achieved',
 
-                    'rate_val' => 'rate_val',
+    'rate_text' => 'Evaluation',
+
+    'rate_val' => 'Evaluation Value',
 
 
 ];

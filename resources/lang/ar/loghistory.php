@@ -2,7 +2,7 @@
 
 return [
 
-    'id' => 'id',
+    'id' => 'معرف',
     'slug' => 'slug',
     'created_at' => 'تاريخ الإنشاء',
     'date' => 'التاريخ',

@@ -3,35 +3,35 @@
 return [
 
     'id' => 'Id',
-    'slug' => 'slug',
+    'slug' => 'Slug',
     'created_at' => 'Created Date',
-    'date' => 'date',
-    'time' => 'time',
+    'date' => 'Date',
+    'time' => 'Time',
 
 
-    'user' => 'user',
+    'user' => 'User',
 
-    'content' => 'content',
+    'content' => 'Content',
 
-    'amount' => 'amount',
+    'amount' => 'Amount',
 
-    'attachment' => 'attachment',
+    'attachment' => 'Attachment',
 
-    'request_date' => 'request_date',
+    'request_date' => 'Request Date',
 
-    'financial_director' => 'financial_director',
+    'financial_director' => 'Financial Director',
 
-    'financial_director_response' => 'financial_director_response',
+    'financial_director_response' => 'Financial Director Response',
 
-    'financial_director_time' => 'financial_director_time',
+    'financial_director_time' => 'Financial Director Time',
 
-    'technical_director' => 'technical_director',
+    'technical_director' => 'Technical Director',
 
-    'technical_director_response' => 'technical_director_response',
+    'technical_director_response' => 'Technical Director Response',
 
-    'technical_director_time' => 'technical_director_time',
+    'technical_director_time' => 'Technical Director Time',
 
-    'status' => 'status',
+    'status' => 'Status',
 
 
 ];

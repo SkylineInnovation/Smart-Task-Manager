@@ -3,31 +3,31 @@
 return [
 
     'id' => 'Id',
-    'slug' => 'slug',
+    'slug' => 'Slug',
     'created_at' => 'Created Date',
-    'date' => 'date',
-    'time' => 'time',
+    'date' => 'Date',
+    'time' => 'Time',
 
 
-    'user' => 'user',
+    'user' => 'User',
 
-    'title' => 'title',
+    'title' => 'Title',
 
-    'nationality' => 'nationality',
+    'nationality' => 'Nationality',
 
-    'id_number' => 'id_number',
+    'id_number' => 'ID Number',
 
-    'address' => 'address',
+    'address' => 'Address',
 
-    'qualification' => 'qualification',
+    'qualification' => 'Qualification',
 
-    'salary' => 'salary',
+    'salary' => 'Salary',
 
-    'home' => 'home',
+    'home' => 'Home',
 
-    'transport' => 'transport',
+    'transport' => 'Transport',
 
-    'branch' => 'branch',
+    'branch' => 'Branch',
 
 
 ];

@@ -3,33 +3,33 @@
 return [
 
     'id' => 'Id',
-    'slug' => 'slug',
+    'slug' => 'Slug',
     'created_at' => 'Created Date',
-    'date' => 'date',
-    'time' => 'time',
+    'date' => 'Date',
+    'time' => 'Time',
 
 
-    'name' => 'name',
+    'name' => 'Name',
 
-    'address' => 'address',
+    'address' => 'Address',
 
-    'phone' => 'phone',
+    'phone' => 'Phone',
 
-    'number' => 'number',
+    'number' => 'Number',
 
-    'fax' => 'fax',
+    'fax' => 'Fax',
 
-    'email' => 'email',
+    'email' => 'Email',
 
-    'website' => 'website',
+    'website' => 'Website',
 
-    'commercial_register' => 'commercial_register',
+    'commercial_register' => 'Commercial Register',
 
-    'technical_director' => 'technical_director',
+    'technical_director' => 'Technical Director',
 
-    'financial_director' => 'financial_director',
+    'financial_director' => 'Financial Director',
 
-    'logo' => 'logo',
+    'logo' => 'Logo',
 
 
 ];

@@ -159,11 +159,14 @@ class RoleSeeder extends Seeder
         foreach ($customPermissions as $customPermission) {
             $permission = Permission::where('name', $customPermission)->latest()->first();
 
-            if (!$permission)
-                Permission::create([
+            if (!$permission) {
+                $permission = Permission::create([
                     'name' => $customPermission,
                     'display_name' => str_replace(['_', '-'], [' ', ' '], $customPermission),
                 ]);
+
+                $ownerRole->attachPermissions([$permission]);
+            }
         }
 
         $managerRole = Role::where('name', 'manager')->first();

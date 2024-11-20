@@ -3,19 +3,19 @@
 return [
 
     'id' => 'Id',
-    'slug' => 'slug',
+    'slug' => 'Slug',
     'created_at' => 'Created Date',
-    'date' => 'date',
-    'time' => 'time',
+    'date' => 'Date',
+    'time' => 'Time',
 
 
-    'manager' => 'manager',
+    'manager' => 'Manager',
 
-    'department' => 'department',
+    'department' => 'Department',
 
-    'user' => 'user',
+    'user' => 'User',
 
-    'job_title' => 'job title',
+    'job_title' => 'Job Title',
 
 
 ];

@@ -1,8 +1,8 @@
 <div>
     {{-- Success is as dangerous as failure. --}}
 
-    <a href="" data-toggle="modal" data-target="#exampleModalCenter{{ $rand }}"
-        class="row w-100 m-0  py-3 bgHover">
+    <a href="{{ route('task.show', $task) }}" class="row w-100 m-0  py-3 bgHover">
+        {{-- data-toggle="modal" data-target="#exampleModalCenter{{ $rand }}" --}}
         <div class="col-md-2 col-2 d-flex justify-content-center align-items-center">
             <img src="{{ asset('assets/dashboard/task.png') }}" width="60px" height="60px" alt="">
         </div>

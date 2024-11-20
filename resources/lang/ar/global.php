@@ -61,7 +61,6 @@ return [
     'filter' => 'تصفية',
     'clear' => 'مسح',
 
-
     'first_name' => 'الاسم الأول',
     'last_name' => 'الاسم الأخير',
     'email' => 'البريد الإلكتروني',
@@ -120,37 +119,37 @@ return [
     'add' => 'إضافة',
 
     'applangs' => 'لغات التطبيق',
-    'create-applang' => 'إنشاء لغة التطبيق',
+    'create-applang' => 'اضافة لغة التطبيق',
 
     'otpsendcodes' => 'رموز إرسال كلمة المرور',
-    'create-otpsendcode' => 'إنشاء رمز كلمة المرور',
+    'create-otpsendcode' => 'اضافة رمز كلمة المرور',
 
     'passwordcodes' => 'رموز كلمة المرور',
-    'create-passwordcode' => 'إنشاء رموز كلمة المرور',
+    'create-passwordcode' => 'اضافة رموز كلمة المرور',
 
     'devicetokenlists' => 'قوائم الرموز',
-    'create-devicetokenlist' => 'إنشاء قوائم الرموز',
+    'create-devicetokenlist' => 'اضافة قوائم الرموز',
 
     'tasks' => 'المهمة',
-    'create-task' => 'إنشاء مهمة جديدة',
+    'create-task' => 'اضافة مهمة جديدة',
 
     'attachments' => 'مرفق',
-    'create-attachment' => 'إنشاء مرفق جديد',
+    'create-attachment' => 'اضافة مرفق جديد',
 
     'comments' => 'تعليق',
-    'create-comment' => 'إنشاء تعليق جديد',
+    'create-comment' => 'اضافة تعليق جديد',
 
     'extratimes' => 'وقت إضافي',
-    'create-extratime' => 'إنشاء وقت إضافي جديد',
+    'create-extratime' => 'اضافة وقت إضافي جديد',
 
     'leaves' => 'الإجازات',
-    'create-leave' => 'إنشاء إجازة جديدة',
+    'create-leave' => 'اضافة إجازة جديدة',
 
     'discounts' => 'الخصومات',
-    'create-discount' => 'إنشاء خصم جديد',
+    'create-discount' => 'اضافة خصم جديد',
 
     'dailytasks' => 'المهام اليومية',
-    'create-dailytask' => 'إنشاء مهمة يومية جديدة',
+    'create-dailytask' => 'اضافة مهمة يومية جديدة',
 
     'departments' => 'الاقسام',
     'create-department' => 'اضافة قسم جديد',
@@ -159,33 +158,26 @@ return [
     'branch' => 'الفرع',
     'create-branch' => 'اضافة فرع جديد',
 
+    'companies' => 'الشركات',
+    'company' => 'الشركة',
+    'create-company' => 'اضافة شركة جديدة',
+
     'loghistories' => 'سجل التعديلات',
     'create-loghistory' => 'اضافة سجل التعديلات',
 
-    'employees' => 'الموظفون',
-    'managers' => 'المدراء',
-
-    'companies' => 'الشركات',
-    'company' => 'الشركة',
-    'create-company' => 'إنشاء شركة جديدة',
-
-    'loghistories' => 'سجلات السجلات',
-    'create-loghistory' => 'إنشاء سجل جديد',
-
     'areas' => 'المناطق',
-    'create-area' => 'إنشاء منطقة جديدة',
+    'create-area' => 'اضافة منطقة جديدة',
 
     'works' => 'الأعمال',
-    'create-work' => 'إنشاء عمل جديد',
+    'create-work' => 'اضافة عمل جديد',
 
     'exchangepermissions' => 'أذونات التبادل',
-    'create-exchangepermission' => 'إنشاء إذن التبادل',
+    'create-exchangepermission' => 'اضافة إذن التبادل',
 
+    'employees' => 'الموظفون',
+    'managers' => 'المدراء',
     'task-board' => 'لوحة المهام',
 
-
-
-    
     'from_date' => 'من التاريخ',
     'to_date' => 'حتى التاريخ',
     'restart_filter' => 'إعادة تشغيل الفلتر',
@@ -251,6 +243,12 @@ return [
     'board-details' => 'معلومات',
     'board-comment' => 'تعليق',
     'board-show' => 'عرض',
+
+    'board-action' => 'Board Action',
+    'board-details' => 'Board Details',
+    'board-comment' => 'Board Comment',
+    'board-show' => 'Board Show',
+
     'company' => 'الشركة',
     'region' => 'المنطقة',
     'branch' => 'الفرع',
@@ -268,14 +266,19 @@ return [
     'add-user' => 'إضافة مستخدم',
     'add-job' => 'إضافة وظيفة',
     'add-permissions' => 'إضافة أذونات',
+    'add-exchange' => 'طلب اذن صرف',
     'submit-task' => 'إرسال مهمة',
     'submit-departure-form' => 'إرسال نموذج المغادرة',
     'submit-disbursement-permit' => 'إرسال تصريح الصرف',
+
     'created-successfully' => 'تم الاضافة بنجاح',
     'updated-successfully' => 'تم التحديث بنجاح',
     'deleted-successfully' => 'تم الحذف بنجاح',
     'recovered-successfully' => 'تم استردادها بنجاح',
 
+    'task-cant-be-updated' => 'Task Can\'t Be Updated',
+    'task-unarchived-successfully' => 'Task UnArchived Successfully',
+    'task-archived-successfully' => 'Task Archived Successfully',
 
     'task-omments-report' => 'تقرير تعليقات المهام',
     'closed-tasks-coming-soon' => 'المهام المغلقة القادمة قريبًا',
@@ -289,7 +292,8 @@ return [
     'Gregorian' => 'ميلادي',
     'to date' => 'حتى تاريخه',
     'user account' => 'حساب المستخدم',
-    'Choose...' => 'اختر...',
+
+    'Choose' => 'اختر...',
     'Close' => 'إغلاق',
     'Save changes' => 'حفظ التغييرات',
     'Outgoing Task Movements' => 'حركات المهام الصادرة',
@@ -298,10 +302,10 @@ return [
     'Follow Up Employee Tasks' => 'متابعة مهام الموظفين',
 
     'report-title' => 'عنوان التقرير',
+
     'Incoming tasks about to close' => 'المهام الواردة على وشك الإغلاق',
     'Show tasks that will be closed after three days' => 'إظهار المهام التي سيتم إغلاقها بعد ثلاثة أيام',
     'Outgoing tasks about to close' => 'المهام الصادرة على وشك الإغلاق',
-    'Show tasks that will be closed after three days' => 'إظهار المهام التي سيتم إغلاقها بعد ثلاثة أيام',
     'Recent Operations' => 'العمليات الأخيرة',
     'All movements on the program that took place during the last 24 hours' => 'جميع الحركات التي تمت على البرنامج خلال آخر 24 ساعة',
     'task-management' => 'إدارة المهام',
@@ -313,15 +317,14 @@ return [
     'task-number' => 'رقم المهمة',
     'task-manager' => 'مدير المهام',
     'Task Details' => 'تفاصيل المهمة',
+
     'Comment Grace Period' => 'تعليق فترة السماح',
     'Maximum Warnings' => 'الحد الأقصى للتحذيرات',
+
     'Discount Amount When Reaching Maximum Warnings' => 'مبلغ الخصم عند الوصول إلى الحد الأقصى للتحذيرات',
-    'Discount Amount When Reaching Maximum Warnings' => 'مبلغ الخصم عند الوصول إلى الحد الأقصى للتحذيرات',
-    'Discount Amount When Reaching Maximum Warnings' => 'مبلغ الخصم عند الوصول إلى الحد الأقصى للتحذيرات',
-    'Discount Amount When Reaching Maximum Warnings' => 'مبلغ الخصم عند الوصول إلى الحد الأقصى للتحذيرات',
+
     'Delivery Date' => 'تاريخ التسليم',
     'Assignee' => 'المكلف',
     'Employees' => 'الموظفون',
 
-    'add-exchange' => 'إضافة التبادل',
 ];

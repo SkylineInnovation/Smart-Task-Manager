@@ -3,35 +3,35 @@
 return [
 
     'id' => 'Id',
-    'slug' => 'slug',
+    'slug' => 'Slug',
     'created_at' => 'Created Date',
-    'date' => 'date',
-    'time' => 'time',
+    'date' => 'Date',
+    'time' => 'Time',
 
 
-    'name' => 'name',
+    'name' => 'Name',
 
-    'location' => 'location',
+    'location' => 'Location',
 
-    'phone' => 'phone',
+    'phone' => 'Phone',
 
-    'number' => 'number',
+    'number' => 'Number',
 
-    'fax' => 'fax',
+    'fax' => 'Fax',
 
-    'email' => 'email',
+    'email' => 'Email',
 
-    'password' => 'password',
+    'password' => 'Password',
 
-    'website' => 'website',
+    'website' => 'Website',
 
-    'commercial_register' => 'commercial_register',
+    'commercial_register' => 'Commercial Register',
 
-    'area' => 'area',
+    'area' => 'Area',
 
-    'manager' => 'manager',
+    'manager' => 'Manager',
 
-    'responsible' => 'responsible',
+    'responsible' => 'Responsible',
 
 
 ];

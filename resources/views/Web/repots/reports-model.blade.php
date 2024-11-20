@@ -64,7 +64,7 @@
                 <div class="modal-body">
                     <label class="my-1 mr-2" for="inlineFormCustomSelectPref">{{ __('global.user account') }}</label>
                     <select class="custom-select w-100" id="inlineFormCustomSelectPref" name="users">
-                        <option selected>{{ __('global.Choose...') }}</option>
+                        <option selected>{{ __('global.Choose') }}</option>
 
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name() }}</option>
@@ -103,7 +103,7 @@
                     <label class="my-1 mr-2 "
                         for="inlineFormCustomSelectPref">{{ __('global.user account') }}</label>
                     <select class="custom-select w-100" id="inlineFormCustomSelectPref" name="users">
-                        <option selected>{{ __('global.Choose...') }}</option>
+                        <option selected>{{ __('global.Choose') }}</option>
 
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name() }}</option>
@@ -152,7 +152,7 @@
                         <label class="my-1 mr-2"
                             for="inlineFormCustomSelectPref">{{ __('global.user account') }}</label>
                         <select class="custom-select w-100" id="inlineFormCustomSelectPref" name="users">
-                            <option selected>{{ __('global.Choose...') }}</option>
+                            <option selected>{{ __('global.Choose') }}</option>
 
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}">{{ $user->name() }}</option>
@@ -200,7 +200,7 @@
 
                     <label class="my-1 mr-2" for="inlineFormCustomSelectPref">{{ __('global.user account') }}</label>
                     <select class="custom-select w-100" id="inlineFormCustomSelectPref" name="user">
-                        <option selected>{{ __('global.Choose...') }}</option>
+                        <option selected>{{ __('global.Choose') }}</option>
 
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name() }}</option>
@@ -211,7 +211,7 @@
 
                     <label class="my-1 mr-2" for="inlineFormCustomSelectPref">{{ __('global.staus') }}</label>
                     <select class="custom-select w-100" id="inlineFormCustomSelectPref" name="users">
-                        <option selected>{{ __('global.Choose...') }}</option>
+                        <option selected>{{ __('global.Choose') }}</option>
 
                         @foreach ($tasks_status as $task_status)
                             <option value="{{ $task_status->id }}">{{ $task_status->status }}</option>
@@ -291,7 +291,7 @@
 
                     <label class="my-1 mr-2" for="inlineFormCustomSelectPref">{{ __('global.staus') }}</label>
                     <select class="custom-select w-100" id="inlineFormCustomSelectPref" name="users">
-                        <option selected>{{ __('global.Choose...') }}</option>
+                        <option selected>{{ __('global.Choose') }}</option>
 
                         @foreach ($tasks_status as $task_status)
                             <option value="{{ $task_status->id }}">{{ $task_status->status }}</option>

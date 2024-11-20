@@ -61,7 +61,6 @@ return [
     'filter' => 'Filter',
     'clear' => 'Clear',
 
-
     'first_name' => 'First Name',
     'last_name' => 'Last Name',
     'email' => 'Email',
@@ -244,10 +243,12 @@ return [
     'board-details' => 'details',
     'board-comment' => 'comment',
     'board-show' => 'show',
+
     'board-action' => 'Board Action',
     'board-details' => 'Board Details',
     'board-comment' => 'Board Comment',
     'board-show' => 'Board Show',
+
     'company' => 'Company',
     'region' => 'Region',
     'branch' => 'Branches',
@@ -269,12 +270,13 @@ return [
     'submit-task' => 'submit task',
     'submit-departure-form' => 'submit departure form',
     'submit-disbursement-permit' => 'submit disbursement permit',
+
     'created-successfully' => 'Created Successfully',
     'updated-successfully' => 'Updated Successfully',
     'deleted-successfully' => 'Deleted Successfully',
     'recovered-successfully' => 'Recovered Successfully',
-    'task-cant-be-updated' => 'Task Can\'t Be Updated',
 
+    'task-cant-be-updated' => 'Task Can\'t Be Updated',
     'task-unarchived-successfully' => 'Task UnArchived Successfully',
     'task-archived-successfully' => 'Task Archived Successfully',
 
@@ -290,7 +292,8 @@ return [
     'Gregorian' => 'Gregorian',
     'to date' => 'to date',
     'user account' => 'user account',
-    'Choose...' => 'Choose...',
+
+    'Choose' => 'Choose...',
     'Close' => 'Close',
     'Save changes' => 'Save changes',
     'Outgoing Task Movements' => 'Outgoing Task Movements',
@@ -303,26 +306,25 @@ return [
     'Incoming tasks about to close' => 'Incoming tasks about to close',
     'Show tasks that will be closed after three days' => 'Show tasks that will be closed after three days',
     'Outgoing tasks about to close' => 'Outgoing tasks about to close',
-    'Show tasks that will be closed after three days' => 'Show tasks that will be closed after three days',
     'Recent Operations' => 'Recent Operations',
     'All movements on the program that took place during the last 24 hours' => 'All movements on the program that took place during the last 24 hours',
     'task-management' => 'Task Management',
+
     'Incoming tasks not commented on today' => 'Incoming tasks not commented on today',
     'Show all tasks that do not have comments from all parties.' => 'Show all tasks that do not have comments from all parties.',
     'Outgoing tasks not commented on today' => 'Outgoing tasks not commented on today',
+
     'task-number' => 'Task Number',
     'task-manager' => 'Task Manager',
-
     'Task Details' => 'Task Details',
+
     'Comment Grace Period' => 'Comment Grace Period',
     'Maximum Warnings' => 'Maximum Warnings',
+
     'Discount Amount When Reaching Maximum Warnings' => 'Discount Amount When Reaching Maximum Warnings',
-    'Discount Amount When Reaching Maximum Warnings' => 'Discount Amount When Reaching Maximum Warnings',
-    'Discount Amount When Reaching Maximum Warnings' => 'Discount Amount When Reaching Maximum Warnings',
-    'Discount Amount When Reaching Maximum Warnings' => 'Discount Amount When Reaching Maximum Warnings',
+
     'Delivery Date' => 'Delivery Date',
     'Assignee' => 'Assignee',
     'Employees' => 'Employees',
-
 
 ];
