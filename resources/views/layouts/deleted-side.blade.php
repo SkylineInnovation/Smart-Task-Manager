@@ -144,3 +144,12 @@
         </a>
     </li>
 @endpermission
+
+@permission('restore-completepercentage')
+    <li>
+        <a class='slide-item' href='{{ route('completepercentage.index.trash') }}'>
+            <span>{{ __('global.completepercentages') }}</span>
+        </a>
+    </li>
+@endpermission
+

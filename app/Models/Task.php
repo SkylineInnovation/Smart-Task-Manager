@@ -536,4 +536,10 @@ class Task extends Model
         $sub_tasks = $this->sub_tasks()->where('created_at', '>=', date('Y-m-d H:i', strtotime('-1 Hour')))->count();
         return $sub_tasks > 0;
     }
+
+
+    public function complete_percentage()
+    {
+        return $this->hasMany(CompletePercentage::class);
+    }
 }

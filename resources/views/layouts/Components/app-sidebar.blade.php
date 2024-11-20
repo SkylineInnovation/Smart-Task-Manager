@@ -124,6 +124,15 @@
                     </li>
                 @endpermission
 
+                @permission('index-completepercentage')
+                    <li>
+                        <a class='slide-item' href='{{ route('completepercentage.index') }}'>
+                            <span>{{ __('global.completepercentages') }}</span>
+                        </a>
+                    </li>
+                @endpermission
+
+
 
                 {{-- <li><a class="slide-item" href="{{ route('banner.index') }}"><span>{{ __('global.Banner') }}</span></a></li> --}}
             </ul>

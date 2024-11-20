@@ -127,4 +127,5 @@ return [
 
     'open_history' => 'Open History',
     'history' => 'History',
+    'completePercentage'=>'Complete Percentage'
 ];

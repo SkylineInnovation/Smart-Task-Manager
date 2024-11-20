@@ -121,4 +121,6 @@ return [
 
     'open_history' => 'السجل',
     'history' => 'السجل',
+
+    'completePercentage'=>'التقيم '
 ];
