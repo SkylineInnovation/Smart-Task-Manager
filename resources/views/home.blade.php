@@ -53,8 +53,8 @@
 
                     <div class="card ">
                         <div class="card-header bg-dark text-light borderColorGreen">
-                            <div class="col-md-12">
-                                <h4>
+                            <div class="col-md-12 ">
+                                <h4 >
                                     {{ __('global.quick_actions') }}
                                 </h4>
 
@@ -254,7 +254,7 @@
                     <div class="card ">
                         <div class="card-header bg-dark text-light borderColorGreen">
                             <div class="col-md-12 ">
-                                <h4 class="text-{{ App::getLocale() == 'en' ? 'start' : 'start' }}">
+                                <h4 >
                                     {{ __('global.management and control') }}
                                 </h4>
 
