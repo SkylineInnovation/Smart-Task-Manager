@@ -4,6 +4,7 @@ use App\Http\Controllers\DailyTaskController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Web\WebPermissionsController;
 use App\Http\Controllers\Web\WebReportController;
 use App\Http\Controllers\Web\WebTaskController;
 use App\Models\Task;
@@ -97,6 +98,11 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     Route::post('outgoing-task-movements', [WebReportController::class, 'OutgoingTaskMovements'])->name('Outgoing.Task.Movements');
     Route::post('incoming-task-movements', [WebReportController::class, 'IncomingTaskMovements'])->name('Incoming.Task.Movements');
     Route::post('follow-up-employee-tasks', [WebReportController::class, 'FollowUpEmployeeTasks'])->name('Follow.Up.Employee.Tasks');
+
+
+    Route::get('permissions', [WebPermissionsController::class, 'index'])->name('web.permissions.view');
+    Route::post('permissions', [WebPermissionsController::class, 'create'])->name('web.permissions.create');
+    Route::post('delete-role/{role}', [WebPermissionsController::class, 'delete'])->name('delete.id');
 
 
 

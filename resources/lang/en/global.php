@@ -327,4 +327,8 @@ return [
     'Assignee' => 'Assignee',
     'Employees' => 'Employees',
 
+    'Group number' => 'Group Number',
+    'Group name' => 'Group Name',
+    'Number of users' => 'Number Of Users',
+    'create-permissions' => 'Create Permissions'
 ];
