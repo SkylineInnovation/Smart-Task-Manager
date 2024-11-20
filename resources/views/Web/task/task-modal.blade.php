@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <dirv class="row w-100 m-0 ">
+                <div class="row w-100 m-0 ">
 
                     <div class="col-md-2">
                         <a href="" data-toggle="modal" data-target="#exampleModalCenterInside1"
@@ -60,9 +60,11 @@
 
                         </a>
                     </div>
-                </dirv>
+                </div>
 
                 <hr>
+
+
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item col-4 px-0 m-0  ">
                         <a class="nav-link w-100 py-3  border-bottom d-flex justify-content-center active"
@@ -211,39 +213,7 @@
 
                                     </a>
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="" data-toggle="modal" data-target="#exampleModalCenterInside3"
-                                        class=" d-flex justify-content-center w-100 ">
-                                        <img class="iconsIffict"
-                                            src="{{ asset('assets/dashboard/extend-request.png') }}" width="24px"
-                                            height="24px" alt="" srcset="">
-
-                                    </a>
-                                </div>
-                                <div class="col-md-2">
-                                    <a href="" data-toggle="modal" data-target="#exampleModalCenterInside4"
-                                        class=" d-flex justify-content-center w-100 ">
-                                        <img class="iconsIffict" src="{{ asset('assets/dashboard/progress.png') }}"
-                                            width="24px" height="24px" alt="" srcset="">
-
-                                    </a>
-                                </div>
-                                <div class="col-md-2">
-                                    <a href="" data-toggle="modal" data-target="#exampleModalCenterInside5"
-                                        class=" d-flex justify-content-center w-100 ">
-                                        <img class="iconsIffict" src="{{ asset('assets/dashboard/warn.png') }}"
-                                            width="24px" height="24px" alt="" srcset="">
-
-                                    </a>
-                                </div>
-                                <div class="col-md-2">
-                                    <a href="" data-toggle="modal" data-target="#exampleModalCenterInside6"
-                                        class=" d-flex justify-content-center w-100 ">
-                                        <img class="iconsIffict" src="{{ asset('assets/dashboard/deduction.png') }}"
-                                            width="24px" height="24px" alt="" srcset="">
-
-                                    </a>
-                                </div>
+                                
                             </div>
 
                             <table class="table table-bordered  mt-3">
@@ -275,8 +245,6 @@
                             </table>
 
                         </div>
-
-
                     </div>
                     <div class="tab-pane fade" id="pills-CloseRequest" role="tabpanel"
                         aria-labelledby="pills-CloseRequest-tab">
@@ -302,39 +270,7 @@
 
                                     </a>
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="" data-toggle="modal" data-target="#exampleModalCenterInside3"
-                                        class=" d-flex justify-content-center w-100 ">
-                                        <img class="iconsIffict"
-                                            src="{{ asset('assets/dashboard/extend-request.png') }}" width="24px"
-                                            height="24px" alt="" srcset="">
-
-                                    </a>
-                                </div>
-                                <div class="col-md-2">
-                                    <a href="" data-toggle="modal" data-target="#exampleModalCenterInside4"
-                                        class=" d-flex justify-content-center w-100 ">
-                                        <img class="iconsIffict" src="{{ asset('assets/dashboard/progress.png') }}"
-                                            width="24px" height="24px" alt="" srcset="">
-
-                                    </a>
-                                </div>
-                                <div class="col-md-2">
-                                    <a href="" data-toggle="modal" data-target="#exampleModalCenterInside5"
-                                        class=" d-flex justify-content-center w-100 ">
-                                        <img class="iconsIffict" src="{{ asset('assets/dashboard/warn.png') }}"
-                                            width="24px" height="24px" alt="" srcset="">
-
-                                    </a>
-                                </div>
-                                <div class="col-md-2">
-                                    <a href="" data-toggle="modal" data-target="#exampleModalCenterInside6"
-                                        class=" d-flex justify-content-center w-100 ">
-                                        <img class="iconsIffict" src="{{ asset('assets/dashboard/deduction.png') }}"
-                                            width="24px" height="24px" alt="" srcset="">
-
-                                    </a>
-                                </div>
+                               
                             </div>
 
                             <table class="table table-bordered  mt-3">
@@ -393,39 +329,7 @@
 
                                     </a>
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="" data-toggle="modal" data-target="#exampleModalCenterInside3"
-                                        class=" d-flex justify-content-center w-100 ">
-                                        <img class="iconsIffict"
-                                            src="{{ asset('assets/dashboard/extend-request.png') }}" width="24px"
-                                            height="24px" alt="" srcset="">
-
-                                    </a>
-                                </div>
-                                <div class="col-md-2">
-                                    <a href="" data-toggle="modal" data-target="#exampleModalCenterInside4"
-                                        class=" d-flex justify-content-center w-100 ">
-                                        <img class="iconsIffict" src="{{ asset('assets/dashboard/progress.png') }}"
-                                            width="24px" height="24px" alt="" srcset="">
-
-                                    </a>
-                                </div>
-                                <div class="col-md-2">
-                                    <a href="" data-toggle="modal" data-target="#exampleModalCenterInside5"
-                                        class=" d-flex justify-content-center w-100 ">
-                                        <img class="iconsIffict" src="{{ asset('assets/dashboard/warn.png') }}"
-                                            width="24px" height="24px" alt="" srcset="">
-
-                                    </a>
-                                </div>
-                                <div class="col-md-2">
-                                    <a href="" data-toggle="modal" data-target="#exampleModalCenterInside6"
-                                        class=" d-flex justify-content-center w-100 ">
-                                        <img class="iconsIffict" src="{{ asset('assets/dashboard/deduction.png') }}"
-                                            width="24px" height="24px" alt="" srcset="">
-
-                                    </a>
-                                </div>
+                               
                             </div>
 
                             <table class="table table-bordered  mt-3">
@@ -484,39 +388,7 @@
 
                                     </a>
                                 </div>
-                                <div class="col-md-2">
-                                    <a href="" data-toggle="modal" data-target="#exampleModalCenterInside3"
-                                        class=" d-flex justify-content-center w-100 ">
-                                        <img class="iconsIffict"
-                                            src="{{ asset('assets/dashboard/extend-request.png') }}" width="24px"
-                                            height="24px" alt="" srcset="">
-
-                                    </a>
-                                </div>
-                                <div class="col-md-2">
-                                    <a href="" data-toggle="modal" data-target="#exampleModalCenterInside4"
-                                        class=" d-flex justify-content-center w-100 ">
-                                        <img class="iconsIffict" src="{{ asset('assets/dashboard/progress.png') }}"
-                                            width="24px" height="24px" alt="" srcset="">
-
-                                    </a>
-                                </div>
-                                <div class="col-md-2">
-                                    <a href="" data-toggle="modal" data-target="#exampleModalCenterInside5"
-                                        class=" d-flex justify-content-center w-100 ">
-                                        <img class="iconsIffict" src="{{ asset('assets/dashboard/warn.png') }}"
-                                            width="24px" height="24px" alt="" srcset="">
-
-                                    </a>
-                                </div>
-                                <div class="col-md-2">
-                                    <a href="" data-toggle="modal" data-target="#exampleModalCenterInside6"
-                                        class=" d-flex justify-content-center w-100 ">
-                                        <img class="iconsIffict" src="{{ asset('assets/dashboard/deduction.png') }}"
-                                            width="24px" height="24px" alt="" srcset="">
-
-                                    </a>
-                                </div>
+                                
                             </div>
 
                             <table class="table table-bordered  mt-3">
@@ -556,7 +428,7 @@
                     
                     
                         <div class="container">
-                            
+                          
 
                             <table class="table table-bordered  mt-3">
                                 <thead class="table-light">

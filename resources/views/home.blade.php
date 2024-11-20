@@ -351,39 +351,7 @@
 
                         <div class="card-body px-0">
                             @foreach ($outcome_tasks_not_commented as $t)
-                                <a href="" data-toggle="modal" data-target="#exampleModalCenter{{ $loop->count }}"
-                                    class="row w-100 m-0  py-3 bgHover">
-                                    <div class="col-md-2 col-2 d-flex justify-content-center align-items-center">
-                                        <img src="{{ asset('assets/dashboard/task.png') }}" width="60px"
-                                            height="60px" alt="">
-                                    </div>
-
-                                    <div class="col-md-10 col-9">
-                                        <h3 class="mb-3">{{ $t->title }}</h3>
-                                        <p class="pb-0 mb-0">{{ __('global.task-number') }} : {{ $t->id }}</p>
-                                        <p class="pb-0 mb-0">{{ __('global.task-manager') }} :
-                                            {{ $t->manager->name() }}
-                                        </p>
-                                        <div class="row w-100 m-0 p-0">
-                                            <div class="col-auto p-0">{{ __('global.employees') }}:</div>
-                                            @foreach ($t->employees as $tp)
-                                                <div class="col-3 text-{{ App::getLocale() == 'en' ? 'start' : 'end' }}">
-                                                    {{ $tp->name() }}
-                                                </div>
-                                            @endforeach
-                                        </div>
-
-                                    </div>
-
-
-                                </a>
-
-                                @include('Web.task.task-modal', [
-                                    'loop' => $loop->count,
-                                    'taskID' => $t->id,
-                                    'value' => $t,
-                                    
-                                ])
+                                <livewire:dashboard.task-detail :task="$t" />
                             @endforeach
                         </div>
 
