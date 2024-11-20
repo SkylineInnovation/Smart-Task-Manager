@@ -244,10 +244,10 @@ return [
     'board-comment' => 'تعليق',
     'board-show' => 'عرض',
 
-    'board-action' => 'Board Action',
-    'board-details' => 'Board Details',
-    'board-comment' => 'Board Comment',
-    'board-show' => 'Board Show',
+    'board-action' => 'إجراءات',
+    'board-details' => 'تفاصيل',
+    'board-comment' => 'تعليقات',
+    'board-show' => 'عرض',
 
     'company' => 'الشركة',
     'region' => 'المنطقة',
@@ -276,9 +276,9 @@ return [
     'deleted-successfully' => 'تم الحذف بنجاح',
     'recovered-successfully' => 'تم استردادها بنجاح',
 
-    'task-cant-be-updated' => 'Task Can\'t Be Updated',
-    'task-unarchived-successfully' => 'Task UnArchived Successfully',
-    'task-archived-successfully' => 'Task Archived Successfully',
+    'task-cant-be-updated' => 'لا يمكن تحديث المهمة',
+    'task-unarchived-successfully' => 'تم إلغاء أرشفة المهمة بنجاح',
+    'task-archived-successfully' => 'تم أرشفة المهمة بنجاح',
 
     'task-omments-report' => 'تقرير تعليقات المهام',
     'closed-tasks-coming-soon' => 'المهام المغلقة القادمة قريبًا',
