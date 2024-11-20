@@ -14,7 +14,10 @@
             </p>
             {{--  --}}
             <p class="pb-0 mb-0">{{ __('global.task-manager') }} :
-                {{ $task->manager->name() }}
+                <a href="{{ route('user.show', $task->manager->id) }}">
+
+                    {{ $task->manager->name() }}
+                </a>
             </p>
             {{--  --}}
             <p class="pb-0 mb-0">{{ __('global.employees') }} :
