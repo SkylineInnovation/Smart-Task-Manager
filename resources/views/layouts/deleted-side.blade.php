@@ -136,3 +136,11 @@
         </a>
     </li>
 @endpermission
+
+@permission('restore-exchangepermission')
+    <li>
+        <a class='slide-item' href='{{ route('exchangepermission.index.trash') }}'>
+            <span>{{ __('global.exchangepermissions') }}</span>
+        </a>
+    </li>
+@endpermission

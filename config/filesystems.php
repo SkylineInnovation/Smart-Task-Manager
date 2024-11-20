@@ -65,6 +65,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'exchange_permission' => [
+            'driver' => 'exchange_permission',
+            'root' => storage_path('app/exchange_permission'),
+            'url' => env('APP_URL') . '/exchange_permission',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -96,6 +103,7 @@ return [
         // public_path('applang') => storage_path('app/applang'),
         public_path('attachment') => storage_path('app/attachment'),
         public_path('company') => storage_path('app/company'),
+        public_path('exchange_permission') => storage_path('app/exchange_permission'),
 
     ],
 

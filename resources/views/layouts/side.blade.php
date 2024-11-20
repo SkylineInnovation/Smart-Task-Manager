@@ -117,3 +117,11 @@
         </a>
     </li>
 @endpermission
+
+@permission('index-exchangepermission')
+    <li>
+        <a class='slide-item' href='{{ route('exchangepermission.index') }}'>
+            <span>{{ __('global.exchangepermissions') }}</span>
+        </a>
+    </li>
+@endpermission

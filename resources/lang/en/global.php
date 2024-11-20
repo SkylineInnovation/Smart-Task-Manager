@@ -172,6 +172,9 @@ return [
     'works' => 'Works',
     'create-work' => 'Create New Work',
 
+    'exchangepermissions' => 'Exchange Permissions',
+    'create-exchangepermission' => 'Create Exchange Permission',
+
     'employees' => 'Employees',
     'managers' => 'Managers',
     'task-board' => 'Task Board',
@@ -262,6 +265,7 @@ return [
     'add-user' => 'Add User',
     'add-job' => 'add job',
     'add-permissions' => 'add permissions',
+    'add-exchange' => 'add exchange',
     'submit-task' => 'submit task',
     'submit-departure-form' => 'submit departure form',
     'submit-disbursement-permit' => 'submit disbursement permit',

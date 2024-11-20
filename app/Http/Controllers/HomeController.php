@@ -142,33 +142,9 @@ class HomeController extends Controller
         ];
 
         $actionBtns = [
-            // [
-            //     'text' =>  __('global.add-region'),
-            // ],
-            // [
-            //     'text' =>  __('global.add-branch'),
-            // ],
-            // [
-            //     'text' =>  __('global.add-department'),
-            // ],
-            // [
-            //     'text' =>  __('global.add-user'),
-            // ],
-            // [
-            //     'text' =>  __('global.add-job'),
-            // ],
             [
                 'text' =>  __('global.add-permissions'),
             ],
-            // [
-            //     'text' =>  __('global.submit-task'),
-            // ],
-            // [
-            //     'text' =>  __('global.submit-departure-form'),
-            // ],
-            // [
-            //     'text' =>  __('global.submit-disbursement-permit'),
-            // ],
         ];
 
         $tasksBtns = [
@@ -187,11 +163,11 @@ class HomeController extends Controller
                 'text' =>  __('global.leaves'),
                 'link' => route('leave.index'),
             ],
-            // [
-            //     'image' => asset('assets/dashboard/notice.png'),
-            //     'text' =>  __('global.note'),
-            //     'link' => '',
-            // ],
+            [
+                'image' => asset('assets/dashboard/notice.png'),
+                'text' =>  __('global.exchangepermissions'),
+                'link' => route('exchangepermission.index'),
+            ],
         ];
 
         $users = Auth::user()->id;

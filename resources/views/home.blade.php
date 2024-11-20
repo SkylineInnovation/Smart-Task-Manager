@@ -80,12 +80,8 @@
                                 <livewire:dashboard.dashboard-add-task />
                                 {{-- // DONE --}}
                                 <livewire:dashboard.dashboard-add-leave />
-
-                                @foreach ($actionBtns as $actionBtn)
-                                    @include('Web.components.quick-btn', [
-                                        'text' => $actionBtn['text'],
-                                    ])
-                                @endforeach
+                                {{-- // DONE --}}
+                                <livewire:dashboard.dashboard-add-exchange-permission />
 
                             </div>
                         </div>
@@ -382,7 +378,6 @@
                                     'loop' => $loop->count,
                                     'taskID' => $t->id,
                                     'value' => $t,
-                                    
                                 ])
                             @endforeach
                         </div>
@@ -425,6 +420,8 @@
                 $('#create-new-leave-modal').modal('hide');
 
                 $('#create-new-job-modal').modal('hide');
+
+                $('#create-new-exchange-permission-modal').modal('hide');
             });
 
             // 
