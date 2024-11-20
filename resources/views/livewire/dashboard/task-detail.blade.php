@@ -35,11 +35,11 @@
     </a>
 
 
-    @include('Web.task.task-modal', [
+    {{-- @include('Web.task.task-modal', [
         'loop' => $rand,
         'taskID' => $task->id,
         'value' => $task,
-    ])
+    ]) --}}
     {{--  --}}
 
     {{--  --}}

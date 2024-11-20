@@ -266,7 +266,7 @@ return [
     'add-user' => 'Add User',
     'add-job' => 'add job',
     'add-permissions' => 'add permissions',
-    'add-exchange' => 'add exchange',
+    'add-exchange' => 'Request for exchange permit',
     'submit-task' => 'submit task',
     'submit-departure-form' => 'submit departure form',
     'submit-disbursement-permit' => 'submit disbursement permit',

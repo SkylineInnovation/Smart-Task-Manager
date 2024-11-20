@@ -32,13 +32,13 @@ class RoleSeeder extends Seeder
                 'description' => 'User is the owner of a given project', // optional
             ]);
 
-        $devRole = Role::where('name', 'dev')->first();
-        if (!$devRole)
-            $devRole = Role::create([
-                'name' => 'dev',
-                'display_name' => 'Devloper', // optional
-                'description' => 'User is the dev of this given project', // optional
-            ]);
+        // $devRole = Role::where('name', 'dev')->first();
+        // if (!$devRole)
+        //     $devRole = Role::create([
+        //         'name' => 'dev',
+        //         'display_name' => 'Devloper', // optional
+        //         'description' => 'User is the dev of this given project', // optional
+        //     ]);
 
         // $fullRole = Role::where('name', 'full')->first();
         // if (!$fullRole)

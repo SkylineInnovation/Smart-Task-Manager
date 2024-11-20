@@ -31,6 +31,8 @@ class DashboardAddTask extends Component
     public $discount = 0;
     public $task_id, $manager_id, $title, $desc,
         $start_time, $end_time,
+        $comment_type,
+        $max_worning_count,
         $priority_level = 'low', $status = 'pending';
 
     public function get_create_date()
