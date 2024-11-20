@@ -174,6 +174,9 @@ return [
     'exchangepermissions' => 'Exchange Permissions',
     'create-exchangepermission' => 'Create Exchange Permission',
 
+    'completepercentages' => 'Complete Percentages',
+    'create-completepercentage' => 'Create Complete Percentage',
+
     'employees' => 'Employees',
     'managers' => 'Managers',
     'task-board' => 'Task Board',

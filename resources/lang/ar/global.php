@@ -174,6 +174,9 @@ return [
     'exchangepermissions' => 'أذونات التبادل',
     'create-exchangepermission' => 'اضافة إذن التبادل',
 
+    'completepercentages' => 'نسبة الانجاز',
+    'create-completepercentage' => 'اضافة نسبة الانجاز',
+
     'employees' => 'الموظفون',
     'managers' => 'المدراء',
     'task-board' => 'لوحة المهام',

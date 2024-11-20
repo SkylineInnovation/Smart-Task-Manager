@@ -388,6 +388,11 @@ class Task extends Model
         return count($this->employees) > 0 ? $this->employees->first()->pivot->discount : 0;
     }
 
+    public function max_worning_discount()
+    {
+        return count($this->employees) > 0 ? $this->employees->first()->pivot->max_worning_discount : 0;
+    }
+
     public function format_date($data)
     {
         return date('Y-m-d h:i A', strtotime($data));
@@ -542,8 +547,13 @@ class Task extends Model
     }
 
 
-    public function complete_percentage()
+    public function complete_percentages()
     {
         return $this->hasMany(CompletePercentage::class);
+    }
+
+    public function complete_percentage()
+    {
+        return $this->hasOne(CompletePercentage::class)->latestOfMany();
     }
 }

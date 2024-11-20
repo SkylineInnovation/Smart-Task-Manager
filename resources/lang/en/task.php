@@ -29,13 +29,13 @@ return [
 
     'main_task' => 'Main Task',
 
-    'max_worning_discount' => 'Amount of discount when reaching the maximum warning limit',
+    'max_worning_discount' => 'Amount of Deduction when reaching the maximum warning limit',
 
     'short_max_worning_count' => 'max worning count',
-    'short_max_worning_discount' => 'discount',
+    'short_max_worning_discount' => 'Deduction',
 
     'discount' => 'Deduction',
-    'full_discount' => 'Amount Of Discount When The Task Is Closed Automatically',
+    'full_discount' => 'Amount Of Deduction When The Task Is Closed Automatically',
 
 
     'low' => 'Low',

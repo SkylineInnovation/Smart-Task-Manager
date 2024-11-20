@@ -111,7 +111,7 @@ class TaskIndex extends Component
     public $task_id, $manager_id, $title, $desc, $start_time, $end_time, $comment_type = 'daily', $max_worning_count, $priority_level = 'low', $status = 'pending', $main_task_id, $daily_task_id;
 
     public $task_status = 'all';
-    public $discount = 0;
+    public $discount = 0, $max_worning_discount = 0;
     public $updateMode = false;
 
     private function resetInputFields()
@@ -129,6 +129,7 @@ class TaskIndex extends Component
         // $this->status = 'pending';
         $this->main_task_id = null;
         $this->discount = 0;
+        $this->max_worning_discount = 0;
 
         $this->reopen_from_task_id = 0;
         $this->daily_task_id = 0;
@@ -151,6 +152,7 @@ class TaskIndex extends Component
             'priority_level' => 'required',
             'status' => 'required',
             'discount' => 'required',
+            'max_worning_discount' => 'required',
             // 'main_task_id' => 'required',
 
             'selectedEmployees' => 'required',
@@ -190,7 +192,10 @@ class TaskIndex extends Component
             'daily_task_id' => $this->daily_task_id,
         ]);
 
-        $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
+        $task->employees()->syncWithPivotValues($this->selectedEmployees, [
+            'discount' => $this->discount,
+            'max_worning_discount' => $this->max_worning_discount
+        ]);
 
         session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();
@@ -226,6 +231,7 @@ class TaskIndex extends Component
         $this->selectedEmployees = $task->employees->pluck('id');
 
         $this->discount = $task->discount();
+        $this->max_worning_discount = $task->max_worning_discount();
     }
 
     public function cancel()
@@ -264,7 +270,10 @@ class TaskIndex extends Component
                 'daily_task_id' => $this->daily_task_id,
             ]);
 
-            $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
+            $task->employees()->syncWithPivotValues($this->selectedEmployees, [
+                'discount' => $this->discount,
+                'max_worning_discount' => $this->max_worning_discount
+            ]);
 
             $this->updateMode = false;
             session()->flash('message', __('global.updated-successfully'));
@@ -361,6 +370,7 @@ class TaskIndex extends Component
         $this->daily_task_id = $task->daily_task_id;
         $this->status = 'pending';
         $this->discount = $task->discount();
+        $this->max_worning_discount = $task->max_worning_discount();
     }
 
 
@@ -417,8 +427,14 @@ class TaskIndex extends Component
                 $q->where('user_id', $this->the_employee_id);
             });
 
-        if (!$this->user->hasRole('owner')) {
-            $tasks = $tasks->where('manager_id', $this->user->id);
+        if ($this->user->hasRole('manager')) {
+            $tasks = $tasks->orWhere('manager_id', $this->user->id);
+        }
+
+        if ($this->user->hasRole('employee')) {
+            $tasks = $tasks->orWhereHas('employees', function ($q) {
+                $q->where('user_id', $this->user->id);
+            });
         }
 
 

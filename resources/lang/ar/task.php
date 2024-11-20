@@ -96,7 +96,7 @@ return [
     'Reject' => 'رفض',
     'Request_Leave' => 'طلب إجازة',
     'Request_Extra_Time' => 'طلب وقت اضافي',
-    'Role' => 'قواعد',
+    'Role' => 'الصلاحيات',
 
 
     "Total_Tasks_Time" => "إجمالي وقت المهام",

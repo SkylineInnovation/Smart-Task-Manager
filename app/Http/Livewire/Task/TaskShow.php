@@ -23,7 +23,7 @@ class TaskShow extends Component
 
     public Task $task;
 
-    public $task_id, $title, $discount, $desc, $start_time, $end_time;
+    public $task_id, $title, $discount, $max_worning_discount, $desc, $start_time, $end_time;
     public $comment_type = 'daily', $max_worning_count, $priority_level, $status;
 
     public $employees;
@@ -43,6 +43,7 @@ class TaskShow extends Component
         $this->title = $task->title;
         $this->desc = $task->desc;
         $this->discount = $task->discount();
+        $this->max_worning_discount = $task->max_worning_discount();
         $this->start_time = $task->start_time;
         $this->end_time = $task->end_time;
 
@@ -53,6 +54,31 @@ class TaskShow extends Component
 
         $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
         $this->selectedEmployees = $task->employees->pluck('id');
+
+        // 
+
+        $this->tab = 1;
+
+        // $this->employees = $this->task->employees;
+        $this->selectedEmployees = $this->employees->pluck('id')->toArray();
+
+        $this->sub_task_discount = $this->task->discount();
+        $this->sub_task_max_worning_discount = $this->task->max_worning_discount();
+
+        $this->sub_task_start_time  = date('Y-m-d\TH:i');
+        $this->sub_task_end_time  = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        $this->comment_type  = $task->comment_type;
+        $this->max_worning_count  = $task->max_worning_count;
+
+        // $this->sub_task_start_time  = $task->start_time;
+        // $this->sub_task_end_time  = $task->end_time;
+
+        $this->leave_time_out = date('Y-m-d\TH:i');
+        $this->leave_time_in = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        $this->leave_effect_on_time = false;
+
+        $this->extratime_from_time = date('Y-m-d\TH:i', strtotime($task->end_time));
+        $this->extratime_to_time = date('Y-m-d\TH:i', strtotime($task->end_time . ' +1 Hours'));
     }
 
     public function rules()
@@ -69,6 +95,7 @@ class TaskShow extends Component
             'priority_level' => 'required',
             'status' => 'required',
             'discount' => 'required',
+            'max_worning_discount' => 'required',
             // 'main_task_id' => 'required',
 
             'selectedEmployees' => 'required',
@@ -107,7 +134,10 @@ class TaskShow extends Component
             // 'main_task_id' => $this->main_task_id,
         ]);
 
-        $this->task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
+        $this->task->employees()->syncWithPivotValues($this->selectedEmployees, [
+            'discount' => $this->discount,
+            'max_worning_discount' => $this->max_worning_discount
+        ]);
 
         session()->flash('message', __('global.updated-successfully'));
         $this->emit('close-model'); // Close model to using to jquery
@@ -133,34 +163,34 @@ class TaskShow extends Component
         $this->tab = $index;
     }
 
-    public function setTask($id)
-    {
-        $this->tab = 1;
-        $task = Task::find($id);
+    // public function setTask($id)
+    // {
+    //     $this->tab = 1;
+    //     $task = Task::find($id);
 
-        $this->task_id = $id;
-        $this->task = $task;
+    //     $this->task_id = $id;
+    //     $this->task = $task;
 
-        $this->employees = $this->task->employees;
-        $this->selectedEmployees = $this->employees->pluck('id')->toArray();
+    //     $this->employees = $this->task->employees;
+    //     $this->selectedEmployees = $this->employees->pluck('id')->toArray();
 
-        $this->sub_task_discount = $this->task->discount();
+    //     $this->sub_task_discount = $this->task->discount();
 
-        // $this->sub_task_start_time  = date('Y-m-d\TH:i');
-        // $this->sub_task_end_time  = date('Y-m-d\TH:i', strtotime('+1 Hours'));
-        $this->comment_type  = $task->comment_type;
-        $this->max_worning_count  = $task->max_worning_count;
+    //     $this->sub_task_start_time  = date('Y-m-d\TH:i');
+    //     $this->sub_task_end_time  = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+    //     $this->comment_type  = $task->comment_type;
+    //     $this->max_worning_count  = $task->max_worning_count;
 
-        $this->sub_task_start_time  = $task->start_time;
-        $this->sub_task_end_time  = $task->end_time;
+    //     // $this->sub_task_start_time  = $task->start_time;
+    //     // $this->sub_task_end_time  = $task->end_time;
 
-        $this->leave_time_out = date('Y-m-d\TH:i');
-        $this->leave_time_in = date('Y-m-d\TH:i', strtotime('+1 Hours'));
-        $this->leave_effect_on_time = false;
+    //     $this->leave_time_out = date('Y-m-d\TH:i');
+    //     $this->leave_time_in = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+    //     $this->leave_effect_on_time = false;
 
-        $this->extratime_from_time = date('Y-m-d\TH:i', strtotime($task->end_time));
-        $this->extratime_to_time = date('Y-m-d\TH:i', strtotime($task->end_time . ' +1 Hours'));
-    }
+    //     $this->extratime_from_time = date('Y-m-d\TH:i', strtotime($task->end_time));
+    //     $this->extratime_to_time = date('Y-m-d\TH:i', strtotime($task->end_time . ' +1 Hours'));
+    // }
 
     public $attatchment_file, $attatchment_title, $attatchment_desc;
     public function addAttatchment()
@@ -253,7 +283,7 @@ class TaskShow extends Component
     }
 
 
-    public $sub_task_discount;
+    public $sub_task_discount, $sub_task_max_worning_discount;
     public $sub_task_title, $sub_task_desc,
         $sub_task_start_time, $sub_task_end_time,
         $sub_task_comment_type = 'daily', $sub_task_max_worning_count,
@@ -280,7 +310,10 @@ class TaskShow extends Component
             'main_task_id' => $this->task_id,
         ]);
 
-        $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->sub_task_discount]);
+        $task->employees()->syncWithPivotValues($this->selectedEmployees, [
+            'discount' => $this->sub_task_discount,
+            'max_worning_discount' => $this->max_worning_discount
+        ]);
 
         $this->sub_task_title = null;
         $this->sub_task_desc = null;
@@ -297,6 +330,7 @@ class TaskShow extends Component
         $this->task = Task::find($this->task->id);
 
         $this->sub_task_discount = $this->task->discount();
+        $this->sub_task_max_worning_discount = $this->task->max_worning_discount();
 
         session()->flash('sub-task-message', 'Sub Task Created Successfully.');
 

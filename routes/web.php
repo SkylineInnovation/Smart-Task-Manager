@@ -90,19 +90,19 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     Route::post('update-profile', [HomeController::class, 'updateProfile'])->name('update.profile');
 
 
-    Route::get('reports', [WebReportController::class, 'indexReports'])->name('view-reports');
-    Route::post('task-commintes', [WebReportController::class, 'taskCommintes'])->name('task.commintes.report');
-    Route::post('closed-tasks-coming-soon', [WebReportController::class, 'ClosedTaskcComingSoon'])->name('closed.task.soon.report');
-    Route::post('discount-tasks-report', [WebReportController::class, 'OutgoingTaskDiscounts'])->name('outgoing.task.discounts');
-    Route::post('incoming-task-discounts', [WebReportController::class, 'incomingTaskDiscounts'])->name('incoming.task.discounts');
-    Route::post('outgoing-task-movements', [WebReportController::class, 'OutgoingTaskMovements'])->name('Outgoing.Task.Movements');
-    Route::post('incoming-task-movements', [WebReportController::class, 'IncomingTaskMovements'])->name('Incoming.Task.Movements');
-    Route::post('follow-up-employee-tasks', [WebReportController::class, 'FollowUpEmployeeTasks'])->name('Follow.Up.Employee.Tasks');
+    Route::middleware('permission:index-report')->get('reports', [WebReportController::class, 'indexReports'])->name('view-reports');
+    Route::middleware('permission:index-report')->post('task-commintes', [WebReportController::class, 'taskCommintes'])->name('task.commintes.report');
+    Route::middleware('permission:index-report')->post('closed-tasks-coming-soon', [WebReportController::class, 'ClosedTaskcComingSoon'])->name('closed.task.soon.report');
+    Route::middleware('permission:index-report')->post('discount-tasks-report', [WebReportController::class, 'OutgoingTaskDiscounts'])->name('outgoing.task.discounts');
+    Route::middleware('permission:index-report')->post('incoming-task-discounts', [WebReportController::class, 'incomingTaskDiscounts'])->name('incoming.task.discounts');
+    Route::middleware('permission:index-report')->post('outgoing-task-movements', [WebReportController::class, 'OutgoingTaskMovements'])->name('Outgoing.Task.Movements');
+    Route::middleware('permission:index-report')->post('incoming-task-movements', [WebReportController::class, 'IncomingTaskMovements'])->name('Incoming.Task.Movements');
+    Route::middleware('permission:index-report')->post('follow-up-employee-tasks', [WebReportController::class, 'FollowUpEmployeeTasks'])->name('Follow.Up.Employee.Tasks');
 
 
-    Route::get('permissions', [WebPermissionsController::class, 'index'])->name('web.permissions.view');
-    Route::post('permissions', [WebPermissionsController::class, 'create'])->name('web.permissions.create');
-    Route::post('delete-role/{role}', [WebPermissionsController::class, 'delete'])->name('delete.id');
+    Route::middleware('permission:index-permission')->get('permissions', [WebPermissionsController::class, 'index'])->name('web.permissions.view');
+    Route::middleware('permission:create-permission')->post('permissions', [WebPermissionsController::class, 'create'])->name('web.permissions.create');
+    Route::middleware('permission:delete-permission')->post('delete-role/{role}', [WebPermissionsController::class, 'delete'])->name('delete.id');
 
 
 

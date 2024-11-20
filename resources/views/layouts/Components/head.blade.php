@@ -57,3 +57,42 @@
 <link href="{{ asset('assets/plugins/summernote/summernote-bs4.css') }}" rel="stylesheet">
 
 <link href="{{ asset('assets/plugins/fileuploads/css/fileupload.css') }}" rel="stylesheet" />
+
+
+@if (App::getLocale() == 'ar')
+    <style>
+        select {
+            direction: rtl;
+            background: transparent;
+            width: 168px;
+            padding: 5px;
+            font-size: 16px;
+            line-height: 1;
+            border: 1 solid #000;
+            border-radius: 1;
+            height: 34px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: inherit;
+            color: #000;
+        }
+    </style>
+@else
+    <style>
+        select {
+            direction: ltr;
+            background: transparent;
+            width: 168px;
+            padding: 5px;
+            font-size: 16px;
+            line-height: 1;
+            border: 1 solid #000;
+            border-radius: 1;
+            height: 34px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: inherit;
+            color: #000;
+        }
+    </style>
+@endif

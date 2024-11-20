@@ -50,6 +50,43 @@
                     'sm' => 3,
                 ])
 
+                <div class="form-group col-lg-4 col-md-4 col-sm-12">
+                    <label for="exampleFormControlSelect1">{{ __('task.comment_type') }}</label>
+                    <select wire:model.defer="comment_type" class="form-control" @guest disabled readonly @endguest
+                        @if (auth()->user() ? auth()->user()->hasRole('employee') : true) disabled readonly @endif>
+                        <option value="daily">{{ __('task.daily') }}</option>
+                        <option value="weekly">{{ __('task.weekly') }}</option>
+                        <option value="monthly">{{ __('task.monthly') }}</option>
+                    </select>
+                </div>
+
+                @if (auth()->user() && (auth()->user()->hasRole('manager') || auth()->user()->hasRole('owner')))
+                    @include('inputs.edit.input', [
+                        'label' => 'task.short_max_worning_count',
+                        'name' => 'task.short_max_worning_count',
+                        'val' => $task->max_worning_count,
+                        'livewire' => 'max_worning_count',
+                        'is_disable' => auth()->user() ? auth()->user()->hasRole('employee') : true,
+                        'type' => 'number',
+                        'step' => 1,
+                        'lg' => 4,
+                        'md' => 4,
+                        'sm' => 6,
+                    ])
+                    @include('inputs.edit.input', [
+                        'label' => 'task.short_max_worning_discount',
+                        'name' => 'task.short_max_worning_discount',
+                        'val' => $task->max_worning_discount(),
+                        'livewire' => 'max_worning_discount',
+                        'is_disable' => auth()->user() ? auth()->user()->hasRole('employee') : true,
+                        'type' => 'number',
+                        'step' => 1,
+                        'lg' => 4,
+                        'md' => 4,
+                        'sm' => 6,
+                    ])
+                @endif
+
                 @include('inputs.textarea', [
                     'label' => 'task.desc',
                     'is_disable' => auth()->user() ? auth()->user()->hasRole('employee') : true,
@@ -227,8 +264,8 @@
                 @role('owner|manager')
                     <li class="nav-item px-1">
                         <a class="nav-link py-3 rounded-pill {{ $tab == 5 ? 'active' : '' }}" id="extra-tab"
-                            data-toggle="tab" wire:click="changeTab(5)" href="#extra" role="tab" aria-controls="extra"
-                            aria-selected="{{ $tab == 5 }}">{{ __('task.Extra_Time') }}</a>
+                            data-toggle="tab" wire:click="changeTab(5)" href="#extra" role="tab"
+                            aria-controls="extra" aria-selected="{{ $tab == 5 }}">{{ __('task.Extra_Time') }}</a>
                     </li>
                 @endrole
                 {{-- 5 TAB END --}}
@@ -272,7 +309,7 @@
                 <div class="tab-pane fade {{ $tab == 1 ? 'show active' : '' }}" id="user" role="tabpanel"
                     aria-labelledby="user-tab">
 
-                    <div class="table-responsive text-start">
+                    <div class="table-responsive ">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -284,25 +321,15 @@
                                 @foreach ($task->employees as $employee)
                                     <tr>
                                         <td>
-                                            <div class="row w-100 m-0 ">
-                                                {{-- <div class="col-3">
-                                                    <img src="{{ asset($employee->image) }}"
-                                                        style="border-radius: 40%; width: 50px;">
-                                                </div> --}}
-                                                <div class="col">
-                                                    <div class="col-12">
-                                                        <a href="{{ route('user.show', $employee) }}">
-                                                            {{ $employee->name() }}
-                                                        </a>
+                                            <a href="{{ route('user.show', $employee) }}">
+                                                {{ $employee->name() }}
+                                            </a>
 
-                                                        <div>
-                                                            <small>{{ $employee->email }}</small>
-                                                        </div>
-                                                        <div>
-                                                            <small>{{ $employee->phone }}</small>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div>
+                                                <small>{{ $employee->email }}</small>
+                                            </div>
+                                            <div>
+                                                <small>{{ $employee->phone }}</small>
                                             </div>
                                         </td>
                                         <td class="align-content-center">
@@ -516,9 +543,8 @@
                                                     <textarea name='desc' id='desc' rows="3" class='form-control'
                                                         placeholder='{{ __('global.enter') }} {{ __('attachment.desc') }}' wire:model.defer="replay_comment_desc"></textarea>
                                                 </div>
-
-
                                             </div>
+
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-dismiss="modal">{{ __('task.Close') }}</button>
@@ -893,7 +919,7 @@
                 @role('owner|manager')
                     <div class="tab-pane fade {{ $tab == 7 ? 'show active' : '' }}" id="leave" role="tabpanel"
                         aria-labelledby="leave-tab">
-                        <div class="table-responsive text-start">
+                        <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -906,24 +932,14 @@
                                     @foreach ($task->discounts as $discount)
                                         <tr>
                                             <td>
-                                                <div class="row w-100 m-0 ">
-                                                    {{-- <div class="col-3">
-                                                        <img src="{{ asset($discount->user->image) }}"
-                                                            style="border-radius: 40%; width: 50px;">
-                                                    </div> --}}
-                                                    <div class="col">
-                                                        <div class="col-12">
-                                                            <a href="{{ route('user.show', $discount->user) }}">
-                                                                {{ $discount->user->name() }}
-                                                            </a>
-                                                            <div>
-                                                                <small>{{ $discount->user->email }}</small>
-                                                            </div>
-                                                            <div>
-                                                                <small>{{ $discount->user->phone }}</small>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <a href="{{ route('user.show', $discount->user) }}">
+                                                    {{ $discount->user->name() }}
+                                                </a>
+                                                <div>
+                                                    <small>{{ $discount->user->email }}</small>
+                                                </div>
+                                                <div>
+                                                    <small>{{ $discount->user->phone }}</small>
                                                 </div>
                                             </td>
                                             <td class="align-content-center">

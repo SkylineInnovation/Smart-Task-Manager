@@ -116,7 +116,7 @@ class DiscountIndex extends Component
             // 'slug' => $this-slug,
 
 
-            'task_id' => 'required',
+            // 'task_id' => 'required',
             'user_id' => 'required',
             'amount' => 'required',
             // 'reason' => 'required',
@@ -308,6 +308,15 @@ class DiscountIndex extends Component
         if ($this->the_task_id)
             $discounts = $discounts->where('task_id', $this->the_task_id);
 
+
+        if ($this->user->hasRole('manager')) {
+            $discounts = $discounts->orWhere('user_id', $this->user->id);
+            $discounts = $discounts->orWhereIn('user_id', $this->user->employees->pluck('id')->toArray());
+        }
+
+        if ($this->user->hasRole('employee')) {
+            $discounts = $discounts->orWhere('user_id', $this->user->id);
+        }
 
         if ($this->admin_view_status == 'deleted')
             $discounts = $discounts->onlyTrashed();
