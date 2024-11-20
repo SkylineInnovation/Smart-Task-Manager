@@ -42,6 +42,16 @@
         li>a.border-bottom:hover {
             color: black
         }
+
+        .scrollable-container {
+            max-height: 400px;
+            /* Adjust height as needed */
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            /* Optional: to highlight the scrollable area */
+            padding: 10px;
+            border-radius: 5px;
+        }
     </style>
 @endsection
 
@@ -141,7 +151,7 @@
 
                             </div>
                         </div>
-                        <div class="card-body px-0">
+                        <div class="card-body px-0 scrollable-container">
                             @foreach ($income_tasks_almost_close as $t)
                                 <livewire:dashboard.task-detail :task="$t" />
                             @endforeach
@@ -165,7 +175,7 @@
 
 
                         </div>
-                        <div class="card-body  px-0">
+                        <div class="card-body  px-0 scrollable-container">
                             @foreach ($outcome_tasks_almost_close as $t)
                                 <livewire:dashboard.task-detail :task="$t" />
                             @endforeach
@@ -187,7 +197,7 @@
                                 </small>
                             </div>
                         </div>
-                        <div class="card-body px-0">
+                        <div class="card-body px-0 scrollable-container">
                             @foreach ($all_history as $history)
                                 <div class="row w-100 m-0 bgHover py-3">
                                     <div class="col-12 text-end ">
@@ -254,7 +264,7 @@
 
 
                         </div>
-                        <div class="card-body px-0">
+                        <div class="card-body px-0 scrollable-container">
                             @foreach ($income_tasks_not_commented as $t)
                                 <livewire:dashboard.task-detail :task="$t" />
                             @endforeach
@@ -277,7 +287,7 @@
                             </div>
                         </div>
 
-                        <div class="card-body px-0">
+                        <div class="card-body px-0 scrollable-container">
                             @foreach ($outcome_tasks_not_commented as $t)
                                 <livewire:dashboard.task-detail :task="$t" />
                             @endforeach
