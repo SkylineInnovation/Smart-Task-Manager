@@ -124,6 +124,7 @@ class HomeController extends Controller
             [
                 'image' => asset('assets/dashboard/team.png'),
                 'text' =>  __('global.permissions'),
+                'link' => route('web.permissions.view')
             ],
             [
                 'image' => asset('assets/dashboard/report.png'),
@@ -135,7 +136,7 @@ class HomeController extends Controller
                 'text' =>  __('global.profile'),
                 'link' => route('edit.profile'),
             ],
-            
+
         ];
 
         $actionBtns = [

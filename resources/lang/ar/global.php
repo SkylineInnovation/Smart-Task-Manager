@@ -185,7 +185,7 @@ return [
 
 
 
-    
+
     'from_date' => 'من التاريخ',
     'to_date' => 'حتى التاريخ',
     'restart_filter' => 'إعادة تشغيل الفلتر',
@@ -324,4 +324,10 @@ return [
     'Employees' => 'الموظفون',
 
     'add-exchange' => 'إضافة التبادل',
+
+    'Group number' => 'رقم المجموعة',
+    'Group name' => 'اسم المجموعة',
+    'Number of users' => 'عدد المستخدمين',
+
+    'create-permissions'=>'إنشاء الأذونات'
 ];
