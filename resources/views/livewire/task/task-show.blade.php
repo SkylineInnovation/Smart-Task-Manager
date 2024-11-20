@@ -189,7 +189,7 @@
 
     <div class="card">
         <div class="card-header">
-            <ul class="nav nav-tabs overflow-auto nav-pills" id="myTab" role="tablist">
+            <ul class="nav nav-tabs overflow-auto nav-pills py-3" id="myTab" role="tablist">
                 {{-- 1 TAB START --}}
                 <li class="nav-item px-1">
                     <a class="nav-link py-3 rounded-pill {{ $tab == 1 ? 'active' : '' }}" id="user-tab"
@@ -252,10 +252,21 @@
                     </li>
                 @endrole
                 {{-- 7 TAB END --}}
+
+                {{-- 7 TAB START --}}
+                {{-- @role('owner|manager') --}}
+                <li class="nav-item px-1">
+                    <a class="nav-link py-3 rounded-pill {{ $tab == 8 ? 'active' : '' }}" id="completePercentage-tab"
+                        data-toggle="tab" wire:click="changeTab(8)" href="#completePercentage" role="tab"
+                        aria-controls="completePercentage"
+                        aria-selected="{{ $tab == 7 }}">{{ __('task.completePercentage') }}</a>
+                </li>
+                {{-- @endrole --}}
+                {{-- 7 TAB END --}}
             </ul>
         </div>
 
-        <div class="card-body">
+        <div class="card-body py-">
             <div class="tab-content pt-2" id="myTabContent">
                 {{-- 1 TAB START --}}
                 <div class="tab-pane fade {{ $tab == 1 ? 'show active' : '' }}" id="user" role="tabpanel"
@@ -928,6 +939,14 @@
                         </div>
                     </div>
                 @endrole
+                {{-- 7 TAB END --}}
+                {{-- 7 TAB START --}}
+                {{-- @role('owner|manager') --}}
+                <div class="tab-pane fade {{ $tab == 8 ? 'show active' : '' }}" id="completePercentage"
+                    role="tabpanel" aria-labelledby="completePercentage-tab">
+                    <livewire:completepercentage.completepercentage-index :the_task="$task" />
+                </div>
+                {{-- @endrole --}}
                 {{-- 7 TAB END --}}
 
             </div>

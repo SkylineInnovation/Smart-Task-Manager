@@ -74,6 +74,8 @@ class RoleSeeder extends Seeder
             'userdetail',
             'work',
             'exchangepermission',
+
+            'completepercentage'
         ];
 
         foreach ($lists as $item) {

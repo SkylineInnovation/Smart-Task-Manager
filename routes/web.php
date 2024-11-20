@@ -243,6 +243,12 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
     Route::middleware('permission:restore-exchangepermission')->get('trash/exchangepermissions', [App\Http\Controllers\ExchangePermissionController::class, 'livewireDeletedIndex'])->name('exchangepermission.index.trash');
     Route::get('export/exchangepermissions', [App\Http\Controllers\ExchangePermissionController::class, 'exportFullData'])->name('exchangepermission.export');
     Route::post('import/exchangepermissions', [App\Http\Controllers\ExchangePermissionController::class, 'importData'])->name('exchangepermission.import');
+
+    // the full routes for completepercentages
+    Route::middleware('permission:index-completepercentage')->get('completepercentages', [App\Http\Controllers\CompletePercentageController::class, 'livewireIndex'])->name('completepercentage.index');
+    Route::middleware('permission:restore-completepercentage')->get('trash/completepercentages', [App\Http\Controllers\CompletePercentageController::class, 'livewireDeletedIndex'])->name('completepercentage.index.trash');
+    Route::get('export/completepercentages', [App\Http\Controllers\CompletePercentageController::class, 'exportFullData'])->name('completepercentage.export');
+    Route::post('import/completepercentages', [App\Http\Controllers\CompletePercentageController::class, 'importData'])->name('completepercentage.import');
 });
 
 
@@ -286,5 +292,3 @@ Route::get('urg', function () {
 });
 
 // php artisan migrate:refresh --path=database/migrations/2024_10_26_232722_create_departments_table.php
-
-// 
