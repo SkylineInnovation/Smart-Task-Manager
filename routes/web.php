@@ -7,8 +7,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Web\WebPermissionsController;
 use App\Http\Controllers\Web\WebReportController;
 use App\Http\Controllers\Web\WebTaskController;
-use App\Models\Task;
-use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -283,18 +281,18 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group
 //     ];
 // });
 
-Route::get('urg', function () {
-    // $date = date('Y-m-d\TH:i', strtotime('+12 Hours'));
-    $date = date('Y-m-d\TH:i');
+// Route::get('urg', function () {
+//     // $date = date('Y-m-d\TH:i', strtotime('+12 Hours'));
+//     $date = date('Y-m-d\TH:i');
 
-    $tasks = Task::whereNullOrEmptyOrZero('main_task_id')->whereNullOrEmpty('slug');
+//     $tasks = Task::whereNullOrEmptyOrZero('main_task_id')->whereNullOrEmpty('slug');
 
-    $tasks = $tasks->where('priority_level', 'urgent')
-        ->whereIn('status', ['pending', 'active',]);
+//     $tasks = $tasks->where('priority_level', 'urgent')
+//         ->whereIn('status', ['pending', 'active',]);
 
-    $tasks = $tasks->where('end_time', '>=', $date)->get();
+//     $tasks = $tasks->where('end_time', '>=', $date)->get();
 
-    return $tasks;
-});
+//     return $tasks;
+// });
 
-// php artisan migrate:refresh --path=database/migrations/2024_10_26_232722_create_departments_table.php
+// // php artisan migrate:refresh --path=database/migrations/2024_10_26_232722_create_departments_table.php
