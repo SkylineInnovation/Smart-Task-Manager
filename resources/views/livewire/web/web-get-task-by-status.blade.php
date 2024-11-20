@@ -11,7 +11,10 @@
                         </div>
                         <div class="col-md-12">
                             <h6 class="text-gray px-4">
-                                {{ $task->manager->name() }}
+                                <a href=" {{ route('user.show', $task->manager->id) }}">
+
+                                    {{ $task->manager->name() }}
+                                </a>
                             </h6>
                         </div>
                         <div class="col-md-12">
@@ -169,11 +172,14 @@
                         <div class="row w-100 m-0 py-3">
                             @foreach ($task->employees as $employee)
                                 <div class="col-4" data-container="body" data-toggle="tooltip"
-                                    data-popover-color="default" data-placement="top" title="{{ $employee->name() }}">
+                                    data-popover-color="default" data-placement="top"
+                                    title="{{ $employee->name() }}">
                                     {{-- <img src="{{ asset($employee->image) }}"
                                         style="width: 40px !important; border-radius: 100px;"
                                         alt="{{ $employee->name() }}"> --}}
-                                    {{ $employee->name() }}
+                                    <a href=" {{ route('user.show', $task->manager->id) }}">
+                                        {{ $employee->name() }}
+                                    </a>
                                 </div>
                             @endforeach
                         </div>
@@ -455,8 +461,8 @@
                                                     <div
                                                         class="col-md-3 d-flex justify-content-center align-items-center">
 
-                                                        <a class="btn btn-success" href="{{ asset($attatch->file) }}"
-                                                            download>
+                                                        <a class="btn btn-success"
+                                                            href="{{ asset($attatch->file) }}" download>
                                                             <i class="fa fa-download text-white"></i>
                                                         </a>
 

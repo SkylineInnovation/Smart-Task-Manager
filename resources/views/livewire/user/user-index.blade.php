@@ -87,7 +87,11 @@
                         @endif --}}
 
                         @if ($showColumn['name'])
-                            <td> {{ $user->crud_name() }} </td>
+                            <td>
+                                <a href="{{ route('user.show', $user->id) }}">
+                                    {{ $user->crud_name() }}
+                                </a>
+                            </td>
                         @endif
 
                         @if ($showColumn['first_name'])
