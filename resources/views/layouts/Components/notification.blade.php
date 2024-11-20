@@ -1,4 +1,4 @@
-<div class="d-flex ml-auto header-right-icons header-search-icon">
+<div class="d-flex m{{App::getLocale()=='en'?'l':'r'}}-auto header-right-icons header-search-icon">
 
     <livewire:web.web-nav-bar />
 

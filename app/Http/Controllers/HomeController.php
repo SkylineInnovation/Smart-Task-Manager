@@ -135,10 +135,7 @@ class HomeController extends Controller
                 'text' =>  __('global.profile'),
                 'link' => route('edit.profile'),
             ],
-            [
-                'image' => asset('assets/dashboard/about.png'),
-                'text' =>  __('global.about'),
-            ],
+            
         ];
 
         $actionBtns = [

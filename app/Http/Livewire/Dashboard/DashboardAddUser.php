@@ -32,7 +32,7 @@ class DashboardAddUser extends Component
     public function get_create_date()
     {
         $this->branches = \App\Models\Branch::get();
-        $this->roles = Role::whereIn('name', ['owner', 'manager', 'employee',])->get();
+        $this->roles = Role::whereIn('name', ['employee',])->get();
     }
 
     private function resetInputFields()
