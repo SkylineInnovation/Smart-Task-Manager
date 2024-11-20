@@ -25,6 +25,8 @@ class TaskResource extends JsonResource
             'desc' => $this->desc,
             'start_time' => $this->start_time,
             'end_time' => $this->end_time,
+            'comment_type' => $this->comment_type,
+            'max_worning_count' => $this->max_worning_count,
             'priority_level' => $this->priority_level,
             'status' => $this->status,
             'main_task' => new TaskResource($this->whenLoaded('main_task')),

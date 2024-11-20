@@ -7,6 +7,8 @@
             <td>desc</td>
             <td>start_time</td>
             <td>end_time</td>
+            <td>comment_type</td>
+            <td>max_worning_count</td>
             <td>priority_level</td>
             <td>status</td>
             <td>main_task</td>
@@ -28,6 +30,10 @@
 
                 <td style="width: 100pt">{{ $task->end_time }}</td>
 
+                <td style="width: 100pt">{{ $task->comment_type }}</td>
+
+                <td style="width: 100pt">{{ $task->max_worning_count }}</td>
+
                 <td style="width: 100pt">{{ $task->the_priority_level() }}</td>
 
                 <td style="width: 100pt">{{ $task->the_status() }}</td>
@@ -35,7 +41,8 @@
                 <td style="width: 100pt">{{ $task->main_task ? $task->main_task->crud_name() : '-- --' }}</td>
 
 
-                <td style="width: 100pt">{{ $task->created_at ? date('d/m/Y', strtotime($task->created_at)) : '' }}</td>
+                <td style="width: 100pt">{{ $task->created_at ? date('d/m/Y', strtotime($task->created_at)) : '' }}
+                </td>
             </tr>
 
             @foreach ($task->comments as $tskCom)
@@ -43,8 +50,8 @@
                     <td colspan="0"></td>
 
                     <td colspan="3">{{ $tskCom->user->name() }}</td>
-                    <td colspan="2">{{ $tskCom->title }}</td>
-                    <td colspan="4">{{ $tskCom->desc }}</td>
+                    <td colspan="3">{{ $tskCom->title }}</td>
+                    <td colspan="5">{{ $tskCom->desc }}</td>
                 </tr>
             @endforeach
         @endforeach

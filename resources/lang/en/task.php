@@ -19,15 +19,19 @@ return [
 
     'end_time' => 'End Time',
 
+    'comment_type' => 'Comment grace period',
+
+    'max_worning_count' => 'Maximum warnings count',
+
     'priority_level' => 'Priority',
 
     'status' => 'Status',
 
     'main_task' => 'Main Task',
 
+    'max_worning_discount' => 'Amount of discount when reaching the maximum warning limit',
+
     'discount' => 'Deduction',
-
-
 
 
     'low' => 'Low',

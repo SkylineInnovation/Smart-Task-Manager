@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(Task::class);
             $table->foreignIdFor(User::class);
             $table->double('discount')->nullable()->default(0.0);
+            $table->double('max_worning_discount')->nullable()->default(0.0);
         });
     }
 

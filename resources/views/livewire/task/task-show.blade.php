@@ -78,6 +78,9 @@
                     'is_disable' => auth()->user() ? auth()->user()->hasRole('employee') : true,
                 ])
 
+                {{-- comment_type --}}
+                {{-- max_worning_count --}}
+
                 <div class="col-lg-4 col-md-4 col-sm-10">
                     <div class="form-group">
                         <label for="priority_level">{{ __('task.priority_level') }}</label>

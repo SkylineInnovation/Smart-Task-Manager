@@ -57,6 +57,14 @@
                         <td>{{ __('task.end_time') }}</td>
                     @endif
 
+                    @if ($showColumn['comment_type'])
+                        <td>{{ __('task.comment_type') }}</td>
+                    @endif
+
+                    @if ($showColumn['max_worning_count'])
+                        <td>{{ __('task.max_worning_count') }}</td>
+                    @endif
+
                     @if ($showColumn['priority_level'])
                         <td>{{ __('task.priority_level') }}</td>
                     @endif
@@ -139,6 +147,14 @@
 
                         @if ($showColumn['end_time'])
                             <td> {{ $task->format_date($task->end_time) }} </td>
+                        @endif
+
+                        @if ($showColumn['comment_type'])
+                            <td> {{ $task->comment_type }} </td>
+                        @endif
+
+                        @if ($showColumn['max_worning_count'])
+                            <td> {{ $task->max_worning_count }} </td>
                         @endif
 
                         @if ($showColumn['priority_level'])
