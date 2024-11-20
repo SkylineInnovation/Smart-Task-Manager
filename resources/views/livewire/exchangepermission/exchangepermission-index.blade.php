@@ -200,6 +200,17 @@
                         @permission('edit-exchangepermission|delete-exchangepermission|restore-exchangepermission')
                             <td>
                                 @if ($admin_view_status != 'deleted')
+                                    @if ($exchangepermission->status == 'pending')
+                                        <button data-toggle="modal" data-target="#accept-exchange-permission-modal"
+                                            wire:click="acceptBy({{ $exchangepermission->id }})" class="btn btn-success">
+                                            <i class="ti-check text-white"></i>
+                                        </button>
+                                        <button data-toggle="modal" data-target="#reject-exchange-permission-modal"
+                                            wire:click="rejectBy({{ $exchangepermission->id }})" class="btn btn-danger">
+                                            <i class="ti-close text-white"></i>
+                                        </button>
+                                    @endif
+
                                     @permission('edit-exchangepermission')
                                         <button data-toggle="modal" data-target="#update-exchangepermission-modal"
                                             wire:click="edit({{ $exchangepermission->id }})" class="btn btn-primary">
