@@ -2,20 +2,20 @@
 
 return [
 
-    'id' => 'Id',
+    'id' => 'معرف',
     'slug' => 'slug',
-    'created_at' => 'Created Date',
-    'date' => 'date',
-    'time' => 'time',
+    'created_at' => 'تاريخ الإنشاء',
+    'date' => 'التاريخ',
+    'time' => 'الوقت',
 
 
-    'manager' => 'manager',
+    'manager' => 'المدير',
 
-    'department' => 'department',
+    'department' => 'القسم',
 
-    'user' => 'user',
+    'user' => 'المستخدم',
 
-    'job_title' => 'job title',
+    'job_title' => 'المسمى الوظيفي',
 
 
 ];

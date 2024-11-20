@@ -2,36 +2,36 @@
 
 return [
 
-    'id' => 'Id',
+    'id' => 'معرف',
     'slug' => 'slug',
-    'created_at' => 'Created Date',
-    'date' => 'date',
-    'time' => 'time',
+    'created_at' => 'تاريخ الإنشاء',
+    'date' => 'التاريخ',
+    'time' => 'الوقت',
 
 
-    'user' => 'user',
+    'user' => 'المستخدم',
 
-    'content' => 'content',
+    'content' => 'المحتوى',
 
-    'amount' => 'amount',
+    'amount' => 'المبلغ',
 
-    'attachment' => 'attachment',
+    'attachment' => 'المرفق',
 
-    'request_date' => 'request_date',
+    'request_date' => 'تاريخ الطلب',
 
-    'financial_director' => 'financial_director',
+    'financial_director' => 'المدير المالي',
 
-    'financial_director_response' => 'financial_director_response',
+    'financial_director_response' => 'استجابة المدير المالي',
 
-    'financial_director_time' => 'financial_director_time',
+    'financial_director_time' => 'وقت المدير المالي',
 
-    'technical_director' => 'technical_director',
+    'technical_director' => 'المدير الفني',
 
-    'technical_director_response' => 'technical_director_response',
+    'technical_director_response' => 'استجابة المدير الفني',
 
-    'technical_director_time' => 'technical_director_time',
+    'technical_director_time' => 'وقت المدير الفني',
 
-    'status' => 'status',
+    'status' => 'الحالة',
 
 
 ];

@@ -1,6 +1,6 @@
 <div class="col-lg-{{ $lg ?? 6 }} col-md-{{ $md ?? 6 }} col-sm-{{ $sm ?? 12 }}">
     <div class='form-group'>
-        <label for='{{ $name }}' class="block font-medium text-sm text-gray-700">
+        <label for='{{ $name }}' class="block font-medium text-{{App::getLocale()=='en'?'sart':'end'}} text-sm text-gray-700">
             {{ $required ?? false ? '***' : '' }} {{ __($label ?? '') }}
         </label>
         <input {{ $required ?? null }} name='{{ $name }}' id='{{ $name }}' type='{{ $type ?? 'text' }}'

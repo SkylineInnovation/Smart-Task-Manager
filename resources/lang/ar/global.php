@@ -164,8 +164,28 @@ return [
 
     'employees' => 'الموظفون',
     'managers' => 'المدراء',
+
+    'companies' => 'الشركات',
+    'company' => 'الشركة',
+    'create-company' => 'إنشاء شركة جديدة',
+
+    'loghistories' => 'سجلات السجلات',
+    'create-loghistory' => 'إنشاء سجل جديد',
+
+    'areas' => 'المناطق',
+    'create-area' => 'إنشاء منطقة جديدة',
+
+    'works' => 'الأعمال',
+    'create-work' => 'إنشاء عمل جديد',
+
+    'exchangepermissions' => 'أذونات التبادل',
+    'create-exchangepermission' => 'إنشاء إذن التبادل',
+
     'task-board' => 'لوحة المهام',
 
+
+
+    
     'from_date' => 'من التاريخ',
     'to_date' => 'حتى التاريخ',
     'restart_filter' => 'إعادة تشغيل الفلتر',
@@ -302,4 +322,6 @@ return [
     'Delivery Date' => 'تاريخ التسليم',
     'Assignee' => 'المكلف',
     'Employees' => 'الموظفون',
+
+    'add-exchange' => 'إضافة التبادل',
 ];

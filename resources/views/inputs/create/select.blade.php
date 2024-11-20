@@ -1,6 +1,8 @@
-<div class="col-lg-{{ $lg ?? 6 }} col-md-{{ $md ?? 6 }} col-sm-{{ $sm ?? 12 }}">
+<div class="col-lg-{{ $lg ?? 6 }} col-md-{{ $md ?? 6 }} col-sm-{{ $sm ?? 12 }}" dir="ltr">
     <div class='form-group'>
-        <label for='{{ $name }}'>{{ $required ?? false ? '***' : '' }} {{ __($label) }} </label>
+        <label for='{{ $name }}'
+            class="text-{{ App::getLocale() == 'en' ? 'sart' : 'end' }}">{{ $required ?? false ? '***' : '' }}
+            {{ __($label) }} </label>
         <select {{ $required ?? null }} name='{{ $name }}' id='{{ $name }}'
             class='form-control rounded-md shadow-sm border-gray-300 @error('{{ $name }}') is-invalid @enderror'
             {{ ($livewire ?? null) == null ? null : 'wire:model=' . $livewire }}>

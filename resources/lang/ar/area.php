@@ -2,19 +2,19 @@
 
 return [
 
-    'id' => 'Id',
+    'id' => 'معرف',
     'slug' => 'slug',
-    'created_at' => 'Created Date',
-    'date' => 'date',
-    'time' => 'time',
+    'created_at' => 'تاريخ الإنشاء',
+    'date' => 'التاريخ',
+    'time' => 'الوقت',
 
 
-    'name' => 'name',
+    'name' => 'الاسم',
 
-    'location' => 'location',
+    'location' => 'الموقع',
 
-    'manager' => 'manager',
+    'manager' => 'المدير',
 
-    'branches' => 'branches',
+    'branches' => 'الفروع',
 
 ];

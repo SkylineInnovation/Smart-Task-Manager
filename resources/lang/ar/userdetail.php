@@ -2,32 +2,32 @@
 
 return [
 
-    'id' => 'Id',
+    'id' => 'معرف',
     'slug' => 'slug',
-    'created_at' => 'Created Date',
-    'date' => 'date',
-    'time' => 'time',
+    'created_at' => 'تاريخ الإنشاء',
+    'date' => 'التاريخ',
+    'time' => 'الوقت',
 
 
-    'user' => 'user',
+    'user' => 'المستخدم',
 
-    'title' => 'title',
+    'title' => 'المسمى الوظيفي',
 
-    'nationality' => 'nationality',
+    'nationality' => 'الجنسية',
 
-    'id_number' => 'id_number',
+    'id_number' => 'رقم المعرف',
 
-    'address' => 'address',
+    'address' => 'العنوان',
 
-    'qualification' => 'qualification',
+    'qualification' => 'المؤهل',
 
-    'salary' => 'salary',
+    'salary' => 'الراتب',
 
-    'home' => 'home',
+    'home' => 'المنزل',
 
-    'transport' => 'transport',
+    'transport' => 'المواصلات',
 
-    'branch' => 'branch',
+    'branch' => 'الفرع',
 
 
 ];

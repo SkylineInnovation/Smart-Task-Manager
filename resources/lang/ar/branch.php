@@ -2,36 +2,36 @@
 
 return [
 
-    'id' => 'Id',
+    'id' => 'معرف',
     'slug' => 'slug',
-    'created_at' => 'Created Date',
-    'date' => 'date',
-    'time' => 'time',
+    'created_at' => 'تاريخ الإنشاء',
+    'date' => 'التاريخ',
+    'time' => 'الوقت',
 
 
-    'name' => 'name',
+    'name' => 'الاسم',
 
-    'location' => 'location',
+    'location' => 'الموقع',
 
-    'phone' => 'phone',
+    'phone' => 'الهاتف',
 
-    'number' => 'number',
+    'number' => 'الرقم',
 
-    'fax' => 'fax',
+    'fax' => 'الفاكس',
 
-    'email' => 'email',
+    'email' => 'البريد الإلكتروني',
 
-    'password' => 'password',
+    'password' => 'كلمة المرور',
 
-    'website' => 'website',
+    'website' => 'الموقع الإلكتروني',
 
-    'commercial_register' => 'commercial_register',
+    'commercial_register' => 'السجل التجاري',
 
-    'area' => 'area',
+    'area' => 'المنطقة',
 
-    'manager' => 'manager',
+    'manager' => 'المدير',
 
-    'responsible' => 'responsible',
+    'responsible' => 'المسؤول',
 
 
 ];
