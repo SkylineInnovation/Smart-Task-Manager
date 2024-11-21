@@ -336,4 +336,5 @@ return [
     'create-permissions' => 'Create Permissions',
 
     'no-task' => 'No Task',
+    'create-job' => 'Create Job',
 ];
