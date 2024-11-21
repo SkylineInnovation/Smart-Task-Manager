@@ -1,6 +1,6 @@
 <!-- FOOTER -->
 
-<footer class="footer">
+<footer class="footer" style="direction: ltr">
     <div class="container">
         <div class="row align-items-center ">
             <div class="col-lg-8 col-md-8 col-sm-12 text-center">

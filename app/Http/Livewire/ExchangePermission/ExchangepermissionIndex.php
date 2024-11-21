@@ -86,10 +86,10 @@ class ExchangepermissionIndex extends Component
             'request_date' => true,
             'financial_director_id' => true,
             'financial_director_response' => true,
-            'financial_director_time' => true,
+            'financial_director_time' => false,
             'technical_director_id' => true,
             'technical_director_response' => true,
-            'technical_director_time' => true,
+            'technical_director_time' => false,
             'status' => true,
 
             // 'status' => false,
@@ -294,19 +294,29 @@ class ExchangepermissionIndex extends Component
 
 
     public $select_financial_director;
-    public function updatedSelectFinancial_director($val)
+    public function updatedSelectFinancialDirector($val)
     {
         $this->filter_financial_directors_id[] = $val;
     }
 
 
     public $select_technical_director;
-    public function updatedSelectTechnical_director($val)
+    public function updatedSelectTechnicalDirector($val)
     {
         $this->filter_technical_directors_id[] = $val;
     }
 
 
+    // TODO
+    public function acceptBy($id)
+    {
+        // 
+    }
+
+    public function rejectBy($id)
+    {
+        // 
+    }
 
 
     public function gotoPage($page)
@@ -344,6 +354,15 @@ class ExchangepermissionIndex extends Component
 
         if ($this->filter_technical_directors_id)
             $exchangepermissions = $exchangepermissions->whereIn('technical_director_id', $this->filter_technical_directors_id);
+
+        if ($this->user->hasRole('manager')) {
+            $exchangepermissions = $exchangepermissions->orWhere('user_id', $this->user->id);
+            $exchangepermissions = $exchangepermissions->orWhereIn('user_id', $this->user->employees->pluck('id')->toArray());
+        }
+
+        if ($this->user->hasRole('employee')) {
+            $exchangepermissions = $exchangepermissions->orWhere('user_id', $this->user->id);
+        }
 
 
         if ($this->admin_view_status == 'deleted')

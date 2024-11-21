@@ -399,6 +399,14 @@ class LeaveIndex extends Component
         if ($this->the_task_id)
             $leaves = $leaves->where('task_id', $this->the_task_id);
 
+        if ($this->user->hasRole('manager')) {
+            $leaves = $leaves->orWhere('user_id', $this->user->id);
+            $leaves = $leaves->orWhereIn('user_id', $this->user->employees->pluck('id')->toArray());
+        }
+
+        if ($this->user->hasRole('employee')) {
+            $leaves = $leaves->orWhere('user_id', $this->user->id);
+        }
 
         if ($this->admin_view_status == 'deleted')
             $leaves = $leaves->onlyTrashed();

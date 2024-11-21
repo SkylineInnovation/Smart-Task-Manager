@@ -76,8 +76,8 @@ class CompletepercentageIndex extends Component
             'task_id' => $the_task ? false : true,
             'user_id' => true,
             'percentage' => true,
-            'rate_text' => $is_admin ? false : true,
-            'rate_val' => $is_admin ? false : true,
+            'rate_text' => $is_admin ? true : false,
+            'rate_val' => $is_admin ? true : false,
 
             // 'status' => false,
             'date' => true,

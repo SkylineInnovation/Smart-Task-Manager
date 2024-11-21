@@ -188,14 +188,16 @@
                         @permission('edit-leave|delete-leave|restore-leave')
                             <td>
                                 @if ($leave->status == 'pending')
-                                    <button data-toggle="modal" data-target="#accept-leave-modal"
-                                        wire:click="edit({{ $leave->id }})" class="btn btn-success">
-                                        <i class="ti-check text-white"></i>
-                                    </button>
-                                    <button data-toggle="modal" data-target="#reject-leave-modal"
-                                        wire:click="rejectLeave({{ $leave->id }})" class="btn btn-danger">
-                                        <i class="ti-close text-white"></i>
-                                    </button>
+                                    @if (auth()->user()->hasRole('manager') || auth()->user()->hasRole('owner'))
+                                        <button data-toggle="modal" data-target="#accept-leave-modal"
+                                            wire:click="edit({{ $leave->id }})" class="btn btn-success">
+                                            <i class="ti-check text-white"></i>
+                                        </button>
+                                        <button data-toggle="modal" data-target="#reject-leave-modal"
+                                            wire:click="rejectLeave({{ $leave->id }})" class="btn btn-danger">
+                                            <i class="ti-close text-white"></i>
+                                        </button>
+                                    @endif
                                 @endif
 
                                 @if ($admin_view_status != 'deleted')

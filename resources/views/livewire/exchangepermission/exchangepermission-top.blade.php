@@ -99,12 +99,14 @@
 
         @if ($admin_view_status != 'deleted')
             @permission('create-exchangepermission')
-                <div>
-                    <button type="button" class="btn btn-success" data-toggle="modal"
-                        data-target="#create-new-exchangepermission-modal">
-                        <i class="ti-plus text-white"></i>
-                    </button>
-                </div>
+                @if (auth()->user()->hasRole('manager') || auth()->user()->hasRole('owner'))
+                    <div>
+                        <button type="button" class="btn btn-success" data-toggle="modal"
+                            data-target="#create-new-exchangepermission-modal">
+                            <i class="ti-plus text-white"></i>
+                        </button>
+                    </div>
+                @endif
             @endpermission
         @endif
     </div>

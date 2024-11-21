@@ -10,7 +10,6 @@
     </a>
 
     @permission('create-work')
-
         <!-- Modal -->
         <div wire:ignore.self class="modal fade text-start" id="create-new-job-modal" data-backdrop="static"
             data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="create-new-job-modal-label"

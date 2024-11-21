@@ -200,15 +200,16 @@
                         <div class="card-body px-0 scrollable-container">
                             @foreach ($all_history as $history)
                                 <div class="row w-100 m-0 bgHover py-3">
-                                    <div class="col-12 text-end ">
+                                    <div class="col-12 text-{{ App::getLocale() == 'en' ? 'start' : 'end' }}">
                                         <h4>
                                             {{ $history->the_preaf() }}
                                         </h4>
 
                                     </div>
-                                    <div class="col-12 text-end mt-3">
-                                        <label class="bg-success text-white p-2"
-                                            for="">{{ $history->created_at }}</label>
+                                    <div class="col-12 mt-3 text-{{ App::getLocale() == 'en' ? 'start' : 'end' }}">
+                                        <label class="bg-success text-white p-2">
+                                            {{ $history->created_at }}
+                                        </label>
                                     </div>
                                 </div>
                             @endforeach

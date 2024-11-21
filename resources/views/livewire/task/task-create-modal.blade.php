@@ -69,6 +69,39 @@
                                     'sm' => 3,
                                 ])
 
+
+                                <div class="form-group col-lg-4 col-md-4 col-sm-12">
+                                    <label for="exampleFormControlSelect1">{{ __('task.comment_type') }}</label>
+                                    <select wire:model.defer="comment_type" class="form-control">
+                                        <option value="daily">{{ __('task.daily') }}</option>
+                                        <option value="weekly">{{ __('task.weekly') }}</option>
+                                        <option value="monthly">{{ __('task.monthly') }}</option>
+                                    </select>
+                                </div>
+
+
+                                @include('inputs.create.input', [
+                                    'label' => 'task.short_max_worning_count',
+                                    'name' => 'task.short_max_worning_count',
+                                    'livewire' => 'max_worning_count',
+                                    'type' => 'number',
+                                    'step' => 1,
+                                    'lg' => 4,
+                                    'md' => 4,
+                                    'sm' => 6,
+                                ])
+
+                                @include('inputs.create.input', [
+                                    'label' => 'task.short_max_worning_discount',
+                                    'name' => 'task.short_max_worning_discount',
+                                    'livewire' => 'max_worning_discount',
+                                    'type' => 'number',
+                                    'step' => 1,
+                                    'lg' => 4,
+                                    'md' => 4,
+                                    'sm' => 6,
+                                ])
+
                                 @include('inputs.textarea', [
                                     'label' => 'task.desc',
                                     'livewire' => 'desc',
@@ -102,9 +135,6 @@
                                     'min' => date('Y-m-d\TH:i', strtotime($start_time . '+1 Hours')),
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
-
-                                {{-- comment_type --}}
-                                {{-- max_worning_count --}}
 
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
@@ -264,6 +294,39 @@
                                     'lg' => 3,
                                     'md' => 3,
                                     'sm' => 3,
+                                ])
+
+                                <div class="form-group col-lg-4 col-md-4 col-sm-12">
+                                    <label for="exampleFormControlSelect1">{{ __('task.comment_type') }}</label>
+                                    <select wire:model.defer="comment_type" class="form-control">
+                                        <option value="daily">{{ __('task.daily') }}</option>
+                                        <option value="weekly">{{ __('task.weekly') }}</option>
+                                        <option value="monthly">{{ __('task.monthly') }}</option>
+                                    </select>
+                                </div>
+
+
+                                @include('inputs.edit.input', [
+                                    'label' => 'task.short_max_worning_count',
+                                    'name' => 'task.short_max_worning_count',
+                                    'val' => $task->max_worning_count,
+                                    'livewire' => 'max_worning_count',
+                                    'type' => 'number',
+                                    'step' => 1,
+                                    'lg' => 4,
+                                    'md' => 4,
+                                    'sm' => 6,
+                                ])
+                                @include('inputs.edit.input', [
+                                    'label' => 'task.short_max_worning_discount',
+                                    'name' => 'task.short_max_worning_discount',
+                                    'val' => $task->max_worning_discount(),
+                                    'livewire' => 'max_worning_discount',
+                                    'type' => 'number',
+                                    'step' => 1,
+                                    'lg' => 4,
+                                    'md' => 4,
+                                    'sm' => 6,
                                 ])
 
                                 @include('inputs.textarea', [

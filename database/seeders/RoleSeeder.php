@@ -154,6 +154,12 @@ class RoleSeeder extends Seeder
             'show-task',
             'show-branch',
             'show-company',
+
+            'index-permission',
+            'create-permission',
+            'delete-permission',
+
+            'index-report',
         ];
 
         foreach ($customPermissions as $customPermission) {
