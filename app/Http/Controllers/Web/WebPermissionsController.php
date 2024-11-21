@@ -13,7 +13,15 @@ class WebPermissionsController extends Controller
     {
         $roles = Role::get();
 
-        $permissions = Permission::get();
+        $permissions = Permission::where('name', 'Not Like', '%delete%')
+            ->where('name', 'Not Like', '%restore%')
+            ->where('name', 'Not Like', '%applang%')
+            ->where('name', 'Not Like', '%otpsendcode%')
+            ->where('name', 'Not Like', '%passwordcode%')
+            ->where('name', 'Not Like', '%devicetokenlist%')
+            ->where('name', 'Not Like', '%loghistory%')
+            ->where('name', 'Not Like', '%userdetail%')
+            ->orderBy('name')->get();
 
         // dd($roles);
         return view('Web.permission.permissions', compact('roles', 'permissions'));
