@@ -336,4 +336,9 @@ return [
     'create-permissions' => 'Create Permissions',
 
     'no-task' => 'No Task',
+    'accepted_by_financial_director' => 'Accepted By Financial Director',
+    'accepted_by_technical_director'=>'Accepted By Technical Director',
+    'rejectby_financial_director'=>'Rejectby Financial Director',
+    'reject_by_technical_director'=>'Reject By Technical Director',
+
 ];

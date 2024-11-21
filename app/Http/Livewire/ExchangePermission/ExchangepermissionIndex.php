@@ -310,12 +310,66 @@ class ExchangepermissionIndex extends Component
     // TODO
     public function acceptBy($id)
     {
-        // 
+        $exchangepermission = ExchangePermission::find($id);
+        if ($this->user->hasRole('financial')) {
+            $exchangepermission->update([
+                'financial_director_id' => $this->user->id,
+                'financial_director_response' => 'accepted',
+                'financial_director_time' => date('Y-m-d H:i'),
+            ]);
+
+            session()->flash('message', __('global.accepted_by_financial_director'));
+            $this->emit('show-message', ['message' => __('global.accepted_by_financial_director')]); // show toster message
+        }
+
+        if ($this->user->hasRole('technical')) {
+            $exchangepermission->update([
+                'technical_director_id' => $this->user->id,
+                'technical_director_response' => 'accepted',
+                'technical_director_time' => date('Y-m-d H:i'),
+            ]);
+
+            session()->flash('message', __('global.accepted_by_technical_director'));
+            $this->emit('show-message', ['message' => __('global.accepted_by_technical_director')]); // show toster message
+        }
+
+        $exchangepermission = ExchangePermission::find($id);
+
+        if ($exchangepermission->financial_director_response == 'accepted' && $exchangepermission->technical_director_response == 'accepted') {
+            $exchangepermission->update(['status' => 'accepted']);
+        }
     }
 
     public function rejectBy($id)
     {
-        // 
+        $exchangepermission = ExchangePermission::find($id);
+        if ($this->user->hasRole('financial')) {
+            $exchangepermission->update([
+                'financial_director_id' => $this->user->id,
+                'financial_director_response' => 'rejected',
+                'financial_director_time' => date('Y-m-d H:i'),
+            ]);
+
+            session()->flash('message', __('global.rejectby_financial_director'));
+            $this->emit('show-message', ['message' => __('global.rejectby_financial_director')]); // show toster message
+        }
+
+        if ($this->user->hasRole('technical')) {
+            $exchangepermission->update([
+                'technical_director_id' => $this->user->id,
+                'technical_director_response' => 'rejected',
+                'technical_director_time' => date('Y-m-d H:i'),
+            ]);
+
+            session()->flash('message', __('global.reject_by_technical_director'));
+            $this->emit('show-message', ['message' => __('global.reject_by_technical_director')]); // show toster message
+        }
+
+        $exchangepermission = ExchangePermission::find($id);
+
+        if ($exchangepermission->financial_director_response == 'rejected' && $exchangepermission->technical_director_response == 'rejected') {
+            $exchangepermission->update(['status' => 'rejected']);
+        }
     }
 
 

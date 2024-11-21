@@ -190,5 +190,21 @@ class RoleSeeder extends Seeder
                 'name' => 'employee',
                 'display_name' => 'Employee', // optional
             ]);
+
+
+        $employeeRole = Role::where('name', 'financial')->first();
+
+        if (!$employeeRole)
+            $employeeRole = Role::create([
+                'name' => 'financial',
+                'display_name' => 'Financial Director', // optional
+            ]);
+        $employeeRole = Role::where('name', 'technical')->first();
+
+        if (!$employeeRole)
+            $employeeRole = Role::create([
+                'name' => 'technical',
+                'display_name' => 'Technical Director', // optional
+            ]);
     }
 }

@@ -337,5 +337,10 @@ return [
 
     'no-task' => 'بدون تاسك',
 
-    'create-job'=>'إنشاء وظيفة'
+    'create-job' => 'إنشاء وظيفة',
+
+    'accepted_by_financial_director' => 'مقبول من قبل المدير المالي',
+    'accepted_by_technical_director' => 'مقبول من قبل المدير الفني',
+    'rejectby_financial_director' => 'رفض من قبل المدير المالي',
+    'reject_by_technical_director' => 'رفض من قبل المدير الفني',
 ];
