@@ -50,11 +50,11 @@ class RoleSeeder extends Seeder
 
         $lists = [
             'user',
-            'applang',
+            // 'applang',
 
-            'otpsendcode',
-            'passwordcode',
-            'devicetokenlist',
+            // 'otpsendcode',
+            // 'passwordcode',
+            // 'devicetokenlist',
 
             'task',
             'attachment',
@@ -64,14 +64,14 @@ class RoleSeeder extends Seeder
             'discount',
             'dailytask',
 
-            'loghistory',
+            // 'loghistory',
 
             'department',
             'branch',
             'company',
             'area',
 
-            'userdetail',
+            // 'userdetail',
             'work',
             'exchangepermission',
 

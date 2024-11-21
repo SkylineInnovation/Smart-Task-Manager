@@ -82,9 +82,7 @@
                             </div>
 
                             <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
-                                <span>
-                                    {{ __('task.max_worning_count') }}
-                                </span>
+
                                 <div class="input-group">
                                     <div class="input-group-prepend ">
                                         <span class="input-group-text btn-secondary text-white"
@@ -93,15 +91,15 @@
                                     <input wire:model.defer="max_worning_count" type="number" multiple class="form-control"
                                         aria-label="Default" aria-describedby="inputGroup-sizing-default">
                                 </div>
-                                
-                                
+
+                                <span style="font-size: 12px;">
+                                    {{ __('task.max_worning_count') }}
+                                </span>
 
                             </div>
 
                             <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
-                                <span>
-                                    {{ __('task.max_worning_discount') }}
-                                </span>
+
                                 <div class="input-group">
                                     <div class="input-group-prepend ">
                                         <span class="input-group-text btn-secondary text-white"
@@ -109,9 +107,11 @@
                                     </div>
                                     <input wire:model.defer="max_worning_discount" type="number" class="form-control"
                                         aria-label="Default" aria-describedby="inputGroup-sizing-default">
-
-                                  
                                 </div>
+
+                                <span style="font-size: 12px;">
+                                    {{ __('task.max_worning_discount') }}
+                                </span>
                             </div>
                             {{--  --}}
 

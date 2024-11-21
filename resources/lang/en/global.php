@@ -341,4 +341,5 @@ return [
     'rejectby_financial_director'=>'Rejectby Financial Director',
     'reject_by_technical_director'=>'Reject By Technical Director',
 
+    'create-job' => 'Create Job',
 ];

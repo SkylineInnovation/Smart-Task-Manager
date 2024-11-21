@@ -343,4 +343,5 @@ return [
     'accepted_by_technical_director' => 'مقبول من قبل المدير الفني',
     'rejectby_financial_director' => 'رفض من قبل المدير المالي',
     'reject_by_technical_director' => 'رفض من قبل المدير الفني',
+    'create-job' => 'إنشاء وظيفة'
 ];
