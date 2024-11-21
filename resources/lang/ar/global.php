@@ -333,4 +333,6 @@ return [
     'create-permissions' => 'إنشاء الأذونات',
 
     'no-task' => 'بدون تاسك',
+
+    'create-job'=>'إنشاء وظيفة'
 ];
