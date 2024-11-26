@@ -52,7 +52,4 @@ class WebPermissionsController extends Controller
 
         return redirect()->route('web.permissions.view');
     }
-
-
-
 }
