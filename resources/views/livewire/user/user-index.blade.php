@@ -138,6 +138,20 @@
                         @endrole
 
                         <td>
+                            @role('owner')
+                                @if ($user->status != 'active')
+                                    <button wire:click="activateUser({{ $user->id }})" class="btn btn-success">
+                                        <i class="ti-unlock text-white"></i>
+                                    </button>
+                                @endif
+
+                                @if ($user->status == 'active')
+                                    <button wire:click="blockUser({{ $user->id }})" class="btn btn-danger">
+                                        <i class="ti-lock text-white"></i>
+                                    </button>
+                                @endif
+                            @endrole
+
                             @permission('show-user')
                                 <a href="{{ route('user.show', $user) }}" target="_blank" class="btn btn-info">
                                     <i class="ti-eye text-white"></i>

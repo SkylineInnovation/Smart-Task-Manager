@@ -339,23 +339,23 @@ class UserIndex extends Component
         }
     }
 
-    // public function activateUser($id)
-    // {
-    //     if ($id) {
-    //         $user = User::find($id);
-    //         $user->update(['status' => 'active']);
-    //         session()->flash('message', 'User Active');
-    //     }
-    // }
+    public function activateUser($id)
+    {
+        if ($id) {
+            $user = User::find($id);
+            $user->update(['status' => 'active']);
+            session()->flash('message', 'User Active');
+        }
+    }
 
-    // public function blockUser($id)
-    // {
-    //     if ($id) {
-    //         $user = User::find($id);
-    //         $user->update(['status' => 'blocked']);
-    //         session()->flash('message', 'User Blocked');
-    //     }
-    // }
+    public function blockUser($id)
+    {
+        if ($id) {
+            $user = User::find($id);
+            $user->update(['status' => 'blocked']);
+            session()->flash('message', 'User Blocked');
+        }
+    }
 
     public function updatedBranchId($val)
     {

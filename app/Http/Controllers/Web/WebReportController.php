@@ -17,10 +17,9 @@ class WebReportController extends Controller
         $users = User::whereRoleIs('employee')->orderBy('first_name')->get();
         $tasks_status = Task::get();
 
-
-
         return view('Web.repots.reports-web', compact('users', 'tasks_status'));
     }
+
     public function taskCommintes(Request $request)
     {
         $formDate = $request->input('fromDate');
@@ -89,8 +88,5 @@ class WebReportController extends Controller
         // return view('Web.repots.prints.follow-up-employee-tasks');
     }
 
-    public function IncomingTasksNotCommentedOnToday()
-    {
-       
-    }
+    public function IncomingTasksNotCommentedOnToday() {}
 }

@@ -30,7 +30,7 @@
                                 alt="">
                         </div>
                         <div class="col-md-12 text-center text-dark text-bold">
-                            {{__('global.task-omments-report')}}
+                            {{ __('global.task-omments-report') }}
                         </div>
                     </a>
                 </div>
@@ -43,7 +43,7 @@
                                 alt="">
                         </div>
                         <div class="col-md-12 text-center text-dark text-bold">
-                            {{__('global.closed-tasks-coming-soon')}}
+                            {{ __('global.closed-tasks-coming-soon') }}
                         </div>
                     </a>
                 </div>
@@ -56,7 +56,7 @@
                                 alt="">
                         </div>
                         <div class="col-md-12 text-center text-dark text-bold">
-                            {{__('global.outgoing-task-movements')}}
+                            {{ __('global.outgoing-task-movements') }}
                         </div>
                     </a>
                 </div>
@@ -69,7 +69,7 @@
                                 alt="">
                         </div>
                         <div class="col-md-12 text-center text-dark text-bold">
-                            {{__('global.incoming-task-movements')}}
+                            {{ __('global.incoming-task-movements') }}
                         </div>
                     </a>
                 </div>
@@ -82,7 +82,7 @@
                                 alt="">
                         </div>
                         <div class="col-md-12 text-center text-dark text-bold">
-                            {{__('global.outgoing-task-discounts')}}
+                            {{ __('global.outgoing-task-discounts') }}
                         </div>
                     </a>
                 </div>
@@ -95,7 +95,7 @@
                                 alt="">
                         </div>
                         <div class="col-md-12 text-center text-dark text-bold">
-                            {{__('global.incoming-task-discounts')}}
+                            {{ __('global.incoming-task-discounts') }}
                         </div>
                     </a>
                 </div>
@@ -108,7 +108,7 @@
                                 alt="">
                         </div>
                         <div class="col-md-12 text-center text-dark text-bold">
-                            {{__('global.follow-up-employee-tasks')}}
+                            {{ __('global.follow-up-employee-tasks') }}
                         </div>
                     </a>
                 </div>

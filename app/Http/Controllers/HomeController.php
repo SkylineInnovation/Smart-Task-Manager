@@ -75,6 +75,10 @@ class HomeController extends Controller
         return back();
     }
 
+    public function blocked()
+    {
+        return view('stander.blocked');
+    }
 
     public function sidenavToggled()
     {

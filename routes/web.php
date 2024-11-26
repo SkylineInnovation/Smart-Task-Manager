@@ -64,7 +64,9 @@ Route::get('lang/{lang}', [HomeController::class, 'switchLang'])->name('lang.swi
 
 Route::get('web/task/{slug}', [WebTaskController::class, 'openTask'])->name('web.task');
 
-Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee')->group(function () {
+Route::get('blocked', [HomeController::class, 'blocked'])->name('blocked');
+
+Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee', 'AuthActiveWeb')->group(function () {
     Route::get('dashboard', [HomeController::class, 'home'])->name('dashboard');
 
     Route::get('task-board', [HomeController::class, 'taskBoard'])->name('task-board');
