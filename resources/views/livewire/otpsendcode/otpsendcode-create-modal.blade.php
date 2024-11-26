@@ -21,7 +21,7 @@
 
                             <div class="row">
 
-                                @include('inputs.create.input', [
+                                {{-- @include('inputs.create.input', [
                                     'label' => 'otpsendcode.slug',
                                     'name' => 'otpsendcode.slug',
                                     'livewire' => 'slug',
@@ -30,7 +30,7 @@
                                     'lg' => 12,
                                     'md' => 12,
                                     'sm' => 12,
-                                ])
+                                ]) --}}
 
 
                                 @include('inputs.create.select', [
@@ -153,7 +153,7 @@
 
                             <div class="row">
 
-                                @include('inputs.edit.input', [
+                                {{-- @include('inputs.edit.input', [
                                     'label' => 'otpsendcode.slug',
                                     'name' => 'otpsendcode.slug',
                                     'livewire' => 'slug',
@@ -162,7 +162,7 @@
                                     'lg' => 12,
                                     'md' => 12,
                                     'sm' => 12,
-                                ])
+                                ]) --}}
 
 
                                 @include('inputs.edit.select', [

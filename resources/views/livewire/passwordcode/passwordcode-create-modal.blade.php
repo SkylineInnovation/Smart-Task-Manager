@@ -21,7 +21,7 @@
 
                             <div class="row">
 
-                                @include('inputs.create.input', [
+                                {{-- @include('inputs.create.input', [
                                     'label' => 'passwordcode.slug',
                                     'name' => 'passwordcode.slug',
                                     'livewire' => 'slug',
@@ -30,7 +30,7 @@
                                     'lg' => 12,
                                     'md' => 12,
                                     'sm' => 12,
-                                ])
+                                ]) --}}
 
 
                                 @include('inputs.create.select', [
@@ -141,7 +141,7 @@
 
                             <div class="row">
 
-                                @include('inputs.edit.input', [
+                                {{-- @include('inputs.edit.input', [
                                     'label' => 'passwordcode.slug',
                                     'name' => 'passwordcode.slug',
                                     'livewire' => 'slug',
@@ -150,7 +150,7 @@
                                     'lg' => 12,
                                     'md' => 12,
                                     'sm' => 12,
-                                ])
+                                ]) --}}
 
 
                                 @include('inputs.edit.select', [

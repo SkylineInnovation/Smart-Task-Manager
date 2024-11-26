@@ -1,4 +1,4 @@
-<div class="col-md-3 col-6 mb-4 d-flex text-center justify-content-center ">
+<div class="col-md-3 col-6 mb-4 d-flex text-center justify-content-center">
     <a wire:click="get_create_date()" href="#" data-toggle="modal" data-target="#create-new-branch-modal"
         class="mouseHover col-md-12 py-3 px-1">
         <div class="col-md-12 d-flex justify-content-center pb-3">

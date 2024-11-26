@@ -44,14 +44,21 @@
                                 ]) --}}
 
                                 @include('inputs.create.select', [
+                                    'label' => 'global.branch',
+                                    'name' => 'global.branch_id',
+                                    'arr' => $branchs,
+                                    'livewire' => 'branch_id',
+                                    // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                    // 'lg' => 12, 'md' => 12, 'sm' => 12,
+                                ])
+
+                                @include('inputs.create.select', [
                                     'label' => 'work.department',
                                     'name' => 'work.department_id',
                                     'arr' => $departments,
                                     'livewire' => 'department_id',
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
-                                    'lg' => 12,
-                                    'md' => 12,
-                                    'sm' => 12,
+                                    // 'lg' => 12, 'md' => 12, 'sm' => 12,
                                 ])
                                 @include('inputs.create.select', [
                                     'label' => 'work.user',

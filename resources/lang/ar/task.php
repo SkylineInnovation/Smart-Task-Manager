@@ -19,6 +19,11 @@ return [
 
     'end_time' => 'وقت الانتهاء',
 
+    'is_separate_task' => 'نوع المهمة',
+
+    'single' => 'منفردة',
+    'shared' => 'مشتركة',
+
     'comment_type' => 'فترة السماح للتعليق',
 
     'max_worning_count' => 'الحد الأقصى للتحذيرات',

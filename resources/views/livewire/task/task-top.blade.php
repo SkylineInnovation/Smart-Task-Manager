@@ -21,6 +21,7 @@
                 <option value='end_time'>{{ __('task.end_time') }}</option>
 
                 <option value='comment_type'>{{ __('task.comment_type') }}</option>
+                <option value='is_separate_task'>{{ __('task.is_separate_task') }}</option>
                 <option value='max_worning_count'>{{ __('task.max_worning_count') }}</option>
 
                 <option value='priority_level'>{{ __('task.priority_level') }}</option>

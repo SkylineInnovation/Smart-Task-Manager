@@ -7,10 +7,11 @@ use Livewire\Component;
 
 class DashboardAddWork extends Component
 {
+    public $branchs = [];
     public $departments = [];
     public $users = [];
 
-    public $department_id, $user_id, $job_title;
+    public $branch_id, $department_id, $user_id, $job_title;
 
     public function mount()
     {
@@ -19,12 +20,14 @@ class DashboardAddWork extends Component
 
     public function get_create_date()
     {
-        $this->departments = \App\Models\Department::where('show', 1)->orderBy('sort')->get();
+        $this->branchs = \App\Models\Branch::where('show', 1)->orderBy('sort')->get();
+        // $this->departments = \App\Models\Department::where('show', 1)->orderBy('sort')->get();
         $this->users = \App\Models\User::whereRoleIs('manager')->orWhereRoleIs('employee')->orderBy('first_name')->get();
     }
 
     private function resetInputFields()
     {
+        $this->branch_id = null;
         $this->department_id = null;
         $this->user_id = null;
         $this->job_title = '';
@@ -38,10 +41,17 @@ class DashboardAddWork extends Component
             // 'slug' => $this-slug,
 
 
+            'branch_id' => 'required',
             'department_id' => 'required',
             'user_id' => 'required',
             'job_title' => 'required',
         ];
+    }
+
+    public function updatedBranchId()
+    {
+        $this->departments = \App\Models\Department::where('branch_id', $this->branch_id)
+            ->where('show', 1)->orderBy('sort')->get();
     }
 
     public function updated($propertyName)

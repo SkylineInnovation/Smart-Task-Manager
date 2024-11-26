@@ -64,6 +64,7 @@ class Task extends Model
         'desc',
         'start_time',
         'end_time',
+        'is_separate_task',
         'comment_type',
         'max_worning_count',
         'priority_level',
@@ -266,12 +267,13 @@ class Task extends Model
             // $q->orWhere('manager_id', $search);
             $q->orWhereSearch('title', $search);
             $q->orWhereSearch('desc', $search);
-            $q->orWhereSearch('start_time', $search);
-            $q->orWhereSearch('end_time', $search);
-            $q->orWhereSearch('comment_type', $search);
-            $q->orWhereSearch('max_worning_count', $search);
-            $q->orWhereSearch('priority_level', $search);
-            $q->orWhereSearch('status', $search);
+            // $q->orWhereSearch('start_time', $search);
+            // $q->orWhereSearch('end_time', $search);
+            // $q->orWhereSearch('is_separate_task', $search);
+            // $q->orWhereSearch('comment_type', $search);
+            // $q->orWhereSearch('max_worning_count', $search);
+            // $q->orWhereSearch('priority_level', $search);
+            // $q->orWhereSearch('status', $search);
             // $q->orWhere('main_task_id', $search);
 
             // })->orWhereHas('add_by_user', function ($q) use ($search) {

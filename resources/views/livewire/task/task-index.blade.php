@@ -57,6 +57,10 @@
                         <td>{{ __('task.end_time') }}</td>
                     @endif
 
+                    @if ($showColumn['is_separate_task'])
+                        <td>{{ __('task.is_separate_task') }}</td>
+                    @endif
+
                     @if ($showColumn['comment_type'])
                         <td>{{ __('task.comment_type') }}</td>
                     @endif
@@ -147,6 +151,10 @@
 
                         @if ($showColumn['end_time'])
                             <td> {{ $task->format_date($task->end_time) }} </td>
+                        @endif
+
+                        @if ($showColumn['is_separate_task'])
+                            <td> {{ $task->is_separate_task }} </td>
                         @endif
 
                         @if ($showColumn['comment_type'])

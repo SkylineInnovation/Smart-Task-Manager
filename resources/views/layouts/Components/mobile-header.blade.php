@@ -195,7 +195,7 @@
                 </div>
 
             </a>
-            <a aria-haspopup="true" href="{{ route('permission.page') }}" class="dropdown-item ps-4 ">
+            <a aria-haspopup="true" href="{{ route('web.permissions.view') }}" class="dropdown-item ps-4 ">
 
                 <div class="row w-100 m-0">
                     <div class="col-auto p-0">

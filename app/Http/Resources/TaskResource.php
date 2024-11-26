@@ -25,6 +25,7 @@ class TaskResource extends JsonResource
             'desc' => $this->desc,
             'start_time' => $this->start_time,
             'end_time' => $this->end_time,
+            'is_separate_task' => $this->is_separate_task,
             'comment_type' => $this->comment_type,
             'max_worning_count' => $this->max_worning_count,
             'priority_level' => $this->priority_level,

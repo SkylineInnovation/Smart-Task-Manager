@@ -132,14 +132,14 @@ class ExchangepermissionIndex extends Component
             'content' => 'required',
             'amount' => 'required',
             'attachment' => 'required',
-            'request_date' => 'required',
-            'financial_director_id' => 'required',
-            'financial_director_response' => 'required',
-            'financial_director_time' => 'required',
-            'technical_director_id' => 'required',
-            'technical_director_response' => 'required',
-            'technical_director_time' => 'required',
-            'status' => 'required',
+            // 'request_date' => 'required',
+            // 'financial_director_id' => 'required',
+            // 'financial_director_response' => 'required',
+            // 'financial_director_time' => 'required',
+            // 'technical_director_id' => 'required',
+            // 'technical_director_response' => 'required',
+            // 'technical_director_time' => 'required',
+            // 'status' => 'required',
         ];
     }
 
@@ -160,14 +160,14 @@ class ExchangepermissionIndex extends Component
             'content' => $this->content,
             'amount' => $this->amount,
             'attachment' => HomeController::saveImageWeb($this->attachment, 'exchange_permission'),
-            'request_date' => $this->request_date,
+            'request_date' => date('Y-m-d\TH:i'),
             'financial_director_id' => $this->financial_director_id,
             'financial_director_response' => $this->financial_director_response,
             'financial_director_time' => $this->financial_director_time,
             'technical_director_id' => $this->technical_director_id,
             'technical_director_response' => $this->technical_director_response,
             'technical_director_time' => $this->technical_director_time,
-            'status' => $this->status,
+            'status' => 'pending',
         ]);
 
         session()->flash('message', __('global.created-successfully'));
@@ -367,7 +367,7 @@ class ExchangepermissionIndex extends Component
 
         $exchangepermission = ExchangePermission::find($id);
 
-        if ($exchangepermission->financial_director_response == 'rejected' && $exchangepermission->technical_director_response == 'rejected') {
+        if ($exchangepermission->financial_director_response == 'rejected' || $exchangepermission->technical_director_response == 'rejected') {
             $exchangepermission->update(['status' => 'rejected']);
         }
     }

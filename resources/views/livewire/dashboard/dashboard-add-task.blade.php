@@ -1,5 +1,5 @@
 {{-- Because she competes with no one, no one can compete with her. --}}
-<div class="col-md-3 col-6 mb-4 d-flex text-center justify-content-center ">
+<div class="col-md-3 col-6 mb-4 d-flex text-center justify-content-center">
     <a wire:click="get_create_date()" href="#" data-toggle="modal" data-target="#create-submit-task"
         class="mouseHover col-md-12 py-3 px-1">
         <div class="col-md-12 d-flex justify-content-center pb-3">
@@ -19,7 +19,8 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body" dir="ltr">
+                    <div class="modal-body text-{{ App::getLocale() == 'en' ? 'start' : 'end' }}">
+
                         <div class="row w-100 m-0">
                             <div class='form-group col-lg-6 col-md-6 col-sm-12'>
                                 <label for='employee-select'>{{ __('task.employees') }}</label>
@@ -72,12 +73,20 @@
                             </div>
 
                             {{--  --}}
-                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                 <label for="exampleFormControlSelect1">{{ __('task.comment_type') }}</label>
                                 <select wire:model.defer="comment_type" class="form-control">
                                     <option value="daily">{{ __('task.daily') }}</option>
                                     <option value="weekly">{{ __('task.weekly') }}</option>
                                     <option value="monthly">{{ __('task.monthly') }}</option>
+                                </select>
+                            </div>
+                            {{--  --}}
+                            <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                <label for="exampleFormControlSelect1">{{ __('task.is_separate_task') }}</label>
+                                <select wire:model.defer="is_separate_task" class="form-control">
+                                    <option value="1">{{ __('task.single') }}</option>
+                                    <option value="0">{{ __('task.shared') }}</option>
                                 </select>
                             </div>
 

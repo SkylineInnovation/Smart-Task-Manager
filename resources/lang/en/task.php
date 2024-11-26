@@ -19,9 +19,14 @@ return [
 
     'end_time' => 'End Time',
 
-    'comment_type' => 'Comment grace period',
+    'is_separate_task' => 'Is Separate Task',
 
-    'max_worning_count' => 'Maximum warnings count',
+    'single' => 'Single',
+    'shared' => 'Shared',
+
+    'comment_type' => 'Comment Grace Period',
+
+    'max_worning_count' => 'Maximum Warnings Count',
 
     'priority_level' => 'Priority',
 
@@ -29,9 +34,9 @@ return [
 
     'main_task' => 'Main Task',
 
-    'max_worning_discount' => 'Amount of Deduction when reaching the maximum warning limit',
+    'max_worning_discount' => 'Amount Of Deduction When Reaching The Maximum Warning Limit',
 
-    'short_max_worning_count' => 'max worning count',
+    'short_max_worning_count' => 'Max Worning Count',
     'short_max_worning_discount' => 'Deduction',
 
     'discount' => 'Deduction',

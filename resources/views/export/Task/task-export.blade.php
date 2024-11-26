@@ -7,6 +7,7 @@
             <td>desc</td>
             <td>start_time</td>
             <td>end_time</td>
+            <td>is_separate_task</td>
             <td>comment_type</td>
             <td>max_worning_count</td>
             <td>priority_level</td>
@@ -30,6 +31,7 @@
 
                 <td style="width: 100pt">{{ $task->end_time }}</td>
 
+                <td style="width: 100pt">{{ $task->is_separate_task }}</td>
                 <td style="width: 100pt">{{ $task->comment_type }}</td>
 
                 <td style="width: 100pt">{{ $task->max_worning_count }}</td>

@@ -29,7 +29,7 @@
 
                         <thead>
                             <tr>
-                                <th class="col-1" scope="col">#</th>
+                                {{-- <th class="col-1" scope="col">#</th> --}}
                                 <th class="col-4" scope="col">{{ __('global.Group number') }}</th>
                                 <th class="col-4" scope="col">{{ __('global.Group name') }}</th>
                                 <th class="col-3" scope="col">{{ __('global.Number of users') }}</th>
@@ -41,11 +41,11 @@
                             @foreach ($roles as $role)
                                 <tr>
                                     <th scope="row">{{ $role->id }}</th>
-                                    <td>{{ $loop->index }}</td>
+                                    {{-- <td>{{ $loop->index }}</td> --}}
                                     <td>{{ $role->display_name }}</td>
                                     <td>{{ $role->users_count() }}</td>
                                     <td>
-                                        @if (!in_array($role->name, ['owner', 'manager', 'employee']))
+                                        @if (!in_array($role->name, ['owner', 'manager', 'employee', 'financial', 'technical']))
                                             <button data-toggle="modal" data-target="#delete-role-{{ $role->id }}"
                                                 class="btn btn-danger-gradient">
                                                 <i class='fa fa-trash'></i>
@@ -60,8 +60,10 @@
                                                             @csrf
 
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="delete-role-Label">Delete
-                                                                    {{ $role->display_name }}</h5>
+                                                                <h5 class="modal-title" id="delete-role-Label">
+                                                                    {{ __('global.delete') }}
+                                                                    {{ $role->display_name }}
+                                                                </h5>
                                                                 <button type="button" class="close" data-dismiss="modal"
                                                                     aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
@@ -114,36 +116,36 @@
                             <li class="nav-item col-6 ">
                                 <a class="nav-link d-flex justify-content-center active  w-100" id="home-tab"
                                     data-toggle="tab" href="#home" role="tab" aria-controls="home"
-                                    aria-selected="true">Role</a>
+                                    aria-selected="true">
+                                    {{ __('global.Role') }}
+                                </a>
                             </li>
                             <li class="nav-item col-6 ">
                                 <a class="nav-link d-flex justify-content-center w-100" id="profile-tab" data-toggle="tab"
-                                    href="#profile" role="tab" aria-controls="profile"
-                                    aria-selected="false">Permission</a>
+                                    href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+                                    {{ __('global.Permission') }}
+                                </a>
                             </li>
 
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel"
                                 aria-labelledby="home-tab">
-
-
                                 <div class="py-3">
-                                    <label for="role_name">create role</label>
+                                    <label for="role_name">{{ __('global.role_name') }}</label>
                                     <input class="form-control" type="text" name="role_name">
                                 </div>
-
-
                             </div>
-                            <div class="tab-pane fade scrollable-container" id="profile" role="tabpanel"
-                                aria-labelledby="profile-tab">
 
-                                <div class="form-check ">
+                            <div class="tab-pane fade scrollable-container" id="profile" role="tabpanel"
+                                aria-labelledby="profile-tab" style="">
+
+                                <div class="form-check">
                                     @foreach ($permissions as $rp)
                                         <div class="form-check-item">
                                             <input class="form-check-input" type="checkbox" value="{{ $rp->id }}"
                                                 id="permission-{{ $rp->id }}" name="permissions[]">
-                                            <label class="form-check-label" for="permission-{{ $rp->id }}">
+                                            <label class="form-check-label me-4" for="permission-{{ $rp->id }}">
                                                 {{ $rp->display_name }}
                                             </label>
                                         </div>
@@ -162,11 +164,4 @@
             </div>
         </div>
     </div>
-@endsection
-@section('js')
-    <script type="text/javascript">
-        $(function() {
-            //
-        });
-    </script>
 @endsection

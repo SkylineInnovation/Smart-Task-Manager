@@ -140,7 +140,7 @@ class LeaveIndex extends Component
             // 'slug' => $this-slug,
 
 
-            'task_id' => 'required',
+            // 'task_id' => 'required',
             'user_id' => 'required',
             // 'type' => 'required',
             // 'time_out' => 'required',
@@ -355,6 +355,7 @@ class LeaveIndex extends Component
             'time_in' => $this->time_in,
             'effect_on_time' => $this->effect_on_time,
             'reason' => $this->reason,
+            'result' => $this->result,
             'status' => 'accepted',
             'accepted_by_user_id' => auth()->user()->id,
             'accepted_time' => date('Y-m-d h:i A'),

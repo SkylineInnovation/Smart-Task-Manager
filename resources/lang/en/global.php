@@ -211,6 +211,9 @@ return [
     'by_branches' => 'By Branches',
     'dailytasks' => 'Daily Tasks',
     'creat_task' => 'Create Task',
+    'by_departments' => 'By Departments',
+    'by_financial_directors' => 'By Financial Directors',
+    'by_technical_directors' => 'By Technical Directors',
 
     'enter desc' => 'Enter Description',
     'automation tasks' => 'Automation Tasks',
@@ -336,10 +339,15 @@ return [
     'create-permissions' => 'Create Permissions',
 
     'no-task' => 'No Task',
+
     'accepted_by_financial_director' => 'Accepted By Financial Director',
-    'accepted_by_technical_director'=>'Accepted By Technical Director',
-    'rejectby_financial_director'=>'Rejectby Financial Director',
-    'reject_by_technical_director'=>'Reject By Technical Director',
+    'accepted_by_technical_director' => 'Accepted By Technical Director',
+    'rejectby_financial_director' => 'Rejectby Financial Director',
+    'reject_by_technical_director' => 'Reject By Technical Director',
 
     'create-job' => 'Create Job',
+
+    'Role' => 'Role',
+    'Permission' => 'Permission',
+    'role_name' => 'role name',
 ];

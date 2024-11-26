@@ -112,12 +112,16 @@ class User extends Authenticatable
 
     public function crud_name()
     {
-        return $this->first_name . ' ' . $this->last_name;
+        $title = $this->detail ? $this->detail->title . ' ' : '';
+
+        return $title . $this->first_name . ' ' . $this->last_name;
     }
 
     public function name()
     {
-        return $this->first_name . ' ' . $this->last_name;
+        $title = $this->detail ? $this->detail->title . ' ' : '';
+
+        return $title . $this->first_name . ' ' . $this->last_name;
     }
 
     public function getImageAttribute()

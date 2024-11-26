@@ -6,6 +6,7 @@ use App\Jobs\SendNewUser;
 use App\Models\Department;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\UserDetail;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
@@ -56,7 +57,9 @@ class UserIndex extends Component
 
         $this->employees = User::whereRoleIs('employee')->get();
 
-        $this->departments = Department::get();
+        $this->branches = \App\Models\Branch::get();
+
+        // $this->departments = Department::get();
 
         $this->roles = Role::whereIn('name', ['owner', 'manager', 'employee',])->get();
         // $this->roles = Role::get();
@@ -86,6 +89,14 @@ class UserIndex extends Component
     }
 
     public $first_name, $last_name, $user_name, $email, $password, $phone, $gender, $birth_day, $status, $active_until, $user_id;
+
+    public $branches = [];
+
+    public $title, $nationality,
+        $id_number, $address, $qualification,
+        $salary = 0, $home = 0, $transport = 0,
+        $branch_id;
+
     public $updateMode = false;
 
     private function resetInputFields()
@@ -106,6 +117,16 @@ class UserIndex extends Component
         $this->selectedDepartments = [];
 
         $this->edit_user = null;
+
+        $this->title = '';
+        $this->nationality = '';
+        $this->id_number = '';
+        $this->address = '';
+        $this->qualification = '';
+        $this->salary = 0;
+        $this->home = 0;
+        $this->transport = 0;
+        $this->branch_id = null;
     }
 
     public function rules()
@@ -121,6 +142,16 @@ class UserIndex extends Component
 
             'selectedRoles' => 'required',
             // 'selectedDepartments' => 'required',
+
+            'title' => 'required',
+            'nationality' => 'required',
+            'id_number' => 'required',
+            'address' => 'required',
+            'qualification' => 'required',
+            'salary' => 'required',
+            'home' => 'required',
+            'transport' => 'required',
+            'branch_id' => 'required',
         ];
     }
 
@@ -160,6 +191,19 @@ class UserIndex extends Component
 
         $user->departments()->sync($this->selectedDepartments);
 
+        UserDetail::create([
+            'user_id' => $user->id,
+            'title' => $this->title,
+            'nationality' => $this->nationality,
+            'id_number' => $this->id_number,
+            'address' => $this->address,
+            'qualification' => $this->qualification,
+            'salary' => $this->salary,
+            'home' => $this->home,
+            'transport' => $this->transport,
+            'branch_id' => $this->branch_id,
+        ]);
+
         if ($this->by->hasRole('manager')) {
             try {
                 $this->by->employees()->attach($user->id);
@@ -195,6 +239,30 @@ class UserIndex extends Component
         $this->gender = $user->gender;
         $this->birth_day = $user->birth_day;
 
+        // 
+        if (!$user->detail) {
+            $user->detail = UserDetail::create([
+                'user_id' => $user->id,
+                'salary' => 0,
+                'home' => 0,
+                'transport' => 0,
+                'branch_id' => 0,
+            ]);
+        }
+
+        $this->title = $user->detail->title;
+        $this->nationality = $user->detail->nationality;
+        $this->id_number = $user->detail->id_number;
+        $this->address = $user->detail->address;
+        $this->qualification = $user->detail->qualification;
+        $this->salary = $user->detail->salary;
+        $this->home = $user->detail->home;
+        $this->transport = $user->detail->transport;
+        $this->branch_id = $user->detail->branch_id;
+
+        $this->departments = \App\Models\Department::where('branch_id', $this->branch_id)
+            ->where('show', 1)->orderBy('sort')->get();
+
         $this->selectedRoles = $user->roles->pluck('id');
         $this->selectedEmployees = $user->employees->pluck('id');
         $this->selectedDepartments = $user->departments->pluck('id');
@@ -208,10 +276,7 @@ class UserIndex extends Component
 
     public function update()
     {
-        // $validatedDate = $this->validate([
-        //     'first_name' => 'required',
-        //     'email' => 'required|email',
-        // ]);
+        $validatedData = $this->validate();
 
         if ($this->user_id) {
             $user = User::find($this->user_id);
@@ -232,6 +297,20 @@ class UserIndex extends Component
 
             $user->employees()->sync($this->selectedEmployees);
             $user->departments()->sync($this->selectedDepartments);
+
+            $detail = UserDetail::where('user_id', $user->id)->latest()->first();
+
+            $detail->update([
+                'title' => $this->title,
+                'nationality' => $this->nationality,
+                'id_number' => $this->id_number,
+                'address' => $this->address,
+                'qualification' => $this->qualification,
+                'salary' => $this->salary,
+                'home' => $this->home,
+                'transport' => $this->transport,
+                'branch_id' => $this->branch_id,
+            ]);
 
             Artisan::call('cache:clear');
 
@@ -277,6 +356,14 @@ class UserIndex extends Component
     //         session()->flash('message', 'User Blocked');
     //     }
     // }
+
+    public function updatedBranchId($val)
+    {
+        $this->departments = \App\Models\Department::where('branch_id', $this->branch_id)
+            ->where('show', 1)->orderBy('sort')->get();
+
+        $this->selectedDepartments = [];
+    }
 
     public function render()
     {

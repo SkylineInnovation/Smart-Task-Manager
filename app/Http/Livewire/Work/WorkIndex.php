@@ -34,6 +34,7 @@ class WorkIndex extends Component
 
     public $managers = [];
 
+    public $branchs = [];
     public $departments = [];
 
     public $users = [];
@@ -66,7 +67,9 @@ class WorkIndex extends Component
 
         $this->managers = \App\Models\User::whereRoleIs('owner')->orWhereRoleIs('manager')->orderBy('first_name')->get();
 
-        $this->departments = \App\Models\Department::where('show', 1)->orderBy('sort')->get();
+        $this->branchs = \App\Models\Branch::where('show', 1)->orderBy('sort')->get();
+
+        // $this->departments = \App\Models\Department::where('show', 1)->orderBy('sort')->get();
 
         $this->users = \App\Models\User::whereRoleIs('manager')->orWhereRoleIs('employee')->orderBy('first_name')->get();
 
@@ -77,6 +80,7 @@ class WorkIndex extends Component
 
 
             'manager_id' => false,
+            'branch_id' => true,
             'department_id' => true,
             'user_id' => true,
             'job_title' => true,
@@ -88,7 +92,7 @@ class WorkIndex extends Component
     }
 
     public $slug;
-    public $work_id, $manager_id, $department_id, $user_id, $job_title;
+    public $work_id, $manager_id, $branch_id, $department_id, $user_id, $job_title;
     public $updateMode = false;
 
     private function resetInputFields()
@@ -96,6 +100,7 @@ class WorkIndex extends Component
         $this->slug = '';
 
         $this->manager_id = null;
+        $this->branch_id = null;
         $this->department_id = null;
         $this->user_id = null;
         $this->job_title = '';
@@ -110,6 +115,7 @@ class WorkIndex extends Component
 
 
             // 'manager_id' => 'required',
+            'branch_id' => 'required',
             'department_id' => 'required',
             'user_id' => 'required',
             'job_title' => 'required',
@@ -151,9 +157,13 @@ class WorkIndex extends Component
 
 
         $this->manager_id = $work->manager_id;
+        $this->branch_id = $work->department->branch_id;
         $this->department_id = $work->department_id;
         $this->user_id = $work->user_id;
         $this->job_title = $work->job_title;
+
+        $this->departments = \App\Models\Department::where('branch_id', $this->branch_id)
+            ->where('show', 1)->orderBy('sort')->get();
     }
 
     public function cancel()
@@ -241,7 +251,6 @@ class WorkIndex extends Component
         $this->filter_managers_id[] = $val;
     }
 
-
     public $select_department;
     public function updatedSelectDepartment($val)
     {
@@ -256,6 +265,11 @@ class WorkIndex extends Component
     }
 
 
+    public function updatedBranchId($val)
+    {
+        $this->departments = \App\Models\Department::where('branch_id', $this->branch_id)
+            ->where('show', 1)->orderBy('sort')->get();
+    }
 
 
     public function gotoPage($page)

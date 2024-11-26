@@ -1,6 +1,6 @@
 <div>
     @foreach ($tasks as $task)
-        <div class="card p-0 text-start" wire:key='{{ $task->id }}'>
+        <div class="card p-0 text-{{ App::getLocale() == 'en' ? 'start' : 'end' }}" wire:key='{{ $task->id }}'>
             <div class="card-body p-0">
                 <div class="row w-100 m-0">
                     <div class="col-md-8 col-7 p-0 ">

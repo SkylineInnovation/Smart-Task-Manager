@@ -38,7 +38,7 @@ return [
 
     'home' => 'الصفحة الرئيسية',
     'home-page' => 'الصفحة الرئيسية',
-    'roles' => 'الأدوار',
+    'roles' => 'الصلاحيات',
 
     'id' => 'المعرف',
     'slug' => 'الاسم المستعار',
@@ -171,8 +171,8 @@ return [
     'works' => 'الأعمال',
     'create-work' => 'اضافة عمل جديد',
 
-    'exchangepermissions' => 'أذونات التبادل',
-    'create-exchangepermission' => 'اضافة إذن التبادل',
+    'exchangepermissions' => 'أذونات الصرف',
+    'create-exchangepermission' => 'اضافة إذن صرف',
 
     'completepercentages' => 'نسبة الانجاز',
     'create-completepercentage' => 'اضافة نسبة الانجاز',
@@ -211,6 +211,9 @@ return [
     'by_branches' => 'حسب الافرع',
     'dailytasks' => 'المهام اليومية',
     'creat_task' => 'إنشاء مهمة',
+    'by_departments' => 'حسب القسم',
+    'by_financial_directors' => 'حسب المدير المالي',
+    'by_technical_directors' => 'حسب المدير الفني',
 
     'enter desc' => 'إدخال الوصف',
     'automation tasks' => 'مهام الأتمتة',
@@ -337,11 +340,14 @@ return [
 
     'no-task' => 'بدون تاسك',
 
-    'create-job' => 'إنشاء وظيفة',
-
     'accepted_by_financial_director' => 'مقبول من قبل المدير المالي',
     'accepted_by_technical_director' => 'مقبول من قبل المدير الفني',
     'rejectby_financial_director' => 'رفض من قبل المدير المالي',
     'reject_by_technical_director' => 'رفض من قبل المدير الفني',
-    'create-job' => 'إنشاء وظيفة'
+
+    'create-job' => 'إنشاء وظيفة',
+
+    'Role' => 'صلاحيات',
+    'Permission' => 'الاذونات',
+    'role_name' => 'اسم الصلاحية',
 ];

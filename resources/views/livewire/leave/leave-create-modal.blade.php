@@ -70,7 +70,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                {{-- <div class="col-lg-3 col-md-3 col-sm-12">
                                     <div class="form-group">
                                         <label for="status">{{ __('leave.status') }}</label>
                                         <select wire:model="status" name="status" id="status" class="form-control">
@@ -79,7 +79,7 @@
                                             <option value="rejected">{{ __('leave.rejected') }}</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 @include('inputs.create.input', [
                                     'label' => 'leave.time_out',
@@ -441,6 +441,18 @@
                                 'name' => 'leave.reason',
                                 'val' => $leave->reason,
                                 'livewire' => 'reason',
+                                'type' => 'text', // 'step' => 1,
+                                // 'required' => 'required',
+                                'lg' => 12,
+                                'md' => 12,
+                                'sm' => 12,
+                            ])
+
+                            @include('inputs.edit.input', [
+                                'label' => 'leave.result',
+                                'name' => 'leave.result',
+                                'val' => $leave->result,
+                                'livewire' => 'result',
                                 'type' => 'text', // 'step' => 1,
                                 // 'required' => 'required',
                                 'lg' => 12,

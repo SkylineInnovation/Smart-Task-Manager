@@ -50,13 +50,22 @@
                     'sm' => 3,
                 ])
 
-                <div class="form-group col-lg-4 col-md-4 col-sm-12">
+                <div class="form-group col-lg-6 col-md-6 col-sm-12">
                     <label for="exampleFormControlSelect1">{{ __('task.comment_type') }}</label>
                     <select wire:model.defer="comment_type" class="form-control" @guest disabled readonly @endguest
                         @if (auth()->user() ? auth()->user()->hasRole('employee') : true) disabled readonly @endif>
                         <option value="daily">{{ __('task.daily') }}</option>
                         <option value="weekly">{{ __('task.weekly') }}</option>
                         <option value="monthly">{{ __('task.monthly') }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                    <label for="exampleFormControlSelect1">{{ __('task.is_separate_task') }}</label>
+                    <select wire:model.defer="is_separate_task" class="form-control" @guest disabled readonly @endguest
+                        @if (auth()->user() ? auth()->user()->hasRole('employee') : true) disabled readonly @endif>
+                        <option value="1">{{ __('task.single') }}</option>
+                        <option value="0">{{ __('task.shared') }}</option>
                     </select>
                 </div>
 
@@ -69,9 +78,7 @@
                         'is_disable' => auth()->user() ? auth()->user()->hasRole('employee') : true,
                         'type' => 'number',
                         'step' => 1,
-                        'lg' => 4,
-                        'md' => 4,
-                        'sm' => 6,
+                        // 'lg' => 4, 'md' => 4, 'sm' => 6,
                     ])
                     @include('inputs.edit.input', [
                         'label' => 'task.short_max_worning_discount',
@@ -81,9 +88,7 @@
                         'is_disable' => auth()->user() ? auth()->user()->hasRole('employee') : true,
                         'type' => 'number',
                         'step' => 1,
-                        'lg' => 4,
-                        'md' => 4,
-                        'sm' => 6,
+                        // 'lg' => 4, 'md' => 4, 'sm' => 6,
                     ])
                 @endif
 
@@ -115,8 +120,6 @@
                     'is_disable' => auth()->user() ? auth()->user()->hasRole('employee') : true,
                 ])
 
-                {{-- comment_type --}}
-                {{-- max_worning_count --}}
 
                 <div class="col-lg-4 col-md-4 col-sm-10">
                     <div class="form-group">

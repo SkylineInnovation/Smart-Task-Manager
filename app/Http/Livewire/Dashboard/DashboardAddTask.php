@@ -31,7 +31,7 @@ class DashboardAddTask extends Component
     public $discount = 0, $max_worning_discount = 0;
     public $task_id, $manager_id, $title, $desc,
         $start_time, $end_time,
-        $comment_type = 'daily', $max_worning_count,
+        $comment_type = 'daily', $is_separate_task = 0, $max_worning_count = 0,
         $priority_level = 'low', $status = 'pending';
 
     public function get_create_date()
@@ -70,7 +70,8 @@ class DashboardAddTask extends Component
         $this->selectedEmployees = [];
 
         $this->comment_type = 'daily';
-        $this->max_worning_count = null;
+        $this->is_separate_task = 0;
+        $this->max_worning_count = 0;
 
         $this->select_emp = '';
     }
@@ -85,6 +86,7 @@ class DashboardAddTask extends Component
             'end_time' => 'required|date|after:start_time', // _or_equal
             'priority_level' => 'required',
             'status' => 'required',
+            'is_separate_task' => 'required',
             'comment_type' => 'required',
             'max_worning_count' => 'required',
             'discount' => 'required',
@@ -107,26 +109,54 @@ class DashboardAddTask extends Component
     {
         $validatedData = $this->validate();
 
-        $task = Task::create([
-            'add_by' => $this->by->id,
-            'slug' => $this->slug,
+        if ($this->is_separate_task) {
+            foreach ($this->selectedEmployees as $selectedEmployee) {
+                $task = Task::create([
+                    'add_by' => $this->by->id,
+                    'slug' => $this->slug,
 
-            'manager_id' => $this->by->id,
-            'title' => $this->title,
-            'desc' => $this->desc,
-            'start_time' => $this->start_time,
-            'end_time' => $this->end_time,
-            'comment_type' => $this->comment_type,
-            'max_worning_count' => $this->max_worning_count,
-            'priority_level' => $this->priority_level,
-            'status' => $this->status,
-            // 'main_task_id' => $this->main_task_id,
-        ]);
+                    'manager_id' => $this->by->id,
+                    'title' => $this->title,
+                    'desc' => $this->desc,
+                    'start_time' => $this->start_time,
+                    'end_time' => $this->end_time,
+                    'is_separate_task' => $this->is_separate_task,
+                    'comment_type' => $this->comment_type,
+                    'max_worning_count' => $this->max_worning_count,
+                    'priority_level' => $this->priority_level,
+                    'status' => $this->status,
+                    // 'main_task_id' => $this->main_task_id,
+                ]);
 
-        $task->employees()->syncWithPivotValues($this->selectedEmployees, [
-            'discount' => $this->discount,
-            'max_worning_discount' => $this->max_worning_discount,
-        ]);
+                $task->employees()->syncWithPivotValues([$selectedEmployee], [
+                    'discount' => $this->discount,
+                    'max_worning_discount' => $this->max_worning_discount,
+                ]);
+            }
+        } else {
+            $task = Task::create([
+                'add_by' => $this->by->id,
+                'slug' => $this->slug,
+
+                'manager_id' => $this->by->id,
+                'title' => $this->title,
+                'desc' => $this->desc,
+                'start_time' => $this->start_time,
+                'end_time' => $this->end_time,
+                'is_separate_task' => $this->is_separate_task,
+                'comment_type' => $this->comment_type,
+                'max_worning_count' => $this->max_worning_count,
+                'priority_level' => $this->priority_level,
+                'status' => $this->status,
+                // 'main_task_id' => $this->main_task_id,
+            ]);
+
+            $task->employees()->syncWithPivotValues($this->selectedEmployees, [
+                'discount' => $this->discount,
+                'max_worning_discount' => $this->max_worning_discount,
+            ]);
+        }
+
 
         session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();

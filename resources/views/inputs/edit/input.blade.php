@@ -1,5 +1,5 @@
 <div class="col-lg-{{ $lg ?? 6 }} col-md-{{ $md ?? 6 }} col-sm-{{ $sm ?? 12 }}">
-    <div class='form-group'>
+    <div class='form-group text-{{ App::getLocale() == 'en' ? 'start' : 'end' }}'>
         <label for='{{ $name }}' class="block font-medium text-sm text-gray-700">
             {{ $required ?? false ? '***' : '' }} {{ __($label ?? '') }}
         </label>

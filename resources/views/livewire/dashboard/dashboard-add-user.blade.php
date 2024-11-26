@@ -70,7 +70,7 @@
                                     'label' => 'user.phone',
                                     'name' => 'phone',
                                     'livewire' => 'phone',
-                                    'type' => 'tel',
+                                    // 'type' => 'tel',
                                 ])
 
                                 @include('inputs.create.input', [
@@ -124,8 +124,6 @@
                                     'sm' => 6,
                                 ])
 
-                                {{--  --}}
-
                                 @include('inputs.create.input', [
                                     'label' => 'userdetail.salary',
                                     'name' => 'userdetail.salary',
@@ -178,7 +176,7 @@
                             @role('owner')
                                 <div>
                                     <p>{{ __('global.roles') }}</p>
-                                    <div class="row">
+                                    <div class="row" style="direction: ltr">
                                         @foreach ($roles as $role)
                                             <div class="col-4">
                                                 <div class="form-check form-check-inline">

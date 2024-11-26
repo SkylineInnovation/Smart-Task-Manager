@@ -94,6 +94,7 @@ class TaskIndex extends Component
             'desc' => false,
             'start_time' => true,
             'end_time' => true,
+            'is_separate_task' => false,
             'comment_type' => true,
             'max_worning_count' => true,
             'priority_level' => true,
@@ -108,7 +109,7 @@ class TaskIndex extends Component
     }
 
     public $slug;
-    public $task_id, $manager_id, $title, $desc, $start_time, $end_time, $comment_type = 'daily', $max_worning_count, $priority_level = 'low', $status = 'pending', $main_task_id, $daily_task_id;
+    public $task_id, $manager_id, $title, $desc, $start_time, $end_time, $is_separate_task = 0, $comment_type = 'daily', $max_worning_count, $priority_level = 'low', $status = 'pending', $main_task_id, $daily_task_id;
 
     public $task_status = 'all';
     public $discount = 0, $max_worning_discount = 0;
@@ -123,6 +124,7 @@ class TaskIndex extends Component
         $this->desc = '';
         $this->start_time = date('Y-m-d\TH:i');
         $this->end_time = date('Y-m-d\TH:i', strtotime('+1 Hours'));
+        $this->is_separate_task = 0;
         $this->comment_type = 'daily';
         $this->max_worning_count = null;
         // $this->priority_level = 'low';
@@ -147,6 +149,7 @@ class TaskIndex extends Component
             // 'start_time' => 'required|date',
             'start_time' => 'required|date|after:' . date('Y-m-d\TH:i', strtotime('-5 Minutes')),
             'end_time' => 'required|date|after:start_time', // _or_equal
+            'is_separate_task' => 'required',
             'comment_type' => 'required',
             'max_worning_count' => 'required',
             'priority_level' => 'required',
@@ -174,36 +177,72 @@ class TaskIndex extends Component
             $validatedData = $this->validate();
 
 
-        $task = Task::create([
-            'add_by' => $this->by->id,
-            'slug' => $save_for_later ? 'archive' : $this->slug,
+        if ($this->is_separate_task) {
+            foreach ($this->selectedEmployees as $selectedEmployee) {
+                $task = Task::create([
+                    'add_by' => $this->by->id,
+                    'slug' => $save_for_later ? 'archive' : $this->slug,
 
-            'manager_id' => $this->by->id,
-            'title' => $this->title,
-            'desc' => $this->desc,
-            'start_time' => $this->start_time,
-            'end_time' => $this->end_time,
-            'comment_type' => $this->comment_type,
-            'max_worning_count' => $this->max_worning_count,
-            'priority_level' => $this->priority_level,
-            'status' => $this->status,
-            'main_task_id' => $this->main_task_id,
-            'reopen_from_task_id' => $this->reopen_from_task_id,
-            'daily_task_id' => $this->daily_task_id,
-        ]);
+                    'manager_id' => $this->by->id,
+                    'title' => $this->title,
+                    'desc' => $this->desc,
+                    'start_time' => $this->start_time,
+                    'end_time' => $this->end_time,
+                    'is_separate_task' => $this->is_separate_task,
+                    'comment_type' => $this->comment_type,
+                    'max_worning_count' => $this->max_worning_count,
+                    'priority_level' => $this->priority_level,
+                    'status' => $this->status,
+                    'main_task_id' => $this->main_task_id,
+                    'reopen_from_task_id' => $this->reopen_from_task_id,
+                    'daily_task_id' => $this->daily_task_id,
+                ]);
 
-        $task->employees()->syncWithPivotValues($this->selectedEmployees, [
-            'discount' => $this->discount,
-            'max_worning_discount' => $this->max_worning_discount
-        ]);
+                $task->employees()->syncWithPivotValues([$selectedEmployee], [
+                    'discount' => $this->discount,
+                    'max_worning_discount' => $this->max_worning_discount,
+                ]);
+
+                if (env('SEND_MAIL', false))
+                    SendNewTask::dispatchAfterResponse($task);
+            }
+        } else {
+            $task = Task::create([
+                'add_by' => $this->by->id,
+                'slug' => $save_for_later ? 'archive' : $this->slug,
+
+                'manager_id' => $this->by->id,
+                'title' => $this->title,
+                'desc' => $this->desc,
+                'start_time' => $this->start_time,
+                'end_time' => $this->end_time,
+                'is_separate_task' => $this->is_separate_task,
+                'comment_type' => $this->comment_type,
+                'max_worning_count' => $this->max_worning_count,
+                'priority_level' => $this->priority_level,
+                'status' => $this->status,
+                'main_task_id' => $this->main_task_id,
+                'reopen_from_task_id' => $this->reopen_from_task_id,
+                'daily_task_id' => $this->daily_task_id,
+            ]);
+
+            $task->employees()->syncWithPivotValues($this->selectedEmployees, [
+                'discount' => $this->discount,
+                'max_worning_discount' => $this->max_worning_discount
+            ]);
+
+            if (env('SEND_MAIL', false))
+                SendNewTask::dispatchAfterResponse($task);
+        }
+
 
         session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();
         $this->emit('close-model'); // Close model to using to jquery
         $this->emit('show-message', ['message' => __('global.created-successfully')]); // show toster message
 
-        if (env('SEND_MAIL', false))
-            SendNewTask::dispatch($task);
+        // if (env('SEND_MAIL', false))
+        //     SendNewTask::dispatchAfterResponse($task);
     }
 
     public function edit($id)
@@ -220,6 +259,7 @@ class TaskIndex extends Component
         $this->desc = $task->desc;
         $this->start_time = $task->start_time;
         $this->end_time = $task->end_time;
+        $this->is_separate_task = $task->is_separate_task;
         $this->comment_type = $task->comment_type;
         $this->max_worning_count = $task->max_worning_count;
         $this->priority_level = $task->priority_level;
@@ -261,6 +301,7 @@ class TaskIndex extends Component
                 'desc' => $this->desc,
                 'start_time' => $this->start_time,
                 'end_time' => $this->end_time,
+                // 'is_separate_task' => $this->is_separate_task,
                 'comment_type' => $this->comment_type,
                 'max_worning_count' => $this->max_worning_count,
                 'priority_level' => $this->priority_level,
@@ -364,6 +405,7 @@ class TaskIndex extends Component
 
         $this->selectedEmployees = [];
 
+        $this->is_separate_task = $task->is_separate_task;
         $this->comment_type = $task->comment_type;
         $this->max_worning_count = $task->max_worning_count;
         $this->priority_level = $task->priority_level;

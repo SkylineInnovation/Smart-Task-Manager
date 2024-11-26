@@ -19,16 +19,34 @@
                     <div class="row">
 
                         @include('inputs.create.input', [
+                            'label' => 'userdetail.title',
+                            'name' => 'userdetail.title',
+                            'livewire' => 'title',
+                            'type' => 'text', // 'step' => 1,
+                            // 'required' => 'required',
+                            'lg' => 4,
+                            'md' => 4,
+                            'sm' => 12,
+                        ])
+
+                        @include('inputs.create.input', [
                             'label' => 'user.first_name',
                             'name' => 'user.first_name',
                             'livewire' => 'first_name',
+                            'lg' => 4,
+                            'md' => 4,
+                            'sm' => 6,
                         ])
 
                         @include('inputs.create.input', [
                             'label' => 'user.last_name',
                             'name' => 'last_name',
                             'livewire' => 'last_name',
+                            'lg' => 4,
+                            'md' => 4,
+                            'sm' => 6,
                         ])
+
                         {{-- @include('inputs.create.input', [
                             'label' => 'user.user_name',
                             'name' => 'user_name',
@@ -59,30 +77,95 @@
                             'md' => 12,
                         ])
 
-                        {{-- <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label for="gender">{{ __('user.gender') }}</label>
-                                <select name="gender" id="gender"
-                                    class="form-control @error('gender') is-invalid @enderror">
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                </select>
+                        @include('inputs.create.input', [
+                            'label' => 'userdetail.nationality',
+                            'name' => 'userdetail.nationality',
+                            'livewire' => 'nationality',
+                            'type' => 'text', // 'step' => 1,
+                            // 'required' => 'required',
+                            'lg' => 3,
+                            'md' => 3,
+                            'sm' => 6,
+                        ])
+                        @include('inputs.create.input', [
+                            'label' => 'userdetail.id_number',
+                            'name' => 'userdetail.id_number',
+                            'livewire' => 'id_number',
+                            'type' => 'text', // 'step' => 1,
+                            // 'required' => 'required',
+                            'lg' => 3,
+                            'md' => 3,
+                            'sm' => 6,
+                        ])
+                        @include('inputs.create.input', [
+                            'label' => 'userdetail.address',
+                            'name' => 'userdetail.address',
+                            'livewire' => 'address',
+                            'type' => 'text', // 'step' => 1,
+                            // 'required' => 'required',
+                            'lg' => 3,
+                            'md' => 3,
+                            'sm' => 6,
+                        ])
+                        @include('inputs.create.input', [
+                            'label' => 'userdetail.qualification',
+                            'name' => 'userdetail.qualification',
+                            'livewire' => 'qualification',
+                            'type' => 'text', // 'step' => 1,
+                            // 'required' => 'required',
+                            'lg' => 3,
+                            'md' => 3,
+                            'sm' => 6,
+                        ])
 
-                                @error('gender')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div> --}}
+                        {{--  --}}
 
-                        {{-- @include('inputs.create.input', [
-                            'label' => 'user.birth_day',
-                            'name' => 'birth_day',
-                            'livewire' => 'birth_day',
-                            'type' => 'date',
-                            'min' => date('Y-m-d\TH:i'),
-                        ]) --}}
+                        @include('inputs.create.input', [
+                            'label' => 'userdetail.salary',
+                            'name' => 'userdetail.salary',
+                            'livewire' => 'salary',
+                            'type' => 'number',
+                            'step' => 1,
+                            // 'required' => 'required',
+                            'lg' => 4,
+                            'md' => 4,
+                            'sm' => 12,
+                        ])
+
+                        @include('inputs.create.input', [
+                            'label' => 'userdetail.home',
+                            'name' => 'userdetail.home',
+                            'livewire' => 'home',
+                            'type' => 'number',
+                            'step' => 1,
+                            // 'required' => 'required',
+                            'lg' => 4,
+                            'md' => 4,
+                            'sm' => 12,
+                        ])
+
+                        @include('inputs.create.input', [
+                            'label' => 'userdetail.transport',
+                            'name' => 'userdetail.transport',
+                            'livewire' => 'transport',
+                            'type' => 'number',
+                            'step' => 1,
+                            // 'required' => 'required',
+                            'lg' => 4,
+                            'md' => 4,
+                            'sm' => 12,
+                        ])
+
+                        @include('inputs.create.select', [
+                            'label' => 'userdetail.branch',
+                            'name' => 'userdetail.branch_id',
+                            'arr' => $branches,
+                            'livewire' => 'branch_id',
+                            // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                            'lg' => 12,
+                            'md' => 12,
+                            'sm' => 12,
+                        ])
                     </div>
 
                     @role('owner')
@@ -145,32 +228,9 @@
 
                     <div class="form-group">
 
-                        @error('first_name')
-                            <span class='alert alert-danger btn'>{{ $message }}</span>
-                        @enderror
-
-                        @error('user_name')
-                            <span class='alert alert-danger btn'>{{ $message }}</span>
-                        @enderror
-
-                        @error('email')
-                            <span class='alert alert-danger btn'>{{ $message }}</span>
-                        @enderror
-
-                        @error('phone')
-                            <span class='alert alert-danger btn'>{{ $message }}</span>
-                        @enderror
-
-                        @error('password')
-                            <span class='alert alert-danger btn'>{{ $message }}</span>
-                        @enderror
-
-                        @error('selectedShopBranchs')
-                            <span class='alert alert-danger btn'>{{ $message }}</span>
-                        @enderror
-                        @error('selectedRoles')
-                            <span class='alert alert-danger btn'>{{ $message }}</span>
-                        @enderror
+                        @foreach ($errors->all() as $error)
+                            <span class='alert alert-danger btn'>{{ $error }}</span>
+                        @endforeach
 
                     </div>
                 </div>
@@ -215,10 +275,23 @@
                     <div class="row">
 
                         @include('inputs.edit.input', [
+                            'label' => 'userdetail.title',
+                            'name' => 'userdetail.title',
+                            'livewire' => 'title',
+                            'val' => $title,
+                            'lg' => 4,
+                            'md' => 4,
+                            'sm' => 12,
+                        ])
+
+                        @include('inputs.edit.input', [
                             'label' => 'user.first_name',
                             'name' => 'user.first_name',
                             'livewire' => 'first_name',
                             'val' => $first_name,
+                            'lg' => 4,
+                            'md' => 4,
+                            'sm' => 6,
                         ])
 
                         @include('inputs.edit.input', [
@@ -226,6 +299,9 @@
                             'name' => 'last_name',
                             'livewire' => 'last_name',
                             'val' => $last_name,
+                            'lg' => 4,
+                            'md' => 4,
+                            'sm' => 6,
                         ])
 
                         {{-- @include('inputs.edit.input', [
@@ -262,31 +338,86 @@
                             'md' => 12,
                         ])
 
-                        {{-- <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label for="gender">{{ __('user.gender') }}</label>
-                                <select name="gender" id="gender"
-                                    class="form-control @error('gender') is-invalid @enderror">
-                                    <option @if ($gender == 'male') selected @endif value="male">Male</option>
-                                    <option @if ($gender == 'female') selected @endif value="female">Female</option>
-                                </select>
+                        @include('inputs.edit.input', [
+                            'label' => 'userdetail.nationality',
+                            'name' => 'nationality',
+                            'livewire' => 'nationality',
+                            'val' => $nationality,
+                            'lg' => 3,
+                            'md' => 3,
+                            'sm' => 6,
+                        ])
+                        @include('inputs.edit.input', [
+                            'label' => 'userdetail.id_number',
+                            'name' => 'id_number',
+                            'livewire' => 'id_number',
+                            'val' => $id_number,
+                            'lg' => 3,
+                            'md' => 3,
+                            'sm' => 6,
+                        ])
+                        @include('inputs.edit.input', [
+                            'label' => 'userdetail.address',
+                            'name' => 'address',
+                            'livewire' => 'address',
+                            'val' => $address,
+                            'lg' => 3,
+                            'md' => 3,
+                            'sm' => 6,
+                        ])
+                        @include('inputs.edit.input', [
+                            'label' => 'userdetail.qualification',
+                            'name' => 'qualification',
+                            'livewire' => 'qualification',
+                            'val' => $qualification,
+                            'lg' => 3,
+                            'md' => 3,
+                            'sm' => 6,
+                        ])
 
-                                @error('gender')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div> --}}
+                        {{--  --}}
+                        @include('inputs.edit.input', [
+                            'label' => 'userdetail.salary',
+                            'name' => 'salary',
+                            'livewire' => 'salary',
+                            'val' => $salary,
+                            'lg' => 4,
+                            'md' => 4,
+                            'sm' => 12,
+                        ])
+                        @include('inputs.edit.input', [
+                            'label' => 'userdetail.home',
+                            'name' => 'home',
+                            'livewire' => 'home',
+                            'val' => $home,
+                            'lg' => 4,
+                            'md' => 4,
+                            'sm' => 12,
+                        ])
+                        @include('inputs.edit.input', [
+                            'label' => 'userdetail.transport',
+                            'name' => 'transport',
+                            'livewire' => 'transport',
+                            'val' => $transport,
+                            'lg' => 4,
+                            'md' => 4,
+                            'sm' => 12,
+                        ])
 
-                        {{-- @include('inputs.create.input', [
-                            'label' => 'user.birth_day',
-                            'name' => 'birth_day',
-                            'livewire' => 'birth_day',
-                            'val' => $birth_day,
-                            'type' => 'date',
-                            'min' => date('Y-m-d\TH:i'),
-                        ]) --}}
+                        {{--  --}}
+
+                        @include('inputs.edit.select', [
+                            'label' => 'userdetail.branch',
+                            'name' => 'userdetail.branch_id',
+                            'arr' => $branches,
+                            'livewire' => 'branch_id',
+                            'val' => $branch_id,
+                            // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                            'lg' => 12,
+                            'md' => 12,
+                            'sm' => 12,
+                        ])
+
                     </div>
 
                     @role('owner')
@@ -356,32 +487,9 @@
 
                     <div class="form-group">
 
-                        @error('first_name')
-                            <span class='alert alert-danger btn'>{{ $message }}</span>
-                        @enderror
-
-                        @error('user_name')
-                            <span class='alert alert-danger btn'>{{ $message }}</span>
-                        @enderror
-
-                        @error('email')
-                            <span class='alert alert-danger btn'>{{ $message }}</span>
-                        @enderror
-
-                        @error('phone')
-                            <span class='alert alert-danger btn'>{{ $message }}</span>
-                        @enderror
-
-                        @error('password')
-                            <span class='alert alert-danger btn'>{{ $message }}</span>
-                        @enderror
-
-                        @error('selectedShopBranchs')
-                            <span class='alert alert-danger btn'>{{ $message }}</span>
-                        @enderror
-                        @error('selectedRoles')
-                            <span class='alert alert-danger btn'>{{ $message }}</span>
-                        @enderror
+                        @foreach ($errors->all() as $error)
+                            <span class='alert alert-danger btn'>{{ $error }}</span>
+                        @endforeach
 
                     </div>
 

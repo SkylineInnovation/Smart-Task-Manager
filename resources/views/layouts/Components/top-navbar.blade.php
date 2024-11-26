@@ -10,8 +10,8 @@
 </style>
 
 <nav class="horizontalMenu clearfix bg-white p-1">
-   
-   
+
+
     <ul class="horizontalMenu-list ">
 
         <li aria-haspopup="true">
@@ -90,7 +90,7 @@
                     <div class="col-md-12 d-flex justify-content-between pb-4">
                         <img src="{{ asset('assets/dashboard/team.png') }}" width="20" height="20"
                             alt="" srcset="">
-                        <a href="{{route('permission.page')}}" class="text-dark">
+                        <a href="{{ route('web.permissions.view') }}" class="text-dark">
                             {{ __('global.permissions') }}
                         </a>
                     </div>
@@ -99,7 +99,7 @@
                     <div class="col-md-12 d-flex justify-content-between pb-4">
                         <img src="{{ asset('assets/dashboard/report.png') }}" width="20" height="20"
                             alt="" srcset="">
-                        <a href="{{route('view-reports')}}" class="text-dark">
+                        <a href="{{ route('view-reports') }}" class="text-dark">
                             {{ __('global.reports') }}
                         </a>
                     </div>
@@ -113,7 +113,7 @@
                         </a>
                     </div>
                 </li>
-                
+
             </ul>
 
         </li>

@@ -37,6 +37,10 @@
                         <td>{{ __('work.manager') }}</td>
                     @endif
 
+                    @if ($showColumn['branch_id'])
+                        <td>{{ __('global.branch') }}</td>
+                    @endif
+
                     @if ($showColumn['department_id'])
                         <td>{{ __('work.department') }}</td>
                     @endif
@@ -94,6 +98,14 @@
                             <td>
                                 @if ($work->manager)
                                     {{ $work->manager->crud_name() }}
+                                @endif
+                            </td>
+                        @endif
+
+                        @if ($showColumn['branch_id'])
+                            <td>
+                                @if ($work->department && $work->department->branch)
+                                    {{ $work->department->branch->crud_name() }}
                                 @endif
                             </td>
                         @endif

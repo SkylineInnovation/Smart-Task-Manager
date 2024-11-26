@@ -21,14 +21,14 @@
 
                             <div class="row">
 
-                                @include('inputs.create.input', [
+                                {{-- @include('inputs.create.input', [
                                     'label' => '{{model}}.slug',
                                     'name' => '{{model}}.slug',
                                     'livewire' => 'slug',
                                     'type' => 'text', // 'step' => 0.1,
                                     // 'required' => 'required',
                                     'lg' => 12, 'md' => 12, 'sm' => 12,
-                                ])
+                                ]) --}}
                                 
                                 {{createInput}}
                             </div>
@@ -81,14 +81,14 @@
 
                             <div class="row">
 
-                                @include('inputs.edit.input', [
+                                {{-- @include('inputs.edit.input', [
                                     'label' => '{{model}}.slug',
                                     'name' => '{{model}}.slug',
                                     'livewire' => 'slug',
                                     'type' => 'text', // 'step' => 0.1,
                                     // 'required' => 'required',
                                     'lg' => 12, 'md' => 12, 'sm' => 12,
-                                ])
+                                ]) --}}
 
                                 {{editInput}}
                             </div>

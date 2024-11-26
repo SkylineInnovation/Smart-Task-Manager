@@ -1,5 +1,5 @@
 <div class="col-lg-12 col-md-12 col-sm-12">
-    <div class="form-group">
+    <div class="form-group text-{{ App::getLocale() == 'en' ? 'start' : 'end' }}">
         <label for="{{ $livewire }}" class="block font-medium text-sm text-gray-700">
             {{ __($label ?? 'apptext.the_text') }}
         </label>

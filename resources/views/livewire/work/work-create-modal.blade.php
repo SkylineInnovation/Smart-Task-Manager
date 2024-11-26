@@ -39,9 +39,19 @@
                                     'arr' => $managers,
                                     'livewire' => 'manager_id',
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                    'lg' => 12,
+                                    'md' => 12,
+                                    'sm' => 12,
                                 ])
 
+                                @include('inputs.create.select', [
+                                    'label' => 'global.branch',
+                                    'name' => 'global.branch_id',
+                                    'arr' => $branchs,
+                                    'livewire' => 'branch_id',
+                                    // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                ])
                                 @include('inputs.create.select', [
                                     'label' => 'work.department',
                                     'name' => 'work.department_id',
@@ -119,7 +129,7 @@
 
                             <div class="row">
 
-                                @include('inputs.edit.input', [
+                                {{-- @include('inputs.edit.input', [
                                     'label' => 'work.slug',
                                     'name' => 'work.slug',
                                     'livewire' => 'slug',
@@ -128,7 +138,7 @@
                                     'lg' => 12,
                                     'md' => 12,
                                     'sm' => 12,
-                                ])
+                                ]) --}}
 
 
                                 @include('inputs.edit.select', [
@@ -137,6 +147,18 @@
                                     'arr' => $managers,
                                     'livewire' => 'manager_id',
                                     'val' => $work->manager_id,
+                                    // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                    'lg' => 12,
+                                    'md' => 12,
+                                    'sm' => 12,
+                                ])
+
+                                @include('inputs.edit.select', [
+                                    'label' => 'global.branch',
+                                    'name' => 'global.branch_id',
+                                    'arr' => $branchs,
+                                    'livewire' => 'branch_id',
+                                    'val' => $work->branch_id,
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])

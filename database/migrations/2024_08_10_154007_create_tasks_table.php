@@ -33,6 +33,8 @@ class CreateTasksTable extends Migration
 
             $table->string('priority_level')->nullable()->default('low');
 
+            $table->boolean('is_separate_task')->nullable()->default(false);
+
             $table->string('comment_type')->nullable()->default('daily');
 
             $table->integer('max_worning_count')->nullable()->default(1);

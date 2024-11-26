@@ -201,14 +201,21 @@
                             <td>
                                 @if ($admin_view_status != 'deleted')
                                     @if ($exchangepermission->status == 'pending')
-                                        <button data-toggle="modal" data-target="#accept-exchange-permission-modal"
-                                            wire:click="acceptBy({{ $exchangepermission->id }})" class="btn btn-success">
-                                            <i class="ti-check text-white"></i>
-                                        </button>
-                                        <button data-toggle="modal" data-target="#reject-exchange-permission-modal"
-                                            wire:click="rejectBy({{ $exchangepermission->id }})" class="btn btn-danger">
-                                            <i class="ti-close text-white"></i>
-                                        </button>
+                                        @role('financial|technical')
+                                            @if (
+                                                ($user->hasRole('financial') && $exchangepermission->financial_director_response == '') ||
+                                                    ($user->hasRole('technical') && $exchangepermission->technical_director_response == ''))
+                                                <button data-toggle="modal" data-target="#accept-exchange-permission-modal"
+                                                    wire:click="acceptBy({{ $exchangepermission->id }})" class="btn btn-success">
+                                                    <i class="ti-check text-white"></i>
+                                                </button>
+                                                <button data-toggle="modal" data-target="#reject-exchange-permission-modal"
+                                                    wire:click="rejectBy({{ $exchangepermission->id }})"
+                                                    class="btn btn-danger">
+                                                    <i class="ti-close text-white"></i>
+                                                </button>
+                                            @endif
+                                        @endrole
                                     @endif
 
                                     @permission('edit-exchangepermission')

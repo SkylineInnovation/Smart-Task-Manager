@@ -27,7 +27,7 @@
                     </div>
 
                     <form enctype="multipart/form-data" method="post" accept-charset="utf-8" class="form-horizontal">
-                        <div class="modal-body">
+                        <div class="modal-body text-{{ App::getLocale() == 'en' ? 'start' : 'end' }}">
                             @csrf
 
                             <div class="row">

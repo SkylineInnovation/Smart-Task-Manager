@@ -40,7 +40,9 @@
                                     'arr' => $users,
                                     'livewire' => 'user_id',
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                    'lg' => 12,
+                                    'md' => 12,
+                                    'sm' => 12,
                                 ])
                                 @include('inputs.create.input', [
                                     'label' => 'exchangepermission.content',
@@ -48,9 +50,9 @@
                                     'livewire' => 'content',
                                     'type' => 'text', // 'step' => 1,
                                     // 'required' => 'required',
-                                    'lg' => 12,
-                                    'md' => 12,
-                                    'sm' => 12,
+                                    'lg' => 9,
+                                    'md' => 9,
+                                    'sm' => 9,
                                 ])
 
                                 @include('inputs.create.input', [
@@ -60,9 +62,9 @@
                                     'type' => 'number',
                                     'step' => 1,
                                     // 'required' => 'required',
-                                    'lg' => 12,
-                                    'md' => 12,
-                                    'sm' => 12,
+                                    'lg' => 3,
+                                    'md' => 3,
+                                    'sm' => 3,
                                 ])
 
                                 @include('inputs.create.input', [
@@ -84,22 +86,22 @@
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ]) --}}
 
-                                @include('inputs.create.select', [
+                                {{-- @include('inputs.create.select', [
                                     'label' => 'exchangepermission.financial_director',
                                     'name' => 'exchangepermission.financial_director_id',
                                     'arr' => $financial_directors,
                                     'livewire' => 'financial_director_id',
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
-                                @include('inputs.create.input', [
+                                ]) --}}
+                                {{-- @include('inputs.create.input', [
                                     'label' => 'exchangepermission.financial_director_response',
                                     'name' => 'exchangepermission.financial_director_response',
                                     'livewire' => 'financial_director_response',
                                     'type' => 'text', // 'step' => 1,
                                     // 'required' => 'required',
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
+                                ]) --}}
                                 {{-- @include('inputs.create.input', [
                                     'label' => 'exchangepermission.financial_director_time',
                                     'name' => 'exchangepermission.financial_director_time',
@@ -109,22 +111,22 @@
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ]) --}}
 
-                                @include('inputs.create.select', [
+                                {{-- @include('inputs.create.select', [
                                     'label' => 'exchangepermission.technical_director',
                                     'name' => 'exchangepermission.technical_director_id',
                                     'arr' => $technical_directors,
                                     'livewire' => 'technical_director_id',
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
-                                @include('inputs.create.input', [
+                                ]) --}}
+                                {{-- @include('inputs.create.input', [
                                     'label' => 'exchangepermission.technical_director_response',
                                     'name' => 'exchangepermission.technical_director_response',
                                     'livewire' => 'technical_director_response',
                                     'type' => 'text', // 'step' => 1,
                                     // 'required' => 'required',
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
+                                ]) --}}
                                 {{-- @include('inputs.create.input', [
                                     'label' => 'exchangepermission.technical_director_time',
                                     'name' => 'exchangepermission.technical_director_time',
@@ -214,7 +216,9 @@
                                     'livewire' => 'user_id',
                                     'val' => $exchangepermission->user_id,
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
-                                    // 'lg' => 6, 'md' => 6, 'sm' => 12,
+                                    'lg' => 12,
+                                    'md' => 12,
+                                    'sm' => 12,
                                 ])
                                 @include('inputs.edit.input', [
                                     'label' => 'exchangepermission.content',
@@ -223,9 +227,9 @@
                                     'livewire' => 'content',
                                     'type' => 'text', // 'step' => 1,
                                     // 'required' => 'required',
-                                    'lg' => 12,
-                                    'md' => 12,
-                                    'sm' => 12,
+                                    'lg' => 9,
+                                    'md' => 9,
+                                    'sm' => 9,
                                 ])
 
                                 @include('inputs.edit.input', [
@@ -236,9 +240,9 @@
                                     'type' => 'number',
                                     'step' => 1,
                                     // 'required' => 'required',
-                                    'lg' => 12,
-                                    'md' => 12,
-                                    'sm' => 12,
+                                    'lg' => 3,
+                                    'md' => 3,
+                                    'sm' => 3,
                                 ])
 
                                 @include('inputs.edit.input', [
@@ -252,17 +256,17 @@
                                     'sm' => 12,
                                 ])
 
-                                @include('inputs.edit.input', [
+                                {{-- @include('inputs.edit.input', [
                                     'label' => 'exchangepermission.request_date',
                                     'name' => 'exchangepermission.request_date',
                                     'val' => $exchangepermission->request_date,
                                     'livewire' => 'request_date',
-                                    'type' => 'text', // 'step' => 1,
+                                    'type' => 'date', // 'step' => 1,
                                     // 'required' => 'required',
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
+                                ]) --}}
 
-                                @include('inputs.edit.select', [
+                                {{-- @include('inputs.edit.select', [
                                     'label' => 'exchangepermission.financial_director',
                                     'name' => 'exchangepermission.financial_director_id',
                                     'arr' => $financial_directors,
@@ -270,8 +274,8 @@
                                     'val' => $exchangepermission->financial_director_id,
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
-                                @include('inputs.edit.input', [
+                                ]) --}}
+                                {{-- @include('inputs.edit.input', [
                                     'label' => 'exchangepermission.financial_director_response',
                                     'name' => 'exchangepermission.financial_director_response',
                                     'val' => $exchangepermission->financial_director_response,
@@ -279,8 +283,8 @@
                                     'type' => 'text', // 'step' => 1,
                                     // 'required' => 'required',
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
-                                @include('inputs.edit.input', [
+                                ]) --}}
+                                {{-- @include('inputs.edit.input', [
                                     'label' => 'exchangepermission.financial_director_time',
                                     'name' => 'exchangepermission.financial_director_time',
                                     'val' => $exchangepermission->financial_director_time,
@@ -288,9 +292,9 @@
                                     'type' => 'text', // 'step' => 1,
                                     // 'required' => 'required',
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
+                                ]) --}}
 
-                                @include('inputs.edit.select', [
+                                {{-- @include('inputs.edit.select', [
                                     'label' => 'exchangepermission.technical_director',
                                     'name' => 'exchangepermission.technical_director_id',
                                     'arr' => $technical_directors,
@@ -298,8 +302,8 @@
                                     'val' => $exchangepermission->technical_director_id,
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
-                                @include('inputs.edit.input', [
+                                ]) --}}
+                                {{-- @include('inputs.edit.input', [
                                     'label' => 'exchangepermission.technical_director_response',
                                     'name' => 'exchangepermission.technical_director_response',
                                     'val' => $exchangepermission->technical_director_response,
@@ -307,8 +311,8 @@
                                     'type' => 'text', // 'step' => 1,
                                     // 'required' => 'required',
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
-                                @include('inputs.edit.input', [
+                                ]) --}}
+                                {{-- @include('inputs.edit.input', [
                                     'label' => 'exchangepermission.technical_director_time',
                                     'name' => 'exchangepermission.technical_director_time',
                                     'val' => $exchangepermission->technical_director_time,
@@ -316,8 +320,8 @@
                                     'type' => 'text', // 'step' => 1,
                                     // 'required' => 'required',
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
-                                @include('inputs.edit.input', [
+                                ]) --}}
+                                {{-- @include('inputs.edit.input', [
                                     'label' => 'exchangepermission.status',
                                     'name' => 'exchangepermission.status',
                                     'val' => $exchangepermission->status,
@@ -325,7 +329,7 @@
                                     'type' => 'text', // 'step' => 1,
                                     // 'required' => 'required',
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
+                                ]) --}}
 
                             </div>
 
