@@ -35,7 +35,7 @@
     <table style="direction: rtl; width: 100%; background-color: #ffffff; text-align: right; margin-top: 10px;">
         <tbody>
 
-            @foreach ($tasks as $task)
+            @foreach ($income_tasks_almost_soon as $task)
                 <tr>
                     <td class="sub-colored">ﺭﻗﻢ ﺍﻟﻤﻬﻤﺔ</td>
                     <td class="">{{ $task->id }}</td>

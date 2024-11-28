@@ -186,7 +186,6 @@ class HomeController extends Controller
         // $OTNCOT = Task::where('manager_id',)->whereDoesntHave('comments')->whereDate('created_at', Carbon::today())->get();
 
 
-        // DONE
         // مهام واردة لم يعلق عليها اليوم
         $income_tasks_not_commented = Task::whereHas('employees', function ($q) use ($users) {
             $q->where('user_id', $users);

@@ -209,7 +209,7 @@
 
                     </select>
 
-                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">{{ __('global.staus') }}</label>
+                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">{{ __('task.status') }}</label>
                     <select class="custom-select w-100" id="inlineFormCustomSelectPref" name="users">
                         <option selected>{{ __('global.Choose') }}</option>
 
@@ -222,7 +222,7 @@
                     <div class="col-md-12 p-0">
                         <div class="row w-100 m-0">
                             <div class="col-md-6 px-1">
-                                <div class="text-end"><label for="">{{ __('global.from date ') }}</label>
+                                <div class="text-end"><label for="">{{ __('global.from_date') }}</label>
                                 </div>
                                 <div class="input-group mb-3">
 
@@ -289,7 +289,7 @@
                         </select>
                     </div>
 
-                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">{{ __('global.staus') }}</label>
+                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">{{ __('task.status') }}</label>
                     <select class="custom-select w-100" id="inlineFormCustomSelectPref" name="users">
                         <option selected>{{ __('global.Choose') }}</option>
 
@@ -301,7 +301,7 @@
                     <div class="col-md-12 p-0">
                         <div class="row w-100 m-0">
                             <div class="col-md-6 px-1">
-                                <div class="text-end"><label for="">{{ __('global.from date ') }}</label>
+                                <div class="text-end"><label for="">{{ __('global.from_date') }}</label>
                                 </div>
                                 <div class="input-group mb-3">
 
