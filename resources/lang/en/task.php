@@ -36,7 +36,7 @@ return [
 
     'max_worning_discount' => 'Amount Of Deduction When Reaching The Maximum Warning Limit',
 
-    'short_max_worning_count' => 'Max Worning Count',
+    'short_max_worning_count' => 'Max Warning Count',
     'short_max_worning_discount' => 'Deduction',
 
     'discount' => 'Deduction',
