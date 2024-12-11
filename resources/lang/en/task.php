@@ -19,12 +19,12 @@ return [
 
     'end_time' => 'End Time',
 
-    'is_separate_task' => 'Is Separate Task',
+    'is_separate_task' => 'Asignees',
 
     'single' => 'Single',
     'shared' => 'Shared',
 
-    'comment_type' => 'Comment Grace Period',
+    'comment_type' => 'Comment submission Period)',
 
     'max_worning_count' => 'Maximum Warnings Count',
 
@@ -63,7 +63,7 @@ return [
 
 
 
-    // 
+    //
     'employees' => 'Employees',
     'start_at' => 'Start At',
     'end_at' => 'End At',

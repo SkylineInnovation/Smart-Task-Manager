@@ -12,21 +12,21 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="text-end"><label for="">{{ __('global.from date') }}</label></div>
+                    {{-- <div class="text-end"><label for="">{{ __('global.from date') }}</label></div> --}}
                     <div class="input-group mb-3">
 
                         <div class="input-group-prepend">
                             <span class="input-group-text"
-                                id="inputGroup-sizing-default">{{ __('global.Gregorian') }}</span>
+                                id="inputGroup-sizing-default">{{ __('global.from date') }}</span>
                         </div>
                         <input type="date" id="" name="fromDate" class="form-control" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
                     </div>
-                    <div class="text-end"><label for="">{{ __('global.to date') }}</label></div>
+                    {{-- <div class="text-end"><label for="">{{ __('global.to date') }}</label></div> --}}
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text"
-                                id="inputGroup-sizing-default">{{ __('global.Gregorian') }}</span>
+                                id="inputGroup-sizing-default">{{ __('global.to date') }}</span>
                         </div>
                         <input type="date" class="form-control" name="toDate" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default">
@@ -99,8 +99,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body text-end">
-                    <label class="my-1 mr-2 "
+                <div class="modal-body {{ App::getlocale() == 'en' ? 'text-start' : 'text-end' }}">
+                    <label class=" "
                         for="inlineFormCustomSelectPref">{{ __('global.user account') }}</label>
                     <select class="custom-select w-100" id="inlineFormCustomSelectPref" name="users">
                         <option selected>{{ __('global.Choose') }}</option>
@@ -148,7 +148,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="modal-body text-end">
+                    <div class="modal-body ">
                         <label class="my-1 mr-2"
                             for="inlineFormCustomSelectPref">{{ __('global.user account') }}</label>
                         <select class="custom-select w-100" id="inlineFormCustomSelectPref" name="users">
@@ -196,9 +196,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body ">
 
-                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">{{ __('global.user account') }}</label>
+                    <label class="my-1" for="inlineFormCustomSelectPref">{{ __('global.user account') }}</label>
                     <select class="custom-select w-100" id="inlineFormCustomSelectPref" name="user">
                         <option selected>{{ __('global.Choose') }}</option>
 
@@ -209,7 +209,7 @@
 
                     </select>
 
-                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">{{ __('task.status') }}</label>
+                    <label class="my-1" for="inlineFormCustomSelectPref">{{ __('task.status') }}</label>
                     <select class="custom-select w-100" id="inlineFormCustomSelectPref" name="users">
                         <option selected>{{ __('global.Choose') }}</option>
 
@@ -273,14 +273,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="IncomingTaskDiscountsLabel">
-                        {{ __('global.incoming-task-discounts') }}</h5>
+                        {{ __('global.Deductions') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>{{ __('global.Select Filter') }}</label>
+                        <label>{{ __('global.Sselect-employees') }}</label>
                         <select multiple="multiple" name="users[]" class="filter-multi">
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}">{{ $user->name() }}</option>
@@ -301,7 +301,7 @@
                     <div class="col-md-12 p-0">
                         <div class="row w-100 m-0">
                             <div class="col-md-6 px-1">
-                                <div class="text-end"><label for="">{{ __('global.from_date') }}</label>
+                                <div class=""><label for="">{{ __('global.from_date') }}</label>
                                 </div>
                                 <div class="input-group mb-3">
 
@@ -315,8 +315,8 @@
 
                             </div>
                             <div class="col-md-6 px-1">
-                                <div class="text-end">
-                                    <label for="">{{ __('to date') }}</label>
+                                <div class="">
+                                    <label for="">{{ __('global.to date') }}</label>
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">

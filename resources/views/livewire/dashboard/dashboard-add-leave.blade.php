@@ -33,7 +33,7 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-sm-12">
                                     <div class="form-group">
-                                        <label for="type">{{ __('leave.type') }}</label>
+                                        <label for="type">{{ __('leave.Leave type') }}</label>
                                         <select wire:model="leave_type" name="type" id="type" class="form-control">
                                             <option value="">{{ __('global.select') }}</option>
                                             <option value="leave">{{ __('leave.leave') }}</option>

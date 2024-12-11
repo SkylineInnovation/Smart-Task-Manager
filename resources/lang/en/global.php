@@ -259,11 +259,11 @@ return [
     'region' => 'Region',
     'branch' => 'Branches',
     'departments' => 'Departments',
-    'person' => 'Person',
-    'job' => 'Job',
+    'person' => 'employees',
+    'job' => 'Team Structure',
     'permissions' => 'Permissions',
     'report' => 'Report',
-    'profile' => 'Profile',
+    'profile' => 'User profile',
     'about' => 'About',
     'add-region' => 'Add Region',
     'add-branch' => 'Add Branch',
@@ -274,7 +274,7 @@ return [
     'add-permissions' => 'add permissions',
     'add-exchange' => 'Request for exchange permit',
     'submit-task' => 'submit task',
-    'submit-departure-form' => 'submit departure form',
+    'submit-departure-form' => 'Submit leave form',
     'submit-disbursement-permit' => 'submit disbursement permit',
 
     'created-successfully' => 'Created Successfully',
@@ -287,11 +287,11 @@ return [
     'task-archived-successfully' => 'Task Archived Successfully',
 
     'task-omments-report' => 'Task Comments Report',
-    'closed-tasks-coming-soon' => 'Closed Tasks Coming Soon',
+    'closed-tasks-coming-soon' => 'Upcoming task closure reports',
     'outgoing-task-movements' => 'Outgoing Task Movements',
     'incoming-task-movements' => 'Incoming Task Movements',
-    'outgoing-task-discounts' => 'Outgoing Task Discounts',
-    'incoming-task-discounts' => 'Incoming Task Discounts',
+    'outgoing-task-discounts' => 'Outgoing Task Deductions',
+    'incoming-task-discounts' => 'Incoming Task Deductions',
     'follow-up-employee-tasks' => 'Follow Up Employee Tasks',
 
     'from date' => 'from date',
@@ -350,4 +350,8 @@ return [
     'Role' => 'Role',
     'Permission' => 'Permission',
     'role_name' => 'role name',
+
+    'Deductions' => 'Deductions',
+
+    'Sselect-employees' => "Select employees",
 ];
