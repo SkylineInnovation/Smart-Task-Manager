@@ -280,7 +280,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>{{ __('global.Sselect-employees') }}</label>
+                        <label>{{ __('global.select-employees') }}</label>
                         <select multiple="multiple" name="users[]" class="filter-multi">
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}">{{ $user->name() }}</option>

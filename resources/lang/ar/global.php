@@ -351,5 +351,8 @@ return [
     'Permission' => 'الاذونات',
     'role_name' => 'اسم الصلاحية',
     'Deductions'=>'الخصومات',
-    'Sselect-employees'=>'',
+  
+
+    "Purchase order"=>"طلب شراء",
+    "item"=>"العنصر",
 ];

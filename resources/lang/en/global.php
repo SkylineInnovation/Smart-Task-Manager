@@ -353,5 +353,7 @@ return [
 
     'Deductions' => 'Deductions',
 
-    'Sselect-employees' => "Select employees",
+
+    "Purchase order"=>"Purchase Order",
+    "item"=>"Item",
 ];
