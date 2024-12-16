@@ -254,9 +254,9 @@ class Task extends Model
     {
         $qqq = static::query();
 
-        if (!auth()->user()->hasRole(['owner', 'manager'])) {
-            $qqq = $qqq->where('add_by', auth()->user()->id);
-        }
+        // if (!auth()->user()->hasRole(['owner', 'manager'])) {
+        //     $qqq = $qqq->where('add_by', auth()->user()->id);
+        // }
 
         if (empty($search)) return $qqq;
 
