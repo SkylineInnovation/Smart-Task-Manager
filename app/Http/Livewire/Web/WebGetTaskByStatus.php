@@ -138,7 +138,8 @@ class WebGetTaskByStatus extends Component
     {
         $task = Task::find($id);
 
-        if (!$task->all_comments()) {
+        $is_admin = $this->by->hasRole('owner') || $this->by->hasRole('manager');
+        if (!$is_admin && !$task->all_comments()) {
             $this->addError('error_finish_task', 'Can\'t Finish Task, Add Comment.');
             return;
         }
