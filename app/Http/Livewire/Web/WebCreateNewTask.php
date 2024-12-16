@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Task;
+use App\Models\User;
 
 class WebCreateNewTask extends Component
 {
@@ -32,6 +33,9 @@ class WebCreateNewTask extends Component
 
         if ($this->user->hasRole('owner')) {
             $this->employees = \App\Models\User::whereRoleIs('manager')->orWhereRoleIs('employee')->orderBy('first_name')->get();
+        } elseif ($this->user->hasRole('employee')) {
+            $this->employees = User::where('id', $this->user->id)->get();
+            $this->selectedEmployees = $this->employees->pluck('id')->toArray();
         } else {
             $this->employees = $this->user->employees;
         }
@@ -60,7 +64,8 @@ class WebCreateNewTask extends Component
         // $this->status = 'pending';
         $this->discount = 0;
 
-        $this->selectedEmployees = [];
+        if (!$this->user->hasRole('employee'))
+            $this->selectedEmployees = [];
 
         $this->select_emp = '';
     }
@@ -110,14 +115,14 @@ class WebCreateNewTask extends Component
 
         $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->discount]);
 
+        if (env('SEND_MAIL', false))
+            SendNewTask::dispatch($task);
+
         session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();
         $this->emit('close-model'); // Close model to using to jquery
         $this->emit('show-message', ['message' => __('global.created-successfully')]); // show toster message        
         $this->emit('render-index'); // Close model to using to jquery
-
-        if (env('SEND_MAIL', false))
-            SendNewTask::dispatch($task);
     }
 
     public function cancel()

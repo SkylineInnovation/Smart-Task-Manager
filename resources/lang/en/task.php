@@ -24,7 +24,7 @@ return [
     'single' => 'Single',
     'shared' => 'Shared',
 
-    'comment_type' => 'Comment submission Period)',
+    'comment_type' => 'Comment submission Period',
 
     'max_worning_count' => 'Maximum Warnings Count',
 

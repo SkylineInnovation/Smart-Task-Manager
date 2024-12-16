@@ -245,15 +245,16 @@ return [
     'quick links to access operations for various data' => 'Quick Links to Access Operations for Various data',
     'management and control' => 'Management and control',
     'system management screens' => 'System management screens',
-    'board-action' => 'action',
-    'board-details' => 'details',
-    'board-comment' => 'comment',
-    'board-show' => 'show',
 
-    'board-action' => 'Board Action',
-    'board-details' => 'Board Details',
-    'board-comment' => 'Board Comment',
-    'board-show' => 'Board Show',
+    // 'board-action' => 'action',
+    // 'board-details' => 'details',
+    // 'board-comment' => 'comment',
+    // 'board-show' => 'show',
+
+    'board-action' => 'Action',
+    'board-details' => 'Details',
+    'board-comment' => 'Comment',
+    'board-show' => 'Show',
 
     'company' => 'Company',
     'region' => 'Region',
@@ -354,6 +355,6 @@ return [
     'Deductions' => 'Deductions',
 
 
-    "Purchase order"=>"Purchase Order",
-    "item"=>"Item",
+    "Purchase order" => "Purchase Order",
+    "item" => "Item",
 ];

@@ -6,7 +6,8 @@
                 <a href=javascript:; data-toggle="dropdown" class="nav-link leading-none d-flex py-4">
                     <h5 class="text-dark mb-0"> {{ __('global.users') }} </h5>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" aria-labelledby="navbarDropdownMenuLink">
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" aria-labelledby="navbarDropdownMenuLink"
+                    style="height: 300px;overflow-y: scroll;">
 
                     @if (session()->has('admin_user'))
                         <a class="dropdown-item" href="{{ route('set-session', 0) }}">

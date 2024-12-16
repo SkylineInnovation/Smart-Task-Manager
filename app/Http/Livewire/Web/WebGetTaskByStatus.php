@@ -262,6 +262,9 @@ class WebGetTaskByStatus extends Component
 
         $task->employees()->syncWithPivotValues($this->selectedEmployees, ['discount' => $this->sub_task_discount]);
 
+        if (env('SEND_MAIL', false))
+            SendNewTask::dispatch($task);
+
         $this->sub_task_title = null;
         $this->sub_task_desc = null;
 
@@ -279,9 +282,6 @@ class WebGetTaskByStatus extends Component
         $this->select_emp = '';
 
         session()->flash('sub-task-message', 'Sub Task Created Successfully.');
-
-        if (env('SEND_MAIL', false))
-            SendNewTask::dispatchAfterResponse($task);
     }
 
     public $select_emp;
@@ -634,6 +634,9 @@ class WebGetTaskByStatus extends Component
 
         $empTask->employees()->syncWithPivotValues($this->selected_employe_task, ['discount' => 0]);
 
+        if (env('SEND_MAIL', false))
+            SendNewTask::dispatch($empTask);
+
         $this->sub_task_title = null;
         $this->sub_task_desc = null;
 
@@ -648,10 +651,8 @@ class WebGetTaskByStatus extends Component
 
 
         session()->flash('emp-task-message', 'emp Task Created Successfully.');
-
-        if (env('SEND_MAIL', false))
-            SendNewTask::dispatch($empTask);
     }
+
     public function render()
     {
         $tasks = Task::whereNullOrEmpty('slug')

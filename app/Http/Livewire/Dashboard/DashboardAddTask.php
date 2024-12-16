@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Task;
+use App\Models\User;
 
 class DashboardAddTask extends Component
 {
@@ -44,6 +45,9 @@ class DashboardAddTask extends Component
 
         if ($this->user->hasRole('owner')) {
             $this->employees = \App\Models\User::whereRoleIs('manager')->orWhereRoleIs('employee')->orderBy('first_name')->get();
+        } elseif ($this->user->hasRole('employee')) {
+            $this->employees = User::where('id', $this->user->id)->get();
+            $this->selectedEmployees = $this->employees->pluck('id')->toArray();
         } else {
             $this->employees = $this->user->employees;
         }
@@ -67,7 +71,8 @@ class DashboardAddTask extends Component
         $this->discount = 0;
         $this->max_worning_discount = 0;
 
-        $this->selectedEmployees = [];
+        if (!$this->user->hasRole('employee'))
+            $this->selectedEmployees = [];
 
         $this->comment_type = 'daily';
         $this->is_separate_task = 0;
@@ -132,6 +137,9 @@ class DashboardAddTask extends Component
                     'discount' => $this->discount,
                     'max_worning_discount' => $this->max_worning_discount,
                 ]);
+
+                if (env('SEND_MAIL', false))
+                    SendNewTask::dispatch($task);
             }
         } else {
             $task = Task::create([
@@ -155,6 +163,9 @@ class DashboardAddTask extends Component
                 'discount' => $this->discount,
                 'max_worning_discount' => $this->max_worning_discount,
             ]);
+
+            if (env('SEND_MAIL', false))
+                SendNewTask::dispatch($task);
         }
 
 
@@ -164,8 +175,7 @@ class DashboardAddTask extends Component
         $this->emit('show-message', ['message' => __('global.created-successfully')]); // show toster message        
         $this->emit('render-index'); // Close model to using to jquery
 
-        if (env('SEND_MAIL', false))
-            SendNewTask::dispatch($task);
+
     }
 
     public function cancel()

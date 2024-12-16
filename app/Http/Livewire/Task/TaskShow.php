@@ -322,6 +322,9 @@ class TaskShow extends Component
             'max_worning_discount' => $this->max_worning_discount
         ]);
 
+        if (env('SEND_MAIL', false))
+            SendNewTask::dispatch($task);
+
         $this->sub_task_title = null;
         $this->sub_task_desc = null;
 
@@ -341,9 +344,6 @@ class TaskShow extends Component
         $this->sub_task_max_worning_discount = $this->task->max_worning_discount();
 
         session()->flash('sub-task-message', 'Sub Task Created Successfully.');
-
-        if (env('SEND_MAIL', false))
-            SendNewTask::dispatch($task);
     }
 
     public $extratime, $extratime_id;

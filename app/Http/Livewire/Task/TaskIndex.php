@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Task;
 
 use App\Jobs\SendNewTask;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Livewire\Component;
@@ -78,6 +79,9 @@ class TaskIndex extends Component
 
         if ($this->user->hasRole('owner')) {
             $this->employees = \App\Models\User::whereRoleIs('manager')->orWhereRoleIs('employee')->orderBy('first_name')->get();
+        } elseif ($this->user->hasRole('employee')) {
+            $this->employees = User::where('id', $this->user->id)->get();
+            $this->selectedEmployees = $this->employees->pluck('id')->toArray();
         } else {
             $this->employees = $this->user->employees;
         }
@@ -136,7 +140,8 @@ class TaskIndex extends Component
         $this->reopen_from_task_id = 0;
         $this->daily_task_id = 0;
 
-        $this->selectedEmployees = [];
+        if (!$this->user->hasRole('employee'))
+            $this->selectedEmployees = [];
     }
 
 

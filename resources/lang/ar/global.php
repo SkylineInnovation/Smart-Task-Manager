@@ -245,10 +245,10 @@ return [
     'quick links to access operations for various data' => 'روابط سريعة لعمليات الوصول للبيانات المختلفة',
     'management and control' => 'الإدارة والتحكم',
     'system management screens' => 'شاشات إدارة النظام',
-    'board-action' => 'الفعل',
-    'board-details' => 'معلومات',
-    'board-comment' => 'تعليق',
-    'board-show' => 'عرض',
+    // 'board-action' => 'الفعل',
+    // 'board-details' => 'معلومات',
+    // 'board-comment' => 'تعليق',
+    // 'board-show' => 'عرض',
 
     'board-action' => 'إجراءات',
     'board-details' => 'تفاصيل',
@@ -350,9 +350,9 @@ return [
     'Role' => 'صلاحيات',
     'Permission' => 'الاذونات',
     'role_name' => 'اسم الصلاحية',
-    'Deductions'=>'الخصومات',
-  
+    'Deductions' => 'الخصومات',
 
-    "Purchase order"=>"طلب شراء",
-    "item"=>"العنصر",
+
+    "Purchase order" => "طلب شراء",
+    "item" => "العنصر",
 ];
