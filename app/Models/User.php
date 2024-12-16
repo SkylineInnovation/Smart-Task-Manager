@@ -154,9 +154,12 @@ class User extends Authenticatable
 
             $q->orWhereSearch('first_name', $search);
             $q->orWhereSearch('last_name', $search);
-            $q->orWhereSearch('user_name', $search);
+            $q->orWhereRaw('concat(first_name, " ", last_name) like "%' . $search . '%"');
+            // $q->orWhereSearch('user_name', $search);
             $q->orWhereSearch('email', $search);
             $q->orWhereSearch('phone', $search);
+        })->orWhereHas('departments', function ($q) use ($search) {
+            $q->orWhereSearch('name', $search);
         });
     }
 

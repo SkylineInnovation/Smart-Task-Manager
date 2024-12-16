@@ -66,7 +66,10 @@ class CompletepercentageIndex extends Component
         // $this->tasks = \App\Models\Task::where('show', 1)->orderBy('sort')->get();
         // $this->users = \App\Models\User::orderBy('first_name')->get();
 
-        $is_admin = $this->user->hasRole('owner') || $this->user->hasRole('manager');
+        if ($this->user)
+            $is_admin = $this->user->hasRole('owner') || $this->user->hasRole('manager');
+        else
+            $is_admin = false;
 
         $this->showColumn = collect([
             'id' => false,
