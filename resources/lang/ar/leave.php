@@ -40,4 +40,5 @@ return [
 
     'action_by_user' => 'الإجراء الذي اتخذه المدير',
     'action_time' => 'وقت الإجراء',
+    'Leave type'=>'نوع الإجازة'
 ];
