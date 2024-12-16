@@ -34,7 +34,7 @@
                 <label class="block my-4">
                     <span class="text-gray-700">Description</span>
                     <textarea class="form-textarea mt-1 block w-full" rows="3" name="description"
-                        placeholder="Some description for the {{ $type }}">{{ $model->description ?? old('description') }}</textarea>
+                        placeholder="Some description for the {{ $type }}">{{ $model->the_description() ?? old('description') }}</textarea>
                 </label>
                 @if ($type == 'role')
                     <span class="block text-gray-700">Permissions</span>
