@@ -166,6 +166,32 @@
                             'md' => 12,
                             'sm' => 12,
                         ])
+
+                        <div class='col-12'>
+                            <div class="form-group">
+                                <label for='manager-select'>{{ __('global.managers') }}</label>
+                                <select id='manager-select' class='form-control' wire:model='select_man'>
+                                    <option>{{ __('global.select-managers') }}</option>
+                                    @foreach ($managers as $manager)
+                                        <option value='{{ $manager->id }}'>{{ $manager->crud_name() }}</option>
+                                    @endforeach
+                                </select>
+
+                                @foreach ($managers as $manager)
+                                    @if (in_array($manager->id, $selectedManagers))
+                                        <div class='form-check form-check-inline'>
+                                            <input wire:model='selectedManagers' class='form-check-input'
+                                                type='checkbox' value='{{ $manager->id }}'
+                                                id='filter-managers-id-{{ $manager->id }}'>
+                                            <label class='form-check-label'
+                                                for='filter-managers-id-{{ $manager->id }}'>
+                                                {{ $manager->crud_name() }}
+                                            </label>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
 
                     @role('owner')
@@ -197,7 +223,8 @@
                                             <input wire:model='selectedDepartments' class="form-check-input" type="checkbox"
                                                 value="{{ $department->id }}"
                                                 id="selected-department-{{ $department->id }}">
-                                            <label class="form-check-label" for="selected-department-{{ $department->id }}">
+                                            <label class="form-check-label"
+                                                for="selected-department-{{ $department->id }}">
                                                 {{ $department->name }}
                                             </label>
                                         </div>
@@ -207,7 +234,7 @@
                         </div>
                     @endrole
 
-                    @role('owner')
+                    {{-- @role('owner')
                         <div>
                             <p>{{ __('global.employees') }}</p>
                             <div class="row">
@@ -224,7 +251,7 @@
                                 @endforeach
                             </div>
                         </div>
-                    @endrole
+                    @endrole --}}
 
                     <div class="form-group">
 
@@ -418,6 +445,32 @@
                             'sm' => 12,
                         ])
 
+                        <div class='col-12'>
+                            <div class="form-group">
+                                <label for='manager-select'>{{ __('global.managers') }}</label>
+                                <select id='manager-select' class='form-control' wire:model='select_man'>
+                                    <option>{{ __('global.select-managers') }}</option>
+                                    @foreach ($managers as $manager)
+                                        <option value='{{ $manager->id }}'>{{ $manager->crud_name() }}</option>
+                                    @endforeach
+                                </select>
+
+                                @foreach ($managers as $manager)
+                                    @if (in_array($manager->id, $selectedManagers))
+                                        <div class='form-check form-check-inline'>
+                                            <input wire:model='selectedManagers' class='form-check-input'
+                                                type='checkbox' value='{{ $manager->id }}'
+                                                id='filter-managers-id-{{ $manager->id }}'>
+                                            <label class='form-check-label'
+                                                for='filter-managers-id-{{ $manager->id }}'>
+                                                {{ $manager->crud_name() }}
+                                            </label>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+
                     </div>
 
                     @role('owner')
@@ -440,29 +493,29 @@
                     @endrole
 
                     @role('owner|manager')
-                        @if ($edit_user && ($edit_user->hasRole('manager') || $edit_user->hasRole('owner')))
-                            <div>
-                                <p>{{ __('global.departments') }}</p>
-                                <div class="row">
-                                    @foreach ($departments as $department)
-                                        <div class="col-4">
-                                            <div class="form-check form-check-inline">
-                                                <input wire:model='selectedDepartments' class="form-check-input"
-                                                    type="checkbox" value="{{ $department->id }}"
-                                                    id="selected-department-{{ $department->id }}">
-                                                <label class="form-check-label"
-                                                    for="selected-department-{{ $department->id }}">
-                                                    {{ $department->name }}
-                                                </label>
-                                            </div>
+                        {{-- @if ($edit_user && ($edit_user->hasRole('manager') || $edit_user->hasRole('owner'))) --}}
+                        <div>
+                            <p>{{ __('global.departments') }}</p>
+                            <div class="row">
+                                @foreach ($departments as $department)
+                                    <div class="col-4">
+                                        <div class="form-check form-check-inline">
+                                            <input wire:model='selectedDepartments' class="form-check-input"
+                                                type="checkbox" value="{{ $department->id }}"
+                                                id="selected-department-{{ $department->id }}">
+                                            <label class="form-check-label"
+                                                for="selected-department-{{ $department->id }}">
+                                                {{ $department->name }}
+                                            </label>
                                         </div>
-                                    @endforeach
-                                </div>
+                                    </div>
+                                @endforeach
                             </div>
-                        @endif
+                        </div>
+                        {{-- @endif --}}
                     @endrole
 
-                    @role('owner')
+                    {{-- @role('owner')
                         @if ($edit_user && ($edit_user->hasRole('manager') || $edit_user->hasRole('owner')))
                             <div>
                                 <p>{{ __('global.employees') }}</p>
@@ -483,7 +536,7 @@
                                 </div>
                             </div>
                         @endif
-                    @endrole
+                    @endrole --}}
 
                     <div class="form-group">
 

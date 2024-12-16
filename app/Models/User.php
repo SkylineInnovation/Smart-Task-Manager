@@ -159,7 +159,7 @@ class User extends Authenticatable
             $q->orWhereSearch('email', $search);
             $q->orWhereSearch('phone', $search);
         })->orWhereHas('departments', function ($q) use ($search) {
-            $q->orWhereSearch('name', $search);
+            $q->whereSearch('name', $search);
         });
     }
 

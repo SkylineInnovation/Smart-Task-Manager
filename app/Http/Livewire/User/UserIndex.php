@@ -32,8 +32,11 @@ class UserIndex extends Component
     public $roles = [];
     public $selectedRoles = [];
 
-    public $employees = [];
-    public $selectedEmployees = [];
+    // public $employees = [];
+    // public $selectedEmployees = [];
+
+    public $managers = [];
+    public $selectedManagers = [];
 
     public $departments = [];
     public $selectedDepartments = [];
@@ -55,7 +58,8 @@ class UserIndex extends Component
 
         $this->user = new User();
 
-        $this->employees = User::whereRoleIs('employee')->get();
+        // $this->employees = User::whereRoleIs('employee')->get();
+        $this->managers = User::whereRoleIs('manager')->get();
 
         $this->branches = \App\Models\Branch::get();
 
@@ -113,7 +117,8 @@ class UserIndex extends Component
         $this->active_until = '';
 
         $this->selectedRoles = [];
-        $this->selectedEmployees = [];
+        // $this->selectedEmployees = [];
+        $this->selectedManagers = [];
         $this->selectedDepartments = [];
 
         $this->edit_user = null;
@@ -127,6 +132,8 @@ class UserIndex extends Component
         $this->home = 0;
         $this->transport = 0;
         $this->branch_id = null;
+
+        $this->select_man = '';
     }
 
     public function rules()
@@ -187,7 +194,8 @@ class UserIndex extends Component
         $user->syncRoles($this->selectedRoles);
 
 
-        $user->employees()->sync($this->selectedEmployees);
+        // $user->employees()->sync($this->selectedEmployees);
+        $user->managers()->sync($this->selectedManagers);
 
         $user->departments()->sync($this->selectedDepartments);
 
@@ -264,7 +272,8 @@ class UserIndex extends Component
             ->where('show', 1)->orderBy('sort')->get();
 
         $this->selectedRoles = $user->roles->pluck('id');
-        $this->selectedEmployees = $user->employees->pluck('id');
+        // $this->selectedEmployees = $user->employees->pluck('id');
+        $this->selectedManagers = $user->managers->pluck('id')->toArray();
         $this->selectedDepartments = $user->departments->pluck('id');
     }
 
@@ -272,6 +281,12 @@ class UserIndex extends Component
     {
         $this->updateMode = false;
         $this->resetInputFields();
+    }
+
+    public $select_man;
+    public function updatedSelectMan($val)
+    {
+        $this->selectedManagers[] = $val;
     }
 
     public function update()
@@ -295,7 +310,8 @@ class UserIndex extends Component
 
             $user->syncRoles($this->selectedRoles);
 
-            $user->employees()->sync($this->selectedEmployees);
+            // $user->employees()->sync($this->selectedEmployees);
+            $user->managers()->sync($this->selectedManagers);
             $user->departments()->sync($this->selectedDepartments);
 
             $detail = UserDetail::where('user_id', $user->id)->latest()->first();
