@@ -333,8 +333,9 @@ return [
     'Assignee' => 'المكلف',
     'Employees' => 'الموظفون',
 
-    'Group number' => 'رقم المجموعة',
-    'Group name' => 'اسم المجموعة',
+    'Group number' => 'رقم الصلاحية',
+    'Group name' => 'اسم الصلاحية',
+    'Group desc' => 'شرح الصلاحية',
     'Number of users' => 'عدد المستخدمين',
     'create-permissions' => 'إنشاء الأذونات',
 
@@ -349,7 +350,13 @@ return [
 
     'Role' => 'صلاحيات',
     'Permission' => 'الاذونات',
-    'role_name' => 'اسم الصلاحية',
+    'role_name' => 'اسم للصلاحية (بالانجليزي)',
+    'role_name_ar' => 'اسم الصلاحية بالعربي',
+    'role_name_en' => 'اسم الصلاحية بالانجليزي',
+
+    'role_description_ar' => 'وصف الصلاحية بالعربي',
+    'role_description_en' => 'وصف الصلاحية بالانجليزي',
+
     'Deductions' => 'الخصومات',
 
 

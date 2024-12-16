@@ -22,8 +22,14 @@ class UserSeeder extends Seeder
             if (!$owner)
                 $owner = Role::create([
                     'name' => 'owner',
-                    'display_name' => 'Project Owner', // optional
-                    'description' => 'User is the owner of a given project', // optional
+                    'display_name' => [
+                        'ar' => 'صاحب المشروع',
+                        'en' => 'Project Owner',
+                    ],
+                    'description' => [
+                        'ar' => 'مستخدم يمتلك كامل الصلاحيات في النظام',
+                        'en' => 'User with full privileges in the system',
+                    ],
                 ]);
 
             $mhamad = User::where('email', 'mohammadawwad22@gmail.com')->first();

@@ -334,8 +334,9 @@ return [
     'Assignee' => 'Assignee',
     'Employees' => 'Employees',
 
-    'Group number' => 'Group Number',
-    'Group name' => 'Group Name',
+    'Group number' => 'Role Number',
+    'Group name' => 'Role Name',
+    'Group desc' => 'Role Description',
     'Number of users' => 'Number Of Users',
     'create-permissions' => 'Create Permissions',
 
@@ -350,7 +351,12 @@ return [
 
     'Role' => 'Role',
     'Permission' => 'Permission',
-    'role_name' => 'role name',
+    'role_name' => 'name for role (english)',
+    'role_name_ar' => 'role name arabic',
+    'role_name_en' => 'role name english',
+
+    'role_description_ar' => 'role description arabic',
+    'role_description_en' => 'role description english',
 
     'Deductions' => 'Deductions',
 

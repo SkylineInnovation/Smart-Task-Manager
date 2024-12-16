@@ -102,6 +102,10 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee', 'AuthA
 
     Route::middleware('permission:index-permission')->get('permissions', [WebPermissionsController::class, 'index'])->name('web.permissions.view');
     Route::middleware('permission:create-permission')->post('permissions', [WebPermissionsController::class, 'create'])->name('web.permissions.create');
+
+    Route::middleware('permission:edit-permission')->get('permission/{role}', [WebPermissionsController::class, 'edit'])->name('web.permissions.edit');
+    Route::middleware('permission:edit-permission')->post('permission/{role}', [WebPermissionsController::class, 'update'])->name('web.permissions.update');
+
     Route::middleware('permission:delete-permission')->post('delete-role/{role}', [WebPermissionsController::class, 'delete'])->name('delete.id');
 
 

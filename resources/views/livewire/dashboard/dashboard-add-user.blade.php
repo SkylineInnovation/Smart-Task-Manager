@@ -183,7 +183,7 @@
                                                     <input wire:model='selectedRoles' class="form-check-input" type="checkbox"
                                                         value="{{ $role->id }}" id="selected-role-{{ $role->id }}">
                                                     <label class="form-check-label" for="selected-role-{{ $role->id }}">
-                                                        {{ $role->display_name }}
+                                                        {{ $role->the_display_name() }}
                                                     </label>
                                                 </div>
                                             </div>

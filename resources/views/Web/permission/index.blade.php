@@ -30,22 +30,28 @@
                         <thead>
                             <tr>
                                 {{-- <th class="col-1" scope="col">#</th> --}}
-                                <th class="col-4" scope="col">{{ __('global.Group number') }}</th>
-                                <th class="col-4" scope="col">{{ __('global.Group name') }}</th>
-                                <th class="col-3" scope="col">{{ __('global.Number of users') }}</th>
-                                <th class="col-3" scope="col">{{ __('global.action') }}</th>
+                                <th>#</th>
+                                <th>{{ __('global.Group name') }}</th>
+                                <th>{{ __('global.Group desc') }}</th>
+                                <th>{{ __('global.Number of users') }}</th>
+                                <th>{{ __('global.action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
 
                             @foreach ($roles as $role)
                                 <tr>
-                                    <th scope="row">{{ $role->id }}</th>
+                                    <th>{{ $role->id }}</th>
                                     {{-- <td>{{ $loop->index }}</td> --}}
-                                    <td>{{ $role->display_name }}</td>
+                                    <td>{{ $role->the_display_name() }}</td>
+                                    <td>{{ $role->the_description() }}</td>
                                     <td>{{ $role->users_count() }}</td>
                                     <td>
                                         @if (!in_array($role->name, ['owner', 'manager', 'employee', 'financial', 'technical']))
+                                            <a href="{{ route('web.permissions.edit', $role) }}" class="btn btn-info">
+                                                <i class='fa fa-pencil'></i>
+                                            </a>
+
                                             <button data-toggle="modal" data-target="#delete-role-{{ $role->id }}"
                                                 class="btn btn-danger-gradient">
                                                 <i class='fa fa-trash'></i>
@@ -62,7 +68,7 @@
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="delete-role-Label">
                                                                     {{ __('global.delete') }}
-                                                                    {{ $role->display_name }}
+                                                                    {{ $role->the_display_name() }}
                                                                 </h5>
                                                                 <button type="button" class="close" data-dismiss="modal"
                                                                     aria-label="Close">
@@ -131,9 +137,32 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel"
                                 aria-labelledby="home-tab">
-                                <div class="py-3">
-                                    <label for="role_name">{{ __('global.role_name') }}</label>
-                                    <input class="form-control" type="text" name="role_name">
+                                <div class="row mt-3">
+                                    <div class="col-12">
+                                        <label for="role_name">{{ __('global.role_name') }}</label>
+                                        <input id="role_name" class="form-control" type="text" name="role_name"
+                                            placeholder="{{ __('global.enter') }} {{ __('global.role_name') }}">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="role_name_ar">{{ __('global.role_name_ar') }}</label>
+                                        <input id="role_name_ar" class="form-control" type="text" name="role_name_ar"
+                                            placeholder="{{ __('global.enter') }} {{ __('global.role_name_ar') }}">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="role_name_en">{{ __('global.role_name_en') }}</label>
+                                        <input id="role_name_en" class="form-control" type="text" name="role_name_en"
+                                            placeholder="{{ __('global.enter') }} {{ __('global.role_name_en') }}">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="role_description_ar">{{ __('global.role_description_ar') }}</label>
+                                        <textarea name="role_description_ar" id="role_description_ar" rows="3"class="form-control"
+                                            placeholder="{{ __('global.enter') }} {{ __('global.role_description_ar') }}"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="role_description_en">{{ __('global.role_description_en') }}</label>
+                                        <textarea name="role_description_en" id="role_description_en" rows="3"class="form-control"
+                                            placeholder="{{ __('global.enter') }} {{ __('global.role_description_en') }}"></textarea>
+                                    </div>
                                 </div>
                             </div>
 
@@ -146,7 +175,7 @@
                                             <input class="form-check-input" type="checkbox" value="{{ $rp->id }}"
                                                 id="permission-{{ $rp->id }}" name="permissions[]">
                                             <label class="form-check-label me-4" for="permission-{{ $rp->id }}">
-                                                {{ $rp->display_name }}
+                                                {{ $rp->the_display_name() }}
                                             </label>
                                         </div>
                                     @endforeach

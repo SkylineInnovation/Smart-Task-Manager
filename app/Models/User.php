@@ -136,7 +136,7 @@ class User extends Authenticatable
     public function rolesSideBySide()
     {
         $text = '';
-        foreach ($this->roles as $role) $text = $text . $role->name . ', ';
+        foreach ($this->roles as $role) $text = $text . $role->the_display_name() . ', ';
         return $text;
     }
 
