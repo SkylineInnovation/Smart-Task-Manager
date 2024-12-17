@@ -18,18 +18,21 @@ use Illuminate\Queue\SerializesModels;
 // file link
 class NewExchangeRequest extends Mailable
 {
-
-    public ExchangePermission $exchangePermission;
     use Queueable, SerializesModels;
 
+    public ExchangePermission $exchangePermission;
+    public $role;
+    public $userID = 0;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(ExchangePermission $exchangePermission)
+    public function __construct(ExchangePermission $exchangePermission, $role, $userID = 0)
     {
         $this->exchangePermission = $exchangePermission;
+        $this->role = $role;
+        $this->userID = $userID;
     }
 
     /**
@@ -52,7 +55,7 @@ class NewExchangeRequest extends Mailable
     public function content()
     {
         return new Content(
-            view: 'email.exchange-permissions.exchage-permission',
+            view: 'email.exchange-permissions.exchange-permission',
         );
     }
 

@@ -350,7 +350,7 @@ class ExtratimeIndex extends Component
         $from_date = Carbon::parse(date('Y-m-d h:i A', strtotime($this->from_time)));
         $to_date = Carbon::parse(date('Y-m-d h:i A', strtotime($this->to_time)));
 
-        $dur = $from_date->diff($to_date);
+        // $dur = $from_date->diff($to_date);
 
         $extratime = ExtraTime::find($this->extratime_id);
 

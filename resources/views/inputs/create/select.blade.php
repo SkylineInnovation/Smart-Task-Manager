@@ -5,7 +5,7 @@
         <select {{ $required ?? null }} name='{{ $name }}' id='{{ $name }}'
             class='form-control rounded-md shadow-sm border-gray-300 @error('{{ $name }}') is-invalid @enderror'
             {{ ($livewire ?? null) == null ? null : 'wire:model=' . $livewire }}>
-            <option value='' selected>{{ __('global.select') }} {{ __($label) }}</option>
+            <option selected>{{ __('global.select') }} {{ __($label) }}</option>
             @foreach ($arr as $obj)
                 <option value='{{ $obj->id }}' @if ($obj->id == old($name)) selected @endif>
                     <?php try { ?>

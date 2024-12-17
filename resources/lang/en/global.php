@@ -363,4 +363,8 @@ return [
 
     "Purchase order" => "Purchase Order",
     "item" => "Item",
+
+    'the-exchange-permission-has-been' => 'The Exchange Permission Has Been',
+    'rejected' => 'Rejected',
+    'accepted' => 'Accepted',
 ];

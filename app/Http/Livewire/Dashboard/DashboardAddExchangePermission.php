@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Dashboard;
 
 use App\Http\Controllers\HomeController;
+use App\Jobs\SendNewExchangePermission;
 use App\Models\ExchangePermission;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -57,7 +58,7 @@ class DashboardAddExchangePermission extends Component
     {
         $validatedData = $this->validate();
 
-        ExchangePermission::create([
+        $exchange = ExchangePermission::create([
             'add_by' => Auth::user()->id,
             'user_id' => Auth::user()->id,
 
@@ -69,6 +70,9 @@ class DashboardAddExchangePermission extends Component
 
             'status' => 'pending',
         ]);
+
+        if (env('SEND_MAIL', false))
+            SendNewExchangePermission::dispatch($exchange);
 
         session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();

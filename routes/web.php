@@ -64,6 +64,13 @@ Route::get('lang/{lang}', [HomeController::class, 'switchLang'])->name('lang.swi
 
 Route::get('web/task/{slug}', [WebTaskController::class, 'openTask'])->name('web.task');
 
+Route::get('web/exchange/accept/{userID}/{id}', [WebTaskController::class, 'acceptExchange'])->name('web.exchange.accept');
+Route::get('web/exchange/reject/{userID}/{id}', [WebTaskController::class, 'rejectExchange'])->name('web.exchange.reject');
+
+// Route::get('web/extra-time/accept/{userID}/{id}', [WebTaskController::class, 'acceptExtraTime'])->name('web.extratime.accept');
+// Route::get('web/extra-time/reject/{userID}/{id}', [WebTaskController::class, 'rejectExtraTime'])->name('web.extratime.reject');
+
+
 Route::get('blocked', [HomeController::class, 'blocked'])->name('blocked');
 
 Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee', 'AuthActiveWeb')->group(function () {

@@ -362,4 +362,8 @@ return [
 
     "Purchase order" => "طلب شراء",
     "item" => "العنصر",
+
+    'the-exchange-permission-has-been' => 'تم تعديل حالة طلب الصرف',
+    'rejected' => 'مرفوض',
+    'accepted' => 'مقبول',
 ];

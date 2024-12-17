@@ -266,7 +266,7 @@
                     <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">
                         {{ __('global.close') }}
                     </button>
-                    <button type="submit" wire:click.prevent="store()" class="btn btn-success close-modal">
+                    <button type="submit" wire:click.prevent="store()" class="btn btn-success">
                         {{ __('global.save-changes') }}
                     </button>
                 </div>
@@ -551,8 +551,7 @@
                 <div class="modal-footer">
                     <button type="button" wire:click.prevent="cancel()" class="btn btn-secondary close-btn"
                         data-dismiss="modal">{{ __('global.close') }}</button>
-                    <button type="button" wire:click.prevent="update()" class="btn btn-success close-modal"
-                        data-dismiss="modal">
+                    <button type="button" wire:click.prevent="update()" class="btn btn-success">
                         {{ __('global.save-changes') }}
                     </button>
                 </div>

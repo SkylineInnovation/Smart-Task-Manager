@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Exchangepermission;
 
 use App\Http\Controllers\HomeController;
+use App\Jobs\SendNewExchangePermission;
 use App\Models\ExchangePermission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -152,7 +153,7 @@ class ExchangepermissionIndex extends Component
     {
         $validatedData = $this->validate();
 
-        ExchangePermission::create([
+        $exchange = ExchangePermission::create([
             'add_by' => $this->by->id,
             'slug' => $this->slug,
 
@@ -169,6 +170,9 @@ class ExchangepermissionIndex extends Component
             'technical_director_time' => $this->technical_director_time,
             'status' => 'pending',
         ]);
+
+        if (env('SEND_MAIL', false))
+            SendNewExchangePermission::dispatch($exchange);
 
         session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();
