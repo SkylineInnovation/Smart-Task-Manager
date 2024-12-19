@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\ExchangePermission;
 use App\Models\ExtraTime;
+use App\Models\Leave;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Support\Carbon;
@@ -104,6 +105,8 @@ class WebTaskController extends Controller
         $task->update([
             'end_time' => $extratime->to_time,
         ]);
+
+        return view('pages.crud.extratime.extratime-accepted');
     }
 
     public function rejectExtraTime($userID, $id)
@@ -117,5 +120,46 @@ class WebTaskController extends Controller
             'response_time' => date('Y-m-d h:i A'),
             'status' => 'rejected',
         ]);
+
+        return view('pages.crud.extratime.extratime-rejected');
+    }
+
+    public function acceptLeave($userID, $id)
+    {
+        $user = User::find($userID);
+        $id = Crypt::decryptString($id);
+
+        $leave = Leave::find($id);
+
+        $leave->update([
+            'status' => 'accepted',
+            'accepted_by_user_id' => auth()->user()->id,
+            'accepted_time' => date('Y-m-d h:i A'),
+        ]);
+
+        if ($leave->leave_effect_on_time && $leave->task) {
+            $task = Task::find($leave->task_id);
+
+            $task->update([
+                'end_time' => $leave->time_in,
+            ]);
+        }
+
+        return view('pages.crud.leave.leave-accepted');
+    }
+
+    public function rejectLeave($userID, $id)
+    {
+        $user = User::find($userID);
+        $id = Crypt::decryptString($id);
+
+        $leave = Leave::find($id);
+
+        $leave->update([
+            'response_time' => date('Y-m-d h:i A'),
+            'status' => 'rejected',
+        ]);
+
+        return view('pages.crud.leave.leave-rejected');
     }
 }

@@ -365,6 +365,8 @@ return [
     "item" => "Item",
 
     'the-exchange-permission-has-been' => 'The Exchange Permission Has Been',
+    'the-extratime-has-been' => 'The Extra Time Has Been',
+    'the-leave-has-been' => 'The Leave Has Been',
     'rejected' => 'Rejected',
     'accepted' => 'Accepted',
 ];

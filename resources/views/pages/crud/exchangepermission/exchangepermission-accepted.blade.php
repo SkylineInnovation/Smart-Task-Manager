@@ -12,7 +12,7 @@
     <div class="card">
         <div class="card-body">
             <h2>
-                {{ __('global.the-exchange-permission-has-been') }}
+                {{ __('global.the-exchange-permission-has-been') }}:
                 <span class="text-success">{{ __('global.accepted') }}</span>
             </h2>
         </div>

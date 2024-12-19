@@ -6,7 +6,6 @@ use App\Mail\ExtraTime\SendNewExtraTimeToTeam;
 use App\Models\ExtraTime;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -39,16 +38,20 @@ class SendNewExtraTime implements ShouldQueue
         $owners = User::whereRoleIs('owner')->pluck('email')->toArray();
 
         if (env('SEND_MAIL', false))
-            Mail::to($owners)->send(new SendNewExtraTimeToTeam($this->extra_time));
+            Mail::to($owners)->send(new SendNewExtraTimeToTeam($this->extra_time, 'owner', 0));
 
-        if (env('SEND_MAIL', false))
-            Mail::to(
-                $this->extra_time->task->manager->email
-            )->send(new SendNewExtraTimeToTeam($this->extra_time));
-
-        // if (env('SEND_MAIL', false))
-        //     Mail::to(
-        //         $this->extra_time->task->employees->pluck('email')->toArray()
-        //     )->send(new SendNewExtraTimeToTeam($this->extra_time));
+        if (env('SEND_MAIL', false)) {
+            if ($this->extra_time->task) {
+                Mail::to(
+                    $this->extra_time->task->manager->email
+                )->send(new SendNewExtraTimeToTeam($this->extra_time, 'manager', $this->extra_time->task->manager->id));
+            } else {
+                foreach ($this->extra_time->user->managers as $manager) {
+                    Mail::to(
+                        $manager->email
+                    )->send(new SendNewExtraTimeToTeam($this->extra_time, 'manager', $this->extra_time->task->manager->id));
+                }
+            }
+        }
     }
 }

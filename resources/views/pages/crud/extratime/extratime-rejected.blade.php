@@ -2,8 +2,8 @@
 
 @section('page-header')
     <li class="breadcrumb-item">
-        <a href="{{ route('exchangepermission.index') }}" class="h4">
-            {{ __('global.exchangepermissions') }}
+        <a href="{{ route('extratime.index') }}" class="h4">
+            {{ __('global.extratimes') }}
         </a>
     </li>
 @endsection
@@ -12,7 +12,7 @@
     <div class="card">
         <div class="card-body">
             <h2>
-                {{ __('global.the-exchange-permission-has-been') }}:
+                {{ __('global.the-extratime-has-been') }}:
                 <span class="text-danger">{{ __('global.rejected') }}</span>
             </h2>
         </div>

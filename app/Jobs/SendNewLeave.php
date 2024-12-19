@@ -6,7 +6,6 @@ use App\Mail\Leave\SendNewLeaveToTeam;
 use App\Models\Leave;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -39,16 +38,20 @@ class SendNewLeave implements ShouldQueue
         $owners = User::whereRoleIs('owner')->pluck('email')->toArray();
 
         if (env('SEND_MAIL', false))
-            Mail::to($owners)->send(new SendNewLeaveToTeam($this->leave));
+            Mail::to($owners)->send(new SendNewLeaveToTeam($this->leave, 'owner', 0));
 
-        if (env('SEND_MAIL', false))
-            Mail::to(
-                $this->leave->task->manager->email
-            )->send(new SendNewLeaveToTeam($this->leave));
-
-        // if (env('SEND_MAIL', false))
-        //     Mail::to(
-        //         $this->leave->task->employees->pluck('email')->toArray()
-        //     )->send(new SendNewLeaveToTeam($this->leave));
+        if (env('SEND_MAIL', false)) {
+            if ($this->leave->task) {
+                Mail::to(
+                    $this->leave->task->manager->email
+                )->send(new SendNewLeaveToTeam($this->leave, 'manager', $this->leave->task->manager->id));
+            } else {
+                foreach ($this->leave->user->managers as $manager) {
+                    Mail::to(
+                        $manager->email
+                    )->send(new SendNewLeaveToTeam($this->leave, 'manager', $manager->manager->id));
+                }
+            }
+        }
     }
 }

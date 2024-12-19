@@ -67,8 +67,11 @@ Route::get('web/task/{slug}', [WebTaskController::class, 'openTask'])->name('web
 Route::get('web/exchange/accept/{userID}/{id}', [WebTaskController::class, 'acceptExchange'])->name('web.exchange.accept');
 Route::get('web/exchange/reject/{userID}/{id}', [WebTaskController::class, 'rejectExchange'])->name('web.exchange.reject');
 
-// Route::get('web/extra-time/accept/{userID}/{id}', [WebTaskController::class, 'acceptExtraTime'])->name('web.extratime.accept');
-// Route::get('web/extra-time/reject/{userID}/{id}', [WebTaskController::class, 'rejectExtraTime'])->name('web.extratime.reject');
+Route::get('web/extra-time/accept/{userID}/{id}', [WebTaskController::class, 'acceptExtraTime'])->name('web.extratime.accept');
+Route::get('web/extra-time/reject/{userID}/{id}', [WebTaskController::class, 'rejectExtraTime'])->name('web.extratime.reject');
+
+Route::get('web/leave/accept/{userID}/{id}', [WebTaskController::class, 'acceptLeave'])->name('web.leave.accept');
+Route::get('web/leave/reject/{userID}/{id}', [WebTaskController::class, 'rejectLeave'])->name('web.leave.reject');
 
 
 Route::get('blocked', [HomeController::class, 'blocked'])->name('blocked');

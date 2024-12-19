@@ -364,6 +364,8 @@ return [
     "item" => "العنصر",
 
     'the-exchange-permission-has-been' => 'تم تعديل حالة طلب الصرف',
+    'the-extratime-has-been' => 'تم تعديل حالة الوقت الاضافي',
+    'the-leave-has-been' => 'تم تعديل حالة طلب المغادرة',
     'rejected' => 'مرفوض',
     'accepted' => 'مقبول',
 ];

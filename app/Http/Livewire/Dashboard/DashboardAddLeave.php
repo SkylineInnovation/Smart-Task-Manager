@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Dashboard;
 
+use App\Jobs\SendNewLeave;
 use App\Models\Leave;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -59,7 +60,7 @@ class DashboardAddLeave extends Component
     {
         $validatedData = $this->validate();
 
-        Leave::create([
+        $leave = Leave::create([
             // 'add_by' => $this->by->id,
 
             // 'task_id' => $this->task_id,
@@ -79,6 +80,9 @@ class DashboardAddLeave extends Component
         $this->resetInputFields();
         $this->emit('close-model'); // Close model to using to jquery
         $this->emit('show-message', ['message' => __('global.created-successfully')]); // show toster message
+
+        if (env('SEND_MAIL', false))
+            SendNewLeave::dispatch($leave);
     }
 
     public function render()

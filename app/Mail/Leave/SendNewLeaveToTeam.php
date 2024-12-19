@@ -4,7 +4,6 @@ namespace App\Mail\Leave;
 
 use App\Models\Leave;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -15,15 +14,19 @@ class SendNewLeaveToTeam extends Mailable
     use Queueable, SerializesModels;
 
     public Leave $leave;
+    public $role;
+    public $userID;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Leave $leave)
+    public function __construct(Leave $leave, $role, $userID)
     {
         $this->leave = $leave;
+        $this->role = $role;
+        $this->userID = $userID;
     }
 
     /**
