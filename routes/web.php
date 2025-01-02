@@ -4,6 +4,7 @@ use App\Http\Controllers\DailyTaskController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Web\ReportsController;
 use App\Http\Controllers\Web\WebPermissionsController;
 use App\Http\Controllers\Web\WebReportController;
 use App\Http\Controllers\Web\WebTaskController;
@@ -124,7 +125,7 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee', 'AuthA
     Route::middleware('permission:show-user')->get('user/{user}', [UserController::class, 'show'])->name('user.show');
     Route::middleware('permission:show-user')->get('user/{id}/report', [UserController::class, 'showReport'])->name('user.show.report');
 
-    // 
+    //
     // the full routes for otpsendcodes
     Route::middleware('permission:index-otpsendcode')->get('otpsendcodes', [App\Http\Controllers\OtpSendCodeController::class, 'livewireIndex'])->name('otpsendcode.index');
     Route::middleware('permission:restore-otpsendcode')->get('trash/otpsendcodes', [App\Http\Controllers\OtpSendCodeController::class, 'livewireDeletedIndex'])->name('otpsendcode.index.trash');
@@ -312,3 +313,14 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee', 'AuthA
 // });
 
 // // php artisan migrate:refresh --path=database/migrations/2024_10_26_232722_create_departments_table.php
+
+
+Route::get('discounts-Outgoing-Tasks', [ReportsController::class, 'discountsOutgoingTasks']);
+Route::get('comments-on-all-tasks', [ReportsController::class, 'commentsOnAllTasks']);
+Route::get('important-comments', [ReportsController::class, 'importantComments']);
+Route::get('task-specific-comments', [ReportsController::class, 'taskSpecificComments']);
+Route::get('incoming-discount-rseport', [ReportsController::class, 'incomingDiscountsReport']);
+Route::get('movement-of-outgoing-tasks-according-to-the-assigned-authority', [ReportsController::class, 'MovementOfOutGoingTasksAccordingToThAassignedAuthority']);
+Route::get('incoming-tasks-movement-for-the-employee', [ReportsController::class, 'incomingTasksMovementForTheEmployee']);
+Route::get('short-task-log', [ReportsController::class, 'shortTaskLog']);
+Route::get('follow-up-on-employee-tasks', [ReportsController::class, 'FollowUpOnEmployeeTasks']);
