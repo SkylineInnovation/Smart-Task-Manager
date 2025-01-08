@@ -1,12 +1,3 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css">
-
-<!-- Bootstrap Select CSS -->
-<link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
-
 @extends('layouts.livewire-app')
 <!-- jQuery (required for Bootstrap and Bootstrap Select) -->
 
@@ -69,13 +60,29 @@
 
 
                 <div class="col-md-2  d-flex justify-content-center">
-                    <a href="" data-toggle="modal" data-target="#teaskModelReport" class="mouseHover col-md-11 py-3">
+                    <a href="" data-toggle="modal" data-target="#important-comments"
+                        class="mouseHover col-md-11 py-3">
                         <div class="col-md-12 pb-3 d-flex justify-content-center">
                             <img src="{{ asset('assets/dashboard/report-one.png') }}" width="72" height="72"
                                 alt="">
                         </div>
                         <div class="col-md-12 text-center text-dark text-bold">
-                            {{ __('global.task-omments-report') }}
+                            {{ __('global.important-comments') }}
+                        </div>
+                    </a>
+                </div>
+
+
+
+                <div class="col-md-2  d-flex justify-content-center">
+                    <a href="" data-toggle="modal" data-target="#Task-specific-comments"
+                        class="mouseHover col-md-11 py-3">
+                        <div class="col-md-12 pb-3 d-flex justify-content-center">
+                            <img src="{{ asset('assets/dashboard/report-one.png') }}" width="72" height="72"
+                                alt="">
+                        </div>
+                        <div class="col-md-12 text-center text-dark text-bold">
+                            {{ __('global.Task-specific-comments') }}
                         </div>
                     </a>
                 </div>
@@ -152,36 +159,59 @@
 
     @include('Web.repots.reports-model')
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Bootstrap Select JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
 
 
-   <script>
-    function filterTable() {
-        // Get search input value
-        const input = document.getElementById('searchInput');
-        const filter = input.value.toLowerCase();
-        const tableBody = document.getElementById('tableBody');
-        const rows = tableBody.getElementsByTagName('tr');
+    <script>
 
-        // Loop through all table rows
-        for (let i = 0; i < rows.length; i++) {
-            const cells = rows[i].getElementsByTagName('td');
-            let rowContainsFilter = false;
 
-            // Check each cell in the row
-            for (let j = 0; j < cells.length; j++) {
-                if (cells[j].innerText.toLowerCase().includes(filter)) {
-                    rowContainsFilter = true;
-                    break;
+        function filterTable() {
+            // Get search input value
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const tableBody = document.getElementById('tableBody');
+            const rows = tableBody.getElementsByTagName('tr');
+
+            // Loop through all table rows
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let rowContainsFilter = false;
+
+                // Check each cell in the row
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].innerText.toLowerCase().includes(filter)) {
+                        rowContainsFilter = true;
+                        break;
+                    }
                 }
-            }
 
-            // Show or hide the row based on the filter
-            rows[i].style.display = rowContainsFilter ? '' : 'none';
+                // Show or hide the row based on the filter
+                rows[i].style.display = rowContainsFilter ? '' : 'none';
+            }
         }
-    }
-</script>
+
+        function filterTable2() {
+            // Get search input value
+            const input = document.getElementById('searchInput2');
+            const filter = input.value.toLowerCase();
+            const tableBody = document.getElementById('tableBody2');
+            const rows = tableBody.getElementsByTagName('tr');
+
+            // Loop through all table rows
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let rowContainsFilter = false;
+
+                // Check each cell in the row
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].innerText.toLowerCase().includes(filter)) {
+                        rowContainsFilter = true;
+                        break;
+                    }
+                }
+
+                // Show or hide the row based on the filter
+                rows[i].style.display = rowContainsFilter ? '' : 'none';
+            }
+        }
+    </script>
 @endsection

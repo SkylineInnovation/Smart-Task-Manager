@@ -326,7 +326,7 @@ Route::get('important-comments/{task}', [ReportsController::class, 'importantCom
 
 
 
-Route::get('task-specific-comments', [ReportsController::class, 'taskSpecificComments']);
+Route::post('task-specific-comments', [ReportsController::class, 'taskSpecificComments'])->name('taskSpecificComments.page');
 Route::get('incoming-discount-rseport', [ReportsController::class, 'incomingDiscountsReport']);
 Route::get('movement-of-outgoing-tasks-according-to-the-assigned-authority', [ReportsController::class, 'MovementOfOutGoingTasksAccordingToThAassignedAuthority']);
 Route::get('incoming-tasks-movement-for-the-employee', [ReportsController::class, 'incomingTasksMovementForTheEmployee']);

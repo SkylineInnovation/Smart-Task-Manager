@@ -97,11 +97,20 @@ class ReportsController extends Controller
     }
 
 
-    
 
-    public function taskSpecificComments()
+
+    public function taskSpecificComments(Request $request)
     {
-        return view('Web.repots.new-prints.task-specific-comments');
+
+        $taskSelect[] = $request->input('taskCheck');
+        foreach ($taskSelect as $arr => $ts) {
+            $viewTasks = Task::whereIn('id', $ts)->get();
+        }
+
+
+
+
+        return view('Web.repots.new-prints.task-specific-comments', compact('viewTasks'));
     }
 
 

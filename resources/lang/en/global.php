@@ -370,5 +370,8 @@ return [
     'rejected' => 'Rejected',
     'accepted' => 'Accepted',
 
-    'commints-in-all-tasks'=>'Commints In All Tasks'
+    'commints-in-all-tasks' => 'Commints In All Tasks',
+
+    "important-comments" => 'Important Commentst',
+    "Task-specific-comments" => 'Task Specifi Comments',
 ];

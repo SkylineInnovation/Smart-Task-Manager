@@ -162,14 +162,14 @@
 
 <!-- teaskModelReport -->
 {{-- تعليقات مهمة --}}
-<div class="modal fade" {{ App::getLocale() == 'en' ? 'dir="ltr"' : 'dir="rtl"' }} id="teaskModelReport"
-    tabindex="-1" role="dialog" aria-labelledby="teaskModelReportLabel" aria-hidden="true">
+<div class="modal fade" {{ App::getLocale() == 'en' ? 'dir="ltr"' : 'dir="rtl"' }} id="important-comments"
+    tabindex="-1" role="dialog" aria-labelledby="important-commentsLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content border-0">
             <form action="{{ route('task.commintes.report') }}" method="post">
                 @csrf
                 <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="teaskModelReportLabel">{{ __('global.task-omments-report') }}</h5>
+                    <h5 class="modal-title" id="important-commentsLabel">{{ __('global.important-commentst') }}</h5>
                     <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -205,7 +205,8 @@
                                         @endforeach
                                     </td>
 
-                                        <td><a href="{{route('importantComments.task',$task->id)}}" class="btn btn-info fa fa-eye "></a></td>
+                                    <td><a href="{{ route('importantComments.task', $task->id) }}"
+                                            class="btn btn-info fa fa-eye "></a></td>
 
                                 </tr>
                             @endforeach
@@ -228,51 +229,79 @@
 </div>
 {{-- end teask Model Report --}}
 
-<!-- teaskModelReport -->
-{{-- <div class="modal fade" {{ App::getLocale() == 'en' ? 'dir="ltr"' : 'dir="rtl"' }} id="teaskModelReport"
-    tabindex="-1" role="dialog" aria-labelledby="teaskModelReportLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<!-- Task-specific-comments -->
+{{-- تعليقات المهام المحددة --}}
+
+<div class="modal fade" {{ App::getLocale() == 'en' ? 'dir="ltr"' : 'dir="rtl"' }} id="Task-specific-comments"
+    tabindex="-1" role="dialog" aria-labelledby="Task-specific-commentsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content border-0">
-            <form action="{{ route('task.commintes.report') }}" method="post">
+            <form action="{{ route('taskSpecificComments.page') }}" method="post">
                 @csrf
                 <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="teaskModelReportLabel">{{ __('global.task-omments-report') }}</h5>
+                    <h5 class="modal-title" id="Task-specific-commentsLabel">{{ __('global.Task-specific-comments') }}
+                    </h5>
                     <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-
-                    <div class="input-group mb-3">
-
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"
-                                id="inputGroup-sizing-default">{{ __('global.from date') }}</span>
-                        </div>
-                        <input type="date" id="" name="fromDate" class="form-control"
-                            aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <div class="form-group">
+                        <input type="text" id="searchInput2" class="form-control"
+                            placeholder="Search for names, emails, etc." onkeyup="filterTable2()">
                     </div>
+                    <!-- Table -->
 
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"
-                                id="inputGroup-sizing-default">{{ __('global.to date') }}</span>
-                        </div>
-                        <input type="date" class="form-control" name="toDate" aria-label="Default"
-                            aria-describedby="inputGroup-sizing-default">
-                    </div>
+                    <table class="table table-bordered table-hover table-responsive">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>status</th>
+                                <th>employee</th>
+                                <th>view</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody2">
+                            @foreach ($tasks as $task)
+                                <tr>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $task->crud_name() }}</td>
+                                    <td>{{ $task->manager->name() }}</td>
+                                    <td>{{ $task->status }}</td>
+                                    <td>
+                                        @foreach ($task->employees as $taskEmp)
+                                            {{ $taskEmp->name() }} ,
+                                        @endforeach
+                                    </td>
+
+                                    <td>
+                                        <div class="form-check d-flex justify-content-center">
+                                            <input class="form-check-input" type="checkbox" name="taskCheck[]"
+                                                id="" value="{{ $task->id }}">
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            @endforeach
+                            {{-- {{ $tasks->links() }} --}}
+                        </tbody>
+                    </table>
+
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"
                         data-dismiss="modal">{{ __('global.Close') }}</button>
                     <button type="submit" class="btn btn-primary fs-25">
-                        <i class="fa fa-print"></i>
+                        <i class="fa fa-eye"></i>
                     </button>
                 </div>
             </form>
         </div>
     </div>
-</div> --}}
+</div>
 {{-- end teask Model Report --}}
 
 
