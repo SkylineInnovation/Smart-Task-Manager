@@ -54,13 +54,13 @@
                             <div class="col-md-12">ﺭﻗﻢ ﺍﻟﻤﻬﻤﺔ</div>
                         </th>
                         <th scope="col" class="col-2  align-self-center bg-white">
-                            <div class="col-md-12">{{ $task->id }}</div>
+                            <div class="col-md-12">{{ $task->id ?? '' }}</div>
                         </th>
                         <th scope="col" class="col-1  align-self-center">
                             <div class="col-md-12">ﻋﻨﻮﺍﻥ ﺍﻟﻤﻬﻤﺔ</div>
                         </th>
                         <th scope="col" class="col-2  align-self-center bg-white">
-                            <div class="col-md-12">{{ $task->title }} </div>
+                            <div class="col-md-12">{{ $task->title ?? '' }} </div>
                         </th>
 
                     </tr>
@@ -71,7 +71,7 @@
                             <div class="col-md-12"> ﺟﻬﺔ ﺍﻟﺘﻜﻠﻴﻒ</div>
                         </th>
                         <th scope="col" class="col-2  align-self-center bg-white">
-                            <div class="col-md-12">{{ $task->manager->first_name }}</div>
+                            <div class="col-md-12">{{ $task->manager->first_name ?? '' }}</div>
                         </th>
                         <th scope="col" class="col-1  align-self-center">
                             <div class="col-md-12">الموظفين </div>
@@ -79,7 +79,7 @@
                         <th scope="col" class="col-2  align-self-center bg-white">
                             <div class="col-md-12">
                                 @foreach ($task->employees as $taskEmp)
-                                    {{ $taskEmp->first_name }},
+                                    {{ $taskEmp->first_name ?? '' }},
                                 @endforeach
                             </div>
                         </th>
@@ -87,14 +87,14 @@
                             <div class="col-md-12">تاريخ الاستلام </div>
                         </th>
                         <th scope="col" class="col-2  align-self-center bg-white">
-                            <div class="col-md-12">{{ $task->created_at->format('Y-m-d') }} </div>
+                            <div class="col-md-12">{{ $task->created_at->format('Y-m-d') ?? '' }} </div>
                         </th>
 
                     </tr>
                     @foreach ($task->comments as $tsComm)
                         <tr>
                             <td colspan="6" class="text-center text-white fw-bold" style="background:#a8a8a8">
-                                {{$tsComm->desc}}
+                                {{ $tsComm->desc ?? '' }}
                             </td>
                         </tr>
                     @endforeach
@@ -102,7 +102,6 @@
             </table>
         </div>
     @endforeach
-
 
     {{-- <div class="col-md-12 d-flex justify-content-center">
         <table class="table table-responsive-sm"

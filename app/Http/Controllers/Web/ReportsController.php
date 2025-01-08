@@ -101,13 +101,13 @@ class ReportsController extends Controller
 
     public function taskSpecificComments(Request $request)
     {
-
         $taskSelect[] = $request->input('taskCheck');
+
+
+
         foreach ($taskSelect as $arr => $ts) {
             $viewTasks = Task::whereIn('id', $ts)->get();
         }
-
-
 
 
         return view('Web.repots.new-prints.task-specific-comments', compact('viewTasks'));
