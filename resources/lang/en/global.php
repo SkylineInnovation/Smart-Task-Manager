@@ -369,4 +369,6 @@ return [
     'the-leave-has-been' => 'The Leave Has Been',
     'rejected' => 'Rejected',
     'accepted' => 'Accepted',
+
+    'commints-in-all-tasks'=>'Commints In All Tasks'
 ];

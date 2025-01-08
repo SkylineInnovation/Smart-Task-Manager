@@ -314,10 +314,18 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee', 'AuthA
 
 // // php artisan migrate:refresh --path=database/migrations/2024_10_26_232722_create_departments_table.php
 
+Route::get('reports-page', [ReportsController::class, 'indexReport'])->name('indexReport.page');
 
-Route::get('discounts-Outgoing-Tasks', [ReportsController::class, 'discountsOutgoingTasks']);
-Route::get('comments-on-all-tasks', [ReportsController::class, 'commentsOnAllTasks']);
-Route::get('important-comments', [ReportsController::class, 'importantComments']);
+// Route::get('discounts-Outgoing-Tasks', [ReportsController::class, 'discountsOutgoingTasks'])->name('discounts-Outgoing-Task.emp');
+// Route::get('comments-on-all-tasks', [ReportsController::class, 'commentsOnAllTasks']);
+
+
+Route::post('discounts-Outgoing-Tasks-request', [ReportsController::class, 'discountsOutgoingTasksRequest'])->name('discounts-Outgoing-Task-request.emp');
+Route::post('comments-on-all-tasks', [ReportsController::class, 'commentsOnAllTasks'])->name('commentsOnAllTasks.allReportsCommints');
+Route::get('important-comments/{task}', [ReportsController::class, 'importantComments'])->name('importantComments.task');
+
+
+
 Route::get('task-specific-comments', [ReportsController::class, 'taskSpecificComments']);
 Route::get('incoming-discount-rseport', [ReportsController::class, 'incomingDiscountsReport']);
 Route::get('movement-of-outgoing-tasks-according-to-the-assigned-authority', [ReportsController::class, 'MovementOfOutGoingTasksAccordingToThAassignedAuthority']);

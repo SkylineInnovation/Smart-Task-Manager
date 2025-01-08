@@ -103,18 +103,18 @@ class WebReportController extends Controller
         $outcome_tasks_not_commented = Task::where('manager_id', $user)
             ->where('end_time', '>=', date('Y-m-d\TH:i'))->get();
             return  view('Web.repots.prints.outgoing-task-movements',compact('outcome_tasks_not_commented'));
-            
+
     }
 
     public function IncomingTaskMovements(Request $request)
     {
-       
+
         $user = $request->input('users');
         // مهام واردة أوشكت على الإغلاق
         $income_tasks_almost_close = Task::whereHas('employees', function ($q) use ($user) {
             $q->where('user_id', $user);
         })->get();
-        
+
         return view('Web.repots.prints.incoming-task-movements',compact('income_tasks_almost_close'));
     }
 

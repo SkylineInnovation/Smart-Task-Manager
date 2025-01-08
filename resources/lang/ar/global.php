@@ -368,4 +368,6 @@ return [
     'the-leave-has-been' => 'تم تعديل حالة طلب المغادرة',
     'rejected' => 'مرفوض',
     'accepted' => 'مقبول',
+
+    'commints-in-all-tasks'=>'تعليقات  جميع المهام'
 ];

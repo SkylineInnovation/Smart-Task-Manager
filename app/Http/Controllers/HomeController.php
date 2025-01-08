@@ -95,6 +95,8 @@ class HomeController extends Controller
     {
         $company = \App\Models\Company::latest()->first();
         $mainBtns = [
+
+
             [
                 'image' => asset('assets/dashboard/company.png'),
                 'text' =>  __('global.company'),
@@ -130,16 +132,20 @@ class HomeController extends Controller
                 'text' =>  __('global.permissions'),
                 'link' => route('web.permissions.view')
             ],
-            [
-                'image' => asset('assets/dashboard/report.png'),
-                'text' =>  __('global.report'),
-                'link' => route('view-reports'),
-            ],
+
             [
                 'image' => asset('assets/dashboard/profile.png'),
                 'text' =>  __('global.profile'),
                 'link' => route('edit.profile'),
             ],
+            [
+                'image' => asset('assets/dashboard/report.png'),
+                'text' =>  __('global.report'),
+                'link' => route('indexReport.page'),
+            ],
+
+
+
 
         ];
 
