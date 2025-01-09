@@ -47,7 +47,7 @@
     </button>
 
     <div class="col-md-12 d-flex justify-content-center">
-        <table class="table table-responsive-sm"
+        <table class="table table-responsive"
             style="direction: rtl; width: 100%; background-color: #ffffff; text-align: right; margin-top: 10px;">
             <thead>
                 <tr style="background-color: #EFF8FF">
@@ -76,36 +76,30 @@
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="7" class="text-center text-white fw-bold" style="background:#19AC47">ﺍﺳﺘﺎﺫ / ﺍﺣﻤﺪ ﺣﻜﻴﻢ
+                    <td colspan="7" class="text-center text-white fw-bold" style="background:#19AC47">{{ $user->name() }}
                     </td>
 
                 </tr>
-                <tr>
-                    <th scope="row">]12995[ ﺭﺧﺺ ﺍﻟﺒﻠﺪﻳﺔ ﻭﺍﻟﺪﻓﺎﻉ ﺍﻟﻤﺪﻧﻲ ﻟﻜﻞ ﻓﺮﻉ</th>
-                    <th scope="row">ﺍﻟﻤﻬﻨﺪﺱ / ﻭﺳﺎﻡ ﺍﺑﻮ ﺧﻀﺮ</th>
-                    <td>1446/09/15 <br> 04:55 ﻡ</td>
-                    <td>ﺗﺤﺖ ﺍﻟﺘﻨﻔﻴﺬ</td>
-                    <td>SAR 50</td>
-                    <td>SAR 0</td>
-                    <td> ﻏﻴﺮ ﻣﺤﺪﺩ</td>
-                </tr>
 
-                <tr>
-                    <th scope="row">]12995[ ﺭﺧﺺ ﺍﻟﺒﻠﺪﻳﺔ ﻭﺍﻟﺪﻓﺎﻉ ﺍﻟﻤﺪﻧﻲ ﻟﻜﻞ ﻓﺮﻉ</th>
-                    <th scope="row">ﺍﻟﻤﻬﻨﺪﺱ / ﻭﺳﺎﻡ ﺍﺑﻮ ﺧﻀﺮ</th>
-                    <td>1446/09/15 <br> 04:55 ﻡ</td>
-                    <td>ﺗﺤﺖ ﺍﻟﺘﻨﻔﻴﺬ</td>
-                    <td>SAR 50</td>
-                    <td>SAR 0</td>
-                    <td> ﻏﻴﺮ ﻣﺤﺪﺩ</td>
-                </tr>
 
+                @foreach ($tasks as $task)
+                    <tr>
+                        <th scope="row">{{ $task->title . ' ' . $task->id }}</th>
+                        <th scope="row">{{ $task->manager->name() }}</th>
+                        <td>1446/09/15 <br> 04:55 ﻡ</td>
+                        <td> {{ $task->status }}</td>
+                        <td>SAR {{ $discount->max_worning_discount }}</td>
+                        <td>SAR 0</td>
+                        <td> ﻏﻴﺮ ﻣﺤﺪﺩ</td>
+                    </tr>
+                @endforeach
                 <tr>
                     <td colspan="1" class="text-center text-white fw-bold" style="background:#FF9896">ﻋﺪﺩ ﺍلمهام /٤
                     </td>
 
                     <td colspan="3" class="text-center text-white fw-bold" style="background:#a8a8a8"></td>
-                    <td colspan="1" class="text-center text-white fw-bold" style="background:#FF9896">SAR 50</td>
+                    <td colspan="1" class="text-center text-white fw-bold" style="background:#FF9896">SAR
+                        {{ $totalAmount }}</td>
                     <td colspan="1" class="text-center text-white fw-bold" style="background:#FF9896">SAR 0</td>
                     <td colspan="1" class="text-center text-white fw-bold" style="background:#a8a8a8"></td>
 

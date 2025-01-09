@@ -7,6 +7,7 @@ use App\Models\Discount;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReportsController extends Controller
 {
@@ -31,7 +32,10 @@ class ReportsController extends Controller
         ])->distinct()->get();
 
 
-        return  view('Web.repots.web-index-reports', compact('users', 'tasks_status', 'userManager', 'tasks'));
+        $employees = User::whereRoleIs('employee')->get();
+
+
+        return  view('Web.repots.web-index-reports', compact('users', 'tasks_status', 'userManager', 'tasks', 'employees'));
     }
 
 
@@ -96,9 +100,6 @@ class ReportsController extends Controller
         return view('Web.repots.new-prints.important-comments', compact('task'));
     }
 
-
-
-
     public function taskSpecificComments(Request $request)
     {
         $taskSelect[] = $request->input('taskCheck');
@@ -114,10 +115,63 @@ class ReportsController extends Controller
     }
 
 
-    public function incomingDiscountsReport()
+
+    // TODO
+    public function incomingDiscountsReport(User $user)
     {
-        return view('Web.repots.new-prints.incoming-discounts-report');
+
+
+        // $manager = User::whereRoleIs('manager')->where('employee_id', $user->id)->get();
+
+        $managers = User::whereHas('employees', function ($q) use ($user) {
+            $q->where('employee_id', $user->id);
+        })->get();
+
+        foreach ($managers as $manager) {
+
+            $tasks = Task::whereHas(
+                'employees',
+                function ($q) use ($user) {
+                    $q->where('id', $user->id);
+                }
+            )->where('manager_id', $manager->id)->where('status', 'active')->get();
+        }
+
+        // foreach ($tasks as $task) {
+
+        // }
+
+
+        // $totalAmount = Discount::whereHas('task', function ($q)  {
+        //     $q->where('task_id');
+        // })->get();
+        foreach ($tasks as $task) {
+            $totalAmount = DB::table('task_user')->where('user_id', $user->id)->sum('max_worning_discount');
+
+            $discount = DB::table('task_user')
+                ->where('user_id', $user->id)
+                ->select('max_worning_discount')
+                ->where('task_id', $task->id);
+        }
+
+        dd($discount);
+
+
+
+
+        return view('Web.repots.new-prints.incoming-discounts-report', compact('user', 'tasks', 'managers', 'totalAmount', 'discount'));
     }
+
+
+
+
+
+
+
+
+
+
+
 
     public function MovementOfOutGoingTasksAccordingToThAassignedAuthority()
     {

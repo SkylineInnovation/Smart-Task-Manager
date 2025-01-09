@@ -323,11 +323,11 @@ Route::get('reports-page', [ReportsController::class, 'indexReport'])->name('ind
 Route::post('discounts-Outgoing-Tasks-request', [ReportsController::class, 'discountsOutgoingTasksRequest'])->name('discounts-Outgoing-Task-request.emp');
 Route::post('comments-on-all-tasks', [ReportsController::class, 'commentsOnAllTasks'])->name('commentsOnAllTasks.allReportsCommints');
 Route::get('important-comments/{task}', [ReportsController::class, 'importantComments'])->name('importantComments.task');
-
-
-
 Route::post('task-specific-comments', [ReportsController::class, 'taskSpecificComments'])->name('taskSpecificComments.page');
-Route::get('incoming-discount-rseport', [ReportsController::class, 'incomingDiscountsReport']);
+
+Route::get('incoming-discount-rseport/{user}', [ReportsController::class, 'incomingDiscountsReport'])->name('incomingDiscountsReport.mangerTasks');
+
+
 Route::get('movement-of-outgoing-tasks-according-to-the-assigned-authority', [ReportsController::class, 'MovementOfOutGoingTasksAccordingToThAassignedAuthority']);
 Route::get('incoming-tasks-movement-for-the-employee', [ReportsController::class, 'incomingTasksMovementForTheEmployee']);
 Route::get('short-task-log', [ReportsController::class, 'shortTaskLog']);

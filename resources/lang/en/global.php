@@ -373,5 +373,5 @@ return [
     'commints-in-all-tasks' => 'Commints In All Tasks',
 
     "important-comments" => 'Important Commentst',
-    "Task-specific-comments" => 'Task Specifi Comments',
+    "Task-specific-comments" => 'Task Specific Comments',
 ];

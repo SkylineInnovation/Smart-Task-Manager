@@ -166,64 +166,63 @@
     tabindex="-1" role="dialog" aria-labelledby="important-commentsLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content border-0">
-            <form action="{{ route('task.commintes.report') }}" method="post">
-                @csrf
-                <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="important-commentsLabel">{{ __('global.important-commentst') }}</h5>
-                    <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input type="text" id="searchInput" class="form-control"
-                            placeholder="Search for names, emails, etc." onkeyup="filterTable()">
-                    </div>
-                    <!-- Table -->
 
-                    <table class="table table-bordered table-hover table-responsive">
-                        <thead class="thead-dark">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="important-commentsLabel">{{ __('global.important-commentst') }}</h5>
+                <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" id="searchInput" class="form-control"
+                        placeholder="Search for names, emails, etc." onkeyup="filterTable()">
+                </div>
+                <!-- Table -->
+
+                <table class="table table-bordered table-hover table-responsive">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>status</th>
+                            <th>employee</th>
+                            <th>view</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        @foreach ($tasks as $task)
                             <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>status</th>
-                                <th>employee</th>
-                                <th>view</th>
+                                <td>{{ $loop->index + 1 }}</td>
+                                <td>{{ $task->crud_name() }}</td>
+                                <td>{{ $task->manager->name() }}</td>
+                                <td>{{ $task->status }}</td>
+                                <td>
+                                    @foreach ($task->employees as $taskEmp)
+                                        {{ $taskEmp->name() }} ,
+                                    @endforeach
+                                </td>
+
+                                <td><a href="{{ route('importantComments.task', $task->id) }}"
+                                        class="btn btn-info fa fa-eye "></a></td>
+
                             </tr>
-                        </thead>
-                        <tbody id="tableBody">
-                            @foreach ($tasks as $task)
-                                <tr>
-                                    <td>{{ $loop->index + 1 }}</td>
-                                    <td>{{ $task->crud_name() }}</td>
-                                    <td>{{ $task->manager->name() }}</td>
-                                    <td>{{ $task->status }}</td>
-                                    <td>
-                                        @foreach ($task->employees as $taskEmp)
-                                            {{ $taskEmp->name() }} ,
-                                        @endforeach
-                                    </td>
-
-                                    <td><a href="{{ route('importantComments.task', $task->id) }}"
-                                            class="btn btn-info fa fa-eye "></a></td>
-
-                                </tr>
-                            @endforeach
-                            {{-- {{ $tasks->links() }} --}}
-                        </tbody>
-                    </table>
+                        @endforeach
+                        {{-- {{ $tasks->links() }} --}}
+                    </tbody>
+                </table>
 
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"
-                        data-dismiss="modal">{{ __('global.Close') }}</button>
-                    <button type="submit" class="btn btn-primary fs-25">
-                        <i class="fa fa-print"></i>
-                    </button>
-                </div>
-            </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                    data-dismiss="modal">{{ __('global.Close') }}</button>
+                <button type="submit" class="btn btn-primary fs-25">
+                    <i class="fa fa-print"></i>
+                </button>
+            </div>
+
         </div>
     </div>
 </div>
@@ -231,7 +230,6 @@
 
 <!-- Task-specific-comments -->
 {{-- تعليقات المهام المحددة --}}
-
 <div class="modal fade" {{ App::getLocale() == 'en' ? 'dir="ltr"' : 'dir="rtl"' }} id="Task-specific-comments"
     tabindex="-1" role="dialog" aria-labelledby="Task-specific-commentsLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -239,7 +237,8 @@
             <form action="{{ route('taskSpecificComments.page') }}" method="post">
                 @csrf
                 <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="Task-specific-commentsLabel">{{ __('global.Task-specific-comments') }}
+                    <h5 class="modal-title" id="Task-specific-commentsLabel">
+                        {{ __('global.Task-specific-comments') }}
                     </h5>
                     <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -299,6 +298,73 @@
                     </button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+{{-- end teask Model Report --}}
+
+
+<!-- TIncoming Discounts Report -->
+{{-- تقرير الخصومات الواردة   --}}
+<div class="modal fade" {{ App::getLocale() == 'en' ? 'dir="ltr"' : 'dir="rtl"' }} id="Incoming-Discounts-Report"
+    tabindex="-1" role="dialog" aria-labelledby="Incoming-Discounts-ReportLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0">
+
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="Incoming-Discounts-ReportLabel">
+                    {{ __('global.Incoming-Discounts-Report') }}
+                </h5>
+                <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" id="searchInput3" class="form-control"
+                        placeholder="Search for names, emails, etc." onkeyup="filterTable3()">
+                </div>
+                <!-- Table -->
+
+                <table class="table table-bordered table-hover table-responsive-sm">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>status</th>
+
+                            <th>view</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody3">
+                        @foreach ($employees as $emp)
+                            <tr>
+                                <td>{{ $emp->id }}</td>
+                                <td>{{ $emp->crud_name() }}</td>
+                                <td>{{ $emp->email }}</td>
+                                <td>{{ $emp->status }}</td>
+                                <td>
+                                    <a href="{{ route('incomingDiscountsReport.mangerTasks', $emp->id) }}"
+                                        class="btn btn-primary">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+
+
+                    </tbody>
+                </table>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                    data-dismiss="modal">{{ __('global.Close') }}</button>
+
+            </div>
+
         </div>
     </div>
 </div>
