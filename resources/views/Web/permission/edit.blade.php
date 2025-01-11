@@ -62,7 +62,7 @@
                                     <div class="col-12">
                                         <label for="role_name">{{ __('global.role_name') }}</label>
                                         <input value="{{ old('role_name', $role->name) }}" id="role_name"
-                                            class="form-control" type="text" name="role_name"
+                                            class="form-control" type="text" name="role_name" readonly disabled
                                             placeholder="{{ __('global.enter') }} {{ __('global.role_name') }}">
                                     </div>
                                     <div class="col-6">

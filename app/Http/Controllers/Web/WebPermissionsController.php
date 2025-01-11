@@ -85,7 +85,7 @@ class WebPermissionsController extends Controller
         $permissions = $request->input('permissions');
 
         $role->update([
-            'name' => $role_name,
+            // 'name' => $role_name,
             'display_name' => [
                 'ar' => $request->input('role_name_ar', $role->the_display_name('ar')),
                 'en' => $request->input('role_name_en', $role->the_display_name('en')),
