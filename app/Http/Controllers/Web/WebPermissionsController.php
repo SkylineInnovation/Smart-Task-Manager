@@ -29,7 +29,9 @@ class WebPermissionsController extends Controller
 
     public function create(Request $request)
     {
-        // 
+        $request->validate([
+            'role_name' => 'required|unique:roles,name',
+        ]);
 
         $role_name = $request->input('role_name');
         $permissions = $request->input('permissions');
@@ -55,7 +57,7 @@ class WebPermissionsController extends Controller
 
     public function edit(Role $role)
     {
-        if (in_array($role->name, ['owner', 'manager', 'employee', 'financial', 'technical',]))
+        if (in_array($role->name, ['owner', 'financial', 'technical',]))
             return redirect()->route('web.permissions.view');
 
 
@@ -75,6 +77,10 @@ class WebPermissionsController extends Controller
 
     public function update(Role $role, Request $request)
     {
+        $request->validate([
+            'role_name' => 'required|unique:roles,name,' . $role->id,
+        ]);
+
         $role_name = $request->input('role_name');
         $permissions = $request->input('permissions');
 

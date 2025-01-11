@@ -13,7 +13,6 @@ class ReportsController extends Controller
 {
 
     public function indexReport(Request $request)
-
     {
 
         $users = User::orderBy('first_name')->get();

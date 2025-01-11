@@ -16,6 +16,16 @@
 @section('content')
     <div class="">
 
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="card">
             <div class="card-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">{{ __('global.create-permissions') }}</h5>
@@ -51,31 +61,31 @@
                                 <div class="row mt-3">
                                     <div class="col-12">
                                         <label for="role_name">{{ __('global.role_name') }}</label>
-                                        <input value="{{ $role->name }}" id="role_name" class="form-control"
-                                            type="text" name="role_name"
+                                        <input value="{{ old('role_name', $role->name) }}" id="role_name"
+                                            class="form-control" type="text" name="role_name"
                                             placeholder="{{ __('global.enter') }} {{ __('global.role_name') }}">
                                     </div>
                                     <div class="col-6">
                                         <label for="role_name_ar">{{ __('global.role_name_ar') }}</label>
-                                        <input value="{{ $role->the_display_name('ar') }}" id="role_name_ar"
-                                            class="form-control" type="text" name="role_name_ar"
+                                        <input value="{{ old('role_name_ar', $role->the_display_name('ar')) }}"
+                                            id="role_name_ar" class="form-control" type="text" name="role_name_ar"
                                             placeholder="{{ __('global.enter') }} {{ __('global.role_name_ar') }}">
                                     </div>
                                     <div class="col-6">
                                         <label for="role_name_en">{{ __('global.role_name_en') }}</label>
-                                        <input value="{{ $role->the_display_name('en') }}" id="role_name_en"
-                                            class="form-control" type="text" name="role_name_en"
+                                        <input value="{{ old('role_name_en', $role->the_display_name('en')) }}"
+                                            id="role_name_en" class="form-control" type="text" name="role_name_en"
                                             placeholder="{{ __('global.enter') }} {{ __('global.role_name_en') }}">
                                     </div>
                                     <div class="col-12">
                                         <label for="role_description_ar">{{ __('global.role_description_ar') }}</label>
                                         <textarea name="role_description_ar" id="role_description_ar" rows="3"class="form-control"
-                                            placeholder="{{ __('global.enter') }} {{ __('global.role_description_ar') }}">{{ $role->the_description('ar') }}</textarea>
+                                            placeholder="{{ __('global.enter') }} {{ __('global.role_description_ar') }}">{{ old('role_description_ar', $role->the_description('ar')) }}</textarea>
                                     </div>
                                     <div class="col-12">
                                         <label for="role_description_en">{{ __('global.role_description_en') }}</label>
                                         <textarea name="role_description_en" id="role_description_en" rows="3"class="form-control"
-                                            placeholder="{{ __('global.enter') }} {{ __('global.role_description_en') }}">{{ $role->the_description('en') }}</textarea>
+                                            placeholder="{{ __('global.enter') }} {{ __('global.role_description_en') }}">{{ old('role_description_en', $role->the_description('en')) }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +98,8 @@
                                         <div class="form-check-item">
                                             <input class="form-check-input" type="checkbox" value="{{ $rp->id }}"
                                                 id="permission-{{ $rp->id }}" name="permissions[]"
-                                                {!! $rp->roles->contains($role) ? 'checked' : '' !!}>
+                                                @if (old('permissions')) @if (in_array($rp->id, old('permissions', []))) checked @endif
+                                            @else @if ($rp->roles->contains($role)) checked @endif @endif>
                                             <label class="form-check-label me-4" for="permission-{{ $rp->id }}">
                                                 {{ $rp->the_display_name() }}
                                             </label>
