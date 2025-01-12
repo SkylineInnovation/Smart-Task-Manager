@@ -221,4 +221,22 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserDetail::class)->latestOfMany();
     }
+
+    public function tasks_by_manager($manager, $from_date = null, $to_date = null, $by_date = null)
+    {
+        // whereBetween($this->by_date, [$this->from_date . ' 00:00:00', $this->to_date . ' 23:59:59'])
+        $tasks = new Task;
+        if ($by_date && $from_date && $to_date)
+            $tasks = $tasks->whereBetween($by_date, [$from_date . ' 00:00:00', $to_date . ' 23:59:59']);
+
+        $tasks = $tasks->where('manager_id', $manager->id);
+
+        $tasks = $tasks->whereHas('employees', function ($q) {
+            $q->where('id', $this->id);
+        });
+
+        $tasks = $tasks->get();
+
+        return $tasks;
+    }
 }

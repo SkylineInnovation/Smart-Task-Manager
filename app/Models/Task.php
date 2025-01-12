@@ -558,4 +558,9 @@ class Task extends Model
     {
         return $this->hasOne(CompletePercentage::class)->latestOfMany();
     }
+
+    public function emp_discount($empID)
+    {
+        return $this->discounts->where('user_id', $empID)->sum('amount');
+    }
 }

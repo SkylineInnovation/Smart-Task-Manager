@@ -321,14 +321,41 @@ Route::get('reports-page', [ReportsController::class, 'indexReport'])->name('ind
 
 
 Route::post('discounts-Outgoing-Tasks-request', [ReportsController::class, 'discountsOutgoingTasksRequest'])->name('discounts-Outgoing-Task-request.emp');
-Route::post('comments-on-all-tasks', [ReportsController::class, 'commentsOnAllTasks'])->name('commentsOnAllTasks.allReportsCommints');
-Route::get('important-comments/{task}', [ReportsController::class, 'importantComments'])->name('importantComments.task');
-Route::post('task-specific-comments', [ReportsController::class, 'taskSpecificComments'])->name('taskSpecificComments.page');
 
-Route::get('incoming-discount-rseport/{user}', [ReportsController::class, 'incomingDiscountsReport'])->name('incomingDiscountsReport.mangerTasks');
+// Route::get('movement-of-outgoing-tasks-according-to-the-assigned-authority', [ReportsController::class, 'MovementOfOutGoingTasksAccordingToThAassignedAuthority']);
+// Route::get('incoming-tasks-movement-for-the-employee', [ReportsController::class, 'incomingTasksMovementForTheEmployee']);
+
+// Route::get('follow-up-on-employee-tasks', [ReportsController::class, 'FollowUpOnEmployeeTasks']);
+
 
 
 Route::get('movement-of-outgoing-tasks-according-to-the-assigned-authority', [ReportsController::class, 'MovementOfOutGoingTasksAccordingToThAassignedAuthority']);
 Route::get('incoming-tasks-movement-for-the-employee', [ReportsController::class, 'incomingTasksMovementForTheEmployee']);
-Route::get('short-task-log', [ReportsController::class, 'shortTaskLog']);
-Route::get('follow-up-on-employee-tasks', [ReportsController::class, 'FollowUpOnEmployeeTasks']);
+
+// DONE (we need the managers, from date, to date)
+// NOT SHOW ON PAGE
+Route::get('total-dicount-by-manager/{manager}', [ReportsController::class, 'totalDicountByManager'])->name('total.dicount.by.manager');
+
+// DONE (we need to pass the selected tasks)
+// SHOW ON PAGE
+Route::post('task-specific-comments', [ReportsController::class, 'listOfTasksComments'])->name('task.specific.comments.page');
+
+// SHOW ON PAGE
+// DONE (we need the managers, from date, to date)
+Route::post('comments-on-all-tasks', [ReportsController::class, 'commentsOnAllTasks'])->name('comments.all.tasks');
+
+// DONE (we need to pass the selected tasks)
+// SHOW ON PAGE
+Route::get('task-comments/{task}', [ReportsController::class, 'oneTaskComments'])->name('one.task.comments');
+
+// DONE (we need to pass the selected user)
+// SHOW ON PAGE
+Route::get('incoming-discount-rseport/{user}', [ReportsController::class, 'discountsReport'])->name('incoming.discount.rseport');
+
+// DONE (we need to pass the selected user)
+// SHOW ON PAGE
+Route::get('task-short-desc', [ReportsController::class, 'tasksShortDesc'])->name('tasks.short.desc');
+
+// DONE (we need to pass the selected user)
+// NOT SHOW ON PAGE
+Route::get('employee-follow-up/{user}', [ReportsController::class, 'employeeFollowUp'])->name('employee.follow.up');

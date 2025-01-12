@@ -180,8 +180,8 @@ class Discount extends Model
             $q->whereIn('id', array_map('intval', explode(',', $search)));
 
 
-            $q->orWhere('task_id', $search);
-            $q->orWhere('user_id', $search);
+            // $q->orWhere('task_id', $search);
+            // $q->orWhere('user_id', $search);
             $q->orWhereSearch('amount', $search);
             $q->orWhereSearch('reason', $search);
 

@@ -75,7 +75,10 @@
                 <th scope="col" class="col-2  align-self-center bg-white">
                     <div class="col-md-12">
 
-                        @php
+                        @foreach ($task->employees as $taskEmp)
+                            {{ $taskEmp->first_name }} ,
+                        @endforeach
+                        {{-- @php
                             $count = 0;
                         @endphp
                         @foreach ($task->employees as $taskEmp)
@@ -85,7 +88,7 @@
                             @php
                                 $count++;
                             @endphp
-                        @endforeach
+                        @endforeach --}}
                     </div>
                 </th>
                 <th scope="col" class="col-1  align-self-center">
@@ -105,62 +108,27 @@
                 <tr>
                     <td colspan="7" class="text-center text-white fw-bold" style="background:#ffffff">
                 <tr class="bg-white">
-                    <td colspan=""> {{ $allCommints->user->first_name }}</td>
+                    <td colspan="1"> {{ $allCommints->user->first_name }}</td>
                     <td colspan="6"> {{ $allCommints->desc }}</td>
                 </tr>
                 </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="7" class="text-center text-white fw-bold" style="background:#a8a8a8"> ﺍﻹﻧﺠﺎﺯﺍﺕ
-                        ﻭﺍﻟﺘﻌﻠﻴﻘﺎﺕ
-                        ﺧﻼﻝ ﻫﺬﺓ ﺍﻟﻔﺘﺮﺓ
+                    <td colspan="7" class="text-center text-white fw-bold" style="background:#a8a8a8">
+                        ﺍﻹﻧﺠﺎﺯﺍﺕ ﻭﺍﻟﺘﻌﻠﻴﻘﺎﺕ ﺧﻼﻝ ﻫﺬﺓ ﺍﻟﻔﺘﺮﺓ
                     </td>
                 </tr>
             @endforelse
 
-
-
-
-
-            {{-- <tr>
-                <th scope="col" class="col-1  align-self-center" style="background-color:#EFF8FF ">
-                    <div class="col-md-12"> المرسل </div>
-                </th>
-                <th scope="col" class="col-2  align-self-center bg-white">
-                    <div class="col-md-12">احمد</div>
-                </th>
-                <th scope="col" class="col-1  align-self-center" style="background-color:#EFF8FF ">
-                    <div class="col-md-12"> ﺗﺎﺭﻳﺦ التعليق </div>
-                </th>
-                <th scope="col" class="col-2  align-self-center bg-white">
-                    <div class="col-md-12">1446/06/16</div>
-                </th>
-                <th scope="col" class="col-1  align-self-center" style="background-color:#EFF8FF ">
-                    <div class="col-md-12"> ﻭﻗﺖ ﺍﻟﺘﻌﻠﻴﻖ </div>
-                </th>
-                <th scope="col" class="col-1  align-self-center bg-white">
-                    <div class="col-md-12">06:19 ﻡ</div>
-                </th>
-
-
-
-            </tr>
-            <td colspan="7" class="text-center text-white fw-bold" style="background:#a8a8a8"> ﺑﺎﻧﺘﻈﺎﺭ ﺍﻟﺮﺩ ﻣﻦ ﻗﺒﻞ ﺍﻟﺸﺮﻛﺔ
-                ﺣﻴﺚ ﺍﻧﻪ ﺗﻢ ﺍﺭﺳﺎﻝ ﻛﺎﻓﺔ ﺍﻟﺘﻔﺎﺻﻴﻞ ﻭﺍﻟﺒﻴﺎﻧﺎﺕ ﻭﻣﻮﺍﻓﺎﺗﻬﺎ ﺑﻜﺎﻓﺔ ﺍﻻﻣﻮﺭ ﺍﺛﻨﺎﺀ ﺍﻟﻤﻘﺎﺑﻠﺔ ﻭﺑﺎﻟﺘﻮﺍﺻﻞ ﻉ ﺍﻟﻬﺎﺗﻒ ﺍﻻﺭﺿﻲ ﻟﻠﻌﻤﻞ
-
-            </td> --}}
-
-
         </thead>
     </table>
 
-    @foreach ($task->employees as $taskEmp)
+    {{-- @foreach ($task->employees as $taskEmp)
         @foreach ($task->comments as $tskComUsers)
             @if ($taskEmp->id == $tskComUsers->user_id)
                 <table class="collapse px-0 w-100" dir="rtl" id="collapseExample{{ $taskEmp->id }}">
                     <thead class="card card-body p-0 py-3">
-
                         <tr>
                             <th scope="col" class="col-1  align-self-center py-3" style="background-color:#EFF8FF ">
                                 <div class="col-md-12"> المرسل </div>
@@ -184,7 +152,7 @@
                         @if ($taskEmp->id == $tskComUsers->user_id)
                             @if ($tskComUsers)
                                 <tr style="background:#a8a8a8">
-                                    <td  class="text-center text-white fw-bold">
+                                    <td class="text-center text-white fw-bold">
                                         {{ $tskComUsers->desc }}
                                     </td>
                                 </tr>
@@ -198,12 +166,9 @@
                                 </td>
                             </tr>
                         @endif
-
-
                     </thead>
-
                 </table>
             @endif
         @endforeach
-    @endforeach
+    @endforeach --}}
 @endsection

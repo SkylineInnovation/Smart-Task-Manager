@@ -1,7 +1,5 @@
 {{-- تقرير الخصومات الواردة --}}
 
-
-
 @extends('layouts.livewire-app-print')
 
 @section('css')
@@ -76,33 +74,37 @@
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="7" class="text-center text-white fw-bold" style="background:#19AC47">{{ $user->name() }}
+                    <td colspan="7" class="text-center text-white fw-bold" style="background:#19AC47">
+                        {{ $user->name() }}
                     </td>
-
                 </tr>
 
 
-                @foreach ($tasks as $task)
+                @foreach ($discounts as $discount)
                     <tr>
-                        <th scope="row">{{ $task->title . ' ' . $task->id }}</th>
-                        <th scope="row">{{ $task->manager->name() }}</th>
-                        <td>1446/09/15 <br> 04:55 ﻡ</td>
-                        <td> {{ $task->status }}</td>
-                        <td>SAR {{ $discount->max_worning_discount }}</td>
+                        <th scope="row">{{ $discount->task->title . ' ' . $discount->task->id }}</th>
+                        <th scope="row">{{ $discount->task->manager->name() }}</th>
+                        <td>{{ $discount->task->format_date($discount->task->end_time) }}</td>
+                        <td> {{ __('task.' . $discount->task->status) }}</td>
+                        <td>SAR {{ $discount->amount }}</td>
                         <td>SAR 0</td>
-                        <td> ﻏﻴﺮ ﻣﺤﺪﺩ</td>
+                        <td>ﻏﻴﺮ ﻣﺤﺪﺩ</td>
                     </tr>
                 @endforeach
+
                 <tr>
-                    <td colspan="1" class="text-center text-white fw-bold" style="background:#FF9896">ﻋﺪﺩ ﺍلمهام /٤
+                    <td colspan="1" class="text-center text-white fw-bold" style="background:#FF9896">
+                        ﻋﺪﺩ ﺍلمهام / {{ $discounts->count() }}
                     </td>
 
                     <td colspan="3" class="text-center text-white fw-bold" style="background:#a8a8a8"></td>
-                    <td colspan="1" class="text-center text-white fw-bold" style="background:#FF9896">SAR
-                        {{ $totalAmount }}</td>
-                    <td colspan="1" class="text-center text-white fw-bold" style="background:#FF9896">SAR 0</td>
+                    <td colspan="1" class="text-center text-white fw-bold" style="background:#FF9896">
+                        SAR {{ $discounts->sum('amount') }}
+                    </td>
+                    <td colspan="1" class="text-center text-white fw-bold" style="background:#FF9896">
+                        SAR 0
+                    </td>
                     <td colspan="1" class="text-center text-white fw-bold" style="background:#a8a8a8"></td>
-
                 </tr>
 
             </tbody>

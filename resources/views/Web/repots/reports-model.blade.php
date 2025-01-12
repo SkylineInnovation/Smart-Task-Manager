@@ -1,6 +1,6 @@
 <!-- OutgoingTaskDiscounts ModelReport -->
 {{-- الخصومات المهام الصادرة --}}
-<div class="modal fade" id="OutgoingTaskDiscounts" tabindex="-1" role="dialog" aria-labelledby="OutgoingTaskDiscountsLabel"
+{{-- <div class="modal fade" id="OutgoingTaskDiscounts" tabindex="-1" role="dialog" aria-labelledby="OutgoingTaskDiscountsLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <form class="form-inline" method="post" action="{{ route('discounts-Outgoing-Task-request.emp') }}">
@@ -18,7 +18,7 @@
                         <label class="my-1" for="inlineFormCustomSelectPref">{{ __('global.user account') }}</label>
                         <select id="selectBankList" class="custom-select w-100" id="inlineFormCustomSelectPref"
                             name="user">
-                            <option selected>{{ __('global.Choose') }}</option>
+                            <option value="">{{ __('global.Choose') }}</option>
 
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}">{{ $user->name() }}</option>
@@ -27,16 +27,6 @@
 
                         </select>
                     </div>
-
-                    <label class="my-1" for="inlineFormCustomSelectPref">{{ __('task.status') }}</label>
-                    <select class="custom-select w-100" id="inlineFormCustomSelectPref" name="status">
-                        <option>{{ __('global.Choose') }}</option>
-
-                        @foreach ($tasks_status as $task_s)
-                            <option value="{{ $task_s->status }}">{{ $task_s->status }}</option>
-                        @endforeach
-                    </select>
-
 
                     <div class="col-md-12 p-0">
                         <div class="row w-100 m-0">
@@ -79,7 +69,7 @@
             </div>
         </form>
     </div>
-</div>
+</div> --}}
 {{-- end OutgoingTaskDiscounts Model Report --}}
 
 
@@ -88,7 +78,7 @@
 <div class="modal fade" id="commintsInAllTasks" tabindex="-1" role="dialog" aria-labelledby="commintsInAllTasksLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form class="form-inline" method="post" action="{{ route('commentsOnAllTasks.allReportsCommints') }}">
+        <form class="form-inline" method="post" action="{{ route('comments.all.tasks') }}">
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
@@ -103,7 +93,7 @@
                         <label class="my-1" for="inlineFormCustomSelectPref">{{ __('global.user account') }}</label>
                         <select id="selectBankList" class="custom-select w-100" id="inlineFormCustomSelectPref"
                             name="user">
-                            <option selected>{{ __('global.Choose') }}</option>
+                            <option value="">{{ __('global.Choose') }}</option>
 
                             @foreach ($userManager as $user)
                                 <option value="{{ $user->id }}">{{ $user->name() }}</option>
@@ -204,8 +194,10 @@
                                     @endforeach
                                 </td>
 
-                                <td><a href="{{ route('importantComments.task', $task->id) }}"
-                                        class="btn btn-info fa fa-eye "></a></td>
+                                <td>
+                                    <a href="{{ route('one.task.comments', $task) }}"
+                                        class="btn btn-info fa fa-eye "></a>
+                                </td>
 
                             </tr>
                         @endforeach
@@ -216,8 +208,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary"
-                    data-dismiss="modal">{{ __('global.Close') }}</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('global.Close') }}</button>
                 <button type="submit" class="btn btn-primary fs-25">
                     <i class="fa fa-print"></i>
                 </button>
@@ -234,7 +225,7 @@
     tabindex="-1" role="dialog" aria-labelledby="Task-specific-commentsLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content border-0">
-            <form action="{{ route('taskSpecificComments.page') }}" method="post">
+            <form action="{{ route('task.specific.comments.page') }}" method="post">
                 @csrf
                 <div class="modal-header bg-dark text-white">
                     <h5 class="modal-title" id="Task-specific-commentsLabel">
@@ -345,7 +336,7 @@
                                 <td>{{ $emp->email }}</td>
                                 <td>{{ $emp->status }}</td>
                                 <td>
-                                    <a href="{{ route('incomingDiscountsReport.mangerTasks', $emp->id) }}"
+                                    <a href="{{ route('incoming.discount.rseport', $emp->id) }}"
                                         class="btn btn-primary">
                                         <i class="fa fa-eye"></i>
                                     </a>

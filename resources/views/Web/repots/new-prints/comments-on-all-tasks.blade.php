@@ -92,11 +92,11 @@
                     </tr>
                     @foreach ($task->comments as $taskCommints)
                         <td colspan="4" class="text-start text-white fw-bold" style="background:#a8a8a8">
-                            {{$taskCommints->user->name() . ' : ' }}
+                            {{ $taskCommints->user->name() . ' : ' }}
                             <br>
-                            {{ $taskCommints->title  }}
+                            {{ $taskCommints->title }}
 
-                            {{$taskCommints->desc}}
+                            {{ $taskCommints->desc }}
                         </td>
                     @endforeach
                 </thead>

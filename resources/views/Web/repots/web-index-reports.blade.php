@@ -87,7 +87,7 @@
                     </a>
                 </div>
 
-             <div class="col-md-2  d-flex justify-content-center">
+                <div class="col-md-2  d-flex justify-content-center">
                     <a href="" data-toggle="modal" data-target="#Incoming-Discounts-Report"
                         class="mouseHover col-md-11 py-3">
                         <div class="col-md-12 pb-3 d-flex justify-content-center">
@@ -162,8 +162,6 @@
 
 
     <script>
-
-
         function filterTable() {
             // Get search input value
             const input = document.getElementById('searchInput');
@@ -213,6 +211,7 @@
                 rows[i].style.display = rowContainsFilter ? '' : 'none';
             }
         }
+
         function filterTable3() {
             // Get search input value
             const input = document.getElementById('searchInput3');

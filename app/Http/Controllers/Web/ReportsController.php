@@ -23,12 +23,12 @@ class ReportsController extends Controller
         $tasks = Task::get();
 
 
-        $tasks_status = Task::select('status')->whereIn('status', [
+        $tasks_status = Task::whereIn('status', [
             'pending',
             'active',
             'auto-finished',
             'manual-finished',
-        ])->distinct()->get();
+        ])->select('status')->distinct()->get();
 
 
         $employees = User::whereRoleIs('employee')->get();
@@ -37,157 +37,175 @@ class ReportsController extends Controller
         return  view('Web.repots.web-index-reports', compact('users', 'tasks_status', 'userManager', 'tasks', 'employees'));
     }
 
+    // public function discountsOutgoingTasksRequest(Request $request)
+    // {
+    //     $status = $request->input('status');
+    //     $user = $request->input('user');
 
-    public function discountsOutgoingTasksRequest(Request $request)
+    //     $formDate = $request->input('fromDate');
+    //     $toDate = $request->input('toDate');
+
+    //     $userName = User::find($user);
+
+    //     $tasks = Task::orWhereHas('employees', function ($q) use ($user) {
+    //         $q->where('user_id', $user);
+    //     })->whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
+    //         ->where('status', $status)->get();
+
+    //     $totalTasks = Task::orWhereHas('employees', function ($q) use ($user) {
+    //         $q->where('user_id', $user);
+    //     })->whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
+    //         ->where('status', $status)->count();
+
+    //     $totalTasksAmount = Task::orWhereHas('employees', function ($q) use ($user) {
+    //         $q->where('user_id', $user);
+    //     })->whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
+    //         ->where('status', $status)->get();
+
+    //     foreach ($totalTasksAmount as $totalAmount)
+    //         $totalAmount = Discount::where('user_id', $userName->id)->sum('amount');
+
+
+    //     return view('Web.repots.new-prints.discounts-outgoing-tasks', [
+    //         'tasks' => $tasks,
+    //         'user' => $user,
+    //         'userName' => $userName,
+    //         'totalTasks' => $totalTasks,
+    //         'totalTasksAmount' => $totalTasksAmount,
+    //         'totalAmount' => $totalAmount ?? 0,
+    //     ]);
+    // }
+
+    // public function MovementOfOutGoingTasksAccordingToThAassignedAuthority()
+    // {
+    //     return view('Web.repots.new-prints.Movement-of-outgoing-tasks-according-to-the-assigned-authority');
+    // }
+
+    // public function incomingTasksMovementForTheEmployee()
+    // {
+    //     return view('Web.repots.new-prints.Incoming-tasks-movement-for-the-employee');
+    // }
+
+    // 
+    // 
+    // 
+    // 
+    // 
+    // 
+    // 
+    // 
+    // 
+    // 
+
+    public function totalDicountByManager(Request $request, User $manager)
     {
-        $status = $request->input('status');
-        $user = $request->input('user');
 
-        $formDate = $request->input('fromDate');
-        $toDate = $request->input('toDate');
+        $from_date = $request->input('from_date');
+        // $from_date = $from_date . ' 00:00:00';
 
-        $userName = User::find($user);
+        $to_date = $request->input('to_date');
+        // $to_date = $to_date . ' 23:59:59';
 
-        $tasks = Task::orWhereHas('employees', function ($q) use ($user) {
-            $q->where('user_id', $user);
-        })->whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
-            ->where('status', $status)->get();
+        $by_date = $request->input('by_date', 'created_at');
 
-        $totalTasks = Task::orWhereHas('employees', function ($q) use ($user) {
-            $q->where('user_id', $user);
-        })->whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
-            ->where('status', $status)->count();
+        $employees = User::whereHas('managers', function ($q) use ($manager) {
+            $q->where('id', $manager->id);
+        })->get();
 
-        $totalTasksAmount = Task::orWhereHas('employees', function ($q) use ($user) {
-            $q->where('user_id', $user);
-        })->whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
-            ->where('status', $status)->get();
-
-        foreach ($totalTasksAmount as $totalAmount)
-            $totalAmount = Discount::where('user_id', $userName->id)->sum('amount');
-
-
-        return view('Web.repots.new-prints.discounts-outgoing-tasks', [
-            'tasks' => $tasks,
-            'user' => $user,
-            'userName' => $userName,
-            'totalTasks' => $totalTasks,
-            'totalTasksAmount' => $totalTasksAmount,
-            'totalAmount' => $totalAmount ?? 0,
-        ]);
+        return view('Web.repots.new-prints.total-dicount-by-manager', compact(
+            'manager',
+            'employees',
+            'from_date',
+            'to_date',
+            'by_date',
+        ));
     }
-    public function commentsOnAllTasks(Request $request)
+
+    public function listOfTasksComments(Request $request)
     {
-        $user = $request->input('user');
-        $formDate = $request->input('formDate');
-        $toDate = $request->input('toDate');
-        if ($formDate == null && $toDate == null) { {
-                $tasks = Task::where('manager_id', $user)->get();
-            }
-        } else {
-            $tasks = Task::where('manager_id', $user)
-                ->whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
-                ->get();
-        }
+        $taskSelect = $request->input('taskCheck');
 
-        return view('Web.repots.new-prints.comments-on-all-tasks', compact('tasks'));
-    }
-
-    public function importantComments(Task $task)
-    {
-
-        return view('Web.repots.new-prints.important-comments', compact('task'));
-    }
-
-    public function taskSpecificComments(Request $request)
-    {
-        $taskSelect[] = $request->input('taskCheck');
-
-
-
-        foreach ($taskSelect as $arr => $ts) {
-            $viewTasks = Task::whereIn('id', $ts)->get();
-        }
-
+        $viewTasks = Task::whereIn('id', $taskSelect)->get();
 
         return view('Web.repots.new-prints.task-specific-comments', compact('viewTasks'));
     }
 
-
-
-    // TODO
-    public function incomingDiscountsReport(User $user)
+    public function commentsOnAllTasks(Request $request)
     {
+        $manager = $request->input('user', 0);
+        $from_date = $request->input('from_date');
+        $to_date = $request->input('to_date');
+        $by_date = $request->input('by_date', 'created_at');
+
+        $tasks = new Task;
+
+        if ($manager != 0)
+            $tasks = $tasks->where('manager_id', $manager);
+
+        if ($from_date && $to_date && $by_date)
+            $tasks = $tasks->whereBetween($by_date, [$from_date . ' 00:00:00', $to_date . ' 23:59:59']);
+
+        $tasks = $tasks->get();
 
 
-        // $manager = User::whereRoleIs('manager')->where('employee_id', $user->id)->get();
-
-        $managers = User::whereHas('employees', function ($q) use ($user) {
-            $q->where('employee_id', $user->id);
-        })->get();
-
-        foreach ($managers as $manager) {
-
-            $tasks = Task::whereHas(
-                'employees',
-                function ($q) use ($user) {
-                    $q->where('id', $user->id);
-                }
-            )->where('manager_id', $manager->id)->where('status', 'active')->get();
-        }
-
-        // foreach ($tasks as $task) {
-
-        // }
-
-
-        // $totalAmount = Discount::whereHas('task', function ($q)  {
-        //     $q->where('task_id');
-        // })->get();
-        foreach ($tasks as $task) {
-            $totalAmount = DB::table('task_user')->where('user_id', $user->id)->sum('max_worning_discount');
-
-            $discount = DB::table('task_user')
-                ->where('user_id', $user->id)
-                ->select('max_worning_discount')
-                ->where('task_id', $task->id);
-        }
-
-        dd($discount);
-
-
-
-
-        return view('Web.repots.new-prints.incoming-discounts-report', compact('user', 'tasks', 'managers', 'totalAmount', 'discount'));
+        return view('Web.repots.new-prints.comments-on-all-tasks', compact('tasks'));
     }
 
-
-
-
-
-
-
-
-
-
-
-
-    public function MovementOfOutGoingTasksAccordingToThAassignedAuthority()
+    public function oneTaskComments(Task $task)
     {
-        return view('Web.repots.new-prints.Movement-of-outgoing-tasks-according-to-the-assigned-authority');
+        return view('Web.repots.new-prints.one-task-comments', compact('task'));
     }
 
-    public function incomingTasksMovementForTheEmployee()
+    public function discountsReport(User $user)
     {
-        return view('Web.repots.new-prints.Incoming-tasks-movement-for-the-employee');
-    }
-    public function shortTaskLog()
-    {
-        return view('Web.repots.new-prints.Short-task-log');
+        $discounts = Discount::where('user_id', $user->id)->get();
+
+        return view('Web.repots.new-prints.incoming-discounts-report', compact('user', 'discounts'));
     }
 
-    public function FollowUpOnEmployeeTasks()
+    public function tasksShortDesc(Request $request)
     {
-        return view('Web.repots.new-prints.Follow-up-on-employee-tasks2');
+        $manager = $request->input('user', 0);
+        $from_date = $request->input('from_date');
+        $to_date = $request->input('to_date');
+        $by_date = $request->input('by_date', 'created_at');
+
+        $tasks = new Task;
+
+        if ($manager != 0)
+            $tasks = $tasks->where('manager_id', $manager);
+
+        if ($from_date && $to_date && $by_date)
+            $tasks = $tasks->whereBetween($by_date, [$from_date . ' 00:00:00', $to_date . ' 23:59:59']);
+
+        $tasks = $tasks->get();
+
+
+        return view('Web.repots.new-prints.tasks-short-desc', compact('tasks'));
+    }
+
+    // 
+    // 
+    // 
+    // 
+
+    public function employeeFollowUp(Request $request, User $user)
+    {
+        $from_date = $request->input('from_date');
+        $to_date = $request->input('to_date');
+        $by_date = $request->input('by_date', 'created_at');
+
+        $tasks = new Task;
+
+        $tasks = $tasks->whereHas('employees', function ($q) use ($user) {
+            $q->where('id', $user->id);
+        });
+
+        if ($from_date && $to_date && $by_date)
+            $tasks = $tasks->whereBetween($by_date, [$from_date . ' 00:00:00', $to_date . ' 23:59:59']);
+
+        $tasks = $tasks->get();
+
+        return view('Web.repots.new-prints.employee-follow-up', compact('user', 'tasks'));
     }
 }
