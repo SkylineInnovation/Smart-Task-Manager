@@ -373,4 +373,8 @@ return [
 
     "important-commentst" => 'تعليقات مهمة',
     "Task-specific-comments" => 'تعليقات خاصة بالمهمة',
+
+    "Incoming-Discounts-Report" => 'تقرير الخصومات الواردة',
+    "tasks-Short-Desc" => 'المهام الوصف المختصر',
+    "employeeFollowUp" => 'متابعة الموظف',
 ];

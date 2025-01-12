@@ -362,13 +362,174 @@
 {{-- end teask Model Report --}}
 
 
+<!-- tasks-Short-Desc-->
+{{-- المهام-الوصف القصير --}}
+<div class="modal fade" {{ App::getLocale() == 'en' ? 'dir="ltr"' : 'dir="rtl"' }} id="tasks-Short-Desc"
+    tabindex="-1" role="dialog" aria-labelledby="tasks-Short-DescLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <form action="{{ route('tasks.short.desc') }}" method="get">
+            @csrf
+
+            <div class="modal-content border-0">
+
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="tasks-Short-DescLabel">
+                        {{ __('global.tasks-Short-Desc') }}
+                    </h5>
+                    <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <label class="my-1" for="inlineFormCustomSelectPref">{{ __('global.user account') }}</label>
+                    <select id="selectBankList" class="custom-select w-100" id="inlineFormCustomSelectPref"
+                        name="user">
+                        <option value="">{{ __('global.Choose') }}</option>
+
+                        @foreach ($userManager as $user)
+                            <option value="{{ $user->id }}">{{ $user->name() }}</option>
+                        @endforeach
+
+
+
+
+                    </select>
+
+                    <div class="col-md-12 p-0">
+                        <div class="row w-100 m-0">
+                            <div class="col-md-6 px-1">
+                                <div class="text-end"><label for="">{{ __('global.from_date') }}</label>
+                                </div>
+                                <div class="input-group mb-3">
+
+                                    <div class="input-group-prepend">
+
+                                    </div>
+                                    <input type="date" id="" name="fromDate" class="form-control"
+                                        aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-6 px-1">
+                                <div class="text-end">
+                                    <label for="">{{ __('to date') }}</label>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+
+                                    </div>
+                                    <input type="date" class="form-control" name="toDate" aria-label="Default"
+                                        aria-describedby="inputGroup-sizing-default">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">{{ __('global.Close') }}</button>
+
+                    <button type="submit" class="btn btn-primary fs-25">
+                        <i class="fa fa-print"></i>
+                    </button>
+
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+{{-- المهام-الوصف القصير --}}
 
 
 
 
 
 
+<!-- tasks-Short-Desc-->
+{{-- المهام-الوصف القصير --}}
+<div class="modal fade" {{ App::getLocale() == 'en' ? 'dir="ltr"' : 'dir="rtl"' }} id="employeeFollowUp"
+    tabindex="-1" role="dialog" aria-labelledby="employeeFollowUpLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
 
+
+        <div class="modal-content border-0">
+
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="employeeFollowUpLabel">
+                    {{ __('global.employeeFollowUp') }}
+                </h5>
+                <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" id="searchInput4" class="form-control"
+                            placeholder="Search for names, emails, etc." onkeyup="filterTable4()">
+                    </div>
+                    <!-- Table -->
+
+                    <table class="table table-bordered table-hover table-responsive">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>status</th>
+
+                                <th>view</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody4">
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->name() }}</td>
+                                    <td>{{ $user->status }}</td>
+
+
+                                    <td>
+                                        <a href="{{ route('employee.follow.up', $user->id) }}"
+                                            class="btn btn-primary">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    </td>
+
+                                </tr>
+                            @endforeach
+                            {{-- {{ $tasks->links() }} --}}
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                    data-dismiss="modal">{{ __('global.Close') }}</button>
+
+                {{-- <button type="submit" class="btn btn-primary fs-25">
+                    <i class="fa fa-print"></i>
+                </button> --}}
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{{-- المهام-الوصف القصير --}}
 
 
 

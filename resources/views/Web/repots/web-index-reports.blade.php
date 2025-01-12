@@ -100,6 +100,30 @@
                     </a>
                 </div>
 
+
+                <div class="col-md-2  d-flex justify-content-center">
+                    <a href="" data-toggle="modal" data-target="#tasks-Short-Desc" class="mouseHover col-md-11 py-3">
+                        <div class="col-md-12 pb-3 d-flex justify-content-center">
+                            <img src="{{ asset('assets/dashboard/report-one.png') }}" width="72" height="72"
+                                alt="">
+                        </div>
+                        <div class="col-md-12 text-center text-dark text-bold">
+                            {{ __('global.tasks-Short-Desc') }}
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-2  d-flex justify-content-center">
+                    <a href="" data-toggle="modal" data-target="#employeeFollowUp" class="mouseHover col-md-11 py-3">
+                        <div class="col-md-12 pb-3 d-flex justify-content-center">
+                            <img src="{{ asset('assets/dashboard/report-one.png') }}" width="72" height="72"
+                                alt="">
+                        </div>
+                        <div class="col-md-12 text-center text-dark text-bold">
+                            {{ __('global.employeeFollowUp') }}
+                        </div>
+                    </a>
+                </div>
+
                 {{-- <div class="col-md-2  d-flex justify-content-center">
                     <a href="" data-toggle="modal" data-target="#OutgoingTaskMovements"
                         class="mouseHover col-md-11 py-3">
@@ -236,5 +260,33 @@
                 rows[i].style.display = rowContainsFilter ? '' : 'none';
             }
         }
+
+
+        function filterTable4() {
+            // Get search input value
+            const input = document.getElementById('searchInput4');
+            const filter = input.value.toLowerCase();
+            const tableBody = document.getElementById('tableBody4');
+            const rows = tableBody.getElementsByTagName('tr');
+
+            // Loop through all table rows
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let rowContainsFilter = false;
+
+                // Check each cell in the row
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].innerText.toLowerCase().includes(filter)) {
+                        rowContainsFilter = true;
+                        break;
+                    }
+                }
+
+                // Show or hide the row based on the filter
+                rows[i].style.display = rowContainsFilter ? '' : 'none';
+            }
+        }
+
+        
     </script>
 @endsection

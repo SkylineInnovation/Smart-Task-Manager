@@ -374,4 +374,8 @@ return [
 
     "important-comments" => 'Important Commentst',
     "Task-specific-comments" => 'Task Specific Comments',
+    'Incoming-Discounts-Report' => 'Incoming Discounts Report',
+    'tasks-Short-Desc' => 'Tasks Short Desc',
+    'employeeFollowUp' => 'Employee Follow Up',
+
 ];
