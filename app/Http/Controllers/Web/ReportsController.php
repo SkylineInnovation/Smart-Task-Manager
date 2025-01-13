@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\Discount;
 use App\Models\Task;
 use App\Models\User;
@@ -187,6 +188,38 @@ class ReportsController extends Controller
 
     //
     //
+    public function incomingTaskMovements(User $emp)
+    {
+        $tasks = new Task;
+
+        $tasks = $tasks->whereHas('employees', function ($q) use ($emp) {
+            $q->where('id', $emp->id);
+        });
+
+        $tasks = $tasks->where('status', 'active');
+
+        $tasks = $tasks->get();
+
+        return view('Web.repots.new-prints.incoming-tasks-movement', compact('emp', 'tasks'));
+    }
+
+    public function outgoingTaskMovements(User $manager)
+    {
+        $comments = Comment::whereHas('task', function ($q) use ($manager) {
+            $q->where('manager_id', $manager->id);
+            $q->where('status', 'active');
+        });
+
+
+        $comments = $comments->orderBy('user_id', 'asc');
+        $comments = $comments->orderBy('id', 'asc');
+
+        $comments = $comments->get();
+
+
+        return view("Web.repots.new-prints.outgoing-tasks-movement", compact('manager', 'comments'));
+    }
+
     //
     //
 
@@ -216,20 +249,6 @@ class ReportsController extends Controller
     {
         return view('');
     }
-
-
-    public function IncomingTaskMovements(User $emp)
-    {
-
-        return view('Web.repots.new-prints.Incoming-tasks-movement-for-the-employee', compact('emp'));
-    }
-
-
-    public function OutgoingTaskMovements(User $manager)
-    {
-        return view("Web.repots.new-prints.Movement-of-outgoing-tasks-according-to-the-assigned-authority", compact('manager'));
-    }
-
 
     // End route
 }

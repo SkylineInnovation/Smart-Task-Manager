@@ -270,6 +270,57 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee', 'AuthA
     Route::middleware('permission:restore-completepercentage')->get('trash/completepercentages', [App\Http\Controllers\CompletePercentageController::class, 'livewireDeletedIndex'])->name('completepercentage.index.trash');
     Route::get('export/completepercentages', [App\Http\Controllers\CompletePercentageController::class, 'exportFullData'])->name('completepercentage.export');
     Route::post('import/completepercentages', [App\Http\Controllers\CompletePercentageController::class, 'importData'])->name('completepercentage.import');
+
+
+    // 
+    // 
+    // 
+    // 
+    // 
+    // 
+    Route::get('reports-page', [ReportsController::class, 'indexReport'])->name('report.index');
+
+
+    // Route::get('movement-of-outgoing-tasks-according-to-the-assigned-authority', [ReportsController::class, 'MovementOfOutGoingTasksAccordingToThAassignedAuthority']);
+    // Route::get('incoming-tasks-movement-for-the-employee', [ReportsController::class, 'incomingTasksMovementForTheEmployee']);
+
+    // DONE (we need the managers, from date, to date)
+    // NOT SHOW ON PAGE
+    Route::get('total-dicount-by-manager/{manager}', [ReportsController::class, 'totalDicountByManager'])->name('total.dicount.by.manager');
+
+    // DONE (we need to pass the selected tasks)
+    // SHOW ON PAGE
+    Route::post('task-specific-comments', [ReportsController::class, 'listOfTasksComments'])->name('task.specific.comments.page');
+
+    // SHOW ON PAGE
+    // DONE (we need the managers, from date, to date)
+    Route::post('comments-on-all-tasks', [ReportsController::class, 'commentsOnAllTasks'])->name('comments.all.tasks');
+
+    // DONE (we need to pass the selected tasks)
+    // SHOW ON PAGE
+    Route::get('task-comments/{task}', [ReportsController::class, 'oneTaskComments'])->name('one.task.comments');
+
+    // DONE (we need to pass the selected user)
+    // SHOW ON PAGE
+    Route::get('incoming-discount-rseport/{user}', [ReportsController::class, 'discountsReport'])->name('incoming.discount.rseport');
+
+    // DONE (we need to pass the selected user)
+    // SHOW ON PAGE
+    Route::get('task-short-desc', [ReportsController::class, 'tasksShortDesc'])->name('tasks.short.desc');
+
+    // new route by laith
+    // DONE (we need to pass the selected emp)
+    // SHOW ON PAGE
+    Route::get('incoming-task-movements/{emp}', [ReportsController::class, 'incomingTaskMovements'])->name('incoming.task.movements.emp');
+
+    // DONE (we need to pass the selected manager)
+    // SHOW ON PAGE
+    Route::get('outgoing-task-movements/{manager}', [ReportsController::class, 'outgoingTaskMovements'])->name('outgoing.task.movements.manager');
+    // End route
+
+    // DONE (we need to pass the selected user)
+    // SHOW ON PAGE
+    Route::get('employee-follow-up/{user}', [ReportsController::class, 'employeeFollowUp'])->name('employee.follow.up');
 });
 
 
@@ -313,42 +364,3 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee', 'AuthA
 // });
 
 // // php artisan migrate:refresh --path=database/migrations/2024_10_26_232722_create_departments_table.php
-
-Route::get('reports-page', [ReportsController::class, 'indexReport'])->name('indexReport.page');
-
-// new route by laith
-Route::get('Incoming-Task-Movements/{emp}', [ReportsController::class, 'IncomingTaskMovements'])->name('IncomingTaskMovements.emp');
-Route::get('Outgoing-Task-Movements/{manager}', [ReportsController::class, 'OutgoingTaskMovements'])->name('OutgoingTaskMovements.manager');
-// End route
-
-
-Route::get('movement-of-outgoing-tasks-according-to-the-assigned-authority', [ReportsController::class, 'MovementOfOutGoingTasksAccordingToThAassignedAuthority']);
-Route::get('incoming-tasks-movement-for-the-employee', [ReportsController::class, 'incomingTasksMovementForTheEmployee']);
-
-// DONE (we need the managers, from date, to date)
-// NOT SHOW ON PAGE
-Route::get('total-dicount-by-manager/{manager}', [ReportsController::class, 'totalDicountByManager'])->name('total.dicount.by.manager');
-
-// DONE (we need to pass the selected tasks)
-// SHOW ON PAGE
-Route::post('task-specific-comments', [ReportsController::class, 'listOfTasksComments'])->name('task.specific.comments.page');
-
-// SHOW ON PAGE
-// DONE (we need the managers, from date, to date)
-Route::post('comments-on-all-tasks', [ReportsController::class, 'commentsOnAllTasks'])->name('comments.all.tasks');
-
-// DONE (we need to pass the selected tasks)
-// SHOW ON PAGE
-Route::get('task-comments/{task}', [ReportsController::class, 'oneTaskComments'])->name('one.task.comments');
-
-// DONE (we need to pass the selected user)
-// SHOW ON PAGE
-Route::get('incoming-discount-rseport/{user}', [ReportsController::class, 'discountsReport'])->name('incoming.discount.rseport');
-
-// DONE (we need to pass the selected user)
-// SHOW ON PAGE
-Route::get('task-short-desc', [ReportsController::class, 'tasksShortDesc'])->name('tasks.short.desc');
-
-// DONE (we need to pass the selected user)
-// NOT SHOW ON PAGE
-Route::get('employee-follow-up/{user}', [ReportsController::class, 'employeeFollowUp'])->name('employee.follow.up');

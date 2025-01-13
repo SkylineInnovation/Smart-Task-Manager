@@ -56,43 +56,26 @@
             </tr>
         </thead>
 
-        <thead>
+        @foreach ($comments as $comment)
             <tr style="background-color: #EFF8FF">
                 <th scope="col" class="col-1  align-self-center bg-success text-white">
-                    <div class="col-md-12 "> ﺍﻻﺳﺘﺎﺫ / ﺍﺑﺮﺍﻫﻴﻢ ﺍﻟﻌﺒﺮﺓ</div>
+                    <div class="col-md-12 ">{{ $comment->user->name() }}</div>
                 </th>
                 <th colspan="" class="col-8  align-self-center text-white" style="background-color: #a8a8a8">
-                    <div class="col-md-12">] 13049 [ ﺍﻟﻤﻬﺎﻡ ﺑﺎﻟﻔﺘﺮﺓ ﺍﻟﻤﺴﺎﺋﻴﺔ ) ﺗﺪﺭﻳﺐ - ﺗﺴﻮﻳﻖ ( </div>
+                    <div class="col-md-12">({{ $comment->task_id }}) {{ $comment->task->title }}</div>
                 </th>
                 <th colspan="2" class="  align-self-center " style="background-color: #FF9896">
-                    <div class="col-md-12"> 1446/06/18 05:33 ﻡ </div>
+                    <div class="col-md-12">{{ $comment->task->format_date($comment->created_at) }}</div>
                 </th>
 
             </tr>
             <tr>
-                <th colspan="3" class="  align-self-center " style="background-color: #ffffff">
-                    <div class="col-md-12"> ...... ﺗﻢ ﺍﺩﺧﺎﻝ ﺍﻟﻤﺎﻟﻴﻪ ﺗﺎﺭﻳﺦ 12/19 ﺭﻓﻌﻬﺎ ﻓﻲ ﺍﻟﺴﺴﺘﻢ ] 59 </div>
+                <th colspan="3" class="align-self-center" style="background-color: #ffffff">
+                    <div class="col-md-12">{{ $comment->desc }}</div>
                 </th>
             </tr>
-        </thead>
-        <thead>
-            <tr style="background-color: #EFF8FF">
-                <th scope="col" class="col-1  align-self-center bg-success text-white">
-                    <div class="col-md-12 "> ﺍﻻﺳﺘﺎﺫ / ﺍﺑﺮﺍﻫﻴﻢ ﺍﻟﻌﺒﺮﺓ</div>
-                </th>
-                <th colspan="" class="col-8  align-self-center text-white" style="background-color: #a8a8a8">
-                    <div class="col-md-12">] 13049 [ ﺍﻟﻤﻬﺎﻡ ﺑﺎﻟﻔﺘﺮﺓ ﺍﻟﻤﺴﺎﺋﻴﺔ ) ﺗﺪﺭﻳﺐ - ﺗﺴﻮﻳﻖ ( </div>
-                </th>
-                <th colspan="2" class="  align-self-center " style="background-color: #FF9896">
-                    <div class="col-md-12"> 1446/06/18 05:33 ﻡ </div>
-                </th>
+        @endforeach
 
-            </tr>
-            <tr>
-                <th colspan="3" class="  align-self-center " style="background-color: #ffffff">
-                    <div class="col-md-12"> ﺗﻢ ﺍﺻﺪﺍﺭ ﺍﻟﺠﺪﺍﻭﻝ ﻟﻠﻤﺴﺘﺠﺪﻳﻦ ﻭ ﺗﻮﻗﻴﻊ ﺍﻟﻌﻘﻮﺩ ﻭ ﺍﻟﺒﺪ ﻓﻲ ﺍﻟﻤﻨﺎﻫﺞ ] 60 [ </div>
-                </th>
-            </tr>
-        </thead>
+
     </table>
 @endsection

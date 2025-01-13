@@ -579,7 +579,7 @@
 
 
                                     <td>
-                                        <a href="{{ route('IncomingTaskMovements.emp', $user->id) }}"
+                                        <a href="{{ route('incoming.task.movements.emp', $user->id) }}"
                                             class="btn btn-primary fs-25">
                                             <i class="fa fa-eye"></i>
                                         </a>
@@ -655,7 +655,7 @@
 
 
                                     <td>
-                                        <a href="{{ route('OutgoingTaskMovements.manager', $user->id) }}"
+                                        <a href="{{ route('outgoing.task.movements.manager', $user->id) }}"
                                             class="btn btn-primary fs-25">
                                             <i class="fa fa-eye"></i>
                                         </a>
