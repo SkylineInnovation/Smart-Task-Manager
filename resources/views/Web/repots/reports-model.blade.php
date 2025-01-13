@@ -1,9 +1,9 @@
 <!-- OutgoingTaskDiscounts ModelReport -->
 {{-- الخصومات المهام الصادرة --}}
-{{-- <div class="modal fade" id="OutgoingTaskDiscounts" tabindex="-1" role="dialog" aria-labelledby="OutgoingTaskDiscountsLabel"
+<div class="modal fade" id="OutgoingTaskDiscounts" tabindex="-1" role="dialog" aria-labelledby="OutgoingTaskDiscountsLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form class="form-inline" method="post" action="{{ route('discounts-Outgoing-Task-request.emp') }}">
+        <form class="form-inline" method="post" action="">
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
@@ -69,7 +69,7 @@
             </div>
         </form>
     </div>
-</div> --}}
+</div>
 {{-- end OutgoingTaskDiscounts Model Report --}}
 
 
@@ -208,7 +208,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('global.Close') }}</button>
+                <button type="button" class="btn btn-secondary"
+                    data-dismiss="modal">{{ __('global.Close') }}</button>
                 <button type="submit" class="btn btn-primary fs-25">
                     <i class="fa fa-print"></i>
                 </button>
@@ -447,10 +448,6 @@
 {{-- المهام-الوصف القصير --}}
 
 
-
-
-
-
 <!-- tasks-Short-Desc-->
 {{-- المهام-الوصف القصير --}}
 <div class="modal fade" {{ App::getLocale() == 'en' ? 'dir="ltr"' : 'dir="rtl"' }} id="employeeFollowUp"
@@ -511,6 +508,11 @@
                     </table>
 
 
+                    @foreach ($userManager as $user)
+                        <option value="{{ $user->id }}">{{ $user->name() }}</option>
+                    @endforeach
+
+
                 </div>
             </div>
 
@@ -533,8 +535,156 @@
 
 
 
+<!-- Incoming Task Movements ModelReport -->
+{{-- حركات المهام الواردة --}}
+<div class="modal fade" id="IncomingTaskMovements" tabindex="-1" role="dialog"
+    aria-labelledby="IncomingTaskMovementsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="IncomingTaskMovementsLabel">
+                    {{ __('global.incoming-task-movements') }}
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body ">
+
+                    <div class="form-group">
+                        <input type="text" id="searchInput5" class="form-control"
+                            placeholder="Search for names, emails, etc." onkeyup="filterTable5()">
+                    </div>
+
+                    <table class="table table-bordered table-hover table-responsive-sm" style="height: 200px">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>status</th>
+
+                                <th>view</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody5">
+                            @foreach ($employees as $user)
+                                <tr>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->name() }}</td>
+                                    <td>{{ $user->status }}</td>
 
 
+                                    <td>
+                                        <a href="{{ route('IncomingTaskMovements.emp', $user->id) }}"
+                                            class="btn btn-primary fs-25">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    </td>
+
+
+
+                                </tr>
+                            @endforeach
+                            {{-- {{ $tasks->links() }} --}}
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                    data-dismiss="modal">{{ __('global.Close') }}</button>
+                <button type="submit" class="btn btn-primary fs-25">
+                    <i class="fa fa-print"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+{{-- Incoming Task Movements Model Report --}}
+
+
+<!-- Outgoing Task Movements ModelReport -->
+{{-- حركات المهام الصادرة --}}
+<div class="modal fade" id="OutgoingTaskMovements" tabindex="-1" role="dialog"
+    aria-labelledby="OutgoingTaskMovementsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="OutgoingTaskMovementsLabel">
+                    {{ __('global.Outgoing-task-movements') }}
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body ">
+
+                    <div class="form-group">
+                        <input type="text" id="searchInput6" class="form-control"
+                            placeholder="Search for names, emails, etc." onkeyup="filterTable6()">
+                    </div>
+
+                    <table class="table table-bordered table-hover table-responsive-sm" style="height: 200px">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>status</th>
+
+                                <th>view</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody5">
+                            @foreach ($userManager as $user)
+                                <tr>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->name() }}</td>
+                                    <td>{{ $user->status }}</td>
+
+
+                                    <td>
+                                        <a href="{{ route('OutgoingTaskMovements.manager', $user->id) }}"
+                                            class="btn btn-primary fs-25">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    </td>
+
+
+
+                                </tr>
+                            @endforeach
+                            {{-- {{ $tasks->links() }} --}}
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                    data-dismiss="modal">{{ __('global.Close') }}</button>
+                <button type="submit" class="btn btn-primary fs-25">
+                    <i class="fa fa-print"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+{{-- Incoming Task Movements Model Report --}}
 
 
 
@@ -626,55 +776,6 @@
 </div> --}}
 {{-- end OutgoingTaskMovements Model Report --}}
 
-
-<!-- Incoming Task Movements ModelReport -->
-{{-- <div class="modal fade" id="IncomingTaskMovements" tabindex="-1" role="dialog"
-    aria-labelledby="IncomingTaskMovementsLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <form action="{{ route('Incoming.Task.Movements') }}" method="post">
-            @csrf
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="IncomingTaskMovementsLabel">
-                        {{ __('global.incoming-task-movements') }}
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="modal-body ">
-                        <label class="my-1 mr-2"
-                            for="inlineFormCustomSelectPref">{{ __('global.user account') }}</label>
-                        <select class="custom-select w-100" id="inlineFormCustomSelectPref" name="users">
-                            <option selected>{{ __('global.Choose') }}</option>
-
-                            @foreach ($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->name() }}</option>
-                            @endforeach
-                        </select>
-
-
-                        <div class="w-100">
-                            <label for="exampleFormControlInput1"
-                                class="form-label">{{ __('global.report-title') }}</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1"
-                                placeholder="{{ __('global.report-title') }}">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"
-                        data-dismiss="modal">{{ __('global.Close') }}</button>
-                    <button type="submit" class="btn btn-primary fs-25">
-                        <i class="fa fa-print"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div> --}}
-{{-- Incoming Task Movements Model Report --}}
 
 
 

@@ -316,17 +316,10 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee', 'AuthA
 
 Route::get('reports-page', [ReportsController::class, 'indexReport'])->name('indexReport.page');
 
-// Route::get('discounts-Outgoing-Tasks', [ReportsController::class, 'discountsOutgoingTasks'])->name('discounts-Outgoing-Task.emp');
-// Route::get('comments-on-all-tasks', [ReportsController::class, 'commentsOnAllTasks']);
-
-
-Route::post('discounts-Outgoing-Tasks-request', [ReportsController::class, 'discountsOutgoingTasksRequest'])->name('discounts-Outgoing-Task-request.emp');
-
-// Route::get('movement-of-outgoing-tasks-according-to-the-assigned-authority', [ReportsController::class, 'MovementOfOutGoingTasksAccordingToThAassignedAuthority']);
-// Route::get('incoming-tasks-movement-for-the-employee', [ReportsController::class, 'incomingTasksMovementForTheEmployee']);
-
-// Route::get('follow-up-on-employee-tasks', [ReportsController::class, 'FollowUpOnEmployeeTasks']);
-
+// new route by laith
+Route::get('Incoming-Task-Movements/{emp}', [ReportsController::class, 'IncomingTaskMovements'])->name('IncomingTaskMovements.emp');
+Route::get('Outgoing-Task-Movements/{manager}', [ReportsController::class, 'OutgoingTaskMovements'])->name('OutgoingTaskMovements.manager');
+// End route
 
 
 Route::get('movement-of-outgoing-tasks-according-to-the-assigned-authority', [ReportsController::class, 'MovementOfOutGoingTasksAccordingToThAassignedAuthority']);

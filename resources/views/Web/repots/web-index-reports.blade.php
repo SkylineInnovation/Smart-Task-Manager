@@ -123,6 +123,30 @@
                         </div>
                     </a>
                 </div>
+                <div class="col-md-2  d-flex justify-content-center">
+                    <a href="" data-toggle="modal" data-target="#IncomingTaskMovements"
+                        class="mouseHover col-md-11 py-3">
+                        <div class="col-md-12 pb-3 d-flex justify-content-center">
+                            <img src="{{ asset('assets/dashboard/report-one.png') }}" width="72" height="72"
+                                alt="">
+                        </div>
+                        <div class="col-md-12 text-center text-dark text-bold">
+                            {{ __('global.IncomingTaskMovements') }}
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-2  d-flex justify-content-center">
+                    <a href="" data-toggle="modal" data-target="#OutgoingTaskMovements"
+                        class="mouseHover col-md-11 py-3">
+                        <div class="col-md-12 pb-3 d-flex justify-content-center">
+                            <img src="{{ asset('assets/dashboard/report-one.png') }}" width="72" height="72"
+                                alt="">
+                        </div>
+                        <div class="col-md-12 text-center text-dark text-bold">
+                            {{ __('global.OutgoingTaskMovements') }}
+                        </div>
+                    </a>
+                </div>
 
                 {{-- <div class="col-md-2  d-flex justify-content-center">
                     <a href="" data-toggle="modal" data-target="#OutgoingTaskMovements"
@@ -287,6 +311,57 @@
             }
         }
 
-        
+
+        function filterTable5() {
+            // Get the search input value and convert it to lowercase for case-insensitive comparison
+            let input = document.getElementById("searchInput5");
+            let filter = input.value.toLowerCase();
+            let tableBody = document.getElementById("tableBody5");
+            let rows = tableBody.getElementsByTagName("tr");
+
+            // Loop through table rows
+            for (let i = 0; i < rows.length; i++) {
+                let cols = rows[i].getElementsByTagName("td");
+                let rowContent = "";
+
+                // Concatenate all column text values in the row
+                for (let j = 0; j < cols.length - 1; j++) { // Excluding the last column for the radio button
+                    rowContent += cols[j].innerText.toLowerCase() + " ";
+                }
+
+                // Check if row matches the filter
+                if (rowContent.indexOf(filter) > -1) {
+                    rows[i].style.display = ""; // Show row
+                } else {
+                    rows[i].style.display = "none"; // Hide row
+                }
+            }
+        }
+        function filterTable6() {
+            // Get the search input value and convert it to lowercase for case-insensitive comparison
+            let input = document.getElementById("searchInput6");
+            let filter = input.value.toLowerCase();
+            let tableBody = document.getElementById("tableBody6");
+            let rows = tableBody.getElementsByTagName("tr");
+
+            // Loop through table rows
+            for (let i = 0; i < rows.length; i++) {
+                let cols = rows[i].getElementsByTagName("td");
+                let rowContent = "";
+
+                // Concatenate all column text values in the row
+                for (let j = 0; j < cols.length - 1; j++) { // Excluding the last column for the radio button
+                    rowContent += cols[j].innerText.toLowerCase() + " ";
+                }
+
+                // Check if row matches the filter
+                if (rowContent.indexOf(filter) > -1) {
+                    rows[i].style.display = ""; // Show row
+                } else {
+                    rows[i].style.display = "none"; // Hide row
+                }
+            }
+        }
+
     </script>
 @endsection

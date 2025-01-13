@@ -86,16 +86,17 @@ class ReportsController extends Controller
     //     return view('Web.repots.new-prints.Incoming-tasks-movement-for-the-employee');
     // }
 
-    // 
-    // 
-    // 
-    // 
-    // 
-    // 
-    // 
-    // 
-    // 
-    // 
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+
 
     public function totalDicountByManager(Request $request, User $manager)
     {
@@ -184,10 +185,10 @@ class ReportsController extends Controller
         return view('Web.repots.new-prints.tasks-short-desc', compact('tasks'));
     }
 
-    // 
-    // 
-    // 
-    // 
+    //
+    //
+    //
+    //
 
     public function employeeFollowUp(Request $request, User $user)
     {
@@ -208,4 +209,27 @@ class ReportsController extends Controller
 
         return view('Web.repots.new-prints.employee-follow-up', compact('user', 'tasks'));
     }
+
+    // new route by laith
+
+    public function discountsOutgoingTasksRequest()
+    {
+        return view('');
+    }
+
+
+    public function IncomingTaskMovements(User $emp)
+    {
+
+        return view('Web.repots.new-prints.Incoming-tasks-movement-for-the-employee', compact('emp'));
+    }
+
+
+    public function OutgoingTaskMovements(User $manager)
+    {
+        return view("Web.repots.new-prints.Movement-of-outgoing-tasks-according-to-the-assigned-authority", compact('manager'));
+    }
+
+
+    // End route
 }
