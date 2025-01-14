@@ -371,10 +371,13 @@ return [
 
     'commints-in-all-tasks' => 'تعليقات  جميع المهام',
 
-    "important-commentst" => 'تعليقات مهمة',
+    "important-comments" => 'تعليقات مهمة',
     "Task-specific-comments" => 'تعليقات خاصة بالمهمة',
 
     "Incoming-Discounts-Report" => 'تقرير الخصومات الواردة',
     "tasks-Short-Desc" => 'المهام الوصف المختصر',
     "employeeFollowUp" => 'متابعة الموظف',
+
+    "IncomingTaskMovements" => 'حركات المهام الواردة',
+    "OutgoingTaskMovements" => 'حركات المهام الصادرة',
 ];

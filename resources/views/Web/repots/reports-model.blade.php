@@ -544,7 +544,7 @@
         <div class="modal-content ">
             <div class="modal-header">
                 <h5 class="modal-title" id="IncomingTaskMovementsLabel">
-                    {{ __('global.incoming-task-movements') }}
+                    {{ __('global.IncomingTaskMovements') }}
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -620,7 +620,7 @@
         <div class="modal-content ">
             <div class="modal-header">
                 <h5 class="modal-title" id="OutgoingTaskMovementsLabel">
-                    {{ __('global.Outgoing-task-movements') }}
+                    {{ __('global.OutgoingTaskMovements') }}
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

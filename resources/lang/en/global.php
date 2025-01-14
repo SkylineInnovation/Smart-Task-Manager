@@ -378,4 +378,7 @@ return [
     'tasks-Short-Desc' => 'Tasks Short Desc',
     'employeeFollowUp' => 'Employee Follow Up',
 
+    "IncomingTaskMovements" => 'Incoming Task Movements',
+    "OutgoingTaskMovements" => 'Outgoing Task Movements',
+
 ];
