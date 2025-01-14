@@ -381,4 +381,10 @@ return [
     "IncomingTaskMovements" => 'Incoming Task Movements',
     "OutgoingTaskMovements" => 'Outgoing Task Movements',
 
+    "Name" => 'Name',
+    "Email" => 'Email',
+    "status" => 'status',
+    "employee" => 'employee',
+    "view" => 'view',
+
 ];

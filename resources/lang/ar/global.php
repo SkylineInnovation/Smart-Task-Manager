@@ -380,4 +380,10 @@ return [
 
     "IncomingTaskMovements" => 'حركات المهام الواردة',
     "OutgoingTaskMovements" => 'حركات المهام الصادرة',
+
+    "Name" => 'الاسم',
+    "Email" => 'البريد الإلكتروني',
+    "status" => 'الحالة',
+    "employee" => 'موظف',
+    "view" => 'عرض',
 ];
