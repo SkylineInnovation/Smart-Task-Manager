@@ -387,4 +387,6 @@ return [
     "employee" => 'employee',
     "view" => 'view',
 
+    'no-comment-yet' => 'No Comment Yet',
+
 ];

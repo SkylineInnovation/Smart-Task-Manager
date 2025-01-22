@@ -563,4 +563,13 @@ class Task extends Model
     {
         return $this->discounts->where('user_id', $empID)->sum('amount');
     }
+
+    public function last_comment_before()
+    {
+        $comment = $this->comments()->latest()->first();
+
+        if ($comment)
+            return $comment->created_ago($comment->created_at);
+        return __('global.no-comment-yet');
+    }
 }

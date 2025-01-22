@@ -386,4 +386,7 @@ return [
     "status" => 'الحالة',
     "employee" => 'موظف',
     "view" => 'عرض',
+
+    'no-comment-yet' => 'لا يوجد تعليق بعد',
+
 ];
