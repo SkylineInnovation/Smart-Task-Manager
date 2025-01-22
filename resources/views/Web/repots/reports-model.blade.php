@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-md-6 px-1">
                                 <div class="text-end">
-                                    <label for="">{{ __('to date') }}</label>
+                                    <label for="">{{ __('global.to date') }}</label>
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -124,7 +124,7 @@
                             </div>
                             <div class="col-md-6 px-1">
                                 <div class="text-end">
-                                    <label for="">{{ __('to date') }}</label>
+                                    <label for="">{{ __('global.to date') }}</label>
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -166,7 +166,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <input type="text" id="searchInput" class="form-control"
-                        placeholder="Search for names, emails, etc." onkeyup="filterTable()">
+                        placeholder="{{ __('global.Search for names, emails, etc.') }}" onkeyup="filterTable()">
                 </div>
                 <!-- Table -->
 
@@ -174,11 +174,11 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>#</th>
-                            <th>{{__('global.Name')}}</th>
-                            <th>{{__('global.Email')}}</th>
-                            <th>{{__('global.status')}}</th>
-                            <th>{{__('global.employee')}}</th>
-                            <th>{{__('global.view')}}</th>
+                            <th>{{ __('global.Name') }}</th>
+                            <th>{{ __('global.Email') }}</th>
+                            <th>{{ __('global.status') }}</th>
+                            <th>{{ __('global.employee') }}</th>
+                            <th>{{ __('global.view') }}</th>
                         </tr>
                     </thead>
                     <tbody id="tableBody">
@@ -239,7 +239,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="text" id="searchInput2" class="form-control"
-                            placeholder="Search for names, emails, etc." onkeyup="filterTable2()">
+                            placeholder="{{ __('global.Search for names, emails, etc.') }}" onkeyup="filterTable2()">
                     </div>
                     <!-- Table -->
 
@@ -247,11 +247,11 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>#</th>
-                                <th>{{__('golbal.Name')}}</th>
-                                <th>{{__('golbal.Email')}}</th>
-                                <th>{{__('golbal.status')}}</th>
-                                <th>{{__('golbal.employee')}}</th>
-                                <th>{{__('golbal.view')}}</th>
+                                <th>{{ __('global.Name') }}</th>
+                                <th>{{ __('global.Email') }}</th>
+                                <th>{{ __('global.status') }}</th>
+                                <th>{{ __('global.employee') }}</th>
+                                <th>{{ __('global.view') }}</th>
                             </tr>
                         </thead>
                         <tbody id="tableBody2">
@@ -314,7 +314,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <input type="text" id="searchInput3" class="form-control"
-                        placeholder="Search for names, emails, etc." onkeyup="filterTable3()">
+                        placeholder="{{ __('global.Search for names, emails, etc.') }}" onkeyup="filterTable3()">
                 </div>
                 <!-- Table -->
 
@@ -322,11 +322,10 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>#</th>
-                            <th>{{__('global.Name')}}</th>
-                            <th>{{__('global.Email')}}</th>
-                            <th>{{__('global.status')}}</th>
-
-                            <th>{{__('global.view')}}</th>
+                            <th>{{ __('global.Name') }}</th>
+                            <th>{{ __('global.Email') }}</th>
+                            <th>{{ __('global.status') }}</th>
+                            <th>{{ __('global.view') }}</th>
                         </tr>
                     </thead>
                     <tbody id="tableBody3">
@@ -415,7 +414,7 @@
                             </div>
                             <div class="col-md-6 px-1">
                                 <div class="text-end">
-                                    <label for="">{{ __('to date') }}</label>
+                                    <label for="">{{ __('global.to date') }}</label>
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -470,7 +469,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="text" id="searchInput4" class="form-control"
-                            placeholder="Search for names, emails, etc." onkeyup="filterTable4()">
+                            placeholder="{{ __('global.Search for names, emails, etc.') }}" onkeyup="filterTable4()">
                     </div>
                     <!-- Table -->
 
@@ -478,11 +477,10 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th>#</th>
-                                <th>{{__('global.Name')}}</th>
-                                <th>{{__('global.Email')}}</th>
-                                <th>{{__('global.status')}}</th>
-
-                                <th>{{__('global.view')}}</th>
+                                <th>{{ __('global.Name') }}</th>
+                                <th>{{ __('global.Email') }}</th>
+                                <th>{{ __('global.status') }}</th>
+                                <th>{{ __('global.view') }}</th>
                             </tr>
                         </thead>
                         <tbody id="tableBody4">
@@ -555,18 +553,17 @@
 
                     <div class="form-group">
                         <input type="text" id="searchInput5" class="form-control"
-                            placeholder="Search for names, emails, etc." onkeyup="filterTable5()">
+                            placeholder="{{ __('global.Search for names, emails, etc.') }}" onkeyup="filterTable5()">
                     </div>
 
                     <table class="table table-bordered table-hover table-responsive-sm" style="height: 200px">
                         <thead class="thead-dark">
                             <tr>
                                 <th>#</th>
-                                <th>{{__('global.Name')}}</th>
-                                <th>{{__('global.Email')}}</th>
-                                <th>{{__('global.status')}}</th>
-
-                                <th>{{__('global.view')}}</th>
+                                <th>{{ __('global.Name') }}</th>
+                                <th>{{ __('global.Email') }}</th>
+                                <th>{{ __('global.status') }}</th>
+                                <th>{{ __('global.view') }}</th>
                             </tr>
                         </thead>
                         <tbody id="tableBody5">
@@ -631,18 +628,17 @@
 
                     <div class="form-group">
                         <input type="text" id="searchInput6" class="form-control"
-                            placeholder="Search for names, emails, etc." onkeyup="filterTable6()">
+                            placeholder="{{ __('global.Search for names, emails, etc.') }}" onkeyup="filterTable6()">
                     </div>
 
                     <table class="table table-bordered table-hover table-responsive-sm" style="height: 200px">
                         <thead class="thead-dark">
                             <tr>
                                 <th>#</th>
-                                <th>{{__('global.Name')}}</th>
-                                <th>{{__('global.Email')}}</th>
-                                <th>{{__('global.status')}}</th>
-
-                                <th>{{__('global.view')}}</th>
+                                <th>{{ __('global.Name') }}</th>
+                                <th>{{ __('global.Email') }}</th>
+                                <th>{{ __('global.status') }}</th>
+                                <th>{{ __('global.view') }}</th>
                             </tr>
                         </thead>
                         <tbody id="tableBody5">

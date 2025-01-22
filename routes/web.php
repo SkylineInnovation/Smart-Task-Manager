@@ -272,12 +272,12 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee', 'AuthA
     Route::post('import/completepercentages', [App\Http\Controllers\CompletePercentageController::class, 'importData'])->name('completepercentage.import');
 
 
-    // 
-    // 
-    // 
-    // 
-    // 
-    // 
+    //
+    //
+    //
+    //
+    //
+    //
     Route::get('reports-page', [ReportsController::class, 'indexReport'])->name('report.index');
 
 

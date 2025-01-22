@@ -296,7 +296,7 @@ return [
 
     'from date' => 'من تاريخ',
     'Gregorian' => 'ميلادي',
-    'to date' => 'حتى تاريخه',
+    'to date' => 'حتى تاريخ',
     'user account' => 'حساب المستخدم',
 
     'Choose' => 'اختر...',
@@ -388,5 +388,5 @@ return [
     "view" => 'عرض',
 
     'no-comment-yet' => 'لا يوجد تعليق بعد',
-
+    'Search for names, emails, etc.' => 'ابحث عن الأسماء والبريد الإلكتروني وما إلى ذلك.'
 ];

@@ -260,23 +260,23 @@ return [
     'region' => 'Region',
     'branch' => 'Branches',
     'departments' => 'Departments',
-    'person' => 'employees',
+    'person' => 'Employees',
     'job' => 'Team Structure',
     'permissions' => 'Permissions',
     'report' => 'Report',
-    'profile' => 'User profile',
+    'profile' => 'User Profile',
     'about' => 'About',
     'add-region' => 'Add Region',
     'add-branch' => 'Add Branch',
     'add-department' => 'Add Department',
 
     'add-user' => 'Add User',
-    'add-job' => 'add job',
+    'add-job' => 'Add Job',
     'add-permissions' => 'add permissions',
-    'add-exchange' => 'Request for exchange permit',
-    'submit-task' => 'submit task',
-    'submit-departure-form' => 'Submit leave form',
-    'submit-disbursement-permit' => 'submit disbursement permit',
+    'add-exchange' => 'Request for Exchange Permit',
+    'submit-task' => 'Submit Task',
+    'submit-departure-form' => 'Submit Leave Form',
+    'submit-disbursement-permit' => 'submit Disbursement Permit',
 
     'created-successfully' => 'Created Successfully',
     'updated-successfully' => 'Updated Successfully',
@@ -288,7 +288,7 @@ return [
     'task-archived-successfully' => 'Task Archived Successfully',
 
     'task-omments-report' => 'Task Comments Report',
-    'closed-tasks-coming-soon' => 'Upcoming task closure reports',
+    'closed-tasks-coming-soon' => 'Upcoming Task Closure Reports',
     'outgoing-task-movements' => 'Outgoing Task Movements',
     'incoming-task-movements' => 'Incoming Task Movements',
     'outgoing-task-discounts' => 'Outgoing Task Deductions',
@@ -310,16 +310,16 @@ return [
 
     'report-title' => 'Report Title',
 
-    'Incoming tasks about to close' => 'Incoming tasks about to close',
+    'Incoming tasks about to close' => 'Incoming Tasks About To Close',
     'Show tasks that will be closed after three days' => 'Show tasks that will be closed after three days',
-    'Outgoing tasks about to close' => 'Outgoing tasks about to close',
+    'Outgoing tasks about to close' => 'Outgoing Tasks About To Close',
     'Recent Operations' => 'Recent Operations',
     'All movements on the program that took place during the last 24 hours' => 'All movements on the program that took place during the last 24 hours',
     'task-management' => 'Task Management',
 
-    'Incoming tasks not commented on today' => 'Incoming tasks not commented on today',
+    'Incoming tasks not commented on today' => 'Incoming Tasks Not Commented On Today',
     'Show all tasks that do not have comments from all parties.' => 'Show all tasks that do not have comments from all parties.',
-    'Outgoing tasks not commented on today' => 'Outgoing tasks not commented on today',
+    'Outgoing tasks not commented on today' => 'Outgoing Tasks Not Commented On Today',
 
     'task-number' => 'Task Number',
     'task-manager' => 'Task Manager',
@@ -384,9 +384,9 @@ return [
     "Name" => 'Name',
     "Email" => 'Email',
     "status" => 'status',
-    "employee" => 'employee',
+    "employee" => 'Employee',
     "view" => 'view',
 
     'no-comment-yet' => 'No Comment Yet',
-
+    'Search for names, emails, etc.' => 'Search For Names, Emails, Etc.',
 ];
