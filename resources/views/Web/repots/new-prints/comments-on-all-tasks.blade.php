@@ -87,17 +87,22 @@
                                 ]
                             </div>
                         </th>
-
-
                     </tr>
-                    @foreach ($task->comments as $taskCommints)
-                        <td colspan="4" class="text-start text-white fw-bold" style="background:#a8a8a8">
-                            {{ $taskCommints->user->name() . ' : ' }}
-                            <br>
-                            {{ $taskCommints->title }}
 
-                            {{ $taskCommints->desc }}
-                        </td>
+                    @foreach ($task->comments as $taskCommints)
+                        <tr>
+                            <td colspan="3" class="text-start text-white fw-bold" style="background:#a8a8a8">
+                                {{ $taskCommints->user->name() . ' : ' }}
+                            </td>
+                            <td class="text-start text-white fw-bold" style="background:#a8a8a8">
+                                {{ $taskCommints->created_at }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="text-start text-white fw-bold" style="background:#a8a8a8">
+                                {{ $taskCommints->desc }}
+                            </td>
+                        </tr>
                     @endforeach
                 </thead>
             </table>

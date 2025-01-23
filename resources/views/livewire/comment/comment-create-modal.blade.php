@@ -53,7 +53,7 @@
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ]) --}}
 
-                                @include('inputs.create.input', [
+                                {{-- @include('inputs.create.input', [
                                     'label' => 'comment.title',
                                     'name' => 'comment.title',
                                     'livewire' => 'title',
@@ -62,7 +62,8 @@
                                     'lg' => 12,
                                     'md' => 12,
                                     'sm' => 12,
-                                ])
+                                ]) --}}
+
                                 @include('inputs.create.input', [
                                     'label' => 'comment.desc',
                                     'name' => 'comment.desc',
@@ -177,7 +178,7 @@
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ]) --}}
 
-                                @include('inputs.edit.input', [
+                                {{-- @include('inputs.edit.input', [
                                     'label' => 'comment.title',
                                     'name' => 'comment.title',
                                     'val' => $comment->title,
@@ -187,7 +188,7 @@
                                     'lg' => 12,
                                     'md' => 12,
                                     'sm' => 12,
-                                ])
+                                ]) --}}
                                 @include('inputs.edit.input', [
                                     'label' => 'comment.desc',
                                     'name' => 'comment.desc',

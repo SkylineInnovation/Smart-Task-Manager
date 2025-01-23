@@ -16,7 +16,7 @@
         <hr>
 
         <h4>{{ __('comment.user') }}: {{ $comment->user->name() }}</h4>
-        <h4>{{ __('comment.title') }}: {{ $comment->title }}</h4>
+        {{-- <h4>{{ __('comment.title') }}: {{ $comment->title }}</h4> --}}
         <h4>{{ __('comment.desc') }}: {{ $comment->desc }}</h4>
     </div>
 @endsection

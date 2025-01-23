@@ -41,9 +41,9 @@
                         <td>{{ __('comment.user') }}</td>
                     @endif
 
-                    @if ($showColumn['title'])
+                    {{-- @if ($showColumn['title'])
                         <td>{{ __('comment.title') }}</td>
-                    @endif
+                    @endif --}}
 
                     @if ($showColumn['desc'])
                         <td>{{ __('comment.desc') }}</td>
@@ -114,9 +114,9 @@
                             </td>
                         @endif
 
-                        @if ($showColumn['title'])
+                        {{-- @if ($showColumn['title'])
                             <td> {{ $comment->title }} </td>
-                        @endif
+                        @endif --}}
 
                         @if ($showColumn['desc'])
                             <td> {{ $comment->desc }} </td>

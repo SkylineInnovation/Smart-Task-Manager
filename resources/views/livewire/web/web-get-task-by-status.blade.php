@@ -6,7 +6,7 @@
                     <div class="col-md-8 col-7 p-0 ">
                         <div class="col-md-12 pt-4">
                             <h4 class="px-4 text-bold">
-                                {{ $task->title }}
+                                #{{ $task->id }}, {{ $task->title }}
                             </h4>
                         </div>
                         <div class="col-md-12">
@@ -492,7 +492,7 @@
                                     <div class="text-start">
                                         @if (in_array($task->status, ['pending', 'active']))
                                             <div>
-                                                <div class="input-group mb-1">
+                                                {{-- <div class="input-group mb-1">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text btn-secondary text-white"
                                                             id="inputGroup-sizing-default">{{ __('attachment.title') }}</span>
@@ -500,7 +500,7 @@
                                                     <input wire:model.defer="comment_title" type="text"
                                                         class="form-control" aria-label="Default"
                                                         aria-describedby="inputGroup-sizing-default">
-                                                </div>
+                                                </div> --}}
 
                                                 <div wire:ignore.self class="mb-1">
                                                     {{-- <div wire:ignore.self id="summer_desc"></div> --}}
@@ -532,7 +532,8 @@
                                                         alt="Generic placeholder image"> --}}
                                                     <div class="media-body">
                                                         <h5 class="mt-0">{{ $comment->user->name() }},
-                                                            {{ $comment->title }}</h5>
+                                                            {{-- {{ $comment->title }} --}}
+                                                        </h5>
                                                         <p>{{ $comment->desc }}</p>
                                                         <div class="col-12 d-flex justify-content-end">
                                                             @if (in_array($task->status, ['pending', 'active']))

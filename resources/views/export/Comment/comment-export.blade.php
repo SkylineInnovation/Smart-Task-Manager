@@ -8,7 +8,7 @@
 
             <td>task</td>
             <td>user</td>
-            <td>title</td>
+            {{-- <td>title</td> --}}
 
             <td>desc</td>
 
@@ -35,7 +35,7 @@
 
                 <td>{{ $comment->user ? $comment->user->crud_name() : '-- --' }}</td>
 
-                <td>{{ $comment->title }}</td>
+                {{-- <td>{{ $comment->title }}</td> --}}
 
                 <td>{{ $comment->desc }}</td>
 

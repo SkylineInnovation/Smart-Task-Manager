@@ -369,7 +369,7 @@ return [
     'rejected' => 'مرفوض',
     'accepted' => 'مقبول',
 
-    'commints-in-all-tasks' => 'تعليقات  جميع المهام',
+    'commints-in-all-tasks' => 'تعليقات جميع المهام',
 
     "important-comments" => 'تعليقات مهمة',
     "Task-specific-comments" => 'تعليقات خاصة بالمهمة',

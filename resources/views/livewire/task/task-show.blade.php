@@ -480,7 +480,8 @@
                                         alt="Generic placeholder image">
                                     <div class="media-body">
                                         <h5 class="mt-0">{{ $comment->user->name() }},
-                                            {{ $comment->title }}</h5>
+                                            {{-- {{ $comment->title }} --}}
+                                        </h5>
                                         <p>{{ $comment->desc }}</p>
                                         <div class="col-12 d-flex justify-content-end">
 

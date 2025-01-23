@@ -147,7 +147,8 @@
                             <div class="col-md-12">{{ $task->format_date($comment->created_at) }}</div>
                         </th>
                         <th colspan="5" class="  align-self-center" style="background-color: #ffffff">
-                            {{ $comment->title }} <br> {{ $comment->desc }}
+                            {{-- {{ $comment->title }} <br> --}}
+                            {{ $comment->desc }}
                         </th>
                     </tr>
                 @empty
