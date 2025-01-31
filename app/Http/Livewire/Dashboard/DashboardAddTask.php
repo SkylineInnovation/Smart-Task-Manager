@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Dashboard;
 
 use App\Jobs\SendNewTask;
+use App\Models\Branch;
+use App\Models\Department;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -14,8 +16,14 @@ class DashboardAddTask extends Component
     public Task $task;
     public $user;
 
-    public $employees = [];
+    public $employees;
     public $selectedEmployees = [];
+
+    public $departments;
+    public $selectedDepartments = [];
+
+    public $branchs;
+    public $selectedBranchs = [];
 
     public $admin_view_status = '', $by, $url;
     public function mount($admin_view_status = '')
@@ -52,6 +60,9 @@ class DashboardAddTask extends Component
             $this->employees = $this->user->employees;
         }
 
+        $this->departments = Department::get();
+        $this->branchs = Branch::get();
+
         // $this->employees = \App\Models\User::whereHas('employees', function ($q) {
         //     return $q->where('manager_id', $this->user->id);
         // })->orderBy('first_name')->get();
@@ -73,6 +84,10 @@ class DashboardAddTask extends Component
 
         if (!$this->user->hasRole('employee'))
             $this->selectedEmployees = [];
+
+
+        $this->selectedDepartments = [];
+        $this->selectedBranchs = [];
 
         $this->comment_type = 'daily';
         $this->is_separate_task = 0;
@@ -103,6 +118,8 @@ class DashboardAddTask extends Component
 
     protected $messages = [
         'selectedEmployees.required' => 'Please Select Employee',
+        'selectedDepartments.required' => 'Please Select Department',
+        'selectedBranchs.required' => 'Please Select Branch',
     ];
 
     public function updated($propertyName)
@@ -189,6 +206,44 @@ class DashboardAddTask extends Component
     {
         $this->selectedEmployees[] = $val;
     }
+
+    public $select_branch;
+    public function updatedSelectBranch($val)
+    {
+        $this->selectedBranchs[] = $val;
+
+        $this->departments = Department::whereIn('branch_id', $this->selectedBranchs)->get();
+    }
+
+    // public function updateSelectedBranchs()
+    // {
+    //     if ($this->selectedBranchs) {
+    //         $this->departments = Department::whereIn('branch_id', $this->selectedBranchs)->get();
+    //     } else {
+    //         $this->departments = Department::get();
+    //     }
+    // }
+
+    public $select_department;
+    public function updatedSelectDepartments($val)
+    {
+        $this->selectedDepartments[] = $val;
+
+        $this->employees = User::whereHas('departments', function ($q) {
+            $q->whereIn('id', $this->selectedDepartments);
+        })->whereRoleIs('manager')->orWhereRoleIs('employee')->get();
+    }
+
+    // public function updateSelectedDepartments()
+    // {
+    //     if ($this->selectedDepartments) {
+    //         $this->employees = User::whereHas('departments', function ($q) {
+    //             $q->whereIn('id', $this->selectedDepartments);
+    //         })->get();
+    //     } else {
+    //         $this->employees = User::get();
+    //     }
+    // }
 
     public function render()
     {

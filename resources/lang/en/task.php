@@ -145,4 +145,9 @@ return [
     'daily' => 'Daily',
     'weekly' => 'Weekly',
     'monthly' => 'Monthly',
+
+    'branchs' => 'Branchs',
+    'select-branchs' => 'Select Branchs',
+    'departments' => 'Departments',
+    'select-departments' => 'Select Departments',
 ];

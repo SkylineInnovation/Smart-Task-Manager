@@ -389,4 +389,7 @@ return [
 
     'no-comment-yet' => 'No Comment Yet',
     'Search for names, emails, etc.' => 'Search For Names, Emails, Etc.',
+
+    'select-branchs' => 'select branchs',
+    'select-departments' => 'select departments',
 ];

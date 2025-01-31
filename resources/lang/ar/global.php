@@ -388,5 +388,8 @@ return [
     "view" => 'عرض',
 
     'no-comment-yet' => 'لا يوجد تعليق بعد',
-    'Search for names, emails, etc.' => 'ابحث عن الأسماء والبريد الإلكتروني وما إلى ذلك.'
+    'Search for names, emails, etc.' => 'ابحث عن الأسماء والبريد الإلكتروني وما إلى ذلك.',
+
+    'select-branchs' => 'حدد الفرع',
+    'select-departments' => 'حدد القسم',
 ];

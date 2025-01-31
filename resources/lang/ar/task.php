@@ -136,10 +136,14 @@ return [
 
     'open_history' => 'السجل',
     'history' => 'السجل',
-
     'completePercentage' => 'التقيم',
 
     'daily' => 'يومي',
     'weekly' => 'اسبوعي',
     'monthly' => 'شهري',
+
+    'branchs' => 'الاغرع',
+    'select-branchs' => 'حدد الفرع',
+    'departments' => 'القسم',
+    'select-departments' => 'حدد الاقسام',
 ];
