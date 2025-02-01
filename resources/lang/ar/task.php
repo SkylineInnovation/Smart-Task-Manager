@@ -51,33 +51,32 @@ return [
     'active' => 'نشط',
     'auto-finished' => 'انتهاء الوقت',
     'manual-finished' => 'مكتمل',
-    'draft' => 'مسودة',
 
+    'draft' => 'مسودة',
     'in_draft' => 'في المسودات',
     'move_draft' => 'نقل المسودة',
+    'archive' => 'أرشيف',
 
     'Return' => 'اعادة',
     'Move' => 'نقل',
     //
 
     'employees' => 'موظفين',
-
     'start_at' => 'البدء عند',
     'end_at' => 'انتهاء عند',
 
+
+    'assigend' => 'تم تعيينه',
+    'remain' => 'متبقي',
+
+    'Edit' => 'تحرير',
+    'Delete' => 'حذف',
+    'Title' => 'عنوان',
 
     'Pending' => 'معلق',
     'Active' => 'نشط',
     'Finished' => 'مكتمل',
     'System_Finished' => 'إنتهاء تلقائي',
-    'assigend' => 'تم تعيينه',
-    'remain' => 'متبقي',
-
-
-    'Edit' => 'تحرير',
-    'Delete' => 'حذف',
-
-    'Title' => 'عنوان',
 
     'Description' => 'الوصف',
     'From' => 'من',
@@ -103,7 +102,6 @@ return [
     'Request_Extra_Time' => 'طلب وقت اضافي',
     'Role' => 'الصلاحيات',
 
-
     "Total_Tasks_Time" => "إجمالي وقت المهام",
     "Total_Work_Hours_in_Selected_Duration" => "إجمالي ساعات العمل في المدة المختارة",
     "Total_Task_Count" => "إجمالي عدد المهام",
@@ -115,6 +113,7 @@ return [
     "Total_Extra_Time_Hours_in_Selected_Duration" => "إجمالي وقت الساعات الإضافية للوقت الإضافي في المدة المختارة",
     "Total_Leave_Hours_in_Selected_Duration" => "إجمالي ساعات الإجازة الإضافية في المدة المختارة",
     "Total_Discount_in_Selected_Duration" => "إجمالي الخصم الإضافي في المدة المختارة",
+
     "Total_Extra_Time" => "إجمالي الوقت الإضافي",
     "Total_Leave_Hour" => "إجمالي وقت الإجازة الساعة",
     "Total_Discount" => "إجمالي الخصم",
@@ -146,4 +145,11 @@ return [
     'select-branchs' => 'حدد الفرع',
     'departments' => 'القسم',
     'select-departments' => 'حدد الاقسام',
+
+    'under-review' => 'قيد المراجعة',
+    'reject_task_complete' => 'Reject Task Complete',
+    'reject_reason' => 'سبب الرفض',
+
+    'accept' => 'قبول',
+    'reject' => 'رفض',
 ];

@@ -3,21 +3,22 @@
 
 <!-- Bootstrap JS -->
 
-<style>
-    .mouseHover:hover {
-        drop-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
-    }
 
-    .borderColorGreen {
-        border-top: #1EAE9A solid 5px
-    }
+@section('css')
+    <style>
+        .mouseHover:hover {
+            drop-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+        }
 
-    .borderColorRed {
-        border-top: #E04B4A solid 5px
-    }
-</style>
+        .borderColorGreen {
+            border-top: #1EAE9A solid 5px
+        }
 
-
+        .borderColorRed {
+            border-top: #E04B4A solid 5px
+        }
+    </style>
+@endsection
 
 
 @section('content')
@@ -206,9 +207,9 @@
     </div>
 
     @include('Web.repots.reports-model')
+@endsection
 
-
-
+@section('js')
     <script>
         function filterTable() {
             // Get search input value
@@ -337,6 +338,7 @@
                 }
             }
         }
+
         function filterTable6() {
             // Get the search input value and convert it to lowercase for case-insensitive comparison
             let input = document.getElementById("searchInput6");
@@ -362,6 +364,5 @@
                 }
             }
         }
-
     </script>
 @endsection

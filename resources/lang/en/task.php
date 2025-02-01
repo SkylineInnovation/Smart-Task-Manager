@@ -34,14 +34,13 @@ return [
 
     'main_task' => 'Main Task',
 
+    'discount' => 'Deduction',
+    'full_discount' => 'Amount Of Deduction When The Task Is Closed Automatically',
+
     'max_worning_discount' => 'Amount Of Deduction When Reaching The Maximum Warning Limit',
 
     'short_max_worning_count' => 'Max Warning Count',
     'short_max_worning_discount' => 'Deduction',
-
-    'discount' => 'Deduction',
-    'full_discount' => 'Amount Of Deduction When The Task Is Closed Automatically',
-
 
     'low' => 'Low',
     'medium' => 'Medium',
@@ -60,17 +59,15 @@ return [
 
     'Return' => 'Return',
     'Move' => 'Move',
-
-
-
     //
+
     'employees' => 'Employees',
     'start_at' => 'Start At',
     'end_at' => 'End At',
 
+
     'assigend' => 'Assigend',
     'remain' => 'Remain',
-
 
     'Edit' => 'Edit',
     'Delete' => 'Delete',
@@ -80,7 +77,6 @@ return [
     'Active' => 'Active',
     'Finished' => 'Finished',
     'System_Finished' => 'System Finished',
-
 
     'Description' => 'Description',
     'From' => 'From',
@@ -105,7 +101,6 @@ return [
     'Request_Leave' => 'Request Leave',
     'Request_Extra_Time' => 'Request Extra Time',
     'Role' => 'Role',
-
 
     "Total_Tasks_Time" => "Total Tasks Time",
     "Total_Work_Hours_in_Selected_Duration" => "Total Work Hours in Selected Duration",
@@ -150,4 +145,11 @@ return [
     'select-branchs' => 'Select Branchs',
     'departments' => 'Departments',
     'select-departments' => 'Select Departments',
+
+    'under-review' => 'Under Review',
+    'reject_task_complete' => 'Reject Task Complete',
+    'reject_reason' => 'Reject Reason',
+
+    'accept' => 'Accept',
+    'reject' => 'Reject',
 ];

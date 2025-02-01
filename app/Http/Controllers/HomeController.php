@@ -216,7 +216,8 @@ class HomeController extends Controller
 
         $all_history = LogHistory::whereBetween('created_at', [date('Y-m-d H:i:s', strtotime('-1 Days')), date('Y-m-d H:i:s')])->get();
 
-        $under_review_tasks = Task::where('status', 'under-review')->get();
+        $under_review_tasks = Task::where('manager_id', $users)
+            ->where('status', 'under-review')->get();
 
         return view('home', compact(
             'mainBtns',
