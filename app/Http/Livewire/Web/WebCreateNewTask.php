@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Web;
 
 use App\Jobs\SendNewTask;
+use App\Models\Branch;
+use App\Models\Department;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -14,8 +16,14 @@ class WebCreateNewTask extends Component
     public Task $task;
     public $user;
 
-    public $employees = [];
+    public $employees;
     public $selectedEmployees = [];
+
+    public $departments;
+    public $selectedDepartments = [];
+
+    public $branchs;
+    public $selectedBranchs = [];
 
     public $admin_view_status = '', $by, $url;
     public function mount($admin_view_status = '')
@@ -39,6 +47,9 @@ class WebCreateNewTask extends Component
         } else {
             $this->employees = $this->user->employees;
         }
+
+        $this->departments = Department::get();
+        $this->branchs = Branch::get();
 
         // $this->employees = \App\Models\User::whereHas('employees', function ($q) {
         //     return $q->where('manager_id', $this->user->id);
@@ -66,6 +77,9 @@ class WebCreateNewTask extends Component
 
         if (!$this->user->hasRole('employee'))
             $this->selectedEmployees = [];
+
+        $this->selectedDepartments = [];
+        $this->selectedBranchs = [];
 
         $this->select_emp = '';
     }
@@ -136,6 +150,61 @@ class WebCreateNewTask extends Component
     {
         $this->selectedEmployees[] = $val;
     }
+
+    public $select_branch;
+    public function updatedSelectBranch($val)
+    {
+        if ($val == 0) {
+            $this->selectedBranchs = [];
+            $this->departments = Department::get();
+        } else {
+            $this->selectedBranchs[] = $val;
+            $this->departments = Department::whereIn('branch_id', $this->selectedBranchs)->get();
+        }
+    }
+
+    // public function updateSelectedBranchs()
+    // {
+    //     if ($this->selectedBranchs) {
+    //         $this->departments = Department::whereIn('branch_id', $this->selectedBranchs)->get();
+    //     } else {
+    //         $this->departments = Department::get();
+    //     }
+    // }
+
+    public $select_department;
+    public function updatedSelectDepartment($val)
+    {
+        if ($val == 0) {
+            $this->selectedDepartments = [];
+
+            if ($this->user->hasRole('owner')) {
+                $this->employees = \App\Models\User::whereRoleIs('manager')->orWhereRoleIs('employee')->orderBy('first_name')->get();
+            } elseif ($this->user->hasRole('employee')) {
+                $this->employees = User::where('id', $this->user->id)->get();
+                $this->selectedEmployees = $this->employees->pluck('id')->toArray();
+            } else {
+                $this->employees = $this->user->employees;
+            }
+        } else {
+            $this->selectedDepartments[] = $val;
+
+            $this->employees = User::whereHas('departments', function ($q) {
+                $q->whereIn('id', $this->selectedDepartments);
+            })->get();
+        }
+    }
+
+    // public function updateSelectedDepartments()
+    // {
+    //     if ($this->selectedDepartments) {
+    //         $this->employees = User::whereHas('departments', function ($q) {
+    //             $q->whereIn('id', $this->selectedDepartments);
+    //         })->get();
+    //     } else {
+    //         $this->employees = User::get();
+    //     }
+    // }
 
     public function render()
     {

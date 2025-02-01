@@ -22,6 +22,58 @@
                     <div class="modal-body text-{{ App::getLocale() == 'en' ? 'start' : 'end' }}">
 
                         <div class="row w-100 m-0">
+
+                            @role('owner|manager')
+                                {{--  --}}
+                                <div class='form-group col-lg-6 col-md-6 col-sm-12'>
+                                    <label for='branch-select'>{{ __('task.branchs') }}</label>
+                                    <select id='branch-select' class='form-control' wire:model='select_branch'>
+                                        <option value="0">{{ __('global.select-branchs') }}</option>
+                                        @foreach ($branchs as $branch)
+                                            <option value='{{ $branch->id }}'>{{ $branch->crud_name() }}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @foreach ($branchs as $branch)
+                                        @if (in_array($branch->id, $selectedBranchs))
+                                            <div class='form-check form-check-inline'>
+                                                <input wire:model='selectedBranchs' class='form-check-input' type='checkbox'
+                                                    value='{{ $branch->id }}' id='filter-branchs-id-{{ $branch->id }}'>
+                                                <label class='form-check-label' for='filter-branchs-id-{{ $branch->id }}'>
+                                                    {{ $branch->crud_name() }}
+                                                </label>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+
+                                <div class='form-group col-lg-6 col-md-6 col-sm-12'>
+                                    <label for='department-select'>{{ __('task.departments') }}</label>
+                                    <select id='department-select' class='form-control' wire:model='select_department'>
+                                        <option value="0">{{ __('global.select-departments') }}</option>
+                                        @foreach ($departments as $department)
+                                            <option value='{{ $department->id }}'>{{ $department->crud_name() }}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @foreach ($departments as $department)
+                                        @if (in_array($department->id, $selectedDepartments))
+                                            <div class='form-check form-check-inline'>
+                                                <input wire:model='selectedDepartments' class='form-check-input' type='checkbox'
+                                                    value='{{ $department->id }}'
+                                                    id='filter-departments-id-{{ $department->id }}'>
+                                                <label class='form-check-label'
+                                                    for='filter-departments-id-{{ $department->id }}'>
+                                                    {{ $department->crud_name() }}
+                                                </label>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            @endrole
+
+
+                            {{--  --}}
                             <div class='form-group col-lg-6 col-md-6 col-sm-12'>
                                 <label for='employee-select'>{{ __('task.employees') }}</label>
                                 <select id='employee-select' class='form-control' wire:model='select_emp'>
@@ -68,8 +120,8 @@
                                     <span class="input-group-text btn-secondary text-white"
                                         id="inputGroup-sizing-default">{{ __('task.discount') }}</span>
                                 </div>
-                                <input wire:model.defer="discount" type="number" class="form-control" aria-label="Default"
-                                    aria-describedby="inputGroup-sizing-default">
+                                <input wire:model.defer="discount" type="number" class="form-control"
+                                    aria-label="Default" aria-describedby="inputGroup-sizing-default">
                             </div>
 
                             {{--  --}}
@@ -97,8 +149,9 @@
                                         <span class="input-group-text btn-secondary text-white"
                                             id="inputGroup-sizing-default">{{ __('task.short_max_worning_count') }}</span>
                                     </div>
-                                    <input wire:model.defer="max_worning_count" type="number" multiple class="form-control"
-                                        aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                    <input wire:model.defer="max_worning_count" type="number" multiple
+                                        class="form-control" aria-label="Default"
+                                        aria-describedby="inputGroup-sizing-default">
                                 </div>
 
                                 <span style="font-size: 12px;">

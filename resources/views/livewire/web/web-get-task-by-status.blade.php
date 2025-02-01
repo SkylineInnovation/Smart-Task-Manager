@@ -67,6 +67,22 @@
                                             &nbsp; {{ __('task.finsh') }}
                                         </a>
                                     @endif
+                                    {{--  --}}
+                                    @if ($task->status == 'under-review')
+                                        @role('owner|manager')
+                                            <a class="dropdown-item" href="javascript:;"
+                                                wire:click="acceptFinish({{ $task->id }})">
+                                                <i class="fa fa-check-square text-success" aria-hidden="true"></i>
+                                                &nbsp; {{ __('task.accept') }}
+                                            </a>
+                                            <a class="dropdown-item" href="javascript:;" data-toggle="modal"
+                                                data-target="#reject-task-complete-{{ $task->id }}"
+                                                wire:click="setRejectTime({{ $task->id }})">
+                                                <i class="fa fa-close text-danger" aria-hidden="true"></i>
+                                                &nbsp; {{ __('task.reject') }}
+                                            </a>
+                                        @endrole
+                                    @endif
                                     {{-- @endrole --}}
 
 
@@ -1180,7 +1196,60 @@
                 </div>
             </div>
         </div>
+
         {{-- --}}{{-- --}}{{-- --}}{{-- --}}
+        {{-- @if (in_array($task->status, ['under-review'])) --}}
+        <div wire:ignore.self id="reject-task-complete-{{ $task->id }}" class="modal fade" tabindex="-1"
+            role="dialog" aria-labelledby="reject-task-complete-{{ $task->id }}-title" aria-hidden="true"
+            data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reject-task-complete-{{ $task->id }}-title">
+                            {{ __('task.reject_task_complete') }}
+                        </h5>
+                        <button class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{-- --}}
+                        <div class="row">
+                            @include('inputs.create.input', [
+                                'label' => 'task.end_time',
+                                'name' => 'task.end_time',
+                                'livewire' => 'complete_new_end_time',
+                                'type' => 'datetime-local', // 'step' => 1,
+                                // 'min' => date('Y-m-d\TH:i', strtotime($task->end_time . ' +1 Hours')),
+                                'lg' => 12,
+                                'md' => 12,
+                                'sm' => 12,
+                            ])
+
+                            {{-- <div class="col-12"> --}}
+                            {{-- <textarea name='reason' id='reason' rows="3" class='form-control'
+                                        placeholder='{{ __('global.enter') }} {{ __('leave.reason') }}' wire:model.defer="leave_reason"></textarea> --}}
+                            @include('inputs.textarea', [
+                                'label' => 'task.reject_reason',
+                                'livewire' => 'reject_reason',
+                            ])
+                            {{-- </div> --}}
+                        </div>
+                        {{-- --}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary close-btn"
+                            data-dismiss="modal">{{ __('global.close') }}</button>
+                        <button type="button" wire:click.prevent="rejectFinish({{ $task->id }})"
+                            class="btn btn-success close-btn" data-dismiss="modal">
+                            {{ __('task.reject') }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- @endif --}}
+
         @if (in_array($task->status, ['pending', 'active']))
             <div wire:ignore.self id="request-leave-modal-{{ $task->id }}" class="modal fade" tabindex="-1"
                 role="dialog" aria-labelledby="request-leave-modal-{{ $task->id }}-title" aria-hidden="true"

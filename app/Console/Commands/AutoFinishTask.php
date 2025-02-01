@@ -42,18 +42,35 @@ class AutoFinishTask extends Command
                 'status' => 'auto-finished',
             ]);
 
-            foreach ($task->employees as $employee) {
+            if ($task->is_separate_task) {
+                foreach ($task->employees as $employee) {
 
-                $comments = Comment::where('task_id', $task->id)
-                    ->where('user_id', $employee->id)->get();
+                    $comments = Comment::where('task_id', $task->id)
+                        ->where('user_id', $employee->id)->get();
+
+                    if (count($comments) == 0) {
+                        $discount = Discount::create([
+                            'task_id' => $task->id,
+                            'user_id' => $employee->id,
+                            'amount' => $task->discount(),
+                            'reason' => 'auto-finish-task',
+                        ]);
+
+                        if (env('SEND_MAIL', false))
+                            SendNewDiscount::dispatch($discount);
+                    }
+                }
+            } else {
+                $comments = Comment::where('task_id', $task->id)->get();
 
                 if (count($comments) == 0) {
-                    $discount = Discount::create([
-                        'task_id' => $task->id,
-                        'user_id' => $employee->id,
-                        'amount' => $task->discount(),
-                        'reason' => 'auto-finish-task',
-                    ]);
+                    foreach ($task->employees as $employee)
+                        $discount = Discount::create([
+                            'task_id' => $task->id,
+                            'user_id' => $employee->id,
+                            'amount' => $task->discount(),
+                            'reason' => 'auto-finish-task',
+                        ]);
 
                     if (env('SEND_MAIL', false))
                         SendNewDiscount::dispatch($discount);

@@ -93,10 +93,9 @@ class HomeController extends Controller
 
     public function home(Request $request)
     {
-        $company = \App\Models\Company::latest()->first();
+        $company = Company::latest()->first();
+
         $mainBtns = [
-
-
             [
                 'image' => asset('assets/dashboard/company.png'),
                 'text' =>  __('global.company'),
@@ -217,6 +216,8 @@ class HomeController extends Controller
 
         $all_history = LogHistory::whereBetween('created_at', [date('Y-m-d H:i:s', strtotime('-1 Days')), date('Y-m-d H:i:s')])->get();
 
+        $under_review_tasks = Task::where('manager_id', $users)
+            ->where('status', 'under-review')->get();
 
         return view('home', compact(
             'mainBtns',
@@ -228,6 +229,7 @@ class HomeController extends Controller
             'income_tasks_almost_close',
             'outcome_tasks_almost_close',
             'all_history',
+            'under_review_tasks',
         ));
     }
 

@@ -144,10 +144,54 @@ class WebGetTaskByStatus extends Component
             return;
         }
 
+        $task->update(['status' => 'under-review']);
+
+        $this->emit('render-manual-finished'); // Close model to using to jquery
+    }
+
+    public function acceptFinish($id)
+    {
+        $task = Task::find($id);
+
         $task->update(['status' => 'manual-finished']);
 
         $this->emit('render-manual-finished'); // Close model to using to jquery
     }
+
+    public function setRejectTime($id)
+    {
+        $task = Task::find($id);
+
+        $this->complete_new_end_time = date('Y-m-d\TH:i', strtotime($task->end_time . ' +1 Hours'));
+        $this->reject_reason = '';
+    }
+
+    public $complete_new_end_time, $reject_reason;
+    public function rejectFinish($id)
+    {
+        $task = Task::find($id);
+
+        $task->update([
+            'status' => 'active',
+            // 'end_time' => date('Y-m-d\TH:i', strtotime('+1 Hours')),
+            'end_time' => $this->complete_new_end_time,
+        ]);
+
+        $comment = Comment::create([
+            'add_by' => $this->by->id,
+            'task_id' => $id,
+            'user_id' => $this->by->id,
+            'desc' => $this->reject_reason,
+        ]);
+
+        $this->reject_reason = '';
+
+        $this->emit('close-reject-comment-model', $this->id);
+
+
+        $this->emit('render-manual-finished'); // Close model to using to jquery
+    }
+
 
     public function draftTask($id)
     {

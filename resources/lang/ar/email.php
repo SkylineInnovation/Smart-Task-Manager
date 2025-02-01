@@ -37,5 +37,7 @@ return [
     'there-is-new-user' => 'هناك مستخدم جديد',
     'there-is-a-new-user-added' => 'هناك مستخدم جديد تمت إضافته',
 
+    'under-review' => 'تحت المراجعة',
+    'task-under-review' => 'المهمة قيد المراجعة',
 
 ];
