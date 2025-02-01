@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Task;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class DashboardAddTask extends Component
 {
@@ -118,8 +119,8 @@ class DashboardAddTask extends Component
 
     protected $messages = [
         'selectedEmployees.required' => 'Please Select Employee',
-        'selectedDepartments.required' => 'Please Select Department',
-        'selectedBranchs.required' => 'Please Select Branch',
+        // 'selectedDepartments.required' => 'Please Select Department',
+        // 'selectedBranchs.required' => 'Please Select Branch',
     ];
 
     public function updated($propertyName)
@@ -210,9 +211,13 @@ class DashboardAddTask extends Component
     public $select_branch;
     public function updatedSelectBranch($val)
     {
-        $this->selectedBranchs[] = $val;
-
-        $this->departments = Department::whereIn('branch_id', $this->selectedBranchs)->get();
+        if ($val == 0) {
+            $this->selectedBranchs = [];
+            $this->departments = Department::get();
+        } else {
+            $this->selectedBranchs[] = $val;
+            $this->departments = Department::whereIn('branch_id', $this->selectedBranchs)->get();
+        }
     }
 
     // public function updateSelectedBranchs()
@@ -225,13 +230,26 @@ class DashboardAddTask extends Component
     // }
 
     public $select_department;
-    public function updatedSelectDepartments($val)
+    public function updatedSelectDepartment($val)
     {
-        $this->selectedDepartments[] = $val;
+        if ($val == 0) {
+            $this->selectedDepartments = [];
 
-        $this->employees = User::whereHas('departments', function ($q) {
-            $q->whereIn('id', $this->selectedDepartments);
-        })->whereRoleIs('manager')->orWhereRoleIs('employee')->get();
+            if ($this->user->hasRole('owner')) {
+                $this->employees = \App\Models\User::whereRoleIs('manager')->orWhereRoleIs('employee')->orderBy('first_name')->get();
+            } elseif ($this->user->hasRole('employee')) {
+                $this->employees = User::where('id', $this->user->id)->get();
+                $this->selectedEmployees = $this->employees->pluck('id')->toArray();
+            } else {
+                $this->employees = $this->user->employees;
+            }
+        } else {
+            $this->selectedDepartments[] = $val;
+
+            $this->employees = User::whereHas('departments', function ($q) {
+                $q->whereIn('id', $this->selectedDepartments);
+            })->get();
+        }
     }
 
     // public function updateSelectedDepartments()

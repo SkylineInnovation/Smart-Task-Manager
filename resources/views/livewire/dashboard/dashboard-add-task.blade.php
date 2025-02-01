@@ -28,7 +28,7 @@
                                 <div class='form-group col-lg-6 col-md-6 col-sm-12'>
                                     <label for='branch-select'>{{ __('task.branchs') }}</label>
                                     <select id='branch-select' class='form-control' wire:model='select_branch'>
-                                        <option>{{ __('global.select-branchs') }}</option>
+                                        <option value="0">{{ __('global.select-branchs') }}</option>
                                         @foreach ($branchs as $branch)
                                             <option value='{{ $branch->id }}'>{{ $branch->crud_name() }}</option>
                                         @endforeach
@@ -50,7 +50,7 @@
                                 <div class='form-group col-lg-6 col-md-6 col-sm-12'>
                                     <label for='department-select'>{{ __('task.departments') }}</label>
                                     <select id='department-select' class='form-control' wire:model='select_department'>
-                                        <option>{{ __('global.select-departments') }}</option>
+                                        <option value="0">{{ __('global.select-departments') }}</option>
                                         @foreach ($departments as $department)
                                             <option value='{{ $department->id }}'>{{ $department->crud_name() }}</option>
                                         @endforeach
@@ -120,8 +120,8 @@
                                     <span class="input-group-text btn-secondary text-white"
                                         id="inputGroup-sizing-default">{{ __('task.discount') }}</span>
                                 </div>
-                                <input wire:model.defer="discount" type="number" class="form-control" aria-label="Default"
-                                    aria-describedby="inputGroup-sizing-default">
+                                <input wire:model.defer="discount" type="number" class="form-control"
+                                    aria-label="Default" aria-describedby="inputGroup-sizing-default">
                             </div>
 
                             {{--  --}}
