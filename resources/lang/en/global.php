@@ -390,6 +390,9 @@ return [
     'no-comment-yet' => 'No Comment Yet',
     'Search for names, emails, etc.' => 'Search For Names, Emails, Etc.',
 
-    'select-branchs' => 'select branchs',
-    'select-departments' => 'select departments',
+    'select-branchs' => 'Select Branchs',
+    'select-departments' => 'Select Departments',
+
+    'tasks-under-review-title' => 'Tasks Under Review',
+    'tasks-under-review-desc' => 'Show All Tasks That Under Review',
 ];

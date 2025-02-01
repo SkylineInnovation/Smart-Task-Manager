@@ -392,4 +392,7 @@ return [
 
     'select-branchs' => 'حدد الفرع',
     'select-departments' => 'حدد القسم',
+
+    'tasks-under-review-title' => 'المهام قيد المراجعة',
+    'tasks-under-review-desc' => 'إظهار جميع المهام قيد المراجعة',
 ];

@@ -39,5 +39,7 @@ return [
 
     'urgent-task-reminder' => 'Urgent Task Reminder',
 
+    'under-review' => 'Under Review',
+    'task-under-review' => 'Task Under Review',
 
 ];

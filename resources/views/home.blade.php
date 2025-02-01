@@ -295,6 +295,28 @@
                         </div>
                     </div>
                 </div>
+                {{--  --}}
+                <div class="col-md-12 p-0">
+                    <div class="card ">
+                        <div class="card-header bg-dark text-light borderColorGreen">
+                            <div class="col-md-12 ">
+                                <h4 class="text-{{ App::getLocale() == 'en' ? 'start' : 'end' }}">
+                                    {{ __('global.tasks-under-review-title') }}
+                                </h4>
+
+                                <small>
+                                    {{ __('global.tasks-under-review-desc') }}
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="card-body px-0 scrollable-container">
+                            @foreach ($under_review_tasks as $task)
+                                <livewire:dashboard.task-detail :task="$task" />
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
 
 
             </div>
