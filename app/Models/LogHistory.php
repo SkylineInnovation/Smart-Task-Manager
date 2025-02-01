@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
+
 // use Laratrust\Traits\LaratrustUserTrait;
 
 class LogHistory extends Model
@@ -15,7 +17,7 @@ class LogHistory extends Model
     use HasFactory;
     use SoftDeletes;
 
-    // use Translatable trait to translate the columns 
+    // use Translatable trait to translate the columns
     use TranslateTrait;
 
     /**
@@ -58,8 +60,8 @@ class LogHistory extends Model
 
         'user_id',
         'action',
-        'by_model_name', // attachment, comment, extra_time, leave, 
-        'by_model_id', // attachment, comment, extra_time, leave, 
+        'by_model_name', // attachment, comment, extra_time, leave,
+        'by_model_id', // attachment, comment, extra_time, leave,
         'on_model_name', // task, daily_task,
         'on_model_id', // task, daily_task,
         'from_data',
@@ -77,7 +79,7 @@ class LogHistory extends Model
         parent::boot();
 
         static::created(function ($model) {
-            // 
+            //
         });
 
         static::updating(function ($model) {
@@ -247,5 +249,32 @@ class LogHistory extends Model
         }
 
         return $formatted_data;
+    }
+
+    public function colors()
+    {
+        $ownerExists = $this->user->hasRole('owner');
+        $employeeExists = $this->user->hasRole('employee');
+        $managerExists = $this->user->hasRole('manager');
+
+        if ($ownerExists)
+            return '<span class="dot-label mx-2"
+                style="background-color: #F82649;">
+            </span> Owner'; // Set color for owner
+
+
+
+        if ($employeeExists)
+            return '<span class="dot-label mx-2"
+                style="background-color: #F7B731;">
+            </span> Employee'; // Set color for employee
+
+        if ($managerExists)
+            return '<span class="dot-label mx-2"
+                style="background-color:rgb(49, 247, 122);">
+            </span> Manager'; // Default case if no owner or employee role found
+
+
+        return '';
     }
 }

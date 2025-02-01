@@ -18,7 +18,7 @@
                 <tr>
                     {{-- <td>#</td> --}}
 
-                    {{-- 
+                    {{--
                         @if ($admin_view_status != 'deleted')
                             <td style="width: 75px"> {{ __('global.select') }} </td>
                         @endif
@@ -89,6 +89,11 @@
                         <td>{{ __('global.time') }}</td>
                     @endif
 
+
+
+                        <td>{{ __('global.commints') }}</td>
+
+
                     @permission('edit-task|delete-task|restore-task')
                         <td style="width: 200px">
                             {{ __('global.action') }}
@@ -102,7 +107,7 @@
                     <tr>
                         {{-- <td>{{ ++$number }}</td> --}}
 
-                        {{-- 
+                        {{--
                             @if ($admin_view_status != 'deleted')
                                 <td>
                                     <div class="form-check">
@@ -199,6 +204,10 @@
                         @if ($showColumn['time'])
                             <td> {{ date('h:i A', strtotime($task->created_at)) }} </td>
                         @endif
+
+                        <td>
+                            {{$task->last_comment_before()}}
+                        </td>
 
                         @permission('edit-task|delete-task|restore-task')
                             <td>

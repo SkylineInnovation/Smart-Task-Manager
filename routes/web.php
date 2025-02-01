@@ -290,7 +290,7 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee', 'AuthA
 
     // DONE (we need to pass the selected tasks)
     // SHOW ON PAGE
-    Route::post('task-specific-comments', [ReportsController::class, 'listOfTasksComments'])->name('task.specific.comments.page');
+    Route::get('task-specific-comments/{id}', [ReportsController::class, 'listOfTasksComments'])->name('task.specific.comments.page');
 
     // SHOW ON PAGE
     // DONE (we need the managers, from date, to date)

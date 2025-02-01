@@ -3,7 +3,7 @@
 <div class="modal fade" id="OutgoingTaskDiscounts" tabindex="-1" role="dialog" aria-labelledby="OutgoingTaskDiscountsLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form class="form-inline" method="post" action="">
+        <form class="form-inline" method="post" action="{{route('outgoing.task.discounts')}}" target="_blank">
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
@@ -78,7 +78,7 @@
 <div class="modal fade" id="commintsInAllTasks" tabindex="-1" role="dialog" aria-labelledby="commintsInAllTasksLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form class="form-inline" method="post" action="{{ route('comments.all.tasks') }}">
+        <form class="form-inline" method="post" action="{{ route('comments.all.tasks') }}" target="_blank">
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
@@ -140,7 +140,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"
                         data-dismiss="modal">{{ __('global.Close') }}</button>
-                    <button type="submit" class="btn btn-primary fs-25">
+                    <button  type="submit" class="btn btn-primary fs-25">
                         <i class="fa fa-print"></i>
                     </button>
                 </div>
@@ -195,7 +195,7 @@
                                 </td>
 
                                 <td>
-                                    <a href="{{ route('one.task.comments', $task) }}"
+                                    <a target="_blank" href="{{ route('one.task.comments', $task) }}"
                                         class="btn btn-info fa fa-eye "></a>
                                 </td>
 
@@ -226,8 +226,8 @@
     tabindex="-1" role="dialog" aria-labelledby="Task-specific-commentsLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content border-0">
-            <form action="{{ route('task.specific.comments.page') }}" method="post">
-                @csrf
+            <form action="" method="">
+
                 <div class="modal-header bg-dark text-white">
                     <h5 class="modal-title" id="Task-specific-commentsLabel">
                         {{ __('global.Task-specific-comments') }}
@@ -268,10 +268,9 @@
                                     </td>
 
                                     <td>
-                                        <div class="form-check d-flex justify-content-center">
-                                            <input class="form-check-input" type="checkbox" name="taskCheck[]"
-                                                id="" value="{{ $task->id }}">
-                                        </div>
+                                        <a target="_blank" href="{{route('task.specific.comments.page',$task->id)}}" class="btn btn-primary fs-25">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
                                     </td>
 
                                 </tr>
@@ -336,7 +335,7 @@
                                 <td>{{ $emp->email }}</td>
                                 <td>{{ $emp->status }}</td>
                                 <td>
-                                    <a href="{{ route('incoming.discount.rseport', $emp->id) }}"
+                                    <a target="_blank" href="{{ route('incoming.discount.rseport', $emp->id) }}"
                                         class="btn btn-primary">
                                         <i class="fa fa-eye"></i>
                                     </a>
@@ -367,7 +366,7 @@
 <div class="modal fade" {{ App::getLocale() == 'en' ? 'dir="ltr"' : 'dir="rtl"' }} id="tasks-Short-Desc"
     tabindex="-1" role="dialog" aria-labelledby="tasks-Short-DescLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <form action="{{ route('tasks.short.desc') }}" method="get">
+        <form action="{{ route('tasks.short.desc') }}" method="get" target="_blank">
             @csrf
 
             <div class="modal-content border-0">
@@ -434,9 +433,9 @@
                     <button type="button" class="btn btn-secondary"
                         data-dismiss="modal">{{ __('global.Close') }}</button>
 
-                    {{-- <button type="submit" class="btn btn-primary fs-25">
+                    <button type="submit" class="btn btn-primary fs-25">
                         <i class="fa fa-print"></i>
-                    </button> --}}
+                    </button>
 
                 </div>
 
@@ -493,7 +492,7 @@
 
 
                                     <td>
-                                        <a href="{{ route('employee.follow.up', $user->id) }}"
+                                        <a target="_blank" href="{{ route('employee.follow.up', $user->id) }}"
                                             class="btn btn-primary">
                                             <i class="fa fa-eye"></i>
                                         </a>
@@ -576,7 +575,7 @@
 
 
                                     <td>
-                                        <a href="{{ route('incoming.task.movements.emp', $user->id) }}"
+                                        <a target="_blank" href="{{ route('incoming.task.movements.emp', $user->id) }}"
                                             class="btn btn-primary fs-25">
                                             <i class="fa fa-eye"></i>
                                         </a>
@@ -651,7 +650,7 @@
 
 
                                     <td>
-                                        <a href="{{ route('outgoing.task.movements.manager', $user->id) }}"
+                                        <a target="_blank" href="{{ route('outgoing.task.movements.manager', $user->id) }}"
                                             class="btn btn-primary fs-25">
                                             <i class="fa fa-eye"></i>
                                         </a>

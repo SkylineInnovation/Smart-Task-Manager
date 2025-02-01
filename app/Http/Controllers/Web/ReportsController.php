@@ -123,11 +123,13 @@ class ReportsController extends Controller
         ));
     }
 
-    public function listOfTasksComments(Request $request)
+    public function listOfTasksComments(Request $request,$id)
     {
-        $taskSelect = $request->input('taskCheck');
+        // $taskSelect = $request->input('taskCheck');
 
-        $viewTasks = Task::whereIn('id', $taskSelect)->get();
+        $task=Task::find($id);
+
+        $viewTasks = Task::whereIn('id', $task)->get();
 
         return view('Web.repots.new-prints.task-specific-comments', compact('viewTasks'));
     }

@@ -90,7 +90,7 @@ class LoghistoryIndex extends Component
             'to_data' => false,
             'preaf' => true,
             'desc' => true,
-            'color' => false,
+            'color' => true,
 
             // 'status' => false,
             'date' => true,

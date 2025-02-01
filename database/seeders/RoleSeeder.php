@@ -273,6 +273,43 @@ class RoleSeeder extends Seeder
                 'ar' => 'التقارير',
                 'en' => 'index report',
             ],
+
+            //
+            [
+                'name' => 'task-omments-report',
+                'ar' => 'تقديد التعليقات',
+                'en' => 'task comments report',
+            ],
+            [
+                'name' => 'closed-tasks-coming-soon',
+                'ar' => ' المهام المغلقة قادمة قريبا',
+                'en' => 'closed tasks coming soon',
+            ],
+            [
+                'name' => 'outgoing-task-movements',
+                'ar' => ' المهام المغلقة قادمة قريبا',
+                'en' => 'outgoing task movements',
+            ],
+            [
+                'name' => 'incoming-task-movements',
+                'ar' => 'حركات المهام الواردة',
+                'en' => 'incoming task movements',
+            ],
+            [
+                'name' => 'outgoing-task-discounts',
+                'ar' => 'خصومات المهام الصادرة',
+                'en' => 'outgoing task discounts',
+            ],
+            [
+                'name' => 'incoming-task-discounts',
+                'ar' => 'خصومات المهام الواردة',
+                'en' => 'incoming task discounts',
+            ],
+            [
+                'name' => 'follow-up-employee-tasks',
+                'ar' => 'متابعة مهام الموظفين',
+                'en' => 'follow up employee tasks',
+            ],
         ];
 
         foreach ($customPermissions as $customPermission) {

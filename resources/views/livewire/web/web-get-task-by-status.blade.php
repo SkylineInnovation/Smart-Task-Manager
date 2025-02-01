@@ -188,6 +188,9 @@
                     <div class="col-md-12">
                         <div class="row w-100 m-0 ">
                             <div class="col-md-12 px-4 fs-6 text-gray-400">
+                                {{ __('global.last_commint') }}: {{ $task->last_comment_before() }}
+                            </div>
+                            <div class="col-md-12 px-4 fs-6 text-gray-400">
                                 {{ __('task.start_at') }}: {{ $task->format_date($task->start_time) }}
                             </div>
                             <div class="col-md-12 px-4 fs-6 text-gray-400">

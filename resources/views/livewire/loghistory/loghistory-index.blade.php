@@ -18,7 +18,7 @@
                 <tr>
                     <td>#</td>
 
-                    {{-- 
+                    {{--
                         @if ($admin_view_status != 'deleted')
                             <td style="width: 75px"> {{ __('global.select') }} </td>
                         @endif
@@ -98,7 +98,7 @@
                     <tr>
                         <td>{{ ++$number }}</td>
 
-                        {{-- 
+                        {{--
                             @if ($admin_view_status != 'deleted')
                                 <td>
                                     <div class="form-check">
@@ -163,7 +163,10 @@
                         @endif
 
                         @if ($showColumn['color'])
-                            <td> {{ $loghistory->color }} </td>
+                            <td>
+
+                                {!! $loghistory->colors() !!}
+                            </td>
                         @endif
 
 
