@@ -11,20 +11,26 @@
                     </button>
                 </div>
                 <div class="modal-body ">
-                    <table class="table">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th scope="col">رقم المهمة</th>
-                                <th scope="col"> عنوان المهمة</th>
-                                <th scope="col">تحديد</th>
+                                <th colspan="3" scope="col"> عنوان المهمة</th>
+                                <th colspan="1" scope="col">تحديد</th>
 
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>checkbox</td>
+                                <td colspan="3">Mark</td>
+                                <td colspan="1">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value=""
+                                            id="flexCheckDefault">
+
+                                    </div>
+                                </td>
 
                             </tr>
 
@@ -73,7 +79,13 @@
                             <tr>
                                 <th scope="row">1</th>
                                 <td>Mark</td>
-                                <td>Radio buttons</td>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="exampleRadios"
+                                            id="exampleRadios1" value="option1" checked>
+
+                                    </div>
+                                </td>
 
 
                             </tr>
@@ -153,7 +165,13 @@
                             <tr>
                                 <th scope="row">1</th>
                                 <td>Mark</td>
-                                <td>checkbox</td>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value=""
+                                            id="flexCheckDefault">
+
+                                    </div>
+                                </td>
 
 
                             </tr>
@@ -203,6 +221,3 @@
 
     </div>
 </div>
-
-
-
