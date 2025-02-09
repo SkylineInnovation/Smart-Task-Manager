@@ -140,7 +140,7 @@ class HomeController extends Controller
             [
                 'image' => asset('assets/dashboard/report.png'),
                 'text' =>  __('global.report'),
-                'link' => route('report.index'),
+                'link' => route('newRepo.page'),
             ],
 
 
