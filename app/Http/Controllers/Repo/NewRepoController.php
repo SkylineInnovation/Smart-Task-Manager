@@ -47,4 +47,9 @@ class NewRepoController extends Controller
     {
         return view('web.repo.table.p6-r2');
     }
+
+    public function p8R1()
+    {
+        return view('web.repo.table.p8-r1');
+    }
 }
