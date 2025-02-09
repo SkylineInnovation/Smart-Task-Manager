@@ -28,7 +28,9 @@
             font-weight: bold;
         }
 
-
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
 
         tr:hover {
             background-color: #f1f1f1;
@@ -48,6 +50,8 @@
             margin-bottom: 20px;
         }
 
+
+
         td.greenBG {
             background: #00B035;
             color: white;
@@ -66,7 +70,6 @@
             text-align: center
         }
 
-
         @media print {
             button {
                 display: none !important;
@@ -78,6 +81,7 @@
         }
     </style>
 </head>
+{{-- onload="window.print()" --}}
 
 <body>
     <div class="header">المعهد الاهلي المالي للتدريب</div>
