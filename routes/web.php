@@ -331,6 +331,8 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee', 'AuthA
     Route::get('new-report-page', [NewRepoController::class, 'repoIndex'])->name('newRepo.page');
 
     Route::get('p1-r1-table', [NewRepoController::class, 'p1R1'])->name('p1-r1-table');
+
+    Route::get('p2-r1-table', [NewRepoController::class, 'p2R1'])->name('p2-r1-table');
 });
 
 
