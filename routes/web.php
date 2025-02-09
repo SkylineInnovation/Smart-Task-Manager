@@ -333,6 +333,9 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee', 'AuthA
     Route::get('p1-r1-table', [NewRepoController::class, 'p1R1'])->name('p1-r1-table');
 
     Route::get('p2-r1-table', [NewRepoController::class, 'p2R1'])->name('p2-r1-table');
+
+    Route::get('p2-r2-table', [NewRepoController::class, 'p2R2'])->name('p2-r2-table');
+    
 });
 
 
