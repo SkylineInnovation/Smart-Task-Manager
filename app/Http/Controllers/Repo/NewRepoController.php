@@ -31,6 +31,8 @@ class NewRepoController extends Controller
     {
         return view('web.repo.table.p4-r1');
     }
+
+    // secound card
     public function p4R2()
     {
         return view('web.repo.table.p4-r2');
@@ -39,5 +41,10 @@ class NewRepoController extends Controller
     public function p6R1()
     {
         return view('web.repo.table.p6-r1');
+    }
+
+    public function p6R2()
+    {
+        return view('web.repo.table.p6-r2');
     }
 }

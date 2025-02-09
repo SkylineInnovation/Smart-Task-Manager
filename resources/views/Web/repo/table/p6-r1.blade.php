@@ -40,6 +40,16 @@
             font-size: 16px;
             margin-bottom: 20px;
         }
+
+        @media print {
+            button {
+                display: none !important;
+            }
+
+            body {
+                background: white !important;
+            }
+        }
     </style>
 </head>
 
@@ -48,7 +58,7 @@
     <div class="header">المعهد الاهلي المالي للتدريب</div>
     <div class="sub-header">تحت اشراف المؤسسة العامة للتدريب المهني والكتابي</div>
     <div class="sub-header">تقرير عن النهاء المالي على تاريخ إعلانها أقل من 72 سنة (ثلاث أية) من تاريخ اليوم</div>
-
+    <button class="header" onclick="window.print()">طباعة</button>
     <table>
         <tr>
             <th>رقم الشيخا علوان المهمة</th>
@@ -69,7 +79,36 @@
             <td>1446/08/01 و1159</td>
         </tr>
     </table>
+    <script>
+        // Disable right-click
+        document.addEventListener("contextmenu", function(e) {
+            e.preventDefault();
+        });
 
+        // Disable certain key combinations
+        document.addEventListener("keydown", function(e) {
+            if (
+                e.keyCode == 123 || // F12
+                (e.ctrlKey && e.shiftKey && e.keyCode == 73) || // Ctrl + Shift + I
+                (e.ctrlKey && e.shiftKey && e.keyCode == 74) || // Ctrl + Shift + J
+                (e.ctrlKey && e.keyCode == 85) // Ctrl + U (View Source)
+            ) {
+                e.preventDefault();
+            }
+        });
+
+        // Detect and close developer tools
+        (function() {
+            var element = new Image();
+            Object.defineProperty(element, "id", {
+                get: function() {
+                    alert("تم اكتشاف أدوات المطور! الرجاء عدم محاولة الفحص.");
+                    window.location.reload();
+                },
+            });
+            console.log("%c", element);
+        })();
+    </script>
 </body>
 
 </html>
