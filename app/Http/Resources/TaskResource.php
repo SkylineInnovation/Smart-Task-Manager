@@ -28,6 +28,8 @@ class TaskResource extends JsonResource
             'is_separate_task' => $this->is_separate_task,
             'comment_type' => $this->comment_type,
             'max_worning_count' => $this->max_worning_count,
+            'sent_warnings' => $this->sent_warnings,
+            'close_attempt' => $this->close_attempt,
             'priority_level' => $this->priority_level,
             'status' => $this->status,
             'main_task' => new TaskResource($this->whenLoaded('main_task')),

@@ -21,18 +21,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td colspan="3">Mark</td>
-                                <td colspan="1">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="flexCheckDefault">
+                            @foreach ($tasksP1R1 as $taskP1)
+                                <tr>
+                                    <th scope="row">{{ $taskP1->id }}</th>
+                                    <td colspan="3">{{ $taskP1->title }}</td>
+                                    <td colspan="1">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="taskIds[]"
+                                                value="{{ $taskP1->id }}" id="flexCheckDefault">
 
-                                    </div>
-                                </td>
+                                        </div>
+                                    </td>
 
-                            </tr>
+                                </tr>
+                            @endforeach
 
                         </tbody>
                     </table>
@@ -71,24 +73,24 @@
                                 <th scope="col">رقم المهمة</th>
                                 <th scope="col">عنوان المهمة</th>
                                 <th scope="col"> تحديد</th>
-
-
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios"
-                                            id="exampleRadios1" value="option1" checked>
+                            @foreach ($tasksP2R1 as $taskP2R1)
+                                <tr>
+                                    <th scope="row">{{ $taskP2R1->id }}</th>
+                                    <td>{{ $taskP2R1->title }}</td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="taskIdr2p1"
+                                                value="{{ $taskP2R1->id }}" checked>
 
-                                    </div>
-                                </td>
+                                        </div>
+                                    </td>
 
 
-                            </tr>
+                                </tr>
+                            @endforeach
 
                         </tbody>
                     </table>
@@ -162,19 +164,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="flexCheckDefault">
+                            @foreach ($tasksP2R2 as $task)
+                                <tr>
+                                    <th scope="row">{{ $task->id }}</th>
+                                    <td>{{ $task->crud_name() }}</td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input name="taskIds[]" class="form-check-input" type="checkbox"
+                                                value="{{ $task->id }}" id="flexCheckDefault">
 
-                                    </div>
-                                </td>
+                                        </div>
+                                    </td>
 
 
-                            </tr>
+                                </tr>
+                            @endforeach
 
                         </tbody>
                     </table>
@@ -246,10 +250,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                            </tr>
+                            @foreach ($tasksP4R1 as $task)
+                                <tr>
+                                    <th scope="row">{{ $task->id }}</th>
+                                    <td>{{ $task->title }}</td>
+                                </tr>
+                            @endforeach
 
                         </tbody>
                     </table>
@@ -314,21 +320,7 @@
                     </button>
                 </div>
                 <div class="modal-body ">
-                    {{-- <table class="table  table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">رقم المهمة</th>
-                                <th scope="col">عنوان المهمة</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                            </tr>
 
-                        </tbody>
-                    </table> --}}
 
                     <div class="col-12 w-100 m-0">
                         <div class="col-md-12 px-1">
@@ -393,16 +385,20 @@
 
 
                     <div class="form-group">
-                        <label for="browser">حساب الموظف</label>
-                        <input class="form-control" list="browsers" id="browser" name="browser"
-                            placeholder="Type to search...">
-                        <datalist id="browsers">
-                            <option value="Chrome">
-                            <option value="Firefox">
-                            <option value="Safari">
-                            <option value="Edge">
-                            <option value="Opera">
-                            <option value="Brave">
+                        <label for="customer">حساب الموظف</label>
+                        <input class="form-control" list="customerOptions" id="customer"
+                            placeholder="{{ __('global.Type to search customer') }}..." type="text"
+                            name="customer_name" onchange="onChangeSearch(event)">
+
+                        <!-- Hidden input to store selected employee ID -->
+                        <input type="hidden" id="emp_id" name="emp_id">
+
+                        <datalist id="customerOptions">
+                            @foreach ($employees as $emp)
+                                <option data-value="{{ $emp->id }}" value="{{ $emp->crud_name() }}">
+                                    {{ $emp->crud_name() }}
+                                </option>
+                            @endforeach
                         </datalist>
                     </div>
 
@@ -440,15 +436,20 @@
 
                     <div class="form-group">
                         <label for="browser">حساب جهة التكليف</label>
-                        <input class="form-control" list="browsers" id="browser" name="browser"
-                            placeholder="Type to search...">
-                        <datalist id="browsers">
-                            <option value="Chrome">
-                            <option value="Firefox">
-                            <option value="Safari">
-                            <option value="Edge">
-                            <option value="Opera">
-                            <option value="Brave">
+
+                        <input class="form-control" list="managerOptions" id="manager"
+                            placeholder="{{ __('global.Type to search manager') }}..." type="text"
+                            name="manager_name" onchange="onChangeSearch(event)">
+
+                        <!-- Hidden input to store selected employee ID -->
+                        <input type="hidden" id="man_id" name="man_id">
+
+                        <datalist id="managerOptions">
+                            @foreach ($managers as $man)
+                                <option data-value="{{ $man->id }}" value="{{ $man->crud_name() }}">
+                                    {{ $man->crud_name() }}
+                                </option>
+                            @endforeach
                         </datalist>
                     </div>
 
@@ -492,15 +493,19 @@
 
                     <div class="form-group">
                         <label for="browser">حساب الموظف </label>
-                        <input class="form-control" list="browsers" id="browser" name="browser"
-                            placeholder="Type to search...">
-                        <datalist id="browsers">
-                            <option value="Chrome">
-                            <option value="Firefox">
-                            <option value="Safari">
-                            <option value="Edge">
-                            <option value="Opera">
-                            <option value="Brave">
+                        <input class="form-control" list="employeesP8R1Options" id="employeesP8R1"
+                            placeholder="{{ __('global.Type to search employeesP8R1') }}..." type="text"
+                            name="employeesP8R1_name" onchange="onChangeSearch(event)">
+
+                        <!-- Hidden input to store selected employee ID -->
+                        <input type="hidden" id="employeesP8R1_id" name="employeesP8R1_id">
+
+                        <datalist id="employeesP8R1Options">
+                            @foreach ($employeesP8R1 as $empP8R1)
+                                <option data-value="{{ $empP8R1->id }}" value="{{ $empP8R1->crud_name() }}">
+                                    {{ $empP8R1->crud_name() }}
+                                </option>
+                            @endforeach
                         </datalist>
                     </div>
 

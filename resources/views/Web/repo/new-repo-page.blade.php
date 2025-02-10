@@ -200,10 +200,60 @@
                 </a>
             </div>
 
-            
+
         </div>
     </div>
 </div>
 
+
 @include('web.repo.new-modal-repo')
+
+<script>
+    function onChangeSearch(event) {
+        let input = event.target;
+        let options = document.getElementById('customerOptions').options;
+        let hiddenInput = document.getElementById('emp_id');
+
+        hiddenInput.value = ''; // Reset hidden input
+
+        for (let option of options) {
+            if (option.value === input.value) {
+                hiddenInput.value = option.getAttribute('data-value');
+                break;
+            }
+        }
+    }
+</script>
+<script>
+    function onChangeSearch(event) {
+        let input = event.target;
+        let options = document.getElementById('managerOptions').options;
+        let hiddenInput = document.getElementById('man_id');
+
+        hiddenInput.value = ''; // Reset hidden input
+
+        for (let option of options) {
+            if (option.value === input.value) {
+                hiddenInput.value = option.getAttribute('data-value');
+                break;
+            }
+        }
+    }
+</script>
+<script>
+    function onChangeSearch(event) {
+        let input = event.target;
+        let options = document.getElementById('employeesP8R1Options').options;
+        let hiddenInput = document.getElementById('employeesP8R1_id');
+
+        hiddenInput.value = ''; // Reset hidden input
+
+        for (let option of options) {
+            if (option.value === input.value) {
+                hiddenInput.value = option.getAttribute('data-value');
+                break;
+            }
+        }
+    }
+</script>
 @endsection

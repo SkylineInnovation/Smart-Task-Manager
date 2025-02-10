@@ -61,23 +61,27 @@
     <button class="header" onclick="window.print()">طباعة</button>
     <table>
         <tr>
-            <th>رقم الشيخا علوان المهمة</th>
-            <th>أقوام الشيخا علوان المهمة</th>
-            <th>عدد الكونا لألعاق</th>
-            <th>عدد الكونا التسبق</th>
-            <th>عدد الكونا الحضورات</th>
-            <th>عدد الخارج الأعاق</th>
-            <th>تاريخ الأعاق</th>
+            <th>رقم المهمة علوان المهمة</th>
+            <th> الوقت المتبقي للاغلاق </th>
+            <th>عدد طلبات الاغلاق</th>
+            <th>عدد طلبات التمديد</th>
+            <th>عدد طلبات المغادرات</th>
+            <th>عدد الخصومات </th>
+            <th>تاريخ الاغلاق</th>
         </tr>
-        <tr>
-            <td>[145564] التعاون الدائمني والمخصصات والعاملين التدريجة</td>
-            <td>71 سنة</td>
-            <td>0</td>
-            <td>0</td>
-            <td>2</td>
-            <td>1446/08/01 و1159</td>
-            <td>1446/08/01 و1159</td>
-        </tr>
+        @foreach ($tasks as $task)
+            <tr>
+                <td>{{ $task->title }}</td>
+                <td>{{ $task->remaining_time }}</td>
+                {{-- TODO --}}
+                <td>0</td>
+                {{-- End TODO --}}
+                <td>{{$task->extra_times->count()}}</td>
+                <td>{{$task->leaves_times->count()}}</td>
+                <td>{{$task->discounts->sum()}}</td>
+                <td>{{$task->format_date($task->end_time)}}</td>
+            </tr>
+        @endforeach
     </table>
     <script>
         // Disable right-click

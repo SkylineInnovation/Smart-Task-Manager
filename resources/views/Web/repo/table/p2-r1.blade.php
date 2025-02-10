@@ -81,41 +81,40 @@
 
         <tr>
             <th class="color">رقم المهمة</th>
-            <th>13410</th>
+            <th>{{ $task->id }}</th>
             <th class="color">عنوان المهمة</th>
-            <th colspan="5" class="">التدريب الفترة الصيادية ( 9:00 صباحاً الى غاية 01:00 مساءاً مع لرفاق
-                كشوفات
-                التحضير
-                والصور
-                للمعاونات والحضور وكشف تحضير الدروس</th>
+            <th colspan="5" class="">{{ $task->title }}</th>
         </tr>
         <tr>
             <th class="color">جهة التكليف</th>
-            <th>وسفرابو خضر</th>
+            <th>{{ $task->manager->crud_name() }}</th>
             <th class="color">الموظفون</th>
-            <th colspan="3">إصن عثمان على اكتباً</th>
+            <th colspan="3">{!! $task->employee_names() !!}</th>
             <th class="color">تاريخ الإستلام</th>
-            <th>1447706/09</th>
+            <th>{{ $task->created_at }}</th>
 
         </tr>
         <tr>
             <th colspan="8" class="color-darker">الإنجازات والتعليقات خلال هذه الفترة</th>
         </tr>
-        <tr>
-            <th class="color">المرسل</th>
-            <th colspan="3">حسن حمام علي افقتي</th>
-            <th class="color">تاريخ التعليق</th>
-            <th>1448077/14</th>
-            <th class="color">وقت التعليق</th>
-            <th>0:06:11</th>
-        </tr>
 
-        <tr>
-            <th colspan="8" class="color-commints">
-                محاضرة الكيمياء العامة بدلوم حماية البيئة الربع الثاني مجموع طلاب الشعبية ، 7 حضر منهم 5 طلاب ، موضوع
-                المحاضرة الجدول الدوري
-            </th>
-        </tr>
+
+        @foreach ($comments as $comm)
+            <tr>
+                <th class="color">المرسل</th>
+                <th colspan="3"> {{ $comm->user->crud_name() }} </th>
+                <th class="color">تاريخ التعليق</th>
+                <th>{{ $comm->created_at->format('Y-m-d') }}</th>
+                <th class="color">وقت التعليق</th>
+                <th>{{ $comm->created_at->format('h:m:s') }}</th>
+            </tr>
+
+            <tr>
+                <th colspan="8" class="color-commints">
+                    {{ $comm->desc }}
+                </th>
+            </tr>
+        @endforeach
     </table>
 
     <script>

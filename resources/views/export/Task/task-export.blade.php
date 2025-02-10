@@ -10,6 +10,8 @@
             <td>is_separate_task</td>
             <td>comment_type</td>
             <td>max_worning_count</td>
+            <td>sentـwarnings</td>
+            <td>close_attempt</td>
             <td>priority_level</td>
             <td>status</td>
             <td>main_task</td>
@@ -35,6 +37,8 @@
                 <td style="width: 100pt">{{ $task->comment_type }}</td>
 
                 <td style="width: 100pt">{{ $task->max_worning_count }}</td>
+                <td style="width: 100pt">{{ $task->sent_warnings }}</td>
+                <td style="width: 100pt">{{ $task->close_attempt }}</td>
 
                 <td style="width: 100pt">{{ $task->the_priority_level() }}</td>
 

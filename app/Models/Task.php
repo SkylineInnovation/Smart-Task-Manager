@@ -18,7 +18,7 @@ class Task extends Model
     use HasFactory;
     use SoftDeletes;
 
-    // use Translatable trait to translate the columns 
+    // use Translatable trait to translate the columns
     use TranslateTrait;
 
     /**
@@ -67,6 +67,8 @@ class Task extends Model
         'is_separate_task',
         'comment_type',
         'max_worning_count',
+        'sent_warnings',
+        'close_attempt',
         'priority_level',
         'status',
         'main_task_id',
@@ -87,8 +89,8 @@ class Task extends Model
                 LogHistory::create([
                     'user_id' => auth()->user() ? auth()->user()->id : 0,
                     'action' => 'create',
-                    'by_model_name' => 'sub_task', // attachment, comment, extra_time, leave, 
-                    'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
+                    'by_model_name' => 'sub_task', // attachment, comment, extra_time, leave,
+                    'by_model_id' => $model->id, // attachment, comment, extra_time, leave,
                     'on_model_name' => 'task', // task, daily_task,
                     'on_model_id' => $model->main_task_id, // task, daily_task,
                     'preaf' => [
@@ -102,8 +104,8 @@ class Task extends Model
                 LogHistory::create([
                     'user_id' => auth()->user() ? auth()->user()->id : 0,
                     'action' => 'create',
-                    'by_model_name' => 'daily_task', // attachment, comment, extra_time, leave, 
-                    'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
+                    'by_model_name' => 'daily_task', // attachment, comment, extra_time, leave,
+                    'by_model_id' => $model->id, // attachment, comment, extra_time, leave,
                     'on_model_name' => 'task', // task, daily_task,
                     'on_model_id' => $model->daily_task_id, // task, daily_task,
                     'preaf' => [
@@ -117,8 +119,8 @@ class Task extends Model
                 LogHistory::create([
                     'user_id' => auth()->user() ? auth()->user()->id : 0,
                     'action' => 'create',
-                    'by_model_name' => 'reopen_task', // attachment, comment, extra_time, leave, 
-                    'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
+                    'by_model_name' => 'reopen_task', // attachment, comment, extra_time, leave,
+                    'by_model_id' => $model->id, // attachment, comment, extra_time, leave,
                     'on_model_name' => 'task', // task, daily_task,
                     'on_model_id' => $model->reopen_from_task_id, // task, daily_task,
                     'preaf' => [
@@ -132,8 +134,8 @@ class Task extends Model
                 LogHistory::create([
                     'user_id' => auth()->user() ? auth()->user()->id : 0,
                     'action' => 'create',
-                    'by_model_name' => 'task', // attachment, comment, extra_time, leave, 
-                    'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
+                    'by_model_name' => 'task', // attachment, comment, extra_time, leave,
+                    'by_model_id' => $model->id, // attachment, comment, extra_time, leave,
                     'on_model_name' => 'task', // task, daily_task,
                     'on_model_id' => $model->id, // task, daily_task,
                     'preaf' => [
@@ -158,8 +160,8 @@ class Task extends Model
             LogHistory::create([
                 'user_id' => auth()->user() ? auth()->user()->id : 0,
                 'action' => 'update',
-                'by_model_name' => 'task', // attachment, comment, extra_time, leave, 
-                'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
+                'by_model_name' => 'task', // attachment, comment, extra_time, leave,
+                'by_model_id' => $model->id, // attachment, comment, extra_time, leave,
                 'on_model_name' => 'task', // task, daily_task,
                 'on_model_id' => $model->id, // task, daily_task,
                 'from_data' => $oldValues,
@@ -183,15 +185,15 @@ class Task extends Model
             //         } elseif ($model->status == 'manual-finished') {
             //             $template = 'manual-finished';
             //         }
-            // 
+            //
             //         $mail_list = [
             //             $model->manager->email,
             //         ];
-            // 
+            //
             //         foreach ($model->employees as $emp) {
             //             $mail_list[] = $emp->email;
             //         }
-            // 
+            //
             //         if ($template != '')
             //             Mail::to($mail_list)->send(new SendStatusChangeOnTask($template, $model));
             //     }
@@ -202,8 +204,8 @@ class Task extends Model
             LogHistory::create([
                 'user_id' => auth()->user() ? auth()->user()->id : 0,
                 'action' => 'delete',
-                'by_model_name' => 'task', // attachment, comment, extra_time, leave, 
-                'by_model_id' => $model->id, // attachment, comment, extra_time, leave, 
+                'by_model_name' => 'task', // attachment, comment, extra_time, leave,
+                'by_model_id' => $model->id, // attachment, comment, extra_time, leave,
                 'on_model_name' => 'task', // task, daily_task,
                 'on_model_id' => $model->id, // task, daily_task,
                 'preaf' => [
@@ -456,7 +458,7 @@ class Task extends Model
         // Convert seconds to hours and minutes
         $hours = intval($totalSeconds / 3600);
         $minutes = intval(($totalSeconds % 3600) / 60);
-        // 
+        //
         $hours_string = $hours > 9 ? $hours : '0' . $hours;
         $minutes_string = $minutes > 9 ? $minutes : '0' . $minutes;
         // Format the output
@@ -572,4 +574,6 @@ class Task extends Model
             return $comment->created_ago($comment->created_at);
         return __('global.no-comment-yet');
     }
+
+
 }

@@ -38,6 +38,8 @@ class CreateTasksTable extends Migration
             $table->string('comment_type')->nullable()->default('daily');
 
             $table->integer('max_worning_count')->nullable()->default(1);
+            $table->integer('sent_warnings')->nullable()->default(0);
+            $table->integer('close_attempt')->nullable()->default(0);
 
             $table->string('status')->nullable()->default('pending');
 
