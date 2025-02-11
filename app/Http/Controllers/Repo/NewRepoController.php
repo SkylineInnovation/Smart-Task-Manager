@@ -41,11 +41,20 @@ class NewRepoController extends Controller
 
         $employeesP8R1 = User::whereRoleIs('employee')->get();
 
+        $managersP8R2 = User::whereRoleIs('manager')->get();
 
 
 
-
-        return view('Web.repo.new-repo-page', compact('tasksP1R1', 'tasksP2R1', 'tasksP2R2', 'tasksP4R1', 'employees', 'managers', 'employeesP8R1'));
+        return view('Web.repo.new-repo-page', compact(
+            'tasksP1R1',
+            'tasksP2R1',
+            'tasksP2R2',
+            'tasksP4R1',
+            'employees',
+            'managers',
+            'employeesP8R1',
+            'managersP8R2'
+        ));
     }
 
     public function  p1R1(Request $request)
@@ -185,13 +194,40 @@ class NewRepoController extends Controller
 
     // TODO
 
-    public function p8R2()
+    public function p8R2(Request $request)
     {
-        return view('web.repo.table.p8-r2');
+        $managerId = $request->input('managersP8R2_id');
+        $formDate = $request->input('fromDate');
+        $toDate = $request->input('toDate');
+        $taskStatus = $request->input('taskStatus');
+        $manager = User::find($managerId);
+
+        if ($taskStatus == 1) {
+
+            $tasks = Task::whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
+                ->where('manager_id', $managerId)
+                ->where('status', 'active')
+                ->get();
+        } elseif ($taskStatus == 2) {
+            $tasks = Task::whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
+                ->where('manager_id', $managerId)
+                ->where('status', 'auto-finished')
+                ->get();
+        } else
+
+            $tasks = Task::whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
+                ->where('manager_id', $managerId)
+                ->where('slug', 'draft')
+                ->get();
+
+
+        return view('web.repo.table.p8-r2', compact('tasks', 'manager'));
     }
     // TODO
     public function p10R1()
     {
+
+
         return view('web.repo.table.p10-r1');
     }
 

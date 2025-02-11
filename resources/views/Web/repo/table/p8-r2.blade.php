@@ -99,30 +99,25 @@
         <tbody>
             <tr>
                 <td class="greenBG" colspan="6">
-                    ahmad hakeem
+                    {{$manager->crud_name()}}
                 </td>
             </tr>
-            <tr>
-                <td>رخص البلدية والدفاع المدني لكل فرع [12995]</td>
-                <td>1446/09/15 م04:55</td>
-                <td>تحت التنفيذ</td>
-                <td>SAR 0</td>
-                <td>SAR 850</td>
-                <td>غير محدد</td>
+            @foreach ($tasks as $task)
+                <tr>
+                    <td>{{ $task->title }}</td>
+                    <td>{{ $task->format_date($task->end_time) }}</td>
+                    <td>{{ $task->status }}</td>
+                    <td>SAR 0</td>
+                    <td>SAR 850</td>
+                    <td>غير محدد</td>
 
-            </tr>
-            <tr>
-                <td>رخص البلدية والدفاع المدني لكل فرع [12995]</td>
-                <td>1446/09/15 م04:55</td>
-                <td>تحت التنفيذ</td>
-                <td>SAR 0</td>
-                <td>SAR 850</td>
-                <td>غير محدد</td>
-            </tr>
+                </tr>
+            @endforeach
+
 
             <tr>
                 <td class="pinkBG">
-                    عدد المهام /٠٠
+                    عدد المهام /{{ $tasks->count() }}
                 </td>
                 <td class="grayBG" colspan="2"></td>
                 <td class="pinkBG">0 SAR</td>

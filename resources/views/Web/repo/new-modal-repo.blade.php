@@ -495,7 +495,7 @@
                             placeholder="{{ __('global.Type to search employee') }}..." type="text"
                             name="employeesP8R1_name"
                             onchange="onChangeSearch(event, 'employeesP8R1Options', 'employeesP8R1_id')">
-                        <input type="hidden" id="man_id" name="man_id">
+
                         <input type="hidden" id="employeesP8R1_id" name="employeesP8R1_id">
 
                         <datalist id="employeesP8R1Options">
@@ -542,26 +542,30 @@
                     </button>
                 </div>
                 <div class="modal-body ">
-
-
                     <div class="form-group">
                         <label for="browser">حساب جهة التكليف</label>
-                        <input class="form-control" list="browsers" id="browser" name="browser"
-                            placeholder="Type to search...">
-                        <datalist id="browsers">
-                            <option value="Chrome">
-                            <option value="Firefox">
-                            <option value="Safari">
-                            <option value="Edge">
-                            <option value="Opera">
-                            <option value="Brave">
+
+                        <input class="form-control" list="managersP8R2Options" id="browser"
+                            placeholder="{{ __('global.Type to search employee') }}..." type="text"
+                            name="managersP8R2_name"
+                            onchange="onChangeSearch(event, 'managersP8R2Options', 'managersP8R2_id')">
+
+                        <input type="hidden" id="managersP8R2_id" name="managersP8R2_id">
+
+                        <datalist id="managersP8R2Options">
+                            @foreach ($managersP8R2 as $emp)
+                                <option value="{{ $emp->crud_name() }}" data-value="{{ $emp->id }}">
+                                    {{ $emp->crud_name() }}
+                                </option>
+                            @endforeach
                         </datalist>
                     </div>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+
+                    <select class="form-select" name="taskStatus" aria-label="Default select example">
+
+                        <option value="1">المهام الفعالة</option>
+                        <option value="2">المهام المغلقة</option>
+                        <option value="3">المهام المؤرشفة</option>
                     </select>
 
                     <div class="row w-100 m-0 mt-4">
