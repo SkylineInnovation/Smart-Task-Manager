@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-          
+
             margin: 0;
             padding: 20px;
             direction: rtl;
@@ -126,7 +126,7 @@
 </head>
 
 <body>
-    <div class="container">
+    {{-- <div class="container">
         <div class="header">المادة المالية للتدريب</div>
         <div class="content">
             <table>
@@ -146,7 +146,7 @@
             </table>
         </div>
         <div class="footer">هذا النموذج رسمي ويجب الالتزام به</div>
-    </div>
+    </div> --}}
 
     <div class="container-table">
         <table>

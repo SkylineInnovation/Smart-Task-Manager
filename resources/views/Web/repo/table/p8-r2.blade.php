@@ -99,7 +99,7 @@
         <tbody>
             <tr>
                 <td class="greenBG" colspan="6">
-                    {{$manager->crud_name()}}
+                    {{ $manager->crud_name() }}
                 </td>
             </tr>
             @foreach ($tasks as $task)
@@ -107,8 +107,8 @@
                     <td>{{ $task->title }}</td>
                     <td>{{ $task->format_date($task->end_time) }}</td>
                     <td>{{ $task->status }}</td>
-                    <td>SAR 0</td>
-                    <td>SAR 850</td>
+                    <td>{{ $task->discounts->count() }}</td>
+                    <td>{{ $task->discounts->where('reason', 'auto-finish-task')->count() }}</td>
                     <td>غير محدد</td>
 
                 </tr>

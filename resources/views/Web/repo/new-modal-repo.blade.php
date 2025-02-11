@@ -647,28 +647,34 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
 
-                                <td>Mark</td>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="flexCheckDefault">
+                            @foreach ($employeesP10R1 as $emp)
+                                <tr>
 
-                                    </div>
-                                </td>
+                                    <td>{{ $emp->crud_name() }}</td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="emp_id"
+                                                value="{{ $emp->id }}" type="radio" name="flexRadioDefault"
+                                                id="flexRadioDefault1">
 
 
-                            </tr>
+                                        </div>
+                                    </td>
+
+
+                                </tr>
+                            @endforeach
 
                         </tbody>
                     </table>
 
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+
+                    <select class="form-select" name="taskStatus" aria-label="Default select example">
+
+                        <option value="1">المهام الفعالة</option>
+                        <option value="2">المهام المغلقة</option>
+                        <option value="3">المهام المؤرشفة</option>
                     </select>
 
                     <div class="row w-100 m-0 mt-4">

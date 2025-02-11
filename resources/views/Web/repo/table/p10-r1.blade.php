@@ -95,7 +95,7 @@
                 <th>تاريخ الإعلاق</th>
                 <th>حالة المهمة</th>
                 <th>إجمالي الخصومات البدوية</th>
-                <th>حالة الجمعية الإلكترونية</th>
+                <th>إجمالي الخصومات الإلكترونية</th>
                 <th>التقييم</th>
 
             </tr>
@@ -106,27 +106,22 @@
                     ahmad hakeem
                 </td>
             </tr>
-            <tr>
-                <td>رخص البلدية والدفاع المدني لكل فرع [12995]</td>
-                <td>1446/09/15 م04:55</td>
-                <td>تحت التنفيذ</td>
-                <td>SAR 0</td>
-                <td>SAR 850</td>
-                <td>غير محدد</td>
+            @foreach ($tasks as $task)
+                <tr>
+                    <td>{{ $task->title }}</td>
+                    <td>{{ $task->format_date($task->end_time) }}</td>
+                    <td>{{ $task->status }}</td>
+                    <td>{{ $task->discounts->count() }}</td>
+                    <td>{{ $task->discounts->where('reason', 'auto-finish-task')->count() }}</td>
+                    <td>غير محدد</td>
 
-            </tr>
-            <tr>
-                <td>رخص البلدية والدفاع المدني لكل فرع [12995]</td>
-                <td>1446/09/15 م04:55</td>
-                <td>تحت التنفيذ</td>
-                <td>SAR 0</td>
-                <td>SAR 850</td>
-                <td>غير محدد</td>
-            </tr>
+                </tr>
+            @endforeach
+
 
             <tr>
                 <td class="pinkBG">
-                    عدد المهام /٠٠
+                    عدد المهام /{{ $tasks->count() }}
                 </td>
                 <td class="grayBG" colspan="2"></td>
                 <td class="pinkBG">0 SAR</td>

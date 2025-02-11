@@ -43,6 +43,8 @@ class NewRepoController extends Controller
 
         $managersP8R2 = User::whereRoleIs('manager')->get();
 
+        $employeesP10R1 = User::WhereRoleIs('employee')->get();
+
 
 
         return view('Web.repo.new-repo-page', compact(
@@ -53,7 +55,8 @@ class NewRepoController extends Controller
             'employees',
             'managers',
             'employeesP8R1',
-            'managersP8R2'
+            'managersP8R2',
+            'employeesP10R1'
         ));
     }
 
@@ -193,6 +196,7 @@ class NewRepoController extends Controller
     }
 
     // TODO
+    // DOne
 
     public function p8R2(Request $request)
     {
@@ -223,12 +227,44 @@ class NewRepoController extends Controller
 
         return view('web.repo.table.p8-r2', compact('tasks', 'manager'));
     }
+
+
     // TODO
-    public function p10R1()
+    public function p10R1(Request $request)
     {
+        $emoloyeeID = $request->input('emp_id');
+        $formDate = $request->input('fromDate');
+        $toDate = $request->input('toDate');
+        $taskStatus = $request->input('taskStatus');
+        $emplyee = User::find($emoloyeeID);
 
 
-        return view('web.repo.table.p10-r1');
+        if ($taskStatus == 1) {
+
+            $tasks = Task::whereHas('employees', function ($q) use ($emplyee) {
+                $q->where('id', $emplyee->id);
+            })
+                ->whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
+                ->where('status', 'active')
+                ->get();
+        } elseif ($taskStatus == 2) {
+            $tasks = Task::whereHas('employees', function ($q) use ($emplyee) {
+                $q->where('id', $emplyee->id);
+            })
+                ->whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
+                ->where('status', 'auto-finished')
+                ->get();
+        } else
+
+            $tasks = Task::whereHas('employees', function ($q) use ($emplyee) {
+                $q->where('id', $emplyee->id);
+            })
+                ->whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
+                ->where('slug', 'draft')
+                ->get();
+
+
+        return view('web.repo.table.p10-r1', compact('tasks'));
     }
 
 
