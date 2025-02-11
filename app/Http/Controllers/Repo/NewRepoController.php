@@ -148,12 +148,14 @@ class NewRepoController extends Controller
     public function p6R1(Request $request)
     {
 
-        $employe = $request->input('customer_id');
+        $employe = $request->input('emp_id');
 
         $tasks = Task::whereHas('employees', function ($q) use ($employe) {
 
             $q->where('id', $employe);
         })->get();
+
+        // dd($employe);
 
         return view('web.repo.table.p6-r1', compact('tasks'));
     }
@@ -193,7 +195,7 @@ class NewRepoController extends Controller
         return view('web.repo.table.p10-r1');
     }
 
-    
+
     public function p11()
     {
         return view('web.repo.table.p11');

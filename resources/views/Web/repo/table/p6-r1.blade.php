@@ -74,12 +74,12 @@
                 <td>{{ $task->title }}</td>
                 <td>{{ $task->remaining_time }}</td>
                 {{-- TODO --}}
-                <td>0</td>
+                <td>{{ $task->close_attempt }}</td>
                 {{-- End TODO --}}
-                <td>{{$task->extra_times->count()}}</td>
-                <td>{{$task->leaves_times->count()}}</td>
-                <td>{{$task->discounts->sum()}}</td>
-                <td>{{$task->format_date($task->end_time)}}</td>
+                <td>{{ $task->extra_times->count() }}</td>
+                <td>{{ $task->leaves_times->count() }}</td>
+                <td>{{ $task->discounts->sum() }}</td>
+                <td>{{ $task->format_date($task->end_time) }}</td>
             </tr>
         @endforeach
     </table>

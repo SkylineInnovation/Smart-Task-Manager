@@ -383,24 +383,23 @@
                 </div>
                 <div class="modal-body ">
 
-
                     <div class="form-group">
-                        <label for="customer">حساب الموظف</label>
-                        <input class="form-control" list="customerOptions" id="customer"
+                        <label for="emp_id">حساب الموظف</label>
+                        <input class="form-control" list="customerOptions" id="customer_id"
                             placeholder="{{ __('global.Type to search customer') }}..." type="text"
-                            name="customer_name" onchange="onChangeSearch(event)">
+                            name="customer_name" onchange="onChangeSearch(event, 'customerOptions', 'emp_id')">
 
-                        <!-- Hidden input to store selected employee ID -->
                         <input type="hidden" id="emp_id" name="emp_id">
 
                         <datalist id="customerOptions">
                             @foreach ($employees as $emp)
-                                <option data-value="{{ $emp->id }}" value="{{ $emp->crud_name() }}">
+                                <option value="{{ $emp->crud_name() }}" data-value="{{ $emp->id }}">
                                     {{ $emp->crud_name() }}
                                 </option>
                             @endforeach
                         </datalist>
                     </div>
+
 
                 </div>
                 <div class="modal-footer d-flex justify-content-between">
@@ -437,17 +436,16 @@
                     <div class="form-group">
                         <label for="browser">حساب جهة التكليف</label>
 
-                        <input class="form-control" list="managerOptions" id="manager"
+                        <input class="form-control" list="managerOptions" id="manager_id"
                             placeholder="{{ __('global.Type to search manager') }}..." type="text"
-                            name="manager_name" onchange="onChangeSearch(event)">
+                            name="manager_name" onchange="onChangeSearch(event, 'managerOptions', 'man_id')">
 
-                        <!-- Hidden input to store selected employee ID -->
                         <input type="hidden" id="man_id" name="man_id">
 
                         <datalist id="managerOptions">
-                            @foreach ($managers as $man)
-                                <option data-value="{{ $man->id }}" value="{{ $man->crud_name() }}">
-                                    {{ $man->crud_name() }}
+                            @foreach ($managers as $manager)
+                                <option value="{{ $manager->crud_name() }}" data-value="{{ $manager->id }}">
+                                    {{ $manager->crud_name() }}
                                 </option>
                             @endforeach
                         </datalist>
@@ -493,17 +491,17 @@
 
                     <div class="form-group">
                         <label for="browser">حساب الموظف </label>
-                        <input class="form-control" list="employeesP8R1Options" id="employeesP8R1"
-                            placeholder="{{ __('global.Type to search employeesP8R1') }}..." type="text"
-                            name="employeesP8R1_name" onchange="onChangeSearch(event)">
-
-                        <!-- Hidden input to store selected employee ID -->
+                        <input class="form-control" list="employeesP8R1Options" id="browser"
+                            placeholder="{{ __('global.Type to search employee') }}..." type="text"
+                            name="employeesP8R1_name"
+                            onchange="onChangeSearch(event, 'employeesP8R1Options', 'employeesP8R1_id')">
+                        <input type="hidden" id="man_id" name="man_id">
                         <input type="hidden" id="employeesP8R1_id" name="employeesP8R1_id">
 
                         <datalist id="employeesP8R1Options">
-                            @foreach ($employeesP8R1 as $empP8R1)
-                                <option data-value="{{ $empP8R1->id }}" value="{{ $empP8R1->crud_name() }}">
-                                    {{ $empP8R1->crud_name() }}
+                            @foreach ($employeesP8R1 as $emp)
+                                <option value="{{ $emp->crud_name() }}" data-value="{{ $emp->id }}">
+                                    {{ $emp->crud_name() }}
                                 </option>
                             @endforeach
                         </datalist>

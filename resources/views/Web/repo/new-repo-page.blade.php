@@ -208,7 +208,7 @@
 
 @include('web.repo.new-modal-repo')
 
-<script>
+{{-- <script>
     function onChangeSearch(event) {
         let input = event.target;
         let options = document.getElementById('customerOptions').options;
@@ -250,6 +250,23 @@
 
         for (let option of options) {
             if (option.value === input.value) {
+                hiddenInput.value = option.getAttribute('data-value');
+                break;
+            }
+        }
+    }
+</script> --}}
+
+<script>
+    function onChangeSearch(event, dataListId, hiddenInputId) {
+        let input = event.target.value;
+        let options = document.getElementById(dataListId).options;
+        let hiddenInput = document.getElementById(hiddenInputId);
+
+        hiddenInput.value = ''; // Reset hidden input
+
+        for (let option of options) {
+            if (option.value === input) {
                 hiddenInput.value = option.getAttribute('data-value');
                 break;
             }
