@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Repo;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\ExchangePermission;
 use App\Models\Leave;
 use App\Models\Task;
 use App\Models\User;
@@ -50,6 +51,8 @@ class NewRepoController extends Controller
 
         $employeesP12 = User::whereRoleIs('employee')->get();
 
+        $employeesP13 = User::whereRoleIs('employee')->get();
+
 
 
         return view('Web.repo.new-repo-page', compact(
@@ -63,7 +66,8 @@ class NewRepoController extends Controller
             'managersP8R2',
             'employeesP10R1',
             'employeesP11',
-            'employeesP12'
+            'employeesP12',
+            'employeesP13'
         ));
     }
 
@@ -310,5 +314,18 @@ class NewRepoController extends Controller
     }
 
 
-   
+    public function p13(Request $request)
+    {
+        $emplyee = $request->input('employees13_id');
+        $formDate = $request->input('fromDate');
+        $toDate = $request->input('toDate');
+
+        $exchanges = ExchangePermission::whereHas('user', function ($q) use ($emplyee) {
+            $q->where('id', $emplyee);
+        })
+            ->whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
+            ->get();
+
+        return view('web.repo.table.p13', compact('exchanges'));
+    }
 }

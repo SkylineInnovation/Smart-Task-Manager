@@ -199,7 +199,7 @@
                     </div>
                 </a>
             </div>
-            
+
             {{-- P12 --}}
             <div class="col-md-2  d-flex justify-content-center">
                 <a href="" data-toggle="modal" data-target="#repo-p12" class="mouseHover col-md-11 py-3">
@@ -209,6 +209,19 @@
                     </div>
                     <div class="col-md-12 text-center text-dark text-bold">
                         {{ __('global.p12') }}
+                    </div>
+                </a>
+            </div>
+
+            {{-- P13 --}}
+            <div class="col-md-2  d-flex justify-content-center">
+                <a href="" data-toggle="modal" data-target="#repo-p13" class="mouseHover col-md-11 py-3">
+                    <div class="col-md-12 pb-3 d-flex justify-content-center">
+                        <img src="{{ asset('assets/dashboard/report-one.png') }}" width="72" height="72"
+                            alt="">
+                    </div>
+                    <div class="col-md-12 text-center text-dark text-bold">
+                        {{ __('global.p13') }}
                     </div>
                 </a>
             </div>
