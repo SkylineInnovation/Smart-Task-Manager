@@ -102,7 +102,8 @@
 
         th.bg-pink {
             background: #EF9591;
-            color: black
+            color: black;
+            font-size: 14px
         }
 
         td.bg-more-pink {
@@ -149,51 +150,49 @@
     </div> --}}
 
     <div class="container-table">
-        <table>
-            <thead>
-                <tr>
-                    <th class="bg-pink">تعداد تعليف</th>
-                    <th class="bg-pink">مقاومة تعداد معايير</th>
-                    <th class="bg-green">الجمع</th>
-                    <th>المستقبلة / التركيب</th>
+        @foreach ($tasks as $task)
+            <table>
+                <thead>
+                    <tr>
+                        <th class="bg-pink"> جهة التكليف</th>
+                        <th class="bg-pink">{{$task->manager->crud_name()}}</th>
+                        <th class="bg-green">الجمع</th>
+                        <th>المستقبلة / التركيب</th>
                     <th class="bg-blue">التعليقات / مادة</th>
-                    <th>التعليقات / مادة</th>
-                </tr>
-                <tr>
-                    <th class="bg-green">تعداد تعليف</th>
-                    <th class="">مقاومة تعداد معايير</th>
-                    <th class="bg-blue">الجمع</th>
-                    <th>المستقبلة / التركيب</th>
-                    <th class="bg-green">التعليقات / مادة</th>
-                    <th>التعليقات / مادة</th>
-                </tr>
-                <tr>
-                    <th class="bg-blue">تعداد تعليف</th>
-                    <th class="">مقاومة تعداد معايير</th>
-                    <th class="bg-blue">الجمع</th>
-                    <th colspan="4">المستقبلة / التركيب</th>
+                        <th>التعليقات / مادة</th>
+                    </tr>
+                    <tr>
+                        <th class="bg-green">تعداد تعليف</th>
+                        <th class="">مقاومة تعداد معايير</th>
+                        <th class="bg-blue">الجمع</th>
+                        <th>المستقبلة / التركيب</th>
+                        <th class="bg-green">التعليقات / مادة</th>
+                        <th>التعليقات / مادة</th>
+                    </tr>
+                    <tr>
+                        <th class="bg-blue">رقم المهمة </th>
+                        <th class="">{{ $task->id }} </th>
+                        <th class="bg-blue">عنوان المهمة</th>
+                        <th colspan="4">{{ $task->title }}</th>
 
-                </tr>
-                <tr>
-                    <th class="bg-blue">تعداد تعليف</th>
+                    </tr>
+                    <tr>
+                        <th class="bg-blue"> الوقت</th>
 
-                    <th colspan="5">المستقبلة / التركيب</th>
+                        <th colspan="5">تعليف الموظف </th>
 
-                </tr>
-                <tr>
-                    <th class="">- - -</th>
+                    </tr>
+                    @foreach ($task->comments as $comment)
+                        <tr>
+                            <th class="">{{ $comment->created_at->format('h:m:s') }}</th>
 
-                    <th colspan="5">المستقبلة / التركيب</th>
+                            <th colspan="5">{{$comment->desc}}</th>
 
-                </tr>
-
-
-
-            </thead>
-
-
-
-        </table>
+                        </tr>
+                    @endforeach
+                </thead>
+            </table>
+        @endforeach
 
         <table class="mt">
             <tbody>

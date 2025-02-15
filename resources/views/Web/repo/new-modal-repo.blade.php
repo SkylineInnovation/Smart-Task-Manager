@@ -747,20 +747,98 @@
 
                     <div class="form-group">
                         <label for="browser">حساب الموظف </label>
-                        <input class="form-control" list="browsers" id="browser" name="browser"
-                            placeholder="Type to search...">
-                        <datalist id="browsers">
-                            <option value="Chrome">
-                            <option value="Firefox">
-                            <option value="Safari">
-                            <option value="Edge">
-                            <option value="Opera">
-                            <option value="Brave">
+                        <input class="form-control" list="EmployeesP11ptions" id="browser"
+                            placeholder="{{ __('global.Type to search employee') }}..." type="text"
+                            name="employees11_name"
+                            onchange="onChangeSearch(event, 'EmployeesP11ptions', 'employees11_id')">
+
+                        <input type="hidden" id="employees11_id" name="employees11_id">
+
+                        <datalist id="EmployeesP11ptions">
+                            @foreach ($employeesP11 as $emp)
+                                <option value="{{ $emp->crud_name() }}" data-value="{{ $emp->id }}">
+                                    {{ $emp->crud_name() }}
+                                </option>
+                            @endforeach
                         </datalist>
                     </div>
 
+                    <div class="col-12 w-100 m-0 mt-4">
+                        <div class="col-md-12 px-1">
+                            <div class="text-end"><label for="">{{ __('global.from_date') }}</label>
+                            </div>
+                            <div class="input-group mb-3">
+
+                                <div class="input-group-prepend">
+
+                                </div>
+                                <input type="date" id="" name="fromDate" class="form-control"
+                                    aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                            </div>
+                        </div>
+                        <div class="col-md-12 px-1">
+                            <div class="text-end">
+                                <label for="">{{ __('global.to date') }}</label>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+
+                                </div>
+                                <input type="date" class="form-control" name="toDate" aria-label="Default"
+                                    aria-describedby="inputGroup-sizing-default">
+                            </div>
+                        </div>
+                    </div>
 
 
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">{{ __('global.Close') }}</button>
+                    <button type="submit" class="btn btn-primary fs-16 px-4">
+                        <i class="fa fa-print"></i>
+                    </button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+
+<!-- Modal p12 -->
+<div class="modal fade" id="repo-p12" tabindex="-1" role="dialog" aria-labelledby="repo-121Label"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <form action="{{ route('p12-table') }}" method="get">
+            <div class="modal-content">
+                <div class="modal-header text-white" style="background:#1B579B ">
+                    <h5 class="modal-title" id="repo-p12Label">
+                        {{ __('global.repo-p12') }}</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body ">
+
+                    <div class="form-group">
+                        <label for="browser">حساب الموظف </label>
+                        <input class="form-control" list="EmployeesP12ptions" id="browser"
+                            placeholder="{{ __('global.Type to search employee') }}..." type="text"
+                            name="employees12_name"
+                            onchange="onChangeSearch(event, 'EmployeesP12ptions', 'employees12_id')">
+
+                        <input type="hidden" id="employees12_id" name="employees12_id">
+
+                        <datalist id="EmployeesP12ptions">
+                            @foreach ($employeesP12 as $emp)
+                                <option value="{{ $emp->crud_name() }}" data-value="{{ $emp->id }}">
+                                    {{ $emp->crud_name() }}
+                                </option>
+                            @endforeach
+                        </datalist>
+                    </div>
 
                     <div class="col-12 w-100 m-0 mt-4">
                         <div class="col-md-12 px-1">

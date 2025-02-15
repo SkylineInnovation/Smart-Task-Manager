@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Repo;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\Leave;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -45,6 +46,10 @@ class NewRepoController extends Controller
 
         $employeesP10R1 = User::WhereRoleIs('employee')->get();
 
+        $employeesP11 = User::whereRoleIs('employee')->get();
+
+        $employeesP12 = User::whereRoleIs('employee')->get();
+
 
 
         return view('Web.repo.new-repo-page', compact(
@@ -56,7 +61,9 @@ class NewRepoController extends Controller
             'managers',
             'employeesP8R1',
             'managersP8R2',
-            'employeesP10R1'
+            'employeesP10R1',
+            'employeesP11',
+            'employeesP12'
         ));
     }
 
@@ -230,6 +237,7 @@ class NewRepoController extends Controller
 
 
     // TODO
+    // DONE
     public function p10R1(Request $request)
     {
         $emoloyeeID = $request->input('emp_id');
@@ -268,8 +276,39 @@ class NewRepoController extends Controller
     }
 
 
-    public function p11()
+    public function p11(Request $request)
     {
-        return view('web.repo.table.p11');
+
+        $emplyee = $request->input('employees11_id');
+        $formDate = $request->input('fromDate');
+        $toDate = $request->input('toDate');
+
+        $tasks = Task::whereHas('employees', function ($q) use ($emplyee) {
+            $q->where('id', $emplyee);
+        })
+            ->whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
+            ->get();
+
+        return view('web.repo.table.p11', compact('tasks'));
     }
+
+    public function p12(Request $request)
+    {
+        $emplyee = $request->input('employees12_id');
+        $formDate = $request->input('fromDate');
+        $toDate = $request->input('toDate');
+
+        $leaves = Leave::whereHas('user', function ($q) use ($emplyee) {
+            $q->where('id', $emplyee);
+        })
+            ->whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
+            ->paginate();
+
+        // dd($leaves);
+
+        return view('web.repo.table.p12', compact('leaves'));
+    }
+
+
+   
 }

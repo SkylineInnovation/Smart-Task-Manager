@@ -352,6 +352,8 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee', 'AuthA
 
     // p11
     Route::get('P11-table', [NewRepoController::class, 'p11'])->name('p11-table');
+    // P12
+    Route::get('P12-table', [NewRepoController::class, 'p12'])->name('p12-table');
 });
 
 
