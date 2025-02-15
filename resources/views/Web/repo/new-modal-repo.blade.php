@@ -536,7 +536,7 @@
             <div class="modal-content">
                 <div class="modal-header text-white" style="background:#1B579B ">
                     <h5 class="modal-title" id="repo-p8-r2Label">
-                        {{ __('global.repo-p8-r2') }}</h5>
+                        {{ __('global.p8-r2') }}</h5>
                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -628,7 +628,7 @@
             <div class="modal-content">
                 <div class="modal-header text-white" style="background:#1B579B ">
                     <h5 class="modal-title" id="repo-p10-r1Label">
-                        {{ __('global.repo-p10-r1') }}</h5>
+                        {{ __('global.p10-r1') }}</h5>
                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -738,7 +738,7 @@
             <div class="modal-content">
                 <div class="modal-header text-white" style="background:#1B579B ">
                     <h5 class="modal-title" id="repo-p11Label">
-                        {{ __('global.repo-p11') }}</h5>
+                        {{ __('global.p11') }}</h5>
                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -815,7 +815,7 @@
             <div class="modal-content">
                 <div class="modal-header text-white" style="background:#1B579B ">
                     <h5 class="modal-title" id="repo-p12Label">
-                        {{ __('global.repo-p12') }}</h5>
+                        {{ __('global.p12') }}</h5>
                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -892,7 +892,7 @@
             <div class="modal-content">
                 <div class="modal-header text-white" style="background:#1B579B ">
                     <h5 class="modal-title" id="repo-p13Label">
-                        {{ __('global.repo-p13') }}</h5>
+                        {{ __('global.p13') }}</h5>
                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
