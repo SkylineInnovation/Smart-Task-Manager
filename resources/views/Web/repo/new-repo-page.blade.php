@@ -234,7 +234,7 @@
     </div>
 
 
-    @include('web.repo.new-modal-repo')
+    @include('Web.repo.new-modal-repo')
 
     {{-- <script>
     function onChangeSearch(event) {
