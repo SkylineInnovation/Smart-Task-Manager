@@ -101,6 +101,8 @@ class TaskIndex extends Component
             'is_separate_task' => false,
             'comment_type' => true,
             'max_worning_count' => true,
+            'close_attempt' => true,
+            'sent_warnings' => true,
             'priority_level' => true,
             'status' => true,
             'main_task_id' => false,
@@ -113,7 +115,7 @@ class TaskIndex extends Component
     }
 
     public $slug;
-    public $task_id, $manager_id, $title, $desc, $start_time, $end_time, $is_separate_task = 0, $comment_type = 'daily', $max_worning_count, $priority_level = 'low', $status = 'pending', $main_task_id, $daily_task_id;
+    public $task_id, $manager_id, $title, $desc, $start_time, $end_time, $is_separate_task = 0, $comment_type = 'daily', $max_worning_count, $priority_level = 'low', $status = 'pending', $main_task_id, $daily_task_id, $sent_warnings, $close_attempt;
 
     public $task_status = 'all';
     public $discount = 0, $max_worning_discount = 0;
@@ -131,6 +133,8 @@ class TaskIndex extends Component
         $this->is_separate_task = 0;
         $this->comment_type = 'daily';
         $this->max_worning_count = null;
+        $this->close_attempt = null;
+        $this->sent_warnings = null;
         // $this->priority_level = 'low';
         // $this->status = 'pending';
         $this->main_task_id = null;
@@ -157,6 +161,8 @@ class TaskIndex extends Component
             'is_separate_task' => 'required',
             'comment_type' => 'required',
             'max_worning_count' => 'required',
+            'sent_warnings' => 'required',
+            'close_attempt' => 'required',
             'priority_level' => 'required',
             'status' => 'required',
             'discount' => 'required',
@@ -196,6 +202,8 @@ class TaskIndex extends Component
                     'is_separate_task' => $this->is_separate_task,
                     'comment_type' => $this->comment_type,
                     'max_worning_count' => $this->max_worning_count,
+                    'sent_warnings' => $this->sent_warnings,
+                    'close_attempt' => $this->close_attempt,
                     'priority_level' => $this->priority_level,
                     'status' => $this->status,
                     'main_task_id' => $this->main_task_id,
@@ -224,6 +232,8 @@ class TaskIndex extends Component
                 'is_separate_task' => $this->is_separate_task,
                 'comment_type' => $this->comment_type,
                 'max_worning_count' => $this->max_worning_count,
+                'sent_warnings' => $this->sent_warnings,
+                'close_attempt' => $this->close_attempt,
                 'priority_level' => $this->priority_level,
                 'status' => $this->status,
                 'main_task_id' => $this->main_task_id,
@@ -267,6 +277,8 @@ class TaskIndex extends Component
         $this->is_separate_task = $task->is_separate_task;
         $this->comment_type = $task->comment_type;
         $this->max_worning_count = $task->max_worning_count;
+        $this->sent_warnings = $task->sent_warnings;
+        $this->close_attempt = $task->close_attempt;
         $this->priority_level = $task->priority_level;
         $this->status = $task->status;
         $this->main_task_id = $task->main_task_id;
@@ -309,6 +321,8 @@ class TaskIndex extends Component
                 // 'is_separate_task' => $this->is_separate_task,
                 'comment_type' => $this->comment_type,
                 'max_worning_count' => $this->max_worning_count,
+                'sent_warnings' => $this->sent_warnings,
+                'close_attempt' => $this->close_attempt,
                 'priority_level' => $this->priority_level,
                 'status' => $this->status,
                 'main_task_id' => $this->main_task_id,
@@ -413,6 +427,8 @@ class TaskIndex extends Component
         $this->is_separate_task = $task->is_separate_task;
         $this->comment_type = $task->comment_type;
         $this->max_worning_count = $task->max_worning_count;
+        $this->sent_warnings = $task->sent_warnings;
+        $this->close_attempt = $task->close_attempt;
         $this->priority_level = $task->priority_level;
         $this->daily_task_id = $task->daily_task_id;
         $this->status = 'pending';

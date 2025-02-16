@@ -395,4 +395,38 @@ return [
 
     'tasks-under-review-title' => 'Tasks Under Review',
     'tasks-under-review-desc' => 'Show All Tasks That Under Review',
+
+    'repo-p1-r1' => 'Brief report on all tasks',
+    'repo-p2-r1' => 'Report on an effective mission',
+    'repo-p2-r2' => 'Task specific comments report',
+    'repo-p4-r1' => 'Report comments of all active tasks without specifying',
+    'repo-p4-r2' => 'Report on effective task comments for all employees',
+    'repo-p6-r1' => 'Active Tasks Closed Soon',
+    'repo-p6-r2' => 'Outgoing Task Movement',
+    'repo-p8-r1' => 'Incoming task movement',
+    'p8-r2' => 'Outgoing Task Discounts',
+    'p10-r1' => 'Incoming Task Discounts',
+    'p11' => 'Follow up on employee tasks',
+    'p12' => 'Disclosure of leave requests during the period for each employee',
+    'p13' => 'Statement of disbursement requests during a period for each employee',
+
+    'type-to-search-employee' => 'Type to search employee',
+    'type-to-search' => 'Type to search',
+    'by_employee' => 'by employee',
+    'by_manager' => 'By Manager',
+    'report_title' => 'Report Title',
+
+    'task_out_comments' => 'Outgoing Task Movement',
+    'task_in_comments' => 'Incoming Task Movement',
+
+    'active_task' => 'Active Task',
+    'closed_task' => 'Closed Task',
+    'draft_task' => 'Draft Task',
+
+    'incoming-task-discounts' => 'Incoming Task Discounts',
+    'outgoing-task-discounts' => 'Outgoing Task Discounts',
+
+    'task-id' => 'Task number',
+    'task-name' => 'Task title',
+    'employee-name' => 'Employee name',
 ];

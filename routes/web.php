@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DailyTaskController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Repo\NewRepoController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Web\ReportsController;
@@ -308,7 +309,7 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee', 'AuthA
     // SHOW ON PAGE
     Route::get('task-short-desc', [ReportsController::class, 'tasksShortDesc'])->name('tasks.short.desc');
 
-    // new route by laith
+
     // DONE (we need to pass the selected emp)
     // SHOW ON PAGE
     Route::get('incoming-task-movements/{emp}', [ReportsController::class, 'incomingTaskMovements'])->name('incoming.task.movements.emp');
@@ -321,6 +322,41 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee', 'AuthA
     // DONE (we need to pass the selected user)
     // SHOW ON PAGE
     Route::get('employee-follow-up/{user}', [ReportsController::class, 'employeeFollowUp'])->name('employee.follow.up');
+
+
+    //  new route for repo uisng laith
+
+
+
+    Route::get('new-report-page', [NewRepoController::class, 'repoIndex'])->name('newRepo.page');
+
+    Route::get('p1-r1-table', [NewRepoController::class, 'p1R1'])->name('p1-r1-table');
+
+    Route::get('p2-r1-table', [NewRepoController::class, 'p2R1'])->name('p2-r1-table');
+
+    Route::get('p2-r2-table', [NewRepoController::class, 'p2R2'])->name('p2-r2-table');
+
+    Route::get('p4-r1-table', [NewRepoController::class, 'p4R1'])->name('p4-r1-table');
+
+    Route::get('p4-r2-table', [NewRepoController::class, 'p4R2'])->name('p4-r2-table');
+
+    Route::get('p6-r1-table', [NewRepoController::class, 'p6R1'])->name('p6-r1-table');
+
+    Route::get('p6-r2-table', [NewRepoController::class, 'p6R2'])->name('p6-r2-table');
+
+    Route::get('p8-r1-table', [NewRepoController::class, 'p8R1'])->name('p8-r1-table');
+
+    Route::get('p8-r2-table', [NewRepoController::class, 'p8R2'])->name('p8-r2-table');
+
+    Route::get('p10-r1-table', [NewRepoController::class, 'p10R1'])->name('p10-r1-table');
+
+    // p11
+    Route::get('P11-table', [NewRepoController::class, 'p11'])->name('p11-table');
+    // P12
+    Route::get('P12-table', [NewRepoController::class, 'p12'])->name('p12-table');
+
+    // P12
+    Route::get('P13-table', [NewRepoController::class, 'p13'])->name('p13-table');
 });
 
 

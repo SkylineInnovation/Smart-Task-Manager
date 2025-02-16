@@ -31,6 +31,8 @@ class FullTasksImport implements ToCollection, WithHeadingRow
             $is_separate_task = trim($row['is_separate_task']);
             $comment_type = trim($row['comment_type']);
             $max_worning_count = trim($row['max_worning_count']);
+            $sent_warnings = trim($row['sent_warnings']);
+            $close_attempt = trim($row['close_attempt']);
             $priority_level = trim($row['priority_level']);
 
             $status = trim($row['status']);
@@ -51,6 +53,8 @@ class FullTasksImport implements ToCollection, WithHeadingRow
                     'is_separate_task' => $is_separate_task,
                     'comment_type' => $comment_type,
                     'max_worning_count' => $max_worning_count,
+                    'sent_warnings' => $sent_warnings,
+                    'close_attempt' => $close_attempt,
                     'priority_level' => $priority_level,
                     'status' => $status,
                 ]);
@@ -66,6 +70,8 @@ class FullTasksImport implements ToCollection, WithHeadingRow
                     'is_separate_task' => $is_separate_task,
                     'comment_type' => $comment_type,
                     'max_worning_count' => $max_worning_count,
+                    'sent_warnings' => $sent_warnings,
+                    'close_attempt' => $close_attempt,
                     'priority_level' => $priority_level,
                     'status' => $status,
                 ]);

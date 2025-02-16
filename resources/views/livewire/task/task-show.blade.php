@@ -81,6 +81,26 @@
                         // 'lg' => 4, 'md' => 4, 'sm' => 6,
                     ])
                     @include('inputs.edit.input', [
+                        'label' => 'task.short_sent_warnings',
+                        'name' => 'task.short_sent_warnings',
+                        'val' => $task->sent_warnings,
+                        'livewire' => 'sent_warnings',
+                        'is_disable' => auth()->user() ? auth()->user()->hasRole('employee') : true,
+                        'type' => 'number',
+                        'step' => 1,
+                        // 'lg' => 4, 'md' => 4, 'sm' => 6,
+                    ])
+                    @include('inputs.edit.input', [
+                        'label' => 'task.short_close_attempt',
+                        'name' => 'task.short_close_attempt',
+                        'val' => $task->close_attempt,
+                        'livewire' => 'close_attempt',
+                        'is_disable' => auth()->user() ? auth()->user()->hasRole('employee') : true,
+                        'type' => 'number',
+                        'step' => 1,
+                        // 'lg' => 4, 'md' => 4, 'sm' => 6,
+                    ])
+                    @include('inputs.edit.input', [
                         'label' => 'task.short_max_worning_discount',
                         'name' => 'task.short_max_worning_discount',
                         'val' => $task->max_worning_discount(),

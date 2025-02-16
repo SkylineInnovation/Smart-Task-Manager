@@ -99,7 +99,7 @@
                     <div class="col-md-12 d-flex justify-content-between pb-4">
                         <img src="{{ asset('assets/dashboard/report.png') }}" width="20" height="20"
                             alt="" srcset="">
-                        <a href="{{ route('report.index') }}" class="text-dark">
+                        <a href="{{ route('newRepo.page') }}" class="text-dark">
                             {{ __('global.reports') }}
                         </a>
                     </div>

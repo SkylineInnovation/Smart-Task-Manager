@@ -24,7 +24,7 @@ class TaskShow extends Component
     public Task $task;
 
     public $task_id, $title, $discount, $max_worning_discount, $desc, $start_time, $end_time;
-    public $is_separate_task = 0, $comment_type = 'daily', $max_worning_count, $priority_level, $status;
+    public $is_separate_task = 0, $comment_type = 'daily', $max_worning_count, $priority_level, $status, $sent_warnings, $close_attempt;
 
     public $employees;
     public $selectedEmployees = [];
@@ -50,13 +50,15 @@ class TaskShow extends Component
         $this->is_separate_task = $task->is_separate_task;
         $this->comment_type = $task->comment_type;
         $this->max_worning_count = $task->max_worning_count;
+        $this->sent_warnings = $task->sent_warnings;
+        $this->close_attempt = $task->close_attempt;
         $this->priority_level = $task->priority_level;
         $this->status = $task->status;
 
         $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
         $this->selectedEmployees = $task->employees->pluck('id');
 
-        // 
+        //
 
         $this->tab = 1;
 
@@ -71,6 +73,8 @@ class TaskShow extends Component
         $this->is_separate_task  = $task->is_separate_task;
         $this->comment_type  = $task->comment_type;
         $this->max_worning_count  = $task->max_worning_count;
+        $this->sent_warnings  = $task->sent_warnings;
+        $this->close_attempt  = $task->close_attempt;
 
         // $this->sub_task_start_time  = $task->start_time;
         // $this->sub_task_end_time  = $task->end_time;
@@ -95,6 +99,8 @@ class TaskShow extends Component
             'is_separate_task' => 'required',
             'comment_type' => 'required',
             'max_worning_count' => 'required',
+            'sent_warnings' => 'required',
+            'close_attempt' => 'required',
             'priority_level' => 'required',
             'status' => 'required',
             'discount' => 'required',
@@ -133,6 +139,8 @@ class TaskShow extends Component
             'is_separate_task' => $this->is_separate_task,
             'comment_type' => $this->comment_type,
             'max_worning_count' => $this->max_worning_count,
+            'sent_warnings' => $this->sent_warnings,
+            'close_attempt' => $this->close_attempt,
             'priority_level' => $this->priority_level,
             'status' => $this->status,
             // 'main_task_id' => $this->main_task_id,
@@ -293,7 +301,7 @@ class TaskShow extends Component
         $sub_task_start_time, $sub_task_end_time,
         $sub_task_is_separate_task = 0,
         $sub_task_comment_type = 'daily', $sub_task_max_worning_count,
-        $sub_task_priority_level = 'low', $sub_task_status = 'pending';
+        $sub_task_priority_level = 'low', $sub_task_status = 'pending', $sub_task_sent_warnings, $sub_task_close_attempt;
 
     public $selected_employe_task = [];
 
@@ -312,6 +320,8 @@ class TaskShow extends Component
             'is_separate_task' => $this->sub_task_is_separate_task,
             'comment_type' => $this->sub_task_comment_type,
             'max_worning_count' => $this->sub_task_max_worning_count,
+            'sent_warnings' => $this->sub_task_sent_warnings,
+            'close_attempt' => $this->sub_task_close_attempt,
             'priority_level' => $this->sub_task_priority_level,
             'status' => $this->sub_task_status,
             'main_task_id' => $this->task_id,
@@ -335,6 +345,8 @@ class TaskShow extends Component
         $this->sub_task_comment_type = 'daily';
         $this->sub_task_max_worning_count = null;
         $this->sub_task_priority_level = 'low';
+        $this->sub_task_sent_warnings = null;
+        $this->sub_task_close_attempt = null;
 
         // $this->selectedEmployees = [];
 
@@ -373,7 +385,7 @@ class TaskShow extends Component
         ]);
     }
 
-    // // // // 
+    // // // //
     public $leave, $leave_id;
     public function setLeave($id)
     {
@@ -450,7 +462,7 @@ class TaskShow extends Component
         // Convert seconds to hours and minutes
         $hours = intval($totalSeconds / 3600);
         $minutes = intval(($totalSeconds % 3600) / 60);
-        // 
+        //
         $hours_string = $hours > 9 ? $hours : '0' . $hours;
         $minutes_string = $minutes > 9 ? $minutes : '0' . $minutes;
         // Format the output

@@ -68,6 +68,15 @@
                     @if ($showColumn['max_worning_count'])
                         <td>{{ __('task.max_worning_count') }}</td>
                     @endif
+                    @if ($showColumn['sent_warnings'])
+                        <td>{{ __('task.sent_warnings') }}</td>
+                    @endif
+                    @if ($showColumn['close_attempt'])
+                        <td>{{ __('task.close_attempt') }}</td>
+                    @endif
+                    @if ($showColumn['close_attempt'])
+                        <td>{{ __('task.close_attempt') }}</td>
+                    @endif
 
                     @if ($showColumn['priority_level'])
                         <td>{{ __('task.priority_level') }}</td>
@@ -91,7 +100,7 @@
 
 
 
-                        <td>{{ __('global.commints') }}</td>
+                    <td>{{ __('global.commints') }}</td>
 
 
                     @permission('edit-task|delete-task|restore-task')
@@ -169,6 +178,12 @@
                         @if ($showColumn['max_worning_count'])
                             <td> {{ $task->max_worning_count }} </td>
                         @endif
+                        @if ($showColumn['sent_warnings'])
+                            <td> {{ $task->sent_warnings }} </td>
+                        @endif
+                        @if ($showColumn['close_attempt'])
+                            <td> {{ $task->close_attempt }} </td>
+                        @endif
 
                         @if ($showColumn['priority_level'])
                             <td>
@@ -206,7 +221,7 @@
                         @endif
 
                         <td>
-                            {{$task->last_comment_before()}}
+                            {{ $task->last_comment_before() }}
                         </td>
 
                         @permission('edit-task|delete-task|restore-task')
