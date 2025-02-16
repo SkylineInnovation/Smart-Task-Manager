@@ -78,7 +78,7 @@
                 {{-- End TODO --}}
                 <td>{{ $task->extra_times->count() }}</td>
                 <td>{{ $task->leaves_times->count() }}</td>
-                <td>{{ $task->discounts->sum() }}</td>
+                <td>{{ $task->discounts->sum('amount') }}</td>
                 <td>{{ $task->format_date($task->end_time) }}</td>
             </tr>
         @endforeach

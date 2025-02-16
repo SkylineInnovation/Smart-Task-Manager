@@ -155,14 +155,14 @@
                 <thead>
                     <tr>
                         <th class="bg-pink"> جهة التكليف</th>
-                        <th class="bg-pink">{{$task->manager->crud_name()}}</th>
+                        <th class="bg-pink">{{ $task->manager->crud_name() }}</th>
                         <th class="bg-green">الجمع</th>
                         <th>المستقبلة / التركيب</th>
-                    <th class="bg-blue">التعليقات / مادة</th>
+                        <th class="bg-blue">التعليقات / مادة</th>
                         <th>التعليقات / مادة</th>
                     </tr>
                     <tr>
-                        <th class="bg-green">تعداد تعليف</th>
+                        <th class="bg-green">تعداد تعليق</th>
                         <th class="">مقاومة تعداد معايير</th>
                         <th class="bg-blue">الجمع</th>
                         <th>المستقبلة / التركيب</th>
@@ -179,14 +179,14 @@
                     <tr>
                         <th class="bg-blue"> الوقت</th>
 
-                        <th colspan="5">تعليف الموظف </th>
+                        <th colspan="5">تعليق الموظف</th>
 
                     </tr>
                     @foreach ($task->comments as $comment)
                         <tr>
                             <th class="">{{ $comment->created_at->format('h:m:s') }}</th>
 
-                            <th colspan="5">{{$comment->desc}}</th>
+                            <th colspan="5">{{ $comment->desc }}</th>
 
                         </tr>
                     @endforeach

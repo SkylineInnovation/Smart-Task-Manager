@@ -71,7 +71,7 @@ class NewRepoController extends Controller
         ));
     }
 
-    public function  p1R1(Request $request)
+    public function p1R1(Request $request)
     {
         $taskIds = $request->input('taskIds');
 

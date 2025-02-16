@@ -409,4 +409,24 @@ return [
     'p11' => 'Follow up on employee tasks',
     'p12' => 'Disclosure of leave requests during the period for each employee',
     'p13' => 'Statement of disbursement requests during a period for each employee',
+
+    'type-to-search-employee' => 'Type to search employee',
+    'type-to-search' => 'Type to search',
+    'by_employee' => 'by employee',
+    'by_manager' => 'By Manager',
+    'report_title' => 'Report Title',
+
+    'task_out_comments' => 'Outgoing Task Movement',
+    'task_in_comments' => 'Incoming Task Movement',
+
+    'active_task' => 'Active Task',
+    'closed_task' => 'Closed Task',
+    'draft_task' => 'Draft Task',
+
+    'incoming-task-discounts' => 'Incoming Task Discounts',
+    'outgoing-task-discounts' => 'Outgoing Task Discounts',
+
+    'task-id' => 'Task number',
+    'task-name' => 'Task title',
+    'employee-name' => 'Employee name',
 ];
