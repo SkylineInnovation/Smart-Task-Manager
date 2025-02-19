@@ -299,8 +299,8 @@ class HomeController extends Controller
         return view('web.task-board');
     }
 
-    public function permissionPage()
-    {
-        return view('web.permissions.permissions');
-    }
+    // public function permissionPage()
+    // {
+    //     return view('web.permissions.permissions');
+    // }
 }
