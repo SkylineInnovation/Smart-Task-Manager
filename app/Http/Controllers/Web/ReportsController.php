@@ -35,7 +35,7 @@ class ReportsController extends Controller
         $employees = User::whereRoleIs('employee')->get();
 
 
-        return  view('Web.repots.web-index-reports', compact('users', 'tasks_status', 'userManager', 'tasks', 'employees'));
+        return  view('web.repots.web-index-reports', compact('users', 'tasks_status', 'userManager', 'tasks', 'employees'));
     }
 
     // public function discountsOutgoingTasksRequest(Request $request)
@@ -67,7 +67,7 @@ class ReportsController extends Controller
     //         $totalAmount = Discount::where('user_id', $userName->id)->sum('amount');
 
 
-    //     return view('Web.repots.new-prints.discounts-outgoing-tasks', [
+    //     return view('web.repots.new-prints.discounts-outgoing-tasks', [
     //         'tasks' => $tasks,
     //         'user' => $user,
     //         'userName' => $userName,
@@ -79,12 +79,12 @@ class ReportsController extends Controller
 
     // public function MovementOfOutGoingTasksAccordingToThAassignedAuthority()
     // {
-    //     return view('Web.repots.new-prints.Movement-of-outgoing-tasks-according-to-the-assigned-authority');
+    //     return view('web.repots.new-prints.Movement-of-outgoing-tasks-according-to-the-assigned-authority');
     // }
 
     // public function incomingTasksMovementForTheEmployee()
     // {
-    //     return view('Web.repots.new-prints.Incoming-tasks-movement-for-the-employee');
+    //     return view('web.repots.new-prints.Incoming-tasks-movement-for-the-employee');
     // }
 
     //
@@ -114,7 +114,7 @@ class ReportsController extends Controller
             $q->where('id', $manager->id);
         })->get();
 
-        return view('Web.repots.new-prints.total-dicount-by-manager', compact(
+        return view('web.repots.new-prints.total-dicount-by-manager', compact(
             'manager',
             'employees',
             'from_date',
@@ -123,15 +123,15 @@ class ReportsController extends Controller
         ));
     }
 
-    public function listOfTasksComments(Request $request,$id)
+    public function listOfTasksComments(Request $request, $id)
     {
         // $taskSelect = $request->input('taskCheck');
 
-        $task=Task::find($id);
+        $task = Task::find($id);
 
         $viewTasks = Task::whereIn('id', $task)->get();
 
-        return view('Web.repots.new-prints.task-specific-comments', compact('viewTasks'));
+        return view('web.repots.new-prints.task-specific-comments', compact('viewTasks'));
     }
 
     public function commentsOnAllTasks(Request $request)
@@ -152,19 +152,19 @@ class ReportsController extends Controller
         $tasks = $tasks->get();
 
 
-        return view('Web.repots.new-prints.comments-on-all-tasks', compact('tasks'));
+        return view('web.repots.new-prints.comments-on-all-tasks', compact('tasks'));
     }
 
     public function oneTaskComments(Task $task)
     {
-        return view('Web.repots.new-prints.one-task-comments', compact('task'));
+        return view('web.repots.new-prints.one-task-comments', compact('task'));
     }
 
     public function discountsReport(User $user)
     {
         $discounts = Discount::where('user_id', $user->id)->get();
 
-        return view('Web.repots.new-prints.incoming-discounts-report', compact('user', 'discounts'));
+        return view('web.repots.new-prints.incoming-discounts-report', compact('user', 'discounts'));
     }
 
     public function tasksShortDesc(Request $request)
@@ -185,7 +185,7 @@ class ReportsController extends Controller
         $tasks = $tasks->get();
 
 
-        return view('Web.repots.new-prints.tasks-short-desc', compact('tasks'));
+        return view('web.repots.new-prints.tasks-short-desc', compact('tasks'));
     }
 
     //
@@ -202,7 +202,7 @@ class ReportsController extends Controller
 
         $tasks = $tasks->get();
 
-        return view('Web.repots.new-prints.incoming-tasks-movement', compact('emp', 'tasks'));
+        return view('web.repots.new-prints.incoming-tasks-movement', compact('emp', 'tasks'));
     }
 
     public function outgoingTaskMovements(User $manager)
@@ -219,7 +219,7 @@ class ReportsController extends Controller
         $comments = $comments->get();
 
 
-        return view("Web.repots.new-prints.outgoing-tasks-movement", compact('manager', 'comments'));
+        return view("web.repots.new-prints.outgoing-tasks-movement", compact('manager', 'comments'));
     }
 
     //
@@ -242,7 +242,7 @@ class ReportsController extends Controller
 
         $tasks = $tasks->get();
 
-        return view('Web.repots.new-prints.employee-follow-up', compact('user', 'tasks'));
+        return view('web.repots.new-prints.employee-follow-up', compact('user', 'tasks'));
     }
 
     // new route by laith

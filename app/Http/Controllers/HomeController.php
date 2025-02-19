@@ -296,11 +296,11 @@ class HomeController extends Controller
 
     public function taskBoard()
     {
-        return view('Web.task-board');
+        return view('web.task-board');
     }
 
     public function permissionPage()
     {
-        return view('Web.permissions.permissions');
+        return view('web.permissions.permissions');
     }
 }

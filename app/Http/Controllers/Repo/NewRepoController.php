@@ -55,7 +55,7 @@ class NewRepoController extends Controller
 
 
 
-        return view('Web.repo.new-repo-page', compact(
+        return view('web.repo.new-repo-page', compact(
             'tasksP1R1',
             'tasksP2R1',
             'tasksP2R2',

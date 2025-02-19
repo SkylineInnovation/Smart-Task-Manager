@@ -213,7 +213,7 @@
 
                                     </a>
                                 </div>
-                                
+
                             </div>
 
                             <table class="table table-bordered  mt-3">
@@ -270,7 +270,7 @@
 
                                     </a>
                                 </div>
-                               
+
                             </div>
 
                             <table class="table table-bordered  mt-3">
@@ -329,7 +329,7 @@
 
                                     </a>
                                 </div>
-                               
+
                             </div>
 
                             <table class="table table-bordered  mt-3">
@@ -388,7 +388,7 @@
 
                                     </a>
                                 </div>
-                                
+
                             </div>
 
                             <table class="table table-bordered  mt-3">
@@ -424,11 +424,11 @@
                     </div>
                     <div class="tab-pane fade" id="pills-Comments" role="tabpanel"
                         aria-labelledby="pills-Comments-tab">
-                    
-                    
-                    
+
+
+
                         <div class="container">
-                          
+
 
                             <table class="table table-bordered  mt-3">
                                 <thead class="table-light">
@@ -459,7 +459,7 @@
                             </table>
 
                         </div>
-                    
+
                     </div>
                 </div>
             </div>
@@ -473,5 +473,5 @@
 
 
 @for ($i = 1; $i < 7; $i++)
-    @include('Web.task.modal-task-inside-modal', ['i' => $i])
+    @include('web.task.modal-task-inside-modal', ['i' => $i])
 @endfor

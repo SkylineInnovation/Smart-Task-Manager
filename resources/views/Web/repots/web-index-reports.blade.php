@@ -114,7 +114,7 @@
                     </a>
                 </div>
 
-                
+
                 <div class="col-md-2  d-flex justify-content-center">
                     <a href="" data-toggle="modal" data-target="#employeeFollowUp" class="mouseHover col-md-11 py-3">
                         <div class="col-md-12 pb-3 d-flex justify-content-center">
@@ -208,7 +208,7 @@
         </div>
     </div>
 
-    @include('Web.repots.reports-model')
+    @include('web.repots.reports-model')
 @endsection
 
 @section('js')

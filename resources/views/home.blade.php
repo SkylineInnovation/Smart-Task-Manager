@@ -123,7 +123,7 @@
                         <div class="card-body">
                             <div class="row w-100 m-0">
                                 @foreach ($tasksBtns as $taskBtn)
-                                    @include('Web.components.task-managment-btn', [
+                                    @include('web.components.task-managment-btn', [
                                         'text' => $taskBtn['text'],
                                         'image' => $taskBtn['image'],
                                         'link' => $taskBtn['link'],
@@ -236,7 +236,7 @@
                         <div class="card-body">
                             <div class="row w-100 m-0">
                                 @foreach ($mainBtns as $Mbtn)
-                                    @include('Web.components.main-btn', [
+                                    @include('web.components.main-btn', [
                                         'image' => $Mbtn['image'],
                                         'text' => $Mbtn['text'],
                                         'link' => $Mbtn['link'] ?? '',

@@ -24,7 +24,7 @@ class WebPermissionsController extends Controller
             ->orderBy('name')->get();
 
 
-        return view('Web.permission.index', compact('roles', 'permissions'));
+        return view('web.permission.index', compact('roles', 'permissions'));
     }
 
     public function create(Request $request)
@@ -72,7 +72,7 @@ class WebPermissionsController extends Controller
             ->orderBy('name')->get();
 
 
-        return view('Web.permission.edit', compact('role', 'permissions'));
+        return view('web.permission.edit', compact('role', 'permissions'));
     }
 
     public function update(Role $role, Request $request)

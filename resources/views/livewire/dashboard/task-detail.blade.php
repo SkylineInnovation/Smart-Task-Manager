@@ -24,7 +24,7 @@
     </a>
 
 
-    {{-- @include('Web.task.task-modal', [
+    {{-- @include('web.task.task-modal', [
         'loop' => $rand,
         'taskID' => $task->id,
         'value' => $task,

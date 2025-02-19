@@ -133,7 +133,7 @@
         </div>
     </div>
 
-    @include('Web.repots.reports-model')
+    @include('web.repots.reports-model')
 @endsection
 
 @section('js')

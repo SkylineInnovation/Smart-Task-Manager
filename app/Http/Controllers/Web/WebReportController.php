@@ -18,7 +18,7 @@ class WebReportController extends Controller
         $users = User::whereRoleIs('employee')->orderBy('first_name')->get();
         $tasks_status = Task::get();
 
-        return view('Web.repots.reports-web', compact('users', 'tasks_status'));
+        return view('web.repots.reports-web', compact('users', 'tasks_status'));
     }
 
     // // مهام واردة لم يعلق عليها اليوم
@@ -50,7 +50,7 @@ class WebReportController extends Controller
 
         $tasks = Task::whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])->get();
 
-        return view('Web.repots.prints.task-comments-report', compact('tasks'));
+        return view('web.repots.prints.task-comments-report', compact('tasks'));
     }
 
 
@@ -67,7 +67,7 @@ class WebReportController extends Controller
 
         // $tasks = Task::whereBetween('created_at', [Carbon::now(), Carbon::now()->addHours(12)])->get();
 
-        return view('Web.repots.prints.closed-reports-soon', compact('user', 'income_tasks_almost_soon'));
+        return view('web.repots.prints.closed-reports-soon', compact('user', 'income_tasks_almost_soon'));
     }
 
 
@@ -80,7 +80,7 @@ class WebReportController extends Controller
 
         $tasks = Task::where('manager_id', $user)->whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])->get();
 
-        return view('Web.repots.prints.outgoing-task-discounts', compact('tasks', 'user'));
+        return view('web.repots.prints.outgoing-task-discounts', compact('tasks', 'user'));
     }
 
     public function incomingTaskDiscounts(Request $request)
@@ -93,7 +93,7 @@ class WebReportController extends Controller
             $q->where('user_id', $users);
         })->whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])->get();
 
-        return view('Web.repots.prints.incoming-task-discounts', compact('tasks'));
+        return view('web.repots.prints.incoming-task-discounts', compact('tasks'));
     }
 
     public function OutgoingTaskMovements(Request $request)
@@ -102,8 +102,7 @@ class WebReportController extends Controller
         // مهام صادرة لم يعلق عليها اليوم
         $outcome_tasks_not_commented = Task::where('manager_id', $user)
             ->where('end_time', '>=', date('Y-m-d\TH:i'))->get();
-            return  view('Web.repots.prints.outgoing-task-movements',compact('outcome_tasks_not_commented'));
-
+        return  view('web.repots.prints.outgoing-task-movements', compact('outcome_tasks_not_commented'));
     }
 
     public function IncomingTaskMovements(Request $request)
@@ -115,13 +114,13 @@ class WebReportController extends Controller
             $q->where('user_id', $user);
         })->get();
 
-        return view('Web.repots.prints.incoming-task-movements',compact('income_tasks_almost_close'));
+        return view('web.repots.prints.incoming-task-movements', compact('income_tasks_almost_close'));
     }
 
     public function FollowUpEmployeeTasks()
     {
         $tasks_status = Task::get();
-        return view('Web.repots.prints.follow-up-employee-tasks');
+        return view('web.repots.prints.follow-up-employee-tasks');
     }
 
     public function IncomingTasksNotCommentedOnToday() {}
