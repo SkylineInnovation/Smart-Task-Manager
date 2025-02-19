@@ -78,7 +78,7 @@
                 <td>{{ $task->status }}</td>
             </tr>
         @endforeach
-       
+
     </table>
 
     <script>

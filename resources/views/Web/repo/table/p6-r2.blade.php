@@ -87,24 +87,24 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($tasks as  $task)
-            <tr>
-                <td colspan="2" class="bg-green"> {{$task->manager->crud_name()}}</td>
-                <td colspan="2" class="bg-center">
-                   {{$task->title}}
-                </td>
-                <td colspan="2" class="bg-pink">{{$task->format_date($task->created_at)}}</td>
-            </tr>
-            <tr>
-                <td colspan="6">
-                   {{$task->desc}}
+            @foreach ($tasks as $task)
+                <tr>
+                    <td colspan="2" class="bg-green"> {{ $task->manager->crud_name() }}</td>
+                    <td colspan="2" class="bg-center">
+                        {{ $task->title }}
+                    </td>
+                    <td colspan="2" class="bg-pink">{{ $task->format_date($task->created_at) }}</td>
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        {{ $task->desc }}
 
-                </td>
-            </tr>
+                    </td>
+                </tr>
             @endforeach
 
-{{--
-            <tr>
+
+            {{-- <tr>
                 <td colspan="6">
                     6-3 إذ يتم استخدامها، العمل يوم الثلاث، 01-28-2015م بسبب انعاذ الجهاز المختصة للشرع
                     والتهاء، جعلت تحديد قناعات الجواهران 02-2025م ومكتب المتعهد في التهام القليم

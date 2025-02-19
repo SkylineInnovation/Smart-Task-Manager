@@ -81,17 +81,17 @@
 
         <tr>
             <th class="color">رقم المهمة</th>
-            <th>{{ $task->id }}</th>
+            <th>{{ $task ? $task->id : '--' }}</th>
             <th class="color">عنوان المهمة</th>
-            <th colspan="5" class="">{{ $task->title }}</th>
+            <th colspan="5" class="">{{ $task ? $task->title : '--' }}</th>
         </tr>
         <tr>
             <th class="color">جهة التكليف</th>
-            <th>{{ $task->manager->crud_name() }}</th>
+            <th>{{ $task ? $task->manager->crud_name() : '--' }}</th>
             <th class="color">الموظفون</th>
-            <th colspan="3">{!! $task->employee_names() !!}</th>
+            <th colspan="3">{!! $task ? $task->employee_names() : '--' !!}</th>
             <th class="color">تاريخ الإستلام</th>
-            <th>{{ $task->created_at }}</th>
+            <th>{{ $task ? $task->created_at : '--' }}</th>
 
         </tr>
         <tr>
