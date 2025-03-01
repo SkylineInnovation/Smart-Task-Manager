@@ -429,4 +429,6 @@ return [
     'task-id' => 'Task number',
     'task-name' => 'Task title',
     'employee-name' => 'Employee name',
+
+    'last_commint' => 'last commint',
 ];

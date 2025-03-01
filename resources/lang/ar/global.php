@@ -429,4 +429,6 @@ return [
     'task-id' => 'رقم المهمة',
     'task-name' => 'عنوان المهمة',
     'employee-name' => 'اسم الموظف',
+
+    'last_commint' => 'اخر التعليقات',
 ];
