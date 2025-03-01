@@ -81,8 +81,8 @@
                         // 'lg' => 4, 'md' => 4, 'sm' => 6,
                     ])
                     @include('inputs.edit.input', [
-                        'label' => 'task.short_sent_warnings',
-                        'name' => 'task.short_sent_warnings',
+                        'label' => 'task.sent_warnings',
+                        'name' => 'task.sent_warnings',
                         'val' => $task->sent_warnings,
                         'livewire' => 'sent_warnings',
                         'is_disable' => auth()->user() ? auth()->user()->hasRole('employee') : true,
@@ -91,8 +91,8 @@
                         // 'lg' => 4, 'md' => 4, 'sm' => 6,
                     ])
                     @include('inputs.edit.input', [
-                        'label' => 'task.short_close_attempt',
-                        'name' => 'task.short_close_attempt',
+                        'label' => 'task.close_attempt',
+                        'name' => 'task.close_attempt',
                         'val' => $task->close_attempt,
                         'livewire' => 'close_attempt',
                         'is_disable' => auth()->user() ? auth()->user()->hasRole('employee') : true,
