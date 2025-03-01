@@ -23,6 +23,7 @@
                 <option value='comment_type'>{{ __('task.comment_type') }}</option>
                 <option value='is_separate_task'>{{ __('task.is_separate_task') }}</option>
                 <option value='max_worning_count'>{{ __('task.max_worning_count') }}</option>
+
                 <option value='close_attempt'>{{ __('task.close_attempt') }}</option>
                 <option value='sent_warnings'>{{ __('task.sent_warnings') }}</option>
 

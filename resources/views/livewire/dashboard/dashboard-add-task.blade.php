@@ -159,8 +159,7 @@
                                 </span>
 
                             </div>
-                            <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
-
+                            {{-- <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
                                 <div class="input-group">
                                     <div class="input-group-prepend ">
                                         <span class="input-group-text btn-secondary text-white"
@@ -169,14 +168,11 @@
                                     <input wire:model.defer="sent_warnings" type="number" multiple class="form-control"
                                         aria-label="Default" aria-describedby="inputGroup-sizing-default">
                                 </div>
-
                                 <span style="font-size: 12px;">
                                     {{ __('task.sent_warnings') }}
                                 </span>
-
-                            </div>
-                            <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
-
+                            </div> --}}
+                            {{-- <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
                                 <div class="input-group">
                                     <div class="input-group-prepend ">
                                         <span class="input-group-text btn-secondary text-white"
@@ -185,12 +181,10 @@
                                     <input wire:model.defer="close_attempt" type="number" multiple class="form-control"
                                         aria-label="Default" aria-describedby="inputGroup-sizing-default">
                                 </div>
-
                                 <span style="font-size: 12px;">
                                     {{ __('task.close_attempt') }}
                                 </span>
-
-                            </div>
+                            </div> --}}
 
                             <div class="mb-3 col-lg-6 col-md-6 col-sm-12">
 
