@@ -154,4 +154,6 @@ return [
 
     'accept' => 'Accept',
     'reject' => 'Reject',
+
+    'commints' => 'Commints',
 ];

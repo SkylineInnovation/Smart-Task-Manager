@@ -155,4 +155,6 @@ return [
 
     'accept' => 'قبول',
     'reject' => 'رفض',
+
+    'commints' => 'التعليقات',
 ];
