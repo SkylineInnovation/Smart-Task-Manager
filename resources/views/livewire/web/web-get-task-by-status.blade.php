@@ -193,7 +193,7 @@
                                     {{-- <img src="{{ asset($employee->image) }}"
                                         style="width: 40px !important; border-radius: 100px;"
                                         alt="{{ $employee->name() }}"> --}}
-                                    <a href=" {{ route('user.show', $task->manager->id) }}">
+                                    <a href=" {{ route('user.show', $employee) }}">
                                         {{ $employee->name() }}
                                     </a>
                                 </div>
