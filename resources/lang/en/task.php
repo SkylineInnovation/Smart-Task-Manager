@@ -27,7 +27,7 @@ return [
     'comment_type' => 'Comment submission Period',
 
     'max_worning_count' => 'Maximum Warnings Count',
-    'sentـwarnings' => 'Sent Marnings',
+    'sent_warnings' => 'Sent Marnings',
     'close_attempt' => 'Close Attempt',
 
     'priority_level' => 'Priority',

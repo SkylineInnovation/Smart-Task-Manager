@@ -28,7 +28,7 @@ return [
 
     'max_worning_count' => 'الحد الأقصى للتحذيرات',
     'sent_warnings' => '  التحذيرات المرسلة',
-    
+
     'close_attempt' => '  التحذيرات المرسلة',
 
     'priority_level' => 'الأولوية',
