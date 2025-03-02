@@ -715,9 +715,10 @@ class WebGetTaskByStatus extends Component
         }
 
 
-        $date = date('Y-m-d\TH:i', strtotime('-1 days'));
+        // $date = date('Y-m-d\TH:i', strtotime('-1 days'));
 
-        $tasks = $tasks->where('end_time', '>', $date);
+        // $tasks = $tasks->where('end_time', '>', $date);
+
         // ->where('end_time', '<=', $date)->get();
         $tasks = $tasks->orderBy('id', 'desc')->get();
 
