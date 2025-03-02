@@ -63,7 +63,7 @@ class TaskShow extends Component
         $this->tab = 1;
 
         // $this->employees = $this->task->employees;
-        $this->selectedEmployees = $this->employees->pluck('id')->toArray();
+        // $this->selectedEmployees = $this->employees->pluck('id')->toArray();
 
         $this->sub_task_discount = $this->task->discount();
         $this->sub_task_max_worning_discount = $this->task->max_worning_discount();
