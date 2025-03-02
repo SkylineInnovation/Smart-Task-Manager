@@ -13,7 +13,8 @@ class WebNavBar extends Component
     public function mount()
     {
         $this->auth_user = auth()->user();
-        $this->users = User::whereRoleIs('manager')->get();
+        $this->users = User::get();
+        // whereRoleIs('manager')->
     }
 
     public function render()
