@@ -711,7 +711,7 @@ class WebGetTaskByStatus extends Component
         }
 
         if ($this->user->hasRole('manager')) {
-            $tasks = $tasks->where('manager_id', $this->user->id);
+            $tasks = $tasks->orWhere('manager_id', $this->user->id);
         }
 
 
