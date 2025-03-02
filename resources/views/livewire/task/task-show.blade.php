@@ -207,7 +207,8 @@
                             <div class="col-4">
                                 <div class="form-check form-check-inline">
                                     <input wire:model='selectedEmployees' class="form-check-input" type="checkbox"
-                                        value="{{ $employee->id }}" id="selected-employee-{{ $employee->id }}">
+                                        value="{{ $employee->id }}" id="selected-employee-{{ $employee->id }}" disabled
+                                        readonly>
                                     <label class="form-check-label" for="selected-employee-{{ $employee->id }}">
                                         {{ $employee->name() }}
                                     </label>
@@ -233,11 +234,13 @@
 
         @auth
             @role('owner|manager')
-                <div class="card-footer">
-                    <button type="button" wire:click.prevent="updateTask()" class="btn btn-success">
-                        {{ __('global.save-changes') }}
-                    </button>
-                </div>
+                @if (auth()->user()->hasRole('employee'))
+                    <div class="card-footer">
+                        <button type="button" wire:click.prevent="updateTask()" class="btn btn-success">
+                            {{ __('global.save-changes') }}
+                        </button>
+                    </div>
+                @endif
             @endrole
         @endauth
     </div>
