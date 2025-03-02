@@ -701,8 +701,8 @@ class WebGetTaskByStatus extends Component
     public function render()
     {
         $tasks = Task::whereNullOrEmpty('slug')
-            ->whereNullOrEmptyOrZero('main_task_id')
-            ->where('status', $this->status);
+            ->whereNullOrEmptyOrZero('main_task_id');
+        // ->where('status', $this->status);
 
         if ($this->user->hasRole('employee')) {
             $tasks = $tasks->whereHas('employees', function ($q) {
