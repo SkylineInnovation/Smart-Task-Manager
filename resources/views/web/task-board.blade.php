@@ -1,5 +1,6 @@
 @extends('layouts.livewire-app')
 
+
 @section('css')
     <style>
         .fileupload {
@@ -20,6 +21,50 @@
             font-size: 300px;
             /* wtf, but apparently the most reliable way to make a large part of the input clickable in most browsers */
             height: 200px;
+        }
+    </style>
+
+
+    <style>
+        .tom-select {
+            width: 100% !important;
+        }
+
+        .tom-select .ts-control {
+            background-color: #f8f9fa;
+            border: 1px solid #ced4da;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .tom-select .ts-dropdown {
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .tom-select .ts-dropdown .custom-option {
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .tom-select .ts-dropdown .custom-option:hover {
+            background-color: #e2e6ea;
+        }
+
+        .badge {
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .custom-option.selected {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .ts-control input {
+            width: 100% !important;
         }
     </style>
 @endsection

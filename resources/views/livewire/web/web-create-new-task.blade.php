@@ -1,5 +1,12 @@
 <div>
     {{-- Knowing others is intelligence; knowing yourself is true wisdom. --}}
+    <!-- Tom Select CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+
+    <!-- Tom Select JS -->
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+   
+
 
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-new-task">
         <i class="ti-plus text-white"></i>
@@ -68,7 +75,7 @@
                         @endrole
 
 
-                        <div class='form-group col-lg-6 col-md-6 col-sm-12'>
+                        {{-- <div class='form-group col-lg-6 col-md-6 col-sm-12'>
                             <label for='employee-select'>{{ __('task.employees') }}</label>
                             <select id='employee-select' class='form-control' wire:model='select_emp'>
                                 <option>{{ __('global.select-employees') }}</option>
@@ -88,6 +95,19 @@
                                     </div>
                                 @endif
                             @endforeach
+                        </div> --}}
+
+                        {{--  --}}
+                        {{--  --}}
+                        {{--  --}}
+
+                        {{-- <div class="form-group mb-3 col-lg-6 col-md-6 col-sm-12">
+                            <label for="employee-select">{{ __('task.employees') }}</label>
+                            <select name="employees[]" id="employee-select" class="form-control" style="width: 100% !important"  multiple>
+                                @foreach ($employees as $employee)
+                                    <option value="{{ $employee->id }}">{{ $employee->crud_name() }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
@@ -98,7 +118,22 @@
                                 <option value="medium">{{ __('task.medium') }}</option>
                                 <option value="low">{{ __('task.low') }}</option>
                             </select>
+                        </div> --}}
+
+                        <div class="form-group col-lg-6 col-md-6 col-sm-12" wire:ignore>
+                            <label for="employee-select">{{ __('task.employees') }}</label>
+
+                            <select id="employee-select" multiple class="">
+                                @foreach ($employees as $employee)
+                                    <option value="{{ $employee->id }}"
+                                        @if (in_array($employee->id, $selectedEmployees)) selected @endif>
+                                        {{ $employee->crud_name() }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
+
+
 
                         <div class="input-group mb-3 col-lg-8 col-md-8 col-sm-12">
                             <div class="input-group-prepend ">
@@ -171,3 +206,50 @@
         </div>
     </div>
 </div>
+
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#employee-select').select2({
+            placeholder: "{{ __('global.select-employees') }}",
+            allowClear: true,
+            
+        });
+    });
+</script> --}}
+
+<script>
+    document.addEventListener('livewire:load', function() {
+        let selectInstance = new TomSelect('#employee-select', {
+            plugins: ['remove_button', 'dropdown_input'],
+            persist: false,
+            create: false,
+            closeAfterSelect: true,
+            onChange: function(values) {
+                @this.set('selectedEmployees', values);
+            },
+            maxItems: 200, // Limit the number of selected items
+            items: {!! json_encode($selectedEmployees) !!}, // Preselect existing values
+            placeholder: "{{ __('global.select-employees') }}",
+            allowEmptyOption: true,
+            dropdownConveyor: true,
+            render: {
+                item: function(data, escape) {
+                    return `<div class="custom-option">${escape(data.text)}</div>`;
+                },
+                option: function(data, escape) {
+                    return `<div class="custom-option">${escape(data.text)}</div>`;
+                }
+            }
+        });
+
+        // Sync back to Livewire on change
+        document.getElementById('employee-select').addEventListener('change', function(e) {
+            @this.set('selectedEmployees', [...this.selectedOptions].map(o => o.value));
+        });
+    });
+</script>

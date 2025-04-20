@@ -113,7 +113,7 @@ class DashboardAddTask extends Component
             'discount' => 'required',
             // 'max_worning_discount' => 'required',
 
-            'selectedEmployees' => 'required',
+            // 'selectedEmployees' => 'required',
         ];
     }
 
