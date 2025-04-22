@@ -12,6 +12,9 @@ class DashboardAddDepartment extends Component
 
     public $branch_id, $manager_id, $name;
 
+    public $selectedManagerD = [];
+    public $selectedBranch = [];
+
     public function mount()
     {
         $this->get_create_date();
@@ -42,8 +45,13 @@ class DashboardAddDepartment extends Component
 
 
             'name' => 'required',
-            'branch_id' => 'required',
-            'manager_id' => 'required',
+            // 'branch_id' => 'required',
+            // 'manager_id' => 'required',
+            'selectedManagerD' => 'required|array|min:1',
+            'selectedManagerD.*' => 'integer|exists:users,id',
+
+            'selectedBranch' => 'required|array|min:1',
+            'selectedBranch.*' => 'integer|exists:users,id',
         ];
     }
 
@@ -56,12 +64,23 @@ class DashboardAddDepartment extends Component
     {
         $validatedData = $this->validate();
 
-        Department::create([
+        // Department::create([
 
-            'branch_id' => $this->branch_id,
-            'manager_id' => $this->manager_id,
-            'name' => $this->name,
-        ]);
+        //     'branch_id' => $this->branch_id,
+        //     'manager_id' => $this->manager_id,
+        //     'name' => $this->name,
+        // ]);
+
+        foreach ($this->selectedManagerD as $managrId) {
+
+            foreach ($this->selectedBranch as $branchID) {
+                Department::create([
+                    'branch_id' => $branchID,
+                    'manager_id' => $managrId,
+                    'name' => $this->name,
+                ]);
+            }
+        }
 
         session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();

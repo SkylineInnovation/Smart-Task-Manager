@@ -5,7 +5,7 @@
 
     <!-- Tom Select JS -->
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
-   
+
 
 
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-new-task">
@@ -101,24 +101,7 @@
                         {{--  --}}
                         {{--  --}}
 
-                        {{-- <div class="form-group mb-3 col-lg-6 col-md-6 col-sm-12">
-                            <label for="employee-select">{{ __('task.employees') }}</label>
-                            <select name="employees[]" id="employee-select" class="form-control" style="width: 100% !important"  multiple>
-                                @foreach ($employees as $employee)
-                                    <option value="{{ $employee->id }}">{{ $employee->crud_name() }}</option>
-                                @endforeach
-                            </select>
-                        </div>
 
-                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                            <label for="exampleFormControlSelect1">{{ __('task.priority_level') }}</label>
-                            <select wire:model.defer="priority_level" class="form-control">
-                                <option value="urgent">{{ __('task.urgent') }}</option>
-                                <option value="high">{{ __('task.high') }}</option>
-                                <option value="medium">{{ __('task.medium') }}</option>
-                                <option value="low">{{ __('task.low') }}</option>
-                            </select>
-                        </div> --}}
 
                         <div class="form-group col-lg-6 col-md-6 col-sm-12" wire:ignore>
                             <label for="employee-select">{{ __('task.employees') }}</label>
@@ -207,20 +190,7 @@
     </div>
 </div>
 
-{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- Select2 JS -->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        $('#employee-select').select2({
-            placeholder: "{{ __('global.select-employees') }}",
-            allowClear: true,
-            
-        });
-    });
-</script> --}}
 
 <script>
     document.addEventListener('livewire:load', function() {

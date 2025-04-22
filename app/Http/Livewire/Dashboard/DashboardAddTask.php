@@ -25,6 +25,7 @@ class DashboardAddTask extends Component
 
     public $branchs;
     public $selectedBranchs = [];
+    
 
     public $admin_view_status = '', $by, $url;
     public function mount($admin_view_status = '')
@@ -160,30 +161,57 @@ class DashboardAddTask extends Component
                     SendNewTask::dispatch($task);
             }
         } else {
-            $task = Task::create([
-                'add_by' => $this->by->id,
-                'slug' => $this->slug,
+            // $task = Task::create([
+            //     'add_by' => $this->by->id,
+            //     'slug' => $this->slug,
 
-                'manager_id' => $this->by->id,
-                'title' => $this->title,
-                'desc' => $this->desc,
-                'start_time' => $this->start_time,
-                'end_time' => $this->end_time,
-                'is_separate_task' => $this->is_separate_task,
-                'comment_type' => $this->comment_type,
-                'max_worning_count' => $this->max_worning_count,
-                'priority_level' => $this->priority_level,
-                'status' => $this->status,
-                // 'main_task_id' => $this->main_task_id,
-            ]);
+            //     'manager_id' => $this->by->id,
+            //     'title' => $this->title,
+            //     'desc' => $this->desc,
+            //     'start_time' => $this->start_time,
+            //     'end_time' => $this->end_time,
+            //     'is_separate_task' => $this->is_separate_task,
+            //     'comment_type' => $this->comment_type,
+            //     'max_worning_count' => $this->max_worning_count,
+            //     'priority_level' => $this->priority_level,
+            //     'status' => $this->status,
+            //     // 'main_task_id' => $this->main_task_id,
+            // ]);
 
-            $task->employees()->syncWithPivotValues($this->selectedEmployees, [
-                'discount' => $this->discount,
-                'max_worning_discount' => $this->max_worning_discount,
-            ]);
+            // $task->employees()->syncWithPivotValues($this->selectedEmployees, [
+            //     'discount' => $this->discount,
+            //     'max_worning_discount' => $this->max_worning_discount,
+            // ]);
 
-            if (env('SEND_MAIL', false))
-                SendNewTask::dispatch($task);
+            // if (env('SEND_MAIL', false))
+            //     SendNewTask::dispatch($task);
+
+            foreach ($this->selectedEmployees as $selectedEmployee) {
+                $task = Task::create([
+                    'add_by' => $this->by->id,
+                    'slug' => $this->slug,
+
+                    'manager_id' => $this->by->id,
+                    'title' => $this->title,
+                    'desc' => $this->desc,
+                    'start_time' => $this->start_time,
+                    'end_time' => $this->end_time,
+                    'is_separate_task' => $this->is_separate_task,
+                    'comment_type' => $this->comment_type,
+                    'max_worning_count' => $this->max_worning_count,
+                    'priority_level' => $this->priority_level,
+                    'status' => $this->status,
+                    // 'main_task_id' => $this->main_task_id,
+                ]);
+
+                $task->employees()->syncWithPivotValues($this->selectedEmployees, [
+                    'discount' => $this->discount,
+                    'max_worning_discount' => $this->max_worning_discount,
+                ]);
+
+                if (env('SEND_MAIL', false))
+                    SendNewTask::dispatch($task);
+            }
         }
 
 

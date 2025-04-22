@@ -1,4 +1,10 @@
 <!-- Modal -->
+
+<link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+
+<!-- Tom Select JS -->
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+
 <div wire:ignore.self class="modal fade" id="create-new-user-modal" data-backdrop="static" data-keyboard="false"
     tabindex="-1" role="dialog" aria-labelledby="create-new-user-modal-label" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -168,7 +174,7 @@
                         ])
 
                         <div class='col-12'>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for='manager-select'>{{ __('global.managers') }}</label>
                                 <select id='manager-select' class='form-control' wire:model='select_man'>
                                     <option>{{ __('global.select-managers') }}</option>
@@ -191,7 +197,25 @@
                                     @endif
                                 @endforeach
                             </div>
+                        </div> --}}
+
+                            {{--  --}}
+                            <div wire:ignore class="form-group col-6">
+                                <label for="manager_id">{{ __('Assign Manager') }}</label>
+                                <select id="manager_id" multiple class="">
+                                    @foreach ($managers as $man)
+                                        <option value="{{ $man->id }}"
+                                            @if (in_array($man->id, $selectedManagers)) selected @endif>
+                                            {{ $man->first_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('selectedManagers')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
+                        {{--  --}}
                     </div>
 
                     @role('owner')
@@ -275,6 +299,38 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('livewire:load', function() {
+        let selectInstance = new TomSelect('#manager_id', {
+            plugins: ['remove_button', 'dropdown_input'],
+            persist: false,
+            create: false,
+            closeAfterSelect: true,
+            onChange: function(values) {
+                @this.set('selectedManagers', values);
+            },
+            maxItems: 200, // Limit the number of selected items
+            items: {!! json_encode($selectedManagers) !!}, // Preselect existing values
+            placeholder: "{{ __('global.select-manager') }}",
+            allowEmptyOption: true,
+            dropdownConveyor: true,
+            render: {
+                item: function(data, escape) {
+                    return `<div class="custom-option">${escape(data.text)}</div>`;
+                },
+                option: function(data, escape) {
+                    return `<div class="custom-option">${escape(data.text)}</div>`;
+                }
+            }
+        });
+
+        // Sync back to Livewire on change
+        document.getElementById('manager_id').addEventListener('change', function(e) {
+            @this.set('selectedManagers', [...this.selectedOptions].map(o => o.value));
+        });
+    });
+</script>
 
 {{--  --}}
 {{--  --}}

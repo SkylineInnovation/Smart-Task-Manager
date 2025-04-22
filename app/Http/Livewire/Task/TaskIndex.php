@@ -161,8 +161,7 @@ class TaskIndex extends Component
             'is_separate_task' => 'required',
             'comment_type' => 'required',
             'max_worning_count' => 'required',
-            'sent_warnings' => 'required',
-            'close_attempt' => 'required',
+            // cs
             'priority_level' => 'required',
             'status' => 'required',
             'discount' => 'required',
@@ -209,6 +208,8 @@ class TaskIndex extends Component
                     'main_task_id' => $this->main_task_id,
                     'reopen_from_task_id' => $this->reopen_from_task_id,
                     'daily_task_id' => $this->daily_task_id,
+
+                    
                 ]);
 
                 $task->employees()->syncWithPivotValues([$selectedEmployee], [

@@ -73,12 +73,21 @@ class NewRepoController extends Controller
 
     public function p1R1(Request $request)
     {
-        $taskIds = $request->input('taskIds');
+        // $taskIds = $request->input('taskIds');
+
+
+        $request->validate([
+            'tasksId' => 'required|array',
+            'tasksId.*' => 'exists:tasks,id',
+        ]);
+
+        $selectedTasks = $request->input('tasksId');
+
 
         $tasks = new Task;
 
-        if (!empty($taskIds)) {
-            $tasks = $tasks->whereIn('id', $taskIds);
+        if (!empty($selectedTasks)) {
+            $tasks = $tasks->whereIn('id', $selectedTasks);
         }
         $tasks = $tasks->where('status', 'active');
 
@@ -89,6 +98,7 @@ class NewRepoController extends Controller
 
     public function p2R1(Request $request)
     {
+
         $taskID = $request->input('taskIdr2p1');
         $formDate = $request->input('fromDate');
         $toDate = $request->input('toDate');
@@ -228,11 +238,15 @@ class NewRepoController extends Controller
                 ->where('manager_id', $managerId)
                 ->where('status', 'auto-finished')
                 ->get();
-        } else
-
+        } elseif ($taskStatus == 3) {
             $tasks = Task::whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
                 ->where('manager_id', $managerId)
                 ->where('slug', 'draft')
+                ->get();
+        } else
+            $tasks = Task::whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
+                ->where('manager_id', $managerId)
+
                 ->get();
 
 
@@ -266,13 +280,20 @@ class NewRepoController extends Controller
                 ->whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
                 ->where('status', 'auto-finished')
                 ->get();
+        } elseif ($taskStatus == 3) {
+            $tasks = Task::whereHas('employees', function ($q) use ($emplyee) {
+                $q->where('id', $emplyee->id);
+            })
+                ->whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
+                ->where('slug', 'draft')
+                ->get();
         } else
 
             $tasks = Task::whereHas('employees', function ($q) use ($emplyee) {
                 $q->where('id', $emplyee->id);
             })
                 ->whereBetween('created_at', [$formDate . ' 00:00:00', $toDate . ' 23:59:59'])
-                ->where('slug', 'draft')
+
                 ->get();
 
 

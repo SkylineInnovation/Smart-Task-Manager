@@ -24,6 +24,9 @@ class DashboardAddUser extends Component
         $branch_id;
 
 
+    public $selectBranch = [];
+
+
     public function mount()
     {
         $this->get_create_date();
@@ -76,7 +79,11 @@ class DashboardAddUser extends Component
             'salary' => 'required',
             'home' => 'required',
             'transport' => 'required',
-            'branch_id' => 'required',
+            // 'branch_id' => 'required',
+
+
+            'selectBranch' => 'required|array|min:1',
+            'selectBranch.*' => 'integer|exists:users,id',
         ];
     }
 
@@ -101,20 +108,34 @@ class DashboardAddUser extends Component
         ]);
 
         $user->syncRoles($this->selectedRoles);
+        // UserDetail::create([
 
-        UserDetail::create([
+        //     'user_id' => $user->id,
+        //     'title' => $this->title,
+        //     'nationality' => $this->nationality,
+        //     'id_number' => $this->id_number,
+        //     'address' => $this->address,
+        //     'qualification' => $this->qualification,
+        //     'salary' => $this->salary,
+        //     'home' => $this->home,
+        //     'transport' => $this->transport,
+        //     'branch_id' => $this->branch_id,
+        // ]);
+        foreach ($this->selectBranch as $branch) {
+            UserDetail::create([
 
-            'user_id' => $user->id,
-            'title' => $this->title,
-            'nationality' => $this->nationality,
-            'id_number' => $this->id_number,
-            'address' => $this->address,
-            'qualification' => $this->qualification,
-            'salary' => $this->salary,
-            'home' => $this->home,
-            'transport' => $this->transport,
-            'branch_id' => $this->branch_id,
-        ]);
+                'user_id' => $user->id,
+                'title' => $this->title,
+                'nationality' => $this->nationality,
+                'id_number' => $this->id_number,
+                'address' => $this->address,
+                'qualification' => $this->qualification,
+                'salary' => $this->salary,
+                'home' => $this->home,
+                'transport' => $this->transport,
+                'branch_id' => $branch,
+            ]);
+        }
 
         session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();

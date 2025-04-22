@@ -1,5 +1,8 @@
 @permission('create-discount')
+<link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
 
+<!-- Tom Select JS -->
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
     <!-- Modal -->
     <div wire:ignore.self class="modal fade" id="create-new-discount-modal" data-backdrop="static" data-keyboard="false"
         tabindex="-1" role="dialog" aria-labelledby="create-new-discount-modal-label" aria-hidden="true">
@@ -42,14 +45,31 @@
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
 
-                                @include('inputs.create.select', [
+                                {{-- @include('inputs.create.select', [
                                     'label' => 'discount.user',
                                     'name' => 'discount.user_id',
                                     'arr' => $users,
                                     'livewire' => 'user_id',
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
-                                ])
+                                ]) --}}
+                                <div class="col-6">
+                                    <div wire:ignore class="form-group">
+                                        <label for="users">{{ __('area.manager') }}</label>
+                                        <select id="users" multiple class="">
+                                            @foreach ($users as $user)
+                                                <option value="{{ $user->id }}"
+                                                    @if (in_array($user->id, $selectedUsers)) selected @endif>
+                                                    {{ $user->first_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('selectedUsers')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
                                 @include('inputs.create.input', [
                                     'label' => 'discount.amount',
                                     'name' => 'discount.amount',
@@ -201,4 +221,52 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // document.addEventListener('livewire:load', () => {
+        //     const select = new TomSelect("#users", {
+        //         plugins: ['remove_button'],
+        //         onChange: function(values) {
+        //             @this.set('selectedUsers', values);
+        //         },
+        //         placeholder: "Select employees...",
+        //     });
+
+        //     // Sync TomSelect with Livewire on manual update
+        //     Livewire.hook('message.processed', () => {
+        //         select.setValue(@this.get('selectedUsers') ?? []);
+        //     });
+        // });
+
+
+        document.addEventListener('livewire:load', function() {
+            let selectInstance = new TomSelect('#users', {
+                plugins: ['remove_button', 'dropdown_input'],
+                persist: false,
+                create: false,
+                closeAfterSelect: true,
+                onChange: function(values) {
+                    @this.set('selectedUsers', values);
+                },
+                maxItems: 200, // Limit the number of selected items
+                items: {!! json_encode($selectedUsers) !!}, // Preselect existing values
+                placeholder: "{{ __('global.select-employees') }}",
+                allowEmptyOption: true,
+                dropdownConveyor: true,
+                render: {
+                    item: function(data, escape) {
+                        return `<div class="custom-option">${escape(data.text)}</div>`;
+                    },
+                    option: function(data, escape) {
+                        return `<div class="custom-option">${escape(data.text)}</div>`;
+                    }
+                }
+            });
+
+            // Sync back to Livewire on change
+            document.getElementById('users').addEventListener('change', function(e) {
+                @this.set('selectedUsers', [...this.selectedOptions].map(o => o.value));
+            });
+        });
+    </script>
 @endpermission

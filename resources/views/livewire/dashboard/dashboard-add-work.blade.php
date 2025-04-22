@@ -43,15 +43,15 @@
                                     'sm' => 12,
                                 ]) --}}
 
-                                @include('inputs.create.select', [
+                                {{-- @include('inputs.create.select', [
                                     'label' => 'global.branch',
                                     'name' => 'global.branch_id',
                                     'arr' => $branchs,
                                     'livewire' => 'branch_id',
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 12, 'md' => 12, 'sm' => 12,
-                                ])
-
+                                ]) --}}
+                                {{-- 
                                 @include('inputs.create.select', [
                                     'label' => 'work.department',
                                     'name' => 'work.department_id',
@@ -59,8 +59,28 @@
                                     'livewire' => 'department_id',
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 12, 'md' => 12, 'sm' => 12,
-                                ])
-                                @include('inputs.create.select', [
+                                ]) --}}
+
+
+                                {{--  --}}
+                                <div wire:ignore class="form-group col-6">
+                                    <label for="work_department_id">{{ __('userdetail.branch') }}</label>
+                                    <select id="work_department_id" multiple class="">
+                                        @foreach ($departments as $dep)
+                                            <option value="{{ $dep->id }}"
+                                                @if (in_array($dep->id, $selectedDepart)) selected @endif>
+                                                {{ $dep->crud_name() }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('selectBranch')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                {{--  --}}
+
+
+                                {{-- @include('inputs.create.select', [
                                     'label' => 'work.user',
                                     'name' => 'work.user_id',
                                     'arr' => $users,
@@ -69,7 +89,27 @@
                                     'lg' => 12,
                                     'md' => 12,
                                     'sm' => 12,
-                                ])
+                                ]) --}}
+
+
+                                {{--  --}}
+                                <div wire:ignore class="form-group col-6">
+                                    <label for="work_user_id">{{ __('userdetail.branch') }}</label>
+                                    <select id="work_user_id" multiple class="">
+                                        @foreach ($users as $user)
+                                            <option value="{{ $user->id }}"
+                                                @if (in_array($user->id, $selectedusers)) selected @endif>
+                                                {{ $user->crud_name() }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('selectedusers')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                {{--  --}}
+
+
                                 @include('inputs.create.input', [
                                     'label' => 'work.job_title',
                                     'name' => 'work.job_title',
@@ -107,5 +147,68 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            document.addEventListener('livewire:load', function() {
+                let selectInstance = new TomSelect('#work_department_id', {
+                    plugins: ['remove_button', 'dropdown_input'],
+                    persist: false,
+                    create: false,
+                    closeAfterSelect: true,
+                    onChange: function(values) {
+                        @this.set('selectedDepart', values);
+                    },
+                    maxItems: 1, // Limit the number of selected items
+                    items: {!! json_encode($selectedDepart) !!}, // Preselect existing values
+                    placeholder: "{{ __('global.select-manager') }}",
+                    allowEmptyOption: true,
+                    dropdownConveyor: true,
+                    render: {
+                        item: function(data, escape) {
+                            return `<div class="custom-option">${escape(data.text)}</div>`;
+                        },
+                        option: function(data, escape) {
+                            return `<div class="custom-option">${escape(data.text)}</div>`;
+                        }
+                    }
+                });
+
+                // Sync back to Livewire on change
+                document.getElementById('work_department_id').addEventListener('change', function(e) {
+                    @this.set('selectedDepart', [...this.selectedOptions].map(o => o.value));
+                });
+            });
+        </script>
+        <script>
+            document.addEventListener('livewire:load', function() {
+                let selectInstance = new TomSelect('#work_user_id', {
+                    plugins: ['remove_button', 'dropdown_input'],
+                    persist: false,
+                    create: false,
+                    closeAfterSelect: true,
+                    onChange: function(values) {
+                        @this.set('selectedusers', values);
+                    },
+                    maxItems: 1, // Limit the number of selected items
+                    items: {!! json_encode($selectedusers) !!}, // Preselect existing values
+                    placeholder: "{{ __('global.select-manager') }}",
+                    allowEmptyOption: true,
+                    dropdownConveyor: true,
+                    render: {
+                        item: function(data, escape) {
+                            return `<div class="custom-option">${escape(data.text)}</div>`;
+                        },
+                        option: function(data, escape) {
+                            return `<div class="custom-option">${escape(data.text)}</div>`;
+                        }
+                    }
+                });
+
+                // Sync back to Livewire on change
+                document.getElementById('work_user_id').addEventListener('change', function(e) {
+                    @this.set('selectedusers', [...this.selectedOptions].map(o => o.value));
+                });
+            });
+        </script>
     @endpermission
 </div>

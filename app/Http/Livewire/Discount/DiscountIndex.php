@@ -49,6 +49,8 @@ class DiscountIndex extends Component
     public $the_task_id;
 
     public $admin_view_status = '', $by, $url;
+
+    public $selectedUsers = [];
     public function mount($admin_view_status = '', $user_id = null, $task_id = null)
     {
         $this->url = Route::current()->getName();
@@ -117,9 +119,11 @@ class DiscountIndex extends Component
 
 
             // 'task_id' => 'required',
-            'user_id' => 'required',
+            // 'user_id' => 'required',
             'amount' => 'required',
             // 'reason' => 'required',
+            'selectedUsers' => 'required|array|min:1',
+            'selectedUsers.*' => 'integer|exists:users,id',
         ];
     }
 
@@ -132,15 +136,27 @@ class DiscountIndex extends Component
     {
         $validatedData = $this->validate();
 
-        $discount = Discount::create([
-            'add_by' => $this->by->id,
-            'slug' => $this->slug,
+        // $discount = Discount::create([
+        //     'add_by' => $this->by->id,
+        //     'slug' => $this->slug,
 
-            'task_id' => $this->task_id,
-            'user_id' => $this->user_id,
-            'amount' => $this->amount,
-            'reason' => $this->reason,
-        ]);
+        //     'task_id' => $this->task_id,
+        //     'user_id' => $this->user_id,
+        //     'amount' => $this->amount,
+        //     'reason' => $this->reason,
+        // ]);
+
+        foreach ($this->selectedUsers as $userId) {
+            $discount =  Discount::create([
+                'add_by' => $this->by->id,
+                'slug' => $this->slug,
+
+                'task_id' => $this->task_id,
+                'user_id' => $userId,
+                'amount' => $this->amount,
+                'reason' => $this->reason,
+            ]);
+        }
 
         session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();

@@ -41,6 +41,8 @@ class AreaIndex extends Component
 
 
     public $admin_view_status = '', $by, $url;
+
+    public $selectedManagerD = [];
     public function mount($admin_view_status = '')
     {
         $this->url = Route::current()->getName();
@@ -96,9 +98,12 @@ class AreaIndex extends Component
             // 'slug' => $this-slug,
 
 
-            'name' => 'required',
+            // 'name' => 'required',
             'location' => 'required',
-            'manager_id' => 'required',
+
+            'selectedManagerD' => 'required|array|min:1',
+            'selectedManagerD.*' => 'integer|exists:users,id',
+            // 'manager_id' => 'required',
         ];
     }
 
@@ -111,14 +116,25 @@ class AreaIndex extends Component
     {
         $validatedData = $this->validate();
 
-        Area::create([
-            'add_by' => $this->by->id,
-            'slug' => $this->slug,
+        // Area::create([
+        //     'add_by' => $this->by->id,
+        //     'slug' => $this->slug,
 
-            'name' => $this->name,
-            'location' => $this->location,
-            'manager_id' => $this->manager_id,
-        ]);
+        //     'name' => $this->name,
+        //     'location' => $this->location,
+        //     'manager_id' => $this->manager_id,
+        // ]);
+        foreach ($this->selectedManagerD as $managrId) {
+
+            Area::create([
+                'add_by' => $this->by->id,
+                'slug' => $this->slug,
+                'name' => $this->name,
+                'location' => $this->location,
+                'manager_id' => $managrId,
+            ]);
+        }
+
 
         session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();

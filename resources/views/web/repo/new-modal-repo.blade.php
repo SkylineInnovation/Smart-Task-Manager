@@ -1,4 +1,5 @@
 <!-- Modal p1-r1 -->
+
 <div class="modal fade" id="repo-p1-r1" tabindex="-1" role="dialog" aria-labelledby="repo-p1-r1Label" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <form action="{{ route('p1-r1-table') }}" method="get" target="_blank">
@@ -11,38 +12,30 @@
                     </button>
                 </div>
                 <div class="modal-body ">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">{{ __('global.task-id') }}</th>
-                                <th colspan="3" scope="col">{{ __('global.task-name') }}</th>
-                                <th colspan="1" scope="col">{{ __('global.select') }}</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            @foreach ($tasksP1R1 as $taskP1)
-                                <tr>
-                                    <th scope="row">
-                                        <label for="taskP1-{{ $taskP1->id }}">
-                                            {{ $taskP1->id }}
-                                        </label>
-                                    </th>
-                                    <td colspan="3">
-                                        <label for="taskP1-{{ $taskP1->id }}">
-                                            {{ $taskP1->title }}
-                                        </label>
-                                    </td>
-                                    <td colspan="1">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="taskIds[]"
-                                                value="{{ $taskP1->id }}" id="taskP1-{{ $taskP1->id }}">
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="tasksId">{{ __('discount.user') }}</label>
+                            <select id="tasksId" name="tasksId[]" multiple class="form-control">
+                                @foreach ($tasksP1R1 as $taskP1)
+                                    <option value="{{ $taskP1->id }}"
+                                        @if (is_array(old('tasksId', $tasksId ?? [])) && in_array($taskP1->id, old('tasksId', $tasksId ?? []))) selected @endif>
+                                        {{ $taskP1->title }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('tasksId')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            new TomSelect('#tasksId', {
+                                plugins: ['remove_button', 'dropdown_input'],
+                                placeholder: 'Select tasks...'
+                            });
+                        });
+                    </script>
                 </div>
 
                 <div class="modal-footer d-flex justify-content-between">
@@ -72,7 +65,7 @@
                 </div>
 
                 <div class="modal-body ">
-                    <table class="table table-bordered">
+                    {{-- <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th scope="col">{{ __('global.task-id') }}</th>
@@ -102,7 +95,33 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    </table>
+                    </table> --}}
+
+                    <div class="col-12">
+                        <label for="taskIdr2p1">{{ __('global.select-task') }}</label>
+                        <select id="taskIdr2p1" name="taskIdr2p1" class="form-control">
+
+                            @foreach ($tasksP2R1 as $taskP2R1)
+                                <option value="{{ $taskP2R1->id }}" @if (old('taskIdr2p1') == $taskP2R1->id) selected @endif>
+                                    {{ $taskP2R1->title }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('taskIdr2p1')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                new TomSelect('#taskIdr2p1', {
+                                    create: false,
+                                    allowEmptyOption: true,
+                                    placeholder: 'Search and select a task...'
+                                });
+                            });
+                        </script>
+                    </div>
+
                     <div class="col-12 w-100 m-0">
                         <div class="col-md-12 px-1">
                             <div class="text-end"><label for="">{{ __('global.from_date') }}</label>
@@ -158,7 +177,7 @@
                     </button>
                 </div>
                 <div class="modal-body ">
-                    <table class="table table-bordered">
+                    {{-- <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th scope="col">{{ __('global.task-id') }}</th>
@@ -188,7 +207,33 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    </table>
+                    </table> --}}
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="taskIds">{{ __('global.select-tasks') }}</label>
+                            <select id="taskIds" name="taskIds[]" multiple class="form-control">
+                                @foreach ($tasksP2R2 as $task)
+                                    <option value="{{ $task->id }}"
+                                        @if (is_array(old('taskIds', $taskIds ?? [])) && in_array($task->id, old('taskIds', $taskIds ?? []))) selected @endif>
+                                        [{{ $task->id }}] {{ $task->crud_name() }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('taskIds')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            new TomSelect('#taskIds', {
+                                plugins: ['remove_button'],
+                                placeholder: 'Search and select tasks...',
+                            });
+                        });
+                    </script>
 
                     <div class="col-12 w-100 m-0">
                         <div class="col-md-12 px-1">
@@ -524,6 +569,7 @@
                         <option value="1">{{ __('global.active_task') }}</option>
                         <option value="2">{{ __('global.closed_task') }}</option>
                         <option value="3">{{ __('global.draft_task') }}</option>
+                        <option value="4">{{ __('global.all') }}</option>
                     </select>
 
                     <div class="row w-100 m-0 mt-4">
@@ -583,7 +629,7 @@
                 </div>
                 <div class="modal-body ">
 
-                    <table class="table table-bordered">
+                    {{-- <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th scope="col">{{ __('global.employee-name') }}</th>
@@ -610,14 +656,42 @@
                             @endforeach
 
                         </tbody>
-                    </table>
+                    </table> --}}
+
+
+                    <div class="form-group">
+                        <label for="emp_id2">{{ __('global.select') }}</label>
+                        <select id="emp_id2" name="emp_id" class="form-control">
+
+                            @foreach ($employeesP10R1 as $emp)
+                                <option value="{{ $emp->id }}" @if (old('emp_id', $emp_id ?? '') == $emp->id) selected @endif>
+                                    {{ $emp->crud_name() }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('emp_id')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                new TomSelect('#emp_id2', {
+                                    placeholder: 'Search and select an employee...',
+                                    allowEmptyOption: true
+                                });
+                            });
+                        </script>
+                    </div>
 
 
                     <select class="form-select" name="taskStatus" aria-label="Default select example">
                         <option value="1">{{ __('global.active_task') }}</option>
                         <option value="2">{{ __('global.closed_task') }}</option>
                         <option value="3">{{ __('global.draft_task') }}</option>
+                        <option value="4">{{ __('global.all') }}</option>
                     </select>
+
+
 
                     <div class="row w-100 m-0 mt-4">
                         <div class="col-md-6 px-1">

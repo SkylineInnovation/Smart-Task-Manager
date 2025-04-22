@@ -195,7 +195,9 @@ class UserIndex extends Component
 
 
         // $user->employees()->sync($this->selectedEmployees);
-        $user->managers()->sync($this->selectedManagers);
+        foreach ($this->selectedManagers as $selectedManagerID) {
+            $user->managers()->sync($selectedManagerID);
+        }
 
         $user->departments()->sync($this->selectedDepartments);
 

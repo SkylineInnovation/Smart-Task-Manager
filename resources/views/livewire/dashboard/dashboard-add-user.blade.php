@@ -160,7 +160,7 @@
                                     'sm' => 12,
                                 ])
 
-                                @include('inputs.create.select', [
+                                {{-- @include('inputs.create.select', [
                                     'label' => 'userdetail.branch',
                                     'name' => 'userdetail.branch_id',
                                     'arr' => $branches,
@@ -169,7 +169,24 @@
                                     'lg' => 12,
                                     'md' => 12,
                                     'sm' => 12,
-                                ])
+                                ]) --}}
+
+                                {{--  --}}
+                                <div wire:ignore class="form-group col-6">
+                                    <label for="user_branch_id">{{ __('userdetail.branch') }}</label>
+                                    <select id="user_branch_id" multiple class="">
+                                        @foreach ($branches as $branch)
+                                            <option value="{{ $branch->id }}"
+                                                @if (in_array($branch->id, $selectBranch)) selected @endif>
+                                                {{ $branch->crud_name() }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('selectBranch')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                {{--  --}}
 
                             </div>
 
@@ -216,5 +233,37 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            document.addEventListener('livewire:load', function() {
+                let selectInstance = new TomSelect('#user_branch_id', {
+                    plugins: ['remove_button', 'dropdown_input'],
+                    persist: false,
+                    create: false,
+                    closeAfterSelect: true,
+                    onChange: function(values) {
+                        @this.set('selectBranch', values);
+                    },
+                    maxItems: 1, // Limit the number of selected items
+                    items: {!! json_encode($selectBranch) !!}, // Preselect existing values
+                    placeholder: "{{ __('global.select-manager') }}",
+                    allowEmptyOption: true,
+                    dropdownConveyor: true,
+                    render: {
+                        item: function(data, escape) {
+                            return `<div class="custom-option">${escape(data.text)}</div>`;
+                        },
+                        option: function(data, escape) {
+                            return `<div class="custom-option">${escape(data.text)}</div>`;
+                        }
+                    }
+                });
+
+                // Sync back to Livewire on change
+                document.getElementById('user_branch_id').addEventListener('change', function(e) {
+                    @this.set('selectBranch', [...this.selectedOptions].map(o => o.value));
+                });
+            });
+        </script>
     @endpermission
 </div>

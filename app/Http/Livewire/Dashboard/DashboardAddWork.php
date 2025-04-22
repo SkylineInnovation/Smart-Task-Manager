@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Dashboard;
 
+use App\Models\Department;
 use App\Models\Work;
 use Livewire\Component;
 
@@ -13,9 +14,15 @@ class DashboardAddWork extends Component
 
     public $branch_id, $department_id, $user_id, $job_title;
 
+
+    public $selectedusers = [];
+    public $selectedDepart = [];
+
     public function mount()
     {
         $this->get_create_date();
+
+        $this->departments = Department::orderBy('id', 'desc')->get();
     }
 
     public function get_create_date()
@@ -41,17 +48,24 @@ class DashboardAddWork extends Component
             // 'slug' => $this-slug,
 
 
-            'branch_id' => 'required',
-            'department_id' => 'required',
-            'user_id' => 'required',
+            // 'branch_id' => 'required',
+            // 'department_id' => 'required',
+            // 'user_id' => 'required',
+
+
             'job_title' => 'required',
+
+            'selectedusers' => 'required|array|min:1',
+            'selectedusers.*' => 'integer|exists:users,id',
+            'selectedDepart' => 'required|array|min:1',
+            'selectedDepart.*' => 'integer|exists:users,id',
         ];
     }
 
     public function updatedBranchId()
     {
-        $this->departments = \App\Models\Department::where('branch_id', $this->branch_id)
-            ->where('show', 1)->orderBy('sort')->get();
+        // $this->departments = \App\Models\Department::where('branch_id', $this->branch_id)
+        //     ->where('show', 1)->orderBy('sort')->get();
     }
 
     public function updated($propertyName)
@@ -63,11 +77,22 @@ class DashboardAddWork extends Component
     {
         $validatedData = $this->validate();
 
-        Work::create([
-            'department_id' => $this->department_id,
-            'user_id' => $this->user_id,
-            'job_title' => $this->job_title,
-        ]);
+        // Work::create([
+        //     'department_id' => $this->department_id,
+        //     'user_id' => $this->user_id,
+        //     'job_title' => $this->job_title,
+        // ]);
+
+        foreach ($this->selectedusers as $userId) {
+
+            foreach ($this->selectedDepart as $depId) {
+                Work::create([
+                    'department_id' => $depId,
+                    'user_id' => $userId,
+                    'job_title' => $this->job_title,
+                ]);
+            }
+        }
 
         session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();

@@ -25,7 +25,7 @@
 
                             @role('owner|manager')
                                 {{--  --}}
-                                <div class='form-group col-lg-6 col-md-6 col-sm-12'>
+                                {{-- <div class='form-group col-lg-6 col-md-6 col-sm-12'>
                                     <label for='branch-select'>{{ __('task.branchs') }}</label>
                                     <select id='branch-select' class='form-control' wire:model='select_branch'>
                                         <option value="0">{{ __('global.select-branchs') }}</option>
@@ -45,9 +45,26 @@
                                             </div>
                                         @endif
                                     @endforeach
-                                </div>
+                                </div> --}}
 
-                                <div class='form-group col-lg-6 col-md-6 col-sm-12'>
+                                {{--  --}}
+                                <div wire:ignore class="form-group col-6">
+                                    <label for="branch-select">{{ __('global.select-branchs') }}</label>
+                                    <select id="branch-select" multiple class="">
+                                        @foreach ($branchs as $branch)
+                                            <option value="{{ $branch->id }}"
+                                                @if (in_array($branch->id, $selectedBranchs)) selected @endif>
+                                                {{ $branch->crud_name() }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('select_branch')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                {{--  --}}
+
+                                {{-- <div class='form-group col-lg-6 col-md-6 col-sm-12'>
                                     <label for='department-select'>{{ __('task.departments') }}</label>
                                     <select id='department-select' class='form-control' wire:model='select_department'>
                                         <option value="0">{{ __('global.select-departments') }}</option>
@@ -69,12 +86,29 @@
                                             </div>
                                         @endif
                                     @endforeach
+                                </div> --}}
+
+                                {{--  --}}
+                                <div wire:ignore class="form-group col-6">
+                                    <label for="filter-departments">{{ __('global.select-departments') }}</label>
+                                    <select id="filter-departments" multiple class="">
+                                        @foreach ($departments as $department)
+                                            <option value="{{ $department->id }}"
+                                                @if (in_array($department->id, $selectedDepartments)) selected @endif>
+                                                {{ $department->crud_name() }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('selectedDepartments')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
+                                {{--  --}}
                             @endrole
 
 
                             {{--  --}}
-                            <div class='form-group col-lg-6 col-md-6 col-sm-12'>
+                            {{-- <div class='form-group col-lg-6 col-md-6 col-sm-12'>
                                 <label for='employee-select'>{{ __('task.employees') }}</label>
                                 <select id='employee-select' class='form-control' wire:model='select_emp'>
                                     <option>{{ __('global.select-employees') }}</option>
@@ -94,7 +128,28 @@
                                         </div>
                                     @endif
                                 @endforeach
+                            </div> --}}
+
+                            {{--  --}}
+                            {{--  --}}
+                            {{--  --}}
+                            <div class="form-group col-lg-6 col-md-6 col-sm-12" wire:ignore>
+                                <label for="employee-select">{{ __('task.employees') }}</label>
+
+                                <select id="employee-select" multiple class="">
+                                    @foreach ($employees as $employee)
+                                        <option value="{{ $employee->id }}"
+                                            @if (in_array($employee->id, $selectedEmployees)) selected @endif>
+                                            {{ $employee->crud_name() }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
+                            {{--  --}}
+                            {{--  --}}
+                            {{--  --}}
+                            {{--  --}}
+                            {{--  --}}
 
                             <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                 <label for="exampleFormControlSelect1">{{ __('task.priority_level') }}</label>
@@ -120,8 +175,8 @@
                                     <span class="input-group-text btn-secondary text-white"
                                         id="inputGroup-sizing-default">{{ __('task.discount') }}</span>
                                 </div>
-                                <input wire:model.defer="discount" type="number" class="form-control"
-                                    aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                <input wire:model.defer="discount" type="number" class="form-control" aria-label="Default"
+                                    aria-describedby="inputGroup-sizing-default">
                             </div>
 
                             {{--  --}}
@@ -149,9 +204,8 @@
                                         <span class="input-group-text btn-secondary text-white"
                                             id="inputGroup-sizing-default">{{ __('task.short_max_worning_count') }}</span>
                                     </div>
-                                    <input wire:model.defer="max_worning_count" type="number" multiple
-                                        class="form-control" aria-label="Default"
-                                        aria-describedby="inputGroup-sizing-default">
+                                    <input wire:model.defer="max_worning_count" type="number" multiple class="form-control"
+                                        aria-label="Default" aria-describedby="inputGroup-sizing-default">
                                 </div>
 
                                 <span style="font-size: 12px;">
@@ -255,5 +309,98 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            document.addEventListener('livewire:load', function() {
+                let selectInstance = new TomSelect('#employee-select', {
+                    plugins: ['remove_button', 'dropdown_input'],
+                    persist: false,
+                    create: false,
+                    closeAfterSelect: true,
+                    onChange: function(values) {
+                        @this.set('selectedEmployees', values);
+                    },
+                    maxItems: 200, // Limit the number of selected items
+                    items: {!! json_encode($selectedEmployees) !!}, // Preselect existing values
+                    placeholder: "{{ __('global.select-employees') }}",
+                    allowEmptyOption: true,
+                    dropdownConveyor: true,
+                    render: {
+                        item: function(data, escape) {
+                            return `<div class="custom-option">${escape(data.text)}</div>`;
+                        },
+                        option: function(data, escape) {
+                            return `<div class="custom-option">${escape(data.text)}</div>`;
+                        }
+                    }
+                });
+
+                // Sync back to Livewire on change
+                document.getElementById('employee-select').addEventListener('change', function(e) {
+                    @this.set('selectedEmployees', [...this.selectedOptions].map(o => o.value));
+                });
+            });
+            document.addEventListener('livewire:load', function() {
+                let selectInstance = new TomSelect('#branch-select', {
+                    plugins: ['remove_button', 'dropdown_input'],
+                    persist: false,
+                    create: false,
+                    closeAfterSelect: true,
+                    onChange: function(values) {
+                        @this.set('selectedBranchs', values);
+                    },
+                    maxItems: 200, // Limit the number of selected items
+                    items: {!! json_encode($selectedBranchs) !!}, // Preselect existing values
+                    placeholder: "{{ __('global.select-employees') }}",
+                    allowEmptyOption: true,
+                    dropdownConveyor: true,
+                    render: {
+                        item: function(data, escape) {
+                            return `<div class="custom-option">${escape(data.text)}</div>`;
+                        },
+                        option: function(data, escape) {
+                            return `<div class="custom-option">${escape(data.text)}</div>`;
+                        }
+                    }
+                });
+
+                // Sync back to Livewire on change
+                document.getElementById('branch-select').addEventListener('change', function(e) {
+                    @this.set('selectedBranchs', [...this.selectedOptions].map(o => o.value));
+                });
+            });
+
+            
+
+            document.addEventListener('livewire:load', function() {
+                let selectInstance = new TomSelect('#filter-departments', {
+                    plugins: ['remove_button', 'dropdown_input'],
+                    persist: false,
+                    create: false,
+                    closeAfterSelect: true,
+                    onChange: function(values) {
+                        @this.set('selectedDepartments', values);
+                    },
+                    maxItems: 200, // Limit the number of selected items
+                    items: {!! json_encode($selectedDepartments) !!}, // Preselect existing values
+                    placeholder: "{{ __('global.select-employees') }}",
+                    allowEmptyOption: true,
+                    dropdownConveyor: true,
+                    render: {
+                        item: function(data, escape) {
+                            return `<div class="custom-option">${escape(data.text)}</div>`;
+                        },
+                        option: function(data, escape) {
+                            return `<div class="custom-option">${escape(data.text)}</div>`;
+                        }
+                    }
+                });
+
+                // Sync back to Livewire on change
+                document.getElementById('filter-departments').addEventListener('change', function(e) {
+                    @this.set('selectedDepartments', [...this.selectedOptions].map(o => o.value));
+                });
+            });
+        </script>
     @endpermission
 </div>
