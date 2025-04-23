@@ -332,6 +332,32 @@
                                     @endpermission
                                 @endif
 
+                               
+                                <button type="button" class="btn btn-warning " data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="ti-agenda text-white"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item"
+                                        href="{{ route('repo_p2_r1.page', $task->id) }}">{{ __('global.repo-p2-r1') }}</a>
+                                    {{-- <a class="dropdown-item" href="#">{{ __('global.repo-p2-r2') }}</a> --}}
+                                    {{-- <a class="dropdown-item" href="#">{{ __('global.repo-p6-r1') }}</a> --}}
+
+                                    <a class="dropdown-item"
+                                        href="{{ route('repo_p6_r2.page', $task->id) }}">{{ __('global.repo-p6-r2') }}</a>
+
+                                    {{-- <a class="dropdown-item"
+                                        href="{{ route('repo_p8_r1.page', $task->id) }}">{{ __('global.repo-p8-r1') }}</a> --}}
+
+                                    <a class="dropdown-item"
+                                        href="{{ route('repo_p8_r2.page', $task->id) }}">{{ __('global.p8-r2') }}</a>
+
+
+                                    {{-- <a class="dropdown-item" href="#">{{ __('global.p10-r1') }}</a> --}}
+
+
+                                </div>
+
                             </td>
                         @endpermission
                     </tr>

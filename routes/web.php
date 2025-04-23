@@ -8,6 +8,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Web\ReportsController;
 use App\Http\Controllers\Web\WebPermissionsController;
 use App\Http\Controllers\Web\WebReportController;
+use App\Http\Controllers\Web\WebRepoTaskByUserController;
+use App\Http\Controllers\Web\WebRepoTaskController;
 use App\Http\Controllers\Web\WebTaskController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -357,6 +359,26 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee', 'AuthA
 
     // P12
     Route::get('P13-table', [NewRepoController::class, 'p13'])->name('p13-table');
+
+
+
+    // tasks reports
+
+    Route::get('repo_p2_r1/{id}', [WebRepoTaskController::class, 'repo_p2_r1'])->name('repo_p2_r1.page');
+    Route::get('repo_p6_r2/{id}', [WebRepoTaskController::class, 'repo_p6_r2'])->name('repo_p6_r2.page');
+    Route::get('repo_p8_r1/{id}', [WebRepoTaskController::class, 'repo_p8_r1'])->name('repo_p8_r1.page');
+    Route::get('repo_p8_r2/{id}', [WebRepoTaskController::class, 'repo_p8_r2'])->name('repo_p8_r2.page');
+
+    // task by user
+    Route::get('repo_p6_r1_active/{id}', [WebRepoTaskByUserController::class, 'repo_p6_r1_active'])->name('repo_p6_r1_active.page');
+    Route::get('repo_p6_r1_closed_soon/{id}', [WebRepoTaskByUserController::class, 'repo_p6_r1_closed_soon'])->name('repo_p6_r1_closed_soon.page');
+    Route::get('repo_p6_r2/{id}', [WebRepoTaskByUserController::class, 'repo_p6_r2'])->name('repo_p6_r2.page.user');
+    Route::get('repo_p7_r1/{id}', [WebRepoTaskByUserController::class, 'repo_p7_r1'])->name('repo_p7_r1.page.user');
+    Route::get('repo_p8_R2/{id}', [WebRepoTaskByUserController::class, 'repo_p8_R2'])->name('repo_p8_R2.page.user');
+    Route::get('repo_p10_R1/{id}', [WebRepoTaskByUserController::class, 'repo_p10_R1'])->name('repo_p10_R1.page.user');
+    Route::get('repo_p11/{id}', [WebRepoTaskByUserController::class, 'repo_p11'])->name('repo_p11.page.user');
+    Route::get('repo_p12/{id}', [WebRepoTaskByUserController::class, 'repo_p12'])->name('repo_p12.page.user');
+    Route::get('repo_p13/{id}', [WebRepoTaskByUserController::class, 'repo_p13'])->name('repo_p13.page.user');
 });
 
 

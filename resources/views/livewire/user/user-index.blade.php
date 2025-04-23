@@ -199,6 +199,31 @@
                                 </div>
                             </div>
 
+                            <button type="button" class="btn btn-warning " data-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="ti-agenda text-white"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item"
+                                    href="{{ route('repo_p6_r1_active.page', $user->id) }}">{{ __('global.tasks') }}</a>
+                                <a class="dropdown-item"
+                                    href="{{ route('repo_p6_r1_closed_soon.page', $user->id) }}">{{ __('global.repo-p6-r1') }}</a>
+                                <a class="dropdown-item"
+                                    href="{{ route('repo_p6_r2.page.user', $user->id) }}">{{ __('global.repo-p6-r2') }}</a>
+                                <a class="dropdown-item"
+                                    href="{{ route('repo_p7_r1.page.user', $user->id) }}">{{ __('global.repo-p8-r1') }}</a>
+                                <a class="dropdown-item"
+                                    href="{{ route('repo_p8_R2.page.user', $user->id) }}">{{ __('global.p8-r2') }}</a>
+                                <a class="dropdown-item"
+                                    href="{{ route('repo_p10_R1.page.user', $user->id) }}">{{ __('global.p10-r1') }}</a>
+                                <a class="dropdown-item"
+                                    href="{{ route('repo_p11.page.user', $user->id) }}">{{ __('global.p11') }}</a>
+                                <a class="dropdown-item"
+                                    href="{{ route('repo_p12.page.user', $user->id) }}">{{ __('global.p12') }}</a>
+                                <a class="dropdown-item"
+                                    href="{{ route('repo_p13.page.user', $user->id) }}">{{ __('global.p13') }}</a>
+                            </div>
+
                         </td>
                     </tr>
                 @endforeach

@@ -191,7 +191,7 @@
                         <td>{{ $leave->user->crud_name() }}</td>
                         <td>
 
-                            {{ $leave->accepted_by_user->crud_name() }}
+                            {{ $leave->accepted_by_user->first_name ?? '' }}
                         </td>
                         <td>{{ $leave->time_out }}</td>
                         <td>{{ $leave->time_in }}</td>
