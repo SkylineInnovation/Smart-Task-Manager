@@ -48,11 +48,8 @@ class WebRepoTaskController extends Controller
     public function repo_p8_r2($id)
     {
 
-        $task = Task::find($id);
-
-        $managerId = $task->manager_id;
-
-        $taskM = Task::where('manager_id', $managerId)->where('status', 'active')->findOrFail($task->id);
+        $man_id = Task::find($id);
+        $taskM = Task::where('manager_id', $man_id->manager_id)->findOrFail($man_id->id);
 
 
         return view('web.task.repo.repo_p8_r2', compact('taskM'));
