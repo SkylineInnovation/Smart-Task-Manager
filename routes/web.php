@@ -365,7 +365,7 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee', 'AuthA
     // tasks reports
 
     Route::get('repo_p2_r1/{id}', [WebRepoTaskController::class, 'repo_p2_r1'])->name('repo_p2_r1.page');
-    Route::get('repo_p6_r2/{id}', [WebRepoTaskController::class, 'repo_p6_r2'])->name('repo_p6_r2.page');
+    Route::get('repo_p6_r2-task/{id}', [WebRepoTaskController::class, 'repo_p6_r2'])->name('repo_p6_r2.page');
     Route::get('repo_p8_r1/{id}', [WebRepoTaskController::class, 'repo_p8_r1'])->name('repo_p8_r1.page');
     Route::get('repo_p8_r2/{id}', [WebRepoTaskController::class, 'repo_p8_r2'])->name('repo_p8_r2.page');
 
