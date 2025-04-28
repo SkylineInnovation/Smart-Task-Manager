@@ -33,24 +33,12 @@ class BranchIndex extends Component
 
 
     public $areas = [];
-
     public $managers = [];
-
     public $responsibles = [];
 
-
-
     public $filter_areas_id = [];
-
     public $filter_managers_id = [];
-
     public $filter_responsibles_id = [];
-
-
-    public $selectedManagerD = [];
-    public $selectedRes = [];
-
-
 
     public $admin_view_status = '', $by, $url;
     public function mount($admin_view_status = '')
@@ -139,15 +127,9 @@ class BranchIndex extends Component
             'website' => 'required',
             'commercial_register' => 'required',
             'area_id' => 'required',
-            // 'manager_id' => 'required',
 
-            'selectedManagerD' => 'required|array|min:1',
-            'selectedManagerD.*' => 'integer|exists:users,id',
-
-            'selectedRes' => 'required|array|min:1',
-            'selectedRes.*' => 'integer|exists:users,id',
-
-            // 'responsible_id' => 'required',
+            'manager_id' => 'required',
+            'responsible_id' => 'required',
         ];
     }
 
@@ -160,45 +142,23 @@ class BranchIndex extends Component
     {
         $validatedData = $this->validate();
 
-        // Branch::create([
-        //     'add_by' => $this->by->id,
-        //     'slug' => $this->slug,
+        Branch::create([
+            'add_by' => $this->by->id,
+            'slug' => $this->slug,
 
-        //     'name' => $this->name,
-        //     'location' => $this->location,
-        //     'phone' => $this->phone,
-        //     'number' => $this->number,
-        //     'fax' => $this->fax,
-        //     'email' => $this->email,
-        //     'password' => $this->password,
-        //     'website' => $this->website,
-        //     'commercial_register' => $this->commercial_register,
-        //     'area_id' => $this->area_id,
-        //     'manager_id' => $this->manager_id,
-        //     'responsible_id' => $this->responsible_id,
-        // ]);
-
-        foreach ($this->selectedManagerD as $managrId) {
-            foreach ($this->selectedRes as $resId) {
-                Branch::create([
-                    'add_by' => $this->by->id,
-                    'slug' => $this->slug,
-                    'name' => $this->name,
-                    'location' => $this->location,
-                    'phone' => $this->phone,
-                    'number' => $this->number,
-                    'fax' => $this->fax,
-                    'email' => $this->email,
-                    'password' => $this->password,
-                    'website' => $this->website,
-                    'commercial_register' => $this->commercial_register,
-                    'area_id' => $this->area_id,
-                    'manager_id' => $managrId,
-                    'responsible_id' => $resId,
-                ]);
-            }
-        }
-
+            'name' => $this->name,
+            'location' => $this->location,
+            'phone' => $this->phone,
+            'number' => $this->number,
+            'fax' => $this->fax,
+            'email' => $this->email,
+            'password' => $this->password,
+            'website' => $this->website,
+            'commercial_register' => $this->commercial_register,
+            'area_id' => $this->area_id,
+            'manager_id' => $this->manager_id,
+            'responsible_id' => $this->responsible_id,
+        ]);
 
         session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();

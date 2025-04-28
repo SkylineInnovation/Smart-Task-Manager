@@ -11,7 +11,6 @@ class DashboardAddRegion extends Component
 
     public $name, $location, $manager_id;
 
-    public $selectedManager = [];
     public function mount()
     {
         $this->get_create_date();
@@ -39,10 +38,7 @@ class DashboardAddRegion extends Component
 
             'name' => 'required',
             'location' => 'required',
-            // 'manager_id' => 'required',
-
-            'selectedManager' => 'required|array|min:1',
-            'selectedManager.*' => 'integer|exists:users,id',
+            'manager_id' => 'required',
         ];
     }
 
@@ -55,19 +51,11 @@ class DashboardAddRegion extends Component
     {
         $validatedData = $this->validate();
 
-        // Area::create([
-        //     'name' => $this->name,
-        //     'location' => $this->location,
-        //     'manager_id' => $this->manager_id,
-        // ]);
-
-        foreach ($this->selectedManager as $managrId) {
-            Area::create([
-                'name' => $this->name,
-                'location' => $this->location,
-                'manager_id' => $managrId,
-            ]);
-        }
+        Area::create([
+            'name' => $this->name,
+            'location' => $this->location,
+            'manager_id' => $this->manager_id,
+        ]);
 
         session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();

@@ -3,7 +3,7 @@
 <div class="modal fade" id="OutgoingTaskDiscounts" tabindex="-1" role="dialog" aria-labelledby="OutgoingTaskDiscountsLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form class="form-inline" method="post" action="{{route('outgoing.task.discounts')}}" target="_blank">
+        <form class="form-inline" method="post" action="{{ route('outgoing.task.discounts') }}" target="_blank">
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
@@ -23,8 +23,6 @@
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}">{{ $user->name() }}</option>
                             @endforeach
-
-
                         </select>
                     </div>
 
@@ -140,7 +138,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"
                         data-dismiss="modal">{{ __('global.Close') }}</button>
-                    <button  type="submit" class="btn btn-primary fs-25">
+                    <button type="submit" class="btn btn-primary fs-25">
                         <i class="fa fa-print"></i>
                     </button>
                 </div>
@@ -268,7 +266,9 @@
                                     </td>
 
                                     <td>
-                                        <a target="_blank" href="{{route('task.specific.comments.page',$task->id)}}" class="btn btn-primary fs-25">
+                                        <a target="_blank"
+                                            href="{{ route('task.specific.comments.page', $task->id) }}"
+                                            class="btn btn-primary fs-25">
                                             <i class="fa fa-eye"></i>
                                         </a>
                                     </td>
@@ -575,7 +575,8 @@
 
 
                                     <td>
-                                        <a target="_blank" href="{{ route('incoming.task.movements.emp', $user->id) }}"
+                                        <a target="_blank"
+                                            href="{{ route('incoming.task.movements.emp', $user->id) }}"
                                             class="btn btn-primary fs-25">
                                             <i class="fa fa-eye"></i>
                                         </a>
@@ -650,7 +651,8 @@
 
 
                                     <td>
-                                        <a target="_blank" href="{{ route('outgoing.task.movements.manager', $user->id) }}"
+                                        <a target="_blank"
+                                            href="{{ route('outgoing.task.movements.manager', $user->id) }}"
                                             class="btn btn-primary fs-25">
                                             <i class="fa fa-eye"></i>
                                         </a>

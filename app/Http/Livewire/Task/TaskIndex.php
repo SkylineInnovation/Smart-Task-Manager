@@ -38,7 +38,7 @@ class TaskIndex extends Component
 
     public $main_tasks = [];
 
-    public $employees = [];
+    public $employees;
     public $selectedEmployees = [];
 
 
@@ -209,7 +209,7 @@ class TaskIndex extends Component
                     'reopen_from_task_id' => $this->reopen_from_task_id,
                     'daily_task_id' => $this->daily_task_id,
 
-                    
+
                 ]);
 
                 $task->employees()->syncWithPivotValues([$selectedEmployee], [

@@ -25,7 +25,7 @@
     </style>
 
 
-    <style>
+    {{-- <style>
         .tom-select {
             width: 100% !important;
         }
@@ -66,7 +66,7 @@
         .ts-control input {
             width: 100% !important;
         }
-    </style>
+    </style> --}}
 @endsection
 
 @section('content')

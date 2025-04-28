@@ -34,21 +34,15 @@ class DepartmentIndex extends Component
 
 
     public $branches = [];
-
     public $managers = [];
-
     public $main_departments = [];
 
     public $the_manager;
     public $the_branch;
 
     public $filter_branches_id = [];
-
     public $filter_managers_id = [];
-
     public $filter_main_departments_id = [];
-
-    public $selectedManagerD = [];
 
 
 
@@ -138,9 +132,6 @@ class DepartmentIndex extends Component
             'branch_id' => 'required',
             // 'manager_id' => 'required',
             // 'main_department_id' => 'required',
-
-            'selectedManagerD' => 'required|array|min:1',
-            'selectedManagerD.*' => 'integer|exists:users,id',
         ];
     }
 
@@ -153,27 +144,16 @@ class DepartmentIndex extends Component
     {
         $validatedData = $this->validate();
 
-        // Department::create([
-        //     'add_by' => $this->by->id,
-        //     'slug' => $this->slug,
+        Department::create([
+            'add_by' => $this->by->id,
+            'slug' => $this->slug,
 
-        //     'branch_id' => $this->branch_id,
-        //     'manager_id' => $this->manager_id,
-        //     'main_department_id' => $this->main_department_id,
+            'branch_id' => $this->branch_id,
+            'manager_id' => $this->manager_id,
+            'main_department_id' => $this->main_department_id,
 
-        //     'name' => $this->name,
-        // ]);
-
-        foreach ($this->selectedManagerD as $managrId) {
-            Department::create([
-                'add_by' => $this->by->id,
-                'slug' => $this->slug,
-                'branch_id' => $this->branch_id,
-                'manager_id' => $managrId,
-                'main_department_id' => $this->main_department_id,
-                'name' => $this->name,
-            ]);
-        }
+            'name' => $this->name,
+        ]);
 
 
         session()->flash('message', __('global.created-successfully'));

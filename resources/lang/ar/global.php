@@ -230,8 +230,12 @@ return [
     'select-users' => 'حدد المستخدمين',
     'select-tasks' => 'حدد المهام',
     'select-managers' => 'حدد المديرين',
+    'select-manager' => 'حدد المديرين',
     'select-employees' => 'حدد الموظفين',
+    'select-employee' => 'حدد الموظفين',
     'select-branches' => 'حدد الافرع',
+    'select-branche' => 'حدد الافرع',
+    'assign-manager' => 'تعيين مدير',
 
     'open-task' => 'اعادة توجيه',
     'Print' => 'طباعة',

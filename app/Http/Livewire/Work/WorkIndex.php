@@ -48,11 +48,6 @@ class WorkIndex extends Component
     public $filter_users_id = [];
 
 
-    public $selectedUsers = [];
-    public $selectedManager = [];
-
-
-
     public $admin_view_status = '', $by, $url;
     public function mount($admin_view_status = '')
     {
@@ -123,12 +118,6 @@ class WorkIndex extends Component
             'department_id' => 'required',
             // 'user_id' => 'required',
             'job_title' => 'required',
-
-            'selectedUsers' => 'required|array|min:1',
-            'selectedUsers.*' => 'integer|exists:users,id',
-
-            'selectedManager' => 'required|array|min:1',
-            'selectedManager.*' => 'integer|exists:users,id',
         ];
     }
 
@@ -140,31 +129,17 @@ class WorkIndex extends Component
     public function store()
     {
         $validatedData = $this->validate();
-        // Work::create([
-        //     'add_by' => $this->by->id,
-        //     'slug' => $this->slug,
+        Work::create([
+            'add_by' => $this->by->id,
+            'slug' => $this->slug,
 
-        //     'manager_id' => $this->manager_id,
-        //     'department_id' => $this->department_id,
-        //     'user_id' => $this->user_id,
-        //     'job_title' => $this->job_title,
+            'manager_id' => $this->manager_id,
+            'department_id' => $this->department_id,
+            'user_id' => $this->user_id,
+            'job_title' => $this->job_title,
 
-        // ]);
-        foreach ($this->selectedUsers as $userID) {
+        ]);
 
-            foreach ($this->selectedManager as $managerID) {
-                
-                Work::create([
-                    'add_by' => $this->by->id,
-                    'slug' => $this->slug,
-                    'manager_id' => $managerID,
-                    'department_id' => $this->department_id,
-                    'user_id' => $userID,
-                    'job_title' => $this->job_title,
-
-                ]);
-            }
-        }
         session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();
         $this->emit('close-model'); // Close model to using to jquery

@@ -37,21 +37,14 @@ class ExchangepermissionIndex extends Component
 
 
     public $users = [];
-
     public $financial_directors = [];
-
     public $technical_directors = [];
 
 
-
     public $filter_users_id = [];
-
     public $filter_financial_directors_id = [];
-
     public $filter_technical_directors_id = [];
 
-
-    public $selectedUsers = [];
 
     public $admin_view_status = '', $by, $url;
     public function mount($admin_view_status = '')
@@ -142,9 +135,6 @@ class ExchangepermissionIndex extends Component
             // 'technical_director_response' => 'required',
             // 'technical_director_time' => 'required',
             // 'status' => 'required',
-
-            'selectedUsers' => 'required|array|min:1',
-            'selectedUsers.*' => 'integer|exists:users,id',
         ];
     }
 
@@ -157,42 +147,23 @@ class ExchangepermissionIndex extends Component
     {
         $validatedData = $this->validate();
 
-        // $exchange = ExchangePermission::create([
-        //     'add_by' => $this->by->id,
-        //     'slug' => $this->slug,
+        $exchange = ExchangePermission::create([
+            'add_by' => $this->by->id,
+            'slug' => $this->slug,
 
-        //     'user_id' => $this->user_id,
-        //     'content' => $this->content,
-        //     'amount' => $this->amount,
-        //     'attachment' => HomeController::saveImageWeb($this->attachment, 'exchange_permission'),
-        //     'request_date' => date('Y-m-d\TH:i'),
-        //     'financial_director_id' => $this->financial_director_id,
-        //     'financial_director_response' => $this->financial_director_response,
-        //     'financial_director_time' => $this->financial_director_time,
-        //     'technical_director_id' => $this->technical_director_id,
-        //     'technical_director_response' => $this->technical_director_response,
-        //     'technical_director_time' => $this->technical_director_time,
-        //     'status' => 'pending',
-        // ]);
-
-        foreach ($this->selectedUsers as $userId) {
-            $exchange = ExchangePermission::create([
-                'add_by' => $this->by->id,
-                'slug' => $this->slug,
-
-                'user_id' => $userId,
-                'content' => $this->content,
-                'amount' => $this->amount,
-                'attachment' => HomeController::saveImageWeb($this->attachment, 'exchange_permission'),
-                'request_date' => date('Y-m-d\TH:i'),
-                'financial_director_id' => $this->financial_director_id,
-                'financial_director_response' => $this->financial_director_response,
-                'financial_director_time' => $this->financial_director_time,
-                'technical_director_id' => $this->technical_director_id,
-                'technical_director_response' => $this->technical_director_response,
-                'technical_director_time' => $this->technical_director_time,
-            ]);
-        }
+            'user_id' => $this->user_id,
+            'content' => $this->content,
+            'amount' => $this->amount,
+            'attachment' => HomeController::saveImageWeb($this->attachment, 'exchange_permission'),
+            'request_date' => date('Y-m-d\TH:i'),
+            'financial_director_id' => $this->financial_director_id,
+            'financial_director_response' => $this->financial_director_response,
+            'financial_director_time' => $this->financial_director_time,
+            'technical_director_id' => $this->technical_director_id,
+            'technical_director_response' => $this->technical_director_response,
+            'technical_director_time' => $this->technical_director_time,
+            'status' => 'pending',
+        ]);
 
         if (env('SEND_MAIL', false))
             SendNewExchangePermission::dispatch($exchange);

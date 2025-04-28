@@ -230,8 +230,12 @@ return [
     'select-users' => 'Select Users',
     'select-tasks' => 'Select Tasks',
     'select-managers' => 'Select Managers',
+    'select-manager' => 'Select Managers',
     'select-employees' => 'Select Employees',
+    'select-employee' => 'Select Employees',
     'select-branches' => 'Select Branches',
+    'select-branche' => 'Select Branches',
+    'assign-manager' => 'Assign Manager',
 
     'open-task' => 'Reopen Task',
     'Print' => 'Print',

@@ -55,7 +55,7 @@ class LeaveIndex extends Component
 
     public $admin_view_status = '', $by, $url;
 
-    public $selectedUsers = [];
+
     public function mount($admin_view_status = '', $user_id = null, $task_id = null)
     {
         $this->url = Route::current()->getName();
@@ -154,8 +154,6 @@ class LeaveIndex extends Component
             // 'accepted_by_user_id' => 'required',
             // 'accepted_time' => 'required',
 
-            'selectedUsers' => 'required|array|min:1',
-            'selectedUsers.*' => 'integer|exists:users,id',
         ];
     }
 
@@ -184,25 +182,6 @@ class LeaveIndex extends Component
             'accepted_by_user_id' => $this->accepted_by_user_id,
             'accepted_time' => $this->accepted_time,
         ]);
-
-        foreach ($this->selectedUsers as $userId) {
-            $discount =  Leave::create([
-                'add_by' => $this->by->id,
-            'slug' => $this->slug,
-
-            'task_id' => $this->task_id,
-            'user_id' => $userId,
-            'type' => $this->type,
-            'time_out' => $this->time_out,
-            'time_in' => $this->time_in,
-            'effect_on_time' => $this->effect_on_time,
-            'reason' => $this->reason,
-            'result' => $this->result,
-            'status' => $this->status,
-            'accepted_by_user_id' => $this->accepted_by_user_id,
-            'accepted_time' => $this->accepted_time,
-            ]);
-        }
 
         session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();

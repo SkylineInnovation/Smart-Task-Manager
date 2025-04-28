@@ -17,10 +17,6 @@ class DashboardAddBranch extends Component
         $website, $commercial_register,
         $area_id, $manager_id, $responsible_id;
 
-
-    public $selectedManager = [];
-    public $selectedResponsible = [];
-
     public function mount()
     {
         $this->get_create_date();
@@ -69,14 +65,8 @@ class DashboardAddBranch extends Component
             'website' => 'required',
             'commercial_register' => 'required',
             'area_id' => 'required',
-            // 'manager_id' => 'required',
-            // 'responsible_id' => 'required',
-
-            'selectedManager' => 'required|array|min:1',
-            'selectedManager.*' => 'integer|exists:users,id',
-
-            'selectedResponsible' => 'required|array|min:1',
-            'selectedResponsible.*' => 'integer|exists:users,id',
+            'manager_id' => 'required',
+            'responsible_id' => 'required',
         ];
     }
 
@@ -89,40 +79,20 @@ class DashboardAddBranch extends Component
     {
         $validatedData = $this->validate();
 
-        // Branch::create([
-
-        //     'name' => $this->name,
-        //     'location' => $this->location,
-        //     'phone' => $this->phone,
-        //     'number' => $this->number,
-        //     'fax' => $this->fax,
-        //     'email' => $this->email,
-        //     'password' => $this->password,
-        //     'website' => $this->website,
-        //     'commercial_register' => $this->commercial_register,
-        //     'area_id' => $this->area_id,
-        //     'manager_id' => $this->manager_id,
-        //     'responsible_id' => $this->responsible_id,
-        // ]);
-
-        foreach ($this->selectedManager as $managerId) {
-            foreach ($this->selectedResponsible as $responsId) {
-                Branch::create([
-                    'name' => $this->name,
-                    'location' => $this->location,
-                    'phone' => $this->phone,
-                    'number' => $this->number,
-                    'fax' => $this->fax,
-                    'email' => $this->email,
-                    'password' => $this->password,
-                    'website' => $this->website,
-                    'commercial_register' => $this->commercial_register,
-                    'area_id' => $this->area_id,
-                    'manager_id' => $managerId,
-                    'responsible_id' => $responsId,
-                ]);
-            }
-        }
+        Branch::create([
+            'name' => $this->name,
+            'location' => $this->location,
+            'phone' => $this->phone,
+            'number' => $this->number,
+            'fax' => $this->fax,
+            'email' => $this->email,
+            'password' => $this->password,
+            'website' => $this->website,
+            'commercial_register' => $this->commercial_register,
+            'area_id' => $this->area_id,
+            'manager_id' => $this->manager_id,
+            'responsible_id' => $this->responsible_id,
+        ]);
 
         session()->flash('message', __('global.created-successfully'));
         $this->resetInputFields();
