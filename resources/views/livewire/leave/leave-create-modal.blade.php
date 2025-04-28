@@ -37,6 +37,7 @@
                                     'label' => 'leave.task',
                                     'name' => 'leave.task_id',
                                     'arr' => $tasks,
+                                    'is_select' => false,
                                     'livewire' => 'task_id',
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
@@ -46,6 +47,7 @@
                                     'label' => 'leave.user',
                                     'name' => 'leave.user_id',
                                     'arr' => $users,
+                                    'is_select' => false,
                                     'livewire' => 'user_id',
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
@@ -220,6 +222,8 @@
                                     'arr' => $tasks,
                                     'livewire' => 'task_id',
                                     'val' => $leave->task_id,
+                                    'is_select' => false,
+                                    'value' => $leave->task->crud_name(),
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
@@ -230,6 +234,8 @@
                                     'arr' => $users,
                                     'livewire' => 'user_id',
                                     'val' => $leave->user_id,
+                                    'is_select' => false,
+                                    'value' => $leave->user->crud_name(),
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])

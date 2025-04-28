@@ -24,6 +24,7 @@
                                     'label' => 'userdetail.user',
                                     'name' => 'userdetail.user_id',
                                     'arr' => $users,
+                                    'is_select' => false,
                                     'livewire' => 'user_id',
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
@@ -102,6 +103,7 @@
                                 @include('inputs.create.select', [
                                     'label' => 'userdetail.branch',
                                     'name' => 'userdetail.branch_id',
+                                    'is_select' => false,
                                     'arr' => $branches,
                                     'livewire' => 'branch_id',
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
@@ -164,6 +166,8 @@
                                     'arr' => $users,
                                     'livewire' => 'user_id',
                                     'val' => $userdetail->user_id,
+                                    'is_select' => false,
+                                    'value' => $userdetail->user->crud_name(),
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
@@ -252,6 +256,8 @@
                                     'arr' => $branches,
                                     'livewire' => 'branch_id',
                                     'val' => $userdetail->branch_id,
+                                    'is_select' => false,
+                                    'value' => $userdetail->branch->crud_name(),
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])

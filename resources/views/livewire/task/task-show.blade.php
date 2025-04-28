@@ -199,7 +199,7 @@
 
             </div>
 
-            @role('owner|manager')
+            {{-- @role('owner|manager')
                 <div>
                     <p>{{ __('global.employees') }}</p>
                     <div class="row">
@@ -217,7 +217,7 @@
                         @endforeach
                     </div>
                 </div>
-            @endrole
+            @endrole --}}
 
             <div class="form-group">
                 @foreach ($errors->all() as $error)

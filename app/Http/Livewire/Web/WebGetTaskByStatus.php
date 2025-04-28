@@ -376,7 +376,7 @@ class WebGetTaskByStatus extends Component
             $this->employees = $this->user->employees;
         }
 
-        $this->edit_task_selectedEmployees = $task->employees->pluck('id');
+        $this->edit_task_selectedEmployees = $task->employees->pluck('id')->toArray();
 
         $this->edit_task_discount = $task->discount();
     }

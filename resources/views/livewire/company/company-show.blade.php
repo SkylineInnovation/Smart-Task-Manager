@@ -93,6 +93,8 @@
             'arr' => $technical_directors,
             'livewire' => 'technical_director_id',
             'val' => $company->technical_director_id,
+            'is_select' => false,
+            'value' => $company->technical_director->crud_name(),
             // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
             // 'lg' => 6, 'md' => 6, 'sm' => 12,
         ])
@@ -103,6 +105,8 @@
             'arr' => $financial_directors,
             'livewire' => 'financial_director_id',
             'val' => $company->financial_director_id,
+            'is_select' => false,
+            'value' => $company->financial_director->crud_name(),
             // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
             // 'lg' => 6, 'md' => 6, 'sm' => 12,
         ])

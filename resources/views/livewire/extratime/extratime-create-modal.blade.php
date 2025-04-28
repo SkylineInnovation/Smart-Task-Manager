@@ -37,6 +37,7 @@
                                     'label' => 'extratime.task',
                                     'name' => 'extratime.task_id',
                                     'arr' => $tasks,
+                                    'is_select' => false,
                                     'livewire' => 'task_id',
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
@@ -46,6 +47,7 @@
                                     'label' => 'extratime.user',
                                     'name' => 'extratime.user_id',
                                     'arr' => $users,
+                                    'is_select' => false,
                                     'livewire' => 'user_id',
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
@@ -196,6 +198,8 @@
                                     'arr' => $tasks,
                                     'livewire' => 'task_id',
                                     'val' => $extratime->task_id,
+                                    'is_select' => false,
+                                    'value' => $extratime->task->crud_name(),
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
@@ -206,6 +210,8 @@
                                     'arr' => $users,
                                     'livewire' => 'user_id',
                                     'val' => $extratime->user_id,
+                                    'is_select' => false,
+                                    'value' => $extratime->user->crud_name(),
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])

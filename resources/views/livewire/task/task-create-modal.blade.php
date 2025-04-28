@@ -69,6 +69,37 @@
                                     'sm' => 3,
                                 ])
 
+                                <div class='col-12 p-0'>
+                                    {{-- <div class="row"> --}}
+                                    {{-- // TODO add the search --}}
+                                    @include('inputs.create.select', [
+                                        'label' => 'global.employees',
+                                        'name' => 'user.employee_id',
+                                        'arr' => $employees,
+                                        'livewire' => 'select_emp',
+                                        'is_select' => false,
+                                        // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                        'lg' => 12,
+                                        'md' => 12,
+                                        'sm' => 12,
+                                    ])
+
+                                    @foreach ($employees as $employee)
+                                        @if (in_array($employee->id, $selectedEmployees))
+                                            <div class='form-check form-check-inline'>
+                                                <input wire:model='selectedEmployees' class='form-check-input'
+                                                    type='checkbox' value='{{ $employee->id }}'
+                                                    id='filter-employees-id-{{ $employee->id }}'>
+                                                <label class='form-check-label'
+                                                    for='filter-employees-id-{{ $employee->id }}'>
+                                                    {{ $employee->crud_name() }}
+                                                </label>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                    {{-- </div> --}}
+                                </div>
+
 
                                 {{--  --}}
                                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
@@ -196,26 +227,6 @@
 
                             </div>
 
-                            {{-- @role('owner') --}}
-                            <div>
-                                <div class="col-12">
-                                    @foreach ($employees as $employee)
-                                        <div class="col-4">
-                                            <div class="form-check form-check-inline">
-                                                <input wire:model='selectedEmployees' class="form-check-input"
-                                                    type="checkbox" value="{{ $employee->id }}"
-                                                    id="selected-employee-{{ $employee->id }}">
-                                                <label class="form-check-label"
-                                                    for="selected-employee-{{ $employee->id }}">
-                                                    {{ $employee->name() }}
-                                                </label>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            {{-- @endrole --}}
-
                         </div>
 
                         <div class="form-group">
@@ -316,6 +327,37 @@
                                     'md' => 3,
                                     'sm' => 3,
                                 ])
+
+                                <div class='col-12 p-0'>
+                                    {{-- <div class="row"> --}}
+                                    {{-- // TODO add the search --}}
+                                    @include('inputs.create.select', [
+                                        'label' => 'global.employees',
+                                        'name' => 'user.employee_id',
+                                        'arr' => $employees,
+                                        'livewire' => 'select_emp',
+                                        'is_select' => false,
+                                        // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                        'lg' => 12,
+                                        'md' => 12,
+                                        'sm' => 12,
+                                    ])
+
+                                    @foreach ($employees as $employee)
+                                        @if (in_array($employee->id, $selectedEmployees))
+                                            <div class='form-check form-check-inline'>
+                                                <input wire:model='selectedEmployees' class='form-check-input'
+                                                    type='checkbox' value='{{ $employee->id }}'
+                                                    id='filter-employees-id-{{ $employee->id }}'>
+                                                <label class='form-check-label'
+                                                    for='filter-employees-id-{{ $employee->id }}'>
+                                                    {{ $employee->crud_name() }}
+                                                </label>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                    {{-- </div> --}}
+                                </div>
 
                                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                     <label for="exampleFormControlSelect1">{{ __('task.comment_type') }}</label>
@@ -445,29 +487,7 @@
                                     'md' => 12,
                                     'sm' => 12,
                                 ]) --}}
-
                             </div>
-
-                            {{-- @role('owner') --}}
-                            <div>
-                                <p>{{ __('global.employees') }}</p>
-                                <div class="row">
-                                    @foreach ($employees as $employee)
-                                        <div class="col-4">
-                                            <div class="form-check form-check-inline">
-                                                <input wire:model='selectedEmployees' class="form-check-input"
-                                                    type="checkbox" value="{{ $employee->id }}"
-                                                    id="selected-employee-{{ $employee->id }}">
-                                                <label class="form-check-label"
-                                                    for="selected-employee-{{ $employee->id }}">
-                                                    {{ $employee->name() }}
-                                                </label>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            {{-- @endrole --}}
 
                         </div>
 

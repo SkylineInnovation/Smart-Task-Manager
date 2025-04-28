@@ -75,7 +75,7 @@ class UserIndex extends Component
         }
 
 
-        $this->ids = $this->by->employees->pluck('id');
+        $this->ids = $this->by->employees->pluck('id')->toArray();
 
         $this->showColumn = collect([
             'id' => false,
@@ -273,10 +273,10 @@ class UserIndex extends Component
         $this->departments = \App\Models\Department::where('branch_id', $this->branch_id)
             ->where('show', 1)->orderBy('sort')->get();
 
-        $this->selectedRoles = $user->roles->pluck('id');
-        // $this->selectedEmployees = $user->employees->pluck('id');
+        $this->selectedRoles = $user->roles->pluck('id')->toArray();
+        // $this->selectedEmployees = $user->employees->pluck('id')->toArray();
         $this->selectedManagers = $user->managers->pluck('id')->toArray();
-        $this->selectedDepartments = $user->departments->pluck('id');
+        $this->selectedDepartments = $user->departments->pluck('id')->toArray();
     }
 
     public function cancel()

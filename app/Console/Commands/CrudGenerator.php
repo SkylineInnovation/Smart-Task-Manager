@@ -371,6 +371,7 @@ class CrudGenerator extends Command
                         'label' => '$model.$fillable', 'name' => '$model.$fillable" . "_id', 
                         'arr' => \$$fillables,
                         'livewire' => '$fillable" . "_id',
+                        // 'is_select' => false,
                         // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                         // 'lg' => 6, 'md' => 6, 'sm' => 12,
                     ])\n";
@@ -386,6 +387,8 @@ class CrudGenerator extends Command
                         'arr' => \$$fillables,
                         'livewire' => '$fillable" . "_id',
                         'val' => $$model->$fillable" . "_id,
+                        // 'is_select' => false,
+                        // 'place' => $$model->$fillable" . "->crud_name(),
                         // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                         // 'lg' => 6, 'md' => 6, 'sm' => 12,
                     ])\n";

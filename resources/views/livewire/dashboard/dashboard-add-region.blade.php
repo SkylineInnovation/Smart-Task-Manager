@@ -64,6 +64,7 @@
                                     'name' => 'area.manager_id',
                                     'arr' => $managers,
                                     'livewire' => 'manager_id',
+                                    'is_select' => false,
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     'lg' => 12,
                                     'md' => 12,

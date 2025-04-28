@@ -1,4 +1,4 @@
-<div class="d-flex m{{App::getLocale()=='en'?'l':'r'}}-auto header-right-icons header-search-icon">
+<div class="d-flex m{{ App::getLocale() == 'en' ? 'l' : 'r' }}-auto header-right-icons header-search-icon">
 
     <livewire:web.web-nav-bar />
 
@@ -55,9 +55,9 @@
                     <i class="dropdown-icon mdi  mdi-logout-variant"></i>
                     {{ __('global.sign-out') }}
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
-                </form>
+                </form> --}}
             @endauth
 
             @guest

@@ -229,6 +229,7 @@ return [
     'done' => 'تم',
     'select-users' => 'حدد المستخدمين',
     'select-tasks' => 'حدد المهام',
+    'select-task' => 'حدد المهام',
     'select-managers' => 'حدد المديرين',
     'select-manager' => 'حدد المديرين',
     'select-employees' => 'حدد الموظفين',

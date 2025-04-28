@@ -37,6 +37,7 @@
                                     'label' => 'discount.task',
                                     'name' => 'discount.task_id',
                                     'arr' => $tasks,
+                                    'is_select' => false,
                                     'livewire' => 'task_id',
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
@@ -46,6 +47,7 @@
                                     'label' => 'discount.user',
                                     'name' => 'discount.user_id',
                                     'arr' => $users,
+                                    'is_select' => false,
                                     'livewire' => 'user_id',
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
@@ -141,6 +143,8 @@
                                     'arr' => $tasks,
                                     'livewire' => 'task_id',
                                     'val' => $discount->task_id,
+                                    'is_select' => false,
+                                    'value' => $discount->task->crud_name(),
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
@@ -151,6 +155,8 @@
                                     'arr' => $users,
                                     'livewire' => 'user_id',
                                     'val' => $discount->user_id,
+                                    'is_select' => false,
+                                    'value' => $discount->task->crud_name(),
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])

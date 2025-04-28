@@ -49,34 +49,17 @@
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
 
-                                {{-- // TODO search --}}
                                 @include('inputs.create.select', [
                                     'label' => 'area.manager',
                                     'name' => 'area.manager_id',
                                     'arr' => $managers,
                                     'livewire' => 'manager_id',
+                                    'is_select' => false,
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     'lg' => 12,
                                     'md' => 12,
                                     'sm' => 12,
                                 ])
-
-                                {{--  --}}
-                                {{-- <div wire:ignore class="form-group">
-                                    <label for="user-select">{{ __('global.assign-manager') }}</label>
-                                    <select id="user-select" multiple class="">
-                                        @foreach ($managers as $man)
-                                            <option value="{{ $man->id }}"
-                                                @if (in_array($man->id, $selectedManagerD)) selected @endif>
-                                                {{ $man->first_name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('selectedManagerD')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div> --}}
-                                {{--  --}}
 
                             </div>
 
@@ -163,13 +146,14 @@
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])
 
-                                {{-- // TODO search --}}
                                 @include('inputs.edit.select', [
                                     'label' => 'area.manager',
                                     'name' => 'area.manager_id',
                                     'arr' => $managers,
                                     'livewire' => 'manager_id',
                                     'val' => $area->manager_id,
+                                    'is_select' => false,
+                                    'value' => $area->manager->crud_name(),
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     'lg' => 12,
                                     'md' => 12,

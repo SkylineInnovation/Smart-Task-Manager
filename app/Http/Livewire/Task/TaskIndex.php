@@ -146,6 +146,8 @@ class TaskIndex extends Component
 
         if (!$this->user->hasRole('employee'))
             $this->selectedEmployees = [];
+
+        $this->select_emp = '';
     }
 
 
@@ -286,7 +288,7 @@ class TaskIndex extends Component
         $this->reopen_from_task_id = $task->reopen_from_task_id;
         $this->daily_task_id = $task->daily_task_id;
 
-        $this->selectedEmployees = $task->employees->pluck('id');
+        $this->selectedEmployees = $task->employees->pluck('id')->toArray();
 
         $this->discount = $task->discount();
         $this->max_worning_discount = $task->max_worning_discount();
@@ -454,6 +456,12 @@ class TaskIndex extends Component
     {
         $this->setPage(max($this->page - 1, 1));
         $this->emit('gotoTop');
+    }
+
+    public $select_emp;
+    public function updatedSelectEmp($val)
+    {
+        $this->selectedEmployees[] = $val;
     }
 
     public function render()

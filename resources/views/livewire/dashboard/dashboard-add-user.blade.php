@@ -164,6 +164,7 @@
                                     'label' => 'userdetail.branch',
                                     'name' => 'userdetail.branch_id',
                                     'arr' => $branches,
+                                    'is_select' => false,
                                     'livewire' => 'branch_id',
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     'lg' => 12,

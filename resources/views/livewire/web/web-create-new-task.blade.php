@@ -19,15 +19,20 @@
                     <div class="row w-100 m-0">
 
                         @role('owner|manager')
-                            {{--  --}}
-                            <div class='form-group col-lg-6 col-md-6 col-sm-12'>
-                                <label for='branch-select'>{{ __('task.branchs') }}</label>
-                                <select id='branch-select' class='form-control' wire:model='select_branch'>
-                                    <option value="0">{{ __('global.select-branchs') }}</option>
-                                    @foreach ($branchs as $branch)
-                                        <option value='{{ $branch->id }}'>{{ $branch->crud_name() }}</option>
-                                    @endforeach
-                                </select>
+                            <div class='col-lg-6 col-md-6 col-sm-12 p-0'>
+                                {{-- <div class="row"> --}}
+                                {{-- // TODO add the search --}}
+                                @include('inputs.create.select', [
+                                    'label' => 'task.branchs',
+                                    'name' => 'task.branch_id',
+                                    'arr' => $branchs,
+                                    'livewire' => 'select_branch',
+                                    'is_select' => false,
+                                    // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                    'lg' => 12,
+                                    'md' => 12,
+                                    'sm' => 12,
+                                ])
 
                                 @foreach ($branchs as $branch)
                                     @if (in_array($branch->id, $selectedBranchs))
@@ -40,16 +45,23 @@
                                         </div>
                                     @endif
                                 @endforeach
+                                {{-- </div> --}}
                             </div>
 
-                            <div class='form-group col-lg-6 col-md-6 col-sm-12'>
-                                <label for='department-select'>{{ __('task.departments') }}</label>
-                                <select id='department-select' class='form-control' wire:model='select_department'>
-                                    <option value="0">{{ __('global.select-departments') }}</option>
-                                    @foreach ($departments as $department)
-                                        <option value='{{ $department->id }}'>{{ $department->crud_name() }}</option>
-                                    @endforeach
-                                </select>
+                            <div class='col-lg-6 col-md-6 col-sm-12 p-0'>
+                                {{-- <div class="row"> --}}
+                                {{-- // TODO add the search --}}
+                                @include('inputs.create.select', [
+                                    'label' => 'task.departments',
+                                    'name' => 'task.department_id',
+                                    'arr' => $departments,
+                                    'livewire' => 'select_department',
+                                    'is_select' => false,
+                                    // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                    'lg' => 12,
+                                    'md' => 12,
+                                    'sm' => 12,
+                                ])
 
                                 @foreach ($departments as $department)
                                     @if (in_array($department->id, $selectedDepartments))
@@ -64,18 +76,25 @@
                                         </div>
                                     @endif
                                 @endforeach
+                                {{-- </div> --}}
                             </div>
                         @endrole
 
 
-                        <div class='form-group col-lg-6 col-md-6 col-sm-12'>
-                            <label for='employee-select'>{{ __('task.employees') }}</label>
-                            <select id='employee-select' class='form-control' wire:model='select_emp'>
-                                <option>{{ __('global.select-employees') }}</option>
-                                @foreach ($employees as $employee)
-                                    <option value='{{ $employee->id }}'>{{ $employee->crud_name() }}</option>
-                                @endforeach
-                            </select>
+                        <div class='col-12 p-0'>
+                            {{-- <div class="row"> --}}
+                            {{-- // TODO add the search --}}
+                            @include('inputs.create.select', [
+                                'label' => 'task.employees',
+                                'name' => 'task.employee_id',
+                                'arr' => $employees,
+                                'livewire' => 'select_emp',
+                                'is_select' => false,
+                                // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
+                                'lg' => 12,
+                                'md' => 12,
+                                'sm' => 12,
+                            ])
 
                             @foreach ($employees as $employee)
                                 @if (in_array($employee->id, $selectedEmployees))
@@ -88,9 +107,8 @@
                                     </div>
                                 @endif
                             @endforeach
+                            {{-- </div> --}}
                         </div>
-
-
 
                         <div class="input-group mb-3 col-lg-8 col-md-8 col-sm-12">
                             <div class="input-group-prepend ">
@@ -127,8 +145,7 @@
                             </div>
                             <input wire:model.defer="end_time" type="datetime-local" class="form-control"
                                 min="{{ date('Y-m-d\TH:i', strtotime($start_time . '+1 Hours')) }}"
-                                aria-label="Default" aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default">
+                                aria-label="Default" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                         </div>
 
                         @include('inputs.textarea', [

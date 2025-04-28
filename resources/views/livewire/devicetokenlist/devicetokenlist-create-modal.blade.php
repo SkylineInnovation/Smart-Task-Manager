@@ -159,6 +159,8 @@
                                     'arr' => $users,
                                     'livewire' => 'user_id',
                                     'val' => $devicetokenlist->user_id,
+                                    // 'is_select' => false,
+                                    // 'value' => $devicetokenlist->user->crud_name(),
                                     // 'required' => 'required', // 'type' => 'number', // 'step' => 1,
                                     // 'lg' => 6, 'md' => 6, 'sm' => 12,
                                 ])

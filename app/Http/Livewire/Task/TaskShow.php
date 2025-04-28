@@ -56,7 +56,7 @@ class TaskShow extends Component
         $this->status = $task->status;
 
         $this->employees = \App\Models\User::whereRoleIs('employee')->orderBy('first_name')->get();
-        $this->selectedEmployees = $task->employees->pluck('id');
+        $this->selectedEmployees = $task->employees->pluck('id')->toArray();
 
         //
 

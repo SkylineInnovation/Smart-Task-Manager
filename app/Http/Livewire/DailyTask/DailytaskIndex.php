@@ -196,7 +196,7 @@ class DailytaskIndex extends Component
         $this->repeat_time = $dailytask->repeat_time;
         $this->repeat_evrey = $dailytask->repeat_evrey;
 
-        $this->selectedEmployees = $dailytask->employees->pluck('id');
+        $this->selectedEmployees = $dailytask->employees->pluck('id')->toArray();
 
         $this->discount = $dailytask->discount();
     }

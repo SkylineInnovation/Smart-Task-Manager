@@ -229,6 +229,7 @@ return [
     'done' => 'Done',
     'select-users' => 'Select Users',
     'select-tasks' => 'Select Tasks',
+    'select-task' => 'Select Tasks',
     'select-managers' => 'Select Managers',
     'select-manager' => 'Select Managers',
     'select-employees' => 'Select Employees',

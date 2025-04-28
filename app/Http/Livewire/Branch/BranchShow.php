@@ -24,7 +24,7 @@ class BranchShow extends Component
         $this->name = $branch->name;
         $this->location = $branch->location;
 
-        $this->selectedManagers = $branch->managers->pluck('id');
+        $this->selectedManagers = $branch->managers->pluck('id')->toArray();
         $this->managers = User::whereRoleIs('manager')->get();
     }
 
