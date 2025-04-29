@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table Example</title>
+    <title>المعهد الأهلي العالي للتدريب</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -88,6 +88,7 @@
     <div class="sub-header">تحت اشراف المؤسسة العامة للتدريب المهني والكتابي</div>
     <div class="sub-header">تقرير عن النهاء المالي على تاريخ إعلانها أقل من 72 سنة (ثلاث أية) من تاريخ اليوم</div>
     <button class="header" onclick="window.print()">طباعة</button>
+
     <table>
         <thead>
             <tr>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table Example</title>
+    <title>المعهد الأهلي العالي للتدريب</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -102,17 +102,17 @@
                     {{ $taskM->manager->crud_name() }}
                 </td>
             </tr>
-            
-                <tr>
-                    <td>{{ $taskM->title.' '.$taskM->id}}</td>
-                    <td>{{ $taskM->format_date($taskM->end_time) }}</td>
-                    <td>{{ $taskM->status }}</td>
-                    <td>{{ $taskM->discounts->count() }}</td>
-                    <td>{{ $taskM->discounts->where('reason', 'auto-finish-task')->count() }}</td>
-                    <td>غير محدد</td>
 
-                </tr>
-            
+            <tr>
+                <td>{{ $taskM->title . ' ' . $taskM->id }}</td>
+                <td>{{ $taskM->format_date($taskM->end_time) }}</td>
+                <td>{{ $taskM->status }}</td>
+                <td>{{ $taskM->discounts->count() }}</td>
+                <td>{{ $taskM->discounts->where('reason', 'auto-finish-task')->count() }}</td>
+                <td>غير محدد</td>
+
+            </tr>
+
 
 
             {{-- <tr>
@@ -126,6 +126,7 @@
             </tr> --}}
         </tbody>
     </table>
+
     <script>
         // Disable right-click
         document.addEventListener("contextmenu", function(e) {

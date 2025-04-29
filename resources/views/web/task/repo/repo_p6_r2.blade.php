@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table Example</title>
+    <title>المعهد الأهلي العالي للتدريب</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -87,21 +87,21 @@
             </tr>
         </thead>
         <tbody>
-           
-                <tr>
-                    <td colspan="2" class="bg-green"> {{ $task->manager->crud_name() }}</td>
-                    <td colspan="2" class="bg-center">
-                        {{ $task->title }}
-                    </td>
-                    <td colspan="2" class="bg-pink">{{ $task->format_date($task->created_at) }}</td>
-                </tr>
-                <tr>
-                    <td colspan="6">
-                        {{ $task->desc }}
 
-                    </td>
-                </tr>
-           
+            <tr>
+                <td colspan="2" class="bg-green"> {{ $task->manager->crud_name() }}</td>
+                <td colspan="2" class="bg-center">
+                    {{ $task->title }}
+                </td>
+                <td colspan="2" class="bg-pink">{{ $task->format_date($task->created_at) }}</td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    {{ $task->desc }}
+
+                </td>
+            </tr>
+
 
 
             {{-- <tr>

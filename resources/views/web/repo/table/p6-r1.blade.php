@@ -59,6 +59,7 @@
     <div class="sub-header">تحت اشراف المؤسسة العامة للتدريب المهني والكتابي</div>
     <div class="sub-header">تقرير عن النهاء المالي على تاريخ إعلانها أقل من 72 سنة (ثلاث أية) من تاريخ اليوم</div>
     <button class="header" onclick="window.print()">طباعة</button>
+
     <table>
         <tr>
             <th>رقم المهمة علوان المهمة</th>
