@@ -222,6 +222,13 @@ This is a **production-ready** task management system with:
 - ✅ Multi-language support
 - ✅ Data import/export capabilities
 
+## Lessons Learned
+
+### Database Migration Issues
+- **MariaDB Compatibility**: The `renameColumn` method in Laravel migrations doesn't work with MariaDB. Use raw SQL with `CHANGE` syntax instead.
+- **Fixed Migration**: `0000_00_00_000000_rename_statistics_counters.php` - replaced `renameColumn` with MariaDB-compatible `ALTER TABLE ... CHANGE` statements.
+- **Best Practice**: Always check if table/column exists before attempting to rename to avoid errors.
+
 ## Next Steps
 - [ ] Analyze specific functionality requirements
 - [ ] Review current implementation gaps
