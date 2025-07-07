@@ -1,13 +1,17 @@
 {
     "private": true,
+    "engines": {
+        "node": ">=14.18.0",
+        "npm": ">=6.0.0"
+    },
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "build:production": "NODE_ENV=production vite build",
+        "build:production": "NODE_ENV=production vite build --mode production",
         "build:analyze": "vite build --mode analyze",
         "preview": "vite preview",
         "watch": "vite build --watch",
-        "clean": "rm -rf public/build"
+        "clean": "rm -rf public/build && rm -rf node_modules/.vite"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
@@ -21,7 +25,7 @@
         "sass": "^1.56.0",
         "tailwindcss": "^3.1.0",
         "terser": "^5.15.1",
-        "vite": "^3.0.0",
+        "vite": "^3.2.8",
         "vite-plugin-eslint": "^1.8.1"
     },
     "dependencies": {

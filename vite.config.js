@@ -55,11 +55,11 @@ export default defineConfig({
     
     resolve: {
         alias: {
-            '@': resolve(__dirname, 'resources'),
-            '@js': resolve(__dirname, 'resources/assets/js'),
-            '@scss': resolve(__dirname, 'resources/assets/scss'),
-            '@images': resolve(__dirname, 'resources/assets/images'),
-            '@plugins': resolve(__dirname, 'resources/assets/plugins'),
+            '@': resolve(process.cwd(), 'resources'),
+            '@js': resolve(process.cwd(), 'resources/assets/js'),
+            '@scss': resolve(process.cwd(), 'resources/assets/scss'),
+            '@images': resolve(process.cwd(), 'resources/assets/images'),
+            '@plugins': resolve(process.cwd(), 'resources/assets/plugins'),
         },
     },
     
@@ -75,6 +75,9 @@ export default defineConfig({
         
         // Minification
         minify: 'terser',
+        
+        // Target for better compatibility
+        target: 'es2015',
         
         // Rollup options for advanced bundling
         rollupOptions: {
@@ -150,6 +153,9 @@ export default defineConfig({
                 drop_console: process.env.NODE_ENV === 'production',
                 drop_debugger: process.env.NODE_ENV === 'production',
             },
+            format: {
+                comments: false,
+            },
         },
         
         // Asset size warning limit (500kb)
@@ -161,6 +167,7 @@ export default defineConfig({
         preprocessorOptions: {
             scss: {
                 additionalData: `@import "@scss/_variables.scss";`,
+                quietDeps: true, // Suppress deprecation warnings
             },
         },
         
